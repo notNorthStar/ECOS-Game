@@ -54,6 +54,14 @@
 
 **Qué decidió o modificó el equipo:** autorizó explícitamente el Nivel 2, la rama independiente y el uso de subagentes. Las cinco estrofas y VOZ se tomaron de las propuestas existentes en `NIVELES_ECOS.md`; aún requieren revisión de equilibrio, musical y cultural. No se realizaron merges.
 
+## 2026-10-19 14:02 (Ciudad de México) · Codex (OpenAI) · Regeneración visual del Nivel 2
+
+**Qué se pidió:** regenerar escenarios con mayor calidad conforme al contexto y las referencias de arte.
+
+**Qué resultó:** seis capas PNG de parallax, generadas por código original con la paleta de `ART_SPEC.md`, píxeles a 1× y alfa binario. Nuevas fuentes `TuxtlaLandscape.ts`, `TuxtlaTerrain.ts` y `TuxtlaDecor.ts`; generador reproducible `tools/gen-tuxtla-scenery.mjs` con protección por marca/hash y respeto de rutas del equipo. Cielo tramado, cerros, fachadas envejecidas, empedrado húmedo, vegetación y decorado del fandango. Tres subagentes colaboraron en paisaje, decorado y revisión; Codex integró y revisó vistas del recorrido en navegador.
+
+**Qué decidió o modificó el equipo:** pidió mayor calidad siguiendo el contexto existente. Se conservaron historia, misión, colisiones y puntos de interacción. El arte continúa marcado como procedural reemplazable; no se copiaron imágenes externas ni se sobrescribieron assets del equipo. Trabajo en la rama N2, sin merge a `main`.
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**

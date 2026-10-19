@@ -32,3 +32,16 @@ Rama: `codex/nivel-2-san-andres-tuxtla`. Base de `main`: `f60121c824dda0f69ff52f
 - ⚠️ No se preparó ni probó ejecutable Windows.
 
 No se agregaron assets de terceros ni se sobrescribió arte del equipo.
+
+## Segunda pasada visual — 2026-10-19
+
+- Seis PNG de parallax regenerados y cargados por manifiesto, con alto 360 y anchos según `ART_SPEC.md` §9.
+- Paleta oficial y alfa 0/255 comprobados durante generación; fuente determinista y sin dependencias de dibujo adicionales.
+- Se distinguen entrada ajardinada, calles, claro tropical, taller de arcadas y plaza. Cielo tramado, sol circular, cerros con bruma, tejas, balcones, cableado, cantera húmeda y vegetación frontal.
+- Letras turísticas, músicos, instrumentos, tarima, portada, papel picado y recuerdos redibujados; se conservan posiciones de misión y colisiones.
+- Revisión en navegador: entrada y recorrido corriendo hasta la plaza, profundidad y parallax, textura de suelo y legibilidad de actores. Sin errores de consola; avisos de MediaPipe ya existentes durante precarga.
+- TypeScript y 14 pruebas de misión correctos. No se modificó el detector LSM.
+- Build web correcto: 38,005,569 bytes en 134 archivos; JavaScript 1,820.24 kB / 511.76 kB gzip.
+- Regeneración normal comprobada: conserva las seis capas existentes. `--force` requiere marca/hash propios y también conserva rutas personalizadas y entradas del equipo.
+
+El arte continúa marcado como reemplazable. La revisión cultural/musical y una partida humana completa siguen pendientes.

@@ -101,7 +101,7 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 | # | Nivel | Estado | Notas |
 |---|---|---|---|
 | 1 | Xalapa: el misterio del Parque Juárez | **🔨 Jugable de principio a fin (2026-10-19)** | Taller → calles → altar → parque (2 arenas) → PROTECCION → jefe → antena → busto → final. Arte generado (placeholders) esperando el del equipo; falta probar con cámara, pulido y .exe. Arquitectura: `docs/ARQUITECTURA.md` |
-| 2 | San Andrés Tuxtla: la música perdida | 🔨 Primer hito implementado (2026-10-19) | Rama separada: cinco estrofas, fandango por capas, VOZ, primer fragmento, altar y conexión desde Xalapa. TypeScript, build y 14 pruebas correctos; humo parcial en navegador. Pendientes partida completa, cámara, arte y equilibrio. Ver docs/NIVEL_02.md |
+| 2 | San Andrés Tuxtla: la música perdida | 🔨 Primer hito + segunda pasada visual (2026-10-19) | Rama separada: cinco estrofas, fandango por capas, VOZ, primer fragmento, altar y conexión desde Xalapa. Seis PNG parallax con paleta oficial y decorado detallado regenerado. TypeScript, build y 14 pruebas correctos; revisión parcial en navegador. Pendientes partida completa, cámara, revisión de arte y equilibrio. Ver docs/NIVEL_02.md |
 | 3 | Catemaco: el ritual del lago | ⬜ Visión | Balam, Luna, escudo con la U, María |
 | 4 | Oaxaca: los tejidos de la memoria | ⬜ Visión | |
 | 5 | Puebla: de la rueda caída a los Fuertes | ⬜ Visión | Doble salto en los altares |

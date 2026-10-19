@@ -204,3 +204,22 @@ Columnas: archivo (bajo `public/assets/`), cuadro, número de cuadros, animació
 | `ui/ui_vida.png` | 12×12 | 2 | 1 fps / una vez | 0.5 | Alta |
 
 NPC `sprites/npcs/` (madre, estudiantes): 64×80, pivote (32, 78), sin placeholder todavía; el retrato de la madre es `ui/retrato_madre.png`.
+
+## 9. Nivel 2 — San Andrés Tuxtla: escenarios regenerados
+
+Dirección: atardecer húmedo tras El Silencio, cantera y teja envejecidas, fachadas con balcones, neones rotos y cables, cerros de Los Tuxtlas, palmas y helechos. Arquitectura evocativa, sin reproducir un monumento real. Alternar entrada ajardinada, calles, claro tropical, taller con arcadas y plaza del fandango; conservar el carril y=222…345 y los puntos de misión.
+
+PNG en `public/assets/escenarios/nivel-02-san-andres-tuxtla/fondos/`. Todos son 1×, alto 360, paleta global, alfa 0/255; capas 1–5 transparentes fuera de su contenido.
+
+| Archivo | Medidas | Factor | Contenido |
+|---|---|---|---|
+| `fondo_tuxtla_capa0.png` | 759×360 | 0.04 | Cielo tramado, sol circular y nubes |
+| `fondo_tuxtla_capa1.png` | 1084×360 | 0.15 | Cerros orgánicos y bruma |
+| `fondo_tuxtla_capa2.png` | 1824×360 | 0.4 | Ciudad media, campanarios ficticios y vegetación |
+| `fondo_tuxtla_capa3.png` | 2564×360 | 0.65 | Fachadas, tejas, balcones, palmas y arcadas |
+| `fondo_tuxtla_capa4.png` | 3600×360 | 1 | Banqueta y empedrado, charcos planos, rosetones y musgo |
+| `fondo_tuxtla_capa5.png` | 4340×360 | 1.25 | Helechos, ramas y bugambilia en los bordes |
+
+Se generan con `npm run scenery:nivel2`; `-- --force` solo regenera archivos que conservan marca y hash propios. Una sustitución del equipo, una entrada `placeholder:false` o una ruta personalizada se conserva. El manifiesto distingue los PNG procedurales como `placeholder:true`; son reemplazables por arte final con iguales claves y medidas.
+
+Decorado de respaldo en `TuxtlaDecor.ts`: letras 304×50; músicos 64×80; tarima 250×87; portada 330×127; recuerdos 42×42; señal 111×81. El juego usa primero las texturas del equipo si se registran en el manifiesto. No suavizar el dibujo ni añadir bloqueos visuales sobre las interacciones.

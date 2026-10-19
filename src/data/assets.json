@@ -284,6 +284,48 @@
       "key": "retrato_protagonista",
       "path": "assets/ui/retrato_protagonista.png",
       "placeholder": true
+    },
+    {
+      "key": "fondo_tuxtla_capa0",
+      "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-tuxtla-scenery.mjs",
+      "generatedSha256": "610fea788c103f72888efba17b2c5d6f44b831e85ab9225f861f36974250972b"
+    },
+    {
+      "key": "fondo_tuxtla_capa1",
+      "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-tuxtla-scenery.mjs",
+      "generatedSha256": "95f04d9a237cba6624b6b9bacc784b2300f2ae341ca064a15b6946af65e35510"
+    },
+    {
+      "key": "fondo_tuxtla_capa2",
+      "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-tuxtla-scenery.mjs",
+      "generatedSha256": "aae28864a8e1972628c867c272173a49b9a8cb0f79a086f379c79ea529acacbb"
+    },
+    {
+      "key": "fondo_tuxtla_capa3",
+      "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-tuxtla-scenery.mjs",
+      "generatedSha256": "1648953adc6f9be43096af611dd24eb834eda05885955ada3db0d82088884623"
+    },
+    {
+      "key": "fondo_tuxtla_capa4",
+      "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-tuxtla-scenery.mjs",
+      "generatedSha256": "c89e6bca6be9587c7c92e5db5317dfea282ee80bb1c796c8fb4675a59be2b8a8"
+    },
+    {
+      "key": "fondo_tuxtla_capa5",
+      "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-tuxtla-scenery.mjs",
+      "generatedSha256": "5e105da07d5df36edbe54792173ec8920d045ce93e5a137fab4d70917d506181"
     }
   ],
   "sheets": [

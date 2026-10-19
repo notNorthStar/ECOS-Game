@@ -25,6 +25,8 @@ La ruta empieza en `(80, 295)` y termina a la derecha, sin exigir regresar al in
 | `src/data/tuxtla.json` | Lista de estrofas, radio de guardianes, recompensas y contador de misión |
 | `src/systems/TuxtlaDirector.ts` | Orden de misión, estados, recuperación tras muerte y recompensa final |
 | `src/world/TuxtlaScenery.ts` | Escenografía provisional generada por código, letras, músicos y tarima |
+| `src/world/TuxtlaLandscape.ts` y `TuxtlaTerrain.ts` | Fuente de las seis capas regeneradas: paisaje, arquitectura, empedrado y vegetación |
+| `src/world/TuxtlaDecor.ts` | Decorado detallado con animación discreta; respeta efectos reducidos |
 | `src/systems/audio/fandango.ts` | Capas musicales que responden a los recuerdos recuperados |
 
 Las cinco estrofas y el conjuro **VOZ** son propuestas de diseño identificadas como tales en `NIVELES_ECOS.md`; su cantidad y recompensas permanecen en datos configurables. Los identificadores de estrofas son `rio`, `monte`, `madera`, `encuentro`, `memoria`. La interacción usa `n02_estrofa` con `data.verseId`.
@@ -34,5 +36,7 @@ Recompensas iniciales: 10 Ecos por estrofa, 25 por aprender VOZ y 85 por el frag
 ## Alcance provisional
 
 La escenografía, músicos e instrumentos son representaciones procedurales para validar la ruta y el funcionamiento. No sustituyen assets del equipo y no se sobrescriben PNG. El audio procedural permite comprobar la reconstrucción progresiva; todavía requiere revisión musical del equipo. No se presenta como grabación o interpretación tradicional verificada.
+
+La segunda pasada visual genera seis PNG a 1× con `npm run scenery:nivel2`, conserva la paleta oficial y separa jardín de entrada, calles, claro tropical, taller y plaza. El generador protege imágenes del equipo mediante marca y hash; los dibujos por código quedan de respaldo. Medidas y reemplazo: `ART_SPEC.md` §9.
 
 Quedan pendientes arte final, revisión cultural y musical, prueba humana con cámara, equilibrio y duración real de una partida. Las posiciones y diez chaneques son ajustables mediante JSON. Balam, Luna, el escudo y el ritual de Catemaco no forman parte de este nivel.
