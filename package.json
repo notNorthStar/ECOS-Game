@@ -1,0 +1,26 @@
+{
+  "name": "ecos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ECOS — Listick Games · Game Jam ANIEI 2026. Exploración y acción 2D con profundidad; conjuros deletreados en LSM.",
+  "type": "module",
+  "scripts": {
+    "setup": "node tools/setup-mediapipe.mjs",
+    "predev": "node tools/setup-mediapipe.mjs",
+    "dev": "vite",
+    "prebuild": "node tools/setup-mediapipe.mjs",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "placeholders": "node tools/gen-placeholders.mjs"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "1.0.1",
+    "phaser": "4.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "typescript": "5.9.3",
+    "vite": "7.3.7"
+  }
+}

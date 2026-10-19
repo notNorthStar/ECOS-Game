@@ -1,0 +1,5 @@
+{
+ "version": 1,
+ "note": "Muestras k-NN grabadas con F9. Cada muestra: 63 números (21 puntos × x,y,z) normalizados respecto a la muñeca y al tamaño de la mano, con la mano izquierda reflejada.",
+ "samples": {}
+}
