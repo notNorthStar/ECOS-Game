@@ -29,6 +29,11 @@ export const GameState = {
   selectedSpell: null as string | null,
   mastery: {} as Record<string, MasteryState>,
   casting: false,
+  // Escudo U (dueño: systems/Shield.ts). Se desbloquea en Catemaco con los brujos buenos.
+  shield: { unlocked: false, energy: 1, active: false, broken: false },
+  // Habilidad Luna con Balam (dueño: systems/Luna.ts). Se desbloquea en Catemaco al despertar Balam.
+  luna: { unlocked: false, energy: 1, active: false },
+  hasBalam: false,
   // Progreso del nivel (dueño: Director)
   section: 'taller' as SectionId,
   checkpoint: null as null | { section: SectionId; x: number; y: number },
@@ -68,6 +73,9 @@ export function resetGameState(): void {
     selectedSpell: null,
     mastery: {},
     casting: false,
+    shield: { unlocked: false, energy: 1, active: false, broken: false },
+    luna: { unlocked: false, energy: 1, active: false },
+    hasBalam: false,
     section: 'taller',
     checkpoint: null,
     flags: {},

@@ -15,7 +15,9 @@ export const CONTROLS = {
   interact: ['KeyE'],
   spell: ['KeyQ'], // toque = lanzar, mantener = rueda
   luna: ['KeyF'],
-  shield: ['AltLeft'], // si Alt falla: clic derecho (SHIELD_ON_RIGHT_CLICK)
+  // Escudo sin cámara: CLIC DERECHO mantenido (decisión del equipo, 2026-10-19). Alt+Espacio abre el
+  // menú de Windows y no se puede bloquear, así que no se usa Alt. Agrega aquí una tecla si se quiere otra.
+  shield: [] as string[],
   diary: ['Tab'],
   pause: ['Escape'],
   debug: ['F2'],
@@ -28,8 +30,8 @@ export type Action = keyof typeof CONTROLS;
 export const DOUBLE_SHIFT_MS = 250;
 /** Q: umbral entre toque y mantener. */
 export const SPELL_HOLD_MS = 200;
-/** Si Alt no es confiable, el escudo pasa a clic derecho mantenido (el izquierdo dispara). */
-export const SHIELD_ON_RIGHT_CLICK = false;
+/** El escudo sin cámara se mantiene con clic derecho (el izquierdo dispara). */
+export const SHIELD_ON_RIGHT_CLICK = true;
 
 /** ¿Este código de tecla corresponde a la acción? */
 export function isAction(code: string, action: Action): boolean {

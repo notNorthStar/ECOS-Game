@@ -25,7 +25,11 @@ export const SLOWMO = {
 } as const;
 
 /** Secciones disponibles (NIVELES_ECOS.md §4). */
-export const SECTIONS = ['taller', 'calles', 'parque', 'jefe', 'tuxtla'] as const;
+export const SECTIONS = ['taller', 'calles', 'parque', 'jefe', 'tuxtla', 'catemaco', 'campamento', 'altar_olmeca'] as const;
+
+/** Secciones del Nivel 3 (Catemaco), en orden. */
+export const CATEMACO_SECTIONS = ['catemaco', 'campamento', 'altar_olmeca'] as const;
+export const isCatemaco = (id: string): boolean => (CATEMACO_SECTIONS as readonly string[]).includes(id);
 
 /** Factores de parallax por capa (AGENTS.md §8). La capa 4 es el suelo (1.0); la 5, primer plano. */
 export const PARALLAX_FACTORS = [0.04, 0.15, 0.4, 0.65, 1, 1.25] as const;

@@ -13,7 +13,11 @@ import Phaser from 'phaser';
  */
 
 /** Personajes que el juego busca. Agregar aquí (o en assets.json → "kits") los nuevos. */
-export const KIT_IDS = ['protagonista', 'chaneque', 'chaneque_mayor', 'madre'] as const;
+export const KIT_IDS = [
+  'protagonista', 'chaneque', 'chaneque_mayor', 'madre',
+  // Nivel 3
+  'encapuchado', 'espiritu', 'cabeza_olmeca', 'balam', 'maria',
+] as const;
 
 export const kitBase = (id: string) => `assets/sprites/personajes/${id}/${id}_spritesheet`;
 const jsonKey = (id: string) => `kitjson_${id}`;
@@ -104,7 +108,7 @@ type Motion =
   | 'golpe' | 'invocar' | 'lanzar' | 'aturdido';
 
 function motionOf(animKey: string): Motion {
-  const k = animKey.replace(/^(protagonista|chaneque_mayor|chaneque|madre)_/, '');
+  const k = animKey.replace(/^(protagonista|chaneque_mayor|chaneque|madre|encapuchado|espiritu|cabeza_olmeca|balam|maria)_/, '');
   if (k === 'saltar_subida') return 'subida';
   if (k === 'saltar_caida') return 'caida';
   return (k as Motion) || 'reposo';

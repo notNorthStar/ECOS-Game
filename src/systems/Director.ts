@@ -8,6 +8,8 @@ import { installInteract, markUsed, type Interactable } from './Interact';
 import { installLightTrail, setObjective } from './LightTrail';
 import { playDialogue } from '../scenes/DialogueScene';
 import { installTuxtlaDirector } from './TuxtlaDirector';
+import { installCatemacoDirector } from './CatemacoDirector';
+import { isCatemaco } from '../config/game';
 
 /**
  * Dueño: contenido. Guion del Nivel 1 (AGENTS.md §5.2, NIVELES_ECOS.md §4):
@@ -44,6 +46,10 @@ type CastingMod = { startLearning?: (w: WorldApi, id: string) => Promise<void> }
 export function installDirector(world: WorldApi): void {
   if (world.level.id === 'tuxtla') {
     installTuxtlaDirector(world);
+    return;
+  }
+  if (isCatemaco(world.level.id)) {
+    installCatemacoDirector(world);
     return;
   }
   new Director(world);

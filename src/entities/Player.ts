@@ -6,6 +6,7 @@ import { DOUBLE_SHIFT_MS, keys } from '../config/controls';
 import { DODGE, HURT, JUMP, MOVE, PLAYER_BODY, SHOOT } from '../config/movement';
 import { fallbackPlayer } from '../world/textures';
 import { kitAnimatorFor, type KitAnimator } from '../systems/CharacterKits';
+import { isShieldActive } from '../systems/Shield';
 
 type State = 'normal' | 'dodge' | 'hurt' | 'dead';
 
@@ -235,7 +236,8 @@ export class Player implements PlayerApi {
   }
 
   private tryShoot(): void {
-    if (!this.canAct || !GameState.hasLaser || this.state !== 'normal') return;
+    // Con el escudo levantado no se dispara (GDD 6.5: defenderse o atacar).
+    if (!this.canAct || !GameState.hasLaser || this.state !== 'normal' || isShieldActive()) return;
     bus.emit('player:shoot-request', {
       x: this.x + this.facing * SHOOT.muzzleX,
       y: this.y,

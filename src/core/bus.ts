@@ -35,6 +35,13 @@ export interface BusEvents {
   'ecos:changed': { total: number };
   'upgrade:bought': { id: string; level: number };
   'fandango:progress': { recovered: number; total: number };
+  // Nivel 3: escudo U, Luna, Cofradía, Cabeza Olmeca
+  'shield:state': { active: boolean; energy: number; broken: boolean };
+  'shield:block': { x: number; y: number };
+  'luna:state': { active: boolean; energy: number };
+  'balam:awake': Record<string, never>;
+  'cofradia:down': { enemy: EnemyApi };
+  'olmeca:phase': { phase: 1 | 2 | 3 };
   // Mundo / director
   'trigger:enter': { trigger: LevelTrigger };
   'interact': { id: string; action: string; data?: Record<string, unknown> };

@@ -5,6 +5,7 @@ import { DEPTH } from '../config/game';
 import { FX_DEPTH_BIAS, JUICE } from '../config/combat';
 import { getSpellDef } from '../systems/Mastery';
 import { kitAnimatorFor, type KitAnimator } from '../systems/CharacterKits';
+import { shieldFilterHit } from '../systems/Shield';
 
 /* =====================================================================
  * Utilidades compartidas por las entidades de combate (dueño: combate).
@@ -369,6 +370,10 @@ export const playerShield = { until: 0, reduction: 0, debt: 0 };
  * como la vida va en segmentos enteros, la fracción se acumula y descuenta al completar 1.
  */
 export function hitPlayer(world: WorldApi, hit: Hit): boolean {
+  // Escudo U (Nivel 3): puede reducir o absorber por completo el golpe.
+  const filtered = shieldFilterHit(world, hit);
+  if (!filtered) return false;
+  hit = filtered;
   if (performance.now() < playerShield.until && hit.damage > 0) {
     playerShield.debt += hit.damage * (1 - playerShield.reduction);
     const dmg = Math.floor(playerShield.debt + 1e-6);

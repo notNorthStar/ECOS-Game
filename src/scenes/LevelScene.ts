@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import type { LevelData, SectionId, WorldApi } from '../core/contracts';
 import { bus } from '../core/bus';
 import { GameState } from '../core/GameState';
-import { SECTIONS } from '../config/game';
+import { SECTIONS, isCatemaco } from '../config/game';
 import { keys } from '../config/controls';
 import { CAMERA } from '../config/movement';
 import { installCombat } from '../systems/Combat';
@@ -10,6 +10,9 @@ import { installCasting } from '../systems/Casting';
 import { installDirector } from '../systems/Director';
 import { World, type RestartRequest } from '../world/World';
 import { installTuxtlaScenery } from '../world/TuxtlaScenery';
+import { installCatemacoScenery } from '../world/CatemacoScenery';
+import { installShield } from '../systems/Shield';
+import { installLuna } from '../systems/Luna';
 
 // Las secciones se cargan del JSON en build (src/data/levels/*.json). Si falta, se usa sandbox.json.
 const LEVELS = import.meta.glob('../data/levels/*.json', { eager: true }) as Record<string, { default?: LevelData } & LevelData>;
@@ -59,11 +62,15 @@ export class LevelScene extends Phaser.Scene {
     this.world = new World(this, level, start, this.spawnKey, (req) => this.restartWith(req));
     const world: WorldApi = this.world;
     if (level.id === 'tuxtla') installTuxtlaScenery(world);
+    if (isCatemaco(level.id)) installCatemacoScenery(world);
 
     // Sistemas de los otros dueños. Un error en uno no debe tumbar el nivel.
+    // Escudo y Luna se instalan siempre: no hacen nada mientras no estén desbloqueados (GameState).
     for (const [name, install] of [
       ['Combat', installCombat],
       ['Casting', installCasting],
+      ['Shield', installShield],
+      ['Luna', installLuna],
       ['Director', installDirector],
     ] as const) {
       try {

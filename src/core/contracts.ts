@@ -57,8 +57,10 @@ export interface PlayerApi extends DepthEntity {
   setPosition(x: number, y: number): void;
 }
 
-export type EnemyKind = 'chaneque' | 'chaneque_mayor';
+export type EnemyKind = 'chaneque' | 'chaneque_mayor' | 'encapuchado' | 'espiritu' | 'cabeza_olmeca';
 export type ChanequeVariant = 'patrulla' | 'saltador' | 'travieso';
+/** Rangos de la Cofradía: el MISMO modelo con recolor (GDD §9). En el Nivel 3 solo aparece 'rojo'. */
+export type CofradiaRank = 'rojo' | 'negro' | 'elite';
 
 export interface EnemyApi extends DepthEntity {
   kind: EnemyKind;
@@ -70,6 +72,8 @@ export interface EnemyApi extends DepthEntity {
   group?: string;
   /** Ecos base que da (GDD 5.1). */
   readonly ecos: number;
+  /** Solo existe para el jugador con la Habilidad Luna activa: invisible, intangible y sin atacar sin ella (Nivel 3+). */
+  readonly lunaOnly?: boolean;
   /** Aplica un conjuro. Devuelve true si tuvo efecto. */
   applySpell(ev: SpellOutcomeEvent): boolean;
 }
@@ -77,6 +81,10 @@ export interface EnemyApi extends DepthEntity {
 export interface EnemySpec {
   type: EnemyKind;
   variant?: ChanequeVariant;
+  /** Solo encapuchados. */
+  rank?: CofradiaRank;
+  /** Solo espíritus: si true (por defecto) solo se ven con Luna. */
+  lunaOnly?: boolean;
   x: number;
   y: number;
   /** Si tiene grupo, NO aparece al cargar: aparece al emitirse 'arena:start' con ese grupo. */
@@ -85,7 +93,7 @@ export interface EnemySpec {
 
 /** Resultado de un conjuro, emitido por Casting en 'spell:resolved'. */
 export interface SpellOutcomeEvent {
-  spellId: string; // 'CALMA' | 'PROTECCION'
+  spellId: string; // 'CALMA' | 'PROTECCION' | 'VOZ' | 'LUZ' | 'SOL'
   outcome: 'fail' | 'partial' | 'perfect';
   /** 0..1 (fuerza proporcional; 1 = perfecto). */
   power: number;
