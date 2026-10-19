@@ -422,25 +422,22 @@ export class Chaneque extends EnemyBase {
     if (ev.spellId === 'CALMA') {
       const s = SPELLS_FX.CALMA;
       const d = planeDist(this.x, this.y, ev.x + ev.facing * s.forward, ev.y);
-      if (this._exhausted) {
-        if (d > spellParam('CALMA', 'purifyRadius', s.purifyRadius) * powerScale(power)) return false;
-        this.purify(ev.outcome === 'perfect');
-        return true;
-      }
-      if (d > spellParam('CALMA', 'calmRadius', s.calmRadius)) return false;
+      // CALMA calma PARA SIEMPRE (decisión del equipo, 2026-10-19): todo chaneque en el radio se purifica,
+      // esté agotado o no. El aturdimiento del láser es momentáneo; la seña es lo que lo resuelve.
+      const r = this._exhausted
+        ? Math.max(spellParam('CALMA', 'purifyRadius', s.purifyRadius), spellParam('CALMA', 'calmRadius', s.calmRadius))
+        : spellParam('CALMA', 'calmRadius', s.calmRadius);
+      if (d > r * powerScale(power)) return false;
       this.z = 0;
-      this.set('calm');
-      this.stT = -(spellParam('CALMA', 'calmMs', s.calmSeconds * 1000) / 1000) * Math.max(0.5, power);
-      this.setBaseTint(0xc8ffe0);
-      burst(this.scene, 'calm', this.x, this.y - this.height, this.y + FX_DEPTH_BIAS, 5);
-      bus.emit('enemy:hit', { enemy: this, kind: 'spell' });
+      this.purify(ev.outcome === 'perfect');
       return true;
     }
     if (ev.spellId === 'PROTECCION') {
       const s = SPELLS_FX.PROTECCION;
       const d = planeDist(this.x, this.y, ev.x + ev.facing * s.forward, ev.y);
-      if (this._exhausted) {
-        if (d > spellParam('PROTECCION', 'purifyRadius', s.purifyRadius) * powerScale(power)) return false;
+      // PROTECCION también purifica para siempre en su área pequeña; más lejos solo empuja y aturde.
+      if (d <= spellParam('PROTECCION', 'purifyRadius', s.purifyRadius) * powerScale(power)) {
+        this.z = 0;
         this.purify(ev.outcome === 'perfect');
         return true;
       }

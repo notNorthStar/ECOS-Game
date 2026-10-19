@@ -1,4 +1,4 @@
-﻿import Phaser from 'phaser';
+import Phaser from 'phaser';
 import { bus, sfx } from '../core/bus';
 import { GameState } from '../core/GameState';
 import { camView, lsm } from '../systems/Lsm';
@@ -22,7 +22,7 @@ const CONTROLS_TEXT: Array<[string, string]> = [
   ['Saltar', 'Espacio'],
   ['Correr', 'Shift (mantener)'],
   ['Esquivar', 'Doble Shift · o C'],
-  ['Disparar', 'Clic derecho · o X'],
+  ['Disparar', 'Clic izquierdo · o X'],
   ['Láser verde / rojo', '1 / 2'],
   ['Interactuar', 'E'],
   ['Conjuro', 'Q tocar: lanzar · Q mantener: rueda'],

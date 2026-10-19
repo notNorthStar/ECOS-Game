@@ -40,6 +40,10 @@ export class BootScene extends Phaser.Scene {
   }
 
   preload(): void {
+    // Phaser 4.2.1 pierde archivos de la cola cuando la caché del navegador responde al instante
+    // (segunda visita): se quedaba trabado en 32 archivos (maxParallelDownloads). Con todos en paralelo
+    // la cola nunca se usa. Son archivos chicos y locales; no hay costo real.
+    this.load.maxParallelDownloads = 1024;
     this.drawLoader();
     this.load.on(Phaser.Loader.Events.FILE_LOAD_ERROR, (file: Phaser.Loader.File) => {
       if (isKitFile(file.key)) return; // un kit que el equipo aún no entrega no es un error

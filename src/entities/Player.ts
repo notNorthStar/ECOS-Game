@@ -64,16 +64,16 @@ export class Player implements PlayerApi {
     this.kit = kitAnimatorFor(this.sprite, 'protagonista');
     if (this.kit) this.hasArt = true;
 
-    // Clic derecho = disparar (el menú contextual ya está bloqueado en controls.ts).
+    // Clic izquierdo = disparar, como en cualquier juego (decisión del equipo, 2026-10-19).
     this.onPointerDown = (p) => {
-      if (p.rightButtonDown()) {
+      if (p.leftButtonDown()) {
         this.mouseShoot = true;
         this.tryShoot();
         this.shootHoldT = SHOOT.holdRepeat;
       }
     };
     this.onPointerUp = (p) => {
-      if (!p.rightButtonDown()) this.mouseShoot = false;
+      if (!p.leftButtonDown()) this.mouseShoot = false;
     };
     scene.input.on('pointerdown', this.onPointerDown);
     scene.input.on('pointerup', this.onPointerUp);

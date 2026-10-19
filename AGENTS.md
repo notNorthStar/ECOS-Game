@@ -73,12 +73,12 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 | Saltar | **Espacio** (doble salto desbloqueable) |
 | Correr | **Shift** mantenido |
 | Esquivar | **Doble Shift** (~250 ms entre toques); **C** como alternativa |
-| Disparar | **Clic derecho** o **X** |
+| Disparar | **Clic izquierdo** o **X** |
 | Láser verde (aturdidor) / rojo (daño) | **1** / **2** |
 | Interactuar | **E** |
 | Conjuro: lanzar / rueda | **Q** toque / **Q** mantener (umbral **200 ms**) |
 | Habilidad Luna | **F** |
-| Escudo sin cámara | **Alt izquierdo** mantenido; si falla, **clic izquierdo** |
+| Escudo sin cámara | **Alt izquierdo** mantenido; si falla, **clic derecho** |
 | Diario de Señas | **Tab** |
 | Pausa | **Esc** |
 
@@ -86,7 +86,7 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 - Todas las teclas en `src/config/controls.ts`, para poder reasignarlas.
 - Bloquear el menú contextual (clic derecho), el comportamiento de **Tab** y de **Alt** (`keydown` y `keyup`), y combinaciones Alt + letra (Alt+D, Alt+F).
 - **Nunca usar Ctrl.** Ctrl+W cierra la pestaña y no se puede bloquear.
-- **Alt+Espacio** abre el menú de ventana de Windows y no se puede bloquear: prueba escudo + salto. Si molesta, cambia el escudo a clic izquierdo y repórtalo.
+- **Alt+Espacio** abre el menú de ventana de Windows y no se puede bloquear: prueba escudo + salto. Si molesta, cambia el escudo a clic derecho y repórtalo.
 - Al salir de pantalla completa con **Esc**, pausar (`fullscreenchange`).
 - **Mientras se deletrea un conjuro con teclado, todas las letras escriben**, y el movimiento y las demás acciones quedan suspendidos.
 - Doble Shift: Windows abre "Teclas especiales" con 5 Shift seguidos. Mantén **C** como alternativa y añade el aviso en el menú de controles.

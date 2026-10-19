@@ -11,7 +11,7 @@
       "name": "CALMA",
       "type": "purificacion",
       "title": "Calma",
-      "desc": "Purifica a un ser agotado y calma a los cercanos por unos segundos.",
+      "desc": "Calma para siempre a los seres del folclor que estén cerca: dejan de atacar y regresan a la naturaleza.",
       "learnedFrom": "Grabado en el taller de la madre",
       "color": "#7fe0d0",
       "letterWindowMs": 3000,

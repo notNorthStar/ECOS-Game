@@ -1,4 +1,4 @@
-﻿import Phaser from 'phaser';
+import Phaser from 'phaser';
 import { bus, sfx, type BusEvents } from '../core/bus';
 import { GameState } from '../core/GameState';
 import { DEPTH_TOLERANCE } from '../config/game';
@@ -77,7 +77,7 @@ class Director {
     bus.scoped(scene, 'enemy:exhausted', () => {
       if (flag('tip_agotado')) return;
       setFlag('tip_agotado');
-      this.toast('¡Está agotado! Toca Q para lanzar CALMA y purificarlo', 6000);
+      this.toast('Toca Q y deletrea CALMA: los chaneques cercanos se calman para siempre', 6000);
     });
 
     scene.time.addEvent({ delay: 400, loop: true, callback: () => this.revisarArena() });
@@ -370,7 +370,7 @@ class Director {
     this.w.flash(0x8ff7e1, 160);
     await this.dialogo('taller_pistola');
     if (!this.vivo) return;
-    this.toast('Pistola láser: X o clic derecho para disparar · 1 verde · 2 rojo', 5000);
+    this.toast('Pistola láser: clic izquierdo o X para disparar · 1 verde · 2 rojo', 5000);
     this.actualizarObjetivo();
     void this.tutorial();
   }
@@ -392,7 +392,7 @@ class Director {
       },
       {
         flag: 'tut_verde',
-        texto: '1: láser VERDE, aturde. Ponte a la altura del blanco y dispara (X o clic derecho)',
+        texto: '1: láser VERDE, aturde. Ponte a la altura del blanco y dispara (clic izquierdo o X)',
         esperar: () => this.esperarBlanco('green', 35000),
       },
       {

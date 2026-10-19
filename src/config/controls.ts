@@ -9,13 +9,13 @@ export const CONTROLS = {
   jump: ['Space'],
   run: ['ShiftLeft', 'ShiftRight'],
   dodge: ['KeyC'], // alternativa al doble Shift
-  shoot: ['KeyX'], // + clic derecho
+  shoot: ['KeyX'], // + clic izquierdo
   laserGreen: ['Digit1'],
   laserRed: ['Digit2'],
   interact: ['KeyE'],
   spell: ['KeyQ'], // toque = lanzar, mantener = rueda
   luna: ['KeyF'],
-  shield: ['AltLeft'], // si Alt falla: clic izquierdo (SHIELD_ON_LEFT_CLICK)
+  shield: ['AltLeft'], // si Alt falla: clic derecho (SHIELD_ON_RIGHT_CLICK)
   diary: ['Tab'],
   pause: ['Escape'],
   debug: ['F2'],
@@ -28,8 +28,8 @@ export type Action = keyof typeof CONTROLS;
 export const DOUBLE_SHIFT_MS = 250;
 /** Q: umbral entre toque y mantener. */
 export const SPELL_HOLD_MS = 200;
-/** Si Alt no es confiable, el escudo pasa a clic izquierdo mantenido. */
-export const SHIELD_ON_LEFT_CLICK = false;
+/** Si Alt no es confiable, el escudo pasa a clic derecho mantenido (el izquierdo dispara). */
+export const SHIELD_ON_RIGHT_CLICK = false;
 
 /** ¿Este código de tecla corresponde a la acción? */
 export function isAction(code: string, action: Action): boolean {

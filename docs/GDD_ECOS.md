@@ -59,7 +59,7 @@ La referencia es el prototipo **Worlorn** (`docs/referencias/worlorn/worlorn_ref
 | Saltar | **Espacio** | Altura variable; doble salto al desbloquearlo |
 | Correr | **Shift** (mantener) | Se combina con saltar y esquivar |
 | Esquivar | **Doble Shift** (dos toques rápidos, ~250 ms) | Si se mantiene después del segundo toque, sigue corriendo. **C** como tecla alternativa. Ver nota 7 |
-| Disparar | **Clic derecho** o **X** | Dispara hacia donde mira el personaje |
+| Disparar | **Clic izquierdo** o **X** | Dispara hacia donde mira el personaje (decidido 2026-10-19) |
 | Láser aturdidor (verde) | **1** | Selecciona el modo |
 | Láser de daño (rojo) | **2** | Selecciona el modo |
 | Interactuar | **E** | Hablar, aprender una seña, leer, examinar |
@@ -77,7 +77,7 @@ La referencia es el prototipo **Worlorn** (`docs/referencias/worlorn/worlorn_ref
    - **Alt + D** (escudo + moverse a la derecha) enfoca la barra de direcciones y **Alt + F** abre el menú del navegador. Hay que bloquearlos (`preventDefault` en `keydown` y `keyup` cuando `altKey` está activo) y verificar que funcione.
    - Al soltar Alt, el navegador puede mover el foco a su menú. Hay que bloquearlo también en `keyup`.
    - En Electron, quitar el menú de la aplicación (`Menu.setApplicationMenu(null)`) para que Alt no muestre la barra de menú.
-   - **Decidido:** si Alt no se puede usar de forma confiable, **el escudo pasa a mantener clic izquierdo**. Deja la tecla configurable en `config.ts` para cambiarla rápido.
+   - **Decidido:** si Alt no se puede usar de forma confiable, **el escudo pasa a mantener clic derecho** (el izquierdo dispara). Deja la tecla configurable en `config.ts` para cambiarla rápido.
 3. **Clic derecho:** hay que bloquear el menú contextual del navegador sobre el juego.
 4. **Tab:** hay que bloquear su comportamiento por defecto (mover el foco entre elementos de la página).
 5. **Esc** también saca al navegador de la pantalla completa. Al salir de pantalla completa por esa tecla, el juego debe pausarse igual (detectar el evento `fullscreenchange`).
@@ -334,5 +334,5 @@ La experiencia del juego se llama **Ecos**: fragmentos de memoria que se liberan
 ## 16. Pendientes de confirmar
 1. Calor o energía del láser (sección 4), propuesto pero no confirmado.
 2. Fecha y hora exactas de entrega.
-3. Resultado de las pruebas de Alt para el escudo (si falla: clic izquierdo).
+3. Resultado de las pruebas de Alt para el escudo (si falla: clic derecho).
 4. Cómo se resuelve la verticalidad (sección 2.2), propuesto pero no confirmado.

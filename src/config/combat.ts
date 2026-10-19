@@ -59,9 +59,9 @@ export const SPELLS_FX = {
   CALMA: {
     /** Radio para purificar agotados (escala con power: radio × (0.75 + 0.25 × power)). */
     purifyRadius: 90,
-    /** Radio para calmar a los no agotados. */
+    /** Radio en el que CALMA calma PARA SIEMPRE a los no agotados (también escala con power). */
     calmRadius: 110,
-    /** Segundos de calma (× power). */
+    /** Sin uso desde 2026-10-19 (la calma ya no es temporal); se conserva por compatibilidad. */
     calmSeconds: 4.5,
     /** El centro se adelanta hacia donde mira el jugador. */
     forward: 24,
