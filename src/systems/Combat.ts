@@ -60,8 +60,9 @@ export function installCombat(world: WorldApi): void {
     const mode = GameState.laserMode;
     cooldown = LASER.cooldown[mode];
     sinceShot = 0;
-    const sx = x + facing * LASER.muzzleOffset;
-    const h = z + LASER.chestHeight;
+    // Player ya manda la boca del cañón: x adelantada (SHOOT.muzzleX) y z = altura del cañón (SHOOT.muzzleZ).
+    const sx = x;
+    const h = z;
     shots.push(new LaserShot(world, sx, y, h, facing, mode));
     GameState.laserHeat = Math.min(1, GameState.laserHeat + HEAT.perShot[mode]);
     if (GameState.laserHeat >= 1) {
