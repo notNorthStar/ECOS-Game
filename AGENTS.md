@@ -11,6 +11,7 @@
 | `docs/GDD_ECOS.md` | **Cómo se juega**: vista, controles, mecánicas, progresión, enemigos, arte, interfaz | Fuente oficial del diseño |
 | `docs/NDD_v2.md` | **La historia** completa (3 actos, 10 niveles) | **Definitiva. No modificar ni "mejorar" la historia** |
 | `docs/NIVELES_ECOS.md` | **Tabla de niveles**: secciones, conjuros, afinidades, enemigos, jefes, Ecos, música, assets y duración de cada nivel | Lo marcado `[PROPUESTA]` lo puede cambiar el equipo; lo demás viene del NDD |
+| `docs/IDEAS_ACTUALIZACION.md` | Nuevas ideas de actualización solicitadas por el equipo, separadas del estado jugable | ACT-N2-001: alargar N2, dispersar estrofas y añadir Chaneques Mayores en 2 y 5. Registrada; pendiente de implementación |
 | `docs/referencias/worlorn/` | **Vista, movimiento, atmósfera y calidad objetivo** (HTML jugable + capturas) | Abre el HTML y júgalo antes de empezar |
 | `docs/referencias/estilo_protagonista.png` | Estilo y proporción de personajes | Guía de estilo, no es un asset |
 | `docs/MODULO_LSM.md` + carpeta `ecos-lsm/` | **Detección de LSM con la cámara: módulo ya hecho y probado**, cómo integrarlo y sus límites | **No lo reescribas: intégralo** (sección 7.1) |
@@ -30,6 +31,8 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 
 **Cómo se trabaja:** el juego se desarrolla **por niveles**, uno por sesión o por hito. El nivel en curso y el estado de todos están en la sección 5.
 **Objetivo actual autorizado (2026-10-19):** desarrollar el **Nivel 2, "San Andrés Tuxtla — La música perdida"**, en `codex/nivel-2-san-andres-tuxtla`, con subagentes. No modificar la rama `main` ni hacer merges sin autorización explícita. El alcance original del jam era el Nivel 1; la continuación se trabaja por indicación del equipo. Ver `docs/NIVEL_02.md`.
+
+**Última actualización de contexto (2026-10-19):** el equipo pidió registrar como nueva idea de actualización la ampliación del Nivel 2, mayor dispersión de los cinco fragmentos musicales y un Chaneque Mayor en los fragmentos 2 (`monte`) y 5 (`memoria`). Se documentó en `docs/IDEAS_ACTUALIZACION.md` como ACT-N2-001; aún no cambia la implementación ni el NDD.
 
 ---
 

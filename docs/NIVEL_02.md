@@ -1,8 +1,14 @@
 # Nivel 2: San Andrés Tuxtla — La música perdida
 
-Implementación jugable provisional basada en `NDD_v2.md` y `NIVELES_ECOS.md` §4. No incluye jefe ni contenido de Catemaco. La historia conserva el fandango, el primer Fragmento del Sello y la advertencia sobre el rito nocturno de la Cofradía.
+Implementación jugable provisional basada en `NDD_v2.md` y `NIVELES_ECOS.md` §4. La versión actual no incluye jefe ni contenido de Catemaco. La historia conserva el fandango, el primer Fragmento del Sello y la advertencia sobre el rito nocturno de la Cofradía.
 
-## Recorrido
+## Nueva idea de actualización: ACT-N2-001
+
+**Registrada el 2026-10-19; pendiente de implementación.** El equipo solicita alargar el nivel, dispersar más las cinco estrofas y añadir **un Chaneque Mayor en la estrofa 2 (`monte`) y otro en la 5 (`memoria`)**. La propuesta completa y sus puntos pendientes están en [Ideas de actualización](IDEAS_ACTUALIZACION.md#act-n2-001--san-andrés-tuxtla-exploración-ampliada-y-guardianes).
+
+Aquí, «fragmentos 2 y 5» se refiere a fragmentos musicales del fandango. El primer Fragmento del Sello continúa siendo la recompensa final. El ancho, coordenadas y recompensas descritos más abajo corresponden a la versión actual; el nuevo tamaño y el equilibrio de los guardianes quedan por definir.
+
+## Recorrido actual
 
 1. Llegar a las letras de San Andrés Tuxtla. El checkpoint está en `(240, 295)`; el altar permite curarse, mejorar y actualizar el punto de regreso.
 2. Hablar con el músico de la entrada en `(500, 295)` mediante **E** para conocer la misión.

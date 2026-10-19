@@ -2,6 +2,7 @@
 
 **Basado en:** `docs/NDD_v2.md` (historia, definitiva) y `docs/GDD_ECOS.md` (mecánicas).
 **Convención:** lo que viene de la historia del equipo no lleva marca. Lo que **agrega este documento** para completar el diseño (conjuros nuevos, afinidades, conteos, Ecos, música, assets) va marcado **`[PROPUESTA]`** y el equipo puede cambiarlo sin tocar la historia.
+**Nuevas ideas de actualización:** se registran por separado en [IDEAS_ACTUALIZACION.md](IDEAS_ACTUALIZACION.md), con su estado de implementación. ACT-N2-001 plantea ampliar el Nivel 2 y añadir dos guardianes; la ficha base de abajo conserva el diseño anterior a esa idea.
 **Letras de LSM permitidas:** A B C D E F G H I L M N O P R S T U V W Y Z (sin J, K, Ñ, Q ni X; se ignoran acentos). **Todos los conjuros de este documento cumplen esa regla** (verificado con `checkWord()` del módulo `ecos-lsm` y en su `npm test`).
 
 ---
@@ -95,11 +96,12 @@
 ### Nivel 2 — San Andrés Tuxtla: la música perdida
 - **Secciones:** letras de San Andrés Tuxtla (checkpoint y altar) → pueblo silenciado (casas, plaza, campos de tabaco al fondo `[PROPUESTA]`) → búsqueda de las estrofas → plaza del fandango.
 - **Misión:** encontrar las **estrofas perdidas** (5 objetos o recuerdos `[PROPUESTA]`) explorando y calmando chaneques. Cada estrofa recuperada **suena** en la música del nivel. Al completar el fandango se aprende **VOZ** `[PROPUESTA]` y aparece el **1.er fragmento**.
-- **Enemigos:** chaneques rezagados (~10). **Sin jefe**: nivel de respiro y de cultura.
+- **Enemigos, diseño base:** chaneques rezagados (~10). **Sin jefe** en la versión actual. **Nueva idea ACT-N2-001:** añadir dos Chaneques Mayores como guardianes de las estrofas 2 y 5; todavía no implementada.
 - **NPCs:** músicos con jaranas y arpa; los pobladores. Advertencia final: encapuchados rumbo a Catemaco.
 - **Ecos:** ~250. **Música:** fandango que se va completando: empieza con un instrumento y termina con el son completo.
 - **Assets:** reutiliza chaneques y letras; nuevos: pueblo, músicos y tarima.
-- **Duración:** 8–10 minutos.
+- **Duración del diseño base:** 8–10 minutos. La nueva idea de ampliación requiere revisar esta estimación y los ~250 Ecos; tamaño y duración finales aún por definir.
+- **Actualización propuesta por el equipo (2026-10-19):** recorrido más largo, cinco fragmentos musicales más dispersos y un Chaneque Mayor en el segundo (`monte`) y otro en el quinto (`memoria`). Ver [ACT-N2-001](IDEAS_ACTUALIZACION.md#act-n2-001--san-andrés-tuxtla-exploración-ampliada-y-guardianes). El primer Fragmento del Sello sigue siendo la recompensa del fandango.
 
 ### Nivel 3 — Catemaco: el ritual del lago y el despertar de Balam
 - **Secciones:** letras de Catemaco → **los brujos buenos** (enseñan **LUZ**, **SOL** `[PROPUESTA]` y el **Escudo U**) → orilla del lago → infiltración en el campamento (tono detectivesco) → rescate de los gatos y despertar de **Balam** → **Habilidad Luna** (revela espíritus que bloquean el paso) → altar principal.

@@ -62,6 +62,14 @@
 
 **Qué decidió o modificó el equipo:** pidió mayor calidad siguiendo el contexto existente. Se conservaron historia, misión, colisiones y puntos de interacción. El arte continúa marcado como procedural reemplazable; no se copiaron imágenes externas ni se sobrescribieron assets del equipo. Trabajo en la rama N2, sin merge a `main`.
 
+## 2026-10-19 15:28 (Ciudad de México) · Codex (OpenAI) · Nueva idea de actualización del Nivel 2
+
+**Qué se pidió:** actualizar la documentación y registrar como nueva idea un Nivel 2 más largo, fragmentos más dispersos y un Chaneque Mayor en los fragmentos 2 y 5.
+
+**Qué resultó:** `docs/IDEAS_ACTUALIZACION.md`, entrada ACT-N2-001; referencias y distinción entre versión actual y actualización pendiente en `docs/NIVEL_02.md`, `docs/NIVELES_ECOS.md`, `AGENTS.md` y `README.md`. Se documentó la correspondencia de fragmentos musicales con estrofas (`monte` y `memoria`), los dos guardianes independientes y los ajustes técnicos por diseñar. Solo documentación; sin cambios de código, mapa, assets ni narrativa oficial.
+
+**Qué decidió o modificó el equipo:** solicitó explícitamente ampliar el recorrido, dispersar los recuerdos e incorporar esos dos encuentros. El nuevo tamaño, posiciones, duración y equilibrio quedan pendientes de diseño e implementación.
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**

@@ -25,6 +25,7 @@ Juego de **exploración y acción 2D con profundidad**, en pixel art, ambientado
 | `docs/GDD_ECOS.md` | Diseño del juego: cómo se juega |
 | `docs/NDD_v2.md` | Historia oficial (3 actos, 10 niveles) |
 | `docs/NIVELES_ECOS.md` | Tabla de niveles: secciones, conjuros, afinidades, jefes, Ecos, música y assets |
+| `docs/IDEAS_ACTUALIZACION.md` | Nuevas ideas de actualización: ampliar N2, dispersar las estrofas y añadir Chaneques Mayores en la segunda y la quinta (ACT-N2-001, pendiente de implementación) |
 | `docs/MODULO_LSM.md` | Cómo usa ECOS el módulo de LSM |
 | `docs/ASSETS.md` | Guía de assets: carpetas, nombres, formatos, licencias |
 | `docs/referencias/` | Worlorn (vista y calidad objetivo) y la hoja de estilo del protagonista |
