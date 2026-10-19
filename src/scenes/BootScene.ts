@@ -1,6 +1,7 @@
 ﻿import Phaser from 'phaser';
 import manifest from '../data/assets.json';
 import { GAME_HEIGHT, GAME_WIDTH } from '../config/game';
+import { isKitFile, queueKits, registerKits } from '../systems/CharacterKits';
 
 // Dueño: arte. Carga el manifiesto src/data/assets.json (lo genera `npm run placeholders`),
 // crea una animación por cada tira con la MISMA clave que su textura y pasa a 'Title'.
@@ -22,6 +23,8 @@ interface SheetEntry extends ImageEntry {
 interface AssetManifest {
   images: ImageEntry[];
   sheets: SheetEntry[];
+  /** ids extra de personajes del kit del equipo (los de KIT_IDS se buscan siempre). */
+  kits?: string[];
 }
 
 const MANIFEST = manifest as AssetManifest;
@@ -39,11 +42,14 @@ export class BootScene extends Phaser.Scene {
   preload(): void {
     this.drawLoader();
     this.load.on(Phaser.Loader.Events.FILE_LOAD_ERROR, (file: Phaser.Loader.File) => {
+      if (isKitFile(file.key)) return; // un kit que el equipo aún no entrega no es un error
       this.failed.add(file.key);
       console.warn(`[Boot] No se pudo cargar "${file.key}" (${String(file.url)}). Se usa un sustituto.`);
     });
     for (const img of MANIFEST.images) this.load.image(img.key, img.path);
     for (const s of MANIFEST.sheets) this.load.spritesheet(s.key, s.path, { frameWidth: s.frameWidth, frameHeight: s.frameHeight });
+    // Personajes del kit del equipo (public/assets/sprites/personajes/<id>/), si existen.
+    queueKits(this, MANIFEST.kits ?? []);
   }
 
   create(): void {
@@ -73,6 +79,7 @@ export class BootScene extends Phaser.Scene {
         repeat: s.repeat,
       });
     }
+    registerKits(this);
     if (this.failed.size) console.warn(`[Boot] ${this.failed.size} archivo(s) con sustituto:`, [...this.failed]);
     this.scene.start('Title');
   }

@@ -5,6 +5,7 @@ import { GameState, speedMult } from '../core/GameState';
 import { DOUBLE_SHIFT_MS, keys } from '../config/controls';
 import { DODGE, HURT, JUMP, MOVE, PLAYER_BODY, SHOOT } from '../config/movement';
 import { fallbackPlayer } from '../world/textures';
+import { kitAnimatorFor, type KitAnimator } from '../systems/CharacterKits';
 
 type State = 'normal' | 'dodge' | 'hurt' | 'dead';
 
@@ -42,6 +43,7 @@ export class Player implements PlayerApi {
   private time = 0;
   private dead = false;
   private hasArt: boolean;
+  private kit: KitAnimator | null;
   private mouseShoot = false;
   private onPointerDown: (p: Phaser.Input.Pointer) => void;
   private onPointerUp: (p: Phaser.Input.Pointer) => void;
@@ -58,6 +60,9 @@ export class Player implements PlayerApi {
     const tex = this.hasArt ? 'protagonista_reposo' : fallbackPlayer(scene);
     this.sprite = scene.add.sprite(x, y, tex).setOrigin(0.5, PLAYER_BODY.feetY / PLAYER_BODY.frameSize);
     this.sprite.setDepth(y);
+    // Arte del kit del equipo (vistas fijas + animación por código), si ya lo entregaron.
+    this.kit = kitAnimatorFor(this.sprite, 'protagonista');
+    if (this.kit) this.hasArt = true;
 
     // Clic derecho = disparar (el menú contextual ya está bloqueado en controls.ts).
     this.onPointerDown = (p) => {
@@ -305,6 +310,7 @@ export class Player implements PlayerApi {
   }
 
   private playAnim(key: string, restart = false): void {
+    if (this.kit) return this.kit.setAnim(key, restart);
     const scene = this.world.scene;
     if (scene.anims.exists(key)) {
       if (restart) this.sprite.play(key);
@@ -322,7 +328,8 @@ export class Player implements PlayerApi {
     }
     this.sprite.setPosition(Math.round(this.x), Math.round(this.y - this.z + bob));
     this.sprite.setDepth(this.y);
-    if (!this.hasArt) {
+    if (this.kit) this.kit.apply(this.facing, this.time);
+    else if (!this.hasArt) {
       // Inclinación de la silueta de respaldo según el estado (feedback mínimo).
       this.sprite.setAngle(this.state === 'dodge' ? this.facing * 25 : this.state === 'dead' ? this.facing * -80 : 0);
     }

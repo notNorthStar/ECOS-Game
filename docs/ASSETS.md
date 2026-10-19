@@ -17,7 +17,9 @@
 ```
 public/assets/
 ├─ sprites/
-│  ├─ protagonista/        protagonista_<animacion>.png        (64×64, pies en y=60)
+│  ├─ personajes/          <id>/<id>_spritesheet.png + .json   ← SALIDA DEL KIT DEL EQUIPO, tal cual (ver su LEEME.md).
+│  │                       Si existe, reemplaza al placeholder y se anima por código.
+│  ├─ protagonista/        protagonista_<animacion>.png        (placeholders 64×80, pies en y=78)
 │  ├─ npcs/                <personaje>_<animacion>.png         (64×64)
 │  ├─ enemigos/            <enemigo>_<animacion>.png           (chaneque 48×48)
 │  ├─ jefes/               <jefe>_<animacion>.png              (128×128 o más)

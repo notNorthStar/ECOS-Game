@@ -4,6 +4,7 @@ import { bus } from '../core/bus';
 import { DEPTH } from '../config/game';
 import { FX_DEPTH_BIAS, JUICE } from '../config/combat';
 import { getSpellDef } from '../systems/Mastery';
+import { kitAnimatorFor, type KitAnimator } from '../systems/CharacterKits';
 
 /* =====================================================================
  * Utilidades compartidas por las entidades de combate (dueño: combate).
@@ -418,7 +419,11 @@ export abstract class EnemyBase implements EnemyApi {
   protected _ecos: number;
   private destroyed = false;
 
-  constructor(world: WorldApi, x: number, y: number, o: { hp: number; radius: number; height: number; ecos: number; feetY: number; frameH: number; fallbackTex: string; textureKey: string; shadowW: number }) {
+  /** Arte del kit del equipo (vistas fijas animadas por código), si existe. */
+  protected kit: KitAnimator | null = null;
+  protected kitTime = 0;
+
+  constructor(world: WorldApi, x: number, y: number, o: { hp: number; radius: number; height: number; ecos: number; feetY: number; frameH: number; fallbackTex: string; textureKey: string; shadowW: number; kitId?: string }) {
     this.world = world;
     this.scene = world.scene;
     this.x = x;
@@ -439,6 +444,10 @@ export abstract class EnemyBase implements EnemyApi {
     this.shadow.setDepth(DEPTH.shadow + y * 0.0001);
     this.sprite = this.scene.add.sprite(x, y, texOr(this.scene, o.textureKey, o.fallbackTex));
     this.sprite.setOrigin(0.5, o.feetY / o.frameH);
+    if (o.kitId) {
+      this.kit = kitAnimatorFor(this.sprite, o.kitId);
+      if (this.kit) this.hasArt = true;
+    }
   }
 
   get alive(): boolean {
@@ -462,6 +471,7 @@ export abstract class EnemyBase implements EnemyApi {
   abstract applySpell(ev: SpellOutcomeEvent): boolean;
 
   protected play(key: string): void {
+    if (this.kit) return this.kit.setAnim(key);
     this.hasArt = playOr(this.sprite, key, this.fallbackTex);
   }
 
@@ -520,6 +530,10 @@ export abstract class EnemyBase implements EnemyApi {
     sp.setPosition(Math.round(this.x), Math.round(this.y - this.z - this.bob));
     sp.setDepth(this.y);
     sp.setFlipX(this.facing < 0);
+    if (this.kit) {
+      this.kitTime += dt;
+      this.kit.apply(this.facing, this.kitTime);
+    }
     if (this.flashT > 0) {
       this.flashT -= dt;
       sp.setTint(0xffffff).setTintMode(Phaser.TintModes.FILL);

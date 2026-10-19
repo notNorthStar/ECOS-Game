@@ -65,6 +65,7 @@ export class Chaneque extends EnemyBase {
       fallbackTex: FB.chaneque,
       textureKey: 'chaneque_reposo',
       shadowW: 22,
+      kitId: 'chaneque',
     });
     this.variant = variant;
     this.group = group;

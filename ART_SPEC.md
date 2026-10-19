@@ -68,6 +68,10 @@ Anchos de sección: taller 1280 · calles 2560 · parque 2880 · jefe 1600.
 
 ## 5. Cómo reemplazar un placeholder
 
+**Personajes hechos con el kit del equipo (lo más directo):** sube la carpeta que genera `pixelizar.py` tal cual a `public/assets/sprites/personajes/<id>/` (ids: `protagonista`, `chaneque`, `chaneque_mayor`, `madre`). El juego la detecta al arrancar, usa sus vistas fijas y las anima por código. No hay que dibujar tiras ni tocar código. Detalle en `public/assets/sprites/personajes/LEEME.md`.
+
+**Tiras de animación cuadro por cuadro (opcional, para más calidad):**
+
 1. Dibuja con **el mismo nombre de archivo y las mismas medidas** (tira = cuadro × número de cuadros). Usa las plantillas de `art-templates/`.
 2. Súbelo encima del placeholder en `public/assets/...`. **No hay que tocar código.**
 3. Corre `npm run placeholders`: detecta que el archivo ya no es nuestro (los placeholders llevan un chunk PNG `tEXt` "ECOS-placeholder") y lo marca `"placeholder": false` en el manifiesto. Si las medidas no coinciden, avisa en consola y **no lo toca**.

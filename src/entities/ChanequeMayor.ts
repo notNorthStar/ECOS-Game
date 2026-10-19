@@ -97,6 +97,7 @@ export class ChanequeMayor extends EnemyBase {
       fallbackTex: FB.mayor,
       textureKey: 'chaneque_mayor_reposo',
       shadowW: 70,
+      kitId: 'chaneque_mayor',
     });
     this.group = group;
     this.play('chaneque_mayor_reposo');
