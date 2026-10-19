@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ecos-lsm — prueba del módulo</title>
+    <style>
+      :root {
+        --bg: #151826;
+        --panel: #1e2335;
+        --edge: #3a4660;
+        --text: #f4efe6;
+        --dim: #b9cdbf;
+        --gold: #f2b84b;
+        --ok: #3cc4b8;
+        --bad: #e8579a;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 'Segoe UI', system-ui, sans-serif; }
+      header { padding: 16px 20px; border-bottom: 1px solid var(--edge); display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+      header h1 { font-size: 18px; margin: 0; color: var(--gold); }
+      main { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; padding: 16px 20px; }
+      section { background: var(--panel); border: 1px solid var(--edge); border-radius: 8px; padding: 14px 16px; }
+      h2 { font-size: 15px; margin: 0 0 10px; color: var(--gold); }
+      button { background: #2e5e32; color: var(--text); border: 1px solid #3f8a3c; border-radius: 6px; padding: 7px 12px; font: inherit; cursor: pointer; }
+      button:disabled { opacity: 0.5; cursor: default; }
+      input[type='text'] { background: var(--bg); color: var(--text); border: 1px solid var(--edge); border-radius: 6px; padding: 6px 8px; font: inherit; width: 9em; text-transform: uppercase; }
+      .big { font-size: 56px; font-weight: 700; color: var(--gold); line-height: 1; min-height: 56px; }
+      .mono { font-family: Consolas, monospace; font-size: 13px; white-space: pre-wrap; color: var(--dim); }
+      .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
+      .bar { height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; flex: 1; min-width: 120px; }
+      .bar > div { height: 100%; width: 0; background: var(--ok); }
+      .boxes { display: flex; gap: 6px; flex-wrap: wrap; }
+      .boxes span { width: 34px; height: 40px; display: grid; place-items: center; border: 1px solid var(--edge); border-radius: 4px; font-weight: 700; font-size: 18px; }
+      .boxes .cur { border-color: var(--gold); }
+      .boxes .ok { background: #1f8a88; }
+      .boxes .miss { background: #7a1f4a; }
+      .pill { padding: 2px 10px; border-radius: 99px; border: 1px solid var(--edge); }
+      .on { background: #1f8a88; border-color: var(--ok); }
+      .warn { color: var(--bad); }
+      #camslot { width: 320px; height: 240px; border: 1px dashed var(--edge); border-radius: 6px; display: grid; place-items: center; color: var(--dim); }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>ecos-lsm · prueba del módulo</h1>
+      <button id="btnCam">Activar cámara</button>
+      <span id="status" class="pill">sin cámara</span>
+      <label>Tolerancia <input id="tol" type="range" min="0" max="1" step="0.05" value="0.5" /> <span id="tolv">0.50</span></label>
+      <label><input id="chkDebug" type="checkbox" /> medidas (F3)</label>
+    </header>
+    <main>
+      <section>
+        <h2>1 · Lectura en vivo</h2>
+        <div id="camslot">la vista de la cámara aparece aquí</div>
+        <p class="mono">La cámara se procesa en tu equipo; no se graba ni se envía nada.</p>
+        <div class="big" id="letter">—</div>
+        <div class="mono" id="live"></div>
+      </section>
+      <section>
+        <h2>2 · Deletreo (como un conjuro)</h2>
+        <div class="row">
+          <input id="word" type="text" value="CALMA" />
+          <button id="btnSpell">Deletrear</button>
+          <span class="mono" id="wordCheck"></span>
+        </div>
+        <div class="boxes" id="boxes"></div>
+        <div class="row"><span class="mono">tiempo</span><div class="bar"><div id="timeBar"></div></div></div>
+        <div class="row"><span class="mono">sostener</span><div class="bar"><div id="holdBar" style="background: var(--gold)"></div></div></div>
+        <div class="mono" id="spellInfo">Con cámara: haz cada letra y sostenla ~0.3 s. Sin cámara: escribe la letra con el teclado.</div>
+      </section>
+      <section>
+        <h2>3 · Escudo (U sostenida, en tiempo real)</h2>
+        <div class="row"><label><input id="chkShield" type="checkbox" /> detección continua (modo "shield", ~12 Hz)</label></div>
+        <div class="row">Escudo: <span id="shield" class="pill">apagado</span></div>
+        <p class="mono">Se activa con la U estable 150 ms y se apaga si desaparece más de 120 ms.</p>
+      </section>
+      <section>
+        <h2>4 · Grabar muestras k-NN</h2>
+        <div class="row">
+          Letra <input id="recLetter" type="text" value="S" maxlength="1" style="width: 3em" />
+          <button id="btnRec">Grabar 30 muestras</button>
+          <button id="btnSave">Descargar samples.json</button>
+        </div>
+        <div class="mono" id="recInfo">Graba cada letra con 2 o 3 personas distintas. Las muestras se usan al instante para esa letra.</div>
+      </section>
+      <section>
+        <h2>5 · Pruebas sintéticas</h2>
+        <button id="btnTests">Correr pruebas</button>
+        <div class="mono" id="tests"></div>
+      </section>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

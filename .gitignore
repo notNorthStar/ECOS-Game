@@ -1,0 +1,29 @@
+# Dependencias y builds
+node_modules/
+dist/
+dist-demo/
+release/
+.vite/
+*.log
+
+# MediaPipe: el WASM se copia desde node_modules (tools/setup-mediapipe.mjs)
+public/mediapipe/wasm/
+ecos-lsm/public/mediapipe/wasm/
+
+# Salidas temporales de herramientas
+tools/pixelize/out/
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+~$*
+.vscode/*
+!.vscode/extensions.json
+
+# Archivos pesados que NO van al repo (ver docs/ASSETS.md §6)
+*.wav.bak
+*.mov
+*.mp4
+*.zip
