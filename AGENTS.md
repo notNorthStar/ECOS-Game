@@ -100,7 +100,7 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 
 | # | Nivel | Estado | Notas |
 |---|---|---|---|
-| 1 | Xalapa: el misterio del Parque Juárez | **🔨 En curso (jugable del jam)** | Desde cero. Ya existe el módulo de LSM (`ecos-lsm/`) |
+| 1 | Xalapa: el misterio del Parque Juárez | **🔨 Jugable de principio a fin (2026-10-19)** | Taller → calles → altar → parque (2 arenas) → PROTECCION → jefe → antena → busto → final. Arte generado (placeholders) esperando el del equipo; falta probar con cámara, pulido y .exe. Arquitectura: `docs/ARQUITECTURA.md` |
 | 2 | San Andrés Tuxtla: la música perdida | ⬜ Visión | Sin jefe: misión del fandango |
 | 3 | Catemaco: el ritual del lago | ⬜ Visión | Balam, Luna, escudo con la U, María |
 | 4 | Oaxaca: los tejidos de la memoria | ⬜ Visión | |

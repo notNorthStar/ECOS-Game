@@ -555,7 +555,7 @@ class Director {
     this.checkpoint(sp.x, sp.y);
     setFlag('altar');
     sfx('altar');
-    this.w.flash(0xf2c14e, 200);
+    // Sin destello aquí: la escena se pausa enseguida y el destello quedaría congelado detrás del menú.
     this.actualizarObjetivo();
     const sm = this.scene.scene;
     sm.launch('Altar', { section: this.w.level.id, x, y });

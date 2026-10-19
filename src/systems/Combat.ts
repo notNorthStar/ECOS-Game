@@ -76,6 +76,15 @@ export function installCombat(world: WorldApi): void {
     bus.emit('player:shot', { mode });
   });
 
+  // Al calmar al Chaneque Mayor, sus chaneques se calman con él (quedan agotados y se purifican solos).
+  bus.scoped(scene, 'boss:calmed', () => {
+    for (const e of [...world.enemies]) {
+      if (!e.alive || e.purified || e.kind !== 'chaneque') continue;
+      if (!e.exhausted) e.takeHit({ damage: 9999, stun: 0, kind: 'spell', sourceX: e.x, knockback: 0 });
+      e.applySpell({ spellId: 'CALMA', outcome: 'partial', power: 1, auto: true, x: e.x, y: e.y, facing: 1 });
+    }
+  });
+
   bus.scoped(scene, 'spell:resolved', (ev: SpellOutcomeEvent) => {
     if (ev.outcome !== 'fail') spellRing(world, ev);
     // PROTECCION: escudo pasivo breve (spells.json effect.shieldMs / shieldReduction).
