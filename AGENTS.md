@@ -105,7 +105,7 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 |---|---|---|---|
 | 1 | Xalapa: el misterio del Parque Juárez | **🔨 Jugable de principio a fin (2026-10-19)** | Taller → calles → altar → parque (2 arenas) → PROTECCION → jefe → antena → busto → final. Arte generado (placeholders) esperando el del equipo; falta probar con cámara, pulido y .exe. Arquitectura: `docs/ARQUITECTURA.md` |
 | 2 | San Andrés Tuxtla: la música perdida | 🔨 Primer hito + segunda pasada visual (2026-10-19) | Rama separada: cinco estrofas, fandango por capas, VOZ, primer fragmento, altar y conexión desde Xalapa. Seis PNG parallax con paleta oficial y decorado detallado regenerado. TypeScript, build y 14 pruebas correctos; revisión parcial en navegador. Pendientes partida completa, cámara, revisión de arte y equilibrio. Ver docs/NIVEL_02.md |
-| 3 | Catemaco: el ritual del lago | ⬜ Visión | Balam, Luna, escudo con la U, María |
+| 3 | Catemaco: el ritual del lago | 🔨 Jugable de principio a fin (2026-10-19) | Rama `nivel-3-catemaco`: brujos (LUZ, SOL, escudo U con clic derecho) → lago y campamento (9 encapuchados, 6 pistas, jaulas) → Balam + Luna (F) → 8 espíritus → Cabeza Olmeca (3 fases) → María. Personajes importantes con placeholder (§8.0). 25 pruebas (`npm run test:nivel3`). Pendientes: cámara, equilibrio, salida a Oaxaca. Ver `docs/NIVEL_03.md` y `docs/NIVEL_03_CONTRATOS.md` |
 | 4 | Oaxaca: los tejidos de la memoria | ⬜ Visión | |
 | 5 | Puebla: de la rueda caída a los Fuertes | ⬜ Visión | Doble salto en los altares |
 | 6 | CDMX 1: Isla de las Muñecas a Reforma | ⬜ Visión | Nahuales infiltrados |

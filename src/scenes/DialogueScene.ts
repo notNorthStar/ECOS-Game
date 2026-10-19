@@ -50,7 +50,12 @@ export function playDialogue(scene: Phaser.Scene, id: string): Promise<void> {
       scene.scene.launch('Dialogue', { id });
       scene.scene.bringToTop('Dialogue');
     };
-    if (scene.scene.isActive('Dialogue')) {
+    const actual = scene.scene.get('Dialogue') as DialogueScene | null;
+    if (scene.scene.isActive('Dialogue') && actual?.estaCerrando) {
+      // El diálogo anterior ya emitió 'dialogue:end' pero Phaser aún no lo detiene (la parada va en cola):
+      // esperar otro 'dialogue:end' colgaría al jugador. Se abre en cuanto termine de cerrarse.
+      actual.events.once(Phaser.Scenes.Events.SHUTDOWN, () => setTimeout(abrir, 0));
+    } else if (scene.scene.isActive('Dialogue')) {
       const esperar = () => {
         bus.off('dialogue:end', esperar);
         // Dejar que la escena anterior termine de cerrarse.
@@ -81,6 +86,10 @@ export class DialogueScene extends Phaser.Scene {
   private flecha!: Phaser.GameObjects.Text;
   private prevLock = { controls: false, keys: false };
   private cerrando = false;
+  /** true desde que el diálogo terminó hasta que Phaser detiene la escena. */
+  get estaCerrando(): boolean {
+    return this.cerrando;
+  }
 
   constructor() {
     super('Dialogue');

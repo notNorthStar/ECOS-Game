@@ -70,6 +70,11 @@
 
 **Qué decidió o modificó el equipo:** solicitó explícitamente ampliar el recorrido, dispersar los recuerdos e incorporar esos dos encuentros. El nuevo tamaño, posiciones, duración y equilibrio quedan pendientes de diseño e implementación.
 
+## 2026-10-19 16:45 · Claude Code (Anthropic, Claude Opus 5.5 + Sonnet 5.5) · Nivel 3, Catemaco
+**Qué se pidió:** el Nivel 3 completo según NIVELES_ECOS y el NDD, en una rama sacada del Nivel 2, con subagentes y eligiendo el modelo por tarea.
+**Qué resultó:** contratos (`docs/NIVEL_03_CONTRATOS.md`) y cinco subagentes en paralelo: escenario y NPCs comunes (Opus), escudo U + Luna + Balam (Opus), encapuchados + espíritus + Cabeza Olmeca (Opus), mapas + guion + diálogos + pruebas (Sonnet) y audio (Sonnet). Integración, partida completa en navegador y correcciones: campos de SOL desalineados, filtro de Luna demasiado fuerte, diálogos encadenados que podían dejar bloqueado al jugador, alias de efectos y `boss:phase` con 3 fases. La música MP3 del equipo quedó conectada al Nivel 1.
+**Qué decidió o modificó el equipo:** alcance completo, incluir SOL, escudo con clic derecho, y que los personajes importantes (enemigos, aliados, jefes) solo lleven placeholder porque su arte final lo hace el equipo. Los nombres de los brujos (Cirilo, Eulalia, Atanasio, Doña Chayo) son propuesta y quedan por revisar.
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**

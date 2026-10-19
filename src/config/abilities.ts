@@ -57,11 +57,11 @@ export const LUNA = {
   blueOffset: 14,
   /** Viñeta de bordes brillantes (radio/fuerza normalizados 0..1). */
   edgeColor: 0x7fd8ff,
-  edgeRadius: 0.62,
-  edgeStrength: 0.42,
+  edgeRadius: 0.85,
+  edgeStrength: 0.1,
   /** Viñeta oscura. */
-  darkRadius: 0.45,
-  darkStrength: 0.35,
+  darkRadius: 0.7,
+  darkStrength: 0.25,
   /** Con "reducir efectos": sin pulso y filtro más suave. */
   reducedScale: 0.7,
 } as const;

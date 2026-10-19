@@ -328,7 +328,7 @@ class CatemacoDirector {
       case 'campamento': {
         const head = `PISTAS ${this.pistasCount}/${config.pistas.length} · GATOS ${this.jaulasCount}/${config.jaulas.length}`;
         if (flag('balam')) {
-          const hint = flag('luna_tut') ? 'Sigue la orilla hacia el altar olmeca' : 'Mantén F para usar la Habilidad Luna';
+          const hint = flag('luna_tut') ? 'Sigue la orilla hacia el altar olmeca' : 'Pulsa F para usar la Habilidad Luna';
           return { text: `${head}\n${hint}`, target: this.triggerCenter('ir_seccion') };
         }
         if (this.pistasCount < config.pistasMinimas) {
@@ -351,7 +351,7 @@ class CatemacoDirector {
         }
         if (flag('cabeza')) return { text: `${head}\nLa Cabeza duerme`, target: null };
         if (this.arenaOn) return { text: `${head}\nCabeza Olmeca: aprovecha sus ventanas`, target: null };
-        if (left > 0) return { text: `${head}\nMantén F (Luna) y purifica a los espíritus con LUZ`, target: this.spiritTarget() };
+        if (left > 0) return { text: `${head}\nPulsa F (Luna) y purifica a los espíritus con LUZ`, target: this.spiritTarget() };
         return { text: `${head}\nEntra a la explanada de la Cabeza Olmeca`, target: this.triggerCenter('olmeca_arena') };
       }
       default:
@@ -433,7 +433,7 @@ class CatemacoDirector {
       if (this.id === 'catemaco') this.toast('Antes de seguir, aprende lo que los brujos pueden enseñarte.');
       else this.toast(GameState.luna.active
         ? 'Algo bloquea el paso. Purifica a los espíritus con LUZ (Q).'
-        : 'Algo invisible bloquea el paso. Mantén F para ver con Luna.');
+        : 'Algo invisible bloquea el paso. Pulsa F para ver con Luna.');
     }
   }
 
@@ -806,7 +806,7 @@ class CatemacoDirector {
     remember('balam');
     bus.emit('balam:awake', {});
     this.award(config.rewards.balam);
-    this.toast('Habilidad Luna desbloqueada: mantén F para ver con los ojos de Balam.', 6500);
+    this.toast('Habilidad Luna desbloqueada: pulsa F para ver con los ojos de Balam.', 6500);
   }
 
   /* ---------------------------------- altar y jefe ---------------------------------- */
@@ -839,7 +839,7 @@ class CatemacoDirector {
     if (!this.alive || !this.arenaOn) return;
     this.bossSeen = true;
     if (phase === 2) this.toast('Fase 2: láseres oculares. Muévete en profundidad (W/S) o levanta el escudo.', 6000);
-    else if (phase === 3) this.toast('Fase 3: invoca espíritus. Mantén F (Luna) y purifícalos con LUZ.', 6000);
+    else if (phase === 3) this.toast('Fase 3: invoca espíritus. Pulsa F (Luna) y purifícalos con LUZ.', 6000);
   }
 
   /** Respaldo: si el jefe nunca aparece (enemigo aún no integrado) el nivel no se queda atascado. */

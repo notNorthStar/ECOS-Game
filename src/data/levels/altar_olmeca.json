@@ -43,7 +43,7 @@
     { "type": "cabeza_olmeca", "x": 2230, "y": 300, "group": "olmeca" }
   ],
   "triggers": [
-    { "id": "n03_altar_intro", "x": 140, "y": 222, "w": 40, "h": 123, "action": "dialogo", "once": true, "data": { "dialogue": "n03_altar_intro", "toast": "Mantén F para activar Luna: los espíritus del sendero solo existen con ella." } },
+    { "id": "n03_altar_intro", "x": 140, "y": 222, "w": 40, "h": 123, "action": "dialogo", "once": true, "data": { "dialogue": "n03_altar_intro", "toast": "Pulsa F para activar Luna: los espíritus del sendero solo existen con ella." } },
     { "id": "n03_altar_llegada", "x": 1760, "y": 222, "w": 30, "h": 123, "action": "dialogo", "once": true, "data": { "dialogue": "n03_altar_llegada" } },
     { "id": "n03_olmeca_arena", "x": 1930, "y": 222, "w": 30, "h": 123, "action": "olmeca_arena", "data": { "group": "olmeca", "x0": 1800, "x1": 2400 } }
   ],
