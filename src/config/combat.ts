@@ -5,9 +5,9 @@
 /** Láser (GDD §4). */
 export const LASER = {
   /** Velocidad del disparo (px/s). */
-  speed: 560,
-  /** Alcance máximo (px). */
-  range: 340,
+  speed: 720,
+  /** Alcance máximo (px): casi el ancho de la pantalla (640). Antes 340. */
+  range: 580,
   /** Altura del pecho desde la que sale el disparo (px sobre z del jugador). */
   chestHeight: 26,
   /** Separación horizontal desde el centro del jugador. */
@@ -25,7 +25,8 @@ export const LASER = {
 
 /** [PROPUESTA — CONFIRMAR] Calentamiento del láser (GDD §4). heat va de 0 a 1. */
 export const HEAT = {
-  perShot: { green: 0.09, red: 0.2 },
+  /** Disparos seguidos antes de sobrecalentar ≈ 1 / perShot: verde ~20, rojo ~9 (antes 11 y 5). */
+  perShot: { green: 0.05, red: 0.11 },
   /** Enfriamiento por segundo tras `coolDelay` sin disparar. */
   coolRate: 0.45,
   coolDelay: 0.3,

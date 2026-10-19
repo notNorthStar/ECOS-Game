@@ -4,7 +4,8 @@
 /** Movimiento en el plano del suelo (px/s). */
 export const MOVE = {
   walkSpeed: 78,
-  runMult: 1.85,
+  /** Sprint con Shift: 78 × 2.4 ≈ 187 px/s (antes 1.85 ≈ 144; costaba escapar). */
+  runMult: 2.4,
   /** W/S (profundidad) es más lento que A/D, como en Worlorn. */
   depthMult: 0.55,
   /** Con dos teclas a la vez (diagonal) ambas componentes se reducen. */
@@ -31,11 +32,12 @@ export const JUMP = {
 
 /** Esquiva (doble Shift o C). */
 export const DODGE = {
-  speed: 250,
+  /** Velocidad máxima; frena hacia el final (promedio ≈ 0.675×). Recorrido ≈ 520 × 0.3 × 0.675 ≈ 105 px (antes ≈ 45). */
+  speed: 520,
   /** Duración del desplazamiento (s). */
-  duration: 0.26,
+  duration: 0.3,
   /** Invulnerabilidad (s), un poco más larga que el desplazamiento. */
-  iframes: 0.34,
+  iframes: 0.38,
   cooldown: 0.45,
 } as const;
 
