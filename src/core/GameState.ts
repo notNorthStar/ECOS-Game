@@ -44,7 +44,7 @@ export const GameState = {
     longWindows: false, // ventanas de tiempo más largas
     noExtraSlowmo: false,
     reduceFx: false, // sin sacudidas ni destellos
-    musicVolume: 0.6,
+    musicVolume: 0.3, // bajo por defecto (decisión del equipo); se sube en Pausa → Opciones
     sfxVolume: 0.8,
     textScale: 1,
   },
