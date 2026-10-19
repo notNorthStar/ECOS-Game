@@ -46,6 +46,14 @@
 **Qué resultó:** base Vite + Phaser 4 + TypeScript, contratos entre sistemas (`src/core/`, `docs/ARQUITECTURA.md`) y seis agentes en paralelo: mundo y movimiento con profundidad, conjuros con LSM (integra `ecos-lsm` sin reescribirlo), combate, enemigos y Ecos, contenido (niveles, guion y diálogos con base en el NDD), arte generado por código (placeholders reemplazables, `ART_SPEC.md`) y audio procedural.
 **Qué decidió o modificó el equipo:** la fecha de entrega (hoy), usar agentes en paralelo, el alcance del Nivel 1 y la historia (NDD, sin cambios).
 
+## 2026-10-19 13:51 (Ciudad de México) · Codex (OpenAI) · Primer hito del Nivel 2
+
+**Qué se pidió:** crear una rama separada y comenzar San Andrés Tuxtla con subagentes, sin modificar `main` ni hacer merges sin autorización.
+
+**Qué resultó:** rama `codex/nivel-2-san-andres-tuxtla`; mapa y diálogos N2; misión de cinco recuerdos con recompensas únicas, altar, VOZ y primer fragmento; música procedural por capas y escenario provisional original por código; entradas desde título y final de Xalapa; pruebas del director y documentación en `docs/NIVEL_02.md` y `REPORTE_DEMO.md`. Se reutilizó el módulo LSM sin modificarlo. Tres subagentes trabajaron en contenido, misión y audio; Codex integró y verificó el conjunto.
+
+**Qué decidió o modificó el equipo:** autorizó explícitamente el Nivel 2, la rama independiente y el uso de subagentes. Las cinco estrofas y VOZ se tomaron de las propuestas existentes en `NIVELES_ECOS.md`; aún requieren revisión de equilibrio, musical y cultural. No se realizaron merges.
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**

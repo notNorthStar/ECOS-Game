@@ -1,0 +1,52 @@
+{
+  "_hablantes": {
+    "n02_narrador": { "nombre": "", "retrato": "" },
+    "n02_tu": { "nombre": "Tú", "retrato": "retrato_protagonista" },
+    "n02_musico": { "nombre": "Músicos del pueblo", "retrato": "" }
+  },
+  "n02_intro": [
+    { "who": "n02_narrador", "text": "San Andrés Tuxtla. El calor húmedo reemplaza la niebla de Xalapa, pero el pueblo también guarda silencio." },
+    { "who": "n02_tu", "text": "La primera marca del mapa está aquí. Tengo que encontrar qué pasó." },
+    { "who": "n02_narrador", "text": "Un músico te espera a la entrada. Sus compañeros, con jaranas y un arpa, permanecen junto a la tarima de la plaza. Por las calles, los chaneques rezagados esconden recuerdos de los versos perdidos." }
+  ],
+  "n02_letras": [
+    { "who": "n02_narrador", "text": "Las letras desgastadas de SAN ANDRÉS TUXTLA siguen recibiendo a quienes llegan. A su lado, el Altar de la Memoria conserva sus flores y sus velas." }
+  ],
+  "n02_musicos": [
+    { "who": "n02_musico", "text": "Desde que pasó la Cofradía, nos faltan los versos. Las manos recuerdan las cuerdas, pero no logramos reconstruir el fandango." },
+    { "who": "n02_musico", "text": "Busca los cinco recuerdos por el pueblo y calma a los chaneques alterados. Mis compañeros esperan junto a la tarima, al fondo de la plaza. Cuando tengas las estrofas, reúnete con ellos para reconstruir el fandango." },
+    { "who": "n02_tu", "text": "Voy a ayudarles. Nadie debería perder su memoria." }
+  ],
+  "n02_incompleto": [
+    { "who": "n02_musico", "text": "Todavía nos faltan versos. Busca los cinco recuerdos entre las casas, los árboles y los rincones del pueblo. Aquí te esperamos." }
+  ],
+  "n02_estrofa_rio": [
+    { "who": "n02_narrador", "text": "Junto al camino regresa un recuerdo del río. Una estrofa vuelve a encontrar su lugar en la música." }
+  ],
+  "n02_estrofa_monte": [
+    { "who": "n02_narrador", "text": "Entre las hojas aparece el recuerdo del monte. Otro verso atraviesa el silencio." }
+  ],
+  "n02_estrofa_madera": [
+    { "who": "n02_narrador", "text": "La madera conserva la memoria de las cuerdas y los pasos. Recuperas otra estrofa del fandango." }
+  ],
+  "n02_estrofa_encuentro": [
+    { "who": "n02_narrador", "text": "En un rincón del pueblo persiste el recuerdo de la gente reunida. Una nueva estrofa responde a la gema." }
+  ],
+  "n02_estrofa_memoria": [
+    { "who": "n02_narrador", "text": "El último recuerdo habla de lo que el pueblo se niega a olvidar. La estrofa perdida vuelve a escucharse." }
+  ],
+  "n02_fandango": [
+    { "who": "n02_musico", "text": "¡Los versos están completos! Acércate a la tarima. El fandango lo levantamos juntos." },
+    { "who": "n02_narrador", "text": "Las jaranas y el arpa vuelven a encontrarse. Los pasos sobre la tarima acompañan los versos recuperados." },
+    { "who": "n02_narrador", "text": "La gema responde a la música. Entre sus destellos aparece una nueva palabra: VOZ." }
+  ],
+  "n02_final": [
+    { "who": "n02_narrador", "text": "El fandango despierta el primer Fragmento del Sello. Su luz encuentra un lugar en el Códice de las Voces." },
+    { "who": "n02_musico", "text": "Antes de que llegaras vimos hombres encapuchados rumbo al lago de Catemaco. Hablaban de un rito nocturno." },
+    { "who": "n02_tu", "text": "La Cofradía... Tal vez ahí encuentre una pista de mamá." }
+  ],
+  "n02_salida": [
+    { "who": "n02_narrador", "text": "Con el primer fragmento a salvo, el mapa señala Catemaco. Detrás de ti, San Andrés Tuxtla sigue tocando." },
+    { "who": "n02_tu", "text": "Voy al lago. Todavía puedo alcanzarlos." }
+  ]
+}

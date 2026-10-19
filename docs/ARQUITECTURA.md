@@ -1,4 +1,21 @@
-# Arquitectura del juego (Nivel 1)
+# Arquitectura del juego (Niveles 1 y 2)
+
+## Continuación: San Andrés Tuxtla
+
+En la rama `codex/nivel-2-san-andres-tuxtla`, `Level` también carga la sección `tuxtla`.
+`installDirector()` deriva únicamente esa sección a `TuxtlaDirector`; las cuatro secciones de Xalapa conservan su director.
+`Campaign.prepareTuxtlaEntry()` prepara el paso entre niveles sin reiniciar Ecos, mejoras o maestría.
+El título permite iniciar N2 directamente y el resumen de Xalapa permite continuar con la partida actual.
+
+Datos N2: `data/levels/tuxtla.json`, `data/dialogue/n02.json`, `data/tuxtla.json` y VOZ en `data/spells.json`.
+Los diálogos de todos los niveles se cargan por `import.meta.glob`; los nuevos identificadores y hablantes llevan prefijo `n02_`.
+Los flags de misión usan `n02:` y sobreviven a reapariciones, como el resto de `GameState`.
+El evento tipado `fandango:progress { recovered, total }` restaura las capas musicales al entrar o recoger recuerdos.
+`TuxtlaScenery` dibuja respaldos procedurales, respetando las capas `fondo_tuxtla_capa0..5` si están cargadas en el manifiesto.
+
+Ruta, pruebas y límites: `docs/NIVEL_02.md`, `npm run test:nivel2` y `REPORTE_DEMO.md`.
+
+---
 
 > Para el equipo y las IAs. Los contratos de código están en `src/core/contracts.ts`, el bus de eventos en `src/core/bus.ts`
 > y el estado persistente en `src/core/GameState.ts`. **Los sistemas solo se comunican por esas tres piezas.**

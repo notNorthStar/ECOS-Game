@@ -6,6 +6,7 @@
  * (ciclo de 12 corcheas = un compás de 6/8 + uno de 3/4), como el son jarocho.
  */
 import { bombo, campana, mtof, pad, pulsar, rasguear, ruido, slap, tarima, tono, type Motor } from './motor';
+import { FANDANGO, programarFandango } from './fandango';
 
 const ANTICIPO = 0.1;
 const FUNDIDO_ENTRADA = 1.2;
@@ -23,7 +24,7 @@ interface DefPista {
   pasos: number;
   /** Ganancia de la pista. */
   volumen: number;
-  programar(m: Motor, salida: AudioNode, paso: number, t: number, intensidad: number): void;
+  programar(m: Motor, salida: AudioNode, paso: number, t: number, intensidad: number, progreso: number): void;
   iniciar?(m: Motor, salida: AudioNode, t: number): Persistente;
 }
 
@@ -296,6 +297,10 @@ export const PISTAS: Record<string, DefPista> = {
   n01_exploracion: EXPLORACION,
   n01_combate: COMBATE,
   n01_jefe: JEFE,
+  n02_fandango: {
+    paso: FANDANGO.paso, pasos: FANDANGO.pasos, volumen: FANDANGO.volumen,
+    programar: (m, s, paso, t, _intensidad, progreso) => programarFandango(m, s, paso, t, progreso),
+  },
   titulo: TITULO,
 };
 
@@ -316,6 +321,7 @@ export class Musica {
   private activas: Instancia[] = [];
   private actualNombre: string | null = null;
   private intensidad = 0;
+  private progresoFandango = 0;
 
   constructor(
     private m: Motor,
@@ -343,7 +349,9 @@ export class Musica {
     this.intensidad = 0;
     if (!nombre) return;
     const def = PISTAS[nombre] ?? null;
-    const buf = this.archivo(nombre);
+    // Una grabación completa no puede representar las estrofas ausentes: esta pista
+    // utiliza las capas sintetizadas hasta contar con stems independientes del equipo.
+    const buf = nombre === 'n02_fandango' ? null : this.archivo(nombre);
     if (!def && !buf) {
       console.warn(`[Audio] pista desconocida: ${nombre}`);
       return;
@@ -383,6 +391,12 @@ export class Musica {
     for (const inst of this.activas) if (inst.fin === Infinity) inst.persistente?.intensidad?.(v, ahora);
   }
 
+  /** Se restaura desde el director también al reentrar/morir; no reinicia el compás. */
+  setProgresoFandango(recuperadas: number, total: number): void {
+    this.progresoFandango = Number.isFinite(recuperadas) && Number.isFinite(total) && total > 0
+      ? Math.max(0, Math.min(1, recuperadas / total)) : 0;
+  }
+
   /** Lo llama el secuenciador cada ~25 ms. */
   tick(): void {
     const { ctx } = this.m;
@@ -394,7 +408,7 @@ export class Musica {
       // Si el contexto estuvo suspendido o la pestaña en segundo plano, no intentes "ponerte al día".
       if (inst.siguiente < ahora - 0.2) inst.siguiente = ahora + 0.02;
       while (inst.siguiente < limite && inst.siguiente < inst.fin) {
-        def.programar(this.m, inst.salida, inst.paso, inst.siguiente, inst.fin === Infinity ? this.intensidad : 0);
+        def.programar(this.m, inst.salida, inst.paso, inst.siguiente, inst.fin === Infinity ? this.intensidad : 0, this.progresoFandango);
         inst.siguiente += def.paso;
         inst.paso = (inst.paso + 1) % (def.pasos * 12);
       }

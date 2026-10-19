@@ -3,6 +3,7 @@ import { bus, sfx } from '../core/bus';
 import { GameState, resetGameState } from '../core/GameState';
 import { camView, lsm, showCamera } from '../systems/Lsm';
 import { COL, onDomKey, panel, txt } from './SpellScene';
+import { prepareTuxtlaEntry } from '../systems/Campaign';
 
 /**
  * Dueño: lsm. Título "ECOS" + elegir cámara o solo teclado + privacidad + prueba en vivo de la cámara
@@ -12,6 +13,7 @@ type Phase = 'menu' | 'waiting' | 'test' | 'failed';
 
 export class TitleScene extends Phaser.Scene {
   private phase: Phase = 'menu';
+  private entrySection: 'taller' | 'tuxtla' = 'taller';
   private menuIdx = 0;
   private menuItems: Array<{ label: Phaser.GameObjects.Text; act: () => void }> = [];
   private cursor?: Phaser.GameObjects.Text;
@@ -27,6 +29,7 @@ export class TitleScene extends Phaser.Scene {
 
   create(): void {
     this.phase = 'menu';
+    this.entrySection = 'taller';
     this.menuIdx = 0;
     this.menuItems = [];
     this.motes = [];
@@ -43,11 +46,13 @@ export class TitleScene extends Phaser.Scene {
 
     const ready = lsm.cameraReady;
     const opts: Array<[string, () => void]> = [
-      [ready ? '1 · Jugar con cámara (activa)' : '1 · Jugar con cámara', () => void this.chooseCamera()],
-      ['2 · Solo teclado', () => this.chooseKeyboard()],
+      [ready ? '1 · Xalapa · Cámara activa' : '1 · Xalapa · Con cámara', () => void this.chooseCamera()],
+      ['2 · Xalapa · Solo teclado', () => this.chooseKeyboard()],
+      ['3 · Los Tuxtlas · Con cámara', () => { this.entrySection = 'tuxtla'; void this.chooseCamera(); }],
+      ['4 · Los Tuxtlas · Solo teclado', () => { this.entrySection = 'tuxtla'; this.chooseKeyboard(); }],
     ];
     opts.forEach(([s, act], i) => {
-      const label = txt(this, 320, 196 + i * 20, s, 12, COL.ink, { ox: 0.5 });
+      const label = txt(this, 320, 180 + i * 19, s, 11, COL.ink, { ox: 0.5 });
       label.setInteractive({ useHandCursor: true });
       label.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => this.select(i));
       label.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
@@ -58,8 +63,8 @@ export class TitleScene extends Phaser.Scene {
     this.cursor = txt(this, 0, 0, '>', 12, COL.gold);
     this.select(0, true);
 
-    txt(this, 320, 252, 'La cámara se procesa en tu equipo; no se graba ni se envía nada.', 8, COL.teal, { ox: 0.5 });
-    txt(this, 320, 266, 'El juego se puede terminar completo solo con teclado.', 8, COL.dim, { ox: 0.5 });
+    txt(this, 320, 260, 'La cámara se procesa en tu equipo; no se graba ni se envía nada.', 8, COL.teal, { ox: 0.5 });
+    txt(this, 320, 274, 'El juego se puede terminar completo solo con teclado.', 8, COL.dim, { ox: 0.5 });
     txt(
       this,
       320,
@@ -69,7 +74,7 @@ export class TitleScene extends Phaser.Scene {
       COL.dim,
       { ox: 0.5, align: 'center', wrap: 600 },
     );
-    txt(this, 320, 340, '↑↓ / 1 2 · Enter · ratón            Listick Games · Game Jam ANIEI 2026', 8, COL.dim, { ox: 0.5 });
+    txt(this, 320, 340, '↑↓ / 1–4 · Enter · ratón            Listick Games · Game Jam ANIEI 2026', 8, COL.dim, { ox: 0.5 });
 
     onDomKey(this, (e) => this.onKey(e));
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
@@ -208,6 +213,8 @@ export class TitleScene extends Phaser.Scene {
       else if (e.code === 'Enter' || e.code === 'Space' || e.code === 'NumpadEnter') this.activate(this.menuIdx);
       else if (e.code === 'Digit1' || e.code === 'Numpad1') this.activate(0);
       else if (e.code === 'Digit2' || e.code === 'Numpad2') this.activate(1);
+      else if (e.code === 'Digit3' || e.code === 'Numpad3') this.activate(2);
+      else if (e.code === 'Digit4' || e.code === 'Numpad4') this.activate(3);
     } else if (this.phase === 'test' || this.phase === 'failed') {
       if (e.code === 'Enter' || e.code === 'Space' || e.code === 'NumpadEnter' || e.code === 'Escape') this.startGame();
     }
@@ -291,9 +298,10 @@ export class TitleScene extends Phaser.Scene {
     camView.hide();
     sfx('ui_aceptar');
     resetGameState(); // conserva settings
+    if (this.entrySection === 'tuxtla') prepareTuxtlaEntry();
     this.cameras.main.fadeOut(400, 0, 0, 0);
     this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
-      this.scene.start('Level', { section: 'taller' });
+      this.scene.start('Level', { section: this.entrySection });
     });
   }
 }

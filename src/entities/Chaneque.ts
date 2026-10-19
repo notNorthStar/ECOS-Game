@@ -419,6 +419,13 @@ export class Chaneque extends EnemyBase {
     if (!this._alive || ev.outcome === 'fail') return false;
     if (this.st === 'purifying' || this.st === 'leaving') return false;
     const power = Phaser.Math.Clamp(ev.power, 0, 1);
+    if (ev.spellId === 'VOZ') {
+      const s = SPELLS_FX.VOZ;
+      const radius = spellParam('VOZ', 'stunRadius', s.stunRadius) * powerScale(power);
+      if (this._exhausted || planeDist(this.x, this.y, ev.x, ev.y) > radius) return false;
+      return this.takeHit({ damage: 0, stun: spellParam('VOZ', 'stun', s.stun) * power,
+        kind: 'spell', sourceX: ev.x, knockback: spellParam('VOZ', 'knockback', s.knockback) * power });
+    }
     if (ev.spellId === 'CALMA') {
       const s = SPELLS_FX.CALMA;
       const d = planeDist(this.x, this.y, ev.x + ev.facing * s.forward, ev.y);

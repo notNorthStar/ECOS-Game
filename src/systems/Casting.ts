@@ -338,13 +338,18 @@ export function startLearning(world: WorldApi, spellId: string): Promise<void> {
   sfx('aprender');
   return new Promise<void>((resolve) => {
     let finished = false;
-    const done = () => {
+    const done = (completed = true) => {
       if (finished) return;
       finished = true;
       finishLearning = null;
       learning = false;
       lsm.setMode('off');
       camView.hide();
+      if (!completed) {
+        keys.locked = false;
+        resolve();
+        return;
+      }
       unlockWorld(world);
       world.player.controlsLocked = prevLocked;
       addLearned(spellId, true);
@@ -354,8 +359,8 @@ export function startLearning(world: WorldApi, spellId: string): Promise<void> {
       if (sm.isActive('Spell')) sm.stop('Spell');
       resolve();
     };
-    finishLearning = done;
-    sm.launch('Spell', { mode: 'learn', spellId, onDone: done });
+    finishLearning = () => done(false);
+    sm.launch('Spell', { mode: 'learn', spellId, onDone: () => done(true) });
     sm.bringToTop('Spell');
   });
 }

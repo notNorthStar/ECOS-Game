@@ -7,6 +7,7 @@ import * as Casting from './Casting';
 import { installInteract, markUsed, type Interactable } from './Interact';
 import { installLightTrail, setObjective } from './LightTrail';
 import { playDialogue } from '../scenes/DialogueScene';
+import { installTuxtlaDirector } from './TuxtlaDirector';
 
 /**
  * Dueño: contenido. Guion del Nivel 1 (AGENTS.md §5.2, NIVELES_ECOS.md §4):
@@ -41,6 +42,10 @@ const num = (d: Datos, k: string) => (d && typeof d[k] === 'number' ? (d[k] as n
 type CastingMod = { startLearning?: (w: WorldApi, id: string) => Promise<void> };
 
 export function installDirector(world: WorldApi): void {
+  if (world.level.id === 'tuxtla') {
+    installTuxtlaDirector(world);
+    return;
+  }
   new Director(world);
 }
 

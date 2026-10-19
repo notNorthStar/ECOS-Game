@@ -11,8 +11,9 @@ import { Musica, PISTAS } from './audio/musica';
  * - Efectos: `bus.emit('sfx', { name })` o `sfx(name)`. Si existe
  *   `public/assets/audio/sfx/sfx_<name>.ogg` se usa el archivo; si no, se sintetiza.
  * - Música: `bus.emit('music', { track })` con 'n01_taller' | 'n01_exploracion' | 'n01_combate' |
- *   'n01_jefe' | 'titulo' (o null para silencio). Si existe `musica_<track>.ogg` se usa en bucle;
- *   si no, se genera de forma procedural.
+ *   'n01_jefe' | 'n02_fandango' | 'titulo' (o null para silencio). Si existe `musica_<track>.ogg` se usa en bucle;
+ *   si no, se genera de forma procedural. El fandango usa siempre capas procedurales
+ *   para reflejar las estrofas recuperadas (hasta disponer de stems del equipo).
  * - Además reacciona sola a los eventos del jugador, conjuros, enemigos, arenas y pausa.
  * - Lee GameState.settings.musicVolume / sfxVolume en cada tick (~25 ms).
  */
@@ -149,6 +150,7 @@ function precargarArchivos(m: Motor): void {
     void cargar(m, `${BASE}sfx/sfx_${n}.ogg`).then((b) => archivosSfx.set(n, b));
   }
   for (const n of NOMBRES_MUSICA) {
+    if (n === 'n02_fandango') continue;
     void cargar(m, `${BASE}musica/musica_${n}.ogg`).then((b) => archivosMusica.set(n, b));
   }
 }
@@ -199,6 +201,7 @@ function conectarBus(): void {
     musicaPrevia = null;
     musica?.reproducir(normalizarPista(track));
   });
+  bus.on('fandango:progress', ({ recovered, total }) => musica?.setProgresoFandango(recovered, total));
 
   // Jugador.
   bus.on('player:jump', () => reproducirSfx('salto'));
@@ -240,7 +243,7 @@ function conectarBus(): void {
   bus.on('arena:start', () => {
     if (!musica) return;
     const actual = musica.actual;
-    if (actual === 'n01_jefe' || actual === 'n01_combate') return;
+    if (actual === 'n01_jefe' || actual === 'n01_combate' || actual === 'n02_fandango') return;
     musicaPrevia = actual;
     musica.reproducir('n01_combate');
   });

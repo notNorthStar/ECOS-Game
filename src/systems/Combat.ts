@@ -156,6 +156,14 @@ export function installCombat(world: WorldApi): void {
 /** Anillo que muestra el área del conjuro en el suelo. */
 function spellRing(world: WorldApi, ev: SpellOutcomeEvent): void {
   const scene = world.scene;
+  if (ev.spellId === 'VOZ') {
+    const radius = spellParam('VOZ', 'stunRadius', SPELLS_FX.VOZ.stunRadius) * powerScale(ev.power);
+    const wave = scene.add.image(ev.x, ev.y, FB.ring).setTint(0xf2c86b)
+      .setBlendMode(Phaser.BlendModes.ADD).setDepth(ev.y - FX_DEPTH_BIAS).setDisplaySize(8, 4);
+    scene.tweens.add({ targets: wave, displayWidth: radius * 2, displayHeight: radius,
+      alpha: { from: 1, to: 0 }, duration: 700, onComplete: () => wave.destroy() });
+    return;
+  }
   const isCalma = ev.spellId === 'CALMA';
   const cfg = isCalma ? SPELLS_FX.CALMA : SPELLS_FX.PROTECCION;
   if (!isCalma && ev.spellId !== 'PROTECCION') return;

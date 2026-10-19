@@ -34,6 +34,7 @@ export interface BusEvents {
   'ecos:gained': { amount: number; x: number; y: number };
   'ecos:changed': { total: number };
   'upgrade:bought': { id: string; level: number };
+  'fandango:progress': { recovered: number; total: number };
   // Mundo / director
   'trigger:enter': { trigger: LevelTrigger };
   'interact': { id: string; action: string; data?: Record<string, unknown> };

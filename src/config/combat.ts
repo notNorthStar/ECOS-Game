@@ -57,6 +57,12 @@ export const JUICE = {
  * RESPALDO: si data/spells.json (dueño: lsm) define effect.purifyRadius / calmRadius / calmMs, mandan esos.
  */
 export const SPELLS_FX = {
+  VOZ: {
+    stunRadius: 150,
+    stun: 5,
+    knockback: 24,
+    forward: 0,
+  },
   CALMA: {
     /** Radio para purificar agotados (escala con power: radio × (0.75 + 0.25 × power)). */
     purifyRadius: 90,

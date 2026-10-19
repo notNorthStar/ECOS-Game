@@ -9,6 +9,7 @@ import { installCombat } from '../systems/Combat';
 import { installCasting } from '../systems/Casting';
 import { installDirector } from '../systems/Director';
 import { World, type RestartRequest } from '../world/World';
+import { installTuxtlaScenery } from '../world/TuxtlaScenery';
 
 // Las secciones se cargan del JSON en build (src/data/levels/*.json). Si falta, se usa sandbox.json.
 const LEVELS = import.meta.glob('../data/levels/*.json', { eager: true }) as Record<string, { default?: LevelData } & LevelData>;
@@ -57,6 +58,7 @@ export class LevelScene extends Phaser.Scene {
 
     this.world = new World(this, level, start, this.spawnKey, (req) => this.restartWith(req));
     const world: WorldApi = this.world;
+    if (level.id === 'tuxtla') installTuxtlaScenery(world);
 
     // Sistemas de los otros dueños. Un error en uno no debe tumbar el nivel.
     for (const [name, install] of [

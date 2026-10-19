@@ -12,6 +12,7 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
+    "test:nivel2": "node tools/test-nivel-02.mjs",
     "placeholders": "node tools/gen-placeholders.mjs"
   },
   "dependencies": {

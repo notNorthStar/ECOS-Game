@@ -24,8 +24,8 @@ export const SLOWMO = {
   learn: 0.05, // primera vez que se aprende un conjuro
 } as const;
 
-/** Secciones del Nivel 1, en orden (NIVELES_ECOS.md §4). */
-export const SECTIONS = ['taller', 'calles', 'parque', 'jefe'] as const;
+/** Secciones disponibles (NIVELES_ECOS.md §4). */
+export const SECTIONS = ['taller', 'calles', 'parque', 'jefe', 'tuxtla'] as const;
 
 /** Factores de parallax por capa (AGENTS.md §8). La capa 4 es el suelo (1.0); la 5, primer plano. */
 export const PARALLAX_FACTORS = [0.04, 0.15, 0.4, 0.65, 1, 1.25] as const;

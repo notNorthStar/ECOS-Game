@@ -7,6 +7,18 @@
   },
   "spells": [
     {
+      "id": "VOZ",
+      "name": "VOZ",
+      "type": "purificacion",
+      "title": "Voz",
+      "desc": "Devuelve la memoria musical en el fandango. En combate, aturde en área sin causar daño.",
+      "learnedFrom": "Músicos de San Andrés Tuxtla",
+      "color": "#f2c86b",
+      "letterWindowMs": 3500,
+      "masteryPoints": [2, 3, 4],
+      "effect": { "stunRadius": 150, "stun": 5, "knockback": 24 }
+    },
+    {
       "id": "CALMA",
       "name": "CALMA",
       "type": "purificacion",

@@ -3,6 +3,7 @@ import { bus, sfx } from '../core/bus';
 import { GameState } from '../core/GameState';
 import { keys } from '../config/controls';
 import { GAME_HEIGHT, GAME_WIDTH } from '../config/game';
+import { prepareTuxtlaEntry } from '../systems/Campaign';
 
 // Dueño: contenido. Cierre del Nivel 1 (AGENTS.md §5.2 paso 8):
 // 1) pantalla de carga narrativa: el auto compartido con estudiantes rumbo a Los Tuxtlas;
@@ -262,7 +263,7 @@ export class EndingScene extends Phaser.Scene {
     });
 
     this.add
-      .text(W / 2, 22, 'Continuará…', { fontFamily: 'monospace', fontSize: '22px', color: '#f2c14e', fontStyle: 'bold' })
+      .text(W / 2, 22, 'Rumbo a San Andrés Tuxtla', { fontFamily: 'monospace', fontSize: '19px', color: '#f2c14e', fontStyle: 'bold' })
       .setOrigin(0.5, 0);
     this.add
       .text(W / 2, 50, 'La ruta del Códice de las Voces: seis fragmentos del sello', {
@@ -323,7 +324,7 @@ export class EndingScene extends Phaser.Scene {
         })
         .setOrigin(0.5, 0);
       this.add
-        .text(W / 2, H - 28, 'E / Espacio: volver al título', { fontFamily: 'monospace', fontSize: '9px', color: '#8b8aa0' })
+        .text(W / 2, H - 28, 'E / Espacio: continuar a San Andrés Tuxtla', { fontFamily: 'monospace', fontSize: '9px', color: '#8b8aa0' })
         .setOrigin(0.5, 0);
     });
   }
@@ -337,8 +338,8 @@ export class EndingScene extends Phaser.Scene {
       this.irResumen();
     } else {
       sfx('ui_aceptar');
-      bus.emit('music', { track: null });
-      this.scene.start('Title');
+      prepareTuxtlaEntry();
+      this.scene.start('Level', { section: 'tuxtla' });
     }
   }
 }

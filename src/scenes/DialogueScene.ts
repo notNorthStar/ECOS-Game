@@ -4,7 +4,6 @@ import { GameState } from '../core/GameState';
 import { keys } from '../config/controls';
 import { GAME_HEIGHT, GAME_WIDTH } from '../config/game';
 import type { WorldApi } from '../core/contracts';
-import n01 from '../data/dialogue/n01.json';
 
 // Dueño: contenido. Caja de diálogo pixel art con retrato, nombre y máquina de escribir.
 // Avanza con E, Espacio, Enter o clic. Bloquea al jugador mientras dura y al terminar emite 'dialogue:end'.
@@ -18,8 +17,16 @@ interface Hablante {
   retrato: string;
 }
 
-const DATOS = n01 as unknown as Record<string, unknown>;
-const HABLANTES = (DATOS._hablantes ?? {}) as Record<string, Hablante>;
+const FILES = import.meta.glob('../data/dialogue/*.json', { eager: true, import: 'default' }) as Record<string, Record<string, unknown>>;
+const DATOS: Record<string, unknown> = {};
+const HABLANTES: Record<string, Hablante> = {};
+for (const path of Object.keys(FILES).sort()) {
+  const file = FILES[path];
+  Object.assign(HABLANTES, file._hablantes ?? {});
+  for (const [id, dialogue] of Object.entries(file)) {
+    if (id !== '_hablantes') DATOS[id] = dialogue;
+  }
+}
 
 /** Busca un diálogo por id en los JSON de diálogos. */
 export function getDialogue(id: string): Linea[] {

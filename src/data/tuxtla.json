@@ -1,0 +1,7 @@
+{
+  "verses": ["rio", "monte", "madera", "encuentro", "memoria"],
+  "guardRadius": 130,
+  "rewards": { "verse": 10, "voice": 25, "fragment": 85 },
+  "hud": { "x": 12, "y": 74, "fontSize": 10 },
+  "toastMs": 4200
+}
