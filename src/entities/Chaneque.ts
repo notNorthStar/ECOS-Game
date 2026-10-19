@@ -5,7 +5,7 @@ import { DEPTH_TOLERANCE } from '../config/game';
 import { FX_DEPTH_BIAS, SPELLS_FX } from '../config/combat';
 import enemiesData from '../data/enemies.json';
 import progression from '../data/progression.json';
-import { EnemyBase, FB, burst, hexColor, planeDist, powerScale, purifyFx, rand, randRange, spellParam , hitPlayer } from './EnemyBase';
+import { EnemyBase, FB, burst, hexColor, inLuzRadius, inSolLine, planeDist, powerScale, purifyFx, rand, randRange, solDamage, solKnockback, spellParam , hitPlayer } from './EnemyBase';
 
 /**
  * Chaneque (NIVELES §4, GDD §9). Pequeño, rápido, en grupos de 3–6, con travesuras.
@@ -451,6 +451,15 @@ export class Chaneque extends EnemyBase {
       if (d > s.pushRadius) return false;
       this.takeHit({ damage: 0, stun: s.stun * power, kind: 'spell', sourceX: ev.x, knockback: s.knockback * power });
       return true;
+    }
+    // Nivel 3. LUZ: ➖ (solo aturde un poco). SOL: daño en línea (puede dejarlo agotado).
+    if (ev.spellId === 'LUZ') {
+      if (this._exhausted || !inLuzRadius(ev, this.x, this.y)) return false;
+      return this.takeHit({ damage: 0, stun: spellParam('LUZ', 'lightStun', SPELLS_FX.LUZ.lightStun) * power, kind: 'spell', sourceX: ev.x, knockback: 4 });
+    }
+    if (ev.spellId === 'SOL') {
+      if (!inSolLine(ev, this.x, this.y, this.radius)) return false;
+      return this.takeHit({ damage: solDamage(ev), stun: 0, kind: 'spell', sourceX: ev.x, knockback: solKnockback(ev) });
     }
     return false;
   }

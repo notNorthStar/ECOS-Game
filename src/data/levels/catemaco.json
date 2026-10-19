@@ -1,0 +1,59 @@
+{
+  "id": "catemaco",
+  "name": "Catemaco · El ritual del lago",
+  "width": 2400,
+  "background": "fondo_catemaco",
+  "ambience": { "fog": 0.38, "rain": false, "fireflies": true, "leaves": false, "tint": "#8fb0c8", "darkness": 0.34 },
+  "music": "n03_pueblo",
+  "walk": [[[0,222],[2400,222],[2400,345],[0,345]]],
+  "obstacles": [],
+  "props": [
+    { "key": "prop_n03_letras_catemaco", "id": "n03_letras", "x": 215, "y": 224 },
+    { "key": "altar_memoria", "id": "n03_altar", "x": 360, "y": 255, "anim": "altar_memoria", "collide": { "rx": 18, "ry": 6 } },
+    { "key": "prop_n03_antorcha", "x": 520, "y": 224, "anim": "prop_n03_antorcha" },
+    { "key": "prop_n03_lona", "x": 660, "y": 234 },
+    { "key": "npc_poblador_n03_1", "id": "n03_poblador_1", "x": 600, "y": 292, "anim": "npc_poblador_n03_1" },
+    { "key": "prop_n03_nota", "id": "n03_cartel", "x": 700, "y": 304 },
+    { "key": "npc_poblador_n03_2", "id": "n03_poblador_2", "x": 800, "y": 264, "anim": "npc_poblador_n03_2" },
+    { "key": "prop_n03_antorcha", "x": 930, "y": 224, "anim": "prop_n03_antorcha" },
+    { "key": "prop_n03_lona", "x": 1010, "y": 236 },
+    { "key": "npc_brujo_1", "id": "n03_brujo_1", "x": 1080, "y": 294, "anim": "npc_brujo_1" },
+    { "key": "prop_n03_altar_brujos", "id": "n03_altar_brujos", "x": 1350, "y": 238, "collide": { "rx": 28, "ry": 5 }, "anim": "prop_n03_altar_brujos" },
+    { "key": "npc_brujo_2", "id": "n03_brujo_2", "x": 1260, "y": 278, "anim": "npc_brujo_2" },
+    { "key": "npc_brujo_3", "id": "n03_brujo_3", "x": 1480, "y": 294, "anim": "npc_brujo_3" },
+    { "key": "prop_n03_antorcha", "x": 1560, "y": 224, "anim": "prop_n03_antorcha" },
+    { "key": "prop_n03_caja_cofradia", "x": 1650, "y": 306, "collide": { "rx": 12, "ry": 4 } },
+    { "key": "prop_n03_antorcha", "x": 1960, "y": 224, "anim": "prop_n03_antorcha" },
+    { "key": "prop_n03_muelle", "x": 2290, "y": 246 },
+    { "key": "prop_arbusto", "x": 480, "y": 352, "foreground": true },
+    { "key": "prop_arbusto", "x": 1180, "y": 354, "foreground": true, "flipX": true },
+    { "key": "prop_arbusto", "x": 2060, "y": 352, "foreground": true },
+    { "key": "prop_n03_gato_negro_echado", "x": 1180, "y": 306 },
+    { "key": "prop_n03_lancha", "x": 2230, "y": 250 },
+    { "key": "prop_n03_estandarte", "x": 1800, "y": 224 }
+  ],
+  "spawn": { "x": 80, "y": 295 },
+  "spawns": { "inicio": { "x": 80, "y": 295 }, "checkpoint": { "x": 200, "y": 295 }, "altar": { "x": 360, "y": 295 } },
+  "enemies": [
+    { "type": "encapuchado", "rank": "rojo", "x": 1960, "y": 285 },
+    { "type": "encapuchado", "rank": "rojo", "x": 2110, "y": 258 },
+    { "type": "encapuchado", "rank": "rojo", "x": 2240, "y": 318 }
+  ],
+  "triggers": [
+    { "id": "n03_letras", "x": 140, "y": 222, "w": 120, "h": 123, "action": "letras", "once": true, "data": { "title": "CATEMACO", "subtitle": "Veracruz · El ritual del lago" } },
+    { "id": "n03_vista_encapuchados", "x": 1760, "y": 222, "w": 40, "h": 123, "action": "dialogo", "once": true, "data": { "dialogue": "n03_encapuchados_vista", "toast": "Encapuchados: el láser ROJO (2) o el conjuro SOL los dejan inconscientes. CALMA no les hace nada." } },
+    { "id": "n03_a_campamento", "x": 2360, "y": 222, "w": 40, "h": 123, "action": "ir_seccion", "data": { "section": "campamento", "spawn": "inicio", "requires": "brujos_ok" } }
+  ],
+  "interactables": [
+    { "id": "n03_letrero", "x": 215, "y": 252, "radius": 52, "prompt": "Examinar", "action": "n03_examinar", "data": { "dialogue": "n03_letras", "promptDy": 45 } },
+    { "id": "n03_altar", "x": 360, "y": 270, "radius": 34, "prompt": "Ofrendar", "action": "altar", "data": { "promptDy": 56 } },
+    { "id": "n03_poblador_1", "x": 600, "y": 292, "radius": 40, "prompt": "Hablar", "action": "n03_examinar", "data": { "dialogue": "n03_poblador_1" } },
+    { "id": "n03_cartel", "x": 700, "y": 304, "radius": 36, "prompt": "Leer", "action": "n03_examinar", "data": { "dialogue": "n03_cartel", "descubrimiento": "cartel" } },
+    { "id": "n03_poblador_2", "x": 800, "y": 264, "radius": 40, "prompt": "Hablar", "action": "n03_examinar", "data": { "dialogue": "n03_poblador_2" } },
+    { "id": "n03_brujo_1", "x": 1080, "y": 294, "radius": 44, "prompt": "Hablar con Don Cirilo", "action": "n03_brujo", "data": { "brujo": "luz" } },
+    { "id": "n03_brujo_2", "x": 1260, "y": 278, "radius": 44, "prompt": "Hablar con Doña Eulalia", "action": "n03_brujo", "data": { "brujo": "sol" } },
+    { "id": "n03_altar_brujos", "x": 1350, "y": 262, "radius": 36, "prompt": "Examinar", "action": "n03_examinar", "data": { "dialogue": "n03_altar_brujos", "descubrimiento": "altar_brujos" } },
+    { "id": "n03_brujo_3", "x": 1480, "y": 294, "radius": 44, "prompt": "Hablar con Don Atanasio", "action": "n03_brujo", "data": { "brujo": "escudo" } }
+  ],
+  "cameraBounds": { "x0": 0, "x1": 2400 }
+}

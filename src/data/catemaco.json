@@ -1,0 +1,35 @@
+{
+  "note": "Números del Nivel 3 (dueño: contenido). Todo lo ajustable del director de Catemaco vive aquí.",
+  "brujos": ["luz", "sol", "escudo"],
+  "pistas": ["huellas", "orden", "mapa", "simbolos", "ofrendas", "carta"],
+  "pistasMinimas": 3,
+  "jaulas": ["a", "b", "c"],
+  "guardRadius": 150,
+  "toastMs": 4200,
+  "hud": { "x": 12, "y": 74, "fontSize": 10 },
+  "gates": { "catemacoX": 1700 },
+  "escudo": {
+    "piedras": 3,
+    "intervaloMs": 2400,
+    "vueloMs": 1500,
+    "ventanaBloqueoMs": 450,
+    "arco": 38,
+    "intentosMax": 14,
+    "distanciaLanzamiento": 150
+  },
+  "espiritus": {
+    "gates": [760, 1330, 1620],
+    "avisoLunaMs": 6000
+  },
+  "arena": { "x0": 1800, "x1": 2400, "musicaJefe": "n03_jefe", "musicaAltar": "n03_altar" },
+  "maria": { "entraDesdeX": 2480, "llegaA": 2000, "velocidadPx": 70 },
+  "rewards": {
+    "brujo": 8,
+    "escudo": 15,
+    "descubrimiento": 5,
+    "pista": 8,
+    "deduccion": 20,
+    "jaula": 8,
+    "balam": 25
+  }
+}

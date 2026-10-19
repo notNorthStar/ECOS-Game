@@ -2,6 +2,7 @@
  * Efectos de sonido sintetizados. Cada función agenda su sonido en `t` sobre `d` (bus de efectos)
  * y devuelve la duración aproximada (para el límite de voces).
  */
+import { EFECTOS_N03, MAX_VOCES_N03 } from './catemaco';
 import { campana, mtof, pad, pulsar, ruido, tono, type Motor } from './motor';
 
 type Sintetizador = (m: Motor, d: AudioNode, t: number) => number;
@@ -176,6 +177,7 @@ export const EFECTOS: Record<string, Sintetizador> = {
     [67, 71, 74, 79, 83, 86, 91].forEach((n, i) => campana(m, d, t + 0.1 + i * 0.09, mtof(n), 1.0, 0.07, 0.7));
     return 2.2;
   },
+  ...EFECTOS_N03,
 };
 
 /** Alias de nombres que otros sistemas podrían usar. */
@@ -185,6 +187,13 @@ export const ALIAS: Record<string, string> = {
   'daño': 'dano',
   golpe: 'impacto',
   hit: 'impacto',
+  // Nombres que usan los enemigos del Nivel 3 → efectos existentes.
+  encapuchado_conjuro: 'proyectil_oscuro',
+  proyectil_reflejo: 'escudo_golpe',
+  olmeca_carga: 'olmeca_rugido',
+  olmeca_invocar: 'olmeca_invoca',
+  olmeca_ojos_apagados: 'luna_off',
+  ui_error: 'letra_fallo',
 };
 
 /** Voces simultáneas máximas por nombre (por defecto 4). */
@@ -201,4 +210,5 @@ export const MAX_VOCES: Record<string, number> = {
   muerte: 1,
   perfecto: 1,
   purificar: 2,
+  ...MAX_VOCES_N03,
 };

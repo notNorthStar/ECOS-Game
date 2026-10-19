@@ -326,6 +326,237 @@
       "placeholder": true,
       "generator": "tools/gen-tuxtla-scenery.mjs",
       "generatedSha256": "5e105da07d5df36edbe54792173ec8920d045ce93e5a137fab4d70917d506181"
+    },
+    {
+      "key": "fondo_catemaco_capa0",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_catemaco_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "11865e0c01e31079c52c1f69544900adcebba477e46e3af5a7d37cb98149608f"
+    },
+    {
+      "key": "fondo_catemaco_capa1",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_catemaco_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "28b49aaf819c9bcdc2c285c9eb18f58351d37a9fb9a32a8838951a0419cc2187"
+    },
+    {
+      "key": "fondo_catemaco_capa2",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_catemaco_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "070bcb472540841e3a2e4f182734e41d655a03455ce3cf04af9905ee382d3488"
+    },
+    {
+      "key": "fondo_catemaco_capa3",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_catemaco_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "328b505a3336d0d8cb12be4e49e646fd441ea740ec9ef5d64d1d2196b1ad7820"
+    },
+    {
+      "key": "fondo_catemaco_capa4",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_catemaco_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "f1e5bdb7f62b18d609ef218fc940c45ca1cd9e1cd29f204783ba624a2553e077"
+    },
+    {
+      "key": "fondo_catemaco_capa5",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_catemaco_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "3947c838769303bbf940ed13d2f58d212272b68d70264a4e702e79995ab6089e"
+    },
+    {
+      "key": "fondo_campamento_capa0",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_campamento_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "d2e6b080646b0cf420cbd428bc7980a9c8d2d92142f13b27d55f503b0baafbca"
+    },
+    {
+      "key": "fondo_campamento_capa1",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_campamento_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "a777400c51be0e7b4f77a137f9dd5682cc897b4d77641b6925b20a3dc8eb5bb4"
+    },
+    {
+      "key": "fondo_campamento_capa2",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_campamento_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "cb1b0ada7b8f291b8f94a092bb028cd0118636ed2fc1f615fb4efdf13bed9eca"
+    },
+    {
+      "key": "fondo_campamento_capa3",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_campamento_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "9f4b2798c374f8187f5fdaf4fb63892b30b533f9c85d623330f7d77d98b3cd11"
+    },
+    {
+      "key": "fondo_campamento_capa4",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_campamento_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "c253f4d5ce6f8a913b8e7107a301cd4c285465203ea964ba0832c4fa95a610f7"
+    },
+    {
+      "key": "fondo_campamento_capa5",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_campamento_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "5ab658a4b9bb2da4736e5b6a3880ec73a80f99ff47782facd93e76253daac90b"
+    },
+    {
+      "key": "fondo_altar_olmeca_capa0",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_altar_olmeca_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "917b4546dd5272d5c9721bdad10c3a59d924d7c6c2a59aa2210023aa0c42a1c8"
+    },
+    {
+      "key": "fondo_altar_olmeca_capa1",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_altar_olmeca_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "e49d8923c1905216c1a4c078ec2d8e3f972df1f742574297142b73260a0cbf75"
+    },
+    {
+      "key": "fondo_altar_olmeca_capa2",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_altar_olmeca_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "b1399f7ca6cf94f7c3126134583ad42f36773176bd8c1f6e0f19e6f1e63e618c"
+    },
+    {
+      "key": "fondo_altar_olmeca_capa3",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_altar_olmeca_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "b6dfafa001164c81ebf877a0f084d747fd1dadc779ae09fdc5f1588c98391304"
+    },
+    {
+      "key": "fondo_altar_olmeca_capa4",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_altar_olmeca_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "f3765dadddb53dbdf37f61554bb5c745fe0ef500f5682e29a31e0a153de445a5"
+    },
+    {
+      "key": "fondo_altar_olmeca_capa5",
+      "path": "assets/escenarios/nivel-03-catemaco/fondos/fondo_altar_olmeca_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "45ae8a3161c62722250990bb1e047b3f00fb52a62765675328b93593a7e463c9"
+    },
+    {
+      "key": "prop_n03_letras_catemaco",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_letras_catemaco.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "ca6361a4b83405db1979f079b1dfafd67204618dba1a596e6d82fc5330301858"
+    },
+    {
+      "key": "prop_n03_jaula_cerrada",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_jaula_cerrada.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "6969b9a806fd1fa0da6c01b6fcb2930912a5dbd2d4de72893acbc917c620efe4"
+    },
+    {
+      "key": "prop_n03_jaula_abierta",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_jaula_abierta.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "d8499645603308fea65a6b2866a1d53e809e50a03ca1b18ca5dd55aefeed3f57"
+    },
+    {
+      "key": "prop_n03_lona",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_lona.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "edd362e5b57c2b94e05f440aa2fa798440173f457e72862310711cd19427b462"
+    },
+    {
+      "key": "prop_n03_lona_chica",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_lona_chica.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "0f4072b0aa6d316fbf55107441143fbca55952726b9aebf01a1c0a5c0322b364"
+    },
+    {
+      "key": "prop_n03_caja_cofradia",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_caja_cofradia.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "90319f9c80c339c47c5de1f13a4bb4397d58f84f1e23d3963f03a1a2b744b146"
+    },
+    {
+      "key": "prop_n03_nota",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_nota.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "a5f9f787087d7c4377c0790ff901b5d6330bc1749322123a712c96ee19cef154"
+    },
+    {
+      "key": "prop_n03_pista_espejo",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_pista_espejo.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "ea64c64071e0e5a012d6cee1a79a13ffec1f1e6f2b08e18b6d83c89c9935a35a"
+    },
+    {
+      "key": "prop_n03_tablero_pistas",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_tablero_pistas.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "5096a97e23f8e5041d63d71491417c30953662e09e0359ee237006f4d9197217"
+    },
+    {
+      "key": "prop_n03_muelle",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_muelle.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "c5f3721ae547503c89f7f0ae60c346d8130e46acab063b47846ced43249c876a"
+    },
+    {
+      "key": "prop_n03_lancha",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_lancha.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "e2d2134e6381dc1fd3888c5b0a7592d3e15933210a74efa2e3a5738df6bec6bf"
+    },
+    {
+      "key": "prop_n03_estela",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_estela.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "85a59a9b9ca5295dfe006fe9f703f2ce811a621ffebbc1358bad830e28141a45"
+    },
+    {
+      "key": "prop_n03_estela_rota",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_estela_rota.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "022463f85e4c9736fc345e1eef3cfd898cea40177ba237491771ee50a77d28d0"
+    },
+    {
+      "key": "prop_n03_pedestal_olmeca",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_pedestal_olmeca.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "88d0a7bcf64dbd9cc6fffd3e90254f46f4763ab05ade14d28809f3bf918bf7a9"
+    },
+    {
+      "key": "prop_n03_estandarte",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_estandarte.png",
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "77d08a8c97f1064bcba7280c7cdaebe3883b3dcd9fe9394ce01064328403c7c1"
     }
   ],
   "sheets": [
@@ -801,6 +1032,136 @@
       "repeat": -1,
       "originY": 0.5,
       "placeholder": true
+    },
+    {
+      "key": "prop_n03_altar_brujos",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_altar_brujos.png",
+      "frameWidth": 64,
+      "frameHeight": 56,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.9643,
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "4996b697440954526fb24ae5a62636653e00a11621d0607a75f1ecad5bd7b1af"
+    },
+    {
+      "key": "prop_n03_gato_negro",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_gato_negro.png",
+      "frameWidth": 24,
+      "frameHeight": 20,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.95,
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "ce71140de80aecf071e692835f0fa8ee8ffb7c9e056f49b94b3c5473af3260b5"
+    },
+    {
+      "key": "prop_n03_gato_negro_echado",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_gato_negro_echado.png",
+      "frameWidth": 28,
+      "frameHeight": 14,
+      "frames": 2,
+      "frameRate": 2,
+      "repeat": -1,
+      "originY": 0.9286,
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "fcb06a5e8e4a605d2ef267aac778c4dcb41ccdc2dd7b33297c00a80763b1c98b"
+    },
+    {
+      "key": "prop_n03_antorcha",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_antorcha.png",
+      "frameWidth": 16,
+      "frameHeight": 56,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.9821,
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "3660709a4b86e2c642b0c1243cbd2f2f71baa0570f68d1237b4223d18c9a2760"
+    },
+    {
+      "key": "prop_n03_brasero",
+      "path": "assets/escenarios/nivel-03-catemaco/props/prop_n03_brasero.png",
+      "frameWidth": 32,
+      "frameHeight": 40,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "b82724991004d06e3d7f64fcbd831a99a4f960cb5c6c1c554f4056e01f76fa86"
+    },
+    {
+      "key": "npc_brujo_1",
+      "path": "assets/sprites/npcs/npc_brujo_1.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "ea14c7df61a854319b1bafb9ee990605eb4ddaad2f30e10d2b3a73da2cdfb712"
+    },
+    {
+      "key": "npc_brujo_2",
+      "path": "assets/sprites/npcs/npc_brujo_2.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "9d467630f98de4dad0368bd645cb72a61092d7d5afad58e22a9973a40aef5f7b"
+    },
+    {
+      "key": "npc_brujo_3",
+      "path": "assets/sprites/npcs/npc_brujo_3.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 5,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "f998f1aae5bf572bea0a02f0fdefc74f17fbccaeba25323307065c0761cb4648"
+    },
+    {
+      "key": "npc_poblador_n03_1",
+      "path": "assets/sprites/npcs/npc_poblador_n03_1.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "b051573193be624dca6ceac9a9c4ddcabb7cc9a0d278ade5193870569b79fac9"
+    },
+    {
+      "key": "npc_poblador_n03_2",
+      "path": "assets/sprites/npcs/npc_poblador_n03_2.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-catemaco-scenery.mjs",
+      "generatedSha256": "ce724102616dc89161d044bf8e6398e340b446fb8c6e9d662899c6f9624e0003"
     }
   ]
 }

@@ -3,6 +3,7 @@ import { bus } from '../core/bus';
 import { GameState } from '../core/GameState';
 import { GAME_HEIGHT, GAME_WIDTH } from '../config/game';
 import { HUD, LASER } from '../config/combat';
+import { lsm } from '../systems/Lsm';
 
 /**
  * HUD (dueño: combate). Escena 'Hud', encima de 'Level'.
@@ -57,7 +58,12 @@ const TX = {
   heartEmpty: '__hud_vida_vacia',
   eco: '__hud_eco',
   gem: '__hud_gema',
+  hand: '__hud_mano_u',
+  moon: '__hud_luna',
 };
+
+/** Posiciones de las barras de escudo y Luna (Nivel 3). */
+const ABIL = { iconX: 30, barX: 38, barW: 46, shieldY: 52, lunaY: 64 };
 
 function textStyle(size: number, color = '#f4ead2', stroke = '#10101a'): Phaser.Types.GameObjects.Text.TextStyle {
   const scale = GameState.settings.textScale || 1;
@@ -97,6 +103,13 @@ export class HudScene extends Phaser.Scene {
   private promptBg!: Phaser.GameObjects.Graphics;
   private promptShown: string | null = null;
   private t = 0;
+  // Nivel 3 (dueño: sistemas): barras del escudo U y de Luna; ocultas hasta desbloquearse.
+  private shieldIcon!: Phaser.GameObjects.Image;
+  private shieldIconGlow!: Phaser.GameObjects.Image;
+  private lunaIcon!: Phaser.GameObjects.Image;
+  private abilityBars!: Phaser.GameObjects.Graphics;
+  private shieldLabel!: Phaser.GameObjects.Text;
+  private lunaLabel!: Phaser.GameObjects.Text;
 
   constructor() {
     super('Hud');
@@ -122,6 +135,14 @@ export class HudScene extends Phaser.Scene {
     this.heatBar = this.add.graphics();
     this.heatLabel = this.add.text(70, 0, '', textStyle(7, '#ff7a6a')).setOrigin(0, 0.5);
     this.laserBox = this.add.container(38, 34, [this.heatBar, this.laserMode, this.heatLabel]);
+
+    // Escudo U y Luna (bajo el láser).
+    this.abilityBars = this.add.graphics();
+    this.shieldIconGlow = this.add.image(ABIL.iconX, ABIL.shieldY, '__hud_glow').setBlendMode(Phaser.BlendModes.ADD).setTint(0x7dffd0).setAlpha(0).setScale(0.7);
+    this.shieldIcon = this.add.image(ABIL.iconX, ABIL.shieldY, TX.hand);
+    this.lunaIcon = this.add.image(ABIL.iconX, ABIL.lunaY, TX.moon);
+    this.shieldLabel = this.add.text(ABIL.barX + ABIL.barW + 5, ABIL.shieldY, '', textStyle(7, '#ff7a6a')).setOrigin(0, 0.5);
+    this.lunaLabel = this.add.text(ABIL.barX + ABIL.barW + 5, ABIL.lunaY, '', textStyle(7, '#bfe6ff')).setOrigin(0, 0.5);
 
     // Conjuro seleccionado (abajo a la izquierda).
     this.spellName = this.add.text(0, 0, '', textStyle(9, '#c8ffe0')).setOrigin(0, 0.5);
@@ -166,7 +187,7 @@ export class HudScene extends Phaser.Scene {
   /* ---------------------------- Texturas ---------------------------- */
 
   private makeTextures(): void {
-    if (this.textures.exists(TX.heartFull)) return;
+    if (this.textures.exists(TX.heartFull) && this.textures.exists(TX.moon)) return;
     const g = this.make.graphics({}, false);
     // Segmento de vida 12×12: rombo verde-jade (la gema), lleno / vacío.
     const seg = (fill: number, edge: number, a: number) => {
@@ -191,6 +212,24 @@ export class HudScene extends Phaser.Scene {
     g.clear();
     for (let r = 16; r > 0; r -= 2) g.fillStyle(0xffffff, 0.06 + (1 - r / 16) * 0.2).fillCircle(16, 16, r);
     g.generateTexture('__hud_glow', 32, 32);
+    // Mano con la seña U (dos dedos juntos hacia arriba), 9×11, blanca para teñirla.
+    g.clear();
+    g.fillStyle(0xffffff, 1).fillRect(2, 0, 2, 6).fillRect(4, 0, 2, 6).fillRect(1, 5, 7, 5).fillRect(0, 6, 2, 2).fillRect(7, 3, 1, 3);
+    g.fillStyle(0x808080, 1).fillRect(4, 1, 1, 4);
+    g.generateTexture(TX.hand, 9, 11);
+    // Luna creciente 10×10.
+    g.clear();
+    const pts: Phaser.Math.Vector2[] = [];
+    for (let i = 0; i <= 12; i++) {
+      const a = -Math.PI / 2 + (i / 12) * Math.PI;
+      pts.push(new Phaser.Math.Vector2(5 + Math.cos(a) * 5 - 1, 5 + Math.sin(a) * 5));
+    }
+    for (let i = 12; i >= 0; i--) {
+      const a = -Math.PI / 2 + (i / 12) * Math.PI;
+      pts.push(new Phaser.Math.Vector2(5 + Math.cos(a) * 2 - 1, 5 + Math.sin(a) * 4.6));
+    }
+    g.fillStyle(0xffffff, 1).fillPoints(pts, true);
+    g.generateTexture(TX.moon, 10, 10);
     g.destroy();
   }
 
@@ -265,6 +304,46 @@ export class HudScene extends Phaser.Scene {
     g.fillStyle(col, 1).fillRect(-8, -3, 5, 5);
     this.laserMode.setPosition(0, 0);
     this.heatLabel.setPosition(w + 6, y + 2).setText(over ? 'CALOR' : '').setAlpha(0.5 + 0.5 * Math.abs(Math.sin(this.t * 8)));
+  }
+
+  /* ------------------------- Escudo U y Luna ------------------------- */
+
+  private updateAbilities(): void {
+    const sh = GameState.shield;
+    const lu = GameState.luna;
+    const g = this.abilityBars;
+    g.clear();
+    const bar = (y: number, ratio: number, fill: number, frame: number) => {
+      const w = ABIL.barW;
+      g.fillStyle(0x0a0a12, 0.85).fillRect(ABIL.barX - 1, y - 3, w + 2, 6);
+      g.fillStyle(fill, 1).fillRect(ABIL.barX, y - 2, Math.round(w * Phaser.Math.Clamp(ratio, 0, 1)), 4);
+      g.lineStyle(1, frame, 1).strokeRect(ABIL.barX - 1, y - 3, w + 2, 6);
+    };
+    const blink = Math.floor(this.t * 8) % 2 === 0;
+
+    // Escudo: la mano se enciende cuando la cámara ve la U.
+    const showShield = sh.unlocked;
+    this.shieldIcon.setVisible(showShield);
+    this.shieldIconGlow.setVisible(showShield);
+    this.shieldLabel.setVisible(showShield);
+    if (showShield) {
+      const seesU = lsm.cameraReady && lsm.last?.letter === 'U';
+      this.shieldIcon.setTint(sh.broken ? 0x6a3a3a : seesU || sh.active ? 0xc8fff0 : lsm.cameraReady ? 0x4a7a6a : 0x3a4a46);
+      this.shieldIconGlow.setAlpha(seesU ? 0.75 + 0.25 * Math.sin(this.t * 10) : sh.active ? 0.4 : 0);
+      const fill = sh.broken ? (blink ? 0xff5a4a : 0x6a2a2a) : sh.active ? 0x9affe0 : sh.energy < 0.35 ? 0xffb060 : 0x50e0b0;
+      bar(ABIL.shieldY, sh.energy, fill, sh.active ? 0x9affe0 : 0x2a5a4a);
+      this.shieldLabel.setText(sh.broken ? 'ROTO' : '').setAlpha(blink ? 1 : 0.6);
+    }
+
+    // Luna.
+    const showLuna = lu.unlocked;
+    this.lunaIcon.setVisible(showLuna);
+    this.lunaLabel.setVisible(showLuna);
+    if (showLuna) {
+      this.lunaIcon.setTint(lu.active ? 0xe8f6ff : 0x5a6a8a).setScale(lu.active ? 1 + 0.1 * Math.sin(this.t * 4) : 1);
+      bar(ABIL.lunaY, lu.energy, lu.active ? 0xbfe6ff : 0x6a8ad0, lu.active ? 0xbfe6ff : 0x2a3a5a);
+      this.lunaLabel.setText(lu.active ? '' : 'F');
+    }
   }
 
   /* ----------------------------- Conjuro ---------------------------- */
@@ -408,6 +487,7 @@ export class HudScene extends Phaser.Scene {
     this.gem.setScale(pulse);
     this.gemGlow.setScale(0.9 + 0.35 * (0.5 + 0.5 * Math.sin(this.t * 2.4))).setAlpha(0.35 + 0.25 * Math.sin(this.t * 2.4));
     this.updateLaser();
+    this.updateAbilities();
     this.updateSpell();
     this.updateEcos(dt);
     this.updateToast(dt);

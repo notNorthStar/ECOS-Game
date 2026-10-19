@@ -3,7 +3,8 @@ import { bus } from '../core/bus';
 import { GameState } from '../core/GameState';
 import { obtenerMotor, type Motor } from './audio/motor';
 import { ALIAS, EFECTOS, MAX_VOCES, reiniciarLetras } from './audio/efectos';
-import { Musica, PISTAS } from './audio/musica';
+import { Musica, PISTAS, type ArchivoMusica } from './audio/musica';
+import { MAPA_MUSICA } from './audio/config';
 
 /**
  * Sistema de audio de ECOS (WebAudio puro, sin el SoundManager de Phaser).
@@ -11,8 +12,9 @@ import { Musica, PISTAS } from './audio/musica';
  * - Efectos: `bus.emit('sfx', { name })` o `sfx(name)`. Si existe
  *   `public/assets/audio/sfx/sfx_<name>.ogg` se usa el archivo; si no, se sintetiza.
  * - Música: `bus.emit('music', { track })` con 'n01_taller' | 'n01_exploracion' | 'n01_combate' |
- *   'n01_jefe' | 'n02_fandango' | 'titulo' (o null para silencio). Si existe `musica_<track>.ogg` se usa en bucle;
- *   si no, se genera de forma procedural. El fandango usa siempre capas procedurales
+ *   'n01_jefe' | 'n02_fandango' | 'n03_pueblo' | 'n03_lago' | 'n03_altar' | 'n03_jefe' | 'titulo'
+ *   (o null para silencio). Si existe `musica_<track>.ogg` (o .mp3) se usa en bucle; si no, el archivo
+ *   del equipo indicado en `audio/config.ts` (MAPA_MUSICA); si tampoco, se genera de forma procedural. El fandango usa siempre capas procedurales
  *   para reflejar las estrofas recuperadas (hasta disponer de stems del equipo).
  * - Además reacciona sola a los eventos del jugador, conjuros, enemigos, arenas y pausa.
  * - Lee GameState.settings.musicVolume / sfxVolume en cada tick (~25 ms).
@@ -35,9 +37,12 @@ let pausado = false;
 let ultimoVolMusica = -1;
 let ultimoVolSfx = -1;
 let musicaPrevia: string | null = null;
+let intensidadOlmeca = 0;
+let escudoPrevio = { active: false, broken: false };
+let lunaPrevia = false;
 
 const archivosSfx = new Map<string, AudioBuffer | null>();
-const archivosMusica = new Map<string, AudioBuffer | null>();
+const archivosMusica = new Map<string, ArchivoMusica | null>();
 const vocesActivas = new Map<string, number>();
 const ultimoDisparo = new Map<string, number>();
 const avisados = new Set<string>();
@@ -123,11 +128,11 @@ function aplicarVolumenes(forzar: boolean): void {
 
 function normalizarPista(p: string | null): string | null {
   if (!p) return null;
-  return p.replace(/^musica_/, '').replace(/\.ogg$/, '');
+  return p.replace(/^musica_/, '').replace(/\.(ogg|mp3)$/, '');
 }
 
 function normalizarSfx(n: string): string {
-  const limpio = n.replace(/^sfx_/, '').replace(/\.ogg$/, '');
+  const limpio = n.replace(/^sfx_/, '').replace(/\.(ogg|mp3)$/, '');
   return ALIAS[limpio] ?? limpio;
 }
 
@@ -145,13 +150,28 @@ async function cargar(m: Motor, url: string): Promise<AudioBuffer | null> {
   }
 }
 
+/** Busca primero `musica_<n>.ogg/.mp3` y luego el archivo del equipo configurado en MAPA_MUSICA. */
+async function cargarMusica(m: Motor, n: string): Promise<ArchivoMusica | null> {
+  const dir = `${BASE}musica/`;
+  const propio = (await cargar(m, `${dir}musica_${n}.ogg`)) ?? (await cargar(m, `${dir}musica_${n}.mp3`));
+  if (propio) return { intro: null, bucle: propio };
+  const cfg = MAPA_MUSICA[n];
+  if (!cfg) return null;
+  const bucle = await cargar(m, dir + encodeURIComponent(cfg.bucle));
+  if (!bucle) return null;
+  const intro = cfg.intro ? await cargar(m, dir + encodeURIComponent(cfg.intro)) : null;
+  return { intro, bucle, volumen: cfg.volumen };
+}
+
 function precargarArchivos(m: Motor): void {
   for (const n of NOMBRES_SFX) {
-    void cargar(m, `${BASE}sfx/sfx_${n}.ogg`).then((b) => archivosSfx.set(n, b));
+    void cargar(m, `${BASE}sfx/sfx_${n}.ogg`)
+      .then((b) => b ?? cargar(m, `${BASE}sfx/sfx_${n}.mp3`))
+      .then((b) => archivosSfx.set(n, b));
   }
-  for (const n of NOMBRES_MUSICA) {
+  for (const n of new Set([...NOMBRES_MUSICA, ...Object.keys(MAPA_MUSICA)])) {
     if (n === 'n02_fandango') continue;
-    void cargar(m, `${BASE}musica/musica_${n}.ogg`).then((b) => archivosMusica.set(n, b));
+    void cargarMusica(m, n).then((b) => archivosMusica.set(n, b));
   }
 }
 
@@ -199,7 +219,9 @@ function conectarBus(): void {
   bus.on('sfx', ({ name }) => reproducirSfx(name));
   bus.on('music', ({ track }) => {
     musicaPrevia = null;
-    musica?.reproducir(normalizarPista(track));
+    const pista = normalizarPista(track);
+    musica?.reproducir(pista);
+    if (pista === 'n03_jefe') musica?.setIntensidad(intensidadOlmeca);
   });
   bus.on('fandango:progress', ({ recovered, total }) => musica?.setProgresoFandango(recovered, total));
 
@@ -215,8 +237,12 @@ function conectarBus(): void {
   // Conjuros.
   bus.on('spell:begin', () => reiniciarLetras());
   bus.on('spell:letter', ({ ok }) => reproducirSfx(ok ? 'letra_ok' : 'letra_fallo'));
-  bus.on('spell:resolved', ({ outcome }) => {
+  bus.on('spell:resolved', ({ outcome, spellId }) => {
     reproducirSfx(outcome === 'perfect' ? 'perfecto' : outcome === 'partial' ? 'conjuro_ok' : 'conjuro_fallo');
+    if (outcome !== 'fail') {
+      if (spellId === 'LUZ') reproducirSfx('luz');
+      else if (spellId === 'SOL') reproducirSfx('sol');
+    }
     reiniciarLetras();
   });
   bus.on('spell:learned', () => reproducirSfx('aprender'));
@@ -225,6 +251,8 @@ function conectarBus(): void {
   bus.on('enemy:hit', () => reproducirSfx('impacto'));
   bus.on('enemy:purified', () => reproducirSfx('purificar'));
   bus.on('boss:phase', ({ phase }) => {
+    // En el Nivel 3 la intensidad la gobierna 'olmeca:phase'.
+    if (musica?.actual?.startsWith('n03_')) return;
     if (phase === 2) {
       musica?.setIntensidad(1);
       reproducirSfx('jefe_rugido');
@@ -232,7 +260,32 @@ function conectarBus(): void {
       musica?.setIntensidad(0);
     }
   });
-  bus.on('boss:calmed', () => musica?.setIntensidad(0));
+  bus.on('boss:calmed', () => {
+    intensidadOlmeca = 0;
+    musica?.setIntensidad(0);
+  });
+
+  // Nivel 3: escudo, Luna, Balam, Cofradía y Cabeza Olmeca.
+  bus.on('shield:state', ({ active, broken }) => {
+    if (broken && !escudoPrevio.broken) reproducirSfx('escudo_roto');
+    else if (active && !escudoPrevio.active) reproducirSfx('escudo_on');
+    else if (!active && escudoPrevio.active && !broken) reproducirSfx('escudo_off');
+    escudoPrevio = { active, broken };
+  });
+  bus.on('shield:block', () => reproducirSfx('escudo_golpe'));
+  bus.on('luna:state', ({ active }) => {
+    if (active === lunaPrevia) return;
+    lunaPrevia = active;
+    reproducirSfx(active ? 'luna_on' : 'luna_off');
+    musica?.setLuna(active);
+  });
+  bus.on('balam:awake', () => reproducirSfx('balam_maullido'));
+  bus.on('cofradia:down', () => reproducirSfx('encapuchado_cae'));
+  bus.on('olmeca:phase', ({ phase }) => {
+    intensidadOlmeca = phase === 1 ? 0 : phase === 2 ? 0.55 : 1;
+    if (musica?.actual === 'n03_jefe') musica.setIntensidad(intensidadOlmeca);
+    if (phase > 1) reproducirSfx('olmeca_rugido');
+  });
   bus.on('antenna:destroyed', () => reproducirSfx('antena_rota'));
 
   // Progresión.
@@ -243,7 +296,7 @@ function conectarBus(): void {
   bus.on('arena:start', () => {
     if (!musica) return;
     const actual = musica.actual;
-    if (actual === 'n01_jefe' || actual === 'n01_combate' || actual === 'n02_fandango') return;
+    if (actual === 'n01_jefe' || actual === 'n01_combate' || actual === 'n02_fandango' || actual === 'n03_jefe' || actual === 'n03_altar') return;
     musicaPrevia = actual;
     musica.reproducir('n01_combate');
   });

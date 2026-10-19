@@ -2,10 +2,11 @@ import Phaser from 'phaser';
 import type { EnemyApi, EnemyKind, Hit, SpellOutcomeEvent, Team, WorldApi } from '../core/contracts';
 import { bus } from '../core/bus';
 import { DEPTH } from '../config/game';
-import { FX_DEPTH_BIAS, JUICE } from '../config/combat';
+import { FX_DEPTH_BIAS, JUICE, SPELLS_FX } from '../config/combat';
 import { getSpellDef } from '../systems/Mastery';
 import { kitAnimatorFor, type KitAnimator } from '../systems/CharacterKits';
 import { shieldFilterHit } from '../systems/Shield';
+import { isLunaActive } from '../systems/Luna';
 
 /* =====================================================================
  * Utilidades compartidas por las entidades de combate (dueño: combate).
@@ -159,7 +160,7 @@ export function oneShotFx(
 
 /* ----------------------------- Partículas ----------------------------- */
 
-type EmitterName = 'sparkGreen' | 'sparkRed' | 'purify' | 'eco' | 'dust' | 'calm' | 'stun' | 'electric';
+type EmitterName = 'sparkGreen' | 'sparkRed' | 'purify' | 'eco' | 'dust' | 'calm' | 'stun' | 'electric' | 'smoke' | 'light' | 'sun' | 'dark';
 const emitters = new WeakMap<Phaser.Scene, Map<EmitterName, Phaser.GameObjects.Particles.ParticleEmitter>>();
 
 function emitterConfig(name: EmitterName): { tex: string; cfg: Phaser.Types.GameObjects.Particles.ParticleEmitterConfig } {
@@ -268,6 +269,60 @@ function emitterConfig(name: EmitterName): { tex: string; cfg: Phaser.Types.Game
           emitting: false,
         },
       };
+    // Nivel 3: humo (encapuchado inconsciente), destello de LUZ, ráfaga de SOL, energía oscura.
+    case 'smoke':
+      return {
+        tex: FB.glow,
+        cfg: {
+          speedX: { min: -22, max: 22 },
+          speedY: { min: -45, max: -12 },
+          lifespan: { min: 700, max: 1300 },
+          scale: { start: 0.5, end: 1.4 },
+          alpha: { start: 0.55, end: 0 },
+          tint: [0x6a6470, 0x8a8490, 0x4a4650],
+          emitting: false,
+        },
+      };
+    case 'light':
+      return {
+        tex: FB.glow,
+        cfg: {
+          speed: { min: 40, max: 160 },
+          lifespan: { min: 300, max: 650 },
+          scale: { start: 0.4, end: 0 },
+          alpha: { start: 1, end: 0 },
+          tint: [0xfff4c0, 0xffffff, 0xffe080],
+          blendMode: Phaser.BlendModes.ADD,
+          emitting: false,
+        },
+      };
+    case 'sun':
+      return {
+        tex: FB.glow,
+        cfg: {
+          speedX: { min: -30, max: 30 },
+          speedY: { min: -60, max: -10 },
+          lifespan: { min: 250, max: 520 },
+          scale: { start: 0.45, end: 0 },
+          alpha: { start: 1, end: 0 },
+          tint: [0xffb040, 0xffe070, 0xff7020],
+          blendMode: Phaser.BlendModes.ADD,
+          emitting: false,
+        },
+      };
+    case 'dark':
+      return {
+        tex: FB.glow,
+        cfg: {
+          speed: { min: 5, max: 30 },
+          lifespan: { min: 200, max: 380 },
+          scale: { start: 0.3, end: 0 },
+          alpha: { start: 0.8, end: 0 },
+          tint: [0xa040ff, 0x6020c0, 0xe0a0ff],
+          blendMode: Phaser.BlendModes.ADD,
+          emitting: false,
+        },
+      };
   }
 }
 
@@ -360,6 +415,38 @@ export function spellParam(spellId: string, key: string, fallback: number): numb
 /** Escala del radio de un conjuro según su fuerza (parcial 0.5..1 → 0.75..1). */
 export const powerScale = (power: number) => 0.75 + 0.25 * Math.max(0, Math.min(1, power));
 
+/* ----------------------- LUZ y SOL (Nivel 3) ----------------------- */
+
+/** ¿(x, y) está en el destello de LUZ? key = 'purifyRadius' (espíritus) o 'stunRadius' (aturdir). */
+export function inLuzRadius(ev: SpellOutcomeEvent, x: number, y: number, key: 'purifyRadius' | 'stunRadius' = 'stunRadius', extra = 0): boolean {
+  const s = SPELLS_FX.LUZ;
+  const r = spellParam('LUZ', key, s[key]) * powerScale(ev.power) + extra;
+  return planeDist(x, y, ev.x + ev.facing * s.forward, ev.y) <= r;
+}
+
+/** ¿(x, y) está en la ráfaga en línea de SOL? extra = radio del blanco (se suma a largo y banda). */
+export function inSolLine(ev: SpellOutcomeEvent, x: number, y: number, extra = 0): boolean {
+  const s = SPELLS_FX.SOL;
+  const len = spellParam('SOL', 'length', s.length) * powerScale(ev.power);
+  const half = spellParam('SOL', 'width', s.width);
+  const along = (x - (ev.x + ev.facing * s.forward)) * ev.facing;
+  return along >= -extra && along <= len + extra && Math.abs(y - ev.y) <= half + extra * 0.25;
+}
+
+/** Daño de SOL según la fuerza (parcial = proporcional). */
+export const solDamage = (ev: SpellOutcomeEvent) => spellParam('SOL', 'damage', SPELLS_FX.SOL.damage) * Math.max(0.3, Math.min(1, ev.power));
+export const solKnockback = (ev: SpellOutcomeEvent) => spellParam('SOL', 'knockback', SPELLS_FX.SOL.knockback) * Math.max(0.3, Math.min(1, ev.power));
+
+/** Humo gris (encapuchado inconsciente). Sin sangre: solo humo que se disipa. */
+export function smokeFx(scene: Phaser.Scene, x: number, y: number, size = 1): void {
+  burst(scene, 'smoke', x, y - 14 * size, y + FX_DEPTH_BIAS, Math.round(14 * size));
+  const puff = scene.add.image(x, y - 18 * size, FB.glow).setTint(0x8a8490).setAlpha(0.6).setScale(1.2 * size).setDepth(y + FX_DEPTH_BIAS);
+  scene.tweens.add({ targets: puff, alpha: 0, scale: 3 * size, y: puff.y - 16, duration: 900, onComplete: () => puff.destroy() });
+}
+
+/** ¿Una entidad lunaOnly existe ahora para el jugador? */
+export const lunaVisible = (e: { lunaOnly?: boolean }) => !e.lunaOnly || isLunaActive();
+
 /* ----------------------- Golpes al jugador ----------------------- */
 
 /** Escudo pasivo de PROTECCION (lo activa Combat): reduce el daño que recibe el jugador. */
@@ -395,6 +482,8 @@ export abstract class EnemyBase implements EnemyApi {
   height: number;
   team: Team = 'enemy';
   abstract kind: EnemyKind;
+  /** Solo existe con la Habilidad Luna activa (espíritus). */
+  lunaOnly = false;
   group?: string;
   readonly uid = ++uidCounter;
 

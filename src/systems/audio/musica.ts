@@ -7,17 +7,18 @@
  */
 import { bombo, campana, mtof, pad, pulsar, rasguear, ruido, slap, tarima, tono, type Motor } from './motor';
 import { FANDANGO, programarFandango } from './fandango';
+import { PISTAS_N03 } from './catemaco';
 
 const ANTICIPO = 0.1;
 const FUNDIDO_ENTRADA = 1.2;
 const FUNDIDO_SALIDA = 1.6;
 
-interface Persistente {
+export interface Persistente {
   parar(t: number): void;
   intensidad?(v: number, t: number): void;
 }
 
-interface DefPista {
+export interface DefPista {
   /** Duración de una corchea (s). */
   paso: number;
   /** Corcheas por vuelta del bucle. */
@@ -302,15 +303,26 @@ export const PISTAS: Record<string, DefPista> = {
     programar: (m, s, paso, t, _intensidad, progreso) => programarFandango(m, s, paso, t, progreso),
   },
   titulo: TITULO,
+  ...PISTAS_N03,
 };
 
 // ── Reproductor ───────────────────────────────────────────────────────────────
+
+/** Grabación del equipo ya decodificada: `intro` suena una vez y luego `bucle` se repite. */
+export interface ArchivoMusica {
+  intro: AudioBuffer | null;
+  bucle: AudioBuffer;
+  volumen?: number;
+}
+
+/** Filtro pasa-bajos de la música mientras Luna está activa (Hz). */
+const FRECUENCIA_LUNA = 1100;
 
 interface Instancia {
   nombre: string;
   salida: GainNode;
   def: DefPista | null;
-  fuente: AudioBufferSourceNode | null;
+  fuentes: AudioBufferSourceNode[];
   persistente: Persistente | null;
   paso: number;
   siguiente: number;
@@ -323,10 +335,24 @@ export class Musica {
   private intensidad = 0;
   private progresoFandango = 0;
 
+  /** Pasa-bajos común a toda la música (se cierra con Luna). */
+  private filtro: BiquadFilterNode;
+
   constructor(
     private m: Motor,
-    private archivo: (nombre: string) => AudioBuffer | null,
-  ) {}
+    private archivo: (nombre: string) => ArchivoMusica | null,
+  ) {
+    this.filtro = m.ctx.createBiquadFilter();
+    this.filtro.type = 'lowpass';
+    this.filtro.frequency.value = 20000;
+    this.filtro.Q.value = 0.7;
+    this.filtro.connect(m.busMusica);
+  }
+
+  /** Muffla suavemente la música mientras Luna está activa. */
+  setLuna(activa: boolean): void {
+    this.filtro.frequency.setTargetAtTime(activa ? FRECUENCIA_LUNA : 20000, this.m.ctx.currentTime, 0.4);
+  }
 
   get actual(): string | null {
     return this.actualNombre;
@@ -343,7 +369,7 @@ export class Musica {
       inst.salida.gain.linearRampToValueAtTime(0.0001, ahora + FUNDIDO_SALIDA);
       inst.fin = ahora + FUNDIDO_SALIDA;
       inst.persistente?.parar(inst.fin);
-      inst.fuente?.stop(inst.fin + 0.05);
+      for (const f of inst.fuentes) f.stop(inst.fin + 0.05);
     }
     this.actualNombre = nombre;
     this.intensidad = 0;
@@ -357,27 +383,36 @@ export class Musica {
       return;
     }
     const salida = ctx.createGain();
-    const vol = def?.volumen ?? 0.9;
+    const vol = buf?.volumen ?? def?.volumen ?? 0.9;
     salida.gain.setValueAtTime(0.0001, ahora);
     salida.gain.linearRampToValueAtTime(vol, ahora + FUNDIDO_ENTRADA);
-    salida.connect(this.m.busMusica);
+    salida.connect(this.filtro);
     const inst: Instancia = {
       nombre,
       salida,
       def: buf ? null : def,
-      fuente: null,
+      fuentes: [],
       persistente: null,
       paso: 0,
       siguiente: ahora + 0.05,
       fin: Infinity,
     };
     if (buf) {
+      let t0 = ahora + 0.02;
+      if (buf.intro) {
+        const si = ctx.createBufferSource();
+        si.buffer = buf.intro;
+        si.connect(salida);
+        si.start(t0);
+        inst.fuentes.push(si);
+        t0 += buf.intro.duration;
+      }
       const src = ctx.createBufferSource();
-      src.buffer = buf;
+      src.buffer = buf.bucle;
       src.loop = true;
       src.connect(salida);
-      src.start(ahora + 0.02);
-      inst.fuente = src;
+      src.start(t0);
+      inst.fuentes.push(src);
     } else if (def?.iniciar) {
       inst.persistente = def.iniciar(this.m, salida, ahora);
     }

@@ -7,6 +7,7 @@ import { SLOWMO } from '../config/game';
 import type { SpellResult, SpellSession } from '../lsm';
 import { camView, lsm, showCamera } from './Lsm';
 import { getSpellDef, isMastered, recordCast } from './Mastery';
+import { isShieldActive } from './Shield';
 
 /**
  * Dueño: lsm. Conjuros (GDD 6.2–6.4):
@@ -156,6 +157,11 @@ export function installCasting(world: WorldApi): void {
   const cast = () => {
     if (!GameState.learnedSpells.length || !GameState.selectedSpell) {
       toast('Aún no conoces ningún conjuro');
+      return;
+    }
+    // Con el escudo levantado no se lanzan conjuros (GDD 6.5: defenderse o atacar).
+    if (isShieldActive()) {
+      toast('Baja el escudo para lanzar un conjuro');
       return;
     }
     const spellId = GameState.selectedSpell;

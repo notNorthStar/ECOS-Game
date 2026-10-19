@@ -97,9 +97,14 @@ export class PauseScene extends Phaser.Scene {
     } else {
       c.add(panel(this, 70, 20, 500, 320, COL.tealN));
       c.add(txt(this, 320, 30, 'CONTROLES', 16, COL.teal, { ox: 0.5 }));
-      CONTROLS_TEXT.forEach(([a, k], i) => {
-        c.add(txt(this, 90, 56 + i * 15, a, 10, COL.gold));
-        c.add(txt(this, 250, 56 + i * 15, k, 10, COL.ink));
+      // Nivel 3: escudo U y Luna, solo cuando ya se desbloquearon.
+      const rows: Array<[string, string]> = [...CONTROLS_TEXT];
+      if (GameState.shield.unlocked) rows.splice(7, 0, ['Escudo', 'Clic derecho (mantener) · o seña U']);
+      if (GameState.luna.unlocked) rows.splice(rows.length - 3, 0, ['Habilidad Luna', 'F']);
+      const step = rows.length > 12 ? 13 : 15;
+      rows.forEach(([a, k], i) => {
+        c.add(txt(this, 90, 56 + i * step, a, 10, COL.gold));
+        c.add(txt(this, 250, 56 + i * step, k, 10, COL.ink));
       });
       c.add(
         txt(

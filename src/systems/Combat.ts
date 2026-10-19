@@ -4,7 +4,8 @@ import { bus, sfx } from '../core/bus';
 import { GameState } from '../core/GameState';
 import { keys } from '../config/controls';
 import { FX_DEPTH_BIAS, HEAT, LASER, SHIELD, SPELLS_FX } from '../config/combat';
-import { FB, ensureCombatTextures, playerShield, powerScale, spellParam } from '../entities/EnemyBase';
+import { FB, burst, ensureCombatTextures, playerShield, powerScale, spellParam } from '../entities/EnemyBase';
+import { Espiritu } from '../entities/Espiritu';
 import { LaserShot, laserTargets, type LaserTarget } from '../entities/LaserShot';
 import { installProgression } from './Progression';
 import { hideBossBar, showPrompt } from '../scenes/HudScene';
@@ -76,12 +77,19 @@ export function installCombat(world: WorldApi): void {
     bus.emit('player:shot', { mode });
   });
 
-  // Al calmar al Chaneque Mayor, sus chaneques se calman con él (quedan agotados y se purifican solos).
+  // Al calmar a un jefe se calman SUS esbirros (y solo los suyos; el jefe sigue en el mundo al emitirse):
+  // - Chaneque Mayor → sus chaneques quedan agotados y se purifican solos.
+  // - Cabeza Olmeca → los espíritus que invocó se disipan.
   bus.scoped(scene, 'boss:calmed', () => {
+    const mayor = world.enemies.some((e) => e.kind === 'chaneque_mayor');
     for (const e of [...world.enemies]) {
-      if (!e.alive || e.purified || e.kind !== 'chaneque') continue;
-      if (!e.exhausted) e.takeHit({ damage: 9999, stun: 0, kind: 'spell', sourceX: e.x, knockback: 0 });
-      e.applySpell({ spellId: 'CALMA', outcome: 'partial', power: 1, auto: true, x: e.x, y: e.y, facing: 1 });
+      if (!e.alive || e.purified) continue;
+      if (mayor && e.kind === 'chaneque') {
+        if (!e.exhausted) e.takeHit({ damage: 9999, stun: 0, kind: 'spell', sourceX: e.x, knockback: 0 });
+        e.applySpell({ spellId: 'CALMA', outcome: 'partial', power: 1, auto: true, x: e.x, y: e.y, facing: 1 });
+      } else if (e instanceof Espiritu && e.summonedBy?.kind === 'cabeza_olmeca') {
+        e.dissipate();
+      }
     }
   });
 
@@ -156,6 +164,8 @@ export function installCombat(world: WorldApi): void {
 /** Anillo que muestra el área del conjuro en el suelo. */
 function spellRing(world: WorldApi, ev: SpellOutcomeEvent): void {
   const scene = world.scene;
+  if (ev.spellId === 'LUZ') return luzFx(world, ev);
+  if (ev.spellId === 'SOL') return solFx(world, ev);
   if (ev.spellId === 'VOZ') {
     const radius = spellParam('VOZ', 'stunRadius', SPELLS_FX.VOZ.stunRadius) * powerScale(ev.power);
     const wave = scene.add.image(ev.x, ev.y, FB.ring).setTint(0xf2c86b)
@@ -185,4 +195,41 @@ function spellRing(world: WorldApi, ev: SpellOutcomeEvent): void {
     ease: 'Cubic.easeOut',
     onComplete: () => ring.destroy(),
   });
+}
+
+/** LUZ: destello blanco-dorado en radio alrededor del jugador (anillo en el suelo + resplandor + chispas). */
+function luzFx(world: WorldApi, ev: SpellOutcomeEvent): void {
+  const scene = world.scene;
+  const s = SPELLS_FX.LUZ;
+  const r = spellParam('LUZ', 'purifyRadius', s.purifyRadius) * powerScale(ev.power);
+  const cx = ev.x + ev.facing * s.forward;
+  const ring = scene.add.image(cx, ev.y, FB.ring).setTint(s.color).setBlendMode(Phaser.BlendModes.ADD).setDepth(ev.y - FX_DEPTH_BIAS).setDisplaySize(8, 4);
+  scene.tweens.add({ targets: ring, displayWidth: r * 2, displayHeight: r, alpha: { from: 1, to: 0 }, duration: 600, ease: 'Cubic.easeOut', onComplete: () => ring.destroy() });
+  const glow = scene.add.image(cx, ev.y - 24, FB.glow).setTint(0xfff8e0).setBlendMode(Phaser.BlendModes.ADD).setDepth(ev.y + FX_DEPTH_BIAS).setScale(0.6);
+  scene.tweens.add({ targets: glow, scale: (r / 16) * 0.9, alpha: { from: 0.95, to: 0 }, duration: 520, ease: 'Quad.easeOut', onComplete: () => glow.destroy() });
+  burst(scene, 'light', cx, ev.y - 24, ev.y + FX_DEPTH_BIAS, 22);
+  world.flash(s.color, 120);
+}
+
+/** SOL: ráfaga en línea hacia donde mira el jugador (haz que crece, núcleo blanco y partículas a lo largo). */
+function solFx(world: WorldApi, ev: SpellOutcomeEvent): void {
+  const scene = world.scene;
+  const s = SPELLS_FX.SOL;
+  const len = spellParam('SOL', 'length', s.length) * powerScale(ev.power);
+  const half = spellParam('SOL', 'width', s.width);
+  const x0 = ev.x + ev.facing * s.forward;
+  const yDraw = ev.y - 24;
+  const depth = ev.y + FX_DEPTH_BIAS;
+  const beam = scene.add.rectangle(x0, yDraw, 4, half * 1.6, s.color, 0.75).setOrigin(ev.facing > 0 ? 0 : 1, 0.5).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth);
+  const core = scene.add.rectangle(x0, yDraw, 4, half * 0.5, 0xfff8d0, 1).setOrigin(ev.facing > 0 ? 0 : 1, 0.5).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth + 0.01);
+  const ground = scene.add.rectangle(x0, ev.y, 4, half * 2, s.color, 0.2).setOrigin(ev.facing > 0 ? 0 : 1, 0.5).setDepth(ev.y - FX_DEPTH_BIAS);
+  scene.tweens.add({ targets: [beam, core, ground], width: len, duration: 160, ease: 'Quad.easeOut' });
+  scene.tweens.add({ targets: [beam, core, ground], alpha: 0, scaleY: 0.2, delay: 220, duration: 380, onComplete: () => [beam, core, ground].forEach((o) => o.destroy()) });
+  const flare = scene.add.image(x0, yDraw, FB.glow).setTint(s.color).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth).setScale(1.4);
+  scene.tweens.add({ targets: flare, alpha: 0, scale: 2.6, duration: 300, onComplete: () => flare.destroy() });
+  for (let i = 1; i <= 6; i++) {
+    const px = x0 + ev.facing * (len * i) / 6;
+    scene.time.delayedCall(i * 25, () => burst(scene, 'sun', px, yDraw, depth, 4));
+  }
+  world.shake(0.004, 120);
 }

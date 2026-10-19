@@ -1,0 +1,216 @@
+{
+  "_hablantes": {
+    "n03_narrador": { "nombre": "", "retrato": "" },
+    "n03_tu": { "nombre": "Tú", "retrato": "retrato_protagonista" },
+    "n03_cirilo": { "nombre": "Don Cirilo", "retrato": "" },
+    "n03_eulalia": { "nombre": "Doña Eulalia", "retrato": "" },
+    "n03_atanasio": { "nombre": "Don Atanasio", "retrato": "" },
+    "n03_pescador": { "nombre": "Pescador", "retrato": "" },
+    "n03_vecina": { "nombre": "Doña Chayo", "retrato": "" },
+    "n03_maria": { "nombre": "María", "retrato": "" }
+  },
+
+  "n03_intro": [
+    { "who": "n03_narrador", "text": "Catemaco. Noche cerrada. La neblina sube del lago como si respirara, y en las calles solo se oye el agua golpeando los muelles." },
+    { "who": "n03_tu", "text": "Los músicos dijeron que los encapuchados vinieron para acá. Esta noche van a hacer algo en el lago." },
+    { "who": "n03_narrador", "text": "La gema en tu pecho palpita despacio. En un pueblo famoso por sus brujos y curanderos, alguien tiene que saber qué se está preparando." }
+  ],
+  "n03_letras": [
+    { "who": "n03_narrador", "text": "Las letras de CATEMACO, cubiertas de humedad, siguen en pie frente al lago. A su lado, un Altar de la Memoria arde con velas que nadie se atrevió a apagar." }
+  ],
+
+  "n03_poblador_1": [
+    { "who": "n03_pescador", "text": "Hace tres noches que las lanchas no salen. Se oyen tambores del otro lado del lago... y los gatos negros del pueblo van desapareciendo, uno por uno." },
+    { "who": "n03_tu", "text": "¿Quién se los lleva?" },
+    { "who": "n03_pescador", "text": "Gente con capucha roja. Si buscas respuestas, ve con los brujos buenos, al fondo de la calle: Don Cirilo, Doña Eulalia y Don Atanasio. Y no les vayas a decir charlatanes." }
+  ],
+  "n03_poblador_2": [
+    { "who": "n03_vecina", "text": "Dicen que en Catemaco todos somos brujos, pero los de a deveras son pocos. Esos tres curan con hierbas y limpias, y cuando algo malo anda suelto, se les nota en la mirada." },
+    { "who": "n03_vecina", "text": "Anoche vi a Don Atanasio hablándole a la luna. Y la luna, te lo juro, le contestó." }
+  ],
+  "n03_cartel": [
+    { "who": "n03_narrador", "text": "Un papel clavado en un poste, escrito con prisa: «SE BUSCAN: gatos negros. Cinco desaparecidos esta semana. Si ve algo, avise en casa de los brujos»." },
+    { "who": "n03_narrador", "text": "Alguien tachó la palabra «brujos» y escribió encima, con letra torcida: «NO SE METAN»." }
+  ],
+  "n03_altar_brujos": [
+    { "who": "n03_narrador", "text": "Un altar de madera con veladoras, ruda, huevos, listones y un vaso de mezcal. Entre las ofrendas hay un cuenco con agua del lago: en su superficie, por un instante, ves tu reflejo mirando hacia otro lado." }
+  ],
+
+  "n03_cirilo": [
+    { "who": "n03_cirilo", "text": "Pásale, muchacho. Te olí desde que cruzaste la calle: traes encima el humo de muchos pueblos, y algo más. Algo que brilla." },
+    { "who": "n03_tu", "text": "Busco a mi mamá. La Cofradía se la llevó, y sus hombres pasaron por aquí." },
+    { "who": "n03_cirilo", "text": "La Cofradía del Espejo Negro. Esta noche quieren abrir una puerta en el altar viejo, el de los olmecas. Y los que sirven al espejo no pelean a oscuras: se esconden en ella." },
+    { "who": "n03_cirilo", "text": "Te voy a enseñar la seña contra eso. Se llama LUZ. Con ella, lo que se esconde en la sombra se queda sin dónde esconderse, y las almas perdidas dejan de sufrir." },
+    { "who": "n03_narrador", "text": "Don Cirilo enciende una vela de copal y te muestra la forma de las manos, letra por letra." }
+  ],
+  "n03_luz_fin": [
+    { "who": "n03_cirilo", "text": "Así, muy bien. Cuando un alma en pena se te plante enfrente, no la golpees: ilumínala. Ahora ve con Doña Eulalia, que ella guarda el fuego del sol." }
+  ],
+  "n03_cirilo_repite": [
+    { "who": "n03_cirilo", "text": "Cuando la sombra se espesa, la luz alcanza más lejos de lo que crees. Ve con Doña Eulalia; te falta lo más fuerte." }
+  ],
+  "n03_cirilo_final": [
+    { "who": "n03_cirilo", "text": "Ya tienes lo que necesitabas. Ve con bien, muchacho, y que el lago no te trague." }
+  ],
+
+  "n03_eulalia": [
+    { "who": "n03_eulalia", "text": "Don Cirilo ya me avisó. ¿Tú eres el de la gema? Acércate, que no muerdo... salvo a los encapuchados." },
+    { "who": "n03_eulalia", "text": "LUZ calma y revela; SOL quema. Es la seña del sol de mediodía guardado en una vasija: sale en línea recta y tumba a quien se le ponga enfrente." },
+    { "who": "n03_tu", "text": "¿Les hace daño?" },
+    { "who": "n03_eulalia", "text": "A los encapuchados los deja dormidos, nada más. Acá nadie sangra. Pon las manos como te enseño." }
+  ],
+  "n03_sol_fin": [
+    { "who": "n03_eulalia", "text": "Úsala con cabeza, mijo. Gasta mucho y las piedras antiguas tienen sus propias reglas. Ahora ve con Atanasio: te falta saber cómo cubrirte." }
+  ],
+  "n03_eulalia_pendiente": [
+    { "who": "n03_eulalia", "text": "Primero ve con Don Cirilo, que él enseña la luz. El sol se aprende después, cuando ya sabes ver en la oscuridad." }
+  ],
+  "n03_eulalia_repite": [
+    { "who": "n03_eulalia", "text": "SOL en línea recta, hacia donde miras. Que no te agarre la prisa: apunta primero." }
+  ],
+
+  "n03_atanasio": [
+    { "who": "n03_atanasio", "text": "Llegaste justo a tiempo; ya iba a salir a buscarte. Te vi a ti y a tu gema en las brasas del copal." },
+    { "who": "n03_atanasio", "text": "Con lo que te dieron Cirilo y Eulalia ya sabes atacar. Pero un brujo que solo ataca dura poco. Te falta el escudo." },
+    { "who": "n03_atanasio", "text": "Se hace con una sola letra: la U. Si usas la cámara, haz la seña y mantenla. Si no, mantén el clic derecho. Mientras lo sostienes no puedes atacar, y el escudo se gasta con cada golpe que detiene." },
+    { "who": "n03_tu", "text": "¿Y cómo sé que funciona?" },
+    { "who": "n03_atanasio", "text": "Eso lo vamos a ver ahora mismo." }
+  ],
+  "n03_atanasio_practica": [
+    { "who": "n03_atanasio", "text": "Párate ahí, a unos pasos. Te voy a aventar tres piedras de río. Levanta el escudo antes de que lleguen y suéltalo después." }
+  ],
+  "n03_atanasio_fin": [
+    { "who": "n03_atanasio", "text": "¡Eso! Tres piedras y ninguna pasó. Recuerda: el escudo se rompe si lo abusas y tarda en volver. Úsalo para lo que no puedas esquivar." },
+    { "who": "n03_atanasio", "text": "Ahora escucha, que esto sí es urgente. Hay hombres de capucha roja en el camino al lago, y más allá, en la orilla, tienen un campamento. Hay jaulas. Y no son para pájaros." },
+    { "who": "n03_tu", "text": "Voy a detenerlos." },
+    { "who": "n03_atanasio", "text": "Que la luna te cubra, muchacho. Y cuida a los gatos: los negros ven lo que nosotros no." }
+  ],
+  "n03_atanasio_pendiente": [
+    { "who": "n03_atanasio", "text": "Todavía no. Primero aprende LUZ con Don Cirilo y SOL con Doña Eulalia. El escudo sirve de poco si no sabes qué proteger." }
+  ],
+  "n03_atanasio_repite": [
+    { "who": "n03_atanasio", "text": "Tres piedras, tres bloqueos. Ya sabes. El camino al lago está al fondo, pasando las antorchas." }
+  ],
+
+  "n03_encapuchados_vista": [
+    { "who": "n03_narrador", "text": "Pasando las últimas casas, tres figuras de capa roja vigilan el camino al lago. Sus rostros están cubiertos; solo brillan sus ojos." },
+    { "who": "n03_tu", "text": "Encapuchados Rojos. Alguien dejó de ser alguien para vestir eso." },
+    { "who": "n03_narrador", "text": "Cuando caen inconscientes, se desvanecen en un humo que huele a cera quemada." }
+  ],
+
+  "n03_orilla_intro": [
+    { "who": "n03_narrador", "text": "La orilla del lago de Catemaco. La neblina es tan espesa que los faroles parecen manchas de leche, y el agua refleja un cielo que no existe." },
+    { "who": "n03_tu", "text": "Muelles, fogatas, tiendas... Esto no es una reunión: es un campamento." },
+    { "who": "n03_narrador", "text": "Entre las tiendas patrullan hombres con capuchas rojas. Si tu madre te enseñó algo sobre descifrar mensajes es que todo deja rastro: papeles, símbolos, rutas. Busca pistas antes de actuar." }
+  ],
+
+  "n03_pista_huellas": [
+    { "who": "n03_narrador", "text": "Huellas de botas pesadas se mezclan con otras más pequeñas: patitas. Todas van hacia los muelles. Hay pelos negros en el lodo y gotas de cera roja, como si alguien hubiera venido encendiendo velas por el camino." },
+    { "who": "n03_tu", "text": "Cargaron jaulas. Y no las trajeron vacías." }
+  ],
+  "n03_pista_orden": [
+    { "who": "n03_narrador", "text": "Una nota doblada en cuatro, con el sello del Espejo Negro: «Turno de vigilancia en la orilla, de la caída del sol al primer canto del gallo. Nadie abandona su puesto. La ofrenda debe llegar entera al altar antes de que la luna toque la piedra»." },
+    { "who": "n03_tu", "text": "«Llegar entera». Hablan de los gatos como de mercancía." }
+  ],
+  "n03_pista_mapa": [
+    { "who": "n03_narrador", "text": "Un mapa del lago dibujado a mano. Dos cruces rojas: este campamento y, en la orilla norte, el trazo de algo que reconoces de los libros de historia: una cabeza colosal de piedra." },
+    { "who": "n03_narrador", "text": "Debajo, una frase: «Cuando el espejo vea a la luna, el Antiguo despertará»." },
+    { "who": "n03_tu", "text": "Una cabeza olmeca. Quieren despertar algo que lleva siglos dormido." }
+  ],
+  "n03_pista_simbolos": [
+    { "who": "n03_narrador", "text": "Sobre las piedras de la orilla hay símbolos pintados con ceniza y cera negra: un círculo, un espejo, un ojo cerrado." },
+    { "who": "n03_tu", "text": "Ya vi esta marca. La Cofradía la deja donde quiere que la gente olvide lo que pasó." }
+  ],
+  "n03_pista_ofrendas": [
+    { "who": "n03_narrador", "text": "Una caja de madera llena de velas rojas, hilo negro y listones. Debajo, una libreta con muchas tachaduras. En la última página: «Tres gatos negros, nacidos en martes. Los que ven en la oscuridad. Que no se escape ninguno»." },
+    { "who": "n03_tu", "text": "Si no los saco yo, nadie más lo va a hacer." }
+  ],
+  "n03_pista_carta": [
+    { "who": "n03_narrador", "text": "Una carta sin firma, sellada con cera negra: «Maestro: la Cabeza estará despierta antes del amanecer. Los de abajo ya preparan el altar. Que nadie se acerque al lago»." },
+    { "who": "n03_tu", "text": "«Los de abajo». ¿Quién más está en esa orilla?" }
+  ],
+  "n03_deduccion": [
+    { "who": "n03_narrador", "text": "Acomodas las piezas en tu cabeza, como mamá te enseñó con los mensajes cifrados." },
+    { "who": "n03_tu", "text": "Huellas, turnos, mapa, sellos, ofrendas, carta... Todo cuadra: los gatos son la ofrenda, la ofrenda es para el rito, y el rito es para despertar a la Cabeza en la orilla norte." },
+    { "who": "n03_tu", "text": "Primero las jaulas. Después, el altar." }
+  ],
+
+  "n03_jaula_a": [
+    { "who": "n03_narrador", "text": "La puerta de la jaula cruje. Un gato negro te mira con ojos de ámbar, se estira como si nada... y sale disparado entre la niebla." },
+    { "who": "n03_tu", "text": "Uno menos para el rito." }
+  ],
+  "n03_jaula_b": [
+    { "who": "n03_narrador", "text": "El segundo gato maúlla bajito, casi un susurro. Salta de la jaula, te roza la pierna y desaparece rumbo al pueblo." }
+  ],
+  "n03_jaula_c": [
+    { "who": "n03_narrador", "text": "La última jaula tiene el candado más grueso. Dentro, un gato pequeño de ojos dorados no huye: te observa fijo, sin parpadear." }
+  ],
+  "n03_jaula_guardias": [
+    { "who": "n03_tu", "text": "Hay encapuchados demasiado cerca. Si abro la jaula ahora, nos descubren a todos." }
+  ],
+  "n03_balam_1": [
+    { "who": "n03_narrador", "text": "El gato sale de la jaula y camina hacia ti, sin prisa. Se sienta a tus pies, justo frente a la gema." },
+    { "who": "n03_narrador", "text": "La gema se enciende. En tu mochila, el Códice de las Voces vibra y de sus páginas escapan hilos de luz del color de un atardecer." },
+    { "who": "n03_narrador", "text": "El gato levanta una pata... y toca la gema." }
+  ],
+  "n03_balam_2": [
+    { "who": "n03_narrador", "text": "Su pelaje negro se llena de colores: naranja, turquesa, rosa mexicano. Grecas luminosas recorren su cuerpo como un alebrije que despierta. Cuando abre los ojos, son de jaguar." },
+    { "who": "n03_tu", "text": "¿Qué... eres?" },
+    { "who": "n03_narrador", "text": "El gato maúlla, un sonido que casi es palabra, y se talla contra tu pierna. Algo en tu cabeza se acomoda: sabes cómo se llama. Balam." },
+    { "who": "n03_tu", "text": "Balam. «Jaguar». Gracias por elegirme." },
+    { "who": "n03_narrador", "text": "Cierras los ojos un instante y ves el lago a través de otros ojos: la niebla se abre y la oscuridad se llena de formas que flotan. Acabas de despertar la Habilidad Luna." }
+  ],
+  "n03_campamento_fin": [
+    { "who": "n03_tu", "text": "El altar está del otro lado de la orilla. Vamos, Balam." },
+    { "who": "n03_narrador", "text": "Balam camina delante de ti, con la cola en alto. Al fondo, entre la neblina, algo enorme parece respirar." }
+  ],
+
+  "n03_altar_intro": [
+    { "who": "n03_narrador", "text": "Un sendero de piedra baja hacia la orilla norte. Los braseros arden con fuego verde y, entre ellos, el aire se espesa como agua." },
+    { "who": "n03_tu", "text": "Siento frío... y que alguien me mira." },
+    { "who": "n03_narrador", "text": "Balam eriza el lomo y clava la vista en el vacío. Con la Habilidad Luna verás lo que el ojo no alcanza." }
+  ],
+  "n03_espiritus": [
+    { "who": "n03_narrador", "text": "Con los ojos de Balam, la niebla se llena de siluetas: almas que el ritual ató a este camino. No atacan; sollozan." },
+    { "who": "n03_tu", "text": "No quieren hacer daño. Con LUZ puedo liberarlas." }
+  ],
+  "n03_estela": [
+    { "who": "n03_narrador", "text": "Una estela cubierta de musgo, con relieves olmecas tallados hace miles de años. Alguien raspó una parte de la piedra y pintó encima el símbolo del Espejo Negro." }
+  ],
+  "n03_altar_llegada": [
+    { "who": "n03_narrador", "text": "Al final del sendero, otro Altar de la Memoria. Y más allá, recortada contra la luna, la sombra de algo inmenso." },
+    { "who": "n03_tu", "text": "Es la Cabeza. Si despierta del todo, no habrá pueblo que aguante." }
+  ],
+  "n03_cabeza_intro": [
+    { "who": "n03_narrador", "text": "En una explanada de piedra, una cabeza colosal de rasgos olmecas mira hacia el lago. Tiene los ojos cerrados." },
+    { "who": "n03_narrador", "text": "La luna toca su frente. Los ojos se abren, rojos, y la tierra tiembla bajo tus pies." },
+    { "who": "n03_tu", "text": "Ya despertó." },
+    { "who": "n03_narrador", "text": "Una voz sin garganta recorre el suelo. No habla: pesa." }
+  ],
+  "n03_cabeza_fin": [
+    { "who": "n03_narrador", "text": "Los ojos rojos se apagan. La tierra deja de temblar. La Cabeza vuelve a ser piedra, piedra dormida con una grieta de luz en la frente." },
+    { "who": "n03_tu", "text": "Descansa. Nadie te va a usar otra vez." },
+    { "who": "n03_narrador", "text": "En el silencio, desde el sendero, alguien tose y grita una pregunta a la niebla." }
+  ],
+
+  "n03_maria_1": [
+    { "who": "n03_maria", "text": "¡Por favor! ¿Hay alguien ahí? ¿Han visto a mis hijos?" },
+    { "who": "n03_narrador", "text": "Una mujer sale de entre la niebla. Trae el rebozo empapado, los pies descalzos y la mirada de quien lleva demasiadas noches sin dormir." },
+    { "who": "n03_tu", "text": "Tranquila, ya pasó. ¿Está bien? ¿Cómo se llama?" },
+    { "who": "n03_maria", "text": "María. Los busco desde hace mucho. Nadie me dice nada... Vi las luces del altar y pensé que alguien sabría." },
+    { "who": "n03_tu", "text": "Aquí había hombres de capa roja. Son de la Cofradía del Espejo Negro. ¿Los ha visto antes?" },
+    { "who": "n03_maria", "text": "Cada rastro que encuentro lleva por el mismo camino que ellos." }
+  ],
+  "n03_maria_2": [
+    { "who": "n03_tu", "text": "Yo también sigo a la Cofradía. Se llevaron a mi mamá. El Códice marca el camino hacia el siguiente sello." },
+    { "who": "n03_maria", "text": "Entonces el mismo camino nos lleva a los dos. No quiero ser una carga, pero ya no puedo seguir sola. ¿Puedo ir con ustedes?" },
+    { "who": "n03_narrador", "text": "Balam se acerca a María, le huele la mano y se acomoda junto a sus pies." },
+    { "who": "n03_maria", "text": "Parece que alguien ya decidió por mí." },
+    { "who": "n03_tu", "text": "Bienvenida, María. Los buscaremos juntos." },
+    { "who": "n03_narrador", "text": "María se une a tu viaje. Con Balam a tu lado y una nueva compañera, el mapa del Códice marca el siguiente destino: Oaxaca." }
+  ],
+  "n03_salida": [
+    { "who": "n03_narrador", "text": "El lago de Catemaco queda atrás, quieto y negro. Frente a ti, el camino a Oaxaca." },
+    { "who": "n03_narrador", "text": "Aquí termina, por ahora, la parte jugable. Continuará." }
+  ]
+}

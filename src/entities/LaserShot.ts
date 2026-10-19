@@ -4,7 +4,7 @@ import { sfx } from '../core/bus';
 import { damageMult } from '../core/GameState';
 import { DEPTH_TOLERANCE } from '../config/game';
 import { FX_DEPTH_BIAS, JUICE, LASER } from '../config/combat';
-import { FB, burst, laserImpact } from './EnemyBase';
+import { FB, burst, laserImpact, lunaVisible } from './EnemyBase';
 
 /**
  * Blanco extra del láser (no enemigo): p. ej. la antena de la Cofradía, que el director registra
@@ -89,6 +89,8 @@ export class LaserShot {
     let best: { dist: number; apply: () => void } | null = null;
     for (const e of this.world.enemies) {
       if (!e.alive || e.purified || e.exhausted) continue;
+      // Nivel 3: los lunaOnly no existen para el láser sin Luna (lo atraviesa).
+      if (!lunaVisible(e)) continue;
       if (Math.abs(e.y - this.y) >= DEPTH_TOLERANCE) continue;
       if (this.h < e.z || this.h > e.z + e.height) continue;
       if (e.x + e.radius < a || e.x - e.radius > b) continue;

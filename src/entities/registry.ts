@@ -1,6 +1,9 @@
 ﻿import type { EnemyApi, EnemySpec, WorldApi } from '../core/contracts';
 import { Chaneque } from './Chaneque';
 import { ChanequeMayor } from './ChanequeMayor';
+import { Encapuchado } from './Encapuchado';
+import { Espiritu } from './Espiritu';
+import { CabezaOlmeca } from './CabezaOlmeca';
 
 /**
  * Fábrica de enemigos (dueño: combate). La usa LevelScene.spawnEnemy(spec):
@@ -14,11 +17,13 @@ export function createEnemy(world: WorldApi, spec: EnemySpec): EnemyApi {
       return new Chaneque(world, spec.x, spec.y, spec.variant ?? 'patrulla', spec.group);
     case 'chaneque_mayor':
       return new ChanequeMayor(world, spec.x, spec.y, spec.group);
-    // Nivel 3 (dueño: enemigos). Reemplazar estos casos al crear Encapuchado.ts, Espiritu.ts y CabezaOlmeca.ts.
+    // Nivel 3 (dueño: enemigos).
     case 'encapuchado':
+      return new Encapuchado(world, spec.x, spec.y, spec.rank ?? 'rojo', spec.group);
     case 'espiritu':
+      return new Espiritu(world, spec.x, spec.y, spec.lunaOnly ?? true, spec.group);
     case 'cabeza_olmeca':
-      throw new Error(`Enemigo del Nivel 3 sin implementar: ${spec.type}`);
+      return new CabezaOlmeca(world, spec.x, spec.y, spec.group);
     default: {
       const t: never = spec.type;
       throw new Error(`Tipo de enemigo desconocido: ${String(t)}`);

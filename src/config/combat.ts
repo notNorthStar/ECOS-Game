@@ -81,6 +81,32 @@ export const SPELLS_FX = {
     stun: 2,
     forward: 10,
   },
+  /**
+   * LUZ (Nivel 3): destello en radio alrededor del jugador. Purifica espíritus, aturde encapuchados,
+   * aturde levemente a chaneques. Mandan effect.purifyRadius / stunRadius / stun de spells.json.
+   */
+  LUZ: {
+    purifyRadius: 120,
+    stunRadius: 130,
+    /** Aturdimiento a encapuchados (umbral 4 → perfecto los marea). */
+    stun: 4,
+    /** Aturdimiento leve a chaneques y al Chaneque Mayor (➖). */
+    lightStun: 1.5,
+    forward: 0,
+    color: 0xfff4c0,
+  },
+  /**
+   * SOL (Nivel 3): ráfaga ofensiva en línea hacia donde mira el jugador.
+   * Mandan effect.length / width / damage / knockback de spells.json. width = media banda de profundidad.
+   */
+  SOL: {
+    length: 280,
+    width: 14,
+    damage: 60,
+    knockback: 30,
+    forward: 12,
+    color: 0xffb040,
+  },
 } as const;
 
 /** Escudo pasivo de PROTECCION (respaldo; mandan effect.shieldMs / shieldReduction de spells.json). */

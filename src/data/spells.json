@@ -1,5 +1,9 @@
 {
   "note": "Conjuros del juego (dueño: lsm). Cada nombre se valida con checkWord() al cargar. Valores ajustables: ventanas (ms), efectos (px, ms) y puntos de maestría por nivel. Ver GDD §6 y NIVELES_ECOS.md §3.",
+  "effectDoc": {
+    "LUZ": "purifyRadius (px): purifica espíritus agotados o lunaOnly dentro del radio · stunRadius (px) + stun: aturde a encapuchados y otros · knockback (px) · lightRadius (px) + lightMs: ilumina/disipa niebla alrededor del jugador · bossDamage: golpes de conjuro efectivos contra la Cabeza Olmeca en su ventana. Radios × powerScale(power).",
+    "SOL": "length (px) hacia facing, |Δy| <= width: ráfaga en línea · damage (pts de vida del enemigo; el encapuchado rojo tiene 60, así que un SOL perfecto lo deja inconsciente; cada rango lo escala con solMult de enemies.json) · knockback (px) · stun · beamMs: duración visual del rayo. Daño × power. Contra la Cabeza Olmeca cuenta como sello en su ventana (enemies.json → cabeza_olmeca.seal)."
+  },
   "masteryRules": {
     "partialMinFraction": 0.8,
     "partialPoints": 1,
@@ -48,6 +52,45 @@
         "purifyRadius": 56,
         "shieldMs": 3000,
         "shieldReduction": 0.6
+      }
+    },
+    {
+      "id": "LUZ",
+      "name": "LUZ",
+      "type": "purificacion",
+      "title": "Luz",
+      "desc": "Una luz blanca y cálida que purifica a los espíritus cercanos (mejor con Luna activa), aturde a la Cofradía e ilumina la niebla por un momento.",
+      "learnedFrom": "Brujos buenos de Catemaco",
+      "color": "#fff2b0",
+      "letterWindowMs": 3200,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "purifyRadius": 110,
+        "stunRadius": 150,
+        "stun": 4,
+        "knockback": 16,
+        "lightRadius": 190,
+        "lightMs": 6000,
+        "bossDamage": 1
+      }
+    },
+    {
+      "id": "SOL",
+      "name": "SOL",
+      "type": "ofensivo",
+      "title": "Sol",
+      "desc": "Una ráfaga de sol en línea hacia donde miras. Fuerte contra la Cofradía (los deja inconscientes) y contra la Cabeza Olmeca en sus ventanas.",
+      "learnedFrom": "Brujos buenos de Catemaco",
+      "color": "#ffb040",
+      "letterWindowMs": 3200,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "length": 280,
+        "width": 18,
+        "damage": 60,
+        "knockback": 30,
+        "stun": 1,
+        "beamMs": 450
       }
     }
   ]

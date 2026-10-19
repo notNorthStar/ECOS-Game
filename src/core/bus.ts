@@ -26,7 +26,7 @@ export interface BusEvents {
   'enemy:exhausted': { enemy: EnemyApi };
   'enemy:purified': { enemy: EnemyApi; ecos: number; perfect: boolean };
   'enemy:removed': { enemy: EnemyApi };
-  'boss:phase': { phase: 1 | 2 };
+  'boss:phase': { phase: 1 | 2 | 3 };
   'boss:vulnerable': { on: boolean };
   'boss:calmed': Record<string, never>;
   'antenna:destroyed': Record<string, never>;

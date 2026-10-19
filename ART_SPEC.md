@@ -223,3 +223,27 @@ PNG en `public/assets/escenarios/nivel-02-san-andres-tuxtla/fondos/`. Todos son 
 Se generan con `npm run scenery:nivel2`; `-- --force` solo regenera archivos que conservan marca y hash propios. Una sustitución del equipo, una entrada `placeholder:false` o una ruta personalizada se conserva. El manifiesto distingue los PNG procedurales como `placeholder:true`; son reemplazables por arte final con iguales claves y medidas.
 
 Decorado de respaldo en `TuxtlaDecor.ts`: letras 304×50; músicos 64×80; tarima 250×87; portada 330×127; recuerdos 42×42; señal 111×81. El juego usa primero las texturas del equipo si se registran en el manifiesto. No suavizar el dibujo ni añadir bloqueos visuales sobre las interacciones.
+
+## 10. Nivel 3 — Catemaco: escenarios, props y NPCs comunes
+
+Dirección: noche cerrada y neblina espesa junto a la laguna; tono detectivesco (pistas, campamento con luz roja) que deriva en horror cósmico en el altar (aurora verde-morada, astro eclipsado). Solo paleta §3, 1×, alfa 0/255. Generador: `npm run scenery:nivel3` (`tools/gen-catemaco-scenery.mjs`, marca `ECOS-placeholder:catemaco-v1` + hash; nunca pisa arte del equipo). Detalle y claves: `public/assets/escenarios/nivel-03-catemaco/LEEME.md`.
+
+| Archivo (bajo `public/assets/`) | Medidas | Cuadros | Notas |
+|---|---|---|---|
+| `escenarios/nivel-03-catemaco/fondos/fondo_catemaco_capa0..5.png` | 711 · 904 · 1344 · 1784 · 2400 · 2840 × 360 | 1 | Pueblo lacustre, laguna, isla, Los Tuxtlas |
+| `escenarios/nivel-03-catemaco/fondos/fondo_campamento_capa0..5.png` | 743 · 1024 · 1664 · 2304 · 3200 · 3840 × 360 | 1 | Orilla, muelles, manglar, campamento de la Cofradía |
+| `escenarios/nivel-03-catemaco/fondos/fondo_altar_olmeca_capa0..5.png` | 711 · 904 · 1344 · 1784 · 2400 · 2840 × 360 | 1 | Selva, aurora, claro ceremonial con estelas |
+| `escenarios/nivel-03-catemaco/props/prop_n03_letras_catemaco.png` | 224×72 | 1 | Letras turísticas |
+| `…/props/prop_n03_altar_brujos.png` | 64×56 | 4 · 6 fps | Pies y = 54 |
+| `…/props/prop_n03_jaula_cerrada.png`, `prop_n03_jaula_abierta.png` | 40×36 | 1 | |
+| `…/props/prop_n03_gato_negro.png` / `prop_n03_gato_negro_echado.png` | 24×20 / 28×14 | 4 · 3 fps / 2 · 2 fps | Gatos comunes (Balam es otro: placeholder de personaje) |
+| `…/props/prop_n03_lona.png` / `prop_n03_lona_chica.png` | 96×72 / 64×48 | 1 | |
+| `…/props/prop_n03_antorcha.png` / `prop_n03_brasero.png` | 16×56 / 32×40 | 4 · 8 fps | |
+| `…/props/prop_n03_caja_cofradia.png`, `prop_n03_estandarte.png` | 32×28, 24×80 | 1 | Espejo Negro |
+| `…/props/prop_n03_nota.png`, `prop_n03_pista_espejo.png`, `prop_n03_tablero_pistas.png` | 16×16, 16×16, 48×56 | 1 | Pistas |
+| `…/props/prop_n03_muelle.png`, `prop_n03_lancha.png` | 160×40, 96×28 | 1 | |
+| `…/props/prop_n03_estela.png`, `prop_n03_estela_rota.png` | 40×76 | 1 | |
+| `…/props/prop_n03_pedestal_olmeca.png` | 176×56 | 1 | Sin la cabeza (jefe) |
+| `sprites/npcs/npc_brujo_1..3.png`, `npc_poblador_n03_1..2.png` | 64×80 | 4 · 4–5 fps | Pivote (32, 78), originY 0.975; NPCs comunes con diseño completo (§8.0 de AGENTS.md) |
+
+Decorado por código (`src/world/CatemacoDecor.ts`): halos que laten sobre faroles, ventanas, antorchas y braseros pintados en la capa 3; destellos de luna en la laguna; neblina baja teñida por sección; luciérnagas (pueblo), chispas (campamento) y motas enfermizas (altar); brillo de los círculos rituales. Con "reducir efectos" todo queda quieto.

@@ -2,10 +2,10 @@ import Phaser from 'phaser';
 import type { ChanequeVariant, EnemyKind, Hit, SpellOutcomeEvent, WorldApi } from '../core/contracts';
 import { bus, sfx } from '../core/bus';
 import { DEPTH_TOLERANCE } from '../config/game';
-import { FX_DEPTH_BIAS, JUICE } from '../config/combat';
+import { FX_DEPTH_BIAS, JUICE, SPELLS_FX } from '../config/combat';
 import enemiesData from '../data/enemies.json';
 import { hideBossBar, showBossBar, updateBossBar } from '../scenes/HudScene';
-import { EnemyBase, FB, burst, oneShotFx, planeDist, purifyFx, rand, randRange , hitPlayer } from './EnemyBase';
+import { EnemyBase, FB, burst, inLuzRadius, inSolLine, oneShotFx, planeDist, purifyFx, rand, randRange, solDamage, spellParam, hitPlayer } from './EnemyBase';
 
 /**
  * Chaneque Mayor (NIVELES §4, jefe del Nivel 1). 128×128.
@@ -627,6 +627,15 @@ export class ChanequeMayor extends EnemyBase {
 
   applySpell(ev: SpellOutcomeEvent): boolean {
     if (!this._alive || this.st === 'calmed' || ev.outcome === 'fail') return false;
+    // Nivel 3. LUZ: ➖ aturde un poco (acumula hacia la ventana). SOL: daño (reducido: es enorme).
+    if (ev.spellId === 'LUZ') {
+      if (!inLuzRadius(ev, this.x, this.y, 'stunRadius', this.radius)) return false;
+      return this.takeHit({ damage: 0, stun: spellParam('LUZ', 'lightStun', SPELLS_FX.LUZ.lightStun) * ev.power, kind: 'spell', sourceX: ev.x, knockback: 0 });
+    }
+    if (ev.spellId === 'SOL') {
+      if (!inSolLine(ev, this.x, this.y, this.radius)) return false;
+      return this.takeHit({ damage: solDamage(ev) * B.solDamageMult, stun: 0, kind: 'spell', sourceX: ev.x, knockback: 0 });
+    }
     if (ev.spellId !== 'CALMA') return false; // PROTECCION: neutra
     if (planeDist(this.x, this.y, ev.x, ev.y) > 260) return false;
     if (this.st !== 'vulnerable') {
