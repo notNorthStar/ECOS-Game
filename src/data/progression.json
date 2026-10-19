@@ -1,0 +1,44 @@
+{
+  "_nota": "Valores de GDD §5.1. Meta del Nivel 1: ~300 Ecos (alcanza para 2 mejoras).",
+  "ecos": {
+    "chaneque": 5,
+    "chaneque_mayor": 150,
+    "aprenderConjuro": 25
+  },
+  "bonus": {
+    "purificar": 1.5,
+    "perfecto": 1.25
+  },
+  "upgrades": [
+    {
+      "id": "vida",
+      "name": "Vida",
+      "desc": "+1 segmento de vida",
+      "maxLevel": 5,
+      "costs": [100, 200, 350, 550, 800]
+    },
+    {
+      "id": "dano",
+      "name": "Daño",
+      "desc": "+10 % de daño (láser rojo y conjuros ofensivos)",
+      "maxLevel": 5,
+      "costs": [100, 200, 350, 550, 800]
+    },
+    {
+      "id": "velocidad",
+      "name": "Velocidad",
+      "desc": "+6 % al caminar, correr y esquivar",
+      "maxLevel": 3,
+      "costs": [120, 280, 500]
+    },
+    {
+      "id": "doble_salto",
+      "name": "Doble salto",
+      "desc": "Desbloquea el doble salto",
+      "maxLevel": 1,
+      "costs": [400],
+      "locked": true,
+      "lockText": "Disponible desde Puebla"
+    }
+  ]
+}

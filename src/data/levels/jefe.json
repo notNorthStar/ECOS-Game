@@ -1,0 +1,49 @@
+{
+  "id": "jefe",
+  "name": "Parque Juárez · La antena",
+  "width": 1600,
+  "background": "fondo_jefe",
+  "ambience": { "fog": 0.85, "embers": true, "fireflies": false, "tint": "#9a7fb0", "darkness": 0.45 },
+  "music": "n01_jefe",
+  "walk": [
+    [[0, 222], [1600, 222], [1600, 345], [0, 345]]
+  ],
+  "obstacles": [],
+  "props": [
+    { "key": "prop_farol", "x": 90, "y": 226, "anim": "prop_farol" },
+    { "key": "prop_arbol", "x": 260, "y": 226, "collide": { "rx": 12, "ry": 5 } },
+    { "key": "prop_barandal", "x": 420, "y": 224 },
+    { "key": "prop_barandal", "x": 484, "y": 224 },
+    { "key": "prop_arbusto", "x": 560, "y": 228 },
+    { "key": "prop_arbol", "x": 600, "y": 376, "foreground": true, "alpha": 0.8 },
+    { "key": "prop_farol", "x": 680, "y": 226, "anim": "prop_farol" },
+    { "key": "prop_busto_juarez", "x": 800, "y": 228, "collide": { "rx": 20, "ry": 6 }, "id": "busto" },
+    { "key": "prop_farol", "x": 920, "y": 226, "anim": "prop_farol" },
+    { "key": "prop_arbusto", "x": 1040, "y": 228, "flipX": true },
+    { "key": "prop_barandal", "x": 1120, "y": 224 },
+    { "key": "prop_barandal", "x": 1184, "y": 224 },
+    { "key": "prop_arbol", "x": 1260, "y": 226, "collide": { "rx": 12, "ry": 5 }, "flipX": true },
+    { "key": "prop_antena", "x": 1400, "y": 232, "anim": "prop_antena", "collide": { "rx": 26, "ry": 8 }, "id": "antena" },
+    { "key": "prop_arbusto", "x": 1500, "y": 358, "foreground": true },
+    { "key": "prop_farol", "x": 1540, "y": 226, "anim": "prop_farol" }
+  ],
+  "spawn": { "x": 70, "y": 290 },
+  "spawns": {
+    "inicio": { "x": 70, "y": 290 },
+    "checkpoint": { "x": 70, "y": 290 }
+  },
+  "enemies": [
+    { "type": "chaneque_mayor", "x": 1080, "y": 290, "group": "jefe" },
+    { "type": "chaneque", "variant": "travieso", "x": 1200, "y": 256, "group": "jefe" },
+    { "type": "chaneque", "variant": "patrulla", "x": 1200, "y": 326, "group": "jefe" },
+    { "type": "chaneque", "variant": "saltador", "x": 950, "y": 320, "group": "jefe" }
+  ],
+  "triggers": [
+    { "id": "arena_jefe", "x": 230, "y": 222, "w": 40, "h": 124, "action": "jefe", "data": { "group": "jefe", "x0": 160, "x1": 1600 } }
+  ],
+  "interactables": [
+    { "id": "antena", "x": 1400, "y": 240, "radius": 44, "prompt": "Sobrecargar", "action": "antena", "data": { "promptDy": 150 } },
+    { "id": "busto", "x": 800, "y": 236, "radius": 38, "prompt": "Excavar", "action": "busto", "once": true, "data": { "promptDy": 96 } }
+  ],
+  "cameraBounds": { "x0": 0, "x1": 1600 }
+}

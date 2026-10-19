@@ -1,0 +1,764 @@
+{
+  "images": [
+    {
+      "key": "fx_roca",
+      "path": "assets/sprites/efectos/fx_roca.png",
+      "placeholder": true
+    },
+    {
+      "key": "fx_chispa",
+      "path": "assets/sprites/efectos/fx_chispa.png",
+      "placeholder": true
+    },
+    {
+      "key": "fx_sombra",
+      "path": "assets/sprites/efectos/fx_sombra.png",
+      "placeholder": true
+    },
+    {
+      "key": "fx_gota",
+      "path": "assets/sprites/efectos/fx_gota.png",
+      "placeholder": true
+    },
+    {
+      "key": "fx_luciernaga",
+      "path": "assets/sprites/efectos/fx_luciernaga.png",
+      "placeholder": true
+    },
+    {
+      "key": "fx_niebla",
+      "path": "assets/sprites/efectos/fx_niebla.png",
+      "placeholder": true
+    },
+    {
+      "key": "fx_brillo",
+      "path": "assets/sprites/efectos/fx_brillo.png",
+      "placeholder": true
+    },
+    {
+      "key": "letras_xalapa",
+      "path": "assets/escenarios/comun/letras_xalapa.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_mesa_taller",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_mesa_taller.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_estante",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_estante.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_grabado_calma",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_grabado_calma.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_banca",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_banca.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_arbol",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_arbol.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_arbusto",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_arbusto.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_antena_rota",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_antena_rota.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_busto_juarez",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_busto_juarez.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_nota_madre",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_nota_madre.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_codice",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_codice.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_escalera",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_escalera.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_barandal",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_barandal.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_poste",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_poste.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_auto_viejo",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_auto_viejo.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_caja",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_caja.png",
+      "placeholder": true
+    },
+    {
+      "key": "prop_puerta_taller",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_puerta_taller.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_taller_capa0",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_taller_capa0.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_taller_capa1",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_taller_capa1.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_taller_capa2",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_taller_capa2.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_taller_capa3",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_taller_capa3.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_taller_capa4",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_taller_capa4.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_taller_capa5",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_taller_capa5.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_calles_capa0",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_calles_capa0.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_calles_capa1",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_calles_capa1.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_calles_capa2",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_calles_capa2.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_calles_capa3",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_calles_capa3.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_calles_capa4",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_calles_capa4.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_calles_capa5",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_calles_capa5.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_parque_capa0",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_parque_capa0.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_parque_capa1",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_parque_capa1.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_parque_capa2",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_parque_capa2.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_parque_capa3",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_parque_capa3.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_parque_capa4",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_parque_capa4.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_parque_capa5",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_parque_capa5.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_jefe_capa0",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_jefe_capa0.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_jefe_capa1",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_jefe_capa1.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_jefe_capa2",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_jefe_capa2.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_jefe_capa3",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_jefe_capa3.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_jefe_capa4",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_jefe_capa4.png",
+      "placeholder": true
+    },
+    {
+      "key": "fondo_jefe_capa5",
+      "path": "assets/escenarios/nivel-01-xalapa/fondos/fondo_jefe_capa5.png",
+      "placeholder": true
+    },
+    {
+      "key": "ui_eco",
+      "path": "assets/ui/ui_eco.png",
+      "placeholder": true
+    },
+    {
+      "key": "ui_rueda",
+      "path": "assets/ui/ui_rueda.png",
+      "placeholder": true
+    },
+    {
+      "key": "ui_marco",
+      "path": "assets/ui/ui_marco.png",
+      "placeholder": true
+    },
+    {
+      "key": "ui_tecla",
+      "path": "assets/ui/ui_tecla.png",
+      "placeholder": true
+    },
+    {
+      "key": "titulo_logo",
+      "path": "assets/ui/titulo_logo.png",
+      "placeholder": true
+    },
+    {
+      "key": "mapa_ruta",
+      "path": "assets/ui/mapa_ruta.png",
+      "placeholder": true
+    },
+    {
+      "key": "pantalla_carga",
+      "path": "assets/ui/pantalla_carga.png",
+      "placeholder": true
+    },
+    {
+      "key": "retrato_madre",
+      "path": "assets/ui/retrato_madre.png",
+      "placeholder": true
+    },
+    {
+      "key": "retrato_protagonista",
+      "path": "assets/ui/retrato_protagonista.png",
+      "placeholder": true
+    }
+  ],
+  "sheets": [
+    {
+      "key": "protagonista_reposo",
+      "path": "assets/sprites/protagonista/protagonista_reposo.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "protagonista_caminar",
+      "path": "assets/sprites/protagonista/protagonista_caminar.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 6,
+      "frameRate": 10,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "protagonista_correr",
+      "path": "assets/sprites/protagonista/protagonista_correr.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 6,
+      "frameRate": 14,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "protagonista_saltar_subida",
+      "path": "assets/sprites/protagonista/protagonista_saltar_subida.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 2,
+      "frameRate": 8,
+      "repeat": 0,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "protagonista_saltar_caida",
+      "path": "assets/sprites/protagonista/protagonista_saltar_caida.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 2,
+      "frameRate": 8,
+      "repeat": 0,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "protagonista_aterrizar",
+      "path": "assets/sprites/protagonista/protagonista_aterrizar.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 2,
+      "frameRate": 12,
+      "repeat": 0,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "protagonista_esquivar",
+      "path": "assets/sprites/protagonista/protagonista_esquivar.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 16,
+      "repeat": 0,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "protagonista_disparar",
+      "path": "assets/sprites/protagonista/protagonista_disparar.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 3,
+      "frameRate": 16,
+      "repeat": 0,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "protagonista_conjuro",
+      "path": "assets/sprites/protagonista/protagonista_conjuro.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "protagonista_dano",
+      "path": "assets/sprites/protagonista/protagonista_dano.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 2,
+      "frameRate": 10,
+      "repeat": 0,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "protagonista_morir",
+      "path": "assets/sprites/protagonista/protagonista_morir.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 5,
+      "frameRate": 8,
+      "repeat": 0,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "protagonista_interactuar",
+      "path": "assets/sprites/protagonista/protagonista_interactuar.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 3,
+      "frameRate": 8,
+      "repeat": 0,
+      "originY": 0.975,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_reposo",
+      "path": "assets/sprites/enemigos/chaneque_reposo.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.9688,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_caminar",
+      "path": "assets/sprites/enemigos/chaneque_caminar.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 6,
+      "frameRate": 10,
+      "repeat": -1,
+      "originY": 0.9688,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_ataque",
+      "path": "assets/sprites/enemigos/chaneque_ataque.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 4,
+      "frameRate": 12,
+      "repeat": 0,
+      "originY": 0.9688,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_salto",
+      "path": "assets/sprites/enemigos/chaneque_salto.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 3,
+      "frameRate": 10,
+      "repeat": 0,
+      "originY": 0.9688,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_dano",
+      "path": "assets/sprites/enemigos/chaneque_dano.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 2,
+      "frameRate": 10,
+      "repeat": 0,
+      "originY": 0.9688,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_agotado",
+      "path": "assets/sprites/enemigos/chaneque_agotado.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.9688,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_purificar",
+      "path": "assets/sprites/enemigos/chaneque_purificar.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 6,
+      "frameRate": 10,
+      "repeat": 0,
+      "originY": 0.9688,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_mayor_reposo",
+      "path": "assets/sprites/jefes/chaneque_mayor_reposo.png",
+      "frameWidth": 128,
+      "frameHeight": 128,
+      "frames": 4,
+      "frameRate": 5,
+      "repeat": -1,
+      "originY": 0.9844,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_mayor_caminar",
+      "path": "assets/sprites/jefes/chaneque_mayor_caminar.png",
+      "frameWidth": 128,
+      "frameHeight": 128,
+      "frames": 6,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.9844,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_mayor_salto",
+      "path": "assets/sprites/jefes/chaneque_mayor_salto.png",
+      "frameWidth": 128,
+      "frameHeight": 128,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": 0,
+      "originY": 0.9844,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_mayor_golpe",
+      "path": "assets/sprites/jefes/chaneque_mayor_golpe.png",
+      "frameWidth": 128,
+      "frameHeight": 128,
+      "frames": 5,
+      "frameRate": 10,
+      "repeat": 0,
+      "originY": 0.9844,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_mayor_invocar",
+      "path": "assets/sprites/jefes/chaneque_mayor_invocar.png",
+      "frameWidth": 128,
+      "frameHeight": 128,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": 0,
+      "originY": 0.9844,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_mayor_lanzar",
+      "path": "assets/sprites/jefes/chaneque_mayor_lanzar.png",
+      "frameWidth": 128,
+      "frameHeight": 128,
+      "frames": 4,
+      "frameRate": 10,
+      "repeat": 0,
+      "originY": 0.9844,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_mayor_aturdido",
+      "path": "assets/sprites/jefes/chaneque_mayor_aturdido.png",
+      "frameWidth": 128,
+      "frameHeight": 128,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.9844,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_mayor_dano",
+      "path": "assets/sprites/jefes/chaneque_mayor_dano.png",
+      "frameWidth": 128,
+      "frameHeight": 128,
+      "frames": 2,
+      "frameRate": 10,
+      "repeat": 0,
+      "originY": 0.9844,
+      "placeholder": true
+    },
+    {
+      "key": "chaneque_mayor_purificar",
+      "path": "assets/sprites/jefes/chaneque_mayor_purificar.png",
+      "frameWidth": 128,
+      "frameHeight": 128,
+      "frames": 8,
+      "frameRate": 8,
+      "repeat": 0,
+      "originY": 0.9844,
+      "placeholder": true
+    },
+    {
+      "key": "fx_laser_verde",
+      "path": "assets/sprites/efectos/fx_laser_verde.png",
+      "frameWidth": 32,
+      "frameHeight": 6,
+      "frames": 2,
+      "frameRate": 12,
+      "repeat": -1,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "fx_laser_rojo",
+      "path": "assets/sprites/efectos/fx_laser_rojo.png",
+      "frameWidth": 32,
+      "frameHeight": 6,
+      "frames": 2,
+      "frameRate": 12,
+      "repeat": -1,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "fx_impacto",
+      "path": "assets/sprites/efectos/fx_impacto.png",
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 4,
+      "frameRate": 20,
+      "repeat": 0,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "fx_eco",
+      "path": "assets/sprites/efectos/fx_eco.png",
+      "frameWidth": 8,
+      "frameHeight": 8,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "fx_purificar",
+      "path": "assets/sprites/efectos/fx_purificar.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frames": 6,
+      "frameRate": 12,
+      "repeat": 0,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "fx_onda",
+      "path": "assets/sprites/efectos/fx_onda.png",
+      "frameWidth": 96,
+      "frameHeight": 32,
+      "frames": 5,
+      "frameRate": 14,
+      "repeat": 0,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "fx_raiz",
+      "path": "assets/sprites/efectos/fx_raiz.png",
+      "frameWidth": 24,
+      "frameHeight": 48,
+      "frames": 5,
+      "frameRate": 12,
+      "repeat": 0,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "fx_rastro",
+      "path": "assets/sprites/efectos/fx_rastro.png",
+      "frameWidth": 8,
+      "frameHeight": 8,
+      "frames": 4,
+      "frameRate": 10,
+      "repeat": -1,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "fx_hoja",
+      "path": "assets/sprites/efectos/fx_hoja.png",
+      "frameWidth": 5,
+      "frameHeight": 5,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "altar_memoria",
+      "path": "assets/escenarios/comun/altar_memoria.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.9583,
+      "placeholder": true
+    },
+    {
+      "key": "prop_pistola_laser",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_pistola_laser.png",
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 2,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "prop_farol",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_farol.png",
+      "frameWidth": 16,
+      "frameHeight": 72,
+      "frames": 2,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "prop_antena",
+      "path": "assets/escenarios/nivel-01-xalapa/props/prop_antena.png",
+      "frameWidth": 64,
+      "frameHeight": 144,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "ui_vida",
+      "path": "assets/ui/ui_vida.png",
+      "frameWidth": 12,
+      "frameHeight": 12,
+      "frames": 2,
+      "frameRate": 1,
+      "repeat": 0,
+      "originY": 0.5,
+      "placeholder": true
+    },
+    {
+      "key": "ui_gema",
+      "path": "assets/ui/ui_gema.png",
+      "frameWidth": 24,
+      "frameHeight": 24,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.5,
+      "placeholder": true
+    }
+  ]
+}

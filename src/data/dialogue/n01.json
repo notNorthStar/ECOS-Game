@@ -1,0 +1,109 @@
+{
+  "_hablantes": {
+    "narrador": { "nombre": "", "retrato": "" },
+    "tu": { "nombre": "Tú", "retrato": "retrato_protagonista" },
+    "mama": { "nombre": "Mamá (nota)", "retrato": "retrato_madre" }
+  },
+
+  "taller_intro": [
+    { "who": "narrador", "text": "Xalapa. Una de las pocas ciudades tranquilas que quedan después de El Silencio." },
+    { "who": "narrador", "text": "Esta noche, el taller de tu madre está en silencio... y revuelto." },
+    { "who": "tu", "text": "¿Mamá? ...¿Mamá?" },
+    { "who": "narrador", "text": "Cajones abiertos, papeles en el piso, la puerta forzada. Alguien buscó algo aquí. Y se la llevó." },
+    { "who": "tu", "text": "La Cofradía. Siempre dijo que algún día la iban a encontrar." },
+    { "who": "narrador", "text": "En tu pecho, la gema que ella te heredó late con una luz tibia." },
+    { "who": "tu", "text": "Primero lo primero. Necesito algo con qué defenderme." }
+  ],
+  "taller_pistola": [
+    { "who": "narrador", "text": "Su pistola láser: la herramienta de soldar que ella misma ajustó para cambiar la intensidad con un giro." },
+    { "who": "tu", "text": "En verde aturde. En rojo quema. Siempre me hizo practicar con las dos." },
+    { "who": "tu", "text": "A ver si todavía me acuerdo..." }
+  ],
+  "taller_tutorial_fin": [
+    { "who": "tu", "text": "Listo. No se me olvidó." },
+    { "who": "narrador", "text": "La gema vuelve a latir, ahora más fuerte. Parece llamarte hacia el grabado de la pared." }
+  ],
+  "taller_mesa": [
+    { "who": "narrador", "text": "Los planos de mamá: circuitos, glifos y apuntes en glosa de señas. Faltan sus cuadernos." },
+    { "who": "tu", "text": "Buscaban el Códice. Si lo hubieran encontrado, no habrían revuelto todo así." }
+  ],
+  "taller_estante": [
+    { "who": "narrador", "text": "Libros de Lengua de Señas Mexicana, gastados de tanto usarlos. En esta casa siempre se habló con las manos." },
+    { "who": "tu", "text": "Mamá me enseñó a deletrear antes que a escribir." }
+  ],
+  "taller_grabado": [
+    { "who": "narrador", "text": "En la pared, un grabado que siempre estuvo ahí: una mano que forma letras. C, A, L, M, A." },
+    { "who": "tu", "text": "Mamá decía que las señas también protegen. Nunca entendí a qué se refería." },
+    { "who": "narrador", "text": "La gema se enciende al mirarlo. Las letras parecen moverse." }
+  ],
+  "taller_gema": [
+    { "who": "narrador", "text": "La gema brilla con fuerza y proyecta un hilo de luz que atraviesa la puerta... rumbo al Parque Juárez." },
+    { "who": "tu", "text": "Me está guiando. Aguanta, mamá. Voy para allá." }
+  ],
+
+  "calles_inicio": [
+    { "who": "narrador", "text": "Las calles de Xalapa. La niebla baja de las montañas y una llovizna fina lo cubre todo." },
+    { "who": "tu", "text": "Se oyen risitas entre los arbustos... Algo anda mal." }
+  ],
+  "calles_chaneques": [
+    { "who": "narrador", "text": "Los chaneques viven escondidos en la vegetación y nunca le hacen daño a nadie. Pero estos tienen los ojos encendidos de rabia." },
+    { "who": "tu", "text": "Algo los alteró. No voy a lastimarlos: los canso con el láser y luego los calmo con la seña." }
+  ],
+  "calles_auto": [
+    { "who": "narrador", "text": "Un auto viejo, oxidado, con las llantas ponchadas. En el vidrio empañado alguien escribió: «Al sur todavía hay caminos»." }
+  ],
+  "calles_letras": [
+    { "who": "narrador", "text": "Las letras de XALAPA, oxidadas y grafiteadas. Siguen en pie, como la ciudad." },
+    { "who": "tu", "text": "Aquí nos tomamos una foto cuando era niño. Ella hizo la seña de «casa»." }
+  ],
+  "altar_intro": [
+    { "who": "narrador", "text": "Junto a las letras, un Altar de la Memoria: velas, flores de cempasúchil y circuitos viejos." },
+    { "who": "narrador", "text": "Cada vez que calmas a un ser alterado se liberan Ecos, fragmentos de memoria. Aquí puedes ofrendarlos para hacerte más fuerte." },
+    { "who": "narrador", "text": "El altar también te cura y guarda tu avance. Si caes, vuelves aquí." }
+  ],
+
+  "parque_antena": [
+    { "who": "narrador", "text": "Al fondo del parque, entre la niebla, una antena de metal negro zumba y parpadea." },
+    { "who": "tu", "text": "Ese aparato... lo dejó la Cofradía. Por eso los chaneques están así." }
+  ],
+  "parque_arbol": [
+    { "who": "narrador", "text": "Entre las raíces hay pequeñas ofrendas: dulces, juguetes, monedas. La gente de Xalapa siempre les dejó regalos a los chaneques." }
+  ],
+  "parque_mirador": [
+    { "who": "narrador", "text": "Desde la terraza se ve la ciudad bajo la niebla y, entre las nubes, la punta nevada del Pico de Orizaba." }
+  ],
+  "arena_parque2_fin": [
+    { "who": "tu", "text": "Ya están tranquilos. La luz de la gema apunta hacia arriba, a la terraza." }
+  ],
+  "nota_madre": [
+    { "who": "narrador", "text": "Doblada en la base del farol, una nota con la letra de tu madre. La dejó aquí hace tiempo, por si acaso." },
+    { "who": "mama", "text": "Hijo: si algún día lees esto, es que ya vinieron por mí. No tengas miedo." },
+    { "who": "mama", "text": "Las señas que te enseñé no son solo palabras. Con la gema, también son escudo. Deletrea conmigo: P, R, O, T, E, C, C, I, O, N." },
+    { "who": "mama", "text": "Es larga: ve despacio. Y recuerda: lo que guardo está donde Juárez mira a su ciudad." },
+    { "who": "tu", "text": "Despacio. Como cuando era niño." }
+  ],
+
+  "jefe_intro": [
+    { "who": "narrador", "text": "Junto a la antena, algo enorme se mueve entre la niebla." },
+    { "who": "narrador", "text": "El Chaneque Mayor, el más viejo de los chaneques de Xalapa. La antena de la Cofradía lo tiene corrompido." },
+    { "who": "tu", "text": "No eres tú, es esa cosa. Te voy a ayudar... aunque no quieras." }
+  ],
+  "jefe_calmado": [
+    { "who": "narrador", "text": "El Chaneque Mayor respira hondo. La rabia se le va de los ojos y se aleja despacio hacia la vegetación." },
+    { "who": "tu", "text": "Ahora, la antena. Con el láser rojo." }
+  ],
+  "antena_rota": [
+    { "who": "narrador", "text": "La antena se parte entre chispas. El zumbido se apaga y la niebla se vuelve más ligera." },
+    { "who": "narrador", "text": "En todo el parque, los chaneques vuelven a esconderse entre las plantas, tranquilos." },
+    { "who": "narrador", "text": "La gema vibra. Su luz apunta al busto de Benito Juárez." },
+    { "who": "tu", "text": "«Donde Juárez mira a su ciudad»..." }
+  ],
+  "codice": [
+    { "who": "narrador", "text": "Al pie del busto, la tierra está floja. Escarbas con las manos..." },
+    { "who": "narrador", "text": "Una caja envuelta en tela. Dentro, un libro antiguo de páginas que brillan: el Códice de las Voces." },
+    { "who": "tu", "text": "Esto era lo que buscaban. Y mamá lo escondió aquí, frente a ellos." },
+    { "who": "narrador", "text": "Entre sus páginas, tu madre dejó un mapa encriptado: la ruta exacta para recuperar los seis fragmentos del sello." },
+    { "who": "narrador", "text": "La gema ilumina la primera marca del mapa: al sur, Los Tuxtlas." },
+    { "who": "tu", "text": "Seis fragmentos. Voy por ellos, mamá. Y voy por ti." }
+  ]
+}

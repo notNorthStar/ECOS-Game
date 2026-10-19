@@ -1,0 +1,175 @@
+{
+  "chaneque": {
+    "name": "Chaneque",
+    "ecos": 5,
+    "hp": 30,
+    "radius": 10,
+    "height": 44,
+    "frame": {
+      "w": 64,
+      "h": 64,
+      "feetY": 62
+    },
+    "fallbackColor": "#6f9a4a",
+    "aggroRadius": 230,
+    "walkSpeed": 62,
+    "separation": 22,
+    "stunThreshold": 4,
+    "stunDecay": 0.6,
+    "dizzySeconds": 2.6,
+    "hurtSeconds": 0.22,
+    "knockbackScale": 1,
+    "exhaustedSeconds": 20,
+    "purifySeconds": 1.1,
+    "maxAttackers": 2,
+    "attack": {
+      "range": 26,
+      "windup": 0.55,
+      "active": 0.18,
+      "recover": 0.7,
+      "cooldown": [
+        1.1,
+        2.0
+      ],
+      "damage": 1,
+      "knockback": 1,
+      "dodgeHeight": 16
+    },
+    "variants": {
+      "patrulla": {
+        "speedMult": 1,
+        "ringDistance": 42,
+        "tint": "#ffffff"
+      },
+      "saltador": {
+        "speedMult": 0.9,
+        "tint": "#d8ffc0",
+        "jumpMinDist": 50,
+        "jumpMaxDist": 150,
+        "jumpWindup": 0.6,
+        "jumpTime": 0.7,
+        "jumpPeak": 46,
+        "jumpCooldown": [
+          2.2,
+          3.4
+        ],
+        "landRadius": 20,
+        "damage": 1,
+        "knockback": 1.2
+      },
+      "travieso": {
+        "speedMult": 1.45,
+        "tint": "#ffe0b0",
+        "windup": 0.35,
+        "shoveKnockback": 1.8,
+        "fleeSeconds": [
+          1.4,
+          2.4
+        ],
+        "fleeSpeedMult": 1.6,
+        "damage": 1
+      }
+    }
+  },
+  "chaneque_mayor": {
+    "name": "Chaneque Mayor",
+    "ecos": 150,
+    "perfectBonus": 1.25,
+    "hp": 220,
+    "radius": 22,
+    "height": 100,
+    "frame": {
+      "w": 128,
+      "h": 128,
+      "feetY": 126
+    },
+    "fallbackColor": "#4f7a3a",
+    "activateRadius": 280,
+    "walkSpeed": 40,
+    "phase2At": 0.5,
+    "stunThreshold": 12,
+    "stunDecay": 0.8,
+    "vulnerableStun": 4.5,
+    "vulnerableMissedJump": 3.2,
+    "vulnerableFloorHp": 5.5,
+    "floorHpRefill": 0.2,
+    "calm": {
+      "required": 2,
+      "partial": 1,
+      "perfect": 2,
+      "phase1Cap": 1,
+      "perfectEcosBonus": true
+    },
+    "idleBetween": [
+      0.9,
+      1.6
+    ],
+    "melee": {
+      "range": 44,
+      "windup": 0.65,
+      "active": 0.2,
+      "recover": 0.8,
+      "damage": 1,
+      "knockback": 1.4
+    },
+    "slam": {
+      "windup": 0.75,
+      "airTime": 1.0,
+      "peak": 90,
+      "waveMaxRadius": 150,
+      "waveTime": 0.65,
+      "waveThickness": 14,
+      "dodgeHeight": 10,
+      "damage": 1,
+      "knockback": 1.6
+    },
+    "summon": {
+      "windup": 0.9,
+      "count": 2,
+      "maxMinions": 3,
+      "variants": [
+        "patrulla",
+        "saltador",
+        "travieso"
+      ]
+    },
+    "rocks": {
+      "windup": 0.6,
+      "count": 3,
+      "spread": 34,
+      "flightTime": 0.95,
+      "peak": 110,
+      "interval": 0.28,
+      "hitRadius": 16,
+      "damage": 1,
+      "knockback": 1
+    },
+    "roots": {
+      "windup": 0.5,
+      "count": 7,
+      "spacing": 26,
+      "warnTime": 0.55,
+      "interval": 0.11,
+      "riseTime": 0.6,
+      "hitHalfWidth": 12,
+      "dodgeHeight": 22,
+      "damage": 1,
+      "knockback": 1.2
+    },
+    "weights": {
+      "phase1": {
+        "slam": 3,
+        "summon": 1,
+        "melee": 2
+      },
+      "phase2": {
+        "slam": 2,
+        "summon": 1,
+        "melee": 1,
+        "rocks": 3,
+        "roots": 3
+      }
+    }
+  },
+  "_nota": "knockback de golpes AL JUGADOR = multiplicador de HURT.knockbackSpeed (config/movement.ts); el de golpes a enemigos (config/combat.ts) son px."
+}

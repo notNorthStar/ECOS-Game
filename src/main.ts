@@ -2,6 +2,8 @@ import Phaser from 'phaser';
 import { GAME_HEIGHT, GAME_WIDTH } from './config/game';
 import { installInputGuards } from './config/controls';
 import { installAudio } from './systems/Audio';
+import { GameState } from './core/GameState';
+import { bus } from './core/bus';
 import { BootScene } from './scenes/BootScene';
 import { TitleScene } from './scenes/TitleScene';
 import { LevelScene } from './scenes/LevelScene';
@@ -45,4 +47,4 @@ installInputGuards(parent);
 installAudio(game);
 
 // Acceso desde la consola para depurar.
-(window as unknown as { game: Phaser.Game }).game = game;
+Object.assign(window as object, { game, ecos: { GameState, bus } });

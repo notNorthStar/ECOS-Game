@@ -1,0 +1,50 @@
+{
+  "id": "sandbox",
+  "name": "Sala de pruebas",
+  "width": 1600,
+  "background": "fondo_calles",
+  "ambience": { "fog": 0.6, "fireflies": true, "leaves": true, "dust": true, "rain": true, "tint": "#9fc0b4", "darkness": 0.35 },
+  "music": "n01_exploracion",
+  "walk": [
+    [[0, 222], [300, 220], [620, 226], [980, 222], [1300, 224], [1600, 220], [1600, 345], [0, 345]],
+    [[1380, 224], [1460, 196], [1560, 196], [1600, 220]]
+  ],
+  "obstacles": [
+    { "shape": "ellipse", "x": 760, "y": 252, "rx": 170, "ry": 15, "water": true },
+    { "shape": "rect", "x": 1180, "y": 300, "w": 60, "h": 14 }
+  ],
+  "props": [
+    { "key": "prop_arbol", "x": 60, "y": 226 },
+    { "key": "prop_farol", "x": 150, "y": 228 },
+    { "key": "prop_columna", "x": 240, "y": 262, "collide": { "rx": 7, "ry": 3 } },
+    { "key": "prop_columna", "x": 300, "y": 300, "collide": { "rx": 7, "ry": 3 } },
+    { "key": "prop_banca", "x": 420, "y": 236, "collide": { "rx": 22, "ry": 4 } },
+    { "key": "prop_farol", "x": 520, "y": 230 },
+    { "key": "prop_arbusto", "x": 560, "y": 230 },
+    { "key": "prop_farol", "x": 1000, "y": 228 },
+    { "key": "prop_columna", "x": 1060, "y": 270, "collide": { "rx": 7, "ry": 3 } },
+    { "key": "prop_columna", "x": 1120, "y": 238, "collide": { "rx": 7, "ry": 3 } },
+    { "key": "prop_caja", "x": 1210, "y": 314 },
+    { "key": "prop_arbol", "x": 1300, "y": 232 },
+    { "key": "prop_farol", "x": 1480, "y": 200 },
+    { "key": "prop_arbusto", "x": 700, "y": 362, "foreground": true },
+    { "key": "prop_arbusto", "x": 1350, "y": 364, "foreground": true, "flipX": true }
+  ],
+  "spawn": { "x": 120, "y": 290 },
+  "spawns": {
+    "inicio": { "x": 120, "y": 290 },
+    "terraza": { "x": 1500, "y": 212 }
+  },
+  "enemies": [
+    { "type": "chaneque", "variant": "patrulla", "x": 640, "y": 310 },
+    { "type": "chaneque", "variant": "travieso", "x": 1150, "y": 330, "group": "prueba" },
+    { "type": "chaneque", "variant": "saltador", "x": 1260, "y": 280, "group": "prueba" }
+  ],
+  "triggers": [
+    { "id": "sandbox_nombre", "x": 880, "y": 220, "w": 40, "h": 125, "once": false, "action": "zone", "data": { "title": "Orilla del lago" } },
+    { "id": "sandbox_arena", "x": 1100, "y": 220, "w": 30, "h": 125, "once": true, "action": "arena", "data": { "group": "prueba", "x0": 960, "x1": 1600 } }
+  ],
+  "interactables": [
+    { "id": "sandbox_nota", "x": 440, "y": 250, "prompt": "Leer", "action": "toast", "data": { "text": "Sala de pruebas del mundo" } }
+  ]
+}

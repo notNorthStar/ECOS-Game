@@ -1,0 +1,42 @@
+{
+  "note": "Conjuros del juego (dueño: lsm). Cada nombre se valida con checkWord() al cargar. Valores ajustables: ventanas (ms), efectos (px, ms) y puntos de maestría por nivel. Ver GDD §6 y NIVELES_ECOS.md §3.",
+  "masteryRules": {
+    "partialMinFraction": 0.8,
+    "partialPoints": 1,
+    "perfectPoints": 2
+  },
+  "spells": [
+    {
+      "id": "CALMA",
+      "name": "CALMA",
+      "type": "purificacion",
+      "title": "Calma",
+      "desc": "Purifica a un ser agotado y calma a los cercanos por unos segundos.",
+      "learnedFrom": "Grabado en el taller de la madre",
+      "color": "#7fe0d0",
+      "letterWindowMs": 3000,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "purifyRadius": 72,
+        "calmRadius": 140,
+        "calmMs": 4000
+      }
+    },
+    {
+      "id": "PROTECCION",
+      "name": "PROTECCIÓN",
+      "type": "purificacion",
+      "title": "Protección",
+      "desc": "Purifica en un área pequeña y te da un breve escudo pasivo.",
+      "learnedFrom": "Nota de la madre junto al Códice",
+      "color": "#f2c86b",
+      "letterWindowMs": 4500,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "purifyRadius": 56,
+        "shieldMs": 3000,
+        "shieldReduction": 0.6
+      }
+    }
+  ]
+}
