@@ -91,6 +91,7 @@ Cada carpeta tiene un `LEEME.md` con sus reglas.
 
 ## 8. Reglas para las IAs
 
+- **Personajes importantes (protagonista, enemigos, aliados, jefes): solo placeholders.** Su arte final lo hace el equipo con el kit (`sprites/personajes/<id>/`). **NPCs comunes con los que se interactúa: sí se diseñan.** Detalle en `AGENTS.md` §8.0.
 - **Nunca sobrescribas ni borres un asset del equipo.** Los placeholders generados por código se crean **solo donde no existe archivo** con ese nombre.
 - Antes de crear un placeholder, revisa si el equipo ya subió el asset real en `public/assets/`.
 - Si un asset del equipo no cumple las medidas de `ART_SPEC.md`, **avisa**; no lo corrijas en silencio.

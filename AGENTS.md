@@ -226,12 +226,26 @@ La detección de LSM **ya existe, está probada con la cámara del equipo y vien
 
 ---
 
-## 8. Especificación de arte (entregable de esta sesión)
+## 8. Especificación de arte
+
+### 8.0 Quién diseña a los personajes (regla para TODAS las IAs y subagentes, 2026-10-19)
+
+**El arte final de los personajes importantes lo hace el equipo.** Al diseñar o implementar cualquier nivel:
+
+| Tipo de personaje | Qué hace la IA |
+|---|---|
+| **Protagonista, enemigos, aliados y jefes** (chaneques, Chaneque Mayor, encapuchados, Balam, María, la madre, Bruja Guajolote, etc.) | **NO dediques tiempo a diseñarlos.** Usa un **placeholder simple** (silueta o bloque con color e inicial) con las **medidas finales** del kit del equipo y el nombre de archivo correcto. El equipo los entrega como carpetas del kit en `public/assets/sprites/personajes/<id>/` y el juego los toma solos (ver su `LEEME.md`) |
+| **NPCs comunes con los que se interactúa** (músicos, pobladores, vendedores, brujos que solo hablan) | **Sí diséñalos** con cuidado y en el estilo del juego: puede que el equipo no alcance a hacerlos |
+| Escenarios, props, efectos, interfaz | Sí, como hasta ahora (placeholders reemplazables con buena calidad) |
+
+Si dudas en qué grupo cae un personaje, trátalo como importante (placeholder) y pregunta al equipo.
+
+**Estándar de medidas de personajes (kit del equipo, manda sobre lo de abajo):** humanoide en cuadro **64×80**, pivote **(32, 78)**, ~72 px de alto; humanoide bajo (chaneque) 50–60 px; criatura mediana 30–45 px; criatura grande (jaguar) 55–64 px; jefe hasta 120 px. Alpha 0/255, máx. 32 colores por personaje. Detalle: `ART_SPEC.md`.
 
 **Referencias obligatorias:** Worlorn (vista y atmósfera) + `estilo_protagonista.png` (personajes).
 **Valores a validar con placeholders en el juego:**
 - **Resolución base 640×360**, con escalado entero y `pixelArt: true`.
-- **Personajes chibi ~28×54 px** (protagonista y NPCs) en cuadros de **64×64**, pivote en los pies; **chaneque** en 48×48; **jefes** en 128×128 o más. Contorno de 1 px de color (no negro), 2–3 tonos por material, luz desde arriba a la izquierda y sombra elíptica.
+- Personajes: ver el estándar del kit arriba (los valores originales de 64×64 quedaron reemplazados). Contorno de 1 px de color (no negro), 2–3 tonos por material, luz desde arriba a la izquierda y sombra elíptica.
 - **Vista principal de lado**; frente y espalda solo para retratos.
 - **Animaciones del protagonista:** reposo, caminar, correr, saltar (subida, caída, aterrizaje), esquivar, disparar (de pie, corriendo, en el aire), lanzar conjuro, recibir daño, morir, interactuar y subir escaleras.
 - **Paleta** global de 48–64 colores, partiendo de la del protagonista y ampliada con el retrofuturismo mexicano (niebla verde de Xalapa, cantera, neón cálido, rosa mexicano, turquesa).
