@@ -66,9 +66,10 @@ const { drawTuxtlaLandscape } = load('TuxtlaLandscape');
 const { drawTuxtlaGround, drawTuxtlaForeground } = load('TuxtlaTerrain');
 const factors = [0.04, 0.15, 0.4, 0.65, 1, 1.25];
 const layers = [];
+const levelWidth = JSON.parse(fs.readFileSync(path.join(root, 'src/data/levels/tuxtla.json'), 'utf8')).width;
 let written = 0;
 for (let index = 0; index < factors.length; index++) {
-  const width = Math.ceil(640 + (3600 - 640) * factors[index]);
+  const width = Math.ceil(640 + (levelWidth - 640) * factors[index]);
   const raster = new Raster(width, 360);
   if (index < 4) drawTuxtlaLandscape(raster, width, 360, index);
   else if (index === 4) drawTuxtlaGround(raster, width, 360);
@@ -104,7 +105,7 @@ fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
 const preview = process.argv.find(arg => arg.startsWith('--preview='))?.slice(10);
 if (preview) {
   const out = new Raster(1280, 720);
-  for (const [n, cam] of [0, 1000, 2000, 2960].entries()) {
+  for (const [n, cam] of [0, (levelWidth - 640) / 3, (levelWidth - 640) * 2 / 3, levelWidth - 640].entries()) {
     for (let layer = 0; layer < 6; layer++) {
       const raster = layers[layer], offset = Math.round(cam * factors[layer]);
       for (let y = 0; y < 360; y++) for (let x = 0; x < 640; x++) {

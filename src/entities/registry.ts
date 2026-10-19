@@ -10,10 +10,14 @@ import { ChanequeMayor } from './ChanequeMayor';
  */
 export function createEnemy(world: WorldApi, spec: EnemySpec): EnemyApi {
   switch (spec.type) {
-    case 'chaneque':
-      return new Chaneque(world, spec.x, spec.y, spec.variant ?? 'patrulla', spec.group);
+    case 'chaneque': {
+      const enemy = new Chaneque(world, spec.x, spec.y, spec.variant ?? 'patrulla', spec.group);
+      const identified: EnemyApi = enemy;
+      identified.encounterId = spec.encounterId;
+      return identified;
+    }
     case 'chaneque_mayor':
-      return new ChanequeMayor(world, spec.x, spec.y, spec.group);
+      return new ChanequeMayor(world, spec.x, spec.y, spec.group, spec.bossProfile, spec.encounterId);
     default: {
       const t: never = spec.type;
       throw new Error(`Tipo de enemigo desconocido: ${String(t)}`);

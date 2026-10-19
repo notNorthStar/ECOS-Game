@@ -61,6 +61,7 @@ export type EnemyKind = 'chaneque' | 'chaneque_mayor';
 export type ChanequeVariant = 'patrulla' | 'saltador' | 'travieso';
 
 export interface EnemyApi extends DepthEntity {
+  encounterId?: string;
   kind: EnemyKind;
   /** Agotado: vida en 0, espera a ser purificado (no ataca). */
   readonly exhausted: boolean;
@@ -75,6 +76,8 @@ export interface EnemyApi extends DepthEntity {
 }
 
 export interface EnemySpec {
+  encounterId?: string;
+  bossProfile?: 'tuxtla_guardian';
   type: EnemyKind;
   variant?: ChanequeVariant;
   x: number;

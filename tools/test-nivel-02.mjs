@@ -30,6 +30,7 @@ function loadTs(path, dependencies = {}) {
 }
 
 function harness() {
+  const controls = loadTs('src/config/controls.ts');
   const state = { flags: {}, learnedSpells: [], hp: 1, maxHp: 5, ecos: 0, totalEcosEarned: 0, checkpoint: null };
   const emitter = new EventEmitter();
   const emitted = [];
@@ -40,6 +41,7 @@ function harness() {
   let world;
   let options;
   let currentText = '';
+  let spawnEnabled = true;
   const bus = {
     emit(name, payload) { emitted.push({ name, payload }); emitter.emit(name, payload); },
     scoped(scene, name, callback) {
@@ -52,6 +54,7 @@ function harness() {
     '../core/bus': { bus, sfx: (name) => bus.emit('sfx', { name }) },
     '../core/GameState': { GameState: state },
     '../config/game': { DEPTH: { ui: 9000 } },
+    '../config/controls': controls,
     '../scenes/DialogueScene': { playDialogue: async (_scene, id) => {
       dialogues.push(id);
       if (id === waitingDialogue) await new Promise((resolve) => { pending = resolve; });
@@ -93,7 +96,17 @@ function harness() {
         start: (key) => calls.push(['start', key]),
       },
     };
-    world = { scene, level, player: { controlsLocked: false }, enemies: [], timeScale: 1, flash() {} };
+    world = { scene, level, player: { controlsLocked: false, x: level.spawn.x, y: level.spawn.y },
+      enemies: [], timeScale: 1, flash() {},
+      lockArena: (x0, x1) => calls.push(['lockArena', x0, x1]),
+      unlockArena: () => calls.push(['unlockArena']),
+    };
+    bus.scoped(scene, 'arena:start', ({ group }) => {
+      if (!spawnEnabled) return;
+      for (const spec of level.enemies.filter((enemy) => enemy.group === group)) {
+        world.enemies.push({ ...spec, kind: spec.type, alive: true, purified: false, exhausted: false });
+      }
+    });
     module.exports.installTuxtlaDirector(world);
     return { world, calls, timers, shutdown: () => scene.events.emit('shutdown') };
   }
@@ -104,7 +117,10 @@ function harness() {
     await flush();
   }
   return {
-    state, emitted, dialogues, rewards, install, act,
+    state, emitted, dialogues, rewards, install, act, keys: controls.keys,
+    emit: async (name, payload) => { bus.emit(name, payload); await flush(); },
+    allowSpawns: (enabled) => { spawnEnabled = enabled; },
+    get world() { return world; },
     hold: (id) => { waitingDialogue = id; },
     release: async () => { waitingDialogue = null; pending?.(); pending = null; await flush(); },
     get text() { return currentText; },
@@ -126,7 +142,25 @@ async function ready(h) {
 }
 async function collectAll(h) {
   await h.act('n02_musicos');
-  for (const id of config.verses) await h.act('n02_estrofa', id);
+  for (const id of config.verses) {
+    const guardian = config.guardians.find((guard) => guard.verseId === id);
+    if (guardian) await clearGuardian(h, guardian.id);
+    await h.act('n02_estrofa', id);
+  }
+}
+
+async function triggerGuardian(h, id) {
+  const trigger = level.triggers.find((entry) => entry.action === 'n02_guardian' && entry.data?.guardianId === id);
+  assert.ok(trigger, `Trigger del guardián ${id}`);
+  await h.emit('trigger:enter', { trigger });
+}
+
+async function clearGuardian(h, id) {
+  await triggerGuardian(h, id);
+  const enemy = h.world.enemies.find((entry) => entry.encounterId === id && !entry.purified);
+  assert.ok(enemy, `Guardián creado ${id}`);
+  enemy.purified = true;
+  await h.emit('boss:calmed', { encounterId: id, enemy });
 }
 
 await test('No permite recoger antes de intro o antes de hablar con músicos', async () => {
@@ -270,7 +304,7 @@ await test('Los diálogos de misión, recuerdos y referencias de objetos existen
   }
 });
 
-await test('Mapa coloca interacciones, checkpoints y diez chaneques sin jefe en suelo transitable', async () => {
+await test('Mapa ampliado coloca interacciones, checkpoints, catorce chaneques y dos guardianes en suelo transitable', async () => {
   const { WalkMap } = loadTs('src/world/WalkMap.ts', { '../config/movement': loadTs('src/config/movement.ts') });
   const extra = level.props.filter((prop) => prop.collide).map((prop) => ({
     shape: 'ellipse', x: prop.x, y: prop.y, ...prop.collide,
@@ -278,9 +312,16 @@ await test('Mapa coloca interacciones, checkpoints y diez chaneques sin jefe en 
   const walk = new WalkMap(level, extra);
   for (const it of level.interactables) assert.equal(walk.isWalkable(it.x, it.y), true, `Interacción accesible: ${it.id}`);
   for (const [id, point] of Object.entries(level.spawns)) assert.equal(walk.isWalkable(point.x, point.y, 6), true, `Spawn seguro: ${id}`);
-  assert.equal(level.enemies.length, 10);
+  assert.equal(level.width, 7200);
+  assert.equal(level.enemies.filter((enemy) => enemy.type === 'chaneque').length, 14);
+  const guardians = level.enemies.filter((enemy) => enemy.type === 'chaneque_mayor');
+  assert.equal(guardians.length, 2);
+  assert.equal(new Set(guardians.map((enemy) => enemy.encounterId)).size, 2);
+  for (const guard of guardians) {
+    assert.equal(guard.bossProfile, 'tuxtla_guardian');
+    assert.equal(guard.group, `n02_guardian_${guard.encounterId}`);
+  }
   for (const enemy of level.enemies) {
-    assert.equal(enemy.type, 'chaneque', 'Nivel sin jefe');
     assert.equal(walk.isWalkable(enemy.x, enemy.y, 6), true, 'Enemigo en suelo transitable');
   }
 });
@@ -349,6 +390,253 @@ await test('Entrada de campaña conserva Ecos, mejoras y maestría; prepara lás
   assert.equal(state.flags.codice, true);
   prepareTuxtlaEntry();
   assert.equal(state.learnedSpells.length, 2, 'Entrar dos veces no duplica conjuros');
+});
+
+await test('ChanequeMayor real separa perfiles, eventos N1 y recompensas únicas de guardianes', async () => {
+  const events = [];
+  const guardian = json('src/data/guardian.json');
+  const enemies = json('src/data/enemies.json');
+  const { ChanequeMayor } = loadTs('src/entities/ChanequeMayor.ts', {
+    phaser: {},
+    '../core/bus': { bus: { emit: (name, payload) => events.push({ name, payload }) }, sfx() {} },
+    '../config/game': { DEPTH_TOLERANCE: 10 },
+    '../config/combat': loadTs('src/config/combat.ts'),
+    '../data/enemies.json': enemies,
+    '../data/guardian.json': guardian,
+    '../scenes/HudScene': { hideBossBar() {}, showBossBar() {}, updateBossBar() {} },
+    './EnemyBase': {
+      EnemyBase: class {
+        constructor(world, x, y, options) { Object.assign(this, { world, scene: world.scene, x, y, _alive: true, _ecos: options.ecos }); }
+        play() {} render() {} setStars() {} setBaseTint() {}
+      },
+      FB: { mayor: 'fallback' }, purifyFx() {},
+    },
+  });
+  function actor(profile, id) {
+    const timers = [];
+    const world = { scene: { time: { delayedCall: (ms, fn) => timers.push({ ms, fn }) }, tweens: { add() {} } } };
+    const enemy = new ChanequeMayor(world, 100, 290, id ? `n02_guardian_${id}` : 'jefe', profile, id);
+    // Los efectos gráficos no alteran la lógica de calm ni su identidad.
+    enemy.clearProjectiles = () => {};
+    enemy.pushHud = () => {};
+    enemy.hideHud = () => {};
+    enemy.leaveWorld = () => {};
+    return { enemy, timers };
+  }
+  for (const id of ['monte', 'memoria']) {
+    const { enemy, timers } = actor('tuxtla_guardian', id);
+    assert.equal(enemy.cfg.hp, guardian.hp);
+    assert.equal(enemy.cfg.calm.required, enemies.chaneque_mayor.calm.required);
+    const before = events.filter((entry) => entry.name === 'ecos:gained').length;
+    enemy.calm();
+    enemy.calm();
+    assert.equal(events.filter((entry) => entry.name === 'ecos:gained').length, before + 1);
+    assert.equal(events.findLast((entry) => entry.name === 'ecos:gained').payload.amount, guardian.ecos);
+    const calmed = events.findLast((entry) => entry.name === 'boss:calmed').payload;
+    assert.equal(calmed.encounterId, id);
+    assert.equal(calmed.enemy, enemy);
+    assert.equal(enemy._purified, true);
+    for (const timer of timers) timer.fn();
+    assert.equal(events.filter((entry) => entry.name === 'ecos:gained').length, before + 1, 'El fade no repite premio');
+  }
+  const { enemy, timers } = actor(undefined, undefined);
+  assert.equal(enemy.cfg.hp, enemies.chaneque_mayor.hp);
+  const before = events.filter((entry) => entry.name === 'ecos:gained').length;
+  enemy.calm();
+  const payload = events.findLast((entry) => entry.name === 'boss:calmed').payload;
+  assert.equal(Object.keys(payload).length, 0, 'El jefe N1 conserva evento sin encounterId');
+  assert.equal(events.filter((entry) => entry.name === 'ecos:gained').length, before, 'N1 conserva premio diferido');
+  for (const timer of timers) timer.fn();
+  assert.equal(events.filter((entry) => entry.name === 'ecos:gained').length, before + 1);
+});
+
+await test('Estrofas 2 y 5 exigen sus guardianes aunque no haya enemigos cercanos', async () => {
+  const h = harness();
+  await ready(h);
+  await h.act('n02_musicos');
+  for (const guardian of config.guardians) {
+    await h.act('n02_estrofa', guardian.verseId);
+    assert.equal(h.state.flags[`n02:estrofa:${guardian.verseId}`], undefined);
+    await h.emit('boss:calmed', { encounterId: guardian.id });
+    assert.equal(h.state.flags[`n02:guardian:${guardian.id}`], undefined, 'Sin arena activa, un evento suelto no desbloquea');
+  }
+  assert.equal(h.state.ecos, 0);
+});
+
+await test('Guardianes independientes: checkpoint previo, identidad, arena propia y checkpoint posterior', async () => {
+  const h = harness();
+  const { calls, world } = await ready(h);
+  const [first, second] = config.guardians;
+  await triggerGuardian(h, first.id);
+  assert.ok(calls.some(([type, x0, x1]) => type === 'lockArena' && x0 === first.x0 && x1 === first.x1));
+  assert.equal(h.state.checkpoint.x, level.spawns[first.checkpointSpawn].x);
+  const arenaIndex = h.emitted.findIndex((event) => event.name === 'arena:start');
+  assert.equal(h.emitted[arenaIndex - 1].name, 'checkpoint', 'Checkpoint grabado antes de crear enemigos');
+  assert.equal(world.enemies.filter((enemy) => enemy.encounterId === first.id).length, 1);
+  assert.equal(world.enemies.filter((enemy) => enemy.encounterId === second.id).length, 0);
+  await h.emit('boss:calmed', {});
+  await h.emit('boss:calmed', { encounterId: second.id });
+  await h.emit('boss:calmed', { encounterId: first.id, enemy: { kind: 'chaneque', encounterId: first.id } });
+  assert.equal(h.state.flags[`n02:guardian:${first.id}`], undefined);
+  const firstEnemy = world.enemies.find((enemy) => enemy.encounterId === first.id);
+  firstEnemy.purified = true;
+  await h.emit('boss:calmed', { encounterId: first.id, enemy: firstEnemy });
+  assert.equal(h.state.flags[`n02:guardian:${first.id}`], true);
+  assert.equal(h.state.flags[`n02:guardian:${second.id}`], undefined);
+  assert.equal(h.state.checkpoint.x, level.spawns[first.clearedSpawn].x);
+  assert.ok(calls.some(([type]) => type === 'unlockArena'));
+  await clearGuardian(h, second.id);
+  assert.equal(h.state.flags[`n02:guardian:${second.id}`], true);
+  assert.equal(h.state.checkpoint.x, level.spawns[second.clearedSpawn].x);
+  assert.equal(h.emitted.filter((event) => event.name === 'arena:clear').length, 2);
+});
+
+await test('Muerte antes del guardián permite reintento; purificado permanece sin duplicar encuentros', async () => {
+  const h = harness();
+  const guard = config.guardians[0];
+  const first = await ready(h);
+  await triggerGuardian(h, guard.id);
+  first.shutdown();
+  assert.equal(h.state.flags[`n02:guardian:${guard.id}`], undefined);
+  const second = await ready(h);
+  await clearGuardian(h, guard.id);
+  const cp = h.state.checkpoint;
+  const count = h.emitted.filter((event) => event.name === 'arena:start').length;
+  await h.emit('boss:calmed', { encounterId: guard.id });
+  second.shutdown();
+  await ready(h);
+  await triggerGuardian(h, guard.id);
+  assert.equal(h.emitted.filter((event) => event.name === 'arena:start').length, count);
+  assert.equal(h.state.checkpoint, cp);
+  assert.equal(h.emitted.filter((event) => event.name === 'arena:clear').length, 1);
+  assert.equal(h.state.flags[`n02:guardian:${guard.id}`], true);
+  const other = config.guardians[1];
+  await triggerGuardian(h, other.id);
+  assert.equal(h.emitted.filter((event) => event.name === 'arena:start').length, count + 1);
+  assert.equal(h.world.enemies.filter((enemy) => enemy.encounterId === guard.id).length, 0);
+  assert.equal(h.world.enemies.filter((enemy) => enemy.encounterId === other.id).length, 1);
+});
+
+await test('Fallo de aparición desbloquea arena sin regalar victoria ni recuerdo', async () => {
+  const h = harness();
+  const { calls } = await ready(h);
+  const guard = config.guardians[0];
+  h.allowSpawns(false);
+  await triggerGuardian(h, guard.id);
+  await h.emit('boss:calmed', { encounterId: guard.id });
+  assert.equal(h.state.flags[`n02:guardian:${guard.id}`], undefined);
+  assert.ok(calls.some(([name]) => name === 'unlockArena'));
+  assert.equal(h.state.ecos, 0);
+  h.allowSpawns(true);
+  await clearGuardian(h, guard.id);
+  assert.equal(h.state.flags[`n02:guardian:${guard.id}`], true);
+});
+
+await test('Combat real calma solo invocados del encuentro/grupo; N1 conserva calma global de comunes', async () => {
+  const handlers = new Map();
+  const state = { laserOverheated: false, laserHeat: 0 };
+  const { installCombat } = loadTs('src/systems/Combat.ts', {
+    phaser: {},
+    '../core/bus': { bus: { scoped: (_scene, name, fn) => handlers.set(name, fn), emit() {} }, sfx() {} },
+    '../core/GameState': { GameState: state },
+    '../config/controls': { keys: { justPressed: () => false } },
+    '../config/combat': loadTs('src/config/combat.ts'),
+    '../entities/EnemyBase': { ensureCombatTextures() {}, playerShield: {}, FB: {} },
+    '../entities/LaserShot': { LaserShot: class {}, laserTargets: new Set() },
+    './Progression': { installProgression() {} },
+    '../scenes/HudScene': { hideBossBar() {}, showPrompt() {} },
+  });
+  function enemy(kind, encounterId, group, extra = {}) {
+    const hits = [], spells = [];
+    return { kind, encounterId, group, alive: true, purified: false, exhausted: false, x: 7000, y: 300,
+      hits, spells, takeHit: (hit) => { hits.push(hit); }, applySpell: (spell) => { spells.push(spell); }, ...extra };
+  }
+  const summoned = enemy('chaneque', 'monte', 'n02_guardian_monte');
+  const exhausted = enemy('chaneque', 'monte', 'n02_guardian_monte', { exhausted: true });
+  const common = enemy('chaneque');
+  const otherChild = enemy('chaneque', 'memoria', 'n02_guardian_memoria');
+  const wrongGroup = enemy('chaneque', 'monte', 'otro_grupo');
+  const wrongId = enemy('chaneque', 'memoria', 'n02_guardian_monte');
+  const otherGuardian = enemy('chaneque_mayor', 'memoria', 'n02_guardian_memoria');
+  const dead = enemy('chaneque', 'monte', 'n02_guardian_monte', { alive: false });
+  const purified = enemy('chaneque', 'monte', 'n02_guardian_monte', { purified: true });
+  const enemies = [summoned, exhausted, common, otherChild, wrongGroup, wrongId, otherGuardian, dead, purified];
+  const world = { scene: { events: new EventEmitter() }, enemies };
+  installCombat(world);
+  const calmed = handlers.get('boss:calmed');
+  assert.equal(typeof calmed, 'function');
+  calmed({ encounterId: 'monte', enemy: { group: 'n02_guardian_monte' } });
+  assert.equal(summoned.hits.length, 1);
+  assert.equal(summoned.spells.length, 1);
+  assert.equal(summoned.spells[0].spellId, 'CALMA');
+  assert.equal(exhausted.hits.length, 0);
+  assert.equal(exhausted.spells.length, 1);
+  for (const e of [common, otherChild, wrongGroup, wrongId, otherGuardian, dead, purified]) {
+    assert.equal(e.hits.length + e.spells.length, 0, `Preserva enemigo ajeno: ${e.kind} ${e.encounterId ?? 'común'}`);
+  }
+  calmed({ encounterId: 'monte' });
+  assert.equal(summoned.spells.length, 1, 'Sin entidad/grupo no afecta invocados');
+  for (const e of enemies) { e.hits.length = 0; e.spells.length = 0; }
+  calmed({});
+  for (const e of [summoned, exhausted, common, otherChild, wrongGroup, wrongId]) {
+    assert.equal(e.spells.length, 1, 'Evento N1 mantiene purificación de todos los comunes vivos');
+  }
+  for (const e of [otherGuardian, dead, purified]) assert.equal(e.spells.length, 0);
+});
+
+await test('Interact real evita reapertura con E posterior al cierre y permite nueva pulsación tras enfriamiento', async () => {
+  const controls = loadTs('src/config/controls.ts');
+  const emitter = new EventEmitter();
+  const interactions = [];
+  const bus = {
+    scoped: (scene, name, fn) => {
+      emitter.on(name, fn);
+      scene.events.once('shutdown', () => emitter.off(name, fn));
+    },
+    emit: (name, payload) => {
+      if (name === 'interact') interactions.push(payload);
+      emitter.emit(name, payload);
+    },
+  };
+  const { installInteract } = loadTs('src/systems/Interact.ts', {
+    phaser: { Scenes: { Events: { UPDATE: 'update', SHUTDOWN: 'shutdown' } } },
+    '../core/bus': { bus, sfx() {} },
+    '../core/GameState': { GameState: { flags: {}, casting: false } },
+    '../config/controls': controls,
+    '../config/game': { DEPTH: { foreground: 5000 } },
+    '../scenes/HudScene': { showPrompt() {} },
+  });
+  // Solo se omiten dibujos; entrada, búsqueda por radio, reloj y suscripciones son los reales.
+  const drawable = () => ({
+    width: 40, setDepth() { return this; }, setVisible() { return this; }, add() { return this; },
+    clear() { return this; }, fillStyle() { return this; }, fillRect() { return this; },
+    lineStyle() { return this; }, strokeRect() { return this; }, setPosition() { return this; },
+    setText() { return this; },
+  });
+  const scene = { events: new EventEmitter(), time: { now: 1000 },
+    add: { container: drawable, graphics: drawable, text: drawable }, tweens: { add() {} } };
+  const item = { id: 'musicos', action: 'n02_musicos', prompt: 'Hablar', x: 100, y: 290 };
+  installInteract({ scene, level: { id: 'tuxtla', interactables: [item] },
+    player: { x: 100, y: 290, controlsLocked: false, playOneShot() {} } });
+  bus.emit('dialogue:end', { id: 'n02_musicos' });
+  // El keydown llega DESPUÉS de dialogue:end: clear() anterior no habría podido consumirlo.
+  controls.keys.handleDown('KeyE');
+  scene.events.emit('update');
+  assert.equal(interactions.length, 0, 'La E del cierre no reabre en el mismo cuadro');
+  assert.equal(controls.keys.justPressed('interact'), true, 'La protección funciona con E todavía pendiente');
+  controls.keys.endFrame();
+  controls.keys.handleUp('KeyE');
+  scene.time.now = 1350;
+  controls.keys.handleDown('KeyE');
+  scene.events.emit('update');
+  assert.equal(interactions.length, 0, 'Se respeta el límite de 350 ms');
+  controls.keys.endFrame();
+  controls.keys.handleUp('KeyE');
+  scene.time.now = 1351;
+  controls.keys.handleDown('KeyE');
+  scene.events.emit('update');
+  assert.equal(interactions.length, 1, 'Nueva pulsación tras enfriamiento funciona');
+  assert.equal(interactions[0].id, item.id);
 });
 
 console.log(`\n${passed} pruebas de misión Nivel 2 correctas.`);

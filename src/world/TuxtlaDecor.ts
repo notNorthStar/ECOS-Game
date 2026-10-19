@@ -105,6 +105,9 @@ function musician(c: Draw, skirt: boolean, harp: boolean): void {
 /** Props de respaldo independientes de las capas de paisaje y del suelo. */
 export function installTuxtlaDecor(world: WorldApi): void {
   const { scene, level } = world;
+  const stagePoint = level.interactables.find(it => it.action === 'n02_fandango') ?? { x: level.width - 400, y: 285 };
+  const exitPoint = level.interactables.find(it => it.action === 'n02_salida') ?? { x: level.width - 80, y: 290 };
+  const entryMusician = level.interactables.find(it => it.action === 'n02_musicos') ?? { x: 500, y: 295 };
   const image = (key: string, w: number, h: number, x: number, y: number, draw: (c: Draw) => void, depth = y) => {
     const tex = scene.textures.exists(key) ? key : canvasTexture(scene, `__tuxtla_decor_${key}`, w, h, draw);
     return scene.add.image(x, y, tex).setOrigin(.5, 1).setDepth(depth);
@@ -119,7 +122,7 @@ export function installTuxtlaDecor(world: WorldApi): void {
     box(c, '#22482c', 16, 44, 9, 3); box(c, '#5a8a46', 20, 40, 2, 6);
   }, 225);
 
-  image('tarima_tuxtla', 250, 87, 3260, 315, c => {
+  image('tarima_tuxtla', 250, 87, stagePoint.x, stagePoint.y + 30, c => {
     ellipse(c, '#45434a', 0, 71, 250, 15);
     box(c, P.woodDark, 6, 9, 238, 68); box(c, P.woodMid, 8, 5, 234, 65);
     for (let x = 9, n = 0; x < 241; x += 13, n++) {
@@ -137,7 +140,7 @@ export function installTuxtlaDecor(world: WorldApi): void {
   }, DEPTH.ground + 25);
 
   // Portada y faroles a la espalda de los músicos; todos los pies quedan fuera del paso central.
-  image('portada_fandango', 330, 127, 3260, 222, c => {
+  image('portada_fandango', 330, 127, stagePoint.x, 222, c => {
     for (const x of [9, 301]) {
       box(c, P.ink, x, 18, 17, 109); box(c, P.stone, x + 2, 19, 13, 108);
       box(c, P.stoneMid, x + 2, 19, 4, 107); box(c, P.stoneHi, x, 123, 18, 3);
@@ -162,8 +165,8 @@ export function installTuxtlaDecor(world: WorldApi): void {
   }, 222);
 
   const musicians: Array<{ sprite: Phaser.GameObjects.Image; y: number; phase: number }> = [];
-  for (const [x, y, skirt, harp] of [[500, 289, false, false], [3070, 263, false, false],
-    [3115, 266, true, false], [3330, 263, false, true]] as const) {
+  for (const [x, y, skirt, harp] of [[entryMusician.x, entryMusician.y - 6, false, false], [stagePoint.x - 190, 263, false, false],
+    [stagePoint.x - 145, 266, true, false], [stagePoint.x + 70, 263, false, true]] as const) {
     const sprite = image(`musico_tuxtla_${skirt ? 'falda' : harp ? 'arpa' : 'jarana'}`, 64, 80, x, y,
       c => musician(c, skirt, harp));
     musicians.push({ sprite, y, phase: x * .03 });
@@ -196,7 +199,7 @@ export function installTuxtlaDecor(world: WorldApi): void {
     memories.push({ id: String(item.data?.verseId), sprite, glow, y: item.y, phase: index * 1.7 });
   }
 
-  image('salida_tuxtla', 111, 81, 3502, 230, c => {
+  image('salida_tuxtla', 111, 81, exitPoint.x - 18, 230, c => {
     box(c, P.woodDark, 48, 23, 9, 58); box(c, P.woodMid, 49, 23, 5, 58);
     box(c, P.woodHi, 49, 25, 1, 53); box(c, P.woodDark, 8, 12, 91, 22);
     box(c, P.woodMid, 9, 13, 89, 19); box(c, P.woodHi, 10, 14, 87, 1);
@@ -213,7 +216,13 @@ export function installTuxtlaDecor(world: WorldApi): void {
       if (r < 1 && (x + y) % (r < .35 ? 3 : 7) === 0) box(c, P.warm, x, y, 1, 1);
     }
   });
-  for (const x of [3112, 3404]) lanterns.push(scene.add.image(x, 105, glowKey).setAlpha(.35).setDepth(223));
+  for (const x of [stagePoint.x - 148, stagePoint.x + 144]) lanterns.push(scene.add.image(x, 105, glowKey).setAlpha(.35).setDepth(223));
+  for (const [verseId, label] of [['monte', 'ESTROFA 2/5 · GUARDIÁN'], ['memoria', 'ESTROFA 5/5 · GUARDIÁN']]) {
+    const verse = level.interactables.find(it => it.data?.verseId === verseId);
+    if (verse) scene.add.text(verse.x - 310, 208, label, {
+      fontFamily: 'monospace', fontSize: '9px', color: '#fff4cc', backgroundColor: '#3a2418', padding: { x: 4, y: 3 },
+    }).setDepth(219).setOrigin(.5, 1);
+  }
   let elapsed = 0;
   const update = (_time: number, delta: number) => {
     elapsed += Math.min(delta, 50) * world.timeScale / 1000;

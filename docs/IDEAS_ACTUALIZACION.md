@@ -4,11 +4,11 @@ Registro de nuevas ideas del equipo. Cada entrada distingue lo solicitado del es
 
 ## ACT-N2-001 — San Andrés Tuxtla: exploración ampliada y guardianes
 
-**Fecha:** 2026-10-19. **Origen:** petición directa del equipo. **Estado:** nueva idea de actualización registrada; pendiente de implementación. **Ámbito:** Nivel 2.
+**Fecha:** 2026-10-19. **Origen:** petición directa del equipo. **Estado:** implementada en código en `codex/nivel-2-san-andres-tuxtla`; pendiente de equilibrio y partida humana completa. **Ámbito:** Nivel 2.
 
 ### Cambios solicitados
 
-1. **Hacer el nivel más largo:** ampliar el recorrido de San Andrés Tuxtla respecto al mapa actual de 3600 px, con más espacio de exploración entre la entrada y la plaza del fandango.
+1. **Hacer el nivel más largo:** ampliar el recorrido de San Andrés Tuxtla respecto al mapa original de 3600 px, con más espacio de exploración entre la entrada y la plaza del fandango.
 2. **Dispersar más los cinco fragmentos musicales:** separar sus ubicaciones en zonas más distantes del pueblo y aprovechar la profundidad para que encontrarlos implique explorar. Conservar cinco estrofas y la reconstrucción progresiva de la música.
 3. **Añadir un Chaneque Mayor en el fragmento musical 2 y otro en el 5:** dos encuentros de guardianes durante la búsqueda, además de los chaneques comunes.
 
@@ -22,9 +22,9 @@ En esta idea, **fragmento musical** significa uno de los cinco recuerdos o estro
 | 4 | `encuentro` | Encuentro | Reubicar en otra zona de exploración |
 | 5 | `memoria` | Memoria | Reubicar y añadir otro Chaneque Mayor guardián |
 
-La numeración identifica las estrofas; el orden obligatorio de recogida no se ha definido. El segundo guardián se asocia a `memoria` aunque el jugador explore en otro orden.
+La numeración identifica las estrofas; no se impone un orden obligatorio de recogida. El segundo guardián se asocia a `memoria` aunque el jugador explore en otro orden.
 
-### Diseño previsto para desarrollar la idea
+### Diseño registrado al proponer la idea
 
 - Organizar el recorrido ampliado en zonas reconocibles y conectar las estrofas con pistas visuales y el rastro de la gema.
 - Proponer que la estrofa custodiada se pueda recuperar después de purificar a su guardián. Reutilizar el combate del Chaneque Mayor, adaptado como minijefe de esta actualización; sus parámetros quedan por equilibrar.
@@ -32,9 +32,9 @@ La numeración identifica las estrofas; el orden obligatorio de recogida no se h
 - Distribuir checkpoints y acceso a curación para que morir no obligue a repetir un tramo excesivo. Conservar estrofas, guardianes resueltos y recompensas concedidas al reaparecer.
 - Conservar el cierre narrativo: fandango, VOZ, primer Fragmento del Sello y pista hacia Catemaco.
 
-Estas pautas son propuestas de implementación. Quedan por fijar ancho final, ubicaciones, distancias mínimas, duración objetivo, número de enemigos comunes, dificultad de cada guardián y recompensas. Las cifras actuales de 8–10 minutos y aproximadamente 250 Ecos describen el diseño previo y deberán reevaluarse.
+Las cifras originales de 8–10 minutos y aproximadamente 250 Ecos describían el diseño previo. Los parámetros de la primera implementación se registran abajo; la duración y dificultad requieren evaluación humana.
 
-### Consideraciones técnicas para la futura implementación
+### Consideraciones técnicas de la idea
 
 - Ampliar el mapa y colocar los cinco recuerdos en `src/data/levels/tuxtla.json`; mantener sus identificadores para el contador y el progreso musical.
 - Dar a cada guardián un identificador y progreso independiente. El evento global `boss:calmed` actual tiene efectos compartidos: deberá acotarse para que purificar uno no resuelva el otro encuentro ni calme a todos los chaneques del nivel.
@@ -43,14 +43,23 @@ Estas pautas son propuestas de implementación. Quedan por fijar ancho final, ub
 - Ajustar los fondos, parallax y decorado al nuevo ancho. Usar el generador protegido y conservar el arte del equipo.
 - Revisar costes y Ecos para que dos guardianes no alteren accidentalmente la curva de progresión de la campaña.
 
-### Comprobación esperada al implementarla
+### Criterios de aceptación
 
-- El recorrido es más largo que el actual y las cinco estrofas están más dispersas, con pistas suficientes para encontrarlas.
+- El recorrido es más largo que el original y las cinco estrofas están más dispersas, con pistas suficientes para encontrarlas.
 - Hay dos Chaneques Mayores independientes: uno custodia `monte` y otro `memoria`.
 - Recoger o resolver un encuentro no completa el otro; los premios no se duplican al reaparecer.
 - Se puede terminar con teclado, usando los conjuros ya disponibles antes del fandango.
 - El fandango y su recompensa narrativa siguen funcionando al recuperar las cinco estrofas.
 
+### Primera implementación — 2026-10-19
+
+- Recorrido de **7200 px**, con estrofas en x1000, 2400, 3800, 5100 y 6300, alternando profundidad y separadas entre **1200 y 1400 px**. Catorce chaneques comunes distribuidos por el pueblo.
+- Dos Chaneques Mayores con perfil `tuxtla_guardian`, en `monte` y `memoria`. Cada arena tiene grupo, identificador, barra, progreso y recompensa propios. CALMA se aplica en las ventanas del combate; VOZ no es necesaria.
+- Altares y checkpoints antes de ambas arenas; checkpoint posterior al purificar cada guardián. Los flags `n02:guardian:monte` y `n02:guardian:memoria` conservan el resultado tras morir, sin repetir encuentros o premios.
+- `boss:calmed` identifica al enemigo y su encuentro: solo calma a sus invocados. El perfil original del jefe de Xalapa conserva sus parámetros y eventos.
+- Fondos y decorado adaptados al nuevo ancho. Recompensa de cada guardián: 35 Ecos; recompensa del Fragmento: 15. Base estimada de **272–286 Ecos**, sin contar invocados ni gasto en mejoras.
+- Pruebas automatizadas del director, combate y reaparición; revisión de render e interacción en navegador. La partida completa con teclado, el equilibrio, la duración y la cámara requieren validación humana. Detalle y resultados en `NIVEL_02.md` y `REPORTE_DEMO.md`.
+
 ### Relación con la documentación existente
 
-El diseño original de `NIVELES_ECOS.md` describe el Nivel 2 sin jefe. Esta entrada registra una **nueva idea de actualización** que incorpora dos minijefes guardianes. La implementación actual sigue sin estos encuentros; `NDD_v2.md` conserva la historia oficial. La ficha del estado jugable está en `NIVEL_02.md`.
+El diseño original de `NIVELES_ECOS.md` describía el Nivel 2 sin jefe. Esta entrada conserva el origen de la **nueva idea de actualización** y registra su implementación con dos minijefes guardianes. `NDD_v2.md` conserva la historia oficial. La ficha del estado jugable está en `NIVEL_02.md`.

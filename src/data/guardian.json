@@ -1,0 +1,12 @@
+{
+  "name": "Guardián de las estrofas",
+  "hp": 140,
+  "ecos": 35,
+  "activateRadius": 240,
+  "spellRange": 260,
+  "perfectBonus": 1,
+  "calm": { "perfectEcosBonus": false },
+  "summon": { "count": 1, "maxMinions": 2 },
+  "phase2Message": "¡El guardián reúne la fuerza del monte!",
+  "protectedMessage": "Aturde al guardián con el láser verde o esquiva su salto antes de lanzar CALMA."
+}

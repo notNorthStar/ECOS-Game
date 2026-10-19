@@ -4,7 +4,7 @@
 
 Juego de **exploración y acción 2D con profundidad**, en pixel art, ambientado en un México retrofuturista colapsado. El protagonista, criado en **Lengua de Señas Mexicana (LSM)** por su madre sorda, lanza conjuros **deletreando en LSM frente a la cámara web**, o con el teclado, para purificar a los seres del folclor y enfrentar a la Cofradía del Espejo Negro.
 
-> **Estado:** Nivel 1 (Xalapa) jugable según documentación; primer hito del Nivel 2 (San Andrés Tuxtla) implementado en `codex/nivel-2-san-andres-tuxtla`, pendiente de pulido y validación completa. Guía: `docs/NIVEL_02.md`; comprobaciones y límites: `REPORTE_DEMO.md`. Estado de todos los niveles: `AGENTS.md` §5.1.
+> **Estado:** Nivel 1 (Xalapa) jugable según documentación; Nivel 2 (San Andrés Tuxtla) y actualización ACT-N2-001 implementados en `codex/nivel-2-san-andres-tuxtla`: recorrido de 7200 px y guardianes en las estrofas 2 y 5. Pendientes equilibrio y validación humana completa. Guía: `docs/NIVEL_02.md`; comprobaciones y límites: `REPORTE_DEMO.md`. Estado de todos los niveles: `AGENTS.md` §5.1.
 
 ---
 
@@ -25,7 +25,7 @@ Juego de **exploración y acción 2D con profundidad**, en pixel art, ambientado
 | `docs/GDD_ECOS.md` | Diseño del juego: cómo se juega |
 | `docs/NDD_v2.md` | Historia oficial (3 actos, 10 niveles) |
 | `docs/NIVELES_ECOS.md` | Tabla de niveles: secciones, conjuros, afinidades, jefes, Ecos, música y assets |
-| `docs/IDEAS_ACTUALIZACION.md` | Nuevas ideas de actualización: ampliar N2, dispersar las estrofas y añadir Chaneques Mayores en la segunda y la quinta (ACT-N2-001, pendiente de implementación) |
+| `docs/IDEAS_ACTUALIZACION.md` | Ideas de actualización y su estado: ACT-N2-001 implementada en rama N2; recorrido ampliado, estrofas dispersas y guardianes en la segunda y la quinta |
 | `docs/MODULO_LSM.md` | Cómo usa ECOS el módulo de LSM |
 | `docs/ASSETS.md` | Guía de assets: carpetas, nombres, formatos, licencias |
 | `docs/referencias/` | Worlorn (vista y calidad objetivo) y la hoja de estilo del protagonista |

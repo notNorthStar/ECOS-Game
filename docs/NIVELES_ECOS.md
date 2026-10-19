@@ -2,7 +2,7 @@
 
 **Basado en:** `docs/NDD_v2.md` (historia, definitiva) y `docs/GDD_ECOS.md` (mecánicas).
 **Convención:** lo que viene de la historia del equipo no lleva marca. Lo que **agrega este documento** para completar el diseño (conjuros nuevos, afinidades, conteos, Ecos, música, assets) va marcado **`[PROPUESTA]`** y el equipo puede cambiarlo sin tocar la historia.
-**Nuevas ideas de actualización:** se registran por separado en [IDEAS_ACTUALIZACION.md](IDEAS_ACTUALIZACION.md), con su estado de implementación. ACT-N2-001 plantea ampliar el Nivel 2 y añadir dos guardianes; la ficha base de abajo conserva el diseño anterior a esa idea.
+**Nuevas ideas de actualización:** se registran por separado en [IDEAS_ACTUALIZACION.md](IDEAS_ACTUALIZACION.md), con su estado de implementación. ACT-N2-001 amplía el Nivel 2 y añade dos guardianes; la ficha N2 refleja su implementación en la rama de ese nivel, pendiente de equilibrio humano.
 **Letras de LSM permitidas:** A B C D E F G H I L M N O P R S T U V W Y Z (sin J, K, Ñ, Q ni X; se ignoran acentos). **Todos los conjuros de este documento cumplen esa regla** (verificado con `checkWord()` del módulo `ecos-lsm` y en su `npm test`).
 
 ---
@@ -12,7 +12,7 @@
 | # | Acto | Lugar | Hora / clima | Conjuros nuevos | Desbloqueos | Enemigos comunes | Minijefes | Jefe | Recompensa | Ecos del nivel ≈ | Jam |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | I | **Xalapa**: taller de la madre → calles → Parque Juárez → busto de Juárez | Noche, niebla espesa, llovizna | CALMA, PROTECCION | Pistola láser (verde y rojo) | Chaneques | — | **Chaneque Mayor** | Códice de las Voces + mapa | 300 | **JUGABLE** |
-| 2 | I | **San Andrés Tuxtla**: entrada → pueblo silenciado → plaza del fandango | Atardecer, calor húmedo | VOZ `[PROPUESTA]` | Misión musical | Chaneques rezagados | — | *(sin jefe: misión del fandango)* | 1.er fragmento | 250 | Visión |
+| 2 | I | **San Andrés Tuxtla**: entrada → pueblo silenciado → plaza del fandango | Atardecer, calor húmedo | VOZ `[PROPUESTA]` | Misión musical | 14 chaneques rezagados | 2 Chaneques Mayores (estrofas 2 y 5) | *(cierre: misión del fandango)* | 1.er fragmento | 272–286 + invocados | ACT-N2-001 implementada en rama N2 |
 | 3 | I | **Catemaco**: orilla del lago → campamento de la Cofradía → altar principal | Noche cerrada, neblina, luna | LUZ, SOL `[PROPUESTA]`, **Escudo (U)** | **Balam + Habilidad Luna**, **Escudo**; se une María | Encapuchados Rojos, espíritus | — | **Cabeza Olmeca Poseída** | Balam, Luna, Escudo | 600 | Visión |
 | 4 | I | **Oaxaca**: entrada → calles empedradas → taller de artesanos → Templo de Santo Domingo | Mañana nublada, montañas verdes | MEMORIA `[PROPUESTA]` | Mejoras de conjuros con artesanos `[PROPUESTA]` | Bestias corrompidas, Encapuchados Rojos | — | **Bruja Guajolote (Tlahuelpuchi)** | 2.º fragmento | 700 | Visión |
 | 5 | II | **Puebla**: senderos semiáridos → Angelópolis y la rueda caída → centro con talavera → Fuertes de Loreto y Guadalupe | Mediodía polvoso → atardecer | VERDAD, FUEGO `[PROPUESTA]` | **Doble salto** (en altares) | Encapuchados Rojos y Negros, chaneques, espíritus | — | **La Nahuala** | 3.er fragmento | 900 | Visión |
@@ -96,12 +96,12 @@
 ### Nivel 2 — San Andrés Tuxtla: la música perdida
 - **Secciones:** letras de San Andrés Tuxtla (checkpoint y altar) → pueblo silenciado (casas, plaza, campos de tabaco al fondo `[PROPUESTA]`) → búsqueda de las estrofas → plaza del fandango.
 - **Misión:** encontrar las **estrofas perdidas** (5 objetos o recuerdos `[PROPUESTA]`) explorando y calmando chaneques. Cada estrofa recuperada **suena** en la música del nivel. Al completar el fandango se aprende **VOZ** `[PROPUESTA]` y aparece el **1.er fragmento**.
-- **Enemigos, diseño base:** chaneques rezagados (~10). **Sin jefe** en la versión actual. **Nueva idea ACT-N2-001:** añadir dos Chaneques Mayores como guardianes de las estrofas 2 y 5; todavía no implementada.
+- **Enemigos (ACT-N2-001):** 14 chaneques comunes y dos Chaneques Mayores como minijefes guardianes de las estrofas 2 (`monte`) y 5 (`memoria`). Arenas y progreso independientes; CALMA durante las ventanas de vulnerabilidad. El cierre sigue siendo el fandango.
 - **NPCs:** músicos con jaranas y arpa; los pobladores. Advertencia final: encapuchados rumbo a Catemaco.
-- **Ecos:** ~250. **Música:** fandango que se va completando: empieza con un instrumento y termina con el son completo.
+- **Ecos (primera implementación ACT-N2-001):** base estimada de 272–286 al purificar los 14 comunes, sin contar invocados ni gasto en mejoras. Cada guardián concede 35; las cinco estrofas 50, VOZ 25 y el Fragmento 15. Equilibrio por validar. **Música:** fandango que se va completando: empieza con un instrumento y termina con el son completo.
 - **Assets:** reutiliza chaneques y letras; nuevos: pueblo, músicos y tarima.
-- **Duración del diseño base:** 8–10 minutos. La nueva idea de ampliación requiere revisar esta estimación y los ~250 Ecos; tamaño y duración finales aún por definir.
-- **Actualización propuesta por el equipo (2026-10-19):** recorrido más largo, cinco fragmentos musicales más dispersos y un Chaneque Mayor en el segundo (`monte`) y otro en el quinto (`memoria`). Ver [ACT-N2-001](IDEAS_ACTUALIZACION.md#act-n2-001--san-andrés-tuxtla-exploración-ampliada-y-guardianes). El primer Fragmento del Sello sigue siendo la recompensa del fandango.
+- **Recorrido y duración:** mapa de 7200 px; estrofas separadas entre 1200 y 1400 px, alternando profundidad. Altares antes de ambos guardianes y checkpoints tras purificarlos. Los 8–10 minutos del diseño base quedan como referencia histórica; la duración ampliada aún no se ha medido en una partida completa.
+- **Actualización del equipo (2026-10-19), implementada en rama N2:** recorrido más largo, cinco fragmentos musicales más dispersos y un Chaneque Mayor en el segundo (`monte`) y otro en el quinto (`memoria`). Ver [ACT-N2-001](IDEAS_ACTUALIZACION.md#act-n2-001--san-andrés-tuxtla-exploración-ampliada-y-guardianes). El primer Fragmento del Sello sigue siendo la recompensa del fandango.
 
 ### Nivel 3 — Catemaco: el ritual del lago y el despertar de Balam
 - **Secciones:** letras de Catemaco → **los brujos buenos** (enseñan **LUZ**, **SOL** `[PROPUESTA]` y el **Escudo U**) → orilla del lago → infiltración en el campamento (tono detectivesco) → rescate de los gatos y despertar de **Balam** → **Habilidad Luna** (revela espíritus que bloquean el paso) → altar principal.

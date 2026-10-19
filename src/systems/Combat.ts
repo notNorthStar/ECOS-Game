@@ -77,9 +77,10 @@ export function installCombat(world: WorldApi): void {
   });
 
   // Al calmar al Chaneque Mayor, sus chaneques se calman con él (quedan agotados y se purifican solos).
-  bus.scoped(scene, 'boss:calmed', () => {
+  bus.scoped(scene, 'boss:calmed', ({ enemy, encounterId }) => {
     for (const e of [...world.enemies]) {
       if (!e.alive || e.purified || e.kind !== 'chaneque') continue;
+      if (encounterId && (e.encounterId !== encounterId || !enemy?.group || e.group !== enemy.group)) continue;
       if (!e.exhausted) e.takeHit({ damage: 9999, stun: 0, kind: 'spell', sourceX: e.x, knockback: 0 });
       e.applySpell({ spellId: 'CALMA', outcome: 'partial', power: 1, auto: true, x: e.x, y: e.y, facing: 1 });
     }

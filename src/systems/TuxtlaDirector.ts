@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { bus, sfx } from '../core/bus';
 import { GameState } from '../core/GameState';
-import type { WorldApi } from '../core/contracts';
+import type { EnemyApi, WorldApi } from '../core/contracts';
 import { DEPTH } from '../config/game';
 import { playDialogue } from '../scenes/DialogueScene';
 import { startLearning } from './Casting';
@@ -13,7 +13,9 @@ import config from '../data/tuxtla.json';
 const flag = (key: string) => !!GameState.flags[`n02:${key}`];
 const remember = (key: string) => { GameState.flags[`n02:${key}`] = true; };
 
-/** Misión musical sin jefe. Todos los hitos sobreviven al reinicio por muerte. */
+type Guardian = (typeof config.guardians)[number];
+
+/** Misión musical con dos guardianes independientes. Los hitos sobreviven al reinicio por muerte. */
 export function installTuxtlaDirector(world: WorldApi): void {
   new TuxtlaDirector(world);
 }
@@ -22,6 +24,7 @@ class TuxtlaDirector {
   private alive = true;
   private busy = true;
   private ready = false;
+  private activeGuardian: Guardian | null = null;
   private counter: Phaser.GameObjects.Text;
 
   constructor(private world: WorldApi) {
@@ -34,6 +37,8 @@ class TuxtlaDirector {
     scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.alive = false;
       this.ready = false;
+      this.activeGuardian = null;
+      world.unlockArena();
       setObjective(null);
     });
     installInteract(world, { enabled: (it) => this.enabled(it) });
@@ -41,6 +46,14 @@ class TuxtlaDirector {
     bus.scoped(scene, 'interact', ({ id }) => {
       const it = world.level.interactables.find((entry) => entry.id === id);
       if (it && this.enabled(it)) void this.interact(it);
+    });
+    bus.scoped(scene, 'trigger:enter', ({ trigger }) => {
+      if (trigger.action === 'n02_guardian' && typeof trigger.data?.guardianId === 'string') {
+        this.beginGuardian(trigger.data.guardianId);
+      }
+    });
+    bus.scoped(scene, 'boss:calmed', ({ encounterId, enemy }) => {
+      if (encounterId) this.guardianCalmed(encounterId, enemy);
     });
     GameState.section = world.level.id;
     GameState.flags.gema = true;
@@ -66,6 +79,46 @@ class TuxtlaDirector {
     const section = this.world.level.id;
     GameState.checkpoint = { section, ...point };
     bus.emit('checkpoint', { section, ...point });
+  }
+
+  private beginGuardian(id: string): void {
+    if (!this.alive || !this.ready || this.busy || this.activeGuardian || flag(`guardian:${id}`)) return;
+    const guardian = config.guardians.find((g) => g.id === id);
+    if (!guardian) return;
+    const spec = this.world.level.enemies.find((e) => e.encounterId === id && e.group === guardian.group);
+    if (!spec) return;
+    const cp = this.world.level.spawns?.[guardian.checkpointSpawn];
+    if (cp) this.checkpoint(cp);
+    this.activeGuardian = guardian;
+    this.world.lockArena(guardian.x0, guardian.x1);
+    bus.emit('arena:start', { group: guardian.group });
+    // World atiende arena:start de forma síncrona. No completar un encuentro si falló su creación.
+    const boss = this.world.enemies.find((e) => e.encounterId === id && e.alive && !e.purified);
+    if (!boss) {
+      this.activeGuardian = null;
+      this.world.unlockArena();
+      console.error(`[Tuxtla] No se pudo crear el guardián ${id}`);
+      this.toast('El guardián no pudo aparecer. Vuelve a acercarte al recuerdo para reintentarlo.');
+      return;
+    }
+    sfx('jefe_rugido');
+    this.toast(`${guardian.name}: atúrdelo con el láser verde o esquiva su salto; después lanza CALMA.`);
+    this.refresh();
+  }
+
+  private guardianCalmed(id: string, enemy?: EnemyApi): void {
+    const guardian = this.activeGuardian;
+    if (!this.alive || !guardian || guardian.id !== id || flag(`guardian:${id}`)) return;
+    if (enemy && (enemy.encounterId !== id || enemy.kind !== 'chaneque_mayor')) return;
+    remember(`guardian:${id}`);
+    this.activeGuardian = null;
+    this.world.unlockArena();
+    bus.emit('arena:clear', { group: guardian.group });
+    const cp = this.world.level.spawns?.[guardian.clearedSpawn];
+    if (cp) this.checkpoint(cp);
+    // Los Ecos los emite la entidad al purificarse; aquí solo se guarda el hito una vez.
+    this.toast(`${guardian.name} purificado. Ya puedes recuperar su estrofa.`);
+    this.refresh();
   }
 
   private async intro(): Promise<void> {
@@ -106,6 +159,9 @@ class TuxtlaDirector {
     if (flag('completo')) {
       text = 'Primer fragmento del Sello recuperado\nRumbo a Catemaco · E en la salida para volver al título';
       target = find('n02_salida');
+    } else if (this.activeGuardian) {
+      text = `${this.activeGuardian.name}\nLáser verde / esquivar salto → CALMA`;
+      target = this.world.level.interactables.find((it) => it.data?.verseId === this.activeGuardian?.verseId);
     } else if (!flag('musicos')) {
       text = 'Habla con los músicos de la plaza';
       target = find('n02_musicos');
@@ -144,7 +200,8 @@ class TuxtlaDirector {
           break;
         case 'altar': {
           GameState.hp = GameState.maxHp;
-          this.checkpoint(this.world.level.spawns?.altar ?? { x: it.x, y: it.y + 28 });
+          const spawnKey = typeof it.data?.checkpointSpawn === 'string' ? it.data.checkpointSpawn : 'altar';
+          this.checkpoint(this.world.level.spawns?.[spawnKey] ?? { x: it.x, y: it.y + 28 });
           sfx('altar');
           const sm = this.world.scene.scene;
           // El menú reanuda Level y requiere que el bloqueo ya esté restaurado.
@@ -188,6 +245,13 @@ class TuxtlaDirector {
     if (!config.verses.includes(id) || flag(`estrofa:${id}`)) return;
     if (!flag('musicos')) {
       this.toast('Habla primero con los músicos para reconocer los versos perdidos.');
+      return;
+    }
+    const guardian = config.guardians.find((g) => g.verseId === id);
+    if (guardian && !flag(`guardian:${guardian.id}`)) {
+      // Respaldo si se llegó desde el otro lado o la primera aparición falló.
+      this.world.scene.time.delayedCall(0, () => this.beginGuardian(guardian.id));
+      this.toast(`Esta estrofa está custodiada por ${guardian.name}. Purifícalo con CALMA.`);
       return;
     }
     if (this.world.enemies.some((enemy) => enemy.alive && !enemy.purified &&

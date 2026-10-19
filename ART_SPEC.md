@@ -213,12 +213,12 @@ PNG en `public/assets/escenarios/nivel-02-san-andres-tuxtla/fondos/`. Todos son 
 
 | Archivo | Medidas | Factor | Contenido |
 |---|---|---|---|
-| `fondo_tuxtla_capa0.png` | 759×360 | 0.04 | Cielo tramado, sol circular y nubes |
-| `fondo_tuxtla_capa1.png` | 1084×360 | 0.15 | Cerros orgánicos y bruma |
-| `fondo_tuxtla_capa2.png` | 1824×360 | 0.4 | Ciudad media, campanarios ficticios y vegetación |
-| `fondo_tuxtla_capa3.png` | 2564×360 | 0.65 | Fachadas, tejas, balcones, palmas y arcadas |
-| `fondo_tuxtla_capa4.png` | 3600×360 | 1 | Banqueta y empedrado, charcos planos, rosetones y musgo |
-| `fondo_tuxtla_capa5.png` | 4340×360 | 1.25 | Helechos, ramas y bugambilia en los bordes |
+| `fondo_tuxtla_capa0.png` | 903×360 | 0.04 | Cielo tramado, sol circular y nubes |
+| `fondo_tuxtla_capa1.png` | 1624×360 | 0.15 | Cerros orgánicos y bruma |
+| `fondo_tuxtla_capa2.png` | 3264×360 | 0.4 | Ciudad media, campanarios ficticios y vegetación |
+| `fondo_tuxtla_capa3.png` | 4904×360 | 0.65 | Fachadas, tejas, balcones, palmas y arcadas |
+| `fondo_tuxtla_capa4.png` | 7200×360 | 1 | Banqueta y empedrado, charcos planos, rosetones y musgo |
+| `fondo_tuxtla_capa5.png` | 8840×360 | 1.25 | Helechos, ramas y bugambilia en los bordes |
 
 Se generan con `npm run scenery:nivel2`; `-- --force` solo regenera archivos que conservan marca y hash propios. Una sustitución del equipo, una entrada `placeholder:false` o una ruta personalizada se conserva. El manifiesto distingue los PNG procedurales como `placeholder:true`; son reemplazables por arte final con iguales claves y medidas.
 

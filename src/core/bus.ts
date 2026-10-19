@@ -26,9 +26,9 @@ export interface BusEvents {
   'enemy:exhausted': { enemy: EnemyApi };
   'enemy:purified': { enemy: EnemyApi; ecos: number; perfect: boolean };
   'enemy:removed': { enemy: EnemyApi };
-  'boss:phase': { phase: 1 | 2 };
-  'boss:vulnerable': { on: boolean };
-  'boss:calmed': Record<string, never>;
+  'boss:phase': { phase: 1 | 2; enemy?: EnemyApi; encounterId?: string };
+  'boss:vulnerable': { on: boolean; enemy?: EnemyApi; encounterId?: string };
+  'boss:calmed': { enemy?: EnemyApi; encounterId?: string };
   'antenna:destroyed': Record<string, never>;
   // Progresión
   'ecos:gained': { amount: number; x: number; y: number };

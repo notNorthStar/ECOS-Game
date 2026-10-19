@@ -1,7 +1,19 @@
 {
   "verses": ["rio", "monte", "madera", "encuentro", "memoria"],
   "guardRadius": 130,
-  "rewards": { "verse": 10, "voice": 25, "fragment": 85 },
+  "rewards": { "verse": 10, "voice": 25, "fragment": 15 },
+  "guardians": [
+    {
+      "id": "monte", "verseId": "monte", "name": "Guardián del Monte",
+      "group": "n02_guardian_monte", "x0": 2070, "x1": 2730,
+      "checkpointSpawn": "altar_monte", "clearedSpawn": "guardian_monte_clear"
+    },
+    {
+      "id": "memoria", "verseId": "memoria", "name": "Guardián de la Memoria",
+      "group": "n02_guardian_memoria", "x0": 5970, "x1": 6630,
+      "checkpointSpawn": "altar_memoria", "clearedSpawn": "guardian_memoria_clear"
+    }
+  ],
   "hud": { "x": 12, "y": 74, "fontSize": 10 },
   "toastMs": 4200
 }

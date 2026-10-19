@@ -11,7 +11,7 @@
 | `docs/GDD_ECOS.md` | **Cómo se juega**: vista, controles, mecánicas, progresión, enemigos, arte, interfaz | Fuente oficial del diseño |
 | `docs/NDD_v2.md` | **La historia** completa (3 actos, 10 niveles) | **Definitiva. No modificar ni "mejorar" la historia** |
 | `docs/NIVELES_ECOS.md` | **Tabla de niveles**: secciones, conjuros, afinidades, enemigos, jefes, Ecos, música, assets y duración de cada nivel | Lo marcado `[PROPUESTA]` lo puede cambiar el equipo; lo demás viene del NDD |
-| `docs/IDEAS_ACTUALIZACION.md` | Nuevas ideas de actualización solicitadas por el equipo, separadas del estado jugable | ACT-N2-001: alargar N2, dispersar estrofas y añadir Chaneques Mayores en 2 y 5. Registrada; pendiente de implementación |
+| `docs/IDEAS_ACTUALIZACION.md` | Nuevas ideas de actualización solicitadas por el equipo y su estado | ACT-N2-001 implementada en rama N2: recorrido ampliado, estrofas dispersas y Chaneques Mayores en 2 y 5; equilibrio pendiente |
 | `docs/referencias/worlorn/` | **Vista, movimiento, atmósfera y calidad objetivo** (HTML jugable + capturas) | Abre el HTML y júgalo antes de empezar |
 | `docs/referencias/estilo_protagonista.png` | Estilo y proporción de personajes | Guía de estilo, no es un asset |
 | `docs/MODULO_LSM.md` + carpeta `ecos-lsm/` | **Detección de LSM con la cámara: módulo ya hecho y probado**, cómo integrarlo y sus límites | **No lo reescribas: intégralo** (sección 7.1) |
@@ -32,7 +32,7 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 **Cómo se trabaja:** el juego se desarrolla **por niveles**, uno por sesión o por hito. El nivel en curso y el estado de todos están en la sección 5.
 **Objetivo actual autorizado (2026-10-19):** desarrollar el **Nivel 2, "San Andrés Tuxtla — La música perdida"**, en `codex/nivel-2-san-andres-tuxtla`, con subagentes. No modificar la rama `main` ni hacer merges sin autorización explícita. El alcance original del jam era el Nivel 1; la continuación se trabaja por indicación del equipo. Ver `docs/NIVEL_02.md`.
 
-**Última actualización de contexto (2026-10-19):** el equipo pidió registrar como nueva idea de actualización la ampliación del Nivel 2, mayor dispersión de los cinco fragmentos musicales y un Chaneque Mayor en los fragmentos 2 (`monte`) y 5 (`memoria`). Se documentó en `docs/IDEAS_ACTUALIZACION.md` como ACT-N2-001; aún no cambia la implementación ni el NDD.
+**Última actualización de contexto (2026-10-19):** tras registrar ACT-N2-001, el equipo autorizó su implementación. El Nivel 2 mide 7200 px, con cinco estrofas separadas entre 1200 y 1400 px y Chaneques Mayores independientes en 2 (`monte`) y 5 (`memoria`). Hay altares antes de las arenas y checkpoints posteriores; el progreso se conserva al morir. Se conserva el registro de la idea en `docs/IDEAS_ACTUALIZACION.md` y el NDD permanece intacto. Trabajo exclusivo en rama N2, sin merge a `main`.
 
 ---
 
@@ -104,7 +104,7 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 | # | Nivel | Estado | Notas |
 |---|---|---|---|
 | 1 | Xalapa: el misterio del Parque Juárez | **🔨 Jugable de principio a fin (2026-10-19)** | Taller → calles → altar → parque (2 arenas) → PROTECCION → jefe → antena → busto → final. Arte generado (placeholders) esperando el del equipo; falta probar con cámara, pulido y .exe. Arquitectura: `docs/ARQUITECTURA.md` |
-| 2 | San Andrés Tuxtla: la música perdida | 🔨 Primer hito + segunda pasada visual (2026-10-19) | Rama separada: cinco estrofas, fandango por capas, VOZ, primer fragmento, altar y conexión desde Xalapa. Seis PNG parallax con paleta oficial y decorado detallado regenerado. TypeScript, build y 14 pruebas correctos; revisión parcial en navegador. Pendientes partida completa, cámara, revisión de arte y equilibrio. Ver docs/NIVEL_02.md |
+| 2 | San Andrés Tuxtla: la música perdida | 🔨 ACT-N2-001 implementada (2026-10-19) | Rama separada: mapa de 7200 px, cinco estrofas dispersas, 14 comunes y guardianes independientes en 2 y 5. Altares/checkpoints, fandango por capas, VOZ y primer fragmento. Seis PNG parallax regenerados al nuevo ancho. TypeScript, build y 21 pruebas correctos; revisión parcial en navegador. Pendientes partida completa, cámara, revisión de arte y equilibrio/duración. Ver docs/NIVEL_02.md |
 | 3 | Catemaco: el ritual del lago | ⬜ Visión | Balam, Luna, escudo con la U, María |
 | 4 | Oaxaca: los tejidos de la memoria | ⬜ Visión | |
 | 5 | Puebla: de la rueda caída a los Fuertes | ⬜ Visión | Doble salto en los altares |

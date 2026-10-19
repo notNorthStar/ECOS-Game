@@ -4,6 +4,7 @@ import { bus, sfx } from '../core/bus';
 import { DEPTH_TOLERANCE } from '../config/game';
 import { FX_DEPTH_BIAS, JUICE } from '../config/combat';
 import enemiesData from '../data/enemies.json';
+import guardian from '../data/guardian.json';
 import { hideBossBar, showBossBar, updateBossBar } from '../scenes/HudScene';
 import { EnemyBase, FB, burst, oneShotFx, planeDist, purifyFx, rand, randRange , hitPlayer } from './EnemyBase';
 
@@ -17,6 +18,9 @@ import { EnemyBase, FB, burst, oneShotFx, planeDist, purifyFx, rand, randRange ,
  */
 
 const B = enemiesData.chaneque_mayor;
+let bossBarOwner: ChanequeMayor | null = null;
+const bossConfig = (profile?: 'tuxtla_guardian'): typeof B => profile === 'tuxtla_guardian'
+  ? { ...B, ...guardian, calm: { ...B.calm, ...guardian.calm }, summon: { ...B.summon, ...guardian.summon } } : B;
 type Attack = 'slam' | 'summon' | 'melee' | 'rocks' | 'roots';
 type St =
   | 'dormant'
@@ -66,6 +70,9 @@ interface Wave {
 
 export class ChanequeMayor extends EnemyBase {
   kind: EnemyKind = 'chaneque_mayor';
+  encounterId?: string;
+  private readonly cfg: typeof B;
+  private readonly guardianProfile: boolean;
   private st: St = 'dormant';
   private stT = 0;
   private phase: 1 | 2 = 1;
@@ -86,19 +93,23 @@ export class ChanequeMayor extends EnemyBase {
   private toldNotVulnerable = false;
   private lastPerfect = false;
 
-  constructor(world: WorldApi, x: number, y: number, group?: string) {
+  constructor(world: WorldApi, x: number, y: number, group?: string, profile?: 'tuxtla_guardian', encounterId?: string) {
+    const cfg = bossConfig(profile);
     super(world, x, y, {
-      hp: B.hp,
-      radius: B.radius,
-      height: B.height,
-      ecos: B.ecos,
-      feetY: B.frame.feetY,
-      frameH: B.frame.h,
+      hp: cfg.hp,
+      radius: cfg.radius,
+      height: cfg.height,
+      ecos: cfg.ecos,
+      feetY: cfg.frame.feetY,
+      frameH: cfg.frame.h,
       fallbackTex: FB.mayor,
       textureKey: 'chaneque_mayor_reposo',
       shadowW: 70,
       kitId: 'chaneque_mayor',
     });
+    this.cfg = cfg;
+    this.guardianProfile = profile === 'tuxtla_guardian';
+    this.encounterId = encounterId;
     this.group = group;
     this.play('chaneque_mayor_reposo');
     this.render(0);
@@ -143,25 +154,41 @@ export class ChanequeMayor extends EnemyBase {
     } else this.sprite.setTintMode(Phaser.TintModes.MULTIPLY).setTint(this.baseTint);
   }
 
+  private showHud(): void {
+    bossBarOwner = this;
+    showBossBar(this.cfg.name);
+  }
+
+  private hideHud(): void {
+    if (bossBarOwner !== this) return;
+    hideBossBar();
+    bossBarOwner = null;
+  }
+
+  private bossIdentity(): { enemy?: ChanequeMayor; encounterId?: string } {
+    return this.guardianProfile ? { enemy: this, encounterId: this.encounterId } : {};
+  }
+
   private pushHud(): void {
-    updateBossBar(this.hpRatio, this.calmPoints, B.calm.required, this.st === 'vulnerable');
+    if (bossBarOwner !== this || this.st === 'dormant') return;
+    updateBossBar(this.hpRatio, this.calmPoints, this.cfg.calm.required, this.st === 'vulnerable');
   }
 
   update(dt: number): void {
     if (!this._alive) return;
     const p = this.world.player;
     this.stT += dt;
-    if (this.st !== 'vulnerable' && this.stunAcc > 0) this.stunAcc = Math.max(0, this.stunAcc - B.stunDecay * dt);
+    if (this.st !== 'vulnerable' && this.stunAcc > 0) this.stunAcc = Math.max(0, this.stunAcc - this.cfg.stunDecay * dt);
     this.stepKnockback(dt);
 
     switch (this.st) {
       case 'dormant':
-        if (planeDist(this.x, this.y, p.x, p.y) < B.activateRadius) {
+        if (planeDist(this.x, this.y, p.x, p.y) < this.cfg.activateRadius) {
           this.set('intro');
           sfx('jefe_rugido');
           this.world.shake(JUICE.shake.bossPhase.intensity, JUICE.shake.bossPhase.ms);
-          showBossBar(B.name);
-          bus.emit('boss:phase', { phase: 1 });
+          this.showHud();
+          bus.emit('boss:phase', { phase: 1, ...this.bossIdentity() });
         }
         break;
       case 'intro':
@@ -177,12 +204,12 @@ export class ChanequeMayor extends EnemyBase {
         const dx = p.x - this.x;
         const dy = p.y - this.y;
         const d = Math.hypot(dx, dy);
-        if (d > 1) this.world.moveActor(this, (dx / d) * B.walkSpeed * dt, (dy / d) * B.walkSpeed * 0.7 * dt);
+        if (d > 1) this.world.moveActor(this, (dx / d) * this.cfg.walkSpeed * dt, (dy / d) * this.cfg.walkSpeed * 0.7 * dt);
         if (!this.hasArt) {
           this.walkPhase += dt * 8;
           this.bob = Math.abs(Math.sin(this.walkPhase)) * 3;
         }
-        if ((Math.abs(dx) < B.melee.range && Math.abs(dy) < DEPTH_TOLERANCE) || this.stT > 1.6) {
+        if ((Math.abs(dx) < this.cfg.melee.range && Math.abs(dy) < DEPTH_TOLERANCE) || this.stT > 1.6) {
           this.bob = 0;
           this.set('meleeWindup');
         }
@@ -191,7 +218,7 @@ export class ChanequeMayor extends EnemyBase {
       case 'meleeWindup':
         this.facePlayer();
         this.telegraph(true);
-        if (this.stT >= B.melee.windup) {
+        if (this.stT >= this.cfg.melee.windup) {
           this.telegraph(false);
           sfx('jefe_golpe');
           this.set('meleeActive');
@@ -201,15 +228,15 @@ export class ChanequeMayor extends EnemyBase {
         if (!this.hitDone) {
           this.hitDone = true;
           this.world.moveActor(this, this.facing * 8, 0);
-          if (Math.abs(p.x - this.x) < B.melee.range + 6 && Math.abs(p.y - this.y) < DEPTH_TOLERANCE && p.z < 30) {
-            hitPlayer(this.world, { damage: B.melee.damage, stun: 0, kind: 'melee', sourceX: this.x, knockback: B.melee.knockback });
+          if (Math.abs(p.x - this.x) < this.cfg.melee.range + 6 && Math.abs(p.y - this.y) < DEPTH_TOLERANCE && p.z < 30) {
+            hitPlayer(this.world, { damage: this.cfg.melee.damage, stun: 0, kind: 'melee', sourceX: this.x, knockback: this.cfg.melee.knockback });
           }
           burst(this.scene, 'dust', this.x + this.facing * 30, this.y, this.y + FX_DEPTH_BIAS, 8);
         }
-        if (this.stT >= B.melee.active) this.set('recover');
+        if (this.stT >= this.cfg.melee.active) this.set('recover');
         break;
       case 'recover':
-        if (this.stT >= B.melee.recover) this.toIdle();
+        if (this.stT >= this.cfg.melee.recover) this.toIdle();
         break;
       case 'slamWindup':
         this.facePlayer();
@@ -217,7 +244,7 @@ export class ChanequeMayor extends EnemyBase {
         this.bob = -Math.min(6, this.stT * 12);
         this.slamTo = { x: p.x, y: p.y };
         this.updateSlamMarker();
-        if (this.stT >= B.slam.windup) {
+        if (this.stT >= this.cfg.slam.windup) {
           this.telegraph(false);
           this.bob = 0;
           this.slamFrom = { x: this.x, y: this.y };
@@ -226,7 +253,7 @@ export class ChanequeMayor extends EnemyBase {
         }
         break;
       case 'slamAir': {
-        const t = Math.min(1, this.stT / B.slam.airTime);
+        const t = Math.min(1, this.stT / this.cfg.slam.airTime);
         // Sigue un poco al jugador durante la primera mitad del salto.
         if (t < 0.5) {
           this.slamTo.x += (p.x - this.slamTo.x) * Math.min(1, dt * 2);
@@ -236,7 +263,7 @@ export class ChanequeMayor extends EnemyBase {
         const tx = this.slamFrom.x + (this.slamTo.x - this.slamFrom.x) * t;
         const ty = this.slamFrom.y + (this.slamTo.y - this.slamFrom.y) * t;
         this.world.moveActor(this, tx - this.x, ty - this.y);
-        this.z = 4 * B.slam.peak * t * (1 - t);
+        this.z = 4 * this.cfg.slam.peak * t * (1 - t);
         if (t >= 1) {
           this.z = 0;
           this.clearSlamMarker();
@@ -248,23 +275,23 @@ export class ChanequeMayor extends EnemyBase {
       case 'slamWave':
         // Espera a que la onda termine; si no tocó al jugador, queda vulnerable (salto fallido).
         if (this.waves.length === 0 && this.stT > 0.2) {
-          if (!this.waveHitPlayer) this.startVulnerable(B.vulnerableMissedJump);
+          if (!this.waveHitPlayer) this.startVulnerable(this.cfg.vulnerableMissedJump);
           else this.toIdle();
         }
         break;
       case 'summon':
-        if (this.stT >= B.summon.windup && !this.hitDone) {
+        if (this.stT >= this.cfg.summon.windup && !this.hitDone) {
           this.hitDone = true;
           this.summon();
         }
-        if (this.stT >= B.summon.windup + 0.5) this.toIdle();
+        if (this.stT >= this.cfg.summon.windup + 0.5) this.toIdle();
         break;
       case 'rocksWindup':
         this.facePlayer();
         this.telegraph(true);
-        if (this.stT >= B.rocks.windup) {
+        if (this.stT >= this.cfg.rocks.windup) {
           this.telegraph(false);
-          this.rocksLeft = B.rocks.count;
+          this.rocksLeft = this.cfg.rocks.count;
           this.rockT = 0;
           this.set('rocksThrow');
         }
@@ -273,16 +300,16 @@ export class ChanequeMayor extends EnemyBase {
         this.facePlayer();
         this.rockT -= dt;
         if (this.rocksLeft > 0 && this.rockT <= 0) {
-          this.rockT = B.rocks.interval;
+          this.rockT = this.cfg.rocks.interval;
           this.rocksLeft--;
           this.throwRock();
         }
-        if (this.rocksLeft === 0 && this.stT > B.rocks.interval * B.rocks.count + 0.4) this.toIdle();
+        if (this.rocksLeft === 0 && this.stT > this.cfg.rocks.interval * this.cfg.rocks.count + 0.4) this.toIdle();
         break;
       case 'rootsWindup':
         this.facePlayer();
         this.telegraph(true);
-        if (this.stT >= B.roots.windup) {
+        if (this.stT >= this.cfg.roots.windup) {
           this.telegraph(false);
           this.spawnRoots();
           this.set('recover');
@@ -307,7 +334,7 @@ export class ChanequeMayor extends EnemyBase {
     }
 
     // Fase 2: chispas de la antena sobrecargada.
-    if (this.phase === 2 && this.st !== 'calmed' && this.st !== 'phaseChange') {
+    if (!this.guardianProfile && this.phase === 2 && this.st !== 'calmed' && this.st !== 'phaseChange') {
       this.electricT -= dt;
       if (this.electricT <= 0) {
         this.electricT = rand(0.25, 0.6);
@@ -323,18 +350,18 @@ export class ChanequeMayor extends EnemyBase {
 
   private toIdle(): void {
     this.set('idle');
-    this.stT = -randRange(B.idleBetween) * (this.phase === 2 ? 0.75 : 1);
+    this.stT = -randRange(this.cfg.idleBetween) * (this.phase === 2 ? 0.75 : 1);
   }
 
   private aliveMinions(): number {
     let n = 0;
-    for (const e of this.world.enemies) if (e.kind === 'chaneque' && e.alive && !e.exhausted && !e.purified) n++;
+    for (const e of this.world.enemies) if (e.kind === 'chaneque' && (!this.guardianProfile || e.group === this.group) && e.alive && !e.exhausted && !e.purified) n++;
     return n;
   }
 
   private chooseAttack(): void {
     const p = this.world.player;
-    const w: Record<string, number> = { ...(this.phase === 1 ? B.weights.phase1 : B.weights.phase2) };
+    const w: Record<string, number> = { ...(this.phase === 1 ? this.cfg.weights.phase1 : this.cfg.weights.phase2) };
     const close = Math.abs(p.x - this.x) < 90 && Math.abs(p.y - this.y) < 30;
     if (!close) w.melee = 0;
     // Lejos: a veces camina hacia el jugador para presionarlo.
@@ -342,7 +369,7 @@ export class ChanequeMayor extends EnemyBase {
       this.set('walk');
       return;
     }
-    if (this.aliveMinions() >= B.summon.maxMinions) w.summon = 0;
+    if (this.aliveMinions() >= this.cfg.summon.maxMinions) w.summon = 0;
     const total = Object.values(w).reduce((a, b) => a + b, 0);
     let r = Math.random() * total;
     let pick: Attack = 'slam';
@@ -395,8 +422,8 @@ export class ChanequeMayor extends EnemyBase {
     this.waveHitPlayer = false;
     const p = this.world.player;
     // Aplastamiento directo bajo el jefe.
-    if (planeDist(this.x, this.y, p.x, p.y) < this.radius + 6 && p.z < B.slam.dodgeHeight && !p.isDodging) {
-      if (hitPlayer(this.world, { damage: B.slam.damage, stun: 0, kind: 'shockwave', sourceX: this.x, knockback: B.slam.knockback })) this.waveHitPlayer = true;
+    if (planeDist(this.x, this.y, p.x, p.y) < this.radius + 6 && p.z < this.cfg.slam.dodgeHeight && !p.isDodging) {
+      if (hitPlayer(this.world, { damage: this.cfg.slam.damage, stun: 0, kind: 'shockwave', sourceX: this.x, knockback: this.cfg.slam.knockback })) this.waveHitPlayer = true;
     }
     const gfx = this.scene.add.graphics().setDepth(this.y - 2);
     let sprite: Phaser.GameObjects.Sprite | null = null;
@@ -412,17 +439,17 @@ export class ChanequeMayor extends EnemyBase {
     for (let i = this.waves.length - 1; i >= 0; i--) {
       const w = this.waves[i];
       w.t += dt;
-      const k = Math.min(1, w.t / B.slam.waveTime);
-      const r = B.slam.waveMaxRadius * k;
+      const k = Math.min(1, w.t / this.cfg.slam.waveTime);
+      const r = this.cfg.slam.waveMaxRadius * k;
       w.gfx.clear();
       w.gfx.lineStyle(4, 0xffd0a0, 0.8 * (1 - k)).strokeEllipse(w.x, w.y, r * 2, r);
       w.gfx.lineStyle(2, 0xffffff, 0.9 * (1 - k)).strokeEllipse(w.x, w.y, r * 2 - 6, r - 3);
       if (w.sprite) w.sprite.setDisplaySize(r * 2 + 4, Math.max(4, r * 0.66)).setAlpha(1 - k);
       if (!w.hitDone) {
         const d = planeDist(p.x, p.y, w.x, w.y);
-        if (Math.abs(d - r) < B.slam.waveThickness && p.z < B.slam.dodgeHeight && !p.isDodging) {
+        if (Math.abs(d - r) < this.cfg.slam.waveThickness && p.z < this.cfg.slam.dodgeHeight && !p.isDodging) {
           w.hitDone = true;
-          if (hitPlayer(this.world, { damage: B.slam.damage, stun: 0, kind: 'shockwave', sourceX: w.x, knockback: B.slam.knockback })) this.waveHitPlayer = true;
+          if (hitPlayer(this.world, { damage: this.cfg.slam.damage, stun: 0, kind: 'shockwave', sourceX: w.x, knockback: this.cfg.slam.knockback })) this.waveHitPlayer = true;
         }
       }
       if (k >= 1) {
@@ -436,13 +463,14 @@ export class ChanequeMayor extends EnemyBase {
   /* ------------------------------ Invocar ----------------------------- */
 
   private summon(): void {
-    const n = Math.min(B.summon.count, B.summon.maxMinions - this.aliveMinions());
+    const n = Math.min(this.cfg.summon.count, this.cfg.summon.maxMinions - this.aliveMinions());
     for (let i = 0; i < n; i++) {
       const pt = this.world.randomPointNear(this.x + (i % 2 ? 60 : -60), this.y, 30);
-      const variant = B.summon.variants[Math.floor(Math.random() * B.summon.variants.length)] as ChanequeVariant;
+      const variant = this.cfg.summon.variants[Math.floor(Math.random() * this.cfg.summon.variants.length)] as ChanequeVariant;
       oneShotFx(this.scene, 'fx_purificar', pt.x, pt.y - 20, pt.y + FX_DEPTH_BIAS, { tint: 0x80ff80, fallbackMs: 400 });
       burst(this.scene, 'dust', pt.x, pt.y, pt.y + FX_DEPTH_BIAS, 10);
-      this.world.spawnEnemy({ type: 'chaneque', variant, x: pt.x, y: pt.y });
+      this.world.spawnEnemy({ type: 'chaneque', variant, x: pt.x, y: pt.y,
+        ...(this.guardianProfile ? { group: this.group, encounterId: this.encounterId } : {}) });
     }
     sfx('chaneque_risa');
   }
@@ -451,7 +479,7 @@ export class ChanequeMayor extends EnemyBase {
 
   private throwRock(): void {
     const p = this.world.player;
-    const pt = this.world.randomPointNear(p.x + rand(-B.rocks.spread, B.rocks.spread), p.y + rand(-B.rocks.spread, B.rocks.spread) * 0.4, 6);
+    const pt = this.world.randomPointNear(p.x + rand(-this.cfg.rocks.spread, this.cfg.rocks.spread), p.y + rand(-this.cfg.rocks.spread, this.cfg.rocks.spread) * 0.4, 6);
     const sx = this.x + this.facing * 24;
     const sy = this.y;
     const sprite = this.scene.add.image(sx, sy - 70, this.scene.textures.exists('fx_roca') ? 'fx_roca' : FB.rock);
@@ -466,10 +494,10 @@ export class ChanequeMayor extends EnemyBase {
     for (let i = this.rocks.length - 1; i >= 0; i--) {
       const r = this.rocks[i];
       r.t += dt;
-      const k = Math.min(1, r.t / B.rocks.flightTime);
+      const k = Math.min(1, r.t / this.cfg.rocks.flightTime);
       const x = r.sx + (r.tx - r.sx) * k;
       const y = r.sy + (r.ty - r.sy) * k;
-      const z = 70 * (1 - k) + 4 * B.rocks.peak * k * (1 - k);
+      const z = 70 * (1 - k) + 4 * this.cfg.rocks.peak * k * (1 - k);
       r.sprite.setPosition(x, y - z).setDepth(y).setRotation(r.t * 8);
       r.shadow.setPosition(x, y).setDepth(y - 1).setScale(0.5 + 0.5 * k);
       r.marker.setAlpha(0.5 + 0.5 * Math.sin(r.t * 24));
@@ -478,8 +506,8 @@ export class ChanequeMayor extends EnemyBase {
         oneShotFx(this.scene, 'fx_impacto', x, y - 4, y + FX_DEPTH_BIAS, { tint: 0xc0a080, fallbackMs: 200 });
         this.world.shake(JUICE.shake.rock.intensity, JUICE.shake.rock.ms);
         sfx('impacto');
-        if (planeDist(p.x, p.y, x, y) < B.rocks.hitRadius && Math.abs(p.y - y) < DEPTH_TOLERANCE && p.z < 20) {
-          hitPlayer(this.world, { damage: B.rocks.damage, stun: 0, kind: 'projectile', sourceX: x, knockback: B.rocks.knockback });
+        if (planeDist(p.x, p.y, x, y) < this.cfg.rocks.hitRadius && Math.abs(p.y - y) < DEPTH_TOLERANCE && p.z < 20) {
+          hitPlayer(this.world, { damage: this.cfg.rocks.damage, stun: 0, kind: 'projectile', sourceX: x, knockback: this.cfg.rocks.knockback });
         }
         r.sprite.destroy();
         r.shadow.destroy();
@@ -496,16 +524,16 @@ export class ChanequeMayor extends EnemyBase {
     const dir = Math.sign(p.x - this.x) || this.facing;
     const y = p.y;
     sfx('jefe_rugido');
-    for (let i = 0; i < B.roots.count; i++) {
-      const x = this.x + dir * (40 + i * B.roots.spacing);
+    for (let i = 0; i < this.cfg.roots.count; i++) {
+      const x = this.x + dir * (40 + i * this.cfg.roots.spacing);
       if (x < 0 || x > this.world.level.width) break;
-      this.roots.push({ x, y, t: -i * B.roots.interval, warn: null, sprite: null, hitDone: false });
+      this.roots.push({ x, y, t: -i * this.cfg.roots.interval, warn: null, sprite: null, hitDone: false });
     }
   }
 
   private updateRoots(dt: number): void {
     const p = this.world.player;
-    const R = B.roots;
+    const R = this.cfg.roots;
     for (let i = this.roots.length - 1; i >= 0; i--) {
       const r = this.roots[i];
       r.t += dt;
@@ -559,16 +587,16 @@ export class ChanequeMayor extends EnemyBase {
     this.setStars(true);
     this.toldNotVulnerable = false;
     burst(this.scene, 'stun', this.x, this.y - this.height, this.y + FX_DEPTH_BIAS, 10);
-    bus.emit('boss:vulnerable', { on: true });
+    bus.emit('boss:vulnerable', { on: true, ...this.bossIdentity() });
     bus.emit('hud:toast', { text: '¡Está vulnerable! Lanza CALMA (Q)', ms: 2200 });
     this.pushHud();
   }
 
   private endVulnerable(): void {
     this.setStars(false);
-    bus.emit('boss:vulnerable', { on: false });
+    bus.emit('boss:vulnerable', { on: false, ...this.bossIdentity() });
     // En fase 2, si llegó al piso de vida, se recupera un poco.
-    if (this.hp <= 1) this.hp = Math.max(this.hp, this.maxHp * B.floorHpRefill);
+    if (this.hp <= 1) this.hp = Math.max(this.hp, this.maxHp * this.cfg.floorHpRefill);
     this.pushHud();
     this.toIdle();
   }
@@ -577,22 +605,22 @@ export class ChanequeMayor extends EnemyBase {
     if (this.phase === 2) return;
     if (this.st === 'vulnerable') {
       this.setStars(false);
-      bus.emit('boss:vulnerable', { on: false });
+      bus.emit('boss:vulnerable', { on: false, ...this.bossIdentity() });
     }
     this.clearSlamMarker();
     this.telegraph(false);
     this.z = 0;
     this.phase = 2;
-    this.hp = Math.min(this.hp, this.maxHp * B.phase2At);
+    this.hp = Math.min(this.hp, this.maxHp * this.cfg.phase2At);
     this.set('phaseChange');
     this.setBaseTint(0xf0c8ff);
     sfx('jefe_rugido');
-    sfx('antena_zumbido');
+    if (!this.guardianProfile) sfx('antena_zumbido');
     this.world.flash(0xc070ff, 220);
     this.world.shake(JUICE.shake.bossPhase.intensity, JUICE.shake.bossPhase.ms);
     this.world.hitstop(JUICE.hitstopMs.bossPhase);
-    bus.emit('boss:phase', { phase: 2 });
-    bus.emit('hud:toast', { text: '¡La antena sobrecarga al Chaneque Mayor!', ms: 2600 });
+    bus.emit('boss:phase', { phase: 2, ...this.bossIdentity() });
+    bus.emit('hud:toast', { text: this.guardianProfile ? guardian.phase2Message : '¡La antena sobrecarga al Chaneque Mayor!', ms: 2600 });
     this.pushHud();
   }
 
@@ -601,8 +629,8 @@ export class ChanequeMayor extends EnemyBase {
     if (this.st === 'calmed' || this.st === 'phaseChange' || this.st === 'intro') return false;
     if (this.st === 'dormant') {
       this.set('intro');
-      showBossBar(B.name);
-      bus.emit('boss:phase', { phase: 1 });
+      this.showHud();
+      bus.emit('boss:phase', { phase: 1, ...this.bossIdentity() });
     }
     this.hp -= hit.damage;
     this.onDamaged(hit, 0); // sin retroceso: es enorme
@@ -610,16 +638,16 @@ export class ChanequeMayor extends EnemyBase {
     bus.emit('enemy:hit', { enemy: this, kind });
     if (this.st !== 'vulnerable') {
       this.stunAcc += hit.stun;
-      if (this.stunAcc >= B.stunThreshold && this.z < 4) {
-        this.startVulnerable(B.vulnerableStun);
+      if (this.stunAcc >= this.cfg.stunThreshold && this.z < 4) {
+        this.startVulnerable(this.cfg.vulnerableStun);
         return true;
       }
     }
-    if (this.phase === 1 && this.hp <= this.maxHp * B.phase2At) {
+    if (this.phase === 1 && this.hp <= this.maxHp * this.cfg.phase2At) {
       this.enterPhase2();
     } else if (this.phase === 2 && this.hp <= 1) {
       this.hp = 1;
-      if (this.st !== 'vulnerable') this.startVulnerable(B.vulnerableFloorHp);
+      if (this.st !== 'vulnerable') this.startVulnerable(this.cfg.vulnerableFloorHp);
     }
     this.pushHud();
     return true;
@@ -628,27 +656,27 @@ export class ChanequeMayor extends EnemyBase {
   applySpell(ev: SpellOutcomeEvent): boolean {
     if (!this._alive || this.st === 'calmed' || ev.outcome === 'fail') return false;
     if (ev.spellId !== 'CALMA') return false; // PROTECCION: neutra
-    if (planeDist(this.x, this.y, ev.x, ev.y) > 260) return false;
+    if (planeDist(this.x, this.y, ev.x, ev.y) > (this.guardianProfile ? guardian.spellRange : 260)) return false;
     if (this.st !== 'vulnerable') {
       if (!this.toldNotVulnerable) {
         this.toldNotVulnerable = true;
-        bus.emit('hud:toast', { text: 'La antena lo protege. Atúrdelo con el láser verde o esquiva su salto.', ms: 2800 });
+        bus.emit('hud:toast', { text: this.guardianProfile ? guardian.protectedMessage : 'La antena lo protege. Atúrdelo con el láser verde o esquiva su salto.', ms: 2800 });
       }
       return false;
     }
     const perfect = ev.outcome === 'perfect';
     this.lastPerfect = perfect;
-    this.calmPoints += perfect ? B.calm.perfect : B.calm.partial;
+    this.calmPoints += perfect ? this.cfg.calm.perfect : this.cfg.calm.partial;
     bus.emit('enemy:hit', { enemy: this, kind: 'spell' });
     this.world.hitstop(JUICE.hitstopMs.spell);
     burst(this.scene, 'calm', this.x, this.y - this.height * 0.7, this.y + FX_DEPTH_BIAS, 14);
     purifyFx(this.scene, this.x, this.y, 0.7);
     if (this.phase === 1) {
-      this.calmPoints = Math.min(this.calmPoints, B.calm.phase1Cap);
+      this.calmPoints = Math.min(this.calmPoints, this.cfg.calm.phase1Cap);
       this.enterPhase2();
       return true;
     }
-    if (this.calmPoints >= B.calm.required) {
+    if (this.calmPoints >= this.cfg.calm.required) {
       this.calm();
     } else {
       bus.emit('hud:toast', { text: 'Se resiste… ¡una vez más!', ms: 1800 });
@@ -659,24 +687,32 @@ export class ChanequeMayor extends EnemyBase {
   }
 
   private calm(): void {
+    if (this.st === 'calmed') return;
     this.setStars(false);
     this.clearProjectiles();
-    bus.emit('boss:vulnerable', { on: false });
+    bus.emit('boss:vulnerable', { on: false, ...this.bossIdentity() });
     this.phase = 2;
     this.set('calmed');
     this.setBaseTint(0xffffff);
     this._exhausted = true;
     sfx('purificar');
-    bus.emit('boss:calmed', {});
+    if (this.guardianProfile) this._purified = true;
+    bus.emit('boss:calmed', this.bossIdentity());
+    if (this.guardianProfile) {
+      bus.emit('ecos:gained', { amount: this._ecos, x: this.x, y: this.y - 50 });
+      bus.emit('enemy:purified', { enemy: this, ecos: this._ecos, perfect: this.lastPerfect });
+    }
     this.pushHud();
     purifyFx(this.scene, this.x, this.y, 1.6);
     this.scene.time.delayedCall(700, () => purifyFx(this.scene, this.x, this.y, 1.2));
-    const amount = Math.round(this._ecos * (this.lastPerfect && B.calm.perfectEcosBonus ? B.perfectBonus : 1));
+    const amount = Math.round(this._ecos * (this.lastPerfect && this.cfg.calm.perfectEcosBonus ? this.cfg.perfectBonus : 1));
     this.scene.time.delayedCall(1800, () => {
       if (!this._alive) return;
-      bus.emit('ecos:gained', { amount, x: this.x, y: this.y - 50 });
-      bus.emit('enemy:purified', { enemy: this, ecos: amount, perfect: this.lastPerfect });
-      hideBossBar();
+      if (!this.guardianProfile) {
+        bus.emit('ecos:gained', { amount, x: this.x, y: this.y - 50 });
+        bus.emit('enemy:purified', { enemy: this, ecos: amount, perfect: this.lastPerfect });
+      }
+      this.hideHud();
       this.scene.tweens.add({ targets: [this.sprite, this.shadow], alpha: 0, duration: 1200, onComplete: () => this.leaveWorld() });
     });
   }
@@ -708,6 +744,6 @@ export class ChanequeMayor extends EnemyBase {
 
   protected onDestroy(): void {
     this.clearProjectiles();
-    if (this.st !== 'calmed') hideBossBar();
+    this.hideHud();
   }
 }

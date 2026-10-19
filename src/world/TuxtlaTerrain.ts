@@ -87,7 +87,7 @@ export function drawTuxtlaGround(ctx: CanvasRenderingContext2D, width: number, h
     else if (r > 0.97) P(ctx, '#9a4630', x, y, 2);
   }
   // Charcos pequeños y planos: el brillo dibuja el cielo, no un lago que parezca infranqueable.
-  for (let i = 0; i < 18; i++) {
+  for (let i = 0; i < Math.ceil(width / 200); i++) {
     const x = 560 + i * 167 + hash(i, 31) * 65;
     const y = 242 + hash(i, 33) * 87;
     const rx = 11 + hash(i, 32) * 18;
@@ -98,7 +98,7 @@ export function drawTuxtlaGround(ctx: CanvasRenderingContext2D, width: number, h
     }
   }
   // Rosetones discretos de cantera al inicio y en la plaza final.
-  for (const cx of [230, 3060, 3400]) {
+  for (const cx of [230, width - 540, width - 200]) {
     for (let y = -17; y <= 17; y++) for (let x = -46; x <= 46; x++) {
       const d = Math.hypot(x / 2.5, y);
       if ((d > 13 && d < 14.2) || (d > 16 && d < 17)) P(ctx, '#b3ab9c', cx + x, 291 + y);

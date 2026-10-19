@@ -13,6 +13,10 @@ Los flags de misión usan `n02:` y sobreviven a reapariciones, como el resto de 
 El evento tipado `fandango:progress { recovered, total }` restaura las capas musicales al entrar o recoger recuerdos.
 `TuxtlaScenery` dibuja respaldos procedurales, respetando las capas `fondo_tuxtla_capa0..5` si están cargadas en el manifiesto.
 
+ACT-N2-001 amplía `tuxtla` a 7200 px. `data/tuxtla.json` configura dos guardianes, límites de arena y checkpoints previos/posteriores. Sus `EnemySpec` llevan `bossProfile: 'tuxtla_guardian'`, `encounterId` (`monte` / `memoria`) y un `group` propio: no aparecen entre los enemigos iniciales; `arena:start` crea el grupo al entrar en su trigger.
+
+`TuxtlaDirector` conserva `n02:guardian:monte` y `n02:guardian:memoria` en `GameState.flags`; bloquea las estrofas 2 y 5 hasta purificar al guardián correspondiente y evita reactivar encuentros resueltos tras morir. `ChanequeMayor` combina el perfil base con `data/guardian.json` solo para estos minijefes. Los eventos `boss:phase`, `boss:vulnerable` y `boss:calmed` admiten `enemy` y `encounterId`. `Combat` limita la purificación secundaria a los invocados del mismo encuentro y grupo. Los eventos originales del Nivel 1 conservan su comportamiento. El premio N2 se emite una sola vez al resolver el encuentro, antes del efecto visual diferido.
+
 Ruta, pruebas y límites: `docs/NIVEL_02.md`, `npm run test:nivel2` y `REPORTE_DEMO.md`.
 
 ---

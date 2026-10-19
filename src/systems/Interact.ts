@@ -42,6 +42,9 @@ export function installInteract(world: WorldApi, opts: InteractOptions = {}): vo
   const lista = world.level.interactables ?? [];
   let actual: Interactable | null = null;
   let ultimo = 0;
+  // La E que cierra un diálogo también llega al estado global de entrada en ese cuadro.
+  // Aplicar el enfriamiento al cierre evita volver a abrir el objeto inmediatamente.
+  bus.scoped(scene, 'dialogue:end', () => { ultimo = scene.time.now; });
 
   // Aviso flotante en el mundo.
   const aviso = scene.add.container(0, 0).setDepth(DEPTH.foreground + 10).setVisible(false);

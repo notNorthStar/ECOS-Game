@@ -70,6 +70,14 @@
 
 **Qué decidió o modificó el equipo:** solicitó explícitamente ampliar el recorrido, dispersar los recuerdos e incorporar esos dos encuentros. El nuevo tamaño, posiciones, duración y equilibrio quedan pendientes de diseño e implementación.
 
+## 2026-10-19 17:54 (Ciudad de México) · Codex (OpenAI) · Implementación ACT-N2-001
+
+**Qué se pidió:** continuar en código la actualización documentada del Nivel 2: recorrido más largo, fragmentos musicales más dispersos y Chaneques Mayores en los fragmentos 2 y 5, conservando la rama separada y sin merge a `main`.
+
+**Qué resultó:** mapa de 7200 px, estrofas separadas entre 1200 y 1400 px, 14 chaneques comunes y dos guardianes independientes para `monte` y `memoria`; arenas, altares y checkpoints antes/después; progreso persistente y recompensas únicas. Perfil de combate N2 separado del jefe de Xalapa, eventos identificados por encuentro y purificación limitada a sus invocados. Seis fondos propios regenerados, decorado adaptado al ancho, diálogos de orientación y documentación del estado implementado. Se corrigió la reapertura de diálogos con E detectada en navegador. Tres subagentes colaboraron en mapa/arte, combate y pruebas; Codex integró y revisó. TypeScript y build correctos, 21 pruebas y revisión parcial en navegador, incluida aparición de Monte y reintento desde checkpoint.
+
+**Qué decidió o modificó el equipo:** autorizó pasar de la idea registrada a su implementación. El ancho de 7200 px, posiciones y cifras iniciales de equilibrio fueron propuestos por la IA como parámetros configurables; la dificultad y duración siguen pendientes de una partida humana completa. El equipo mantiene la decisión narrativa sobre las cinco estrofas, VOZ y el primer Fragmento del Sello. NDD y módulo LSM intactos; no se sobrescribieron assets del equipo ni se incorporó código del Nivel 3 o de `main`.
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**

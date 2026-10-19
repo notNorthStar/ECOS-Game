@@ -246,6 +246,21 @@ function street(g: Pixels, width: number): void {
   // The tropical clearing deliberately exposes the distant hills and town.
   palm(g, at(1030), 218, 89, 1);
   palm(g, at(1460), 218, 95, 6);
+  // Quiet landmark in the longer clearing: low stone memorial and a ruined irrigation arch.
+  const shrine = at(1250);
+  g.rect(P.stone, shrine - 22, 204, 45, 14);
+  g.rect(P.plaster, shrine - 24, 201, 49, 3);
+  g.rect(P.gray, shrine - 15, 191, 31, 10);
+  g.rect(P.sand, shrine - 17, 189, 35, 3);
+  g.rect(P.tealDark, shrine - 5, 192, 10, 8);
+  g.rect(P.teal, shrine - 1, 194, 2, 5);
+  for (const sx of [at(1150), at(1350)]) {
+    g.rect(P.stone, sx, 185, 7, 33);
+    g.rect(P.gray, sx, 185, 2, 32);
+    g.rect(P.plaster, sx - 3, 183, 13, 3);
+    for (let y = 192; y < 216; y += 8) g.rect(P.night, sx + 2, y, 5, 1);
+    g.rect(P.green, sx + 5, 194, 2, 19);
+  }
   for (const [x, seed] of [[at(1110), 3], [at(1390), 5]] as const) {
     const tx = x;
     g.rect(P.wood, tx, 192, 3, 26);
@@ -257,6 +272,16 @@ function street(g: Pixels, width: number): void {
   }
   house(g, at(1530), 156, 105, 4);
   house(g, at(1715), 125, 87, 3);
+  if (scale > 1.4) {
+    house(g, at(1630), 112, 82, 0);
+    house(g, at(1780), 130, 74, 1);
+    // Garden benches and low masonry extend the district without closing the vista.
+    for (const bx of [at(320), at(985), at(1860), at(2230)]) {
+      g.rect(P.wood, bx, 203, 34, 4); g.rect(P.tan, bx, 203, 34, 1);
+      g.rect(P.woodDark, bx + 3, 207, 3, 10); g.rect(P.woodDark, bx + 28, 207, 3, 10);
+      g.rect(P.brown, bx, 196, 34, 2); g.rect(P.woodDark, bx + 2, 198, 2, 7); g.rect(P.woodDark, bx + 29, 198, 2, 7);
+    }
+  }
   // Arcade fronts, whose openings give the workshop district a different silhouette.
   for (let ax = at(1530) + 68; ax < at(1530) + 145; ax += 29) {
     arch(g, ax, 176, 22, 40, P.woodDark);

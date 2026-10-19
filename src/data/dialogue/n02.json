@@ -14,7 +14,9 @@
   ],
   "n02_musicos": [
     { "who": "n02_musico", "text": "Desde que pasó la Cofradía, nos faltan los versos. Las manos recuerdan las cuerdas, pero no logramos reconstruir el fandango." },
-    { "who": "n02_musico", "text": "Busca los cinco recuerdos por el pueblo y calma a los chaneques alterados. Mis compañeros esperan junto a la tarima, al fondo de la plaza. Cuando tengas las estrofas, reúnete con ellos para reconstruir el fandango." },
+    { "who": "n02_musico", "text": "Los cinco recuerdos están lejos unos de otros: el camino del río, el monte, los talleres y los jardines. Busca sus destellos y sigue el rastro de tu gema." },
+    { "who": "n02_musico", "text": "Dos Chaneques Mayores custodian los recuerdos del monte y de la memoria. Atúrdelos con el láser verde o esquiva su salto y usa CALMA cuando estén vulnerables. Hay altares antes de sus claros." },
+    { "who": "n02_musico", "text": "Mis compañeros esperan junto a la tarima, al fondo de la plaza. Cuando tengas las cinco estrofas, reúnete con ellos para reconstruir el fandango." },
     { "who": "n02_tu", "text": "Voy a ayudarles. Nadie debería perder su memoria." }
   ],
   "n02_incompleto": [

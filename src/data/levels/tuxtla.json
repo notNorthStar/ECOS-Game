@@ -1,52 +1,413 @@
 {
   "id": "tuxtla",
   "name": "San Andrés Tuxtla · La música perdida",
-  "width": 3600,
+  "width": 7200,
   "background": "fondo_tuxtla",
-  "ambience": { "fog": 0.12, "rain": false, "fireflies": true, "leaves": true, "tint": "#ffe0b0", "darkness": 0.14 },
+  "ambience": {
+    "fog": 0.12,
+    "rain": false,
+    "fireflies": true,
+    "leaves": true,
+    "tint": "#ffe0b0",
+    "darkness": 0.14
+  },
   "music": "n02_fandango",
-  "walk": [[[0, 222], [3600, 222], [3600, 345], [0, 345]]],
+  "walk": [[[0, 222], [7200, 222], [7200, 345], [0, 345]]],
   "obstacles": [],
   "props": [
-    { "key": "altar_memoria", "id": "n02_altar", "x": 350, "y": 255, "anim": "altar_memoria", "collide": { "rx": 18, "ry": 6 } },
-    { "key": "prop_farol", "x": 450, "y": 222, "anim": "prop_farol" },
-    { "key": "prop_arbusto", "x": 760, "y": 223 },
-    { "key": "prop_farol", "x": 1120, "y": 222, "anim": "prop_farol" },
-    { "key": "prop_arbusto", "x": 1410, "y": 350, "foreground": true },
-    { "key": "prop_farol", "x": 1830, "y": 222, "anim": "prop_farol" },
-    { "key": "prop_arbusto", "x": 2140, "y": 223 },
-    { "key": "prop_farol", "x": 2630, "y": 222, "anim": "prop_farol" },
-    { "key": "prop_arbusto", "x": 2880, "y": 350, "foreground": true },
-    { "key": "prop_farol", "x": 3430, "y": 222, "anim": "prop_farol" }
+    { "key": "prop_farol", "x": 4070, "y": 222, "anim": "prop_farol" },
+    { "key": "prop_farol", "x": 4660, "y": 222, "anim": "prop_farol" },
+    { "key": "prop_farol", "x": 5520, "y": 222, "anim": "prop_farol" },
+    { "key": "prop_farol", "x": 6910, "y": 222, "anim": "prop_farol" },
+    { "key": "prop_arbusto", "x": 4270, "y": 350, "foreground": true },
+    { "key": "prop_arbusto", "x": 5700, "y": 350, "foreground": true },
+    { "key": "prop_arbusto", "x": 6490, "y": 222 },
+    {
+      "key": "altar_memoria",
+      "id": "n02_altar",
+      "x": 350,
+      "y": 255,
+      "anim": "altar_memoria",
+      "collide": {
+        "rx": 18,
+        "ry": 6
+      }
+    },
+    {
+      "key": "prop_farol",
+      "x": 450,
+      "y": 222,
+      "anim": "prop_farol"
+    },
+    {
+      "key": "prop_arbusto",
+      "x": 760,
+      "y": 223
+    },
+    {
+      "key": "prop_farol",
+      "x": 1120,
+      "y": 222,
+      "anim": "prop_farol"
+    },
+    {
+      "key": "prop_arbusto",
+      "x": 1410,
+      "y": 350,
+      "foreground": true
+    },
+    {
+      "key": "prop_farol",
+      "x": 1830,
+      "y": 222,
+      "anim": "prop_farol"
+    },
+    {
+      "key": "prop_arbusto",
+      "x": 2140,
+      "y": 223
+    },
+    {
+      "key": "prop_farol",
+      "x": 2630,
+      "y": 222,
+      "anim": "prop_farol"
+    },
+    {
+      "key": "prop_arbusto",
+      "x": 2880,
+      "y": 350,
+      "foreground": true
+    },
+    {
+      "key": "prop_farol",
+      "x": 3430,
+      "y": 222,
+      "anim": "prop_farol"
+    },
+    {
+      "y": 255,
+      "key": "altar_memoria",
+      "collide": {
+        "rx": 18,
+        "ry": 6
+      },
+      "id": "n02_altar_monte",
+      "x": 1920,
+      "anim": "altar_memoria"
+    },
+    {
+      "y": 255,
+      "key": "altar_memoria",
+      "collide": {
+        "rx": 18,
+        "ry": 6
+      },
+      "id": "n02_altar_memoria",
+      "x": 5820,
+      "anim": "altar_memoria"
+    }
   ],
-  "spawn": { "x": 80, "y": 295 },
-  "spawns": { "inicio": { "x": 80, "y": 295 }, "checkpoint": { "x": 240, "y": 295 }, "altar": { "x": 350, "y": 295 } },
+  "spawn": {
+    "x": 80,
+    "y": 295
+  },
+  "spawns": {
+    "guardian_monte_clear": { "x": 2400, "y": 300 },
+    "guardian_memoria_clear": { "x": 6300, "y": 300 },
+    "inicio": {
+      "x": 80,
+      "y": 295
+    },
+    "checkpoint": {
+      "x": 240,
+      "y": 295
+    },
+    "altar": {
+      "x": 350,
+      "y": 295
+    },
+    "altar_monte": {
+      "x": 1920,
+      "y": 300
+    },
+    "altar_memoria": {
+      "x": 5820,
+      "y": 300
+    }
+  },
   "enemies": [
-    { "type": "chaneque", "variant": "patrulla", "x": 720, "y": 280 },
-    { "type": "chaneque", "variant": "travieso", "x": 880, "y": 320 },
-    { "type": "chaneque", "variant": "saltador", "x": 1140, "y": 285 },
-    { "type": "chaneque", "variant": "patrulla", "x": 1370, "y": 260 },
-    { "type": "chaneque", "variant": "travieso", "x": 1630, "y": 320 },
-    { "type": "chaneque", "variant": "patrulla", "x": 1880, "y": 282 },
-    { "type": "chaneque", "variant": "saltador", "x": 2090, "y": 310 },
-    { "type": "chaneque", "variant": "travieso", "x": 2350, "y": 258 },
-    { "type": "chaneque", "variant": "patrulla", "x": 2550, "y": 310 },
-    { "type": "chaneque", "variant": "saltador", "x": 2790, "y": 280 }
+    {
+      "type": "chaneque",
+      "variant": "patrulla",
+      "x": 760,
+      "y": 275
+    },
+    {
+      "type": "chaneque",
+      "variant": "travieso",
+      "x": 1280,
+      "y": 310
+    },
+    {
+      "type": "chaneque",
+      "variant": "saltador",
+      "x": 1660,
+      "y": 260
+    },
+    {
+      "type": "chaneque",
+      "variant": "patrulla",
+      "x": 2010,
+      "y": 275
+    },
+    {
+      "type": "chaneque",
+      "variant": "travieso",
+      "x": 2890,
+      "y": 310
+    },
+    {
+      "type": "chaneque",
+      "variant": "saltador",
+      "x": 3330,
+      "y": 260
+    },
+    {
+      "type": "chaneque",
+      "variant": "patrulla",
+      "x": 3660,
+      "y": 275
+    },
+    {
+      "type": "chaneque",
+      "variant": "travieso",
+      "x": 4140,
+      "y": 310
+    },
+    {
+      "type": "chaneque",
+      "variant": "saltador",
+      "x": 4550,
+      "y": 260
+    },
+    {
+      "type": "chaneque",
+      "variant": "patrulla",
+      "x": 4890,
+      "y": 275
+    },
+    {
+      "type": "chaneque",
+      "variant": "travieso",
+      "x": 5410,
+      "y": 310
+    },
+    {
+      "type": "chaneque",
+      "variant": "saltador",
+      "x": 5680,
+      "y": 260
+    },
+    {
+      "type": "chaneque",
+      "variant": "patrulla",
+      "x": 5910,
+      "y": 275
+    },
+    {
+      "type": "chaneque",
+      "variant": "travieso",
+      "x": 6650,
+      "y": 310
+    },
+    {
+      "bossProfile": "tuxtla_guardian",
+      "y": 280,
+      "group": "n02_guardian_monte",
+      "type": "chaneque_mayor",
+      "x": 2400,
+      "encounterId": "monte"
+    },
+    {
+      "bossProfile": "tuxtla_guardian",
+      "y": 280,
+      "group": "n02_guardian_memoria",
+      "type": "chaneque_mayor",
+      "x": 6300,
+      "encounterId": "memoria"
+    }
   ],
   "triggers": [
-    { "id": "n02_letras", "x": 140, "y": 222, "w": 70, "h": 123, "action": "letras", "once": true, "data": { "title": "SAN ANDRÉS TUXTLA", "subtitle": "Veracruz · La música perdida" } }
+    {
+      "id": "n02_letras",
+      "x": 140,
+      "y": 222,
+      "w": 70,
+      "h": 123,
+      "action": "letras",
+      "once": true,
+      "data": {
+        "title": "SAN ANDRÉS TUXTLA",
+        "subtitle": "Veracruz · La música perdida"
+      }
+    },
+    {
+      "w": 45,
+      "action": "n02_guardian",
+      "y": 222,
+      "id": "n02_guardian_monte",
+      "x": 2076,
+      "h": 123,
+      "data": {
+        "guardianId": "monte"
+      }
+    },
+    {
+      "w": 45,
+      "action": "n02_guardian",
+      "y": 222,
+      "id": "n02_guardian_memoria",
+      "x": 5976,
+      "h": 123,
+      "data": {
+        "guardianId": "memoria"
+      }
+    }
   ],
   "interactables": [
-    { "id": "n02_letrero", "x": 240, "y": 250, "radius": 52, "prompt": "Examinar", "action": "n02_examinar", "data": { "dialogue": "n02_letras", "promptDy": 45 } },
-    { "id": "n02_altar", "x": 350, "y": 265, "radius": 34, "prompt": "Ofrendar", "action": "altar", "data": { "promptDy": 56 } },
-    { "id": "n02_estrofa_rio", "x": 790, "y": 242, "radius": 34, "prompt": "Recuperar estrofa", "action": "n02_estrofa", "data": { "verseId": "rio" } },
-    { "id": "n02_estrofa_monte", "x": 1240, "y": 327, "radius": 34, "prompt": "Recuperar estrofa", "action": "n02_estrofa", "data": { "verseId": "monte" } },
-    { "id": "n02_estrofa_madera", "x": 1720, "y": 242, "radius": 34, "prompt": "Recuperar estrofa", "action": "n02_estrofa", "data": { "verseId": "madera" } },
-    { "id": "n02_estrofa_encuentro", "x": 2210, "y": 327, "radius": 34, "prompt": "Recuperar estrofa", "action": "n02_estrofa", "data": { "verseId": "encuentro" } },
-    { "id": "n02_estrofa_memoria", "x": 2700, "y": 242, "radius": 34, "prompt": "Recuperar estrofa", "action": "n02_estrofa", "data": { "verseId": "memoria" } },
-    { "id": "n02_musicos", "x": 500, "y": 295, "radius": 48, "prompt": "Hablar con el músico", "action": "n02_musicos", "data": {} },
-    { "id": "n02_tarima", "x": 3260, "y": 285, "radius": 54, "prompt": "Reconstruir el fandango", "action": "n02_fandango", "data": {} },
-    { "id": "n02_salida", "x": 3520, "y": 290, "radius": 42, "prompt": "Camino a Catemaco", "action": "n02_salida", "data": {} }
+    {
+      "id": "n02_letrero",
+      "x": 240,
+      "y": 250,
+      "radius": 52,
+      "prompt": "Examinar",
+      "action": "n02_examinar",
+      "data": {
+        "dialogue": "n02_letras",
+        "promptDy": 45
+      }
+    },
+    {
+      "id": "n02_altar",
+      "x": 350,
+      "y": 265,
+      "radius": 34,
+      "prompt": "Ofrendar",
+      "action": "altar",
+      "data": {
+        "promptDy": 56
+      }
+    },
+    {
+      "id": "n02_estrofa_rio",
+      "x": 1000,
+      "y": 245,
+      "radius": 34,
+      "prompt": "Recuperar estrofa",
+      "action": "n02_estrofa",
+      "data": {
+        "verseId": "rio"
+      }
+    },
+    {
+      "id": "n02_estrofa_monte",
+      "x": 2400,
+      "y": 320,
+      "radius": 34,
+      "prompt": "Recuperar estrofa",
+      "action": "n02_estrofa",
+      "data": {
+        "verseId": "monte"
+      }
+    },
+    {
+      "id": "n02_estrofa_madera",
+      "x": 3800,
+      "y": 245,
+      "radius": 34,
+      "prompt": "Recuperar estrofa",
+      "action": "n02_estrofa",
+      "data": {
+        "verseId": "madera"
+      }
+    },
+    {
+      "id": "n02_estrofa_encuentro",
+      "x": 5100,
+      "y": 320,
+      "radius": 34,
+      "prompt": "Recuperar estrofa",
+      "action": "n02_estrofa",
+      "data": {
+        "verseId": "encuentro"
+      }
+    },
+    {
+      "id": "n02_estrofa_memoria",
+      "x": 6300,
+      "y": 245,
+      "radius": 34,
+      "prompt": "Recuperar estrofa",
+      "action": "n02_estrofa",
+      "data": {
+        "verseId": "memoria"
+      }
+    },
+    {
+      "id": "n02_musicos",
+      "x": 500,
+      "y": 295,
+      "radius": 48,
+      "prompt": "Hablar con el músico",
+      "action": "n02_musicos",
+      "data": {}
+    },
+    {
+      "id": "n02_tarima",
+      "x": 6800,
+      "y": 285,
+      "radius": 54,
+      "prompt": "Reconstruir el fandango",
+      "action": "n02_fandango",
+      "data": {}
+    },
+    {
+      "id": "n02_salida",
+      "x": 7120,
+      "y": 290,
+      "radius": 42,
+      "prompt": "Camino a Catemaco",
+      "action": "n02_salida",
+      "data": {}
+    },
+    {
+      "data": {
+        "promptDy": 56,
+        "checkpointSpawn": "altar_monte"
+      },
+      "action": "altar",
+      "y": 265,
+      "id": "n02_altar_monte",
+      "prompt": "Ofrendar",
+      "x": 1920,
+      "radius": 34
+    },
+    {
+      "data": {
+        "promptDy": 56,
+        "checkpointSpawn": "altar_memoria"
+      },
+      "action": "altar",
+      "y": 265,
+      "id": "n02_altar_memoria",
+      "prompt": "Ofrendar",
+      "x": 5820,
+      "radius": 34
+    }
   ],
-  "cameraBounds": { "x0": 0, "x1": 3600 }
+  "cameraBounds": {
+    "x0": 0,
+    "x1": 7200
+  }
 }

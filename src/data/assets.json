@@ -290,42 +290,42 @@
       "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa0.png",
       "placeholder": true,
       "generator": "tools/gen-tuxtla-scenery.mjs",
-      "generatedSha256": "610fea788c103f72888efba17b2c5d6f44b831e85ab9225f861f36974250972b"
+      "generatedSha256": "824ec1aaa0821d5bc249d066f36462ba4bb2b45f883cc9480e3baa7e6823634e"
     },
     {
       "key": "fondo_tuxtla_capa1",
       "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa1.png",
       "placeholder": true,
       "generator": "tools/gen-tuxtla-scenery.mjs",
-      "generatedSha256": "95f04d9a237cba6624b6b9bacc784b2300f2ae341ca064a15b6946af65e35510"
+      "generatedSha256": "6b551c2c0a719040435182261e637feff216cd8f3504f126a056d630afec3b12"
     },
     {
       "key": "fondo_tuxtla_capa2",
       "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa2.png",
       "placeholder": true,
       "generator": "tools/gen-tuxtla-scenery.mjs",
-      "generatedSha256": "aae28864a8e1972628c867c272173a49b9a8cb0f79a086f379c79ea529acacbb"
+      "generatedSha256": "35903999a7ef2b9fa8d6c6e598125c6db8a09a3950d6ba8a87e6102489c9a943"
     },
     {
       "key": "fondo_tuxtla_capa3",
       "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa3.png",
       "placeholder": true,
       "generator": "tools/gen-tuxtla-scenery.mjs",
-      "generatedSha256": "1648953adc6f9be43096af611dd24eb834eda05885955ada3db0d82088884623"
+      "generatedSha256": "1bd8ac68c2c0a089a408a57f723759866a530bbc33b1de6aafce0b65694e652e"
     },
     {
       "key": "fondo_tuxtla_capa4",
       "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa4.png",
       "placeholder": true,
       "generator": "tools/gen-tuxtla-scenery.mjs",
-      "generatedSha256": "c89e6bca6be9587c7c92e5db5317dfea282ee80bb1c796c8fb4675a59be2b8a8"
+      "generatedSha256": "a750f174a7f45e15943907eca257faccbf2170ed75365796d9d7f57e714293b1"
     },
     {
       "key": "fondo_tuxtla_capa5",
       "path": "assets/escenarios/nivel-02-san-andres-tuxtla/fondos/fondo_tuxtla_capa5.png",
       "placeholder": true,
       "generator": "tools/gen-tuxtla-scenery.mjs",
-      "generatedSha256": "5e105da07d5df36edbe54792173ec8920d045ce93e5a137fab4d70917d506181"
+      "generatedSha256": "5acb4885c814eee20cf4816895dae60cbf5fafe34cf78128e30bd0ea70f4f87f"
     }
   ],
   "sheets": [
