@@ -10,6 +10,7 @@ import { FANDANGO, programarFandango } from './fandango';
 import { PISTAS_N03 } from './catemaco';
 import { PISTAS_N04 } from './oaxaca';
 import { PISTAS_N06 } from './cdmx';
+import { PISTAS_N07 } from './cdmx2';
 
 const ANTICIPO = 0.1;
 const FUNDIDO_ENTRADA = 1.2;
@@ -308,6 +309,7 @@ export const PISTAS: Record<string, DefPista> = {
   ...PISTAS_N03,
   ...PISTAS_N04,
   ...PISTAS_N06,
+  ...PISTAS_N07,
 };
 
 // ── Reproductor ───────────────────────────────────────────────────────────────

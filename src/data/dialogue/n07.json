@@ -1,0 +1,168 @@
+{
+  "_hablantes": {
+    "n07_narrador": { "nombre": "", "retrato": "" },
+    "n07_tu": { "nombre": "Tú", "retrato": "retrato_protagonista" },
+    "n07_maria": { "nombre": "María", "retrato": "" },
+    "n07_balam": { "nombre": "Balam", "retrato": "" },
+    "n07_rey": { "nombre": "El Rey del Olvido", "retrato": "" },
+    "n07_llorona": { "nombre": "La Llorona", "retrato": "" },
+    "n07_madre": { "nombre": "Mamá", "retrato": "" },
+    "n07_voz": { "nombre": "Voz de la consola", "retrato": "" }
+  },
+
+  "n07_llegada": [
+    { "who": "n07_narrador", "text": "La cabina roja se separa de la estación con un tirón seco y empieza a subir. Abajo, Reforma se encoge hasta ser una cicatriz de luces rotas. Arriba, el cielo se cierra: una tormenta negra se enrolla alrededor de la torre." },
+    { "who": "n07_tu", "text": "Tú, Balam y yo. Y todo lo que viene pegado a los cables." },
+    { "who": "n07_balam", "text": "Balam eriza el lomo. Mira hacia las ventanas, donde no hay nada... y luego, hacia el techo, donde algo camina." },
+    { "who": "n07_maria", "text": "Hijo, algo nos sigue. Lo siento aquí, en el pecho. Quédate cerca de mí." }
+  ],
+  "n07_ventana": [
+    { "who": "n07_narrador", "text": "Por el vidrio mojado pasan otras cabinas colgadas de los cables, todas vacías, todas con las luces encendidas, como una procesión de faroles sin nadie que los cargue. Más abajo, la ciudad entera parpadea y se apaga por barrios." }
+  ],
+  "n07_tormenta": [
+    { "who": "n07_narrador", "text": "Un relámpago blanco ilumina la cabina y, por un instante, el cielo parece un espejo. El cable canta. La cabina se mece, y en el vidrio aparecen sombras de manos que no se ven en ningún otro lado." },
+    { "who": "n07_tu", "text": "Con Luna (F) las vemos. Sin ella, nos pegan sin que sepamos de dónde." },
+    { "who": "n07_balam", "text": "Balam ruge bajito. Sus ojos se vuelven dos brasas de ámbar." }
+  ],
+  "n07_maria_olvido": [
+    { "who": "n07_narrador", "text": "Pasada la segunda oleada, la cabina se aquieta. Solo se oye la lluvia contra el techo. María se ha sentado junto a la ventana y se aprieta el rebozo contra el pecho." },
+    { "who": "n07_maria", "text": "Hay un río debajo de esta ciudad. ¿Lo sabías? Antes de todo esto, había un río. Lo recuerdo... o creo que lo recuerdo." },
+    { "who": "n07_tu", "text": "María, ¿estás bien?" },
+    { "who": "n07_maria", "text": "Yo olvidé algo. No son mis hijos, a ellos no los olvidé nunca. Es otra cosa. Algo que hice antes de empezar a buscar. Algo que mi cabeza cerró con llave." },
+    { "who": "n07_maria", "text": "Cada piso que subimos, la llave se mueve un poquito. Tengo miedo, hijo. No de ellos. De lo que voy a recordar." },
+    { "who": "n07_tu", "text": "Sea lo que sea, no vas a enfrentarlo sola." },
+    { "who": "n07_balam", "text": "Balam se acomoda a sus pies y apoya la cabeza en su rodilla. Ella le acaricia el lomo sin darse cuenta." }
+  ],
+  "n07_estacion_alta": [
+    { "who": "n07_narrador", "text": "La cabina golpea el andén con un chasquido metálico. Las puertas se abren con un lamento largo. Frente a ustedes se levanta la torre de control de la Cofradía: acero negro, ventanales rotos y, en lo alto, un resplandor de espejo que late como un corazón enfermo." },
+    { "who": "n07_tu", "text": "Aquí termina el cable. Desde aquí, a pie." },
+    { "who": "n07_maria", "text": "Sube tú primero. Yo... yo te sigo. Todavía me tiemblan las piernas." }
+  ],
+
+  "n07_torre_vista": [
+    { "who": "n07_narrador", "text": "Los pasillos de la torre están llenos de consolas encendidas. Pantallas con rostros que se repiten, una y otra vez, con los ojos vacíos. Cada vez que alguien parpadea en una pantalla, en algún lugar de México una persona olvida su nombre." },
+    { "who": "n07_tu", "text": "Desde aquí controlan todo. Cada rostro es una mente a distancia." },
+    { "who": "n07_maria", "text": "Apaga eso, por favor. Que dejen de mirarme." }
+  ],
+  "n07_elite_vista": [
+    { "who": "n07_narrador", "text": "Al fondo del pasillo, inmóviles bajo las luces rojas, aguardan siluetas de capucha negra con ribetes escarlata. No se mueven, no respiran. Cuando pasas, giran la cabeza todas al mismo tiempo." },
+    { "who": "n07_tu", "text": "La guardia de élite. Mucho más fuertes que los Negros." },
+    { "who": "n07_maria", "text": "Cuídate, hijo. Estos no vigilan una puerta: vigilan un trono. Aquí alguien tiene mucho que esconder." }
+  ],
+  "n07_consola_torre": [
+    { "who": "n07_narrador", "text": "Una consola con un registro abierto: «Sujeto 4,112: nombre, retirado. Familia, retirada. Sujeto 4,113: recuerdo del mar, retirado.» Cientos de líneas más abajo, el mismo patrón. Una lista de cosas que alguien decidió que estaban de más." },
+    { "who": "n07_tu", "text": "No roban cosas. Roban lo que uno recuerda." }
+  ],
+  "n07_consola_torre_2": [
+    { "who": "n07_narrador", "text": "Esta consola guarda una grabación. Una voz grave, serena, casi amable: «No es crueldad. Es misericordia. Quien no recuerda, no sufre.» Después, un silencio; y la voz de una mujer, lejana, repitiendo un nombre que la grabación corta a la mitad." },
+    { "who": "n07_maria", "text": "Esa voz... ¿por qué conozco esa voz?" }
+  ],
+  "n07_torre_puerta": [
+    { "who": "n07_narrador", "text": "La puerta del salón del trono es de espejo negro. Del otro lado se oye una música lenta, de cuerdas rotas, y debajo, apenas, una respiración. Una sola." },
+    { "who": "n07_balam", "text": "Balam se detiene, ya no quiere dar un paso más. Mira a María. Ella no lo mira a él." },
+    { "who": "n07_maria", "text": "Entremos. Si no entro ahora, no entro nunca." }
+  ],
+
+  "n07_salon_vista": [
+    { "who": "n07_narrador", "text": "El salón del trono es una nave inmensa de espejo y sombra. En lugar de vitrales hay pantallas, y en cada pantalla, una cara dormida. Una alfombra desteñida cruza el suelo hasta un trono de obsidiana cubierto de cables." },
+    { "who": "n07_tu", "text": "Tanta gente conectada a una sola silla." }
+  ],
+  "n07_revelacion": [
+    { "who": "n07_narrador", "text": "En el trono, un hombre alto y delgado, de rostro sereno, con una corona de espejos pequeños que giran sobre su frente. Los ojos le brillan como los de alguien que lleva mucho tiempo sin dormir." },
+    { "who": "n07_rey", "text": "Bienvenido. Y tú, María. Qué bueno que volviste a mi casa." },
+    { "who": "n07_maria", "text": "¿Tu casa? Yo... yo no te conozco." },
+    { "who": "n07_rey", "text": "Claro que no. Yo mismo te enseñé a no conocerme. Fue lo más humano que pude hacer por ti." },
+    { "who": "n07_narrador", "text": "María se lleva las manos a la sien. La corona del Rey destella, y el salón entero se llena de ecos: agua corriendo, una risa pequeña, el roce de una tela mojada." },
+    { "who": "n07_maria", "text": "Un río... había un río. Y alguien que me llamaba. Dos voces. «Mamá». ¿Quién me llamaba, hijo?" },
+    { "who": "n07_rey", "text": "Fui su esposo antes de ser rey. Quise borrar todo lo que nos ataba al dolor del mundo, y tú también tenías tu parte. Te pedí que lo olvidaras todo. Y la corona te ayudó a obedecer." },
+    { "who": "n07_narrador", "text": "Las pantallas se llenan de imágenes borrosas: la orilla de un río al atardecer, dos siluetas pequeñas que corren hacia una mujer con un rebozo, y luego solo agua, mucha agua, y unas manos que ya no sostienen nada. La imagen se corta antes de mostrar más." },
+    { "who": "n07_maria", "text": "No... No, no, no. Yo los llevé a la orilla. Yo los llevé y... ¡yo no quise! ¡Yo no quise!" },
+    { "who": "n07_tu", "text": "María, mírame. Ese hombre te hizo esto. Tú no decidiste nada." },
+    { "who": "n07_rey", "text": "Una verdad a medias. Pero sí la sostuviste tú. La corona solo me prestó tus manos. Y después, para que no sufrieras, te quité hasta el recuerdo. Te fuiste caminando, buscando a tus hijos por todo México. ¿No fue un regalo?" },
+    { "who": "n07_maria", "text": "Me dejaste buscándolos durante años. Años de pasos descalzos. Años de gritar sus nombres." }
+  ],
+  "n07_transformacion": [
+    { "who": "n07_narrador", "text": "El rebozo de María se suelta y se deshace en agua. Su pelo se eleva como una corriente. Su sombra se estira por el suelo, y el aire se llena del olor de un río en la noche." },
+    { "who": "n07_llorona", "text": "¡Ay, mis hijos! ¡¿Dónde están mis hijos?!" },
+    { "who": "n07_rey", "text": "Cihuateteo. Qué bien. Una pena que tengamos que hacerlo a las malas." },
+    { "who": "n07_tu", "text": "No viene por mí. Viene por él. ¡Aprovecha, no la dejes sola!" }
+  ],
+  "n07_pelea_aviso": [
+    { "who": "n07_narrador", "text": "La Llorona grita y el grito es pura pena: aturde al Rey y a sus sombras sin tocarte. Pero la corona sigue brillando, protegiéndolo." },
+    { "who": "n07_tu", "text": "La corona. Hay que romperla: SOL o FUEGO, cuando se abra. MEMORIA lo debilita. Y cuidado con su pulso: te voltea los controles." }
+  ],
+  "n07_rey_cae": [
+    { "who": "n07_narrador", "text": "La corona se parte con un sonido de cristal. Los espejos caen y se apagan, uno por uno. El Rey se desploma en su trono, inconsciente, sin una sola herida. Por primera vez en siglos, nadie lo escucha en ninguna pantalla." },
+    { "who": "n07_rey", "text": "No... No me dejen... No me dejen recordar..." },
+    { "who": "n07_narrador", "text": "Pero la Llorona no se detiene. Su grito crece y rompe los cristales del salón. Ya no distingue amigos de enemigos. Ya no distingue nada." },
+    { "who": "n07_llorona", "text": "¡MIS HIJOS! ¡MIS HIJOS! ¡MIS HIJOS!" },
+    { "who": "n07_tu", "text": "Está fuera de control, el dolor se la está llevando. Si grita más, se deshace en el aire. Hay que consolarla. Ahora." },
+    { "who": "n07_balam", "text": "Balam se pone delante de ti, el pelaje erizado. Aguanta cada ola de su grito como un escudo vivo." }
+  ],
+  "n07_consuelo": [
+    { "who": "n07_narrador", "text": "El tiempo se vuelve espeso, casi quieto. En la gema aparece una seña que nunca habías visto: manos que se abren y se cierran sobre el pecho, como quien abraza a alguien que no está. No es un arma. Es la seña más antigua de todas." },
+    { "who": "n07_tu", "text": "CONSUELO. Mamá me la enseñó, aunque nunca la usé. La usaba conmigo cuando tenía miedo." }
+  ],
+  "n07_consuelo_ok": [
+    { "who": "n07_narrador", "text": "Las manos de la gema tocan a la Llorona. Ella tiembla, y su grito se vuelve un lamento más bajo, más humano. Aún no te reconoce, pero ya no te ataca." },
+    { "who": "n07_llorona", "text": "Tengo frío... Tengo tanto frío..." }
+  ],
+  "n07_consuelo_repite": [
+    { "who": "n07_narrador", "text": "El grito la sacude otra vez y la seña se deshace en el aire. No pasa nada: el tiempo se estira, y la mano vuelve a empezar." },
+    { "who": "n07_tu", "text": "Otra vez. Con calma. Ella no tiene prisa por rendirse." }
+  ],
+  "n07_memoria_aviso": [
+    { "who": "n07_tu", "text": "Ahora MEMORIA. Pero no todo el recuerdo: solo la parte que vale la pena guardar." }
+  ],
+  "n07_memoria_ok": [
+    { "who": "n07_narrador", "text": "Los espejos rotos del salón se iluminan con una luz tibia. Ya no muestran el río, sino una cocina con la lumbre encendida, dos niños sentados a la mesa, el vapor de un caldo y una mujer cantando una canción de cuna con la voz cansada. Solo eso. Solo ese amor." },
+    { "who": "n07_llorona", "text": "Ana... Tomás... Sus nombres. Se llamaban así. Los tenía en la punta de la lengua desde siempre." }
+  ],
+  "n07_memoria_repite": [
+    { "who": "n07_narrador", "text": "El recuerdo se escapa entre los dedos de la seña. Los espejos titilan, como si quisieran volver a mostrarlo." },
+    { "who": "n07_tu", "text": "Una vez más. Despacio. Que no vea el río: que vea la cocina." }
+  ],
+  "n07_paz": [
+    { "who": "n07_narrador", "text": "La Llorona levanta la vista y por fin te mira. Sus ojos son dos cántaros de agua quieta. La gema te entrega la última seña: manos que se posan una sobre otra y descansan." },
+    { "who": "n07_tu", "text": "PAZ. Tres letras para algo que cuesta tanto." }
+  ],
+  "n07_paz_ok": [
+    { "who": "n07_narrador", "text": "La seña se posa sobre ella como una manta. El agua que la rodea se vuelve quieta y clara. Sus lágrimas, por fin, no son de lamento: son de alivio." }
+  ],
+  "n07_paz_repite": [
+    { "who": "n07_narrador", "text": "La seña se afloja, pero la Llorona sigue de pie, esperando. No hay castigo en el aire. Solo tiempo." },
+    { "who": "n07_tu", "text": "Tres letras. Una más, con cuidado." }
+  ],
+  "n07_despedida": [
+    { "who": "n07_llorona", "text": "Hijo... gracias. Me quitaste el río de encima. Me dejaste su risa. Eso es lo único que quiero guardar." },
+    { "who": "n07_tu", "text": "María..." },
+    { "who": "n07_llorona", "text": "Ya no soy María. Ya no soy solo eso. Soy la que los busca. Dicen que seguiré buscándolos por las calles de las ciudades y por la orilla de todos los ríos. Pero ahora sé a quién busco, y sé que me esperan en algún lugar donde no hay agua." },
+    { "who": "n07_llorona", "text": "Cuida a Balam. Cuida a tu madre. Y cuando oigas a una mujer cantar a lo lejos, no tengas miedo. Estaré pensando en ti." },
+    { "who": "n07_narrador", "text": "La Llorona se disuelve en una bruma azul que sale por los ventanales rotos y se esparce por las calles de la ciudad. Desde algún barrio lejano se oye, apenas, una canción de cuna." },
+    { "who": "n07_balam", "text": "Balam se queda. Se sienta a tu lado, mirando por la ventana hasta que la bruma se pierde. Esta vez no gruñe: ronronea, bajito, como quien despide a alguien querido." }
+  ],
+  "n07_fragmento": [
+    { "who": "n07_narrador", "text": "En el trono, bajo los cables, la obsidiana se abre como un párpado. Dentro, envuelto en luz, late un fragmento del Sello. Al tocarlo, la gema vibra: cuatro de seis." },
+    { "who": "n07_tu", "text": "Cuatro fragmentos. Faltan dos." }
+  ],
+  "n07_consola_falsa": [
+    { "who": "n07_narrador", "text": "Detrás del trono, una consola de comunicaciones sigue encendida. Es la que el Rey usaba para entrar en las mentes a distancia. La pantalla parpadea y, entre estática, acepta una frecuencia que reconoces." },
+    { "who": "n07_voz", "text": "Línea abierta. Señal estable. Conectando con el contacto memorizado." },
+    { "who": "n07_madre", "text": "¿Hijo? ¿Eres tú? Dime que eres tú." },
+    { "who": "n07_tu", "text": "¡Mamá! ¿Dónde estás? ¿Estás bien? Voy por ti." },
+    { "who": "n07_madre", "text": "No. Escúchame: no vengas todavía. Todavía no. Me tienen, pero me cuidan. Si vienes ahora, no tendrás con qué detenerlos." },
+    { "who": "n07_madre", "text": "Quieren comerse el Sol. Un eclipse, y será de noche para siempre. Solo tú puedes impedirlo, pero necesitas los dos últimos fragmentos: están en Guanajuato y en Jalisco. Ve primero allá." },
+    { "who": "n07_tu", "text": "¿Guanajuato y Jalisco? Mamá, ¿cómo sabes...?" },
+    { "who": "n07_madre", "text": "Lo vi aquí. Lo escuché. Ve, hijo. Confía en mí. Te quiero." },
+    { "who": "n07_narrador", "text": "La línea se corta con un chasquido. Balam inclina la cabeza, receloso, y mira la pantalla apagada. Hay algo en la voz de tu madre que se siente... pulido, como una moneda nueva." },
+    { "who": "n07_tu", "text": "Estaba viva. Estaba bien. Y sabe lo que viene. Vamos, Balam: primero Guanajuato." }
+  ],
+  "n07_cierre": [
+    { "who": "n07_narrador", "text": "Afuera la tormenta se abre. Por primera vez desde que subieron, entre las nubes asoma un pedazo de cielo, y por ese pedazo de cielo cae un hilo de luz." },
+    { "who": "n07_tu", "text": "Cuatro de seis. La Ciudad de México queda atrás." },
+    { "who": "n07_narrador", "text": "Se vuelve a oír, a lo lejos, la canción de cuna. Alguien, en algún lugar, está cuidando a dos niños." }
+  ],
+  "n07_reintento": [
+    { "who": "n07_llorona", "text": "No me dejes sola con él, hijo... Una vez más." }
+  ]
+}

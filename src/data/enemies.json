@@ -199,9 +199,9 @@
     "bolt": { "windup": 0.7, "recover": 0.5, "speed": 170, "range": 380, "hitRadius": 9, "height": 30, "damage": 1, "knockback": 1, "reflectSpeedMult": 1.5, "reflectDamage": 35, "reflectStun": 2, "reflectKnockback": 20, "color": "#a040ff", "reflectColor": "#ffd860" },
     "downSeconds": 1.6,
     "ranks": {
-      "rojo": { "hp": 60, "ecos": 8, "damageMult": 1, "speedMult": 1, "solMult": 1, "robe": "#a8262e", "dark": "#5a1018", "trim": "#e0b040", "eyes": "#ffd060" },
-      "negro": { "hp": 110, "ecos": 15, "damageMult": 2, "speedMult": 1.1, "solMult": 0.7, "robe": "#2a2630", "dark": "#121016", "trim": "#a83040", "eyes": "#ff6040" },
-      "elite": { "hp": 200, "ecos": 30, "damageMult": 2, "speedMult": 1.15, "solMult": 0.5, "robe": "#22181c", "dark": "#0c080a", "trim": "#d02838", "eyes": "#ff3050" }
+      "rojo": { "hp": 60, "ecos": 8, "damageMult": 1, "speedMult": 1, "solMult": 1, "cooldownMult": 1, "eyeGlow": 0, "robe": "#a8262e", "dark": "#5a1018", "trim": "#e0b040", "eyes": "#ffd060", "kitTint": "#ffffff" },
+      "negro": { "hp": 110, "ecos": 15, "damageMult": 2, "speedMult": 1.1, "solMult": 0.7, "cooldownMult": 1, "eyeGlow": 0, "robe": "#2a2630", "dark": "#121016", "trim": "#a83040", "eyes": "#ff6040", "kitTint": "#6a6670" },
+      "elite": { "hp": 170, "ecos": 30, "damageMult": 2, "speedMult": 1.2, "solMult": 0.5, "cooldownMult": 0.85, "eyeGlow": 0.85, "robe": "#22181c", "dark": "#0c080a", "trim": "#d02838", "eyes": "#ff3050", "kitTint": "#7a3a44" }
     }
   },
   "espiritu": {
@@ -415,6 +415,44 @@
     "phase2At": 4,
     "phase2": { "copiesExtra": 1, "trapsExtra": 2 },
     "colors": { "rebozo": "#141018", "rebozoLight": "#2a2230", "skin": "#7a5a48", "hair": "#08060a", "eyes": "#ffc030", "smoke": "#201828", "obsidian": "#1a1420", "obsidianEdge": "#8a60c0", "luna": "#b0d8ff", "freed": "#9affc0" }
+  },
+  "rey_olvido": {
+    "_nota": "Jefe del Nivel 7 (contratos §5). Corona: solo SOL/FUEGO en su ventana. Sello: MEMORIA en la ventana con la corona rota. Todo ajustable.",
+    "name": "El Rey del Olvido",
+    "ecos": 600,
+    "perfectBonus": 1.25,
+    "frame": { "w": 96, "h": 96, "feetY": 94 },
+    "radius": 16,
+    "height": 84,
+    "shadowW": 34,
+    "activateRadius": 320,
+    "arenaHalfWidth": 300,
+    "band": [222, 343],
+    "spellRange": 380,
+    "introSeconds": 1.8,
+    "moveSpeed": 46,
+    "keepDistance": 130,
+    "idleBetween": [1.0, 1.8],
+    "crown": { "hp": 6, "partial": 1, "perfect": 2, "windowSeconds": 4.5, "offsetY": 4, "brokenStunSeconds": 2.4 },
+    "seal": { "total": 6, "partial": 1, "perfect": 2 },
+    "phase3At": 3,
+    "vulnerableSeconds": 4.5,
+    "laser": { "crownIntactMult": 0.12, "brokenMult": 0.5, "windowMult": 2, "chipPerDamage": 0.5, "chipPerStun": 0.3, "staggerAt": 60, "staggerSeconds": 2.4 },
+    "scream": { "radius": 260, "stunSeconds": 1.5, "cloneRadius": 200, "windowSeconds": 3.5 },
+    "verdad": { "stunSeconds": 1.4 },
+    "calma": { "crownHeal": 1, "sealHeal": 1, "rageSeconds": 6, "hasteMult": 0.6, "speedMult": 1.4 },
+    "pulse": { "windup": 1.0, "radius": 300, "invertMs": 3500, "cooldown": 7 },
+    "beam": { "windup": 0.5, "warnTime": 0.9, "activeTime": 0.7, "range": 600, "halfWidth": 9, "chestHeight": 18, "maxPlayerZ": 30, "damage": 1, "knockback": 1.3, "tickSeconds": 0.45 },
+    "waves": { "windup": 0.8, "count": [1, 2], "gap": 0.7, "speed": 170, "range": 320, "thickness": 10, "dodgeHeight": 12, "damage": 1, "knockback": 1.4 },
+    "clones": { "windup": 1.0, "count": [2, 3], "max": 3, "radius": 110, "afterSeconds": 0.8 },
+    "clone": { "hp": 1, "alpha": 0.45, "lifeSeconds": 14, "speed": 64, "startDelay": [0.5, 1.4], "attackCooldown": [1.5, 2.6], "range": 34, "windup": 0.55, "active": 0.2, "recover": 0.6, "damage": 1, "knockback": 1.4, "dodgeHeight": 16, "lunge": 220 },
+    "weights": {
+      "phase1": { "pulse": 2, "beam": 3, "waves": 2, "clones": 1 },
+      "phase2": { "pulse": 2, "beam": 2, "waves": 2, "clones": 2 },
+      "phase3": { "pulse": 3, "beam": 2, "waves": 2, "clones": 3 }
+    },
+    "phase3": { "hasteMult": 0.8, "clonesExtra": 1, "wavesExtra": 1 },
+    "colors": { "robe": "#1a1426", "robeLight": "#2e2440", "cape": "#3a1030", "capeLining": "#7a2050", "skin": "#5a4a58", "eyes": "#c070ff", "crown": "#f2c84b", "crownGlow": "#ffe070", "crownExposed": "#ff9040", "gem": "#b040ff", "pulse": "#a040ff", "beam": "#ffd040", "clone": "#b090ff", "freed": "#9affc0" }
   },
   "_nota":"knockback de golpes AL JUGADOR = multiplicador de HURT.knockbackSpeed (config/movement.ts); el de golpes a enemigos (config/combat.ts) son px."
 }

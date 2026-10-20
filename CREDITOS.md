@@ -21,7 +21,7 @@
 
 | Pista | Archivo | Autor | Licencia | Enlace | ¿Modificada? |
 |---|---|---|---|---|---|
-| | | | | | |
+| La Llorona — melodía tradicional mexicana (dominio público), arreglo original para ECOS por Listick Games (generado por código). | `src/systems/audio/cdmx2.ts` (pista `n07_llorona`, sintetizada en tiempo real) | Tradicional (melodía); Listick Games (arreglo) | Melodía: dominio público · Arreglo: propio | — | Sí: arreglo y orquestación originales |
 
 ## Efectos de sonido
 

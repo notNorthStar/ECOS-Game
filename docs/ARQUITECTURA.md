@@ -1,4 +1,14 @@
-# Arquitectura del juego (Niveles 1 a 4 y 6; el 5 se omite)
+# Arquitectura del juego (Niveles 1 a 4, 6 y 7; el 5 se omite)
+
+## Continuación: CDMX parte 2 (Nivel 7)
+
+En la rama `nivel-7-cdmx2`, `Level` carga además `teleferico`, `torre` y `salon_trono` (`CDMX2_SECTIONS` / `isCdmx2()`); `installDirector()` las deriva a `Cdmx2Director` y `LevelScene` instala `Cdmx2Scenery` (cabina fija con fondo que sube según `cablecar:progress`; `openCabinDoor()` para los abordajes).
+- **MindControl** (`systems/MindControl.ts`): `controls:invert {on, ms}` pone `GameState.controlsInverted` (lo lee `Player`: solo movimiento) con distorsión morada; `settings.noInvert` deja solo el aviso visual. Se limpia al vencer, al morir y al cambiar de escena.
+- **Llorona aliada** (`systems/Llorona.ts`): `summonLlorona` / `setLloronaWild` / `dismissLlorona`; grita al Rey cada 5–7 s (`llorona:scream`), nunca daña al jugador. `Maria.mariaTransform()` la reemplaza (`hasMaria = false`, `maria:transform`).
+- **`Casting.castSpellNow(world, id)`**: abre el deletreo de un conjuro concreto y devuelve su resultado; lo usa la secuencia CONSUELO → MEMORIA → PAZ (conjuros de tipo `historia`: se aprenden, no entran en la rueda).
+- Enemigos: `rey_olvido` (`entities/ReyOlvido.ts`: corona con vida propia que solo dañan SOL/FUEGO en ventanas, sello con MEMORIA, CALMA lo enfurece, VERDAD deshace clones; `rey:crown`, `controls:invert`) y el rango `elite` del encapuchado (tinte, ojos rojos, `cooldownMult`).
+- `Campaign.prepareCdmx2Entry()` (selector y salida del Nivel 6). Flags `n07:`. Al final vuelve al título (Guanajuato aún no existe).
+Contratos: `docs/NIVEL_07_CONTRATOS.md`. Ruta y pruebas: `docs/NIVEL_07.md` y `npm run test:nivel7`.
 
 ## Continuación: CDMX parte 1 (Nivel 6)
 

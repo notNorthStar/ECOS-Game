@@ -1075,6 +1075,202 @@
       "placeholder": true,
       "generator": "tools/gen-cdmx-scenery.mjs",
       "generatedSha256": "0329b42ee581c8e3c79335825d980f2118c4e3da1eea4b7546bf289ea3a60dbd"
+    },
+    {
+      "key": "fondo_teleferico_capa0",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_teleferico_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "e55e895c38a73ce0d999206d45e5d0c3d92ead377601cd9897576ec502a5d9a8"
+    },
+    {
+      "key": "fondo_teleferico_capa1",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_teleferico_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "70266deb21fb8b6a2d7aefb4d8963e78ed215292e917de3641eff1fb9bbbebde"
+    },
+    {
+      "key": "fondo_teleferico_capa2",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_teleferico_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "9c9dce43fcfafd55109198b99a1a8a3a99696d7996d0ae75a38d64591989c422"
+    },
+    {
+      "key": "fondo_teleferico_capa3",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_teleferico_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "37abd8a504dc45822715d7448393615560d9069fc2a7bb2be024a17dd417813e"
+    },
+    {
+      "key": "fondo_teleferico_capa4",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_teleferico_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "08b9a7729a4db537c0eecafc0c2dd08abca7cd1a9dc066457c996f0387d1248f"
+    },
+    {
+      "key": "fondo_teleferico_capa5",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_teleferico_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "d7dc804dab61183556974f17b22b8fa150f2c3aa0321c5e52cd86d8824fa6c72"
+    },
+    {
+      "key": "fondo_torre_capa0",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_torre_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "d9019ff61e426b419b5b40b4af8a37a96881b2c10e5692cc6c2fa55f7c89dff6"
+    },
+    {
+      "key": "fondo_torre_capa1",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_torre_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "a03f29eb59e70e11cf20edb19f32198cae63c2a2119b976282ef908adf24dc87"
+    },
+    {
+      "key": "fondo_torre_capa2",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_torre_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "ad679411418a7828773d63636039106d115b46249d39560b00b6067871c5b5d1"
+    },
+    {
+      "key": "fondo_torre_capa3",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_torre_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "90efcb5ad76eaaaff6ecdc01e0a33ce39a6bc49c8632d5b307baeea100871b54"
+    },
+    {
+      "key": "fondo_torre_capa4",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_torre_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "c5edcbb7ff6a327f61df578d16c4949c9258a6e1b5c9b49ab86ac7e3b0fb47e9"
+    },
+    {
+      "key": "fondo_torre_capa5",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_torre_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "2e2f30d9d579064f65484a2f51b47c2a2fa69a28f2056796cc73c7b3dd8c0425"
+    },
+    {
+      "key": "fondo_salon_trono_capa0",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_salon_trono_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "a27b02a3e84b64396baf86aec05dd2535c83497990cfcfae3843f5f0d21b728e"
+    },
+    {
+      "key": "fondo_salon_trono_capa1",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_salon_trono_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "41a0a8cb6928614ef22168e7c8a1d9eef6d1e9e1116e035bd5d126cc75dec237"
+    },
+    {
+      "key": "fondo_salon_trono_capa2",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_salon_trono_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "4a8b710c631d0f0137a6047243e5d1ccc47c59398b7dcdc18f01f2548b1e9b5f"
+    },
+    {
+      "key": "fondo_salon_trono_capa3",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_salon_trono_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "00e11ad7b8b1606a6da6ab3ccc2631954c22c3667b5db9c2d8c46d050524ca89"
+    },
+    {
+      "key": "fondo_salon_trono_capa4",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_salon_trono_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "c2344953d90d5fa31a4e479188a862edcc144acf7c8fe00e19e2a7a04a5c8cf8"
+    },
+    {
+      "key": "fondo_salon_trono_capa5",
+      "path": "assets/escenarios/nivel-07-cdmx2/fondos/fondo_salon_trono_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "0161b93aa2465aa245667cd599388d757241724532c23f914790011468b4f64b"
+    },
+    {
+      "key": "prop_n07_puerta_cabina",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_puerta_cabina.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "952a649f3a130e80a92b98c57470ffa8c89dfdc736e15275e65c1d61c7b75325"
+    },
+    {
+      "key": "prop_n07_asidero",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_asidero.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "04f94f1e1923fd915113729bc6a222259cebe4f40a2b4cdaa41e861c6c41d9c1"
+    },
+    {
+      "key": "prop_n07_torre_cable",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_torre_cable.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "86a294cf0899ca073a9c6b4fba699fe27cc20d149ed474990d70142318aa9019"
+    },
+    {
+      "key": "prop_n07_banca_cabina",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_banca_cabina.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "ff4c0d28400a98de5baf30b25f40700d2d3c4abb75874917d68ea337635d002c"
+    },
+    {
+      "key": "prop_n07_extintor",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_extintor.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "21f8a905c3eb813c43d409421790785671b82cd8adc7e984836ebbb87cd97a41"
+    },
+    {
+      "key": "prop_n07_maletas",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_maletas.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "8129b4b28e02bef14ecd26a089355c99d305a31c4e7d7ac63fd7fc2e87fe0c15"
+    },
+    {
+      "key": "prop_n07_silla",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_silla.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "667ed93be6f45b827d8337d94f03ac1a4baea0b3f0345767cb9297708490bf35"
+    },
+    {
+      "key": "prop_n07_cables_suelo",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_cables_suelo.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "bec41eebbaad9ce8ae22ad4b9c02eecb88bb135c328d996460d778ca0807531c"
+    },
+    {
+      "key": "prop_n07_columna",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_columna.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "f4d250fcc5df0891bc62b02ddff45770c62fc187d86a521bb2daeb4fb79ee13b"
+    },
+    {
+      "key": "prop_n07_vitral_roto",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_vitral_roto.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "a4a5f0030e4c32f5b9bc202767261289b90162134b93cbf97b172c6f89fb5e87"
     }
   ],
   "sheets": [
@@ -2187,6 +2383,201 @@
       "placeholder": true,
       "generator": "tools/gen-cdmx-scenery.mjs",
       "generatedSha256": "e703efbc0740720a98e88f1e0ac7e85c20d7b93b9a76f17bc646d55c43404655"
+    },
+    {
+      "key": "prop_n07_cabina_lejana",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_cabina_lejana.png",
+      "frameWidth": 40,
+      "frameHeight": 52,
+      "frames": 2,
+      "frameRate": 2,
+      "repeat": -1,
+      "originY": 0.9808,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "7e8d9b5e63351e9298c38af22e425939320edd65ec63f7d7f74c6f4f417c1479"
+    },
+    {
+      "key": "prop_n07_estacion_superior",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_estacion_superior.png",
+      "frameWidth": 288,
+      "frameHeight": 200,
+      "frames": 2,
+      "frameRate": 2,
+      "repeat": -1,
+      "originY": 0.995,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "f2ace0c7550ad554a6147cbaa95ce9bbb90ee4ad24b789609fa81844f32f6799"
+    },
+    {
+      "key": "prop_n07_rayo",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_rayo.png",
+      "frameWidth": 72,
+      "frameHeight": 220,
+      "frames": 4,
+      "frameRate": 1,
+      "repeat": -1,
+      "originY": 0.9955,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "4152492ffac2f85fc6dbecb5c00ef5ecce5f91f13211f6836c186bd28cabed59"
+    },
+    {
+      "key": "prop_n07_consola",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_consola.png",
+      "frameWidth": 96,
+      "frameHeight": 64,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.9844,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "4587558ee4bed48882c84a01052be2c70e786b5017a87370ba88155b87aacbad"
+    },
+    {
+      "key": "prop_n07_consola_rota",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_consola_rota.png",
+      "frameWidth": 96,
+      "frameHeight": 64,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.9844,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "ae1b214796a072169a1aa7038977a4b15a2df97012a28adf72249d92835e815d"
+    },
+    {
+      "key": "prop_n07_monitor_estatica",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_monitor_estatica.png",
+      "frameWidth": 48,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 10,
+      "repeat": -1,
+      "originY": 0.9875,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "4f2df6f359c05e546a544c881a5bfc86008c548b52e750997c9657c7c1db36cb"
+    },
+    {
+      "key": "prop_n07_rack",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_rack.png",
+      "frameWidth": 48,
+      "frameHeight": 96,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.9896,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "9e3c4da6d9697ae0cafa6595faf38bcbeca107aa6200b34e8cb8ac7c9cee3285"
+    },
+    {
+      "key": "prop_n07_charco",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_charco.png",
+      "frameWidth": 64,
+      "frameHeight": 16,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.9375,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "2ed5b1e617c86084ad0f63cd898f5a42546ddb801bbc03aaa157f56743663c07"
+    },
+    {
+      "key": "prop_n07_estatica",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_estatica.png",
+      "frameWidth": 32,
+      "frameHeight": 24,
+      "frames": 4,
+      "frameRate": 12,
+      "repeat": -1,
+      "originY": 0.9583,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "a3bce95207f4c9362e24245df7258fad2e7f635a5d3602a599e4ea58d695a458"
+    },
+    {
+      "key": "prop_n07_trono",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_trono.png",
+      "frameWidth": 112,
+      "frameHeight": 144,
+      "frames": 2,
+      "frameRate": 1,
+      "repeat": -1,
+      "originY": 0.9931,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "29d2ad00e8e9da7c7754ae3ccbaf80a2ba567b28ab505806fb221225dbfa50e6"
+    },
+    {
+      "key": "prop_n07_brasero_azul",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_brasero_azul.png",
+      "frameWidth": 32,
+      "frameHeight": 56,
+      "frames": 4,
+      "frameRate": 7,
+      "repeat": -1,
+      "originY": 0.9821,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "9ea255fbacd9e46f7c44c7d76892dfd174e9dd872bd6513899e6dc35f719bf5b"
+    },
+    {
+      "key": "prop_n07_consola_llamada",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_consola_llamada.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.9875,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "6fb2797463c5cbbe751ff28121f5f6980e04fdc1c76f039528d27652c5fe9595"
+    },
+    {
+      "key": "prop_n07_onda",
+      "path": "assets/escenarios/nivel-07-cdmx2/props/prop_n07_onda.png",
+      "frameWidth": 32,
+      "frameHeight": 12,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.9167,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "b8b683163aa04e3bf8b7153ac3e78d448831244f9eadf6dfb1be8fa076e7394a"
+    },
+    {
+      "key": "npc_tecnico_1",
+      "path": "assets/sprites/npcs/npc_tecnico_1.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "2fe7feb0b8e91811e43a77b8699eb863ff78f466f1cd9f0321cbc890f680ff82"
+    },
+    {
+      "key": "npc_tecnico_2",
+      "path": "assets/sprites/npcs/npc_tecnico_2.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx2-scenery.mjs",
+      "generatedSha256": "aac177bc599f4277de505dfe9b6b616aa60d7fa3ebb6581bf463677228847544"
     }
   ]
 }

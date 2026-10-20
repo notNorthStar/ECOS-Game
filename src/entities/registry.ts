@@ -9,6 +9,7 @@ import { BrujaGuajolote } from './BrujaGuajolote';
 import { Muneca } from './Muneca';
 import { Nahual } from './Nahual';
 import { Nahuala } from './Nahuala';
+import { ReyOlvido } from './ReyOlvido';
 
 /**
  * Fábrica de enemigos (dueño: combate). La usa LevelScene.spawnEnemy(spec):
@@ -41,9 +42,9 @@ export function createEnemy(world: WorldApi, spec: EnemySpec): EnemyApi {
       return new Nahual(world, spec.x, spec.y, { id: spec.id, disguise: spec.disguise, group: spec.group });
     case 'nahuala':
       return new Nahuala(world, spec.x, spec.y, spec.group);
-    // Nivel 7 (dueño: enemigos). Reemplazar al crear ReyOlvido.ts.
+    // Nivel 7 (dueño: enemigos). Jefe del salón del trono; sus clones de memoria son internos (ReyClon).
     case 'rey_olvido':
-      throw new Error(`Enemigo del Nivel 7 sin implementar: ${spec.type}`);
+      return new ReyOlvido(world, spec.x, spec.y, spec.group);
     default: {
       const t: never = spec.type;
       throw new Error(`Tipo de enemigo desconocido: ${String(t)}`);

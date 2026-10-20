@@ -85,6 +85,11 @@
 **Qué resultó:** contratos (`docs/NIVEL_06_CONTRATOS.md`), salida de Oaxaca hacia la CDMX y cinco subagentes: escenario + sobrevivientes (Opus), doble salto + obstáculos con altura + VERDAD/FUEGO/DESCANSO (Opus), muñecas + nahuales infiltrados + la Nahuala (Opus), mapas + guion + pruebas (Sonnet) y audio con organillo y percusión prehispánica (Sonnet). Partida completa en navegador; corregidas 17 claves de props inexistentes, el conteo de muñecas en las emboscadas y el umbral de salto de los láseres de la Cabeza Olmeca.
 **Qué decidió o modificó el equipo:** omitir Puebla; dar su fragmento en Oaxaca; mover doble salto, VERDAD, FUEGO y los diálogos de María a la CDMX; enseñar también DESCANSO; doble salto comprable con zonas opcionales; la Nahuala (antes de Puebla) como jefa de la CDMX; pista de Luna + VERDAD para los nahuales.
 
+## 2026-10-19 · Claude Code (Anthropic, Claude Opus 5.5 + Sonnet 5.5) · Nivel 7, CDMX parte 2
+**Qué se pidió:** el Nivel 7 con la misma dinámica: teleférico, torre, revelación de María, la Llorona aliada contra el Rey del Olvido y la secuencia CONSUELO → MEMORIA → PAZ.
+**Qué resultó:** contratos (`docs/NIVEL_07_CONTRATOS.md`), salida del Nivel 6 hacia el teleférico y cinco subagentes: escenario de la cabina, la torre y el salón con técnicos de la torre (Opus); controles invertidos, Llorona aliada, transformación de María, `castSpellNow`, CONSUELO y PAZ (Opus); el Rey del Olvido y la guardia de élite (Opus); mapas, guion, director y pruebas (Sonnet); música y efectos, con un arreglo propio de la melodía tradicional "La Llorona" (Sonnet). Partida completa en navegador; corregidas claves de props, sonidos duplicados o sin sintetizar, el HUD que quedaba sobre el título al final y los avisos largos que se cortaban (ahora hacen salto de línea).
+**Qué decidió o modificó el equipo:** cabina como arena en movimiento; la corona invierte los controles 3–4 s con aviso y opción de accesibilidad para desactivarlo; melodía tradicional con arreglo propio; revelación sugerida, sin mostrarla.
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**

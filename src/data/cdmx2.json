@@ -1,0 +1,116 @@
+{
+  "note": "Números del Nivel 7 (dueño: contenido). Todo lo ajustable del Cdmx2Director vive aquí. Ecos estimados ~1,300: espíritus + encapuchados de las oleadas (~330), élites y negros de la torre (~240), recompensas directas (~160) y el Rey del Olvido (~600, enemies.json).",
+  "toastMs": 4200,
+  "hud": { "x": 12, "y": 90, "fontSize": 10 },
+  "comentarioMariaMs": 6500,
+  "musica": {
+    "teleferico": "n07_teleferico",
+    "torre": "n07_torre",
+    "salon": "n07_salon",
+    "jefe": "n07_jefe",
+    "llorona": "n07_llorona"
+  },
+  "teleferico": {
+    "arena": { "x0": 0, "x1": 800, "grupo": "ola" },
+    "puertas": { "izq": { "x": 44, "y": 285 }, "der": { "x": 756, "y": 285 } },
+    "tickMs": 300,
+    "pausaEntreOlasMs": 3500,
+    "pistaLunaMs": 16000,
+    "estacionMs": 2600,
+    "olas": [
+      {
+        "nombre": "Espíritus del cable",
+        "entradas": [
+          { "t": 800, "side": "izq", "type": "espiritu", "lunaOnly": true },
+          { "t": 3200, "side": "der", "type": "espiritu", "lunaOnly": true },
+          { "t": 6500, "side": "izq", "type": "espiritu", "lunaOnly": true }
+        ]
+      },
+      {
+        "nombre": "Abordaje de la Cofradía",
+        "entradas": [
+          { "t": 800, "side": "der", "type": "encapuchado", "rank": "rojo" },
+          { "t": 2600, "side": "izq", "type": "espiritu", "lunaOnly": true },
+          { "t": 5200, "side": "izq", "type": "encapuchado", "rank": "rojo" },
+          { "t": 7600, "side": "der", "type": "espiritu", "lunaOnly": true }
+        ]
+      },
+      {
+        "nombre": "Tormenta de sombras",
+        "entradas": [
+          { "t": 600, "side": "izq", "type": "espiritu", "lunaOnly": true },
+          { "t": 1800, "side": "der", "type": "espiritu", "lunaOnly": true },
+          { "t": 3600, "side": "der", "type": "encapuchado", "rank": "rojo" },
+          { "t": 5400, "side": "izq", "type": "encapuchado", "rank": "negro" },
+          { "t": 8000, "side": "der", "type": "espiritu", "lunaOnly": true }
+        ]
+      },
+      {
+        "nombre": "La última puerta",
+        "entradas": [
+          { "t": 600, "side": "izq", "type": "encapuchado", "rank": "negro" },
+          { "t": 2200, "side": "der", "type": "espiritu", "lunaOnly": true },
+          { "t": 3800, "side": "izq", "type": "espiritu", "lunaOnly": true },
+          { "t": 5600, "side": "der", "type": "encapuchado", "rank": "negro" },
+          { "t": 8200, "side": "izq", "type": "encapuchado", "rank": "rojo" }
+        ]
+      }
+    ],
+    "dialogoTrasOla": { "0": "n07_tormenta", "1": "n07_maria_olvido" },
+    "marcaOlaMaria": 1
+  },
+  "torre": {
+    "elites": 7,
+    "puntoControlMitad": "mitad"
+  },
+  "jefe": {
+    "grupo": "rey",
+    "x0": 600,
+    "x1": 1800,
+    "respaldoMs": 6000,
+    "llorona": { "dx": -70, "dy": -20 }
+  },
+  "final": {
+    "timeScale": 0.12,
+    "pausaMs": 900,
+    "pasos": [
+      { "id": "consuelo_aprender", "tipo": "aprender", "conjuro": "CONSUELO", "intro": "n07_consuelo" },
+      { "id": "consuelo_lanzar", "tipo": "lanzar", "conjuro": "CONSUELO", "ok": "n07_consuelo_ok", "repite": "n07_consuelo_repite" },
+      { "id": "memoria_lanzar", "tipo": "lanzar", "conjuro": "MEMORIA", "intro": "n07_memoria_aviso", "ok": "n07_memoria_ok", "repite": "n07_memoria_repite" },
+      { "id": "paz_aprender", "tipo": "aprender", "conjuro": "PAZ", "intro": "n07_paz" },
+      { "id": "paz_lanzar", "tipo": "lanzar", "conjuro": "PAZ", "ok": "n07_paz_ok", "repite": "n07_paz_repite" }
+    ]
+  },
+  "rewards": {
+    "ola": 20,
+    "conjuro": 25,
+    "descubrimiento": 4,
+    "torre": 40,
+    "paso": 20,
+    "fragmento": 80,
+    "consola": 30
+  },
+  "maria": {
+    "subida": {
+      "text": "Cada cable que pasa, un recuerdo se me suelta del pecho. No sé si quiero que se suelte.",
+      "ms": 7000
+    },
+    "tormenta": {
+      "text": "El cielo está llorando. Siempre que llueve así, siento que alguien me llama desde abajo.",
+      "ms": 7000
+    },
+    "elite": {
+      "text": "Estos de rojo oscuro no sienten nada. Yo quisiera no sentir tanto... pero no así.",
+      "ms": 7000
+    },
+    "torre": {
+      "text": "Mi nombre está en alguna de esas pantallas. Lo sé, aunque no pueda leerlo.",
+      "ms": 7000
+    }
+  },
+  "salida": {
+    "escena": "Title",
+    "esperaMs": 2200,
+    "aviso": "Cuatro de seis fragmentos del Sello. Rumbo a Guanajuato (próximamente)."
+  }
+}

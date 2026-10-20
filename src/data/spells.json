@@ -6,7 +6,9 @@
     "MEMORIA": "purifyRadius (px): purifica a las bestias corrompidas (agotadas o no) dentro del radio; al purificarse revelan el pasaje oculto ('pasaje:revealed', lo emite quien corresponda) · stunRadius (px) + stun: aturde a lo demás que esté cerca (al encapuchado no le hace nada: ➖) · bossSeal: avance del sello de la Bruja Guajolote si la alcanza en su ventana de vulnerabilidad (afinidad ✅ en ambas formas). Radios × powerScale(power); bossSeal × power si es parcial.",
     "VERDAD": "revealRadius (px): rompe ilusiones y disfraces dentro del radio — revela a los nahuales disfrazados (se transforman SIN zarpazo sorpresa, 'nahual:revealed'), disipa las copias de la Nahuala y deja expuesta a la real · stun (s): aturde a lo revelado, a nahuales transformados y a encapuchados (➖ leve en el resto) · bossSeal: avance del sello de la Nahuala si la alcanza en su ventana. Radio × powerScale(power); stun y bossSeal × power.",
     "FUEGO": "length (px) hacia facing, |Δy| <= width: ráfaga de fuego en línea (como SOL) · damage (pts de vida del enemigo; 70 deja inconsciente a un encapuchado rojo de 60 y destruye muñecas) · knockback (px) · burnMs: cuánto arde (visual) el blanco alcanzado. Daño × power. ❌ contra la Nahuala (la cura o la enfurece): lo decide el enemigo.",
-    "DESCANSO": "purifyRadius (px): libera a los muertos que no descansan dentro del radio — el alma atrapada en las muñecas poseídas (quedan inertes, sin violencia) y los espíritus · stun (s): aturdimiento breve (➖) a lo demás que esté cerca. Radio × powerScale(power); stun × power."
+    "DESCANSO": "purifyRadius (px): libera a los muertos que no descansan dentro del radio — el alma atrapada en las muñecas poseídas (quedan inertes, sin violencia) y los espíritus · stun (s): aturdimiento breve (➖) a lo demás que esté cerca. Radio × powerScale(power); stun × power.",
+    "CONSUELO": "Conjuro de HISTORIA (type 'historia': no entra en la rueda ni se selecciona; lo lanza el director con castSpellNow en la secuencia final del Nivel 7). calmRadius (px): alcance del consuelo alrededor del jugador (la Llorona fuera de control dentro del radio se aquieta) · calmMs: cuánto dura la calma antes de volver a agitarse si la secuencia no sigue · lightMs: duración del brillo cálido. Radio × powerScale(power). No daña ni aturde a nadie.",
+    "PAZ": "Conjuro de HISTORIA (type 'historia'; ver CONSUELO). Cierra la secuencia CONSUELO → MEMORIA → PAZ: libera a la Llorona, que recupera el recuerdo del amor por sus hijos y se despide. peaceRadius (px): alcance de la luz de paz · lightMs: duración del brillo. Radio × powerScale(power). No daña ni aturde a nadie."
   },
   "masteryRules": {
     "partialMinFraction": 0.8,
@@ -162,6 +164,37 @@
       "effect": {
         "purifyRadius": 140,
         "stun": 1.5
+      }
+    },
+    {
+      "id": "CONSUELO",
+      "name": "CONSUELO",
+      "type": "historia",
+      "title": "Consuelo",
+      "desc": "Un consuelo para quien ha llorado demasiado tiempo. Aquieta el dolor de la Llorona para que pueda escuchar y recordar.",
+      "learnedFrom": "Salón del trono del Rey del Olvido (secuencia para la Llorona)",
+      "color": "#a8c8ff",
+      "letterWindowMs": 4600,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "calmRadius": 220,
+        "calmMs": 8000,
+        "lightMs": 2500
+      }
+    },
+    {
+      "id": "PAZ",
+      "name": "PAZ",
+      "type": "historia",
+      "title": "Paz",
+      "desc": "La paz de quien por fin recuerda. Libera a la Llorona del olvido: recupera el amor por sus hijos y puede descansar.",
+      "learnedFrom": "Salón del trono del Rey del Olvido (secuencia para la Llorona)",
+      "color": "#f4f0ff",
+      "letterWindowMs": 4000,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "peaceRadius": 260,
+        "lightMs": 4000
       }
     }
   ]

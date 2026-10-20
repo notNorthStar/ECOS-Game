@@ -166,7 +166,7 @@ export class HudScene extends Phaser.Scene {
 
     // Avisos.
     this.toastBg = this.add.graphics();
-    this.toastText = this.add.text(0, 0, '', textStyle(9)).setOrigin(0.5);
+    this.toastText = this.add.text(0, 0, '', { ...textStyle(9), align: 'center', wordWrap: { width: GAME_WIDTH - 60 } }).setOrigin(0.5);
     const toastBox = this.add.container(GAME_WIDTH / 2, GAME_HEIGHT - 72, [this.toastBg, this.toastText]);
     toastBox.setName('toast');
     this.toastText.setAlpha(0);
@@ -441,7 +441,8 @@ export class HudScene extends Phaser.Scene {
     if (!next) return;
     this.toastText.setText(next.text).setAlpha(1);
     const w = this.toastText.width + 16;
-    this.toastBg.clear().fillStyle(0x0a0a14, 0.75).fillRoundedRect(-w / 2, -9, w, 18, 4).lineStyle(1, 0x5a8a7a, 0.8).strokeRoundedRect(-w / 2, -9, w, 18, 4);
+    const h = Math.max(18, this.toastText.height + 6); // avisos largos ocupan dos líneas
+    this.toastBg.clear().fillStyle(0x0a0a14, 0.75).fillRoundedRect(-w / 2, -h / 2, w, h, 4).lineStyle(1, 0x5a8a7a, 0.8).strokeRoundedRect(-w / 2, -h / 2, w, h, 4);
     this.toastBg.setAlpha(1);
     this.toastLeft = next.ms;
     this.tweens.add({ targets: [this.toastText, this.toastBg], y: { from: 6, to: 0 }, duration: 160 });

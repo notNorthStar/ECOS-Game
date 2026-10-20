@@ -236,6 +236,8 @@ export class Encapuchado extends EnemyBase {
   private cone: Phaser.GameObjects.Graphics | null = null;
   private orb: Phaser.GameObjects.Image | null = null;
   private walkPhase = Math.random() * 10;
+  /** Brillo rojo de los ojos (solo élite). */
+  private eyeGlow: Phaser.GameObjects.Image | null = null;
 
   constructor(world: WorldApi, x: number, y: number, rank: CofradiaRank = 'rojo', group?: string) {
     const R = E.ranks[rank];
@@ -259,8 +261,12 @@ export class Encapuchado extends EnemyBase {
     this.homeY = y;
     this.patrolDir = this.uid % 2 ? 1 : -1;
     this.facing = this.patrolDir;
-    // Con el kit del equipo (un solo modelo) el rango se distingue con tinte.
-    if (this.kit && rank !== 'rojo') this.setBaseTint(hexColor(R.robe) | 0x404040);
+    // Con el kit del equipo (un solo modelo) el rango se distingue con tinte (ranks.<rango>.kitTint).
+    if (this.kit && rank !== 'rojo') this.setBaseTint(hexColor(R.kitTint));
+    // Élite (Nivel 7): ojos rojos que brillan, con o sin kit (Negro con detalles rojos).
+    if (R.eyeGlow > 0) {
+      this.eyeGlow = this.scene.add.image(x, y, FB.glow).setTint(hexColor(R.trim)).setBlendMode(Phaser.BlendModes.ADD).setScale(0.32, 0.2).setAlpha(R.eyeGlow);
+    }
     // Los de un grupo de arena aparecen ya alertas.
     if (group) this.becomeAware(false);
     if (E.vision.showCone && !group) this.cone = this.scene.add.graphics();
@@ -426,7 +432,7 @@ export class Encapuchado extends EnemyBase {
       }
       case 'recover':
         if (this.stT >= 0) {
-          this.cooldown = randRange(E.attackCooldown);
+          this.cooldown = randRange(E.attackCooldown) * this.R.cooldownMult;
           this.set('combat');
         }
         break;
@@ -452,6 +458,13 @@ export class Encapuchado extends EnemyBase {
     this.icon?.setPosition(this.x, this.y - this.z - this.height - 6).setDepth(this.y + FX_DEPTH_BIAS);
     if (this.icon && this.iconChar === '!' && this.st !== 'alert' && this.stT > 1.2) this.setIcon('');
     this.drawCone();
+    if (this.eyeGlow) {
+      const pulse = 0.75 + 0.25 * Math.sin(this.scene.time.now / 160 + this.uid);
+      this.eyeGlow
+        .setPosition(this.x + this.facing * 4, this.y - this.z - this.bob - 54)
+        .setDepth(this.y + FX_DEPTH_BIAS)
+        .setAlpha(this.R.eyeGlow * pulse * this.sprite.alpha);
+    }
   }
 
   private isMoving = false;
@@ -662,6 +675,8 @@ export class Encapuchado extends EnemyBase {
     this.cone?.destroy();
     this.cone = null;
     this.set('down');
+    this.eyeGlow?.destroy();
+    this.eyeGlow = null;
     this.sprite.setTintMode(Phaser.TintModes.MULTIPLY).setTint(this.baseTint);
     sfx('encapuchado_cae');
     bus.emit('ecos:gained', { amount: this._ecos, x: this.x, y: this.y - 30 });
@@ -741,5 +756,7 @@ export class Encapuchado extends EnemyBase {
     this.cone?.destroy();
     this.cone = null;
     this.clearOrb();
+    this.eyeGlow?.destroy();
+    this.eyeGlow = null;
   }
 }

@@ -172,8 +172,10 @@ export class Player implements PlayerApi {
 
   private readInput() {
     const ok = this.canAct;
-    const dx = ok ? (keys.isDown('right') ? 1 : 0) - (keys.isDown('left') ? 1 : 0) : 0;
-    const dy = ok ? (keys.isDown('down') ? 1 : 0) - (keys.isDown('up') ? 1 : 0) : 0;
+    // Corona del Rey del Olvido (systems/MindControl.ts): invierte SOLO el movimiento, no el apuntado ni los conjuros.
+    const inv = GameState.controlsInverted ? -1 : 1;
+    const dx = ok ? inv * ((keys.isDown('right') ? 1 : 0) - (keys.isDown('left') ? 1 : 0)) : 0;
+    const dy = ok ? inv * ((keys.isDown('down') ? 1 : 0) - (keys.isDown('up') ? 1 : 0)) : 0;
     return {
       dx,
       dy,

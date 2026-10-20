@@ -6,13 +6,14 @@ import { ALIAS, EFECTOS, MAX_VOCES, reiniciarLetras } from './audio/efectos';
 import { Musica, PISTAS, type ArchivoMusica } from './audio/musica';
 import { MAPA_MUSICA } from './audio/config';
 import { setFormaBruja } from './audio/oaxaca';
+import { conectarEventosN07 } from './audio/cdmx2';
 
 /**
  * Sistema de audio de ECOS (WebAudio puro, sin el SoundManager de Phaser).
  *
  * - Efectos: `bus.emit('sfx', { name })` o `sfx(name)`. Si existe
  *   `public/assets/audio/sfx/sfx_<name>.ogg` se usa el archivo; si no, se sintetiza.
- * - Música: `bus.emit('music', { track })` con 'n06_xochimilco' | 'n06_avenidas' | 'n06_reforma' | 'n06_combate' | 'n06_jefe' | 'n04_ciudad' | 'n04_combate' | 'n04_templo' | 'n04_jefe' | 'n01_taller' | 'n01_exploracion' | 'n01_combate' |
+ * - Música: `bus.emit('music', { track })` con 'n07_teleferico' | 'n07_torre' | 'n07_salon' | 'n07_jefe' | 'n07_llorona' | 'n06_xochimilco' | 'n06_avenidas' | 'n06_reforma' | 'n06_combate' | 'n06_jefe' | 'n04_ciudad' | 'n04_combate' | 'n04_templo' | 'n04_jefe' | 'n01_taller' | 'n01_exploracion' | 'n01_combate' |
  *   'n01_jefe' | 'n02_fandango' | 'n03_pueblo' | 'n03_lago' | 'n03_altar' | 'n03_jefe' | 'titulo'
  *   (o null para silencio). Si existe `musica_<track>.ogg` (o .mp3) se usa en bucle; si no, el archivo
  *   del equipo indicado en `audio/config.ts` (MAPA_MUSICA); si tampoco, se genera de forma procedural. El fandango usa siempre capas procedurales
@@ -261,7 +262,8 @@ function conectarBus(): void {
     if (musica?.actual?.startsWith('n03_')) return;
     // Nivel 4: la fase 1/2/3 de la Bruja sube la intensidad de n04_jefe (sin rugido de Chaneque).
     // Nivel 6: la fase 1/2/3 de la Nahuala sube la intensidad de n06_jefe.
-    if (musica?.actual?.startsWith('n06_')) {
+    // Nivel 7: la fase 1/2/3 del Rey del Olvido sube la intensidad de n07_jefe.
+    if (musica?.actual?.startsWith('n07_') || musica?.actual?.startsWith('n06_')) {
       musica.setIntensidad(phase === 1 ? 0 : phase === 2 ? 0.55 : 1);
       return;
     }
@@ -318,6 +320,9 @@ function conectarBus(): void {
   bus.on('nahual:fled', () => reproducirSfx('nahual_huir'));
   bus.on('nahuala:illusion', () => reproducirSfx('nahuala_ilusion'));
 
+  // Nivel 7: Llorona, corona del Rey, inversión de controles, María y cabina.
+  conectarEventosN07(reproducirSfx);
+
   // Progresión.
   bus.on('ecos:changed', () => reproducirSfx('eco'));
   bus.on('upgrade:bought', () => reproducirSfx('mejora'));
@@ -326,6 +331,8 @@ function conectarBus(): void {
   bus.on('arena:start', () => {
     if (!musica) return;
     const actual = musica.actual;
+    // Nivel 7: sin música de combate aparte (cada sección ya es tensa); no cambia.
+    if (actual?.startsWith('n07_')) return;
     // Nivel 6: las calles ceden a n06_combate; el jefe no cambia.
     if (actual?.startsWith('n06_')) {
       if (actual === 'n06_xochimilco' || actual === 'n06_avenidas' || actual === 'n06_reforma') {

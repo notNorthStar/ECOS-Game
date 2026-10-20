@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+﻿import Phaser from 'phaser';
 import type { EnemyApi, WorldApi } from '../core/contracts';
 import { bus, sfx } from '../core/bus';
 import { GameState } from '../core/GameState';
@@ -54,6 +54,22 @@ export function wakeMaria(x?: number, y?: number): void {
   GameState.hasMaria = true;
   pendingSpawn = x !== undefined && y !== undefined ? { x, y } : null;
   spawnHook?.(x, y);
+}
+
+let transformHook: (() => Promise<void>) | null = null;
+
+/**
+ * Nivel 7: María se transforma (en la Llorona). Deja de seguir, la envuelven agua y niebla y desaparece
+ * (sugerido, sin violencia). Al terminar: GameState.hasMaria = false y emite 'maria:transform'.
+ * Si no está en escena, solo actualiza el estado y emite el evento. Resuelve al terminar el efecto (~1.8 s).
+ * Para colocar a la Llorona donde estaba, lee getMariaPosition() ANTES de llamarla.
+ */
+export function mariaTransform(): Promise<void> {
+  if (transformHook) return transformHook();
+  GameState.hasMaria = false;
+  pendingSpawn = null;
+  bus.emit('maria:transform', {});
+  return Promise.resolve();
 }
 
 /** Posición actual de María en el plano del suelo (null si no está en la escena). */
@@ -166,6 +182,77 @@ export function installMaria(world: WorldApi): void {
     pendingSpawn = null;
     spawn(pt.x, pt.y, false);
   }
+
+  /* --------------------------- Transformación --------------------------- */
+
+  let transforming = false;
+  transformHook = () => {
+    const finish = () => {
+      GameState.hasMaria = false;
+      pendingSpawn = null;
+      current = null;
+      status.visible = false;
+      status.casting = false;
+      bus.emit('maria:transform', {});
+    };
+    if (!sprite || transforming) {
+      if (!transforming) finish();
+      return Promise.resolve();
+    }
+    transforming = true;
+    windup = 0;
+    hideBubble();
+    const s = sprite;
+    const x = me.x;
+    const y = me.y;
+    const ms = 1800;
+    sfx('maria_transformar');
+    return new Promise<void>((resolve) => {
+      // Agua: ondas a sus pies; niebla: motas pálidas que suben y la envuelven.
+      const waves = reduceFx() ? 1 : 4;
+      for (let i = 0; i < waves; i++) {
+        const w = scene.add
+          .ellipse(x, y, 60, 18, 0x000000, 0)
+          .setStrokeStyle(1, i % 2 ? M.colorCore : M.color, 0.8)
+          .setDepth(y - 1)
+          .setScale(0.1);
+        scene.tweens.add({ targets: w, scale: 1.4, alpha: 0, delay: i * 320, duration: 900, onComplete: () => w.destroy() });
+      }
+      if (!reduceFx()) {
+        const mist = scene.time.addEvent({ delay: 90, repeat: Math.floor(ms / 90) - 1, callback: () => motes(x, y - HEAD_H * 0.5, y + 1, 2) });
+        scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => mist.remove());
+      }
+      if (aura) scene.tweens.add({ targets: aura, alpha: reduceFx() ? 0.4 : 0.8, scale: 3.5, duration: ms * 0.6, yoyo: true });
+      s.setTint(0xcfe0ff);
+      scene.tweens.add({
+        targets: s,
+        alpha: 0,
+        scaleY: 1.08,
+        duration: ms,
+        ease: 'Sine.easeIn',
+        onComplete: () => {
+          s.destroy();
+          shadow?.destroy();
+          aura?.destroy();
+          if (sprite === s) sprite = null;
+          shadow = null;
+          aura = null;
+          kit = null;
+          transforming = false;
+          finish();
+          resolve();
+        },
+      });
+      if (shadow) scene.tweens.add({ targets: shadow, alpha: 0, duration: ms });
+      // Si la escena se apaga a media transformación, igual se completa el estado.
+      scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+        if (!transforming) return;
+        transforming = false;
+        finish();
+        resolve();
+      });
+    });
+  };
 
   spawnHook = (x?: number, y?: number) => {
     if (sprite) return;
@@ -327,7 +414,7 @@ export function installMaria(world: WorldApi): void {
   /* ------------------------------ Update ----------------------------- */
 
   const onUpdate = (_t: number, deltaMs: number) => {
-    if (!sprite || !shadow) return;
+    if (!sprite || !shadow || transforming) return;
     const realDt = Math.min(deltaMs / 1000, 0.05);
     const dt = realDt * world.timeScale;
     time += dt;
@@ -440,6 +527,7 @@ export function installMaria(world: WorldApi): void {
     bubble = null;
     current = null;
     spawnHook = null;
+    transformHook = null;
     status.visible = false;
     status.casting = false;
   });
