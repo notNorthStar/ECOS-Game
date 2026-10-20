@@ -136,6 +136,7 @@ function harness({ hasMaria = true, learned = ['CALMA', 'PROTECCION', 'VOZ', 'LU
     },
     '../data/cdmx2.json': config,
     './Campaign': {
+      prepareGdlEntry: () => calls.push(['prepareGdlEntry']),
       prepareCdmx2Entry: () => {
         calls.push(['prepareCdmx2Entry']);
         state.hasMaria = true;
@@ -625,7 +626,7 @@ await test('Muerte durante el jefe: el reintento reinicia al Rey limpio, vuelve 
   assert.equal(s2.world.player.controlsLocked, false);
 });
 
-await test('Rey calmado → CONSUELO → MEMORIA → PAZ (con un fallo repetido sin castigo) → despedida → 4.º fragmento → consola → título', async () => {
+await test('Rey calmado → CONSUELO → MEMORIA → PAZ (con un fallo repetido sin castigo) → despedida → fragmentos 4–6 → consola → Guadalajara', async () => {
   const { h, s } = await salonRevelado();
   h.castPlan.push('perfect', 'fail', 'partial', 'fail', 'fail', 'perfect');
   h.emit('boss:calmed', {});
@@ -657,14 +658,16 @@ await test('Rey calmado → CONSUELO → MEMORIA → PAZ (con un fallo repetido 
   assert.equal(s.world.timeScale, 1, 'el mundo no queda congelado');
   assert.equal(s.world.player.controlsLocked, false);
   assert.equal(h.sprites['salon_trono:n07_fragmento'].alpha, 0);
-  // La consola con la falsa llamada solo existe tras el final y cierra al título.
+  // La consola con la falsa llamada solo existe tras el final y lleva a Guadalajara (Nivel 10).
   s.tick();
   assert.match(h.text, /consola/);
   assert.equal(await h.act('n07_consola'), true);
   assert.ok(h.dialogues.includes('n07_consola_falsa') && h.dialogues.includes('n07_cierre'));
   assert.equal(h.state.flags['n07:completo'], true);
   assert.ok(h.toasts.some((t) => /Seis de seis/.test(t)));
-  assert.deepEqual(h.calls.filter(([k]) => k === 'start'), [['start', 'Title']]);
+  assert.deepEqual(h.calls.filter(([k]) => k === 'start'), []);
+  assert.ok(h.calls.some(([k]) => k === 'prepareGdlEntry'), 'prepara la entrada a Guadalajara');
+  assert.deepEqual(h.gotos().at(-1), ['goto', 'gdl_avenida']);
   assert.equal(await h.act('n07_consola'), false, 'solo una vez');
   assert.equal(h.state.ecos, h.rewards.reduce((a, b) => a + b, 0));
 });

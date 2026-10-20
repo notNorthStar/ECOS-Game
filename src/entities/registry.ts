@@ -45,6 +45,10 @@ export function createEnemy(world: WorldApi, spec: EnemySpec): EnemyApi {
     // Nivel 7 (dueño: enemigos). Jefe del salón del trono; sus clones de memoria son internos (ReyClon).
     case 'rey_olvido':
       return new ReyOlvido(world, spec.x, spec.y, spec.group);
+    // Nivel 10 (dueño: enemigos). Subjefas del eclipse y la jefa final.
+    case 'tzitzimitl':
+    case 'itzpapalotl':
+      throw new Error(`Enemigo del Nivel 10 sin implementar: ${spec.type}`);
     default: {
       const t: never = spec.type;
       throw new Error(`Tipo de enemigo desconocido: ${String(t)}`);

@@ -64,7 +64,10 @@ export type EnemyKind =
   // Nivel 6 (CDMX 1)
   | 'muneca' | 'nahual' | 'nahuala'
   // Nivel 7 (CDMX 2). Los clones de memoria son internos del Rey (como las copias de la Nahuala).
-  | 'rey_olvido';
+  | 'rey_olvido'
+  // Nivel 10 (Guadalajara): subjefas del eclipse y la jefa final.
+  | 'tzitzimitl'
+  | 'itzpapalotl';
 export type ChanequeVariant = 'patrulla' | 'saltador' | 'travieso';
 /** Rangos de la Cofradía: el MISMO modelo con recolor (GDD §9). En el Nivel 3 solo aparece 'rojo'. */
 export type CofradiaRank = 'rojo' | 'negro' | 'elite';

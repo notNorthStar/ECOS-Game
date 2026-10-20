@@ -38,6 +38,9 @@ export const GameState = {
   hasMaria: false,
   // Controles invertidos por la corona del Rey del Olvido (dueño: systems/MindControl.ts; lo lee Player).
   controlsInverted: false,
+  // Nivel 10: Balam en forma de jaguar luminoso (dueño: systems/BalamJaguar.ts) y jugador atado (dueño: GdlDirector).
+  balamJaguar: false,
+  bound: false,
   // Progreso del nivel (dueño: Director)
   section: 'taller' as SectionId,
   checkpoint: null as null | { section: SectionId; x: number; y: number },
@@ -83,6 +86,8 @@ export function resetGameState(): void {
     hasBalam: false,
     hasMaria: false,
     controlsInverted: false,
+    balamJaguar: false,
+    bound: false,
     section: 'taller',
     checkpoint: null,
     flags: {},

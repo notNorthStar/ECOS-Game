@@ -58,6 +58,15 @@ export interface BusEvents {
   'controls:invert': { on: boolean; ms: number };
   'llorona:scream': { x: number; y: number };
   'maria:transform': Record<string, never>;
+  // Nivel 10: ataduras, Balam jaguar, la madre en el altar, Tzitzimime e Itzpapálotl
+  'player:bound': { on: boolean };
+  'balam:jaguar': { on: boolean };
+  'balam:strike': { x: number; y: number };
+  'madre:awake': { on: boolean };
+  'madre:sign': { x: number; y: number; ms: number };
+  'itzpa:stagger': { ms: number };
+  'itzpa:core': { hits: number; max: number };
+  'eclipse:progress': { progress: number };
   // Mundo / director
   'trigger:enter': { trigger: LevelTrigger };
   'interact': { id: string; action: string; data?: Record<string, unknown> };

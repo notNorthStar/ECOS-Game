@@ -30,7 +30,12 @@ export const SECTIONS = [
   'oaxaca', 'callejones', 'santo_domingo',
   'xochimilco', 'avenidas', 'reforma',
   'teleferico', 'torre', 'salon_trono',
+  'gdl_avenida', 'catedral', 'catedral_eclipse',
 ] as const;
+
+/** Secciones del Nivel 10 (Guadalajara, el final), en orden. (Guanajuato y Jalisco se omiten.) */
+export const GDL_SECTIONS = ['gdl_avenida', 'catedral', 'catedral_eclipse'] as const;
+export const isGdl = (id: string): boolean => (GDL_SECTIONS as readonly string[]).includes(id);
 
 /** Secciones del Nivel 4 (Oaxaca), en orden. */
 export const OAXACA_SECTIONS = ['oaxaca', 'callejones', 'santo_domingo'] as const;

@@ -12,7 +12,7 @@ import { addEcos } from './Progression';
 import * as MariaMod from './Maria';
 import * as LloronaMod from './Llorona';
 import config from '../data/cdmx2.json';
-import { prepareCdmx2Entry } from './Campaign';
+import { prepareCdmx2Entry, prepareGdlEntry } from './Campaign';
 
 /**
  * Director del Nivel 7 · CDMX parte 2 (dueño: contenido). Secciones: teleferico → torre → salon_trono.
@@ -24,7 +24,7 @@ import { prepareCdmx2Entry } from './Campaign';
  * - torre: guardia de élite (rank 'elite') y algún Negro; checkpoint, altar y puerta (exige limpiar a la élite).
  * - salon_trono: revelación (María SUGERIDA, sin mostrar nada) → mariaTransform() → summonLlorona() → Rey del Olvido
  *   (nace en la arena 'rey' del nivel) → 'boss:calmed' → CONSUELO → MEMORIA → PAZ (cámara muy lenta, sin castigo) →
- *   despedida → 4.º, 5.º y 6.º fragmento → consola con la falsa llamada → salida (por ahora, al título).
+ *   despedida → 4.º, 5.º y 6.º fragmento → consola con la falsa llamada → Guadalajara (Nivel 10).
  *
  * Actions de interactuables: n07_examinar · altar · n07_consola. Actions de triggers: letras · dialogo · punto ·
  * ir_seccion · revelacion.
@@ -912,12 +912,8 @@ class Cdmx2Director {
     this.leaving = true;
     await this.wait(config.salida.esperaMs);
     if (!this.alive) return;
-    // Sigue Guadalajara (Nivel 10), que aún no existe: por ahora se vuelve al título (cerrando el HUD y las capas, como Pausa → Salir).
-    const sm = this.world.scene.scene;
-    bus.emit('music', { track: null });
-    for (const k of ['Spell', 'Dialogue', 'Altar', 'Diario', 'Hud']) {
-      if (sm.isActive(k) || sm.isPaused(k) || sm.isSleeping(k)) sm.stop(k);
-    }
-    sm.start(config.salida.escena);
+    // Sigue Guadalajara (Nivel 10, el final): Guanajuato y Jalisco se omiten.
+    prepareGdlEntry();
+    this.world.gotoSection('gdl_avenida');
   }
 }

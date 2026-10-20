@@ -79,3 +79,23 @@ export function prepareCdmx2Entry(): void {
   GameState.checkpoint = null;
   for (const f of ['n06:completo', 'n06:nahuala', 'cdmx:visitada']) GameState.flags[f] = true;
 }
+
+/**
+ * Entrada a Guadalajara (Nivel 10, el final) desde el salón del trono del Nivel 7 o el selector de niveles.
+ * Guanajuato y Jalisco se omiten: el jugador llega con los 6 fragmentos, CONSUELO y PAZ, sin María y con Balam.
+ */
+export function prepareGdlEntry(): void {
+  prepareCdmx2Entry();
+  GameState.section = 'gdl_avenida';
+  for (const id of ['CONSUELO', 'PAZ']) {
+    if (!GameState.learnedSpells.includes(id)) GameState.learnedSpells.push(id);
+    GameState.mastery[id] ??= { level: 0, progress: 0 };
+  }
+  GameState.hasMaria = false;
+  GameState.hasBalam = true;
+  GameState.balamJaguar = false;
+  GameState.bound = false;
+  GameState.controlsInverted = false;
+  GameState.checkpoint = null;
+  for (const f of ['n07:completo', 'n07:fragmento_4', 'n07:fragmento_5', 'n07:fragmento_6', 'n07:consola']) GameState.flags[f] = true;
+}

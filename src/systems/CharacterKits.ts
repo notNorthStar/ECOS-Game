@@ -23,6 +23,8 @@ export const KIT_IDS = [
   'muneca', 'nahual', 'nahual_animal', 'nahuala',
   // Nivel 7 (la Llorona es aliada; María se transforma en ella)
   'rey_olvido', 'llorona',
+  // Nivel 10 (la madre ya está desde el Nivel 1; Balam crece a jaguar luminoso)
+  'tzitzimitl', 'itzpapalotl', 'balam_jaguar',
 ] as const;
 
 export const kitBase = (id: string) => `assets/sprites/personajes/${id}/${id}_spritesheet`;
@@ -114,7 +116,7 @@ type Motion =
   | 'golpe' | 'invocar' | 'lanzar' | 'aturdido';
 
 function motionOf(animKey: string): Motion {
-  const k = animKey.replace(/^(protagonista|chaneque_mayor|chaneque|madre|encapuchado|espiritu|cabeza_olmeca|balam|maria|bestia|bruja_guajolote_ave|bruja_guajolote|muneca|nahual_animal|nahuala|nahual|rey_olvido|llorona)_/, '');
+  const k = animKey.replace(/^(protagonista|chaneque_mayor|chaneque|madre|encapuchado|espiritu|cabeza_olmeca|balam_jaguar|balam|maria|bestia|bruja_guajolote_ave|bruja_guajolote|muneca|nahual_animal|nahuala|nahual|rey_olvido|llorona|tzitzimitl|itzpapalotl)_/, '');
   if (k === 'saltar_subida') return 'subida';
   if (k === 'saltar_caida') return 'caida';
   return (k as Motion) || 'reposo';

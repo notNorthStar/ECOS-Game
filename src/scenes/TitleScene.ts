@@ -3,7 +3,7 @@ import { bus, sfx } from '../core/bus';
 import { GameState, resetGameState } from '../core/GameState';
 import { camView, lsm, showCamera } from '../systems/Lsm';
 import { COL, onDomKey, panel, txt } from './SpellScene';
-import { prepareCatemacoEntry, prepareCdmx2Entry, prepareCdmxEntry, prepareOaxacaEntry, prepareTuxtlaEntry } from '../systems/Campaign';
+import { prepareCatemacoEntry, prepareCdmx2Entry, prepareCdmxEntry, prepareGdlEntry, prepareOaxacaEntry, prepareTuxtlaEntry } from '../systems/Campaign';
 import type { SectionId } from '../core/contracts';
 
 /**
@@ -53,6 +53,9 @@ const LEVEL_SELECT: ReadonlyArray<{ label: string; section: EntrySection; prep: 
   { label: 'Nivel 7 · CDMX 2 — Teleférico', section: 'teleferico', prep: prepareCdmx2Entry },
   { label: 'Nivel 7 · CDMX 2 — Torre de control', section: 'torre', prep: prepareCdmx2Entry },
   { label: 'Nivel 7 · CDMX 2 — Jefe: Rey del Olvido', section: 'salon_trono', prep: prepareCdmx2Entry },
+  { label: 'Nivel 10 · Guadalajara — Avenida', section: 'gdl_avenida', prep: prepareGdlEntry },
+  { label: 'Nivel 10 · Guadalajara — Catedral', section: 'catedral', prep: prepareGdlEntry },
+  { label: 'Nivel 10 · Guadalajara — Final: Itzpapálotl', section: 'catedral_eclipse', prep: prepareGdlEntry },
 ];
 
 export class TitleScene extends Phaser.Scene {
@@ -278,7 +281,7 @@ export class TitleScene extends Phaser.Scene {
       ...LEVEL_SELECT.map((l) => ({ label: l.label, act: () => this.begin(l.section, l.prep, this.useCamera) })),
       { label: '← Volver (Esc)', act: () => this.showMainMenu(), color: COL.dim },
     ];
-    this.buildMenu(entries, 30, 16, 8, { y: 12, h: 340 });
+    this.buildMenu(entries, 30, 14, 8, { y: 12, h: 342 });
     this.menuLayer?.add(txt(this, 320, 16, 'SELECCIONAR NIVEL', 10, COL.gold, { ox: 0.5 }));
   }
 

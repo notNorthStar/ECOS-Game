@@ -109,8 +109,8 @@
     }
   },
   "salida": {
-    "escena": "Title",
+    "seccion": "gdl_avenida",
     "esperaMs": 2200,
-    "aviso": "Seis de seis fragmentos del Sello. Rumbo a Guadalajara: el final (próximamente)."
+    "aviso": "Seis de seis fragmentos del Sello. Rumbo a Guadalajara."
   }
 }
