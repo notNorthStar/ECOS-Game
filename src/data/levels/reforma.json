@@ -1,0 +1,63 @@
+{
+  "id": "reforma",
+  "name": "Paseo de la Reforma · El Ángel caído",
+  "width": 2800,
+  "background": "fondo_reforma",
+  "ambience": { "fog": 0.3, "rain": false, "fireflies": false, "leaves": false, "embers": true, "dust": true, "tint": "#b89098", "darkness": 0.44 },
+  "music": "n06_reforma",
+  "walk": [[[0,222],[2800,222],[2800,345],[0,345]]],
+  "obstacles": [
+    { "shape": "rect", "x": 1010, "y": 236, "w": 90, "h": 20, "height": 58 },
+    { "shape": "rect", "x": 1600, "y": 300, "w": 40, "h": 14, "height": 28 }
+  ],
+  "props": [
+    { "key": "prop_n06_letrero_reforma", "id": "n06_letrero", "x": 215, "y": 224 },
+    { "key": "prop_n06_poste_neon", "x": 420, "y": 226 },
+    { "key": "prop_n06_escombro", "x": 560, "y": 240 },
+    { "key": "prop_n06_angel_caido", "id": "n06_angel", "x": 940, "y": 254, "collide": { "rx": 30, "ry": 6 } },
+    { "key": "prop_n06_ala_caida", "id": "n06_cornisa_prop_4", "x": 1055, "y": 256 },
+    { "key": "prop_n06_poste_neon", "x": 1180, "y": 226, "flipX": true },
+    { "key": "npc_sobreviviente_3", "id": "n06_sobreviviente_c", "x": 1230, "y": 306, "anim": "npc_sobreviviente_3" },
+    { "key": "prop_n06_puesto_cafe", "id": "n06_puesto_cafe", "x": 1400, "y": 250 },
+    { "key": "prop_n06_escombro", "x": 1560, "y": 240, "flipX": true },
+    { "key": "altar_memoria", "id": "n06_altar", "x": 1800, "y": 255, "anim": "altar_memoria", "collide": { "rx": 18, "ry": 6 } },
+    { "key": "prop_n06_cabina_teleferico", "x": 1900, "y": 236 },
+    { "key": "prop_n06_obsidiana", "x": 2380, "y": 290, "alpha": 0.5 },
+    { "key": "npc_sobreviviente_1", "id": "n06_habitante_a", "x": 2470, "y": 298, "anim": "npc_sobreviviente_1" },
+    { "key": "npc_sobreviviente_3", "id": "n06_habitante_b", "x": 2570, "y": 292, "anim": "npc_sobreviviente_3" },
+    { "key": "prop_n06_estacion_teleferico", "id": "n06_estacion", "x": 2700, "y": 250 },
+    { "key": "prop_n06_escombro", "x": 700, "y": 354, "foreground": true },
+    { "key": "prop_n06_escombro", "x": 1700, "y": 352, "foreground": true, "flipX": true }
+  ],
+  "spawn": { "x": 80, "y": 295 },
+  "spawns": { "inicio": { "x": 80, "y": 295 }, "checkpoint": { "x": 150, "y": 295 }, "altar": { "x": 1800, "y": 295 }, "jefa": { "x": 1890, "y": 295 } },
+  "enemies": [
+    { "type": "encapuchado", "rank": "rojo", "x": 480, "y": 285 },
+    { "type": "encapuchado", "rank": "rojo", "x": 620, "y": 322 },
+    { "type": "encapuchado", "rank": "negro", "x": 920, "y": 290 },
+    { "type": "encapuchado", "rank": "rojo", "x": 1050, "y": 322 },
+    { "type": "encapuchado", "rank": "rojo", "x": 1160, "y": 264 },
+    { "type": "nahual", "id": "nahual_3", "disguise": "npc_sobreviviente_5", "x": 1400, "y": 305 },
+    { "type": "encapuchado", "rank": "negro", "x": 1540, "y": 325 },
+    { "type": "encapuchado", "rank": "negro", "x": 1690, "y": 262 },
+    { "type": "nahuala", "x": 2380, "y": 290, "group": "nahuala" }
+  ],
+  "triggers": [
+    { "id": "n06_reforma_nombre", "x": 100, "y": 222, "w": 80, "h": 123, "action": "letras", "once": true, "data": { "title": "REFORMA", "subtitle": "El Ángel caído" } },
+    { "id": "n06_reforma_vista", "x": 330, "y": 222, "w": 40, "h": 123, "action": "dialogo", "once": true, "data": { "dialogue": "n06_reforma_vista" } },
+    { "id": "n06_negros_vista", "x": 760, "y": 222, "w": 30, "h": 123, "action": "dialogo", "once": true, "data": { "dialogue": "n06_negros_vista", "maria": "negros", "toast": "Encapuchados Negros: aguantan más y pegan el doble. FUEGO o SOL los dejan inconscientes; no te quedes quieto." } },
+    { "id": "n06_punto_jefa", "x": 1870, "y": 222, "w": 30, "h": 123, "action": "punto", "data": { "spawn": "jefa" } },
+    { "id": "n06_nahuala_arena", "x": 2020, "y": 222, "w": 30, "h": 123, "action": "nahuala_arena", "data": { "group": "nahuala", "x0": 1960, "x1": 2800 } }
+  ],
+  "interactables": [
+    { "id": "n06_angel", "x": 940, "y": 304, "radius": 50, "prompt": "Examinar el Ángel", "action": "n06_examinar", "data": { "dialogue": "n06_angel", "descubrimiento": "angel", "maria": "angel" } },
+    { "id": "n06_cornisa_4", "x": 1055, "y": 246, "radius": 18, "prompt": "Registrar", "action": "n06_premio", "data": { "dialogue": "n06_cornisa_4", "promptDy": 40 } },
+    { "id": "n06_sobreviviente_c", "x": 1230, "y": 306, "radius": 40, "prompt": "Hablar", "action": "n06_examinar", "data": { "dialogue": "n06_sobreviviente_c", "descubrimiento": "sobreviviente_c" } },
+    { "id": "n06_nahual_3", "x": 1400, "y": 305, "radius": 40, "prompt": "Hablar", "action": "n06_nahual", "data": { "nahualId": "nahual_3", "dialogue": "n06_nahual_3" } },
+    { "id": "n06_altar", "x": 1800, "y": 270, "radius": 34, "prompt": "Ofrendar", "action": "altar", "data": { "promptDy": 56 } },
+    { "id": "n06_habitante_a", "x": 2470, "y": 298, "radius": 40, "prompt": "Hablar", "action": "n06_habitante", "data": { "habitante": "a" } },
+    { "id": "n06_habitante_b", "x": 2570, "y": 292, "radius": 40, "prompt": "Hablar", "action": "n06_habitante", "data": { "habitante": "b" } },
+    { "id": "n06_estacion", "x": 2700, "y": 298, "radius": 46, "prompt": "Entrar a la estación", "action": "n06_estacion", "data": {} }
+  ],
+  "cameraBounds": { "x0": 0, "x1": 2800 }
+}

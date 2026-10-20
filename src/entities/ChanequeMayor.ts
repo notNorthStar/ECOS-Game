@@ -5,7 +5,7 @@ import { DEPTH_TOLERANCE } from '../config/game';
 import { FX_DEPTH_BIAS, JUICE, SPELLS_FX } from '../config/combat';
 import enemiesData from '../data/enemies.json';
 import { hideBossBar, showBossBar, updateBossBar } from '../scenes/HudScene';
-import { EnemyBase, FB, burst, inLuzRadius, inSolLine, oneShotFx, planeDist, purifyFx, rand, randRange, solDamage, spellParam, hitPlayer } from './EnemyBase';
+import { EnemyBase, FB, burst, inLuzRadius, inSolLine, oneShotFx, planeDist, purifyFx, rand, randRange, solDamage, spellParam, hitPlayer, inVerdadRadius, inFuegoLine, verdadStun, fuegoDamage, burnFx } from './EnemyBase';
 
 /**
  * Chaneque Mayor (NIVELES §4, jefe del Nivel 1). 128×128.
@@ -635,6 +635,16 @@ export class ChanequeMayor extends EnemyBase {
     if (ev.spellId === 'SOL') {
       if (!inSolLine(ev, this.x, this.y, this.radius)) return false;
       return this.takeHit({ damage: solDamage(ev) * B.solDamageMult, stun: 0, kind: 'spell', sourceX: ev.x, knockback: 0 });
+    }
+    // Nivel 6. FUEGO: daño como SOL (reducido: es enorme). VERDAD: ➖ aturde un poco. DESCANSO: ➖.
+    if (ev.spellId === 'FUEGO') {
+      if (!inFuegoLine(ev, this.x, this.y, this.radius)) return false;
+      burnFx(this.scene, this);
+      return this.takeHit({ damage: fuegoDamage(ev) * B.solDamageMult, stun: 0, kind: 'spell', sourceX: ev.x, knockback: 0 });
+    }
+    if (ev.spellId === 'VERDAD') {
+      if (!inVerdadRadius(ev, this.x, this.y, this.radius)) return false;
+      return this.takeHit({ damage: 0, stun: verdadStun(ev, true), kind: 'spell', sourceX: ev.x, knockback: 0 });
     }
     // Nivel 4: MEMORIA cuenta como CALMA (es folclor). PROTECCION: neutra.
     if (ev.spellId !== 'CALMA' && ev.spellId !== 'MEMORIA') return false;

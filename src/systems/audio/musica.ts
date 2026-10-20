@@ -9,6 +9,7 @@ import { bombo, campana, mtof, pad, pulsar, rasguear, ruido, slap, tarima, tono,
 import { FANDANGO, programarFandango } from './fandango';
 import { PISTAS_N03 } from './catemaco';
 import { PISTAS_N04 } from './oaxaca';
+import { PISTAS_N06 } from './cdmx';
 
 const ANTICIPO = 0.1;
 const FUNDIDO_ENTRADA = 1.2;
@@ -306,6 +307,7 @@ export const PISTAS: Record<string, DefPista> = {
   titulo: TITULO,
   ...PISTAS_N03,
   ...PISTAS_N04,
+  ...PISTAS_N06,
 };
 
 // ── Reproductor ───────────────────────────────────────────────────────────────

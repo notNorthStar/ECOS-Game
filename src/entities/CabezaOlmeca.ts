@@ -4,7 +4,7 @@ import { bus, sfx } from '../core/bus';
 import { FX_DEPTH_BIAS, JUICE } from '../config/combat';
 import enemiesData from '../data/enemies.json';
 import { hideBossBar, showBossBar, updateBossBar } from '../scenes/HudScene';
-import { EnemyBase, FB, burst, hexColor, hitPlayer, inSolLine, planeDist, purifyFx, rand, randRange } from './EnemyBase';
+import { EnemyBase, FB, burst, hexColor, hitPlayer, inSolLine, inFuegoLine, planeDist, purifyFx, rand, randRange } from './EnemyBase';
 import { Espiritu } from './Espiritu';
 
 /**
@@ -557,8 +557,10 @@ export class CabezaOlmeca extends EnemyBase {
       }
       return false;
     }
-    if (ev.spellId !== 'LUZ' && ev.spellId !== 'SOL' && ev.spellId !== 'VOZ') return false; // PROTECCION ➖
-    const hits = ev.spellId === 'SOL' ? inSolLine(ev, this.x, this.y, this.radius + 20) || (near && Math.abs(ev.y - this.y) < this.radius) : near;
+    // Nivel 6: FUEGO cuenta como SOL (ofensivo en línea). VERDAD y DESCANSO: ➖ (no hay ilusión ni muerto que liberar).
+    if (ev.spellId !== 'LUZ' && ev.spellId !== 'SOL' && ev.spellId !== 'VOZ' && ev.spellId !== 'FUEGO') return false; // PROTECCION ➖
+    const lineHit = ev.spellId === 'SOL' ? inSolLine(ev, this.x, this.y, this.radius + 20) : ev.spellId === 'FUEGO' ? inFuegoLine(ev, this.x, this.y, this.radius + 20) : false;
+    const hits = ev.spellId === 'SOL' || ev.spellId === 'FUEGO' ? lineHit || (near && Math.abs(ev.y - this.y) < this.radius) : near;
     if (!hits) return false;
     if (this.st !== 'vulnerable') {
       if (!this.told.closed) {

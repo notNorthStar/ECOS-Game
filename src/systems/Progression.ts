@@ -2,6 +2,7 @@ import type { WorldApi } from '../core/contracts';
 import { bus, sfx } from '../core/bus';
 import { GameState } from '../core/GameState';
 import { ORBS } from '../config/combat';
+import { isCdmx } from '../config/game';
 import progression from '../data/progression.json';
 import { EcoOrb } from '../entities/EcoOrb';
 
@@ -9,7 +10,7 @@ import { EcoOrb } from '../entities/EcoOrb';
  * Ecos y mejoras (GDD §5.1). Dueño: combate.
  * - 'ecos:gained' {amount, x, y} → orbes que vuelan al jugador; al tocarlo suman GameState.ecos
  *   y emiten 'ecos:changed' + sfx 'eco'. Si no hay nivel activo, se acreditan al instante.
- * - Mejoras (Vida, Daño, Velocidad, Doble salto bloqueado) para el Altar de la Memoria.
+ * - Mejoras (Vida, Daño, Velocidad, Doble salto — se desbloquea desde la CDMX) para el Altar de la Memoria.
  */
 
 export interface UpgradeDef {
@@ -20,6 +21,21 @@ export interface UpgradeDef {
   costs: number[];
   locked?: boolean;
   lockText?: string;
+  /**
+   * Condición que quita `locked`. Hoy solo 'cdmx': desbloqueada si la sección actual es de la CDMX
+   * o si ya se visitó (flag CDMX_VISITADA, persiste para los niveles 7+).
+   */
+  unlockFrom?: 'cdmx';
+}
+
+/** Flag que se pone al cargar cualquier sección de la CDMX (installProgression). */
+export const CDMX_VISITADA = 'cdmx:visitada';
+
+/** true si la mejora sigue bloqueada (locked y sin cumplir unlockFrom). */
+function isLocked(def: UpgradeDef): boolean {
+  if (!def.locked) return false;
+  if (def.unlockFrom === 'cdmx') return !(isCdmx(GameState.section) || GameState.flags[CDMX_VISITADA]);
+  return true;
 }
 
 export const UPGRADES: UpgradeDef[] = progression.upgrades as UpgradeDef[];
@@ -49,7 +65,7 @@ export function upgradeRows(): UpgradeRow[] {
   return UPGRADES.map((def) => {
     const level = GameState.upgrades[def.id] ?? 0;
     const maxed = level >= def.maxLevel;
-    const locked = !!def.locked;
+    const locked = isLocked(def);
     const cost = maxed || locked ? null : def.costs[level];
     return {
       def,
@@ -111,6 +127,8 @@ export function installProgression(world: WorldApi): void {
       else addEcos(a);
     });
   }
+  // Doble salto (unlockFrom 'cdmx'): recordar que ya se llegó a la CDMX.
+  if (isCdmx(world.level.id)) GameState.flags[CDMX_VISITADA] = true;
   const sys: OrbSystem = { world, orbs: [] };
   active = sys;
   let pickupSfxT = 0;

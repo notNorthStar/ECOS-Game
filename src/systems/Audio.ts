@@ -12,7 +12,7 @@ import { setFormaBruja } from './audio/oaxaca';
  *
  * - Efectos: `bus.emit('sfx', { name })` o `sfx(name)`. Si existe
  *   `public/assets/audio/sfx/sfx_<name>.ogg` se usa el archivo; si no, se sintetiza.
- * - Música: `bus.emit('music', { track })` con 'n04_ciudad' | 'n04_combate' | 'n04_templo' | 'n04_jefe' | 'n01_taller' | 'n01_exploracion' | 'n01_combate' |
+ * - Música: `bus.emit('music', { track })` con 'n06_xochimilco' | 'n06_avenidas' | 'n06_reforma' | 'n06_combate' | 'n06_jefe' | 'n04_ciudad' | 'n04_combate' | 'n04_templo' | 'n04_jefe' | 'n01_taller' | 'n01_exploracion' | 'n01_combate' |
  *   'n01_jefe' | 'n02_fandango' | 'n03_pueblo' | 'n03_lago' | 'n03_altar' | 'n03_jefe' | 'titulo'
  *   (o null para silencio). Si existe `musica_<track>.ogg` (o .mp3) se usa en bucle; si no, el archivo
  *   del equipo indicado en `audio/config.ts` (MAPA_MUSICA); si tampoco, se genera de forma procedural. El fandango usa siempre capas procedurales
@@ -242,7 +242,10 @@ function conectarBus(): void {
   bus.on('spell:resolved', ({ outcome, spellId }) => {
     reproducirSfx(outcome === 'perfect' ? 'perfecto' : outcome === 'partial' ? 'conjuro_ok' : 'conjuro_fallo');
     if (outcome !== 'fail') {
-      if (spellId === 'MEMORIA') reproducirSfx('memoria');
+      if (spellId === 'VERDAD') reproducirSfx('verdad');
+      else if (spellId === 'FUEGO') reproducirSfx('fuego');
+      else if (spellId === 'DESCANSO') reproducirSfx('descanso');
+      else if (spellId === 'MEMORIA') reproducirSfx('memoria');
       else if (spellId === 'LUZ') reproducirSfx('luz');
       else if (spellId === 'SOL') reproducirSfx('sol');
     }
@@ -257,6 +260,11 @@ function conectarBus(): void {
     // En el Nivel 3 la intensidad la gobierna 'olmeca:phase'.
     if (musica?.actual?.startsWith('n03_')) return;
     // Nivel 4: la fase 1/2/3 de la Bruja sube la intensidad de n04_jefe (sin rugido de Chaneque).
+    // Nivel 6: la fase 1/2/3 de la Nahuala sube la intensidad de n06_jefe.
+    if (musica?.actual?.startsWith('n06_')) {
+      musica.setIntensidad(phase === 1 ? 0 : phase === 2 ? 0.55 : 1);
+      return;
+    }
     if (musica?.actual?.startsWith('n04_')) {
       musica.setIntensidad(phase === 1 ? 0 : phase === 2 ? 0.55 : 1);
       return;
@@ -304,6 +312,12 @@ function conectarBus(): void {
     setFormaBruja(form);
   });
 
+  // Nivel 6: nahuales infiltrados y la Nahuala.
+  bus.on('nahual:reveal', () => reproducirSfx('nahual_transformar'));
+  bus.on('nahual:revealed', () => reproducirSfx('nahual_transformar'));
+  bus.on('nahual:fled', () => reproducirSfx('nahual_huir'));
+  bus.on('nahuala:illusion', () => reproducirSfx('nahuala_ilusion'));
+
   // Progresión.
   bus.on('ecos:changed', () => reproducirSfx('eco'));
   bus.on('upgrade:bought', () => reproducirSfx('mejora'));
@@ -312,6 +326,14 @@ function conectarBus(): void {
   bus.on('arena:start', () => {
     if (!musica) return;
     const actual = musica.actual;
+    // Nivel 6: las calles ceden a n06_combate; el jefe no cambia.
+    if (actual?.startsWith('n06_')) {
+      if (actual === 'n06_xochimilco' || actual === 'n06_avenidas' || actual === 'n06_reforma') {
+        musicaPrevia = actual;
+        musica.reproducir('n06_combate');
+      }
+      return;
+    }
     // Nivel 4: solo la ciudad cede a n04_combate; el templo y el jefe no cambian.
     if (actual?.startsWith('n04_')) {
       if (actual === 'n04_ciudad') {
@@ -325,6 +347,11 @@ function conectarBus(): void {
     musica.reproducir('n01_combate');
   });
   bus.on('arena:clear', () => {
+    if (musica?.actual === 'n06_combate') {
+      musica.reproducir(musicaPrevia ?? 'n06_avenidas');
+      musicaPrevia = null;
+      return;
+    }
     if (musica?.actual === 'n04_combate') {
       musica.reproducir(musicaPrevia ?? 'n04_ciudad');
       musicaPrevia = null;

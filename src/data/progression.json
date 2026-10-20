@@ -34,11 +34,12 @@
     {
       "id": "doble_salto",
       "name": "Doble salto",
-      "desc": "Desbloquea el doble salto",
+      "desc": "Un segundo salto en el aire (Espacio otra vez): alcanza cornisas y escombros altos",
       "maxLevel": 1,
       "costs": [400],
       "locked": true,
-      "lockText": "Disponible desde Puebla"
+      "unlockFrom": "cdmx",
+      "lockText": "Disponible desde la Ciudad de México"
     }
   ]
 }

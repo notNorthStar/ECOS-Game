@@ -16,9 +16,26 @@ export const MOVE = {
   stepDistance: 18,
 } as const;
 
-/** Salto en z con gravedad propia (px, px/s, px/s²). */
+/**
+ * Salto en z con gravedad propia (px, px/s, px/s²).
+ *
+ * Altura máxima manteniendo Espacio ≈ v² / (2 · gravity · holdGravityMult):
+ * - salto normal: 232² / 1019 ≈ 53 px (antes 250 → 61; se bajó en el Nivel 6 para que el doble
+ *   salto tenga sentido). Las vigas de la Cabeza Olmeca (maxPlayerZ 46) siguen saltándose.
+ * - doble salto: suma ≈ 205² / 1019 ≈ 41 px desde donde se pulse (máx. ≈ 94 px si se pulsa en la
+ *   cima; ≈ 65–75 px pulsándolo a media subida).
+ *
+ * ALTURAS RECOMENDADAS para obstáculos con `height` (LevelData.obstacles, ver WalkMap):
+ * - 20–35 px: se suben con el salto normal (cajas, bancas, escalones, trajineras varadas).
+ * - 36–50 px: salto normal muy justo → EVITAR (frustra; o es fácil o pide doble salto).
+ * - 55–65 px: solo con DOBLE SALTO (cornisas y escombros opcionales con Ecos/pistas).
+ * - sin `height` (o ≥ 100): muro; no se cruza nunca.
+ * El bloque debe quedar dentro de la franja transitable (walk) para poder pararse encima.
+ */
 export const JUMP = {
-  velocity: 250,
+  velocity: 232,
+  /** Impulso del segundo salto en el aire (mejora 'doble_salto'): un poco menor que el primero. */
+  doubleVelocity: 205,
   gravity: 980,
   /** Gravedad mientras se mantiene Espacio y se sube (altura variable). */
   holdGravityMult: 0.52,

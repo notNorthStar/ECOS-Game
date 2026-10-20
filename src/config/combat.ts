@@ -126,6 +126,53 @@ export const SPELLS_FX = {
     rings: 3,
     fxMs: 950,
   },
+  /**
+   * VERDAD (Nivel 6): onda de claridad que "rompe" ilusiones como un espejo, alrededor del jugador.
+   * Revela nahuales disfrazados (revealRadius), disipa las copias de la Nahuala y aturde a la real (ventana);
+   * aturde (stun) a nahuales transformados y encapuchados; ➖ leve en el resto. bossSeal = sello en la ventana.
+   * Mandan effect.revealRadius / stun / bossSeal de spells.json (dueño: sistemas).
+   */
+  VERDAD: {
+    revealRadius: 170,
+    stun: 4,
+    /** Aturdimiento leve (➖) a chaneques, bestias y jefes que no son ilusiones. */
+    lightStun: 1.5,
+    bossSeal: 1,
+    forward: 0,
+    color: 0xd8f0ff,
+    /** Fragmentos de "espejo" que salen volando. */
+    shards: 18,
+    fxMs: 700,
+  },
+  /**
+   * FUEGO (Nivel 6): llamarada en línea hacia donde mira el jugador (daño fuerte). Destruye muñecas,
+   * deja inconscientes a los encapuchados, daña a nahuales; ❌ con la Nahuala (la cura o la enfurece).
+   * width = media banda de profundidad. burnMs = cuánto arde (visual) el blanco alcanzado.
+   * Mandan effect.length / width / damage / knockback / burnMs de spells.json.
+   */
+  FUEGO: {
+    length: 240,
+    width: 16,
+    damage: 70,
+    knockback: 26,
+    burnMs: 1100,
+    forward: 12,
+    color: 0xff6a20,
+  },
+  /**
+   * DESCANSO (Nivel 6): pétalos de cempasúchil y luces que suben. Libera a los muertos que no descansan:
+   * el alma atrapada en las muñecas (quedan inertes) y los espíritus. ➖ en el resto.
+   * Manda effect.purifyRadius de spells.json.
+   */
+  DESCANSO: {
+    purifyRadius: 140,
+    forward: 12,
+    /** Cempasúchil (naranja/oro) y luces de vela. */
+    petals: [0xff9a1a, 0xffb830, 0xf27a10, 0xffd060],
+    petalCount: 26,
+    lights: 10,
+    fxMs: 1300,
+  },
 } as const;
 
 /** Escudo pasivo de PROTECCION (respaldo; mandan effect.shieldMs / shieldReduction de spells.json). */

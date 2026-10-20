@@ -4,6 +4,7 @@
  */
 import { EFECTOS_N03, MAX_VOCES_N03 } from './catemaco';
 import { EFECTOS_N04, MAX_VOCES_N04 } from './oaxaca';
+import { EFECTOS_N06, MAX_VOCES_N06 } from './cdmx';
 import { campana, mtof, pad, pulsar, ruido, tono, type Motor } from './motor';
 
 type Sintetizador = (m: Motor, d: AudioNode, t: number) => number;
@@ -180,6 +181,7 @@ export const EFECTOS: Record<string, Sintetizador> = {
   },
   ...EFECTOS_N03,
   ...EFECTOS_N04,
+  ...EFECTOS_N06,
 };
 
 /** Alias de nombres que otros sistemas podrían usar. */
@@ -214,4 +216,5 @@ export const MAX_VOCES: Record<string, number> = {
   purificar: 2,
   ...MAX_VOCES_N03,
   ...MAX_VOCES_N04,
+  ...MAX_VOCES_N06,
 };

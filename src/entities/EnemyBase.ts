@@ -442,6 +442,48 @@ export function inMemoriaRadius(ev: SpellOutcomeEvent, x: number, y: number, key
   return planeDist(x, y, ev.x + ev.facing * s.forward, ev.y) <= r;
 }
 
+/* ------------------- VERDAD, FUEGO y DESCANSO (Nivel 6) ------------------- */
+
+/** ¿(x, y) está en la onda de VERDAD? (revela disfraces, disipa ilusiones, aturde). */
+export function inVerdadRadius(ev: SpellOutcomeEvent, x: number, y: number, extra = 0): boolean {
+  const s = SPELLS_FX.VERDAD;
+  const r = spellParam('VERDAD', 'revealRadius', s.revealRadius) * powerScale(ev.power) + extra;
+  return planeDist(x, y, ev.x + ev.facing * s.forward, ev.y) <= r;
+}
+
+/** ¿(x, y) está en la llamarada en línea de FUEGO? extra = radio del blanco. */
+export function inFuegoLine(ev: SpellOutcomeEvent, x: number, y: number, extra = 0): boolean {
+  const s = SPELLS_FX.FUEGO;
+  const len = spellParam('FUEGO', 'length', s.length) * powerScale(ev.power);
+  const half = spellParam('FUEGO', 'width', s.width);
+  const along = (x - (ev.x + ev.facing * s.forward)) * ev.facing;
+  return along >= -extra && along <= len + extra && Math.abs(y - ev.y) <= half + extra * 0.25;
+}
+
+/** ¿(x, y) está en el radio de DESCANSO? */
+export function inDescansoRadius(ev: SpellOutcomeEvent, x: number, y: number, extra = 0): boolean {
+  const s = SPELLS_FX.DESCANSO;
+  const r = spellParam('DESCANSO', 'purifyRadius', s.purifyRadius) * powerScale(ev.power) + extra;
+  return planeDist(x, y, ev.x + ev.facing * s.forward, ev.y) <= r;
+}
+
+/** Aturdimiento de VERDAD (fuerte: nahuales y encapuchados) o leve (➖). */
+export const verdadStun = (ev: SpellOutcomeEvent, light = false) =>
+  (light ? SPELLS_FX.VERDAD.lightStun : spellParam('VERDAD', 'stun', SPELLS_FX.VERDAD.stun)) * Math.max(0, Math.min(1, ev.power));
+export const fuegoDamage = (ev: SpellOutcomeEvent) => spellParam('FUEGO', 'damage', SPELLS_FX.FUEGO.damage) * Math.max(0.3, Math.min(1, ev.power));
+export const fuegoKnockback = (ev: SpellOutcomeEvent) => spellParam('FUEGO', 'knockback', SPELLS_FX.FUEGO.knockback) * Math.max(0.3, Math.min(1, ev.power));
+
+/** Llamitas que arden sobre un blanco alcanzado por FUEGO durante burnMs (solo visual, sin sangre). */
+export function burnFx(scene: Phaser.Scene, target: { x: number; y: number; z: number; height: number; alive: boolean }, ms = spellParam('FUEGO', 'burnMs', SPELLS_FX.FUEGO.burnMs)): void {
+  const steps = Math.max(1, Math.round(ms / 90));
+  for (let i = 0; i < steps; i++) {
+    scene.time.delayedCall(i * 90, () => {
+      if (!target.alive) return;
+      burst(scene, 'sun', target.x + rand(-6, 6), target.y - target.z - target.height * rand(0.2, 0.8), target.y + FX_DEPTH_BIAS, 2);
+    });
+  }
+}
+
 /** Daño de SOL según la fuerza (parcial = proporcional). */
 export const solDamage = (ev: SpellOutcomeEvent) => spellParam('SOL', 'damage', SPELLS_FX.SOL.damage) * Math.max(0.3, Math.min(1, ev.power));
 export const solKnockback = (ev: SpellOutcomeEvent) => spellParam('SOL', 'knockback', SPELLS_FX.SOL.knockback) * Math.max(0.3, Math.min(1, ev.power));

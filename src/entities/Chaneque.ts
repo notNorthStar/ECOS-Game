@@ -5,7 +5,7 @@ import { DEPTH_TOLERANCE } from '../config/game';
 import { FX_DEPTH_BIAS, SPELLS_FX } from '../config/combat';
 import enemiesData from '../data/enemies.json';
 import progression from '../data/progression.json';
-import { EnemyBase, FB, burst, hexColor, inLuzRadius, inMemoriaRadius, inSolLine, planeDist, powerScale, purifyFx, rand, randRange, solDamage, solKnockback, spellParam , hitPlayer } from './EnemyBase';
+import { EnemyBase, FB, burst, hexColor, inLuzRadius, inMemoriaRadius, inSolLine, planeDist, powerScale, purifyFx, rand, randRange, solDamage, solKnockback, spellParam, hitPlayer, inVerdadRadius, inFuegoLine, verdadStun, fuegoDamage, fuegoKnockback, burnFx } from './EnemyBase';
 
 /**
  * Chaneque (NIVELES §4, GDD §9). Pequeño, rápido, en grupos de 3–6, con travesuras.
@@ -467,6 +467,16 @@ export class Chaneque extends EnemyBase {
     if (ev.spellId === 'SOL') {
       if (!inSolLine(ev, this.x, this.y, this.radius)) return false;
       return this.takeHit({ damage: solDamage(ev), stun: 0, kind: 'spell', sourceX: ev.x, knockback: solKnockback(ev) });
+    }
+    // Nivel 6. VERDAD: ➖ (no hay disfraz que romper; apenas lo aturde). FUEGO: daño fuerte en línea. DESCANSO: ➖.
+    if (ev.spellId === 'VERDAD') {
+      if (this._exhausted || !inVerdadRadius(ev, this.x, this.y)) return false;
+      return this.takeHit({ damage: 0, stun: verdadStun(ev, true), kind: 'spell', sourceX: ev.x, knockback: 4 });
+    }
+    if (ev.spellId === 'FUEGO') {
+      if (!inFuegoLine(ev, this.x, this.y, this.radius)) return false;
+      burnFx(this.scene, this);
+      return this.takeHit({ damage: fuegoDamage(ev), stun: 0, kind: 'spell', sourceX: ev.x, knockback: fuegoKnockback(ev) });
     }
     return false;
   }

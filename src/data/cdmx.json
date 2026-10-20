@@ -1,0 +1,79 @@
+{
+  "note": "Números del Nivel 6 (dueño: contenido). Todo lo ajustable del director de la CDMX vive aquí.",
+  "conjuros": ["FUEGO", "DESCANSO", "VERDAD"],
+  "toastMs": 4200,
+  "hud": { "x": 12, "y": 90, "fontSize": 10 },
+  "gates": { "fuegoX": 1600, "verdadX": 1300 },
+  "emboscadas": { "grupos": ["muneca_a", "muneca_b", "muneca_c"], "minMs": 1500, "respaldoMs": 7000 },
+  "arena": {
+    "x0": 1960,
+    "x1": 2800,
+    "grupo": "nahuala",
+    "musicaJefe": "n06_jefe",
+    "musicaCalle": "n06_reforma"
+  },
+  "respaldoJefeMs": 6000,
+  "comentarioMariaMs": 6500,
+  "rewards": {
+    "conjuro": 15,
+    "descubrimiento": 4,
+    "premio": 12,
+    "emboscada": 10,
+    "habitante": 8,
+    "estacion": 20
+  },
+  "maria": {
+    "llegada": {
+      "text": "Aquí hay millones de puertas... Perdóname, hijo, si me detengo en todas. No puedo no hacerlo.",
+      "ms": 6500
+    },
+    "canales": {
+      "text": "Muñecas con los ojos abiertos... Así miran los niños cuando no los encuentran. Ya no sé cuántos pueblos llevamos y ni un rastro, ni una huella.",
+      "ms": 7500
+    },
+    "fuego": {
+      "text": "Que el fuego guíe a los que se perdieron. A todos. A los míos también, por favor.",
+      "ms": 6000
+    },
+    "ciudad": {
+      "text": "La gran ciudad. Dicen que aquí cabe todo el mundo. Entonces mis hijos tienen que caber en algún lado.",
+      "ms": 7000
+    },
+    "descanso": {
+      "text": "Que descansen, sí. Pero los míos no, ¿verdad? Los míos tienen que estar vivos. Dime que están vivos.",
+      "ms": 7000
+    },
+    "avenidas": {
+      "text": "Fotos en todas las ofrendas, y yo sin una sola de mis niños. ¿Cómo se pierde uno hasta de las fotos?",
+      "ms": 7000
+    },
+    "verdad": {
+      "text": "La verdad... a veces creo que no quiero saberla. Pero la voy a saber, aunque duela.",
+      "ms": 6500
+    },
+    "nahual": {
+      "text": "Hasta un sobreviviente puede ser un disfraz. ¿Y si alguno me hubiera dicho dónde están mis hijos, y era mentira? No puedo creerle a nadie, y necesito creerle a alguien.",
+      "ms": 8000
+    },
+    "angel": {
+      "text": "El Ángel caído. Así me siento: con alas, y tirada en el suelo. Pero me levanto. Siempre me levanto.",
+      "ms": 7000
+    },
+    "negros": {
+      "text": "Esos de negro pesan más que los rojos. Cuídate, mijo. Yo no podría perderte a ti también.",
+      "ms": 6500
+    },
+    "jefa": {
+      "text": "Pobre mujer. También le quitaron lo suyo. Se las llevan igual que a mis niños, ¿lo ves?",
+      "ms": 7000
+    },
+    "rey": {
+      "text": "Rey del Olvido... qué nombre tan triste. Olvidar es lo peor que le pueden hacer a una madre. Yo olvidé algo, ¿verdad? Lo siento aquí, en el pecho.",
+      "ms": 8000
+    },
+    "final": {
+      "text": "Arriba. Todo lo que busco está arriba. Súbeme, hijo. No me sueltes de la mano.",
+      "ms": 7000
+    }
+  }
+}

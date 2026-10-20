@@ -852,6 +852,8 @@ export class BrujaGuajolote extends EnemyBase {
       return false;
     }
     if (this.st === 'intro' || this.st === 'transform') return false;
+    // Nivel 6: VERDAD y DESCANSO ➖ (no la apuran). FUEGO cae en "conjuro equivocado": es fuego fatuo y lo aviva.
+    if (ev.spellId === 'VERDAD' || ev.spellId === 'DESCANSO') return false;
     const weak = this.form === 'humana' ? 'LUZ' : 'SOL';
     const hits = ev.spellId === 'SOL' ? inSolLine(ev, this.x, this.y, this.radius + 20) || (near && Math.abs(ev.y - this.y) < this.radius) : near;
     if (!hits) return false;

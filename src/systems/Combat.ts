@@ -6,6 +6,7 @@ import { keys } from '../config/controls';
 import { FX_DEPTH_BIAS, HEAT, LASER, SHIELD, SPELLS_FX } from '../config/combat';
 import { FB, burst, ensureCombatTextures, playerShield, powerScale, spellParam } from '../entities/EnemyBase';
 import { Espiritu } from '../entities/Espiritu';
+import { NahualaCopia } from '../entities/Nahuala';
 import { LaserShot, laserTargets, type LaserTarget } from '../entities/LaserShot';
 import { installProgression } from './Progression';
 import { hideBossBar, showPrompt } from '../scenes/HudScene';
@@ -88,6 +89,9 @@ export function installCombat(world: WorldApi): void {
         if (!e.exhausted) e.takeHit({ damage: 9999, stun: 0, kind: 'spell', sourceX: e.x, knockback: 0 });
         e.applySpell({ spellId: 'CALMA', outcome: 'partial', power: 1, auto: true, x: e.x, y: e.y, facing: 1 });
       } else if (e instanceof Espiritu && e.summonedBy?.kind === 'cabeza_olmeca') {
+        e.dissipate();
+      } else if (e instanceof NahualaCopia) {
+        // Nivel 6: al liberar a la Nahuala sus copias ilusorias se desvanecen (y nada más).
         e.dissipate();
       }
     }
@@ -190,6 +194,9 @@ function spellRing(world: WorldApi, ev: SpellOutcomeEvent): void {
   if (ev.spellId === 'LUZ') return luzFx(world, ev);
   if (ev.spellId === 'SOL') return solFx(world, ev);
   if (ev.spellId === 'MEMORIA') return memoriaFx(world, ev);
+  if (ev.spellId === 'VERDAD') return verdadFx(world, ev);
+  if (ev.spellId === 'FUEGO') return fuegoFx(world, ev);
+  if (ev.spellId === 'DESCANSO') return descansoFx(world, ev);
   if (ev.spellId === 'VOZ') {
     const radius = spellParam('VOZ', 'stunRadius', SPELLS_FX.VOZ.stunRadius) * powerScale(ev.power);
     const wave = scene.add.image(ev.x, ev.y, FB.ring).setTint(0xf2c86b)
@@ -333,4 +340,169 @@ function solFx(world: WorldApi, ev: SpellOutcomeEvent): void {
     scene.time.delayedCall(i * 25, () => burst(scene, 'sun', px, yDraw, depth, 4));
   }
   world.shake(0.004, 120);
+}
+
+/* ======================= Nivel 6: VERDAD, FUEGO y DESCANSO ======================= */
+
+/**
+ * VERDAD: una onda de claridad que se expande y "rompe" como un espejo: grietas radiales en el suelo,
+ * anillo frío y esquirlas de cristal que saltan y se desvanecen.
+ */
+function verdadFx(world: WorldApi, ev: SpellOutcomeEvent): void {
+  const scene = world.scene;
+  const s = SPELLS_FX.VERDAD;
+  const r = spellParam('VERDAD', 'revealRadius', s.revealRadius) * powerScale(ev.power);
+  const cx = ev.x + ev.facing * s.forward;
+  const cy = ev.y;
+  const ring = scene.add.image(cx, cy, FB.ring).setTint(s.color).setBlendMode(Phaser.BlendModes.ADD).setDepth(ev.y - FX_DEPTH_BIAS).setDisplaySize(8, 4);
+  scene.tweens.add({ targets: ring, displayWidth: r * 2, displayHeight: r, alpha: { from: 1, to: 0 }, duration: s.fxMs * 0.8, ease: 'Cubic.easeOut', onComplete: () => ring.destroy() });
+  // Grietas de espejo: líneas quebradas desde el centro que crecen y luego se apagan.
+  const g = scene.add.graphics().setDepth(ev.y - FX_DEPTH_BIAS).setBlendMode(Phaser.BlendModes.ADD);
+  const cracks = Array.from({ length: 9 }, (_, i) => {
+    const a = (i / 9) * Math.PI * 2 + Math.random() * 0.4;
+    const pts: Array<{ x: number; y: number }> = [];
+    let d = 0;
+    while (d < 1) {
+      d = Math.min(1, d + 0.18 + Math.random() * 0.15);
+      const wob = (Math.random() - 0.5) * 0.35;
+      pts.push({ x: Math.cos(a + wob) * d, y: Math.sin(a + wob) * d * 0.5 });
+    }
+    return pts;
+  });
+  const anim = { k: 0 };
+  const draw = () => {
+    const grow = Math.min(1, anim.k / 0.45);
+    const fade = anim.k < 0.55 ? 1 : 1 - (anim.k - 0.55) / 0.45;
+    g.clear();
+    g.lineStyle(1.5, s.color, 0.9 * fade);
+    for (const c of cracks) {
+      g.beginPath();
+      g.moveTo(cx, cy);
+      for (const p of c) {
+        if (Math.hypot(p.x, p.y * 2) > grow) break;
+        g.lineTo(cx + p.x * r, cy + p.y * r);
+      }
+      g.strokePath();
+    }
+    g.lineStyle(1, 0xffffff, 0.6 * fade);
+    g.strokeEllipse(cx, cy, r * grow * 0.9, r * grow * 0.45);
+  };
+  draw();
+  scene.tweens.add({ targets: anim, k: 1, duration: s.fxMs, onUpdate: draw, onComplete: () => g.destroy() });
+  // Esquirlas de cristal que saltan.
+  for (let i = 0; i < s.shards; i++) {
+    const a = Math.random() * Math.PI * 2;
+    const d0 = Math.random() * r * 0.3;
+    const sh = scene.add.image(cx + Math.cos(a) * d0, cy - 20 + Math.sin(a) * d0 * 0.5, FB.px)
+      .setTint(i % 3 ? s.color : 0xffffff).setBlendMode(Phaser.BlendModes.ADD).setScale(1.6, 0.8).setAngle(Math.random() * 180).setDepth(ev.y + FX_DEPTH_BIAS);
+    scene.tweens.add({
+      targets: sh,
+      x: sh.x + Math.cos(a) * r * 0.7,
+      y: sh.y + Math.sin(a) * r * 0.35 - 10,
+      angle: sh.angle + (Math.random() - 0.5) * 400,
+      alpha: 0,
+      duration: 450 + Math.random() * 350,
+      ease: 'Quad.easeOut',
+      onComplete: () => sh.destroy(),
+    });
+  }
+  const glow = scene.add.image(cx, cy - 24, FB.glow).setTint(s.color).setBlendMode(Phaser.BlendModes.ADD).setDepth(ev.y + FX_DEPTH_BIAS).setScale(0.5);
+  scene.tweens.add({ targets: glow, scale: (r / 16) * 0.7, alpha: { from: 0.8, to: 0 }, duration: 480, ease: 'Quad.easeOut', onComplete: () => glow.destroy() });
+  world.flash(s.color, 110);
+  sfx('verdad');
+}
+
+/** FUEGO: llamarada en línea (lengua de fuego que se extiende, núcleo amarillo, chispas y brasas). */
+function fuegoFx(world: WorldApi, ev: SpellOutcomeEvent): void {
+  const scene = world.scene;
+  const s = SPELLS_FX.FUEGO;
+  const len = spellParam('FUEGO', 'length', s.length) * powerScale(ev.power);
+  const half = spellParam('FUEGO', 'width', s.width);
+  const x0 = ev.x + ev.facing * s.forward;
+  const yDraw = ev.y - 22;
+  const depth = ev.y + FX_DEPTH_BIAS;
+  const steps = 14;
+  for (let i = 0; i < steps; i++) {
+    const k = i / (steps - 1);
+    const px = x0 + ev.facing * len * k;
+    scene.time.delayedCall(i * 18, () => {
+      // Bola de fuego que crece, sube un poco y se apaga.
+      const size = (0.9 + 0.6 * Math.sin(k * Math.PI)) * (half / 16);
+      const outer = scene.add.image(px, yDraw + (Math.random() - 0.5) * 6, FB.glow).setTint(s.color).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth).setScale(size * 1.4, size);
+      const inner = scene.add.image(px, yDraw, FB.glow).setTint(0xffe070).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth + 0.01).setScale(size * 0.7, size * 0.5);
+      scene.tweens.add({
+        targets: [outer, inner],
+        y: yDraw - 10 - Math.random() * 10,
+        alpha: 0,
+        scaleX: size * 0.4,
+        duration: 380 + Math.random() * 160,
+        ease: 'Quad.easeIn',
+        onComplete: () => {
+          outer.destroy();
+          inner.destroy();
+        },
+      });
+      burst(scene, 'sun', px, yDraw, depth, 3);
+      if (i % 3 === 0) burst(scene, 'sparkRed', px, yDraw, depth, 3);
+    });
+  }
+  // Franja de calor en el suelo.
+  const ground = scene.add.rectangle(x0, ev.y, 4, half * 2, s.color, 0.22).setOrigin(ev.facing > 0 ? 0 : 1, 0.5).setDepth(ev.y - FX_DEPTH_BIAS);
+  scene.tweens.add({ targets: ground, width: len, duration: steps * 18, ease: 'Linear' });
+  scene.tweens.add({ targets: ground, alpha: 0, delay: 360, duration: 420, onComplete: () => ground.destroy() });
+  const flare = scene.add.image(x0, yDraw, FB.glow).setTint(0xffb040).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth).setScale(1.2);
+  scene.tweens.add({ targets: flare, alpha: 0, scale: 2.4, duration: 260, onComplete: () => flare.destroy() });
+  world.shake(0.005, 140);
+  sfx('fuego');
+}
+
+/** DESCANSO: pétalos de cempasúchil que caen girando en círculo y luces de vela que suben despacio. */
+function descansoFx(world: WorldApi, ev: SpellOutcomeEvent): void {
+  const scene = world.scene;
+  const s = SPELLS_FX.DESCANSO;
+  const r = spellParam('DESCANSO', 'purifyRadius', s.purifyRadius) * powerScale(ev.power);
+  const cx = ev.x + ev.facing * s.forward;
+  const cy = ev.y;
+  // Círculo de pétalos en el suelo (como el camino de flores de una ofrenda).
+  const ring = scene.add.image(cx, cy, FB.ring).setTint(0xffa020).setBlendMode(Phaser.BlendModes.ADD).setDepth(cy - FX_DEPTH_BIAS).setDisplaySize(8, 4);
+  scene.tweens.add({ targets: ring, displayWidth: r * 2, displayHeight: r, alpha: { from: 0.9, to: 0 }, duration: s.fxMs * 0.7, ease: 'Sine.easeOut', onComplete: () => ring.destroy() });
+  for (let i = 0; i < s.petalCount; i++) {
+    const a = Math.random() * Math.PI * 2;
+    const d = Math.sqrt(Math.random()) * r;
+    const tx = cx + Math.cos(a) * d;
+    const ty = cy + Math.sin(a) * d * 0.5;
+    const col = s.petals[i % s.petals.length];
+    const p = scene.add.image(tx + (Math.random() - 0.5) * 30, ty - 70 - Math.random() * 40, FB.px)
+      .setTint(col).setScale(1.4, 1).setAngle(Math.random() * 180).setDepth(ty + FX_DEPTH_BIAS);
+    scene.tweens.add({
+      targets: p,
+      x: tx,
+      y: ty - 1,
+      angle: p.angle + (Math.random() - 0.5) * 540,
+      delay: Math.random() * 300,
+      duration: 700 + Math.random() * 500,
+      ease: 'Sine.easeIn',
+      onComplete: () => scene.tweens.add({ targets: p, alpha: 0, delay: 500, duration: 500, onComplete: () => p.destroy() }),
+    });
+  }
+  // Lucecitas de vela que suben.
+  for (let i = 0; i < s.lights; i++) {
+    const lx = cx + (Math.random() - 0.5) * r * 1.4;
+    const ly = cy + (Math.random() - 0.5) * r * 0.5;
+    const l = scene.add.image(lx, ly - 4, FB.glow).setTint(i % 2 ? 0xffe8a0 : 0xffc060).setBlendMode(Phaser.BlendModes.ADD).setScale(0.22).setDepth(ly + FX_DEPTH_BIAS).setAlpha(0);
+    scene.tweens.add({
+      targets: l,
+      y: ly - 60 - Math.random() * 40,
+      x: lx + (Math.random() - 0.5) * 16,
+      alpha: { from: 0.95, to: 0 },
+      delay: 150 + i * 70,
+      duration: s.fxMs,
+      ease: 'Sine.easeOut',
+      onComplete: () => l.destroy(),
+    });
+  }
+  const glow = scene.add.image(cx, cy - 10, FB.glow).setTint(0xffb040).setBlendMode(Phaser.BlendModes.ADD).setDepth(cy - FX_DEPTH_BIAS).setScale(r / 16, r / 32).setAlpha(0);
+  scene.tweens.add({ targets: glow, alpha: { from: 0, to: 0.35 }, duration: 400, yoyo: true, hold: 300, onComplete: () => glow.destroy() });
+  world.flash(0xffb040, 100);
+  sfx('descanso');
 }

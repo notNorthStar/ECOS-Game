@@ -830,6 +830,251 @@
       "placeholder": true,
       "generator": "tools/gen-oaxaca-scenery.mjs",
       "generatedSha256": "3535251f29b82f5796cb697e767445dad20975517e008db2d064b331081074df"
+    },
+    {
+      "key": "fondo_xochimilco_capa0",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_xochimilco_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "34d7c9cb31b0a07c2e2b71b68bd180051bef1d317df066e7e086ce6fcc004075"
+    },
+    {
+      "key": "fondo_xochimilco_capa1",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_xochimilco_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "b6ff7e1a2db2cb39e65e28618758ca9abb7b79293536f84d5b636a00a36d0ed7"
+    },
+    {
+      "key": "fondo_xochimilco_capa2",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_xochimilco_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "6d1287e7c4f7dfca37760a9e6dba393224863c55ea50142cc9db8b0c71d5bb5c"
+    },
+    {
+      "key": "fondo_xochimilco_capa3",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_xochimilco_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "5e4382520c85d3a3c15b6b2d5fcb241ef5f618100ab38afeb647f7e0d4bcbd27"
+    },
+    {
+      "key": "fondo_xochimilco_capa4",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_xochimilco_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "1cb2a25477da02b445905eee70c5b830d54938e166ade899d2074172fbfc83de"
+    },
+    {
+      "key": "fondo_xochimilco_capa5",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_xochimilco_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "fe0d78e3fb04175e83cab9c3cdd05c2e58369b9f95ac45858d78f8df14aabba1"
+    },
+    {
+      "key": "fondo_avenidas_capa0",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_avenidas_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "cf816c8feea59f2a2db0172a705084fca20399dcae538fd7bf0c3c9e24d6082c"
+    },
+    {
+      "key": "fondo_avenidas_capa1",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_avenidas_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "c13e7af0e2683bc85852f6f62b55ba54b1d4aedb0ac956aed919c4bf9c9fbd84"
+    },
+    {
+      "key": "fondo_avenidas_capa2",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_avenidas_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "f00cfb630fa144df37b8a380a113dd8b3e0173a14cb7dd1aeb7a897d2c3b2b11"
+    },
+    {
+      "key": "fondo_avenidas_capa3",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_avenidas_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "14cfc62b024916fa4558855fd19c2a52e4524134c065d26dacc923b98a9446ea"
+    },
+    {
+      "key": "fondo_avenidas_capa4",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_avenidas_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "ca56f89b6d09d3cfcf6df19bea19e2ec046a4a1cd68ee2dd229830ae2c99ce48"
+    },
+    {
+      "key": "fondo_avenidas_capa5",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_avenidas_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "d48bda2a26cc888f9e927bd4acd3d6faf2ec2b8595d9601d776f10270f5a0835"
+    },
+    {
+      "key": "fondo_reforma_capa0",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_reforma_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "96659ceacd6871e0218c7c791bde7fa256e1df2058a4ec437f7e082796edc92f"
+    },
+    {
+      "key": "fondo_reforma_capa1",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_reforma_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "b10f0ef39b72b6c10c43b1ee461954e6c462c075ef4ea045861c758ab70ac1df"
+    },
+    {
+      "key": "fondo_reforma_capa2",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_reforma_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "9dba28629fe94fe809af5819d1831586eafea0a3464f0c482640b37182b4d747"
+    },
+    {
+      "key": "fondo_reforma_capa3",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_reforma_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "77617567d78226a72e83cb1c3c40c14024293b6a89ce530d6bea350ac6fbe003"
+    },
+    {
+      "key": "fondo_reforma_capa4",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_reforma_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "441f682eba2331a84d4deb1cb974e0d52750970724b4e0b00809e516e7068a30"
+    },
+    {
+      "key": "fondo_reforma_capa5",
+      "path": "assets/escenarios/nivel-06-cdmx/fondos/fondo_reforma_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "5408a442dbb00b2df9b4d423819a0ab1ca4e95161c93fa19bf605733ca0d8416"
+    },
+    {
+      "key": "prop_n06_trajinera",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_trajinera.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "7356fc7ca2405bc99ecabea2b9334d12c174c224b69585eacbddba7c78b5aae4"
+    },
+    {
+      "key": "prop_n06_ahuejote",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_ahuejote.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "f08e2ccd1639ab3d27390a399f8590d296038900d64b0258a35c6e9b3d5222e8"
+    },
+    {
+      "key": "prop_n06_cempasuchil",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_cempasuchil.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "aa06403f7afb138cd75fa38f13f4f3c0f193ef8a596629ccc03ab6a5dee3a89a"
+    },
+    {
+      "key": "prop_n06_maceta_cempasuchil",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_maceta_cempasuchil.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "0f05e6f24cc8fe867060ff5e364ad404f2dda5b28047ddeabac5249d7798f562"
+    },
+    {
+      "key": "prop_n06_calaverita",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_calaverita.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "3fb7f92da3356e1b162c939ebbb42b8ec67e882ed3306ad2e2dd618ba060bb0e"
+    },
+    {
+      "key": "prop_n06_calaveritas",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_calaveritas.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "3ef16609aa56c900d2193cc73cafba3de43df5c3edc0ef6a92d8a8c871894c4b"
+    },
+    {
+      "key": "prop_n06_auto",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_auto.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "e5ac85272040c2f9bfa8b75b93508cf3664569d2fd81eeef0e1b4f3adac52ffa"
+    },
+    {
+      "key": "prop_n06_auto_2",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_auto_2.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "147db643599211595c5ff6de341a04a527912260649b7db78837573887fb0761"
+    },
+    {
+      "key": "prop_n06_taxi",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_taxi.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "fe3c07f0e09c9b38969bc2cc4472c0aa71f630f67cf75a2ae2c9aec6183ed283"
+    },
+    {
+      "key": "prop_n06_escombros",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_escombros.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "7a57fd3a31554ce005702889848ad01acce2fdd6de5a51c6f2e0e0fb74ed18a1"
+    },
+    {
+      "key": "prop_n06_escombros_grandes",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_escombros_grandes.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "0db9e244f68f9de9e8730b958d51e6abc33383a7c90ea63dcbf9ba370644b027"
+    },
+    {
+      "key": "prop_n06_cornisa",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_cornisa.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "25dd512de0fe745652e518e78a5b59775312a94d07b5eab1e6fb0b477ac5b4a4"
+    },
+    {
+      "key": "prop_n06_losa_alta",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_losa_alta.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "7d96c34b689133b83d3d00d89bd89038a9d6d4c76a2691968839111f86cdc5eb"
+    },
+    {
+      "key": "prop_n06_viga",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_viga.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "b32fb7423f10473ee5b958b97fd649f349d7b29be90bada2566a6271b7b23ba2"
+    },
+    {
+      "key": "prop_n06_angel_columna",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_angel_columna.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "8f2697ecadfd348bfce7c57b4828a422c8a6dcf3a46024e5fa02777f149261cc"
+    },
+    {
+      "key": "prop_n06_angel_figura",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_angel_figura.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "a451c9bf2935f3883a06e66719cf2f5d898a2df834bc5e9d5f62e00eec919f6f"
+    },
+    {
+      "key": "prop_n06_letras_cdmx",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_letras_cdmx.png",
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "0329b42ee581c8e3c79335825d980f2118c4e3da1eea4b7546bf289ea3a60dbd"
     }
   ],
   "sheets": [
@@ -1721,6 +1966,227 @@
       "placeholder": true,
       "generator": "tools/gen-oaxaca-scenery.mjs",
       "generatedSha256": "5bf44dc4d5e457c56b7af047c3af320eac496bb46791ef84ae852177958eee7d"
+    },
+    {
+      "key": "prop_n06_ofrenda_grande",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_ofrenda_grande.png",
+      "frameWidth": 112,
+      "frameHeight": 96,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.9896,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "5db8cd988e5da03049347744c3a23f35fbc83a61b665de996c52f8c07a1e8b6f"
+    },
+    {
+      "key": "prop_n06_ofrenda_descanso",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_ofrenda_descanso.png",
+      "frameWidth": 112,
+      "frameHeight": 96,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.9896,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "fbc81669f219047f9c60ada497ffd5993f3a8d33208deef3f6abef34b96b5006"
+    },
+    {
+      "key": "prop_n06_ofrenda_chica",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_ofrenda_chica.png",
+      "frameWidth": 48,
+      "frameHeight": 44,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.9773,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "85c1f07467e3b14dbf077d1555c9d81c5c59e7e3a107c3b25c95de6a10caacbf"
+    },
+    {
+      "key": "prop_n06_ofrenda_flotante",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_ofrenda_flotante.png",
+      "frameWidth": 96,
+      "frameHeight": 48,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.9792,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "e234d2b63b7611bd2f81a31474cb636c2af42e4f8241d8590aaa8c86b0b3b86d"
+    },
+    {
+      "key": "prop_n06_brasero",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_brasero.png",
+      "frameWidth": 32,
+      "frameHeight": 48,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.9792,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "f9c45c00a33237b51340d1cc2aa45cdae8e9a271f65bba7104e817ad895eac13"
+    },
+    {
+      "key": "prop_n06_inscripcion",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_inscripcion.png",
+      "frameWidth": 56,
+      "frameHeight": 56,
+      "frames": 2,
+      "frameRate": 2,
+      "repeat": -1,
+      "originY": 0.9821,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "c4b23efba5ff7b7ae8756604a1c8ef33788c4ac25b3cbff351c0179c4096a5ba"
+    },
+    {
+      "key": "prop_n06_arbol_munecas",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_arbol_munecas.png",
+      "frameWidth": 104,
+      "frameHeight": 128,
+      "frames": 4,
+      "frameRate": 2,
+      "repeat": -1,
+      "originY": 0.9922,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "ae838952480f57193fcb76606155d4342893cd7bbcc93ed14233c8f532c84f4e"
+    },
+    {
+      "key": "prop_n06_papel_picado",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_papel_picado.png",
+      "frameWidth": 128,
+      "frameHeight": 28,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.9643,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "86cc9bd83fab587bae326dbdf1b729ba96c4e6bcc9cb9242fae8ee222992053c"
+    },
+    {
+      "key": "prop_n06_veladoras",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_veladoras.png",
+      "frameWidth": 32,
+      "frameHeight": 20,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.95,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "0e30727a11639ef9597e70cd6d266361ecf75d2694f2a187e0003cfec8fec1b3"
+    },
+    {
+      "key": "prop_n06_poste_neon",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_poste_neon.png",
+      "frameWidth": 32,
+      "frameHeight": 96,
+      "frames": 4,
+      "frameRate": 5,
+      "repeat": -1,
+      "originY": 0.9896,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "f98a24af1ea161659608b130b6cf923a3359070a1ebb4a61cac7235c993a758f"
+    },
+    {
+      "key": "prop_n06_estacion_teleferico",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_estacion_teleferico.png",
+      "frameWidth": 192,
+      "frameHeight": 144,
+      "frames": 2,
+      "frameRate": 2,
+      "repeat": -1,
+      "originY": 0.9931,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "d84aee59bcef710dff3f3d0120924c02372cb990de967f2e463dc0a5b9a23e1e"
+    },
+    {
+      "key": "prop_n06_cabina",
+      "path": "assets/escenarios/nivel-06-cdmx/props/prop_n06_cabina.png",
+      "frameWidth": 32,
+      "frameHeight": 38,
+      "frames": 2,
+      "frameRate": 2,
+      "repeat": -1,
+      "originY": 0.9737,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "6934e048d4f4d5f72120f452560c681097500927e0f2faa1e7901f10db2c5b26"
+    },
+    {
+      "key": "npc_sobreviviente_1",
+      "path": "assets/sprites/npcs/npc_sobreviviente_1.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 5,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "c0fb9872cc975319400bc152bf4685f82694a75f36d79faab7e1a3b60bc27563"
+    },
+    {
+      "key": "npc_sobreviviente_2",
+      "path": "assets/sprites/npcs/npc_sobreviviente_2.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "4a3f8761f3b1b7f529edc7bb750545894c62ab74e58c635cc969f8c299af0cfd"
+    },
+    {
+      "key": "npc_sobreviviente_3",
+      "path": "assets/sprites/npcs/npc_sobreviviente_3.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "b35bcac62cc74e01ff6f1644feaf9c5e2bfbfcba98809ec1f9a419a075f1dbe6"
+    },
+    {
+      "key": "npc_sobreviviente_4",
+      "path": "assets/sprites/npcs/npc_sobreviviente_4.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "ec361001990931463506652fe73796df5386be43e0ec4360e8c62914c741e44d"
+    },
+    {
+      "key": "npc_sobreviviente_5",
+      "path": "assets/sprites/npcs/npc_sobreviviente_5.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-cdmx-scenery.mjs",
+      "generatedSha256": "e703efbc0740720a98e88f1e0ac7e85c20d7b93b9a76f17bc646d55c43404655"
     }
   ]
 }

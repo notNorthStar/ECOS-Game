@@ -3,7 +3,10 @@
   "effectDoc": {
     "LUZ": "purifyRadius (px): purifica espíritus agotados o lunaOnly dentro del radio · stunRadius (px) + stun: aturde a encapuchados y otros · knockback (px) · lightRadius (px) + lightMs: ilumina/disipa niebla alrededor del jugador · bossDamage: golpes de conjuro efectivos contra la Cabeza Olmeca en su ventana. Radios × powerScale(power).",
     "SOL": "length (px) hacia facing, |Δy| <= width: ráfaga en línea · damage (pts de vida del enemigo; el encapuchado rojo tiene 60, así que un SOL perfecto lo deja inconsciente; cada rango lo escala con solMult de enemies.json) · knockback (px) · stun · beamMs: duración visual del rayo. Daño × power. Contra la Cabeza Olmeca cuenta como sello en su ventana (enemies.json → cabeza_olmeca.seal).",
-    "MEMORIA": "purifyRadius (px): purifica a las bestias corrompidas (agotadas o no) dentro del radio; al purificarse revelan el pasaje oculto ('pasaje:revealed', lo emite quien corresponda) · stunRadius (px) + stun: aturde a lo demás que esté cerca (al encapuchado no le hace nada: ➖) · bossSeal: avance del sello de la Bruja Guajolote si la alcanza en su ventana de vulnerabilidad (afinidad ✅ en ambas formas). Radios × powerScale(power); bossSeal × power si es parcial."
+    "MEMORIA": "purifyRadius (px): purifica a las bestias corrompidas (agotadas o no) dentro del radio; al purificarse revelan el pasaje oculto ('pasaje:revealed', lo emite quien corresponda) · stunRadius (px) + stun: aturde a lo demás que esté cerca (al encapuchado no le hace nada: ➖) · bossSeal: avance del sello de la Bruja Guajolote si la alcanza en su ventana de vulnerabilidad (afinidad ✅ en ambas formas). Radios × powerScale(power); bossSeal × power si es parcial.",
+    "VERDAD": "revealRadius (px): rompe ilusiones y disfraces dentro del radio — revela a los nahuales disfrazados (se transforman SIN zarpazo sorpresa, 'nahual:revealed'), disipa las copias de la Nahuala y deja expuesta a la real · stun (s): aturde a lo revelado, a nahuales transformados y a encapuchados (➖ leve en el resto) · bossSeal: avance del sello de la Nahuala si la alcanza en su ventana. Radio × powerScale(power); stun y bossSeal × power.",
+    "FUEGO": "length (px) hacia facing, |Δy| <= width: ráfaga de fuego en línea (como SOL) · damage (pts de vida del enemigo; 70 deja inconsciente a un encapuchado rojo de 60 y destruye muñecas) · knockback (px) · burnMs: cuánto arde (visual) el blanco alcanzado. Daño × power. ❌ contra la Nahuala (la cura o la enfurece): lo decide el enemigo.",
+    "DESCANSO": "purifyRadius (px): libera a los muertos que no descansan dentro del radio — el alma atrapada en las muñecas poseídas (quedan inertes, sin violencia) y los espíritus · stun (s): aturdimiento breve (➖) a lo demás que esté cerca. Radio × powerScale(power); stun × power."
   },
   "masteryRules": {
     "partialMinFraction": 0.8,
@@ -110,6 +113,55 @@
         "stunRadius": 160,
         "stun": 4,
         "bossSeal": 1
+      }
+    },
+    {
+      "id": "VERDAD",
+      "name": "VERDAD",
+      "type": "revelacion",
+      "title": "Verdad",
+      "desc": "Rompe ilusiones y disfraces a tu alrededor: obliga a los nahuales infiltrados a mostrarse antes de atacar y disipa las copias de la Nahuala.",
+      "learnedFrom": "Sobreviviente cronista / inscripción en la CDMX",
+      "color": "#d8f0ff",
+      "letterWindowMs": 3800,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "revealRadius": 170,
+        "stun": 4,
+        "bossSeal": 1
+      }
+    },
+    {
+      "id": "FUEGO",
+      "name": "FUEGO",
+      "type": "ofensivo",
+      "title": "Fuego",
+      "desc": "El fuego que guía a los muertos: una ráfaga en línea hacia donde miras. Fuerte contra las muñecas poseídas y la Cofradía.",
+      "learnedFrom": "Brasero de la ofrenda flotante en Xochimilco",
+      "color": "#ff6a20",
+      "letterWindowMs": 3400,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "length": 240,
+        "width": 16,
+        "damage": 70,
+        "knockback": 26,
+        "burnMs": 1100
+      }
+    },
+    {
+      "id": "DESCANSO",
+      "name": "DESCANSO",
+      "type": "purificacion",
+      "title": "Descanso",
+      "desc": "Libera a los muertos que no descansan. En las muñecas poseídas, deja ir al alma atrapada: la muñeca queda inerte, sin violencia.",
+      "learnedFrom": "Ofrenda de Día de Muertos en las avenidas",
+      "color": "#ffb830",
+      "letterWindowMs": 4400,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "purifyRadius": 140,
+        "stun": 1.5
       }
     }
   ]

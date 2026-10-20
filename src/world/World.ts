@@ -89,7 +89,8 @@ export class World implements WorldApi {
     this.fxLayer = scene.add.layer().setDepth(DEPTH.foreground - 10);
 
     const p0 = this.map.nearestWalkable(start.x, start.y, 7);
-    const player = new Player(this, p0.x, p0.y);
+    // El jugador consulta su "suelo" (altura del bloque bajo sus pies) al WalkMap.
+    const player = new Player(this, p0.x, p0.y, (x, y, r, z) => this.map.groundInfo(x, y, r, z));
     this.player = player;
     this.playerShadow = scene.add.image(p0.x, p0.y, shadowTexture(scene)).setDepth(DEPTH.shadow).setAlpha(0.6);
     this._entities.push(player);
@@ -147,9 +148,12 @@ export class World implements WorldApi {
     return e;
   }
 
-  moveActor(a: { x: number; y: number; radius: number }, dx: number, dy: number): void {
+  moveActor(a: { x: number; y: number; radius: number; z?: number }, dx: number, dy: number): void {
     const ox = a.x;
-    this.map.moveActor(a, dx, dy);
+    // Bloques con `height`: solo el jugador los cruza/sube según su z (doble salto, Nivel 6). Los
+    // enemigos se mueven con z = 0 (chocan con todo, como antes): así nunca quedan dentro de un
+    // bloque al aterrizar, porque no tienen "suelo" elevado.
+    this.map.moveActor(a, dx, dy, a === this.player ? (a.z ?? 0) : 0);
     if (a === this.player) {
       // Límites del mundo y de la arena solo para el jugador (los enemigos pueden entrar desde fuera).
       const x0 = (this.arena?.x0 ?? 0) + a.radius;
@@ -286,10 +290,15 @@ export class World implements WorldApi {
     }
 
     // Sombra del jugador (los enemigos dibujan la suya: EnemyBase).
+    // Encima de un bloque con `height`, la sombra va sobre su superficie (y − altura) y se encoge
+    // según la altura sobre ESA superficie.
     const p = this.player;
-    const k = Math.max(0.45, 1 - p.z / 110);
+    const g = this.map.groundInfo(p.x, p.y, p.radius, p.z);
+    const k = Math.max(0.45, 1 - (p.z - g.height) / 110);
     this.playerShadow
-      .setPosition(Math.round(p.x), Math.round(p.y))
+      .setPosition(Math.round(p.x), Math.round(p.y - g.height))
+      // Sobre un bloque: justo debajo del jugador pero delante del prop del bloque.
+      .setDepth(g.height > 0 ? Math.max(p.y, g.frontY) + 0.4 : DEPTH.shadow)
       .setScale(((p.radius * 2.6) / 32) * k, k)
       .setAlpha(0.6 * k);
 

@@ -1,0 +1,187 @@
+{
+  "_hablantes": {
+    "n06_narrador": { "nombre": "", "retrato": "" },
+    "n06_tu": { "nombre": "Tú", "retrato": "retrato_protagonista" },
+    "n06_maria": { "nombre": "María", "retrato": "" },
+    "n06_refugio": { "nombre": "Doña Refugio", "retrato": "" },
+    "n06_sobreviviente": { "nombre": "Sobreviviente", "retrato": "" },
+    "n06_chofer": { "nombre": "Don Chema", "retrato": "" },
+    "n06_mujer": { "nombre": "Mujer", "retrato": "" },
+    "n06_habitante_a": { "nombre": "Doña Cande", "retrato": "" },
+    "n06_habitante_b": { "nombre": "Don Eulogio", "retrato": "" }
+  },
+
+  "n06_intro": [
+    { "who": "n06_narrador", "text": "Xochimilco. Los canales llevan meses secos y las trajineras de colores quedaron varadas en el lodo agrietado, con sus arcos de flores marchitos. Un viento tibio mueve algo que cuelga de los ahuehuetes: cientos de muñecas." },
+    { "who": "n06_tu", "text": "La Isla de las Muñecas. Mi mamá me contó que de niño me daba miedo hasta el nombre." },
+    { "who": "n06_narrador", "text": "Al fondo, entre la neblina seca, se adivina una silueta enorme de rascacielos rotos. La Ciudad de México. El Códice marca que el rastro de la Cofradía sube por Reforma." }
+  ],
+  "n06_letrero": [
+    { "who": "n06_narrador", "text": "Un embarcadero de madera con un letrero de colores descoloridos: «XOCHIMILCO · PASEOS EN TRAJINERA». Alguien le colgó un collar de cempasúchil seco. Del otro lado, escrito con gis: «El agua se fue y se llevó a los que cuidaban la isla»." }
+  ],
+  "n06_xochi_vista": [
+    { "who": "n06_narrador", "text": "Las muñecas cuelgan de las ramas con los ojos abiertos, sin cabeza o sin brazos, vestidas con harapos de lluvias viejas. Cuando pasas, las que están más cerca giran un poco, como si alguien las hubiera volteado a mirar." },
+    { "who": "n06_maria", "text": "¿Quién deja solas a tantas niñas en una isla? Tantos pueblos, tantas casas... y ni un rastro de mis hijos. Ni un zapatito." },
+    { "who": "n06_tu", "text": "Los vamos a encontrar, María. Pero aquí no te separes de mí." }
+  ],
+  "n06_trajinera": [
+    { "who": "n06_narrador", "text": "Una trajinera varada en el lodo. En la proa todavía se lee su nombre: «Lupita». Hay un termo, un par de huaraches y una mesa de madera con manteles de papel que nadie recogió." }
+  ],
+  "n06_isla": [
+    { "who": "n06_narrador", "text": "El árbol más grande de la isla está cubierto de muñecas de todos los tamaños. A sus pies, veladoras apagadas y una placa torcida: «Para que la niña no esté sola»." },
+    { "who": "n06_tu", "text": "Dicen que una niña se perdió en el canal y que su espíritu quería compañía. Por eso la gente le traía muñecas." },
+    { "who": "n06_narrador", "text": "La gema palpita al acercarla. Algunas muñecas tienen una luz verde muy débil detrás de los ojos de vidrio. No es la niña: es algo que la Cofradía metió adentro, algo atrapado que no puede salir." },
+    { "who": "n06_maria", "text": "Hay alguien dentro de ellas, ¿verdad? Alguien que quiere irse y no sabe cómo." }
+  ],
+  "n06_cornisa_1": [
+    { "who": "n06_narrador", "text": "Una trajinera encaramada en un montículo de lodo seco. Debajo del asiento hay una lata con monedas viejas y un papel doblado, escrito a mano: «Vi pasar al de la corona hacia Reforma. Iba rodeado de capuchas negras. No bajó la vista ni una vez»." }
+  ],
+  "n06_fuego": [
+    { "who": "n06_narrador", "text": "En un canal que aún guarda un charco, una trajinera pequeña flota con una ofrenda: pan de muerto, cempasúchil, retratos desteñidos y una hilera de veladoras que alguien siguió encendiendo hasta el final." },
+    { "who": "n06_tu", "text": "Aquí la gente despedía a sus muertos con luz. Para que el camino no se les oscureciera." },
+    { "who": "n06_narrador", "text": "Al acercarte, las llamas se ladean todas hacia ti. La gema te entrega una seña de fuego, un movimiento corto y cálido que se queda en la mano. No quema a los vivos: guía a los muertos y rompe lo que está hecho de madera y trapo." },
+    { "who": "n06_maria", "text": "Que el fuego guíe a los que se perdieron. A todos. A los míos también, por favor." }
+  ],
+  "n06_fuego_fin": [
+    { "who": "n06_narrador", "text": "Las veladoras vuelven a su tamaño. Una sola se queda encendida, apuntando hacia el norte, hacia la ciudad." },
+    { "who": "n06_tu", "text": "FUEGO. Sirve contra las muñecas y contra los encapuchados. Contra los seres del folclor, mejor ni lo intento." }
+  ],
+  "n06_fuego_repite": [
+    { "who": "n06_narrador", "text": "La ofrenda sigue encendida. Una de las veladoras apunta, tranquila, hacia la ciudad." }
+  ],
+
+  "n06_avenidas_vista": [
+    { "who": "n06_narrador", "text": "Las avenidas están vestidas para el Día de Muertos: papel picado cruzando las calles de lado a lado, cempasúchil en las banquetas, ofrendas en cada esquina. Nadie las quitó. Nadie vino a quitarlas. La fiesta siguió sola, sin gente." },
+    { "who": "n06_maria", "text": "Hay fotos en todas las ofrendas. En todas. Yo no tengo ninguna de mis hijos, ni una. ¿Cómo se pierde uno hasta de las fotos?" },
+    { "who": "n06_tu", "text": "No te sueltes de mi brazo. Hay gente viva por aquí, y no sé si toda es de fiar." }
+  ],
+  "n06_arco": [
+    { "who": "n06_narrador", "text": "Un arco de papel picado cruza la avenida. Entre los cortes se lee, con letra de calavera: «Hoy regresan los que se fueron». Alguien le añadió con pintura roja: «y también los que no se quieren ir»." }
+  ],
+  "n06_organillo": [
+    { "who": "n06_narrador", "text": "Un organillo desafinado sigue sonando solo, con la manivela atorada. La melodía es un son conocido... pero cada vuelta se le cae una nota, y la canción se queda coja, como si le faltara alguien que la cantara." }
+  ],
+  "n06_ofrenda": [
+    { "who": "n06_narrador", "text": "La ofrenda más grande de la avenida ocupa toda una banqueta: siete niveles, retratos en blanco y negro, pan, fruta, copal, cempasúchil. A sus pies, cientos de calaveritas de azúcar y una nota: «Para los que murieron sin que nadie los llorara»." },
+    { "who": "n06_tu", "text": "Aquí también hay muertos que no se pueden ir. Como la gente de las muñecas." },
+    { "who": "n06_narrador", "text": "La gema se enciende con una luz blanca y tibia. Una seña tranquila, de manos abiertas, aparece sobre el copal: la seña de dejar ir. No es un arma. Es una llave que les abre la puerta a quienes se quedaron atorados." },
+    { "who": "n06_maria", "text": "Que descansen, sí... Pero los míos no, ¿verdad? Los míos tienen que estar vivos. Dime que están vivos." },
+    { "who": "n06_tu", "text": "Vamos a averiguarlo juntos." }
+  ],
+  "n06_descanso_fin": [
+    { "who": "n06_narrador", "text": "El copal se eleva en un hilo recto. Las calaveritas de azúcar brillan un instante, como si un coro silencioso suspirara." },
+    { "who": "n06_tu", "text": "DESCANSO. Las muñecas poseídas van a poder irse sin que tenga que romperlas." }
+  ],
+  "n06_descanso_repite": [
+    { "who": "n06_narrador", "text": "La ofrenda sigue encendida, con el copal subiendo recto. Esta noche nadie se queda atrás." }
+  ],
+
+  "n06_cronista": [
+    { "who": "n06_refugio", "text": "¡Quieta! No... perdona. Pensé que eras de los otros. Soy Refugio. Todo lo que pasa en esta avenida lo anoto en mi cuaderno, porque alguien tiene que acordarse." },
+    { "who": "n06_tu", "text": "Busco a mi mamá. A una mujer sorda, de lentes redondos, que hablaba con las manos. La Cofradía se la llevó." },
+    { "who": "n06_refugio", "text": "Hablaba con las manos... Escribí algo así hace unos días, déjame ver. Sí. «Pasó por Reforma, entre capuchas negras». Más no sé. Pero te advierto algo, muchacho: no todos los que sobrevivimos somos gente." },
+    { "who": "n06_refugio", "text": "Hay nahuales mezclados entre nosotros. Se visten de vecinos, de señores amables, de viejitas. Te hablan, te piden favores, y cuando les haces caso, ¡zas!, el zarpazo." },
+    { "who": "n06_tu", "text": "¿Cómo los distingo?" },
+    { "who": "n06_refugio", "text": "Con la luna, si tienes quien te la preste: les sale la sombra de la bestia que llevan dentro. Y hay una seña vieja, muy vieja, que nombra lo que es de verdad y lo que no. Mi abuela la aprendió de los cronistas del pueblo. Se llama VERDAD." },
+    { "who": "n06_narrador", "text": "Doña Refugio toma tus manos entre las suyas y las mueve despacio. La gema responde con un latido claro, sin sombras, como cuando alguien dice la verdad sin miedo." },
+    { "who": "n06_refugio", "text": "Deletréala poco a poco, letra por letra. La verdad no se grita: se dice despacio." }
+  ],
+  "n06_verdad_fin": [
+    { "who": "n06_refugio", "text": "Ya la tienes. No se la lances a la gente buena: es para lo que miente. Y cuando veas a un conocido muy cariñoso, pregúntate por qué te sonríe tanto." },
+    { "who": "n06_maria", "text": "La verdad... a veces creo que no quiero saberla. Pero la voy a saber, aunque duela." }
+  ],
+  "n06_cronista_repite": [
+    { "who": "n06_refugio", "text": "Escribo todo lo que veo. Lo que no escribo, lo olvido, y lo que olvido se lo lleva la ciudad. Ve con cuidado, hijo." }
+  ],
+
+  "n06_sobreviviente_a": [
+    { "who": "n06_chofer", "text": "Llevo dos semanas escondido en esta camioneta. Desde aquí se ve todo. ¿Ves al señor que está junto a la carreta de elotes? No ha comido nada, no ha dormido, y huele a monte mojado." },
+    { "who": "n06_chofer", "text": "Los perros no se le acercan. Yo que tú le echaba la luz de la luna encima antes de hablarle. Dicen que así se le ve la sombra." },
+    { "who": "n06_tu", "text": "Gracias. Voy a tener cuidado." }
+  ],
+  "n06_sobreviviente_b": [
+    { "who": "n06_sobreviviente", "text": "Más adelante, en el puente de flores, hay otro señor que pregunta mucho por los niños. Dice que busca a su sobrina. Qué raro: no hay niños en esta calle desde hace meses." },
+    { "who": "n06_maria", "text": "¿Cuáles niños? ¿Viste niños? ¿Cuántos? ¿De qué edad?" },
+    { "who": "n06_sobreviviente", "text": "No, señora, no vi... perdone. Solo digo que quien pregunta por los niños sin tener ninguno de la mano, no está preguntando por niños." }
+  ],
+  "n06_nahual_1": [
+    { "who": "n06_sobreviviente", "text": "Joven, qué bueno que llegas. Ayúdame con esta carreta, que se me atoró en el lodo. Soy de aquí, de toda la vida, y ya hasta me cansé de esperar a que alguien se acordara de mí." },
+    { "who": "n06_sobreviviente", "text": "Acércate más, no te pido nada difícil. Solo que me mires a los ojos un momento." },
+    { "who": "n06_narrador", "text": "Las pupilas del hombre se vuelven largas, amarillas. Un olor a monte mojado llena la calle." }
+  ],
+  "n06_nahual_2": [
+    { "who": "n06_sobreviviente", "text": "¿Vienes de lejos? Se te nota en los zapatos. Yo de aquí no me muevo: mi sobrina me va a encontrar si me quedo en este puente. ¿Tú viste niños por el camino? ¿Niños con una señora?" },
+    { "who": "n06_maria", "text": "Sí, ¡sí! ¿Dónde? ¿Viste a mis...?" },
+    { "who": "n06_sobreviviente", "text": "No, no. Pero déjame ver tus manos. Dicen que tú tienes algo muy valioso en las manos." },
+    { "who": "n06_narrador", "text": "La sonrisa del hombre se ensancha demasiado. Debajo de su sombrero, una sombra larga y de cuatro patas se estira por el piso." }
+  ],
+  "n06_nahual_3": [
+    { "who": "n06_sobreviviente", "text": "Qué alegría ver a alguien con vida en Reforma. Soy mesero del Ángel, ¿sabes? Aquí ponía mi puesto de café, antes de todo esto. Ven, siéntate, te sirvo algo caliente." },
+    { "who": "n06_sobreviviente", "text": "Cuéntame hacia dónde vas. Si vas a subir al teleférico, tengo que avisarle a... a unos amigos." },
+    { "who": "n06_narrador", "text": "La taza humea sin que nadie la haya llenado. El hombre te mira sin parpadear, y su cuerpo empieza a crujir." }
+  ],
+  "n06_cornisa_2": [
+    { "who": "n06_narrador", "text": "Sobre una cornisa de la avenida, a salvo de los pasos de cualquiera, alguien armó una pequeña ofrenda: una foto, un vaso de agua y una carta doblada. «Para quien suba hasta aquí: ellos no se olvidan de lo que hacen. Se olvidan de quienes somos»." }
+  ],
+  "n06_cornisa_3": [
+    { "who": "n06_narrador", "text": "En el balcón de un edificio de cantera hay una mochila escolar y una libreta. La última hoja dice: «Escuché a unos encapuchados decir que el Rey del Olvido está arriba, donde llegan las cabinas. Que sube a quien se deja. Que baja olvidado»." }
+  ],
+
+  "n06_reforma_vista": [
+    { "who": "n06_narrador", "text": "Paseo de la Reforma. Las glorietas están rotas por pedazos de edificios que se desprenden poco a poco, como hojas de cemento. A lo lejos, enormes pirámides mexicas conviven con los rascacielos derrumbados. Y sobre el asfalto, inmenso, caído de espaldas: el Ángel de la Independencia." },
+    { "who": "n06_maria", "text": "El Ángel... con las alas contra el suelo. Así me siento yo: con alas, y tirada." },
+    { "who": "n06_narrador", "text": "Muy arriba, entre la niebla, avanzan lentas unas cabinas colgadas de cables. El teleférico sigue funcionando." }
+  ],
+  "n06_angel": [
+    { "who": "n06_narrador", "text": "El Ángel de la Independencia yace sobre la avenida, con el rostro dorado vuelto hacia el cielo. Su columna se partió en tres pedazos. En la base alguien dejó flores frescas, flores recientes, de cempasúchil." },
+    { "who": "n06_tu", "text": "Hasta aquí llegó el rastro. Y todavía hay gente que viene a dejarle flores." }
+  ],
+  "n06_negros_vista": [
+    { "who": "n06_narrador", "text": "Entre los capuchas rojas se mueve una fila de figuras más altas, con túnicas negras y los bordes rematados en rojo. No hablan. No se mueven como los demás: caminan juntas, como si pensaran con una sola cabeza." },
+    { "who": "n06_tu", "text": "Encapuchados negros. Son el rango que sigue. Pegan el doble de fuerte y aguantan más." },
+    { "who": "n06_maria", "text": "Esos pesan más que los rojos. Cuídate, mijo. Yo no podría perderte a ti también." }
+  ],
+  "n06_sobreviviente_c": [
+    { "who": "n06_sobreviviente", "text": "Si vas a pasar por el Ángel, ten cuidado con el mesero del puesto de café. Es muy amable. Demasiado. Nunca ha cambiado de ropa ni de cara." },
+    { "who": "n06_sobreviviente", "text": "Y no te confíes de los de negro: los rojos ya los conoces, pero los negros no se dejan engañar con una sola luz." }
+  ],
+  "n06_cornisa_4": [
+    { "who": "n06_narrador", "text": "Sobre las alas caídas del Ángel, donde nadie sube, hay un tubo de cobre con un mensaje enrollado: «Si lees esto es que encontraste la parte de arriba. Arriba también encontrarás a quien se llevó a la mujer de las manos»." }
+  ],
+
+  "n06_nahuala_intro": [
+    { "who": "n06_narrador", "text": "El suelo de la avenida se abre en círculos de obsidiana y, del humo negro que los rodea, se levanta una figura envuelta en un manto que cambia de forma. Una mujer. Un jaguar. Otra mujer. Un coyote. Y de pronto, tres mujeres idénticas." },
+    { "who": "n06_tu", "text": "Una Nahuala. Tiene copias de sí misma." },
+    { "who": "n06_narrador", "text": "Las tres sonríen con la misma sonrisa torcida. En sus ojos corre un humo oscuro: la corrupción de la Cofradía los llena como un agua sucia." },
+    { "who": "n06_maria", "text": "Hay una real entre todas, cuídate. Mírala con los ojos que no engañan." }
+  ],
+  "n06_nahuala_fin": [
+    { "who": "n06_narrador", "text": "La Nahuala cae de rodillas. El humo negro sale de su cuerpo como un suspiro largo y se disuelve en la neblina. Donde había una bestia queda una mujer joven, pálida, con el cabello revuelto y las manos temblando." },
+    { "who": "n06_mujer", "text": "¿Dónde... dónde estoy? Había una corona. Un hombre con una corona de espejos. Me dijo que si no mordía, me iba a quitar el nombre." },
+    { "who": "n06_tu", "text": "Ya pasó. Ya no te manda nadie." },
+    { "who": "n06_mujer", "text": "Gracias. Se llevaban gente hacia arriba. Una tras otra, en las cabinas, y ninguna volvió a bajar con su recuerdo. No subas sin... no subas olvidado." },
+    { "who": "n06_narrador", "text": "La mujer se desmaya con calma. De detrás de las columnas caídas y los autos volteados empiezan a asomarse los verdaderos habitantes de Reforma, que veían la pelea a escondidas." },
+    { "who": "n06_maria", "text": "Pobre mujer. También le quitaron lo suyo. Qué hacen estas cosas con las madres, Dios mío." }
+  ],
+  "n06_habitante_a": [
+    { "who": "n06_habitante_a", "text": "Lo que hiciste con la Nahuala no lo había visto nadie, joven. Fue quien nos tenía encerrados en el Ángel. Pero ni ella era la que mandaba. El que manda se hace llamar el Rey del Olvido." },
+    { "who": "n06_habitante_a", "text": "Vive en las alturas, donde terminan las cabinas del teleférico. Él es el dueño de la Cofradía en esta ciudad. Quien sube, baja sin nombre. Quien baja sin nombre, ya no es nadie." }
+  ],
+  "n06_habitante_b": [
+    { "who": "n06_habitante_b", "text": "Yo lo vi con mis propios ojos, desde esa azotea. Lo vi llevarse a una mujer. Una mujer de lentes redondos que no escuchaba: le gritaban y no volteaba. Iba atada de las manos, y con los dedos, como podía, le decía algo a quien quisiera mirar." },
+    { "who": "n06_tu", "text": "Mi mamá. Es mi mamá." },
+    { "who": "n06_habitante_b", "text": "Entonces ve rápido. Se la llevó para arriba, hacia su guarida. Fue hace tres noches, no más." }
+  ],
+  "n06_habitantes_fin": [
+    { "who": "n06_narrador", "text": "El corazón te late como un tambor. Sigue viva. Y la tienen arriba, en alguna parte de esa torre que se pierde entre la niebla." },
+    { "who": "n06_maria", "text": "¿Y niños? ¿No vio a unos niños con ella? ¿No oyó nada de dos niños? Cualquier cosa, cualquier rumor..." },
+    { "who": "n06_habitante_b", "text": "Niños, no, señora. Lo siento." },
+    { "who": "n06_maria", "text": "Entonces seguimos. Arriba, entonces. Si hay un lugar donde guardan a los perdidos, tiene que estar arriba." },
+    { "who": "n06_tu", "text": "Vamos al teleférico. Esta vez no lo suelto." }
+  ],
+  "n06_estacion": [
+    { "who": "n06_narrador", "text": "La estación base del teleférico es una nave de cristal y acero con los vidrios reventados. Las cabinas rojas salen una a una hacia la niebla, vacías, golpeando los cables con un sonido seco. Arriba, en la cima, una torre sin luces." },
+    { "who": "n06_tu", "text": "Aquí empieza la subida. Tú, Balam y María. Si el Rey del Olvido está arriba, allá vamos." },
+    { "who": "n06_narrador", "text": "Balam gruñe bajito. María se aprieta el rebozo y mira la torre sin parpadear. Las luces de las cabinas se mueven despacio, como una fila de velas que sube a una ofrenda que nadie ha puesto." }
+  ]
+}

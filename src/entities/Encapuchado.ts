@@ -7,7 +7,7 @@ import enemiesData from '../data/enemies.json';
 import { isShieldActive } from '../systems/Shield';
 import {
   EnemyBase, FB, burst, hexColor, hitPlayer, inLuzRadius, inMemoriaRadius, inSolLine, lunaVisible, planeDist, powerScale, rand, randRange,
-  smokeFx, solDamage, solKnockback, spellParam,
+  smokeFx, solDamage, solKnockback, spellParam, inVerdadRadius, inFuegoLine, verdadStun, fuegoDamage, fuegoKnockback, burnFx,
 } from './EnemyBase';
 
 /**
@@ -723,6 +723,14 @@ export class Encapuchado extends EnemyBase {
         if (planeDist(this.x, this.y, ev.x + ev.facing * s.forward, ev.y) > s.pushRadius) return false;
         return this.takeHit({ damage: 0, stun: s.stun * power, kind: 'spell', sourceX: ev.x, knockback: s.knockback * power });
       }
+      // Nivel 6. VERDAD: aturde (rompe su máscara de seguridad). FUEGO: inconsciente (daño fuerte, como SOL). DESCANSO: ➖.
+      case 'VERDAD':
+        if (!inVerdadRadius(ev, this.x, this.y)) return false;
+        return this.takeHit({ damage: 0, stun: verdadStun(ev), kind: 'spell', sourceX: ev.x, knockback: 6 });
+      case 'FUEGO':
+        if (!inFuegoLine(ev, this.x, this.y, this.radius)) return false;
+        burnFx(this.scene, this);
+        return this.takeHit({ damage: fuegoDamage(ev) * this.R.solMult, stun: 0, kind: 'spell', sourceX: ev.x, knockback: fuegoKnockback(ev) });
     }
     return false;
   }

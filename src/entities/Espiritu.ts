@@ -8,7 +8,7 @@ import progression from '../data/progression.json';
 import { isLunaActive } from '../systems/Luna';
 import {
   EnemyBase, FB, burst, hexColor, hitPlayer, inLuzRadius, inMemoriaRadius, inSolLine, planeDist, powerScale, purifyFx, rand, randRange,
-  solDamage, solKnockback, spellParam,
+  solDamage, solKnockback, spellParam, inVerdadRadius, inFuegoLine, inDescansoRadius, verdadStun, fuegoDamage, fuegoKnockback, burnFx,
 } from './EnemyBase';
 
 /**
@@ -326,6 +326,18 @@ export class Espiritu extends EnemyBase {
         if (this._exhausted || planeDist(this.x, this.y, ev.x, ev.y) > spellParam('VOZ', 'stunRadius', s.stunRadius) * powerScale(power)) return false;
         return this.takeHit({ damage: 0, stun: spellParam('VOZ', 'stun', s.stun) * power, kind: 'spell', sourceX: ev.x, knockback: 0 });
       }
+      // Nivel 6. DESCANSO: son muertos que no descansan → los libera (purifica). VERDAD: aturde. FUEGO: daña.
+      case 'DESCANSO':
+        if (!inDescansoRadius(ev, this.x, this.y, this.radius)) return false;
+        this.purify(perfect);
+        return true;
+      case 'VERDAD':
+        if (this._exhausted || !inVerdadRadius(ev, this.x, this.y)) return false;
+        return this.takeHit({ damage: 0, stun: verdadStun(ev), kind: 'spell', sourceX: ev.x, knockback: 0 });
+      case 'FUEGO':
+        if (!inFuegoLine(ev, this.x, this.y, this.radius)) return false;
+        burnFx(this.scene, this);
+        return this.takeHit({ damage: fuegoDamage(ev), stun: 0, kind: 'spell', sourceX: ev.x, knockback: fuegoKnockback(ev) * 0.5 });
     }
     return false; // PROTECCION: ➖
   }

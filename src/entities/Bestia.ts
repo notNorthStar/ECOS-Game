@@ -7,7 +7,7 @@ import enemiesData from '../data/enemies.json';
 import progression from '../data/progression.json';
 import {
   EnemyBase, FB, burst, hexColor, hitPlayer, inLuzRadius, inMemoriaRadius, inSolLine, planeDist, powerScale, purifyFx,
-  rand, randRange, solDamage, solKnockback, spellParam,
+  rand, randRange, solDamage, solKnockback, spellParam, inVerdadRadius, inFuegoLine, verdadStun, fuegoDamage, fuegoKnockback, burnFx,
 } from './EnemyBase';
 
 /**
@@ -531,6 +531,14 @@ export class Bestia extends EnemyBase {
         if (this._exhausted || planeDist(this.x, this.y, ev.x + ev.facing * s.forward, ev.y) > s.pushRadius) return false;
         return this.takeHit({ damage: 0, stun: s.stun * power, kind: 'spell', sourceX: ev.x, knockback: s.knockback * power });
       }
+      // Nivel 6. VERDAD: aturde (es un ser del folclor, no un disfraz: ➖ leve). FUEGO: daña. DESCANSO: ➖.
+      case 'VERDAD':
+        if (this._exhausted || !inVerdadRadius(ev, this.x, this.y)) return false;
+        return this.takeHit({ damage: 0, stun: verdadStun(ev, true), kind: 'spell', sourceX: ev.x, knockback: 4 });
+      case 'FUEGO':
+        if (!inFuegoLine(ev, this.x, this.y, this.radius)) return false;
+        burnFx(this.scene, this);
+        return this.takeHit({ damage: fuegoDamage(ev), stun: 0, kind: 'spell', sourceX: ev.x, knockback: fuegoKnockback(ev) });
     }
     return false;
   }

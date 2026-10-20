@@ -6,6 +6,9 @@ import { Espiritu } from './Espiritu';
 import { CabezaOlmeca } from './CabezaOlmeca';
 import { Bestia } from './Bestia';
 import { BrujaGuajolote } from './BrujaGuajolote';
+import { Muneca } from './Muneca';
+import { Nahual } from './Nahual';
+import { Nahuala } from './Nahuala';
 
 /**
  * Fábrica de enemigos (dueño: combate). La usa LevelScene.spawnEnemy(spec):
@@ -31,11 +34,13 @@ export function createEnemy(world: WorldApi, spec: EnemySpec): EnemyApi {
       return new Bestia(world, spec.x, spec.y, spec.group);
     case 'bruja_guajolote':
       return new BrujaGuajolote(world, spec.x, spec.y, spec.group);
-    // Nivel 6 (dueño: enemigos). Reemplazar al crear Muneca.ts, Nahual.ts y Nahuala.ts.
+    // Nivel 6 (dueño: enemigos). Nahual: id (lo despierta 'nahual:reveal') y disguise (textura del NPC; sin ella ya está transformado).
     case 'muneca':
+      return new Muneca(world, spec.x, spec.y, spec.group);
     case 'nahual':
+      return new Nahual(world, spec.x, spec.y, { id: spec.id, disguise: spec.disguise, group: spec.group });
     case 'nahuala':
-      throw new Error(`Enemigo del Nivel 6 sin implementar: ${spec.type}`);
+      return new Nahuala(world, spec.x, spec.y, spec.group);
     default: {
       const t: never = spec.type;
       throw new Error(`Tipo de enemigo desconocido: ${String(t)}`);

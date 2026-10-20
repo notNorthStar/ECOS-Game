@@ -1,12 +1,19 @@
 import Phaser from 'phaser';
 import type { Hit, PlayerApi, Team, WorldApi } from '../core/contracts';
-import { bus } from '../core/bus';
+import { bus, sfx } from '../core/bus';
 import { GameState, speedMult } from '../core/GameState';
 import { DOUBLE_SHIFT_MS, keys } from '../config/controls';
 import { DODGE, HURT, JUMP, MOVE, PLAYER_BODY, SHOOT } from '../config/movement';
 import { fallbackPlayer } from '../world/textures';
 import { kitAnimatorFor, type KitAnimator } from '../systems/CharacterKits';
 import { isShieldActive } from '../systems/Shield';
+
+/**
+ * Suelo bajo los pies (obstáculos con `height`, Nivel 6): altura del bloque sobre el que se está
+ * (0 = suelo normal) y su borde frontal en y (para dibujarse delante del prop). Lo da World.
+ */
+export type GroundFn = (x: number, y: number, radius: number, z: number) => { height: number; frontY: number };
+const FLAT_GROUND: GroundFn = (_x, y) => ({ height: 0, frontY: y });
 
 type State = 'normal' | 'dodge' | 'hurt' | 'dead';
 
@@ -38,6 +45,10 @@ export class Player implements PlayerApi {
   private lastShiftAt = -9999;
   private landT = 0;
   private jumpCut = true;
+  /** Segundo salto ya usado en este vuelo (mejora 'doble_salto'); se repone al aterrizar. */
+  private airJumpUsed = false;
+  /** Suelo actual (altura del bloque bajo los pies; 0 = suelo normal). Se recalcula cada cuadro. */
+  private ground = { height: 0, frontY: 0 };
   private stepAcc = 0;
   private shootHoldT = 0;
   private oneShot: { key: string; t: number } | null = null;
@@ -53,9 +64,11 @@ export class Player implements PlayerApi {
     private world: WorldApi,
     x: number,
     y: number,
+    private groundFn: GroundFn = FLAT_GROUND,
   ) {
     this.x = x;
     this.y = y;
+    this.ground = { height: 0, frontY: y };
     const scene = world.scene;
     this.hasArt = scene.textures.exists('protagonista_reposo');
     const tex = this.hasArt ? 'protagonista_reposo' : fallbackPlayer(scene);
@@ -92,6 +105,11 @@ export class Player implements PlayerApi {
     return this.state === 'dodge';
   }
 
+  /** Con los pies en el suelo o sobre un bloque (z = altura del suelo actual). */
+  private get grounded(): boolean {
+    return this.z <= this.ground.height && this.vz <= 0;
+  }
+
   private get canAct(): boolean {
     return !this.controlsLocked && !keys.locked && !this.dead;
   }
@@ -101,6 +119,8 @@ export class Player implements PlayerApi {
     this.y = y;
     this.z = 0;
     this.vx = this.vy = this.vz = this.kbx = 0;
+    this.ground = { height: 0, frontY: y };
+    this.airJumpUsed = false;
     this.sync();
   }
 
@@ -166,7 +186,7 @@ export class Player implements PlayerApi {
     const { dx, dy } = input;
     const run = input.run ? MOVE.runMult : 1;
     const diag = dx !== 0 && dy !== 0 ? MOVE.diagonalMult : 1;
-    const air = this.z > 0 ? JUMP.airControl : 1;
+    const air = !this.grounded ? JUMP.airControl : 1;
     const sp = MOVE.walkSpeed * run * diag * air * speedMult();
     const tx = dx * sp;
     const ty = dy * sp * MOVE.depthMult;
@@ -180,7 +200,7 @@ export class Player implements PlayerApi {
     const ox = this.x;
     const oy = this.y;
     this.world.moveActor(this, this.vx * dt, this.vy * dt);
-    if (this.z === 0) {
+    if (this.grounded) {
       this.stepAcc += Math.hypot(this.x - ox, this.y - oy);
       const stride = MOVE.stepDistance * (input.run ? 1.5 : 1);
       if (this.stepAcc >= stride) {
@@ -201,7 +221,7 @@ export class Player implements PlayerApi {
         this.lastShiftAt = -9999;
       } else this.lastShiftAt = now;
     }
-    if (dodge && this.dodgeCd <= 0 && this.z === 0) {
+    if (dodge && this.dodgeCd <= 0 && this.grounded) {
       const len = Math.hypot(input.dx, input.dy);
       this.dodgeDir = len > 0 ? { x: input.dx / len, y: input.dy / len } : { x: this.facing, y: 0 };
       this.state = 'dodge';
@@ -212,12 +232,23 @@ export class Player implements PlayerApi {
       bus.emit('player:dodge', {});
       return;
     }
-    // Salto.
-    if (keys.justPressed('jump') && this.z === 0) {
-      this.vz = JUMP.velocity;
-      this.z = 0.01;
-      this.jumpCut = false;
-      bus.emit('player:jump', {});
+    // Salto (desde el suelo o desde encima de un bloque).
+    if (keys.justPressed('jump')) {
+      if (this.grounded) {
+        this.vz = JUMP.velocity;
+        this.z = this.ground.height + 0.01;
+        this.jumpCut = false;
+        this.airJumpUsed = false;
+        bus.emit('player:jump', {});
+      } else if (!this.airJumpUsed && (GameState.upgrades.doble_salto ?? 0) > 0) {
+        // Doble salto (GDD §2.1): una vez por vuelo, impulso algo menor; mantiene la altura variable.
+        this.vz = JUMP.doubleVelocity;
+        this.jumpCut = false;
+        this.airJumpUsed = true;
+        this.doubleJumpFx();
+        bus.emit('player:jump', {});
+        sfx('doble_salto');
+      }
     }
     // Modo del láser.
     if (keys.justPressed('laserGreen')) GameState.laserMode = 'green';
@@ -247,7 +278,13 @@ export class Player implements PlayerApi {
   }
 
   private applyZ(dt: number, held: boolean): void {
-    if (this.z <= 0 && this.vz <= 0) return;
+    // Suelo bajo los pies: 0 o la altura de un bloque con `height` (el jugador está encima).
+    this.ground = this.groundFn(this.x, this.y, this.radius, this.z);
+    const floor = this.ground.height;
+    if (this.z <= floor && this.vz <= 0) {
+      this.z = floor;
+      return;
+    }
     const rising = this.vz > 0;
     if (rising && !held && !this.jumpCut) {
       // Altura variable: al soltar Espacio se corta la subida (una sola vez por salto).
@@ -257,11 +294,47 @@ export class Player implements PlayerApi {
     const g = JUMP.gravity * (rising && !this.jumpCut ? JUMP.holdGravityMult : 1);
     this.vz -= g * dt;
     this.z += this.vz * dt;
-    if (this.z <= 0) {
-      this.z = 0;
+    if (this.z <= floor) {
+      // Aterriza en el suelo o encima del bloque; al salir de su borde vuelve a caer (z > suelo).
+      this.z = floor;
       this.vz = 0;
+      this.airJumpUsed = false;
       this.landT = JUMP.landTime;
       if (!this.dead) bus.emit('player:land', {});
+    }
+  }
+
+  /** Anillo de luz bajo los pies + plumas que caen (doble salto). Reducible con reduceFx. */
+  private doubleJumpFx(): void {
+    const scene = this.world.scene;
+    const fx = this.world.fxLayer;
+    const x = this.x;
+    const y = this.y - this.z;
+    const ring = scene.add.ellipse(x, y, 16, 6).setStrokeStyle(1.5, 0xfff2b0, 0.95);
+    fx.add(ring);
+    scene.tweens.add({
+      targets: ring,
+      scaleX: 2.4,
+      scaleY: 2.4,
+      alpha: 0,
+      duration: 320,
+      ease: 'Cubic.Out',
+      onComplete: () => ring.destroy(),
+    });
+    const feathers = GameState.settings.reduceFx ? 2 : 6;
+    for (let i = 0; i < feathers; i++) {
+      const f = scene.add.rectangle(x + (Math.random() - 0.5) * 18, y, 2, 4, i % 2 ? 0xfff2b0 : 0x9affe0, 0.9);
+      fx.add(f);
+      scene.tweens.add({
+        targets: f,
+        x: f.x + (Math.random() - 0.5) * 20,
+        y: y + 10 + Math.random() * 14,
+        angle: (Math.random() - 0.5) * 180,
+        alpha: 0,
+        duration: 420 + Math.random() * 220,
+        ease: 'Sine.Out',
+        onComplete: () => f.destroy(),
+      });
     }
   }
 
@@ -303,7 +376,7 @@ export class Player implements PlayerApi {
     if (this.state === 'hurt') return this.playAnim('protagonista_dano');
     if (this.state === 'dodge') return this.playAnim('protagonista_esquivar');
     if (this.oneShot) return;
-    if (this.z > 0) return this.playAnim(this.vz > 0 ? 'protagonista_saltar_subida' : 'protagonista_saltar_caida');
+    if (!this.grounded) return this.playAnim(this.vz > 0 ? 'protagonista_saltar_subida' : 'protagonista_saltar_caida');
     if (this.landT > 0) return this.playAnim('protagonista_aterrizar');
     const moving = Math.abs(this.vx) > 4 || Math.abs(this.vy) > 4;
     if (!moving) return this.playAnim('protagonista_reposo');
@@ -325,11 +398,12 @@ export class Player implements PlayerApi {
   private sync(): void {
     // Rebote sutil al caminar si no hay arte animado todavía.
     let bob = 0;
-    if (!this.hasArt && this.z === 0 && (Math.abs(this.vx) > 4 || Math.abs(this.vy) > 4)) {
+    if (!this.hasArt && this.grounded && (Math.abs(this.vx) > 4 || Math.abs(this.vy) > 4)) {
       bob = Math.sin(this.time * 18) > 0 ? -1 : 0;
     }
     this.sprite.setPosition(Math.round(this.x), Math.round(this.y - this.z + bob));
-    this.sprite.setDepth(this.y);
+    // Encima de un bloque se dibuja delante de su prop (borde frontal del bloque).
+    this.sprite.setDepth(this.ground.height > 0 ? Math.max(this.y, this.ground.frontY) + 0.5 : this.y);
     if (this.kit) this.kit.apply(this.facing, this.time);
     else if (!this.hasArt) {
       // Inclinación de la silueta de respaldo según el estado (feedback mínimo).

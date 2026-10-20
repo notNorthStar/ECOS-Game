@@ -263,3 +263,19 @@ Dirección: atardecer apagado que cae en noche; casas coloniales de colores vivo
 María, las bestias corrompidas y la Bruja Guajolote son personajes importantes: **no** están aquí (placeholders del agente de enemigos/sistemas; arte final del equipo).
 
 Decorado por código (`src/world/OaxacaDecor.ts`): halos que laten en faroles, ventanas, velas, retablos y vanos de fuego fatuo pintados en la capa 3; papel picado animado en los cables; polvo a la deriva (ciudad, callejones) y brasas de fuego fatuo que suben (templo); neblina baja teñida; brillo del círculo de la arena; luz de velas, candelabros, faroles, fragmento y muro abierto; el muro-pasaje cambia a abierto con `pasaje:revealed`. Con "reducir efectos" todo queda quieto; todo usa `world.timeScale`.
+
+## 12. Nivel 6 — CDMX parte 1: escenarios, props y NPCs comunes
+
+Dirección: ruinas retrofuturistas colosales en noche de Día de Muertos. Xochimilco: bruma verde-azul, luna, volcanes, ahuejotes, canal seco de lodo agrietado, trajineras de colores varadas y la Isla de las Muñecas (inquietante, sin gore). Avenidas: violeta con resplandor de veladoras, edificios art déco (zigurat, pilastras, greca escalonada) y retrofuturistas (bandas, ojos de buey, discos y antenas), neones rosa/turquesa/morado/ámbar, cortinas metálicas, ofrendas, papel picado y sendero de pétalos de cempasúchil (rampa cálida `#d0742c` `#f2a640` `#ffd77a`). Reforma: aurora enfermiza (follaje + morado tramados), rascacielos que pierden pedazos, pirámide mexica, teleférico y el Ángel caído en oro (rampa cálida) sobre cantera gris. Solo paleta §3, 1×, alfa 0/255. Generador: `npm run scenery:nivel6` (`tools/gen-cdmx-scenery.mjs`, marca `ECOS-placeholder:cdmx-v1` + hash; nunca pisa arte del equipo). Detalle y claves: `public/assets/escenarios/nivel-06-cdmx/LEEME.md`.
+
+| Archivo (bajo `public/assets/`) | Medidas | Cuadros | Notas |
+|---|---|---|---|
+| `escenarios/nivel-06-cdmx/fondos/fondo_xochimilco_capa0..5.png` | 735 · 994 · 1584 · 2174 · 3000 · 3590 × 360 | 1 | Embarcadero (x 120–560), Isla de las Muñecas (x 1150–2050), FUEGO (2320, 268), altar (2720, 250) |
+| `…/fondos/fondo_avenidas_capa0..5.png` | 743 · 1024 · 1664 · 2304 · 3200 · 3840 × 360 | 1 | Letras (x 150–470), cronista (x ≈ 980), ofrenda grande (x ≈ 1650), checkpoint (x ≈ 2350) |
+| `…/fondos/fondo_reforma_capa0..5.png` | 727 · 964 · 1504 · 2044 · 2800 · 3340 × 360 | 1 | Ángel (1450, 272), arena (1620, 286), estación del teleférico (x ≈ 2560) |
+| `…/props/prop_n06_*.png` | 12×12 … 208×56 | 1 o 2–4 | 29 props; plataformas del doble salto `prop_n06_cornisa` / `_losa_alta` / `_viga` (frente ≈ 32–36 px) |
+| `sprites/npcs/npc_sobreviviente_1..5.png` | 64×80 | 4 · 3–5 fps | Pivote (32, 78), originY 0.975; NPCs comunes con diseño completo (§8.0 de AGENTS.md); cualquiera sirve de disfraz de nahual |
+
+Muñecas poseídas, nahuales (humano y animal), la Nahuala, María y Balam son personajes importantes: **no** están aquí (placeholders del agente de enemigos/sistemas; arte final del equipo).
+
+Decorado por código (`src/world/CdmxDecor.ts`): halos que laten en velas, faroles, ventanas y braseros de la capa 3; neones que parpadean y se apagan a ratos; papel picado animado en los cables; cabinas del teleférico que avanzan por sus cables (capa 2); pedazos que caen de los rascacielos rotos (capa 2); pétalos de cempasúchil que caen (avenidas, Reforma) y luces de vela flotantes (Xochimilco); neblina baja teñida; luz automática de ofrendas, braseros, veladoras, inscripción, neón y estación. Con "reducir efectos" todo queda quieto; todo usa `world.timeScale`.
