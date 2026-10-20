@@ -60,7 +60,9 @@ export interface PlayerApi extends DepthEntity {
 export type EnemyKind =
   | 'chaneque' | 'chaneque_mayor' | 'encapuchado' | 'espiritu' | 'cabeza_olmeca'
   // Nivel 4 (Oaxaca)
-  | 'bestia' | 'bruja_guajolote';
+  | 'bestia' | 'bruja_guajolote'
+  // Nivel 6 (CDMX 1)
+  | 'muneca' | 'nahual' | 'nahuala';
 export type ChanequeVariant = 'patrulla' | 'saltador' | 'travieso';
 /** Rangos de la Cofradía: el MISMO modelo con recolor (GDD §9). En el Nivel 3 solo aparece 'rojo'. */
 export type CofradiaRank = 'rojo' | 'negro' | 'elite';
@@ -88,6 +90,10 @@ export interface EnemySpec {
   rank?: CofradiaRank;
   /** Solo espíritus: si true (por defecto) solo se ven con Luna. */
   lunaOnly?: boolean;
+  /** Identificador del enemigo (p. ej. un nahual infiltrado que el director despierta por id). */
+  id?: string;
+  /** Solo nahuales: clave de la textura del NPC que imita mientras está disfrazado (sin disfraz = ya transformado). */
+  disguise?: string;
   x: number;
   y: number;
   /** Si tiene grupo, NO aparece al cargar: aparece al emitirse 'arena:start' con ese grupo. */
@@ -165,8 +171,8 @@ export interface LevelData {
   /** Polígonos transitables [[x,y], ...] en el plano del suelo. Unión de todos. */
   walk: number[][][];
   obstacles: Array<
-    | { shape: 'ellipse'; x: number; y: number; rx: number; ry: number }
-    | { shape: 'rect'; x: number; y: number; w: number; h: number }
+    | { shape: 'ellipse'; x: number; y: number; rx: number; ry: number; height?: number }
+    | { shape: 'rect'; x: number; y: number; w: number; h: number; height?: number }
   >;
   /** Props decorativos ordenados por y. key = clave de textura del manifiesto. */
   props: Array<{

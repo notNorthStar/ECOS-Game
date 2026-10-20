@@ -10,7 +10,7 @@ import { installLightTrail, setObjective } from './LightTrail';
 import { addEcos } from './Progression';
 import * as MariaMod from './Maria';
 import config from '../data/oaxaca.json';
-import { prepareOaxacaEntry } from './Campaign';
+import { prepareCdmxEntry, prepareOaxacaEntry } from './Campaign';
 
 /**
  * Director del Nivel 4 · Oaxaca (dueño: contenido). Maneja las tres secciones del nivel
@@ -762,12 +762,8 @@ class OaxacaDirector {
     await this.say('n04_salida');
     if (!this.alive) return;
     remember('completo');
-    // CDMX (Nivel 6) todavía no existe: se vuelve al título conservando el progreso.
-    const sm = this.world.scene.scene;
-    for (const key of ['Hud', 'Dialogue', 'Spell', 'Altar', 'Diario', 'Pause']) {
-      if (sm.isActive(key) || sm.isPaused(key)) sm.stop(key);
-    }
-    bus.emit('music', { track: null });
-    sm.start('Title');
+    // Continúa a la CDMX (Nivel 6; Puebla se omite) conservando Ecos, mejoras y maestría.
+    prepareCdmxEntry();
+    this.world.gotoSection('xochimilco');
   }
 }

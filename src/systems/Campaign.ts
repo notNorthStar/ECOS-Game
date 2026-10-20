@@ -50,3 +50,16 @@ export function prepareOaxacaEntry(): void {
   GameState.flags['n03:completo'] = true;
   GameState.flags['n03:maria'] = true;
 }
+
+/**
+ * Entrada a la CDMX (Nivel 6) desde la salida de Oaxaca o la selección directa de nivel.
+ * Puebla (Nivel 5) se omite: el jugador llega con MEMORIA y 3 fragmentos (2.º y 3.º se dan en Oaxaca).
+ */
+export function prepareCdmxEntry(): void {
+  prepareOaxacaEntry();
+  GameState.section = 'xochimilco';
+  if (!GameState.learnedSpells.includes('MEMORIA')) GameState.learnedSpells.push('MEMORIA');
+  GameState.mastery.MEMORIA ??= { level: 0, progress: 0 };
+  GameState.checkpoint = null;
+  for (const f of ['n04:completo', 'n04:fragmento', 'n04:fragmento_3']) GameState.flags[f] = true;
+}

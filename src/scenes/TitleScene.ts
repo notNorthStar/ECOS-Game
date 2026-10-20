@@ -3,7 +3,7 @@ import { bus, sfx } from '../core/bus';
 import { GameState, resetGameState } from '../core/GameState';
 import { camView, lsm, showCamera } from '../systems/Lsm';
 import { COL, onDomKey, panel, txt } from './SpellScene';
-import { prepareCatemacoEntry, prepareOaxacaEntry, prepareTuxtlaEntry } from '../systems/Campaign';
+import { prepareCatemacoEntry, prepareCdmxEntry, prepareOaxacaEntry, prepareTuxtlaEntry } from '../systems/Campaign';
 
 /**
  * Dueño: lsm. Título "ECOS" + elegir cámara o solo teclado + privacidad + prueba en vivo de la cámara
@@ -13,7 +13,7 @@ type Phase = 'menu' | 'waiting' | 'test' | 'failed';
 
 export class TitleScene extends Phaser.Scene {
   private phase: Phase = 'menu';
-  private entrySection: 'taller' | 'tuxtla' | 'catemaco' | 'oaxaca' = 'taller';
+  private entrySection: 'taller' | 'tuxtla' | 'catemaco' | 'oaxaca' | 'xochimilco' = 'taller';
   private menuIdx = 0;
   private menuItems: Array<{ label: Phaser.GameObjects.Text; act: () => void }> = [];
   private cursor?: Phaser.GameObjects.Text;
@@ -54,9 +54,11 @@ export class TitleScene extends Phaser.Scene {
       ['6 · Catemaco · Solo teclado', () => { this.entrySection = 'catemaco'; this.chooseKeyboard(); }],
       ['7 · Oaxaca · Con cámara', () => { this.entrySection = 'oaxaca'; void this.chooseCamera(); }],
       ['8 · Oaxaca · Solo teclado', () => { this.entrySection = 'oaxaca'; this.chooseKeyboard(); }],
+      ['9 · CDMX · Con cámara', () => { this.entrySection = 'xochimilco'; void this.chooseCamera(); }],
+      ['0 · CDMX · Solo teclado', () => { this.entrySection = 'xochimilco'; this.chooseKeyboard(); }],
     ];
     opts.forEach(([s, act], i) => {
-      const label = txt(this, 320, 160 + i * 12.5, s, 10, COL.ink, { ox: 0.5 });
+      const label = txt(this, 320, 146 + i * 11.5, s, 9, COL.ink, { ox: 0.5 });
       label.setInteractive({ useHandCursor: true });
       label.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => this.select(i));
       label.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
@@ -78,7 +80,7 @@ export class TitleScene extends Phaser.Scene {
       COL.dim,
       { ox: 0.5, align: 'center', wrap: 600 },
     );
-    txt(this, 320, 340, '↑↓ / 1–8 · Enter · ratón            Listick Games · Game Jam ANIEI 2026', 8, COL.dim, { ox: 0.5 });
+    txt(this, 320, 340, '↑↓ / 1–9, 0 · Enter · ratón            Listick Games · Game Jam ANIEI 2026', 8, COL.dim, { ox: 0.5 });
 
     onDomKey(this, (e) => this.onKey(e));
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
@@ -223,6 +225,8 @@ export class TitleScene extends Phaser.Scene {
       else if (e.code === 'Digit6' || e.code === 'Numpad6') this.activate(5);
       else if (e.code === 'Digit7' || e.code === 'Numpad7') this.activate(6);
       else if (e.code === 'Digit8' || e.code === 'Numpad8') this.activate(7);
+      else if (e.code === 'Digit9' || e.code === 'Numpad9') this.activate(8);
+      else if (e.code === 'Digit0' || e.code === 'Numpad0') this.activate(9);
     } else if (this.phase === 'test' || this.phase === 'failed') {
       if (e.code === 'Enter' || e.code === 'Space' || e.code === 'NumpadEnter' || e.code === 'Escape') this.startGame();
     }
@@ -309,6 +313,7 @@ export class TitleScene extends Phaser.Scene {
     if (this.entrySection === 'tuxtla') prepareTuxtlaEntry();
     if (this.entrySection === 'catemaco') prepareCatemacoEntry();
     if (this.entrySection === 'oaxaca') prepareOaxacaEntry();
+    if (this.entrySection === 'xochimilco') prepareCdmxEntry();
     this.cameras.main.fadeOut(400, 0, 0, 0);
     this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
       this.scene.start('Level', { section: this.entrySection });

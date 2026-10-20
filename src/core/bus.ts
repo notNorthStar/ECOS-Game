@@ -47,6 +47,11 @@ export interface BusEvents {
   'maria:say': { text: string; ms?: number };
   'pasaje:revealed': { id: string };
   'bruja:form': { form: 'humana' | 'ave' };
+  // Nivel 6: nahuales infiltrados, Nahuala, muñecas
+  'nahual:reveal': { id: string; surprise: boolean };
+  'nahual:revealed': { id: string };
+  'nahual:fled': { id: string };
+  'nahuala:illusion': { count: number };
   // Mundo / director
   'trigger:enter': { trigger: LevelTrigger };
   'interact': { id: string; action: string; data?: Record<string, unknown> };

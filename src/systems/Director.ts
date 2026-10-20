@@ -9,7 +9,8 @@ import { installLightTrail, setObjective } from './LightTrail';
 import { playDialogue } from '../scenes/DialogueScene';
 import { installTuxtlaDirector } from './TuxtlaDirector';
 import { installCatemacoDirector } from './CatemacoDirector';
-import { isCatemaco, isOaxaca } from '../config/game';
+import { isCatemaco, isCdmx, isOaxaca } from '../config/game';
+import { installCdmxDirector } from './CdmxDirector';
 import { installOaxacaDirector } from './OaxacaDirector';
 
 /**
@@ -55,6 +56,10 @@ export function installDirector(world: WorldApi): void {
   }
   if (isOaxaca(world.level.id)) {
     installOaxacaDirector(world);
+    return;
+  }
+  if (isCdmx(world.level.id)) {
+    installCdmxDirector(world);
     return;
   }
   new Director(world);

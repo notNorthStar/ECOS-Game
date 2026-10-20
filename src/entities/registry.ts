@@ -31,6 +31,11 @@ export function createEnemy(world: WorldApi, spec: EnemySpec): EnemyApi {
       return new Bestia(world, spec.x, spec.y, spec.group);
     case 'bruja_guajolote':
       return new BrujaGuajolote(world, spec.x, spec.y, spec.group);
+    // Nivel 6 (dueño: enemigos). Reemplazar al crear Muneca.ts, Nahual.ts y Nahuala.ts.
+    case 'muneca':
+    case 'nahual':
+    case 'nahuala':
+      throw new Error(`Enemigo del Nivel 6 sin implementar: ${spec.type}`);
     default: {
       const t: never = spec.type;
       throw new Error(`Tipo de enemigo desconocido: ${String(t)}`);

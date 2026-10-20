@@ -109,6 +109,7 @@ function harness({ spellDefs = true, withMariaApi = true, hasMaria = true } = {}
     '../data/oaxaca.json': config,
     './Campaign': {
       prepareOaxacaEntry: () => { calls.push(['prepareOaxacaEntry']); state.hasMaria = true; state.checkpoint = null; },
+      prepareCdmxEntry: () => { calls.push(['prepareCdmxEntry']); },
     },
   };
   const module = { exports: {} };
@@ -612,7 +613,9 @@ await test('Santo Domingo: la arena inicia una vez con lockArena + arena:start; 
   assert.equal(await h.act('n04_salida'), true);
   assert.ok(h.dialogues.includes('n04_salida'));
   assert.equal(h.state.flags['n04:completo'], true);
-  assert.ok(h.calls.some(([k, key]) => k === 'start' && key === 'Title'), 'CDMX aún no existe: vuelve al título');
+  // Puebla se omite: la salida de Oaxaca continúa a la CDMX (Nivel 6).
+  assert.ok(h.calls.some(([k]) => k === 'prepareCdmxEntry'), 'prepara la entrada a la CDMX');
+  assert.ok(h.calls.some(([k, key]) => k === 'goto' && key === 'xochimilco'), 'continúa a la CDMX');
   h.emit('boss:calmed', {});
   await flush();
   assert.equal(h.dialogues.filter((id) => id === 'n04_bruja_fin').length, 1, 'El cierre no se repite');
