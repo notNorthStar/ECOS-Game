@@ -52,6 +52,12 @@ export interface BusEvents {
   'nahual:revealed': { id: string };
   'nahual:fled': { id: string };
   'nahuala:illusion': { count: number };
+  // Nivel 7: teleférico, corona del Rey, controles invertidos, la Llorona
+  'cablecar:progress': { progress: number };
+  'rey:crown': { hp: number; max: number; broken: boolean };
+  'controls:invert': { on: boolean; ms: number };
+  'llorona:scream': { x: number; y: number };
+  'maria:transform': Record<string, never>;
   // Mundo / director
   'trigger:enter': { trigger: LevelTrigger };
   'interact': { id: string; action: string; data?: Record<string, unknown> };

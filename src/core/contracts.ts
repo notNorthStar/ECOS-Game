@@ -62,7 +62,9 @@ export type EnemyKind =
   // Nivel 4 (Oaxaca)
   | 'bestia' | 'bruja_guajolote'
   // Nivel 6 (CDMX 1)
-  | 'muneca' | 'nahual' | 'nahuala';
+  | 'muneca' | 'nahual' | 'nahuala'
+  // Nivel 7 (CDMX 2). Los clones de memoria son internos del Rey (como las copias de la Nahuala).
+  | 'rey_olvido';
 export type ChanequeVariant = 'patrulla' | 'saltador' | 'travieso';
 /** Rangos de la Cofradía: el MISMO modelo con recolor (GDD §9). En el Nivel 3 solo aparece 'rojo'. */
 export type CofradiaRank = 'rojo' | 'negro' | 'elite';

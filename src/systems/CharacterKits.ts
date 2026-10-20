@@ -21,6 +21,8 @@ export const KIT_IDS = [
   'bestia', 'bruja_guajolote', 'bruja_guajolote_ave',
   // Nivel 6 (el nahual tiene forma humana y animal; la Nahuala, una)
   'muneca', 'nahual', 'nahual_animal', 'nahuala',
+  // Nivel 7 (la Llorona es aliada; María se transforma en ella)
+  'rey_olvido', 'llorona',
 ] as const;
 
 export const kitBase = (id: string) => `assets/sprites/personajes/${id}/${id}_spritesheet`;
@@ -112,7 +114,7 @@ type Motion =
   | 'golpe' | 'invocar' | 'lanzar' | 'aturdido';
 
 function motionOf(animKey: string): Motion {
-  const k = animKey.replace(/^(protagonista|chaneque_mayor|chaneque|madre|encapuchado|espiritu|cabeza_olmeca|balam|maria|bestia|bruja_guajolote_ave|bruja_guajolote|muneca|nahual_animal|nahuala|nahual)_/, '');
+  const k = animKey.replace(/^(protagonista|chaneque_mayor|chaneque|madre|encapuchado|espiritu|cabeza_olmeca|balam|maria|bestia|bruja_guajolote_ave|bruja_guajolote|muneca|nahual_animal|nahuala|nahual|rey_olvido|llorona)_/, '');
   if (k === 'saltar_subida') return 'subida';
   if (k === 'saltar_caida') return 'caida';
   return (k as Motion) || 'reposo';

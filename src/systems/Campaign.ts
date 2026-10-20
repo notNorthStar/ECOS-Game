@@ -63,3 +63,19 @@ export function prepareCdmxEntry(): void {
   GameState.checkpoint = null;
   for (const f of ['n04:completo', 'n04:fragmento', 'n04:fragmento_3']) GameState.flags[f] = true;
 }
+
+/**
+ * Entrada a la CDMX parte 2 (Nivel 7) desde la estación del teleférico del Nivel 6 o el selector de niveles.
+ * Garantiza VERDAD, FUEGO y DESCANSO; María sigue con el grupo (se transforma en la Llorona en este nivel).
+ */
+export function prepareCdmx2Entry(): void {
+  prepareCdmxEntry();
+  GameState.section = 'teleferico';
+  for (const id of ['VERDAD', 'FUEGO', 'DESCANSO']) {
+    if (!GameState.learnedSpells.includes(id)) GameState.learnedSpells.push(id);
+    GameState.mastery[id] ??= { level: 0, progress: 0 };
+  }
+  GameState.hasMaria = true;
+  GameState.checkpoint = null;
+  for (const f of ['n06:completo', 'n06:nahuala', 'cdmx:visitada']) GameState.flags[f] = true;
+}

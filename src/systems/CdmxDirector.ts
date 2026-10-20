@@ -10,7 +10,7 @@ import { installLightTrail, setObjective } from './LightTrail';
 import { addEcos } from './Progression';
 import * as MariaMod from './Maria';
 import config from '../data/cdmx.json';
-import { prepareCdmxEntry } from './Campaign';
+import { prepareCdmx2Entry, prepareCdmxEntry } from './Campaign';
 
 /**
  * Director del Nivel 6 · CDMX parte 1 (dueño: contenido). Maneja las tres secciones
@@ -866,12 +866,8 @@ class CdmxDirector {
     this.mariaSay('final');
     await this.wait(1800);
     if (!this.alive) return;
-    // El Nivel 7 (el teleférico) aún no existe: por ahora se vuelve al título.
-    const sm = this.world.scene.scene;
-    for (const key of ['Hud', 'Dialogue', 'Spell', 'Altar', 'Diario', 'Pause']) {
-      if (sm.isActive(key) || sm.isPaused(key)) sm.stop(key);
-    }
-    bus.emit('music', { track: null });
-    sm.start('Title');
+    // Continúa al Nivel 7: el teleférico hacia el Rey del Olvido.
+    prepareCdmx2Entry();
+    this.world.gotoSection('teleferico');
   }
 }

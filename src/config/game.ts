@@ -29,6 +29,7 @@ export const SECTIONS = [
   'taller', 'calles', 'parque', 'jefe', 'tuxtla', 'catemaco', 'campamento', 'altar_olmeca',
   'oaxaca', 'callejones', 'santo_domingo',
   'xochimilco', 'avenidas', 'reforma',
+  'teleferico', 'torre', 'salon_trono',
 ] as const;
 
 /** Secciones del Nivel 4 (Oaxaca), en orden. */
@@ -38,6 +39,10 @@ export const isOaxaca = (id: string): boolean => (OAXACA_SECTIONS as readonly st
 /** Secciones del Nivel 6 (CDMX parte 1), en orden. (El Nivel 5, Puebla, se omite.) */
 export const CDMX_SECTIONS = ['xochimilco', 'avenidas', 'reforma'] as const;
 export const isCdmx = (id: string): boolean => (CDMX_SECTIONS as readonly string[]).includes(id);
+
+/** Secciones del Nivel 7 (CDMX parte 2), en orden. */
+export const CDMX2_SECTIONS = ['teleferico', 'torre', 'salon_trono'] as const;
+export const isCdmx2 = (id: string): boolean => (CDMX2_SECTIONS as readonly string[]).includes(id);
 
 /** Secciones del Nivel 3 (Catemaco), en orden. */
 export const CATEMACO_SECTIONS = ['catemaco', 'campamento', 'altar_olmeca'] as const;

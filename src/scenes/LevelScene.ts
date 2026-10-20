@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import type { LevelData, SectionId, WorldApi } from '../core/contracts';
 import { bus } from '../core/bus';
 import { GameState } from '../core/GameState';
-import { SECTIONS, isCatemaco, isCdmx, isOaxaca } from '../config/game';
+import { SECTIONS, isCatemaco, isCdmx, isCdmx2, isOaxaca } from '../config/game';
 import { keys } from '../config/controls';
 import { CAMERA } from '../config/movement';
 import { installCombat } from '../systems/Combat';
@@ -16,6 +16,9 @@ import { installLuna } from '../systems/Luna';
 import { installMaria } from '../systems/Maria';
 import { installOaxacaScenery } from '../world/OaxacaScenery';
 import { installCdmxScenery } from '../world/CdmxScenery';
+import { installCdmx2Scenery } from '../world/Cdmx2Scenery';
+import { installMindControl } from '../systems/MindControl';
+import { installLlorona } from '../systems/Llorona';
 
 // Las secciones se cargan del JSON en build (src/data/levels/*.json). Si falta, se usa sandbox.json.
 const LEVELS = import.meta.glob('../data/levels/*.json', { eager: true }) as Record<string, { default?: LevelData } & LevelData>;
@@ -68,6 +71,7 @@ export class LevelScene extends Phaser.Scene {
     if (isCatemaco(level.id)) installCatemacoScenery(world);
     if (isOaxaca(level.id)) installOaxacaScenery(world);
     if (isCdmx(level.id)) installCdmxScenery(world);
+    if (isCdmx2(level.id)) installCdmx2Scenery(world);
 
     // Sistemas de los otros dueños. Un error en uno no debe tumbar el nivel.
     // Escudo y Luna se instalan siempre: no hacen nada mientras no estén desbloqueados (GameState).
@@ -77,6 +81,8 @@ export class LevelScene extends Phaser.Scene {
       ['Shield', installShield],
       ['Luna', installLuna],
       ['Maria', installMaria],
+      ['MindControl', installMindControl],
+      ['Llorona', installLlorona],
       ['Director', installDirector],
     ] as const) {
       try {

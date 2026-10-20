@@ -109,6 +109,7 @@ function harness({ spellDefs = true, withMariaApi = true, hasMaria = true } = {}
     './Maria': withMariaApi ? { mariaSay: (text) => maria.push(text), wakeMaria() {} } : {},
     '../data/cdmx.json': config,
     './Campaign': {
+      prepareCdmx2Entry: () => { calls.push(['prepareCdmx2Entry']); },
       prepareCdmxEntry: () => {
         calls.push(['prepareCdmxEntry']);
         state.hasMaria = true;
@@ -773,12 +774,12 @@ await test('Nahuala: la arena inicia una vez (lockArena + arena:start), boss:cal
   assert.equal(h.state.ecos, 2 * config.rewards.habitante);
   s.tick();
   assert.match(h.text, /estación/);
-  // Salida: por ahora vuelve al título (el Nivel 7 no existe).
+  // Salida: continúa al Nivel 7 (teleférico).
   assert.equal(await h.act('n06_estacion'), true);
   assert.ok(h.dialogues.includes('n06_estacion'));
   assert.equal(h.state.flags['n06:completo'], true);
-  assert.deepEqual(h.calls.filter(([k]) => k === 'start').at(-1), ['start', 'Title']);
-  assert.ok(h.emitted.some((e) => e.name === 'music' && e.payload.track === null));
+  assert.ok(h.calls.some(([k]) => k === 'prepareCdmx2Entry'), 'prepara la entrada al Nivel 7');
+  assert.ok(h.calls.some(([k, key]) => k === 'goto' && key === 'teleferico'), 'continúa al teleférico');
   assert.equal(h.state.ecos, 2 * config.rewards.habitante + config.rewards.estacion);
   h.emit('boss:calmed', {});
   await flush();

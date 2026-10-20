@@ -36,6 +36,8 @@ export const GameState = {
   hasBalam: false,
   // María, compañera de viaje del Nivel 3 al 7 (dueño: systems/Maria.ts). En el Nivel 4 ayuda en combate.
   hasMaria: false,
+  // Controles invertidos por la corona del Rey del Olvido (dueño: systems/MindControl.ts; lo lee Player).
+  controlsInverted: false,
   // Progreso del nivel (dueño: Director)
   section: 'taller' as SectionId,
   checkpoint: null as null | { section: SectionId; x: number; y: number },
@@ -46,6 +48,7 @@ export const GameState = {
     longWindows: false, // ventanas de tiempo más largas
     noExtraSlowmo: false,
     reduceFx: false, // sin sacudidas ni destellos
+    noInvert: false, // accesibilidad: la corona del Rey no invierte los controles
     musicVolume: 0.3, // bajo por defecto (decisión del equipo); se sube en Pausa → Opciones
     sfxVolume: 0.8,
     textScale: 1,
@@ -79,6 +82,7 @@ export function resetGameState(): void {
     luna: { unlocked: false, energy: 1, active: false },
     hasBalam: false,
     hasMaria: false,
+    controlsInverted: false,
     section: 'taller',
     checkpoint: null,
     flags: {},
