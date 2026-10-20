@@ -1,0 +1,202 @@
+{
+  "_hablantes": {
+    "n10_narrador": { "nombre": "", "retrato": "" },
+    "n10_tu": { "nombre": "Tú", "retrato": "retrato_protagonista" },
+    "n10_balam": { "nombre": "Balam", "retrato": "" },
+    "n10_madre": { "nombre": "Mamá (en señas)", "retrato": "" },
+    "n10_mando": { "nombre": "Alto Mando de la Cofradía", "retrato": "" },
+    "n10_mando_2": { "nombre": "Voz del Alto Mando", "retrato": "" },
+    "n10_itzpa": { "nombre": "Itzpapálotl", "retrato": "" }
+  },
+
+  "n10_llegada": [
+    { "who": "n10_narrador", "text": "Guadalajara amanece a medias. Sobre las avenidas rotas el sol es una moneda con un mordisco negro: el eclipse ya empezó y avanza un poco más a cada paso que das." },
+    { "who": "n10_tu", "text": "Seis fragmentos, el Códice y un solo destino: la Catedral. Mamá me espera ahí." },
+    { "who": "n10_balam", "text": "Balam camina pegado a tu tobillo, con las orejas hacia atrás. No le gusta cómo huele el aire: a moneda vieja y a sal quemada." },
+    { "who": "n10_tu", "text": "Lo sé, amigo. Yo también siento que algo no cuadra. Pero ya llegamos hasta aquí." }
+  ],
+  "n10_vista": [
+    { "who": "n10_narrador", "text": "A lo lejos, sobre los techos caídos, asoma la silueta del estadio de las Chivas: una concha de concreto vacía. Alguna vez aquí rugieron miles de gargantas. Hoy solo suena el viento y, debajo de él, un zumbido que baja del cielo." },
+    { "who": "n10_tu", "text": "Sin gente, sin luces... y el sol apagándose encima. Hasta el ruido se fue." }
+  ],
+  "n10_cartel": [
+    { "who": "n10_narrador", "text": "Un muro de papeles pegados: rostros, nombres, «se busca», «si lo ven», «volvió a casa». Muchos están tachados con la misma letra apurada. Otros siguen sin tachar, y esos duelen más." },
+    { "who": "n10_tu", "text": "Todos buscando a alguien. Y la Cofradía, borrando a quien buscaban." }
+  ],
+  "n10_radio": [
+    { "who": "n10_narrador", "text": "Una radio de pilas, tirada junto a un autobús, murmura una cumbia lenta entre la estática. Balam la olfatea, la tapa con una pata y la música se corta. Detrás queda el silencio... y un tambor lejano, de piel antigua." },
+    { "who": "n10_tu", "text": "Tambores. Alguien está llamando al eclipse." }
+  ],
+  "n10_av3_fin": [
+    { "who": "n10_narrador", "text": "La guardia del estadio queda dormida en el suelo, con las capuchas torcidas. Al fondo, entre el humo, se levanta la fachada de la Catedral: dos torres negras contra el sol mordido." },
+    { "who": "n10_tu", "text": "Ahí. Mamá está ahí." }
+  ],
+  "n10_puerta": [
+    { "who": "n10_narrador", "text": "La puerta de la Catedral está entreabierta. De adentro sale olor a cera, incienso y ceniza, y una luz violeta que no es de vitral." },
+    { "who": "n10_balam", "text": "Balam se detiene en el umbral y bufa, bajito. Quiere que te des la vuelta." },
+    { "who": "n10_tu", "text": "Si hay trampa, la veremos venir. Pero no pienso dejarla sola." }
+  ],
+
+  "n10_catedral_llegada": [
+    { "who": "n10_narrador", "text": "Dentro, la Catedral es un bosque de columnas. Los vitrales rotos derraman colores sobre las bancas volteadas y el órgano suena solo: una nota larga y baja que hace temblar el piso." },
+    { "who": "n10_tu", "text": "Hay demasiados. Se juntaron todos aquí." },
+    { "who": "n10_narrador", "text": "Pasos. Capas que se arrastran, risas de chaneque en el coro, muñecas que se enderezan en las bancas. Todo lo que la Cofradía reunió en el país se asoma desde las sombras. Detrás de ti, las puertas se cierran de golpe." },
+    { "who": "n10_balam", "text": "Balam arquea el lomo y se coloca frente a ti." },
+    { "who": "n10_tu", "text": "Entonces, de una en una. Respira. Esquiva. Deletrea." }
+  ],
+  "n10_ola_1_fin": [
+    { "who": "n10_narrador", "text": "La primera tanda cae o se desvanece en humo. Flota un silencio breve... y luego el órgano cambia de nota." },
+    { "who": "n10_tu", "text": "Otra vez. Vienen más." }
+  ],
+  "n10_ola_2_fin": [
+    { "who": "n10_narrador", "text": "Las muñecas se rompen, los encapuchados quedan dormidos y los espíritus se disuelven en luz. Del fondo de la nave llega un olor a tierra mojada y a pelo que no es de nadie." },
+    { "who": "n10_balam", "text": "Balam gruñe hacia el fondo: lo que viene no huele a gente." },
+    { "who": "n10_tu", "text": "Nahuales. Es la última tanda." }
+  ],
+  "n10_madre_vista": [
+    { "who": "n10_narrador", "text": "La nave se queda en calma. Al fondo, en el altar mayor, hay una silueta sentada con cadenas de luz en las muñecas y la cabeza baja. Reconoces el moño torcido y las manos grandes, acostumbradas a hablar." },
+    { "who": "n10_tu", "text": "¡Mamá!" },
+    { "who": "n10_narrador", "text": "Gritas su nombre por costumbre: ella nunca necesitó oírlo, siempre te entendió con las manos. Pero ahora sus manos están quietas, y eso es lo que más te asusta." },
+    { "who": "n10_balam", "text": "Balam no avanza. Mira el altar con las pupilas muy abiertas." }
+  ],
+
+  "n10_altar_mayor": [
+    { "who": "n10_narrador", "text": "Subes los últimos escalones del altar mayor. Tu madre sigue sentada, de espaldas, con los hombros muy quietos. Pones una mano sobre uno de ellos." },
+    { "who": "n10_tu", "text": "Mamá, soy yo. Traje el Códice. Los seis fragmentos están completos." },
+    { "who": "n10_narrador", "text": "Ella gira despacio. Te mira como se mira a alguien conocido a través de una ventana. Sus manos se levantan, tiemblan, y no forman ninguna seña." },
+    { "who": "n10_narrador", "text": "Una luz violeta se enciende en cada columna. Atrás ya no hay puertas: solo un muro de capas negras con detalles dorados." },
+    { "who": "n10_mando", "text": "Bienvenido, portador del Códice. Te esperábamos." }
+  ],
+  "n10_emboscada": [
+    { "who": "n10_mando", "text": "Qué puntual. Seis fragmentos en una mochila y ni una sola pregunta incómoda. Nos ahorraste años." },
+    { "who": "n10_tu", "text": "Suéltenla. Ya tienen lo que querían." },
+    { "who": "n10_mando", "text": "Todavía no. Pero ahora sí podemos tomarlo." },
+    { "who": "n10_mando_2", "text": "Mírala bien. No te reconoce, y no porque no quiera: no recuerda. Le borramos parte de la memoria hace meses, para ver si hablaba. No tenía nada que decir. Nunca supo dónde estaban los fragmentos." },
+    { "who": "n10_tu", "text": "Entonces la llamada de la CDMX..." },
+    { "who": "n10_mando", "text": "Fue nuestra. Una voz armada con tus recuerdos y con todo el cariño que le tienes." },
+    { "who": "n10_tu", "text": "Una voz. Claro. Mi madre jamás me ha hablado con una voz: me habla con las manos. Esa llamada sonaba... pulida, como una moneda nueva. Debí darme cuenta." },
+    { "who": "n10_mando_2", "text": "Te dejamos vivo desde Xalapa. Dejamos que la gema te guiara, que los chaneques te cansaran y que cada Altar de la Memoria te volviera más fuerte. Tú recolectaste. Tú peleaste. Tú purificaste. Y ahora nos lo entregas en bandeja de plata." },
+    { "who": "n10_balam", "text": "Balam salta hacia el altar. Dos cadenas de luz lo atrapan en el aire y lo dejan rodar por el piso, aturdido pero ileso." }
+  ],
+  "n10_codice": [
+    { "who": "n10_narrador", "text": "Dos encapuchados con detalles dorados te toman por los brazos. Ataduras de luz te rodean el pecho y las muñecas y te pegan los brazos al cuerpo. Los dedos, en cambio, quedan libres: a nadie se le ocurre vigilar lo que pueden decir." },
+    { "who": "n10_mando", "text": "El Códice." },
+    { "who": "n10_narrador", "text": "Te lo arrancan de la mochila. Las seis piedras brillan una a una y el libro se abre solo sobre el altar; sus hojas pasan a toda prisa, como si buscaran algo." }
+  ],
+  "n10_invocacion": [
+    { "who": "n10_mando", "text": "Madre: ábrelo. Ábrele tu corazón al Códice, como hiciste con la primera tinta." },
+    { "who": "n10_narrador", "text": "Los encapuchados ponen de pie a tu madre. Ella se resiste en silencio. La luz de las cadenas la jala hacia el libro, y una claridad dorada sale de su pecho y entra, hoja por hoja, en el Códice." },
+    { "who": "n10_tu", "text": "¡Déjenla! ¡No es una llave, es mi madre!" },
+    { "who": "n10_mando_2", "text": "El Códice no solo guarda palabras: guarda memoria viva. Con la de ella como llave, el Sello se abre. Y lo que mantiene cerrado al cielo se abre con él." }
+  ],
+  "n10_techo": [
+    { "who": "n10_narrador", "text": "El techo de la Catedral se parte hacia arriba como un párpado. Entre las vigas rotas aparece el cielo negro del Gran Eclipse: un disco oscuro con un anillo blanco, y miles de estrellas fuera de hora." },
+    { "who": "n10_narrador", "text": "Algo desciende entre ellas: figuras altas, de huesos de luz y faldas de astros. Las Tzitzimime. Sobre el altar, un capullo de obsidiana empieza a latir." },
+    { "who": "n10_mando", "text": "Despierta, Mariposa de Obsidiana. Tu noche ya es eterna." },
+    { "who": "n10_tu", "text": "Tengo los brazos atados, pero los dedos me obedecen. Tengo que ser más rápido que ellos." }
+  ],
+
+  "n10_atado": [
+    { "who": "n10_narrador", "text": "La Catedral ya no tiene techo: sobre las columnas cuelga el Gran Eclipse. Estás de pie frente al altar, con los brazos pegados al cuerpo; la luz de las cadenas te aprieta el pecho. Bajo la ropa, la gema late." },
+    { "who": "n10_mando", "text": "Que mire. Que vea cómo termina todo lo que juntó." },
+    { "who": "n10_tu", "text": "Los brazos no se mueven, pero los dedos sí. Y nadie vigila lo que dicen unas manos que no entiende." }
+  ],
+  "n10_culto_1": [
+    { "who": "n10_mando", "text": "El Sello abre sus páginas, hermanos. Pronto la noche será para siempre, y el único México que quede será el que olvida." },
+    { "who": "n10_tu", "text": "Empiezo con LUZ. La gema necesita algo claro que sobrecargar." },
+    { "who": "n10_narrador", "text": "Detrás de tu espalda, escondidos entre las ataduras, tus dedos forman la primera seña." }
+  ],
+  "n10_luz_ok": [
+    { "who": "n10_narrador", "text": "Un destello apenas visible recorre la gema. Nadie lo nota." }
+  ],
+  "n10_luz_repite": [
+    { "who": "n10_narrador", "text": "Un temblor en los dedos, nada más. Nadie lo nota. Inténtalo otra vez, con calma: el tiempo está de tu lado." }
+  ],
+  "n10_culto_2": [
+    { "who": "n10_mando_2", "text": "Y tú, madre, no sufras. Lo que te quitamos no va a volver. Será mejor así." },
+    { "who": "n10_narrador", "text": "Tu madre levanta la vista y no te mira... pero sus hombros tiemblan, como si algo muy hondo recordara." },
+    { "who": "n10_tu", "text": "Sigue MEMORIA. Es lo único que no pueden quitarnos del todo." }
+  ],
+  "n10_memoria_ok": [
+    { "who": "n10_narrador", "text": "La luz de la gema sube del blanco al dorado. En el altar, tu madre parpadea despacio." }
+  ],
+  "n10_memoria_repite": [
+    { "who": "n10_narrador", "text": "La seña se deshace en tus dedos. Sin prisa: empieza de nuevo, nadie te está mirando las manos." }
+  ],
+  "n10_culto_3": [
+    { "who": "n10_tu", "text": "Falta el último. Un conjuro que nunca he aprendido, pero que la gema conoce desde que se juntaron los seis fragmentos." },
+    { "who": "n10_narrador", "text": "En tu cabeza resuenan las voces de todos a quienes ayudaste: los chaneques, los músicos de Tuxtla, los tejedores de Oaxaca, la Llorona. No es el eco de un lugar. Es el eco de todos juntos." },
+    { "who": "n10_tu", "text": "ECOS. E, C, O, S." }
+  ],
+  "n10_ecos_aviso": [
+    { "who": "n10_narrador", "text": "Es lo más largo que has deletreado. Respira. Si fallas, empiezas de nuevo y nadie lo notará." }
+  ],
+  "n10_ecos_ok": [
+    { "who": "n10_narrador", "text": "La gema estalla en luz. Las ataduras se agrietan como vidrio fino." }
+  ],
+  "n10_ecos_repite": [
+    { "who": "n10_narrador", "text": "Casi. La gema espera. Inténtalo otra vez, letra por letra." }
+  ],
+  "n10_libre": [
+    { "who": "n10_narrador", "text": "Las ataduras se rompen en mil chispas. Los encapuchados retroceden con las capas al viento." },
+    { "who": "n10_mando", "text": "¡Imposible! ¡Tenía los brazos atados!" },
+    { "who": "n10_tu", "text": "Los brazos, sí. Las señas no las ata nadie." }
+  ],
+  "n10_jaguar": [
+    { "who": "n10_narrador", "text": "Balam, junto al altar, absorbe la luz que sueltan las cadenas rotas y los sellos de la Cofradía. Sus patas se alargan, su lomo se ensancha y las manchas del pelaje se encienden como brasas doradas." },
+    { "who": "n10_narrador", "text": "Ya no es un gato alebrije. Es un jaguar de luz que ruge hacia el eclipse." },
+    { "who": "n10_tu", "text": "Balam... Eres enorme. Vamos juntos." }
+  ],
+
+  "n10_tz_1": [
+    { "who": "n10_narrador", "text": "Las Tzitzimime terminan de bajar. Giran sobre el altar con las faldas de estrellas abiertas, y una de ellas se desprende para caer sobre ti." },
+    { "who": "n10_mando", "text": "Acaben con él mientras nace la reina." }
+  ],
+  "n10_tz_2": [
+    { "who": "n10_narrador", "text": "La primera se deshace en polvo de estrellas. Dos sombras más se despegan del cielo, una a cada lado." },
+    { "who": "n10_tu", "text": "Quedan dos. Balam, ¡por la izquierda!" },
+    { "who": "n10_balam", "text": "Balam ruge y salta." }
+  ],
+  "n10_capullo": [
+    { "who": "n10_narrador", "text": "La última Tzitzimitl se deshace en luz de estrellas. El silencio dura un latido... y el capullo de obsidiana sobre el altar se agrieta de arriba abajo." },
+    { "who": "n10_tu", "text": "Ya está, ¿no? Se acabó." },
+    { "who": "n10_mando", "text": "No, hijo. Ahora empieza." },
+    { "who": "n10_narrador", "text": "El capullo estalla. Esquirlas negras vuelan como murciélagos y, entre ellas, se levanta Itzpapálotl: alas de obsidiana, un rostro de luna cortada y, en el pecho, un núcleo de luz negra que gira como un eclipse en miniatura." }
+  ],
+  "n10_itzpa": [
+    { "who": "n10_itzpa", "text": "Cuánta memoria guardada, cuánto olvido que no pude comer. Me despiertan para que el Sol deje de recordarse a sí mismo." },
+    { "who": "n10_tu", "text": "Hay cortes en el aire que no veo. Con Luna (F) los distingo; Balam la mantendrá ocupada." }
+  ],
+  "n10_recuerdo": [
+    { "who": "n10_narrador", "text": "Itzpapálotl abre las alas y el núcleo queda desnudo un instante. Un golpe no basta: necesitas que se quede quieta, y solo hay una persona que puede detenerla." },
+    { "who": "n10_narrador", "text": "Un recuerdo te alcanza. El taller de Xalapa, hace muchos años. Una mesa baja, el olor a estaño y a café. Eres tan pequeño que apenas llegas con la barbilla al borde del tablero." },
+    { "who": "n10_madre", "text": "Mírame. Hoy te enseño la seña más importante." },
+    { "who": "n10_narrador", "text": "Ella pone sus manos frente a las tuyas y las gira despacio, para que veas cómo se forma cada letra. Con paciencia: M. Luego A. Luego otra M. Luego otra A." },
+    { "who": "n10_madre", "text": "Mamá. Así me llamas tú y así te llamo yo a ti. No hace falta una voz: basta mirarse." },
+    { "who": "n10_narrador", "text": "Tus manos pequeñas se equivocan, se enredan, vuelven a armarse. Ella no se cansa. Además de las letras tenían señas propias, de casa: la de «ven», la de «tranquilo», la de «aquí estoy». Cuando por fin te sale, te abraza fuerte, y entiendes que hablar es, sobre todo, ser visto." },
+    { "who": "n10_tu", "text": "Mamá, me enseñaste que mi voz son mis manos. Esta vez voy a llamarte yo." }
+  ],
+  "n10_recuerdo_fin": [
+    { "who": "n10_narrador", "text": "Aprendes MAMA. Cada letra es un puente entre las dos. En el altar, las cadenas de luz titilan y tu madre levanta la cabeza." },
+    { "who": "n10_tu", "text": "Lanzo MAMA y ella responde. Cuando levante las manos, Itzpapálotl se quedará quieta unos segundos: ahí entra ECOS, directo al núcleo." }
+  ],
+
+  "n10_final": [
+    { "who": "n10_narrador", "text": "El tercer golpe de ECOS atraviesa el núcleo. Itzpapálotl se queda inmóvil; luego se quiebra en obsidiana y luz, y cada esquirla se vuelve una mariposa blanca que sube hacia el disco negro." },
+    { "who": "n10_itzpa", "text": "Recordar... duele menos de lo que creí." },
+    { "who": "n10_mando", "text": "No... El Sello... ¡el Sello era nuestro!" },
+    { "who": "n10_narrador", "text": "Las cadenas de luz se deshacen. Los encapuchados se bajan las capuchas, mareados, y uno a uno se sientan en el suelo sin saber dónde están." },
+    { "who": "n10_tu", "text": "Se acabó." }
+  ],
+  "n10_reencuentro": [
+    { "who": "n10_narrador", "text": "El techo abierto se llena de oro: el sol regresa por el borde del eclipse y la luz baja por la nave como agua tibia. Tu madre se levanta del altar con las manos libres, y por fin se mueven." },
+    { "who": "n10_madre", "text": "Hijo. Te vi pelear. Te vi aprender. Estoy aquí." },
+    { "who": "n10_tu", "text": "Mamá." },
+    { "who": "n10_narrador", "text": "Lo dices con las manos, M-A-M-A, y ella te contesta con la seña de casa que significa «aquí estoy». El Códice cae, entero, sobre sus manos unidas, y sus páginas respiran." },
+    { "who": "n10_madre", "text": "Vámonos a casa. Todavía hay mucho por escribir." },
+    { "who": "n10_balam", "text": "Balam, otra vez pequeño, se enrosca en tu hombro y ronronea." }
+  ],
+  "n10_reintento": [
+    { "who": "n10_narrador", "text": "Te levantas. Balam ruge a tu lado y, desde el altar, tu madre sostiene la luz con la mirada." }
+  ]
+}

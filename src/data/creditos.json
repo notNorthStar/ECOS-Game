@@ -1,0 +1,58 @@
+{
+  "note": "Créditos de la escena final (EpilogoScene). Formato: titulo, estudio, equipo[{rol,nombre}], secciones[{titulo, lineas[]}], cierre. Los nombres '[nombre]' los llena el equipo. Mantener en sincronía con CREDITOS.md y AI_LOG.md.",
+  "titulo": "ECOS",
+  "estudio": "Listick Games",
+  "evento": "Game Jam ANIEI 2026 · Tema: Cultura, identidad y patrimonio",
+  "equipo": [
+    { "rol": "Dirección y diseño de juego", "nombre": "[nombre]" },
+    { "rol": "Programación", "nombre": "[nombre]" },
+    { "rol": "Arte y animación", "nombre": "[nombre]" },
+    { "rol": "Música y sonido", "nombre": "[nombre]" },
+    { "rol": "Historia y guion", "nombre": "[nombre]" },
+    { "rol": "Producción y documentación", "nombre": "[nombre]" }
+  ],
+  "secciones": [
+    {
+      "titulo": "Herramientas",
+      "lineas": [
+        "Phaser (Phaser Studio) · Licencia MIT",
+        "TypeScript (Microsoft) · Licencia Apache 2.0",
+        "Vite (Evan You y colaboradores) · Licencia MIT",
+        "MediaPipe Tasks Vision, HandLandmarker (Google) · Licencia Apache 2.0"
+      ]
+    },
+    {
+      "titulo": "Lengua de Señas Mexicana",
+      "lineas": [
+        "La LSM es la lengua de la comunidad sorda de México.",
+        "El juego usa su alfabeto manual como mecánica principal y busca representarla con respeto.",
+        "Con gratitud a las personas sordas y a las familias que la mantienen viva.",
+        "Fuentes consultadas: ver SOURCES.md del módulo ecos-lsm."
+      ]
+    },
+    {
+      "titulo": "Música",
+      "lineas": [
+        "«La Llorona», melodía tradicional mexicana (dominio público).",
+        "Arreglo original de Listick Games, sintetizado por código.",
+        "El resto de las pistas son composiciones originales del equipo, generadas en tiempo real."
+      ]
+    },
+    {
+      "titulo": "Folclor y patrimonio",
+      "lineas": [
+        "Chaneques, nahuales, tzitzimime, Itzpapálotl y la Llorona pertenecen al patrimonio oral y cultural de México.",
+        "Los lugares retratan Xalapa, Los Tuxtlas, Catemaco, Oaxaca, la Ciudad de México y Guadalajara."
+      ]
+    },
+    {
+      "titulo": "Uso de inteligencia artificial",
+      "lineas": [
+        "Se usaron herramientas de IA (Claude Code, de Anthropic, entre otras) como apoyo en programación, textos, datos de niveles y arte provisional.",
+        "Las decisiones de historia, diseño y dirección fueron del equipo, que revisó y modificó el resultado.",
+        "El detalle de cada uso está registrado en AI_LOG.md."
+      ]
+    }
+  ],
+  "cierre": "Gracias por jugar."
+}

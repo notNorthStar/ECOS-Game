@@ -17,12 +17,14 @@
     "test:nivel4": "node tools/test-nivel-04.mjs",
     "test:nivel6": "node tools/test-nivel-06.mjs",
     "test:nivel7": "node tools/test-nivel-07.mjs && node tools/test-nivel-07-sistemas.mjs",
+    "test:nivel10": "node tools/test-nivel-10.mjs",
     "placeholders": "node tools/gen-placeholders.mjs",
     "scenery:nivel2": "node tools/gen-tuxtla-scenery.mjs",
     "scenery:nivel3": "node tools/gen-catemaco-scenery.mjs",
     "scenery:nivel4": "node tools/gen-oaxaca-scenery.mjs",
     "scenery:nivel6": "node tools/gen-cdmx-scenery.mjs",
-    "scenery:nivel7": "node tools/gen-cdmx2-scenery.mjs"
+    "scenery:nivel7": "node tools/gen-cdmx2-scenery.mjs",
+    "scenery:nivel10": "node tools/gen-gdl-scenery.mjs"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "1.0.1",

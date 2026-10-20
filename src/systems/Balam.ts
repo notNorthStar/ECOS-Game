@@ -121,6 +121,19 @@ export function installBalam(world: WorldApi): void {
     time += dt;
     const p = world.player;
     const t = behind();
+    // Nivel 10: mientras Balam es jaguar luminoso (systems/BalamJaguar.ts) el gato no se dibuja; lo sigue
+    // de cerca en silencio para reaparecer junto al jugador al volver a ser gato.
+    const asJaguar = GameState.balamJaguar;
+    sprite.setVisible(!asJaguar);
+    shadow.setVisible(!asJaguar);
+    eyes.forEach((e) => e.setVisible(!asJaguar));
+    if (asJaguar) {
+      const pt = world.isWalkable(t.x, t.y, B.radius) ? t : world.randomPointNear(t.x, t.y, 20);
+      cat.x = pt.x;
+      cat.y = pt.y;
+      current = { x: cat.x, y: cat.y };
+      return;
+    }
     const dx = t.x - cat.x;
     const dy = t.y - cat.y;
     const d = Math.hypot(dx, dy * 2);

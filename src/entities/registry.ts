@@ -10,6 +10,8 @@ import { Muneca } from './Muneca';
 import { Nahual } from './Nahual';
 import { Nahuala } from './Nahuala';
 import { ReyOlvido } from './ReyOlvido';
+import { Tzitzimitl } from './Tzitzimitl';
+import { Itzpapalotl } from './Itzpapalotl';
 
 /**
  * Fábrica de enemigos (dueño: combate). La usa LevelScene.spawnEnemy(spec):
@@ -47,8 +49,11 @@ export function createEnemy(world: WorldApi, spec: EnemySpec): EnemyApi {
       return new ReyOlvido(world, spec.x, spec.y, spec.group);
     // Nivel 10 (dueño: enemigos). Subjefas del eclipse y la jefa final.
     case 'tzitzimitl':
+      return new Tzitzimitl(world, spec.x, spec.y, spec.group);
+    // Itzpapálotl nace SIEMPRE como capullo invulnerable: el Director lo hace estallar con hatch()
+    // (o hatchItzpapalotl(world), exportado en entities/Itzpapalotl.ts).
     case 'itzpapalotl':
-      throw new Error(`Enemigo del Nivel 10 sin implementar: ${spec.type}`);
+      return new Itzpapalotl(world, spec.x, spec.y, spec.group);
     default: {
       const t: never = spec.type;
       throw new Error(`Tipo de enemigo desconocido: ${String(t)}`);

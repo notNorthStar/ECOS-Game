@@ -1271,6 +1271,293 @@
       "placeholder": true,
       "generator": "tools/gen-cdmx2-scenery.mjs",
       "generatedSha256": "a4a5f0030e4c32f5b9bc202767261289b90162134b93cbf97b172c6f89fb5e87"
+    },
+    {
+      "key": "fondo_gdl_avenida_capa0",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_gdl_avenida_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "52b6ec426ff843ebcf9c48d0795f8971110adadfb4db2a73df3e9caf8d812f93"
+    },
+    {
+      "key": "fondo_gdl_avenida_capa1",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_gdl_avenida_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "1ad9633d282365b3430aca8d1c9a5d97c08059a8afc7ebc6c9626831db124144"
+    },
+    {
+      "key": "fondo_gdl_avenida_capa2",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_gdl_avenida_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "b40065092821b3c0ee23005ddb33d6cc230b98f42a310e7253d6cb7cbc4b67a0"
+    },
+    {
+      "key": "fondo_gdl_avenida_capa3",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_gdl_avenida_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "13b0d0d4a654dc89fae32afbdfdfe624b353d21e1399a6a4c0dbc554f1df71d8"
+    },
+    {
+      "key": "fondo_gdl_avenida_capa4",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_gdl_avenida_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "632120e29f5281c2201c2bbfc72aa519cfa139bfccfb38755c6e1fda812a5e1c"
+    },
+    {
+      "key": "fondo_gdl_avenida_capa5",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_gdl_avenida_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "c93e4c19d52dfbb97a80504ab1e70740d74462a7844d62f07b4f10ec6c20c3a5"
+    },
+    {
+      "key": "fondo_catedral_capa0",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "37d64b775ef6541a0ae876debbedf7006245d23e00ca4ac288b2ac73266a7f14"
+    },
+    {
+      "key": "fondo_catedral_capa1",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "dd38c8965d41bb0e36022fba2da9903ce6f28a2b6ae35fd0110e4277ba7b412c"
+    },
+    {
+      "key": "fondo_catedral_capa2",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "a2d55cc37bcc8bd3d69a6f97abec262a057c33ded351cb9cf4873c6f5fde7212"
+    },
+    {
+      "key": "fondo_catedral_capa3",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "aeaadbd1c9f4f6a77db49e3a866ec4fa86d7323a555e8a2f10f81de064f7e899"
+    },
+    {
+      "key": "fondo_catedral_capa4",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "492f1b0c904033aae663ac7a45a419cc30bcb33fd5323789acec3032e1489fd7"
+    },
+    {
+      "key": "fondo_catedral_capa5",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "826a6a5e634cbaa09a861078008fc302ff1499794229d8bc42670741d46113c4"
+    },
+    {
+      "key": "fondo_catedral_eclipse_capa0",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_eclipse_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "9cdac06b576caff121079f381d9cc0f1f1157a2bfebadf0a5c6dea651e4992da"
+    },
+    {
+      "key": "fondo_catedral_eclipse_capa1",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_eclipse_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "44f294174080e0c934d45c33c37340ed60bc3b45f88ec2cd259de81d89787623"
+    },
+    {
+      "key": "fondo_catedral_eclipse_capa2",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_eclipse_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "8e74937931d50a4ea295ec6182c3104c1576101537f3bfb655651a6546a04843"
+    },
+    {
+      "key": "fondo_catedral_eclipse_capa3",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_eclipse_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "b25bcf63a1632a22f5c73edc2e74ec5554a1fe35490bcbc67a7b578ee982b610"
+    },
+    {
+      "key": "fondo_catedral_eclipse_capa4",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_eclipse_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "97b8b5490d9338618a53a75e08a65d1218c9a5a6f5c3f1f3b4327975df5a6e0a"
+    },
+    {
+      "key": "fondo_catedral_eclipse_capa5",
+      "path": "assets/escenarios/nivel-10-guadalajara/fondos/fondo_catedral_eclipse_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "19eca196f3e256cca8fde936e845969c7739ccdbcfb7d9af606e1275419dc637"
+    },
+    {
+      "key": "epilogo_taller",
+      "path": "assets/escenarios/nivel-10-guadalajara/epilogo/epilogo_taller.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "9de3c80eadc2034a69dd48cf4c617387ff7c21f4e82c72832cc21cdbef957a39"
+    },
+    {
+      "key": "epilogo_codice",
+      "path": "assets/escenarios/nivel-10-guadalajara/epilogo/epilogo_codice.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "e06afb1f6ea894aabea028a344855659df8faf2c458d9d3716df11cf4f9fe9f4"
+    },
+    {
+      "key": "prop_n10_letras_gdl",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_letras_gdl.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "66fb9bddfbe1dfa0e2c610d0dd6b4d686692556f344143a4298e5921efa69a59"
+    },
+    {
+      "key": "prop_n10_tranvia",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_tranvia.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "8f6487d6c0b7fb448491b588ae55c754023b27e084a12d9388ad449d211444a3"
+    },
+    {
+      "key": "prop_n10_auto_1",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_auto_1.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "24bff432e93cb79afe818a8405c7966a4f7b6568613227c0ac5c2cdbd8fee220"
+    },
+    {
+      "key": "prop_n10_auto_2",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_auto_2.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "f96bc69feec62f9ad570fee695d6d8fadd81b548cbf059e9fac61c86a403ea41"
+    },
+    {
+      "key": "prop_n10_jacaranda",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_jacaranda.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "404959ac8539bab70cc8abbde0ca8162fb02c864385319088c3bd5183da8a268"
+    },
+    {
+      "key": "prop_n10_escombros",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_escombros.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "a164300c6cf5d8653fc523b0aeb027776959c310b249404f2bbdc8653484c1b8"
+    },
+    {
+      "key": "prop_n10_barricada",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_barricada.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "41d3ac04f2c9c4e5267b5407b4d3956789a1f088370d204cda60a8b610f74aaf"
+    },
+    {
+      "key": "prop_n10_autobus_volcado",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_autobus_volcado.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "e36e472c8c6b5c1971ce29b81d82329521b17d39c63058afce2f5b15cc3237eb"
+    },
+    {
+      "key": "prop_n10_cartel_desaparecidos",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_cartel_desaparecidos.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "47a2bef56c2365984ffd0caddeb4d884778b9f7464fc7e178d02cdd4c7018aeb"
+    },
+    {
+      "key": "prop_n10_organo",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_organo.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "b18331c5d92f812cfacb3566e5148b2838d0a19a3008f3538d77af547b1c7def"
+    },
+    {
+      "key": "prop_n10_cadenas_rotas",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_cadenas_rotas.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "3b03b4d8a4d11801df25fd49cedb43cc41fc77dd62c0c5cccc761ed0d0efea10"
+    },
+    {
+      "key": "prop_n10_banca",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_banca.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "363ce695eb9d904f60527e92e06e34ad7fe2b81196463457c1f69ad5b16845b7"
+    },
+    {
+      "key": "prop_n10_banca_rota",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_banca_rota.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "03af3585a25e492d75439b0ed7974623b03f982a269fe153226231db6f5b3372"
+    },
+    {
+      "key": "prop_n10_columna",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_columna.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "522a1686d1f6c3b2edd142013c91d7f79030db0bee5c05a0026b08d64bbe8093"
+    },
+    {
+      "key": "prop_n10_pulpito",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_pulpito.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "c160e6631b590805b50d2eafb79beba5d380b7f34a57f94b15968c51377871c0"
+    },
+    {
+      "key": "prop_n10_vitral_roto",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_vitral_roto.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "48c14c6b635c604dd8d5f54b1a62de871417221f28b28f8e364214f875c2c01e"
+    },
+    {
+      "key": "prop_n10_escombros_techo",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_escombros_techo.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "aa84b9cb1f71d720269208698ef0ec63a2989e4e5ce8c0d6666c78f96a7c8c25"
+    },
+    {
+      "key": "prop_n10_rayo_luz",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_rayo_luz.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "269323c9caf889e7443555f04dabccb7c0ced399f3891e2bc26b82e777ae3bd4"
+    },
+    {
+      "key": "prop_n10_sol",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_sol.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "f913796b53222d59470f41378190c8c314016398d60b4fe925ef0405154a0255"
+    },
+    {
+      "key": "prop_n10_luna_eclipse",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_luna_eclipse.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "1799af415bb7f8ab4be2d04653ca42a968e4d71e04023e6208de987ee8a0eff2"
+    },
+    {
+      "key": "prop_n10_alto_mando",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_alto_mando.png",
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "13071b5a0d3c72173b3ca5fe1030f94e8653e01837e09b7354b91236f28d859b"
     }
   ],
   "sheets": [
@@ -2578,6 +2865,149 @@
       "placeholder": true,
       "generator": "tools/gen-cdmx2-scenery.mjs",
       "generatedSha256": "aac177bc599f4277de505dfe9b6b616aa60d7fa3ebb6581bf463677228847544"
+    },
+    {
+      "key": "prop_n10_farol",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_farol.png",
+      "frameWidth": 24,
+      "frameHeight": 100,
+      "frames": 2,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.99,
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "1f5c477b4310ba240eb72928c8c551c73735052c7935058a52c6daa21c193873"
+    },
+    {
+      "key": "prop_n10_bandera",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_bandera.png",
+      "frameWidth": 28,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.9875,
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "6b308fb12ee2826e4f32ff800d538a075ecd7cec14006db2da2c011069b3019e"
+    },
+    {
+      "key": "prop_n10_puerta_catedral",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_puerta_catedral.png",
+      "frameWidth": 72,
+      "frameHeight": 108,
+      "frames": 2,
+      "frameRate": 1,
+      "repeat": -1,
+      "originY": 0.9907,
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "53b84dee3ef5495471b2b66043c2e141c9ad9735ad7d84e22ecd2172149a0d40"
+    },
+    {
+      "key": "prop_n10_radio_vieja",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_radio_vieja.png",
+      "frameWidth": 28,
+      "frameHeight": 22,
+      "frames": 2,
+      "frameRate": 2,
+      "repeat": -1,
+      "originY": 0.9545,
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "db3222ef9360d78d3212bebe8de439290492f96a32ffcec68014dce77025975b"
+    },
+    {
+      "key": "prop_n10_altar_mayor",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_altar_mayor.png",
+      "frameWidth": 168,
+      "frameHeight": 120,
+      "frames": 2,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.9917,
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "e2d987548b64860ebd7bbed866cfa2cb57ee1c70df2a831653447d9057f0b58a"
+    },
+    {
+      "key": "prop_n10_cadenas",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_cadenas.png",
+      "frameWidth": 96,
+      "frameHeight": 160,
+      "frames": 2,
+      "frameRate": 1,
+      "repeat": -1,
+      "originY": 0.9938,
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "6ae00140c6bcc05ecfad2d5ce7a699eeaa4f4a7a30575bf00652e1838abad7e3"
+    },
+    {
+      "key": "prop_n10_velas",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_velas.png",
+      "frameWidth": 32,
+      "frameHeight": 28,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.9643,
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "67e550264d8e35560e1c0c4246d52462047bab40d947f446960a9d4fee6f53a7"
+    },
+    {
+      "key": "prop_n10_candelabro",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_candelabro.png",
+      "frameWidth": 24,
+      "frameHeight": 76,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.9868,
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "c3e72efe5f601607fe902d7b748c71b781aedbfecfe43f17c3d1246f4201def3"
+    },
+    {
+      "key": "prop_n10_escombro",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_escombro.png",
+      "frameWidth": 24,
+      "frameHeight": 24,
+      "frames": 4,
+      "frameRate": 1,
+      "repeat": -1,
+      "originY": 0.9583,
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "e3f3bd19a26c42b3db06d4c55f8f62068b2a690040fd4f96b9f821fd3ba48d7a"
+    },
+    {
+      "key": "prop_n10_estrella_caida",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_estrella_caida.png",
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.9375,
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "89a9f4de790fe74c06acd6d3d23d82cac5cf96b3d6f3b5f4d8a46afe98dff7b3"
+    },
+    {
+      "key": "prop_n10_corona",
+      "path": "assets/escenarios/nivel-10-guadalajara/props/prop_n10_corona.png",
+      "frameWidth": 192,
+      "frameHeight": 192,
+      "frames": 2,
+      "frameRate": 2,
+      "repeat": -1,
+      "originY": 0.9948,
+      "placeholder": true,
+      "generator": "tools/gen-gdl-scenery.mjs",
+      "generatedSha256": "4bbe25d4ef53ec5e9451513b2fa3f4a2703c1675219d32715ea866a7350bf2a5"
     }
   ]
 }

@@ -14,6 +14,7 @@ import { PauseScene } from './scenes/PauseScene';
 import { AltarScene } from './scenes/AltarScene';
 import { DialogueScene } from './scenes/DialogueScene';
 import { EndingScene } from './scenes/EndingScene';
+import { EpilogoScene } from './scenes/EpilogoScene';
 
 // Dueño: integración. Orden de escenas: las superpuestas (Hud, Spell, Dialogue, Altar, Diario, Pause) van después de Level.
 const parent = document.getElementById('game')!;
@@ -40,6 +41,7 @@ const game = new Phaser.Game({
     DiarioScene,
     PauseScene,
     EndingScene,
+    EpilogoScene,
   ],
 });
 

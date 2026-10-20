@@ -11,6 +11,7 @@ import { PISTAS_N03 } from './catemaco';
 import { PISTAS_N04 } from './oaxaca';
 import { PISTAS_N06 } from './cdmx';
 import { PISTAS_N07 } from './cdmx2';
+import { PISTAS_N10 } from './gdl';
 
 const ANTICIPO = 0.1;
 const FUNDIDO_ENTRADA = 1.2;
@@ -310,6 +311,7 @@ export const PISTAS: Record<string, DefPista> = {
   ...PISTAS_N04,
   ...PISTAS_N06,
   ...PISTAS_N07,
+  ...PISTAS_N10,
 };
 
 // ── Reproductor ───────────────────────────────────────────────────────────────

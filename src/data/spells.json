@@ -8,7 +8,9 @@
     "FUEGO": "length (px) hacia facing, |Δy| <= width: ráfaga de fuego en línea (como SOL) · damage (pts de vida del enemigo; 70 deja inconsciente a un encapuchado rojo de 60 y destruye muñecas) · knockback (px) · burnMs: cuánto arde (visual) el blanco alcanzado. Daño × power. ❌ contra la Nahuala (la cura o la enfurece): lo decide el enemigo.",
     "DESCANSO": "purifyRadius (px): libera a los muertos que no descansan dentro del radio — el alma atrapada en las muñecas poseídas (quedan inertes, sin violencia) y los espíritus · stun (s): aturdimiento breve (➖) a lo demás que esté cerca. Radio × powerScale(power); stun × power.",
     "CONSUELO": "Conjuro de HISTORIA (type 'historia': no entra en la rueda ni se selecciona; lo lanza el director con castSpellNow en la secuencia final del Nivel 7). calmRadius (px): alcance del consuelo alrededor del jugador (la Llorona fuera de control dentro del radio se aquieta) · calmMs: cuánto dura la calma antes de volver a agitarse si la secuencia no sigue · lightMs: duración del brillo cálido. Radio × powerScale(power). No daña ni aturde a nadie.",
-    "PAZ": "Conjuro de HISTORIA (type 'historia'; ver CONSUELO). Cierra la secuencia CONSUELO → MEMORIA → PAZ: libera a la Llorona, que recupera el recuerdo del amor por sus hijos y se despide. peaceRadius (px): alcance de la luz de paz · lightMs: duración del brillo. Radio × powerScale(power). No daña ni aturde a nadie."
+    "PAZ": "Conjuro de HISTORIA (type 'historia'; ver CONSUELO). Cierra la secuencia CONSUELO → MEMORIA → PAZ: libera a la Llorona, que recupera el recuerdo del amor por sus hijos y se despide. peaceRadius (px): alcance de la luz de paz · lightMs: duración del brillo. Radio × powerScale(power). No daña ni aturde a nadie.",
+    "ECOS": "Conjuro de HISTORIA con \"combate\": true (Nivel 10): se aprende atado en la Catedral (secuencia LUZ → MEMORIA → ECOS, el director lo lanza con castSpellNow) y, una vez aprendido, SÍ entra en la rueda y se lanza con Q durante el combate final. Combat lo entrega a applySpell() de cada enemigo como un conjuro más: Itzpapálotl decide si rebota (fuera de la ventana de MAMA, con aviso) o golpea el núcleo (coreHits por lanzamiento no fallido, solo con 'itzpa:stagger' activo). reach (px): alcance alrededor del jugador · stunRadius (px) + stun (s): aturdimiento leve (➖) a otros enemigos cercanos · lightMs: duración del brillo de las voces. Radios × powerScale(power).",
+    "MAMA": "Conjuro de HISTORIA con \"combate\": true (Nivel 10, 'señas familiares'): se aprende en la Fase 2 de Itzpapálotl y se lanza con Q (o rueda) cuando quieras. Si la madre está despierta en el altar (systems/Madre.ts), cualquier resultado no fallido llama a madreSign(): responde en señas (signMs) y emite 'madre:sign' + 'itzpa:stagger' {ms: staggerMs}, la única ventana para que ECOS golpee el núcleo. Si la madre ya está respondiendo, no se encadena otra ventana. No daña a nadie."
   },
   "masteryRules": {
     "partialMinFraction": 0.8,
@@ -195,6 +197,41 @@
       "effect": {
         "peaceRadius": 260,
         "lightMs": 4000
+      }
+    },
+    {
+      "id": "ECOS",
+      "name": "ECOS",
+      "type": "historia",
+      "combate": true,
+      "title": "Ecos",
+      "desc": "Todas las voces que has escuchado en el camino responden a la vez. Rompe las ataduras de la Cofradía y, mientras Itzpapálotl está paralizada, golpea su núcleo.",
+      "learnedFrom": "Catedral de Guadalajara, atado bajo el Gran Eclipse",
+      "color": "#9ff0ff",
+      "letterWindowMs": 3600,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "reach": 420,
+        "coreHits": 1,
+        "stunRadius": 150,
+        "stun": 1.5,
+        "lightMs": 1500
+      }
+    },
+    {
+      "id": "MAMA",
+      "name": "MAMÁ",
+      "type": "historia",
+      "combate": true,
+      "title": "Mamá",
+      "desc": "La primera seña que aprendiste. Tu madre te responde desde el altar y, mientras te habla en señas, Itzpapálotl queda paralizada.",
+      "learnedFrom": "Recuerdo de la infancia, frente a Itzpapálotl",
+      "color": "#ff9ac8",
+      "letterWindowMs": 3600,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "signMs": 1200,
+        "staggerMs": 3500
       }
     }
   ]

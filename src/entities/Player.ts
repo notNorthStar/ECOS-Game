@@ -59,6 +59,8 @@ export class Player implements PlayerApi {
   private mouseShoot = false;
   private onPointerDown: (p: Phaser.Input.Pointer) => void;
   private onPointerUp: (p: Phaser.Input.Pointer) => void;
+  /** Ataduras de luz (Nivel 10, GameState.bound). Se crean al usarse por primera vez. */
+  private bonds: Phaser.GameObjects.Graphics | null = null;
 
   constructor(
     private world: WorldApi,
@@ -69,6 +71,8 @@ export class Player implements PlayerApi {
     this.x = x;
     this.y = y;
     this.ground = { height: 0, frontY: y };
+    // Nivel 10: cada LevelScene nueva (muerte, cambio de sección) empieza sin ataduras; el director las vuelve a poner.
+    Player.clearBound();
     const scene = world.scene;
     this.hasArt = scene.textures.exists('protagonista_reposo');
     const tex = this.hasArt ? 'protagonista_reposo' : fallbackPlayer(scene);
@@ -93,6 +97,13 @@ export class Player implements PlayerApi {
     scene.input.on('pointerup', this.onPointerUp);
 
     bus.scoped(scene, 'player:shot', () => this.playOneShot('protagonista_disparar'));
+  }
+
+  /** Quita las ataduras del Nivel 10 (GameState.bound) y avisa con 'player:bound' si estaban puestas. */
+  private static clearBound(): void {
+    if (!GameState.bound) return;
+    GameState.bound = false;
+    bus.emit('player:bound', { on: false });
   }
 
   get alive(): boolean {
@@ -157,7 +168,7 @@ export class Player implements PlayerApi {
       this.world.moveActor(this, this.dodgeDir.x * sp * dt, this.dodgeDir.y * sp * 0.6 * dt);
       if (this.stateT <= 0) this.state = 'normal';
     } else if (this.state === 'hurt') {
-      this.world.moveActor(this, this.kbx * dt, 0);
+      if (!GameState.bound) this.world.moveActor(this, this.kbx * dt, 0);
       this.kbx *= Math.exp(-HURT.knockbackDecay * dt);
       if (this.stateT <= 0) this.state = 'normal';
     } else {
@@ -171,7 +182,8 @@ export class Player implements PlayerApi {
   }
 
   private readInput() {
-    const ok = this.canAct;
+    // Atado (Nivel 10, GameState.bound): no se mueve ni salta; el deletreo (Casting) sigue funcionando.
+    const ok = this.canAct && !GameState.bound;
     // Corona del Rey del Olvido (systems/MindControl.ts): invierte SOLO el movimiento, no el apuntado ni los conjuros.
     const inv = GameState.controlsInverted ? -1 : 1;
     const dx = ok ? inv * ((keys.isDown('right') ? 1 : 0) - (keys.isDown('left') ? 1 : 0)) : 0;
@@ -213,7 +225,7 @@ export class Player implements PlayerApi {
   }
 
   private handleActions(input: ReturnType<Player['readInput']>, dt: number): void {
-    if (!this.canAct) return;
+    if (!this.canAct || GameState.bound) return;
     const now = this.world.scene.time.now;
     // Esquiva: doble Shift o C.
     let dodge = keys.justPressed('dodge');
@@ -270,7 +282,7 @@ export class Player implements PlayerApi {
 
   private tryShoot(): void {
     // Con el escudo levantado no se dispara (GDD 6.5: defenderse o atacar).
-    if (!this.canAct || !GameState.hasLaser || this.state !== 'normal' || isShieldActive()) return;
+    if (!this.canAct || GameState.bound || !GameState.hasLaser || this.state !== 'normal' || isShieldActive()) return;
     bus.emit('player:shoot-request', {
       x: this.x + this.facing * SHOOT.muzzleX,
       y: this.y,
@@ -360,6 +372,7 @@ export class Player implements PlayerApi {
 
   private die(): void {
     this.dead = true;
+    Player.clearBound();
     this.state = 'dead';
     this.vx = this.vy = 0;
     this.sprite.setAlpha(1);
@@ -411,12 +424,36 @@ export class Player implements PlayerApi {
       // Inclinación de la silueta de respaldo según el estado (feedback mínimo).
       this.sprite.setAngle(this.state === 'dodge' ? this.facing * 25 : this.state === 'dead' ? this.facing * -80 : 0);
     }
+    this.drawBonds();
+  }
+
+  /** Nivel 10: tres anillos de luz morada que rodean al jugador mientras está atado (GameState.bound). */
+  private drawBonds(): void {
+    if (!GameState.bound || this.dead) {
+      this.bonds?.setVisible(false);
+      return;
+    }
+    if (!this.bonds) this.bonds = this.world.scene.add.graphics();
+    const g = this.bonds.clear().setVisible(true);
+    const cx = Math.round(this.x);
+    const feet = Math.round(this.y - this.z);
+    const pulse = GameState.settings.reduceFx ? 0.8 : 0.65 + 0.25 * Math.sin(this.time * 5);
+    for (const [i, h] of [16, 34, 52].entries()) {
+      const wob = GameState.settings.reduceFx ? 0 : Math.sin(this.time * 3 + i * 1.7) * 1.5;
+      g.lineStyle(3, 0x9a5cff, 0.35 * pulse).strokeEllipse(cx, feet - h + wob, 30, 9);
+      g.lineStyle(1, 0xe6d0ff, pulse).strokeEllipse(cx, feet - h + wob, 26, 7);
+    }
+    // Hilos de luz que bajan al suelo (las cadenas que lo sujetan al altar).
+    g.lineStyle(1, 0xc8a0ff, 0.5 * pulse).lineBetween(cx - 13, feet - 16, cx - 22, feet + 2).lineBetween(cx + 13, feet - 16, cx + 22, feet + 2);
+    g.setDepth(this.sprite.depth + 0.3);
   }
 
   destroy(): void {
     const scene = this.world.scene;
     scene.input.off('pointerdown', this.onPointerDown);
     scene.input.off('pointerup', this.onPointerUp);
+    this.bonds?.destroy();
+    this.bonds = null;
     this.sprite.destroy();
   }
 }

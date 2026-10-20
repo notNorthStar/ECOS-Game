@@ -61,9 +61,12 @@ export function letterWindowFor(spellId: string): number {
 /**
  * Conjuros de HISTORIA (spells.json type 'historia', p. ej. CONSUELO y PAZ): se aprenden y se ven en el Diario,
  * pero no se seleccionan ni aparecen en la rueda; solo se lanzan desde el director con castSpellNow().
+ * Excepción: los de historia con `"combate": true` (ECOS y MAMA, Nivel 10) se comportan como conjuros
+ * normales una vez aprendidos (rueda y Q).
  */
 export function isStorySpell(spellId: string): boolean {
-  return getSpellDef(spellId)?.type === 'historia';
+  const def = getSpellDef(spellId);
+  return def?.type === 'historia' && !def.combate;
 }
 
 /** Agrega un conjuro aprendido sin duplicar y lo selecciona si no hay otro (nunca uno de historia). */
@@ -453,7 +456,7 @@ export function startLearning(world: WorldApi, spellId: string): Promise<void> {
       if (!GameState.mastery[spellId]) GameState.mastery[spellId] = { level: 0, progress: 0 };
       bus.emit('spell:learned', { spellId });
       bus.emit('hud:toast', {
-        text: def.type === 'historia' ? `Aprendiste ${def.title}` : `Aprendiste ${def.title}: toca Q para lanzarlo`,
+        text: isStorySpell(spellId) ? `Aprendiste ${def.title}` : `Aprendiste ${def.title}: toca Q para lanzarlo`,
         ms: 3000,
       });
       if (sm.isActive('Spell')) sm.stop('Spell');

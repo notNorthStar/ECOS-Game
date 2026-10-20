@@ -1,0 +1,114 @@
+{
+  "note": "Números del Nivel 10 · Guadalajara (dueño: contenido). Todo lo ajustable del GdlDirector vive aquí. Ecos ~800 SIN canje (después del altar de la avenida ya no hay altares): enemigos comunes de avenida y catedral (~520), recompensas directas (~400) y, aparte, lo que paguen las Tzitzimime y la jefa en enemies.json.",
+  "toastMs": 4200,
+  "tickMs": 300,
+  "hud": { "x": 12, "y": 90, "fontSize": 10 },
+  "musica": {
+    "avenida": "n10_avenida",
+    "catedral": "n10_catedral",
+    "tzitzimime": "n10_tzitzimime",
+    "itzpapalotl": "n10_itzpapalotl",
+    "epilogo": "n10_epilogo"
+  },
+  "eclipse": {
+    "avenida": { "desde": 0, "hasta": 0.6 },
+    "catedral": 0.7,
+    "techo": 1,
+    "final": 0,
+    "paso": 0.01
+  },
+  "avenida": {
+    "minMs": 1500,
+    "respaldoMs": 45000,
+    "encuentros": [
+      { "id": "av1", "nombre": "Chaneques y bestias", "grupo": "av1", "x0": 520, "x1": 1260, "aviso": "av1" },
+      { "id": "av2", "nombre": "Encapuchados y espíritus", "grupo": "av2", "x0": 1440, "x1": 1980, "aviso": "av2" },
+      { "id": "av3", "nombre": "La guardia del estadio", "grupo": "av3", "x0": 1900, "x1": 2440, "aviso": "av3", "dialogo": "n10_av3_fin" }
+    ]
+  },
+  "catedral": {
+    "arena": { "x0": 0, "x1": 1500 },
+    "minMs": 1500,
+    "respaldoMs": 60000,
+    "pausaTandaMs": 2600,
+    "madre": { "x": 1640, "y": 262 },
+    "tandas": [
+      { "id": "ola1", "nombre": "Primera tanda", "grupo": "ola1", "fin": "n10_ola_1_fin" },
+      { "id": "ola2", "nombre": "Segunda tanda", "grupo": "ola2", "fin": "n10_ola_2_fin" },
+      { "id": "ola3", "nombre": "Tanda final", "grupo": "ola3" }
+    ],
+    "emboscada": {
+      "techoMs": 3600,
+      "pausaMandosMs": 900,
+      "mandos": ["n10_mando_1", "n10_mando_2", "n10_mando_3"]
+    }
+  },
+  "final": {
+    "timeScale": 0.12,
+    "pausaMs": 900,
+    "pausaFalloMs": 450,
+    "maxFallosRapidos": 6,
+    "jaguarMaxMs": 4500,
+    "arena": { "x0": 180, "x1": 1520 },
+    "madre": { "x": 1400, "y": 262 },
+    "jaguarDx": -60,
+    "pasos": [
+      { "id": "luz", "tipo": "lanzar", "conjuro": "LUZ", "intro": "n10_culto_1", "ok": "n10_luz_ok", "repite": "n10_luz_repite" },
+      { "id": "memoria", "tipo": "lanzar", "conjuro": "MEMORIA", "intro": "n10_culto_2", "ok": "n10_memoria_ok", "repite": "n10_memoria_repite" },
+      { "id": "ecos_aprender", "tipo": "aprender", "conjuro": "ECOS", "intro": "n10_culto_3" },
+      { "id": "ecos", "tipo": "lanzar", "conjuro": "ECOS", "intro": "n10_ecos_aviso", "ok": "n10_ecos_ok", "repite": "n10_ecos_repite" }
+    ],
+    "fase1": {
+      "minMs": 1500,
+      "respaldoMs": 90000,
+      "pasos": [
+        { "id": "f1_a", "grupo": "f1_a", "tzitzimime": 1, "dialogo": "n10_tz_1", "aviso": "tz1" },
+        { "id": "f1_b", "grupo": "f1_b", "tzitzimime": 2, "dialogo": "n10_tz_2", "aviso": "tz2" }
+      ]
+    },
+    "fase2": {
+      "grupoCapullo": "capullo",
+      "capulloMs": 1400,
+      "nucleoMs": 7000,
+      "respaldoMs": 20000,
+      "ayudaMamaMs": 25000,
+      "nucleoMax": 3
+    }
+  },
+  "avisos": {
+    "av1": "Chaneques y bestias: aturde con el láser verde y purifícalos con un conjuro.",
+    "av2": "Encapuchados rojos y negros, y espíritus: usa Luna (F) para ver a los espíritus.",
+    "av3": "Guardia de élite: esquiva, usa el escudo (U) y FUEGO o SOL. No hay más altares.",
+    "enc_fin": "Camino despejado. Sigue adelante.",
+    "puerta_cerrada": "Aún quedan grupos de la Cofradía en la avenida. Despeja el camino.",
+    "tanda_fin": "Tanda superada. Viene otra: prepárate.",
+    "oleada_fin": "La nave queda en silencio. Acércate al altar mayor.",
+    "atado": "Ataduras de luz: no puedes moverte, pero sí deletrear. Hazlo sin que te vean.",
+    "tz1": "Tzitzimitl: PROTECCION, LUZ y SOL la repelen. Esquiva su descenso.",
+    "tz2": "Dos más. Balam ataca solo; ayúdalo con LUZ, SOL o PROTECCION.",
+    "capullo": "El capullo de obsidiana late. Cuando caiga la última, estallará.",
+    "mama": "MAMA (Q): tu madre responde en señas y paraliza a Itzpapálotl unos segundos.",
+    "ventana": "¡Ventana abierta! Lanza ECOS (Q) al núcleo ahora.",
+    "ventana_cierra": "La ventana se cerró. Lanza MAMA (Q) otra vez.",
+    "luna": "Luna (F) revela sus cortes dimensionales. Balam le abre huecos.",
+    "nucleo_1": "Primer golpe al núcleo. Dos más.",
+    "nucleo_2": "Segundo golpe al núcleo. Uno más.",
+    "ayuda_mama": "Sin MAMA no hay ventana: lanza MAMA (Q) y luego ECOS al núcleo.",
+    "ecos_rebota": "ECOS solo daña el núcleo mientras ella está paralizada.",
+    "volver": "Vuelves a la pelea. Tu madre sigue llamándote desde el altar."
+  },
+  "rewards": {
+    "encuentro": 25,
+    "tanda": 30,
+    "descubrimiento": 4,
+    "paso": 20,
+    "conjuro": 25,
+    "tzitzimime": 30,
+    "capullo": 40,
+    "final": 120
+  },
+  "epilogo": {
+    "pausaMs": 1800,
+    "cerrar": ["Spell", "Dialogue", "Altar", "Diario", "Hud", "Ending", "Level"]
+  }
+}

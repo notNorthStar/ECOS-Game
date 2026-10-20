@@ -274,7 +274,8 @@ export function installShield(world: WorldApi): void {
     const now = performance.now();
     const p = world.player;
     const casting = isCasting();
-    const busy = casting || p.controlsLocked || keys.locked || !p.alive;
+    // Atado en el Nivel 10 (GameState.bound): sin escudo.
+    const busy = casting || p.controlsLocked || keys.locked || !p.alive || GameState.bound;
 
     // Cámara: detección continua de la U a baja frecuencia (solo si nadie más usa el módulo).
     let camWant = false;

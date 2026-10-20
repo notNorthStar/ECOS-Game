@@ -7,6 +7,7 @@ import { FX_DEPTH_BIAS, HEAT, LASER, SHIELD, SPELLS_FX } from '../config/combat'
 import { FB, burst, ensureCombatTextures, playerShield, powerScale, spellParam } from '../entities/EnemyBase';
 import { Espiritu } from '../entities/Espiritu';
 import { NahualaCopia } from '../entities/Nahuala';
+import { Tzitzimitl } from '../entities/Tzitzimitl';
 import { LaserShot, laserTargets, type LaserTarget } from '../entities/LaserShot';
 import { installProgression } from './Progression';
 import { hideBossBar, showPrompt } from '../scenes/HudScene';
@@ -83,6 +84,7 @@ export function installCombat(world: WorldApi): void {
   // - Cabeza Olmeca → los espíritus que invocó se disipan.
   bus.scoped(scene, 'boss:calmed', () => {
     const mayor = world.enemies.some((e) => e.kind === 'chaneque_mayor');
+    const itzpa = world.enemies.some((e) => e.kind === 'itzpapalotl');
     for (const e of [...world.enemies]) {
       if (!e.alive || e.purified) continue;
       if (mayor && e.kind === 'chaneque') {
@@ -92,6 +94,9 @@ export function installCombat(world: WorldApi): void {
         e.dissipate();
       } else if (e instanceof NahualaCopia) {
         // Nivel 6: al liberar a la Nahuala sus copias ilusorias se desvanecen (y nada más).
+        e.dissipate();
+      } else if (itzpa && e instanceof Tzitzimitl) {
+        // Nivel 10: al quebrarse Itzpapálotl, las Tzitzimime que queden se deshacen en luz (Ecos base).
         e.dissipate();
       }
     }
@@ -197,6 +202,7 @@ function spellRing(world: WorldApi, ev: SpellOutcomeEvent): void {
   if (ev.spellId === 'VERDAD') return verdadFx(world, ev);
   if (ev.spellId === 'FUEGO') return fuegoFx(world, ev);
   if (ev.spellId === 'DESCANSO') return descansoFx(world, ev);
+  if (ev.spellId === 'ECOS') return ecosFx(world, ev);
   if (ev.spellId === 'VOZ') {
     const radius = spellParam('VOZ', 'stunRadius', SPELLS_FX.VOZ.stunRadius) * powerScale(ev.power);
     const wave = scene.add.image(ev.x, ev.y, FB.ring).setTint(0xf2c86b)
@@ -505,4 +511,24 @@ function descansoFx(world: WorldApi, ev: SpellOutcomeEvent): void {
   scene.tweens.add({ targets: glow, alpha: { from: 0, to: 0.35 }, duration: 400, yoyo: true, hold: 300, onComplete: () => glow.destroy() });
   world.flash(0xffb040, 100);
   sfx('descanso');
+}
+
+/**
+ * ECOS (Nivel 10): sobrecarga de la gema. Ondas concéntricas de sonido (anillos turquesa que se expanden)
+ * y un destello en el pecho del jugador. Solo visual: el efecto lo decide cada enemigo (Itzpapálotl: núcleo).
+ */
+function ecosFx(world: WorldApi, ev: SpellOutcomeEvent): void {
+  const scene = world.scene;
+  const s = SPELLS_FX.ECOS;
+  const r = s.radius * powerScale(ev.power);
+  for (let i = 0; i < s.rings; i++) {
+    const ring = scene.add.image(ev.x, ev.y, FB.ring).setTint(i % 2 ? 0xffffff : s.color)
+      .setBlendMode(Phaser.BlendModes.ADD).setDepth(ev.y - FX_DEPTH_BIAS).setDisplaySize(8, 4).setAlpha(0);
+    scene.tweens.add({ targets: ring, displayWidth: r * 2, displayHeight: r, alpha: { from: 1, to: 0 }, delay: i * 120, duration: s.fxMs, ease: 'Cubic.easeOut', onComplete: () => ring.destroy() });
+  }
+  const glow = scene.add.image(ev.x, ev.y - 26, FB.glow).setTint(s.color).setBlendMode(Phaser.BlendModes.ADD).setDepth(ev.y + FX_DEPTH_BIAS).setScale(0.4);
+  scene.tweens.add({ targets: glow, scale: 3, alpha: { from: 1, to: 0 }, duration: 500, ease: 'Quad.easeOut', onComplete: () => glow.destroy() });
+  burst(scene, 'eco', ev.x, ev.y - 26, ev.y + FX_DEPTH_BIAS, 20);
+  world.flash(s.color, 120);
+  world.shake(0.004, 140);
 }

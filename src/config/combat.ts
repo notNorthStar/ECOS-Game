@@ -173,6 +173,16 @@ export const SPELLS_FX = {
     lights: 10,
     fxMs: 1300,
   },
+  /**
+   * ECOS (Nivel 10): solo efecto visual (ondas de la gema). Contra Itzpapálotl golpea el núcleo si está paralizada
+   * (lo decide la entidad); los enemigos comunes lo tratan como ➖.
+   */
+  ECOS: {
+    radius: 160,
+    rings: 3,
+    fxMs: 750,
+    color: 0x7ff0ff,
+  },
 } as const;
 
 /** Escudo pasivo de PROTECCION (respaldo; mandan effect.shieldMs / shieldReduction de spells.json). */

@@ -14,6 +14,8 @@ export interface SpellDef {
   /** Nombre a deletrear (con acentos; el módulo los ignora). */
   name: string;
   type: string;
+  /** Solo conjuros de historia: true = también entra en la rueda y se lanza con Q (ECOS y MAMA, Nivel 10). */
+  combate?: boolean;
   title: string;
   desc: string;
   learnedFrom?: string;
