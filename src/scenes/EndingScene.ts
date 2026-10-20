@@ -6,9 +6,9 @@ import { GAME_HEIGHT, GAME_WIDTH } from '../config/game';
 import { prepareTuxtlaEntry } from '../systems/Campaign';
 
 // Dueño: contenido. Cierre del Nivel 1 (AGENTS.md §5.2 paso 8):
-// 1) pantalla de carga narrativa: el auto compartido con estudiantes rumbo a Los Tuxtlas;
-// 2) "Continuará" con el mapa de la ruta de los 10 niveles;
-// 3) resumen (Ecos, conjuros) y volver al título.
+// pantalla de carga narrativa (el auto compartido con estudiantes rumbo a Los Tuxtlas) y, al terminar,
+// continúa directo a San Andrés Tuxtla (Nivel 2). El mapa animado de la ruta y el resumen se quitaron
+// (decisión del equipo, 2026-10-19: los niveles ya tienen continuidad).
 
 const W = GAME_WIDTH;
 const H = GAME_HEIGHT;
@@ -20,28 +20,8 @@ const TEXTOS_VIAJE = [
   'Por la ventana, la niebla de Xalapa se queda atrás. En tu mochila, el Códice de las Voces.',
 ];
 
-/** Ruta de los 10 niveles (NDD v2 §2). Posiciones aproximadas en un mapa estilizado de México. */
-const RUTA: Array<{ n: string; nombre: string; x: number; y: number; dx?: number; dy?: number }> = [
-  { n: '1', nombre: 'Xalapa', x: 457, y: 188, dx: 8, dy: -12 },
-  { n: '2', nombre: 'San Andrés Tuxtla', x: 532, y: 246, dx: -4, dy: 10 },
-  { n: '3', nombre: 'Catemaco', x: 566, y: 232, dx: 6, dy: -12 },
-  { n: '4', nombre: 'Oaxaca', x: 466, y: 300, dx: 8, dy: 2 },
-  { n: '5', nombre: 'Puebla', x: 394, y: 214, dx: -4, dy: 10 },
-  { n: '6–7', nombre: 'Ciudad de México', x: 348, y: 194, dx: -60, dy: -16 },
-  { n: '8', nombre: 'Guanajuato', x: 244, y: 130, dx: 6, dy: -12 },
-  { n: '9', nombre: 'Jalisco', x: 140, y: 150, dx: -30, dy: -16 },
-  { n: '10', nombre: 'Guadalajara', x: 158, y: 172, dx: -40, dy: 10 },
-];
-
-/** Silueta muy simplificada de México (para cuando no hay arte de mapa_ruta). */
-const CONTORNO = [
-  [20, 30], [120, 40], [200, 60], [260, 70], [310, 110], [360, 150], [420, 160], [470, 175], [520, 210],
-  [580, 215], [600, 190], [630, 170], [632, 230], [600, 262], [560, 280], [520, 300], [480, 330], [420, 320],
-  [360, 290], [300, 262], [240, 230], [190, 210], [150, 190], [120, 160], [90, 120], [60, 80], [30, 60],
-];
-
 export class EndingScene extends Phaser.Scene {
-  private fase: 'viaje' | 'mapa' | 'resumen' = 'viaje';
+  private fase: 'viaje' | 'saliendo' = 'viaje';
   private listoEn = 0;
   private capas: Array<{ objs: Phaser.GameObjects.GameObject[]; vel: number }> = [];
 
@@ -115,7 +95,7 @@ export class EndingScene extends Phaser.Scene {
         this.add
           .text(W - 12, H - 14, 'E / Espacio', { fontFamily: 'monospace', fontSize: '8px', color: '#8b8aa0' })
           .setOrigin(1, 0);
-        this.time.delayedCall(3500, () => this.fase === 'viaje' && this.irMapa());
+        this.time.delayedCall(3500, () => this.irTuxtla());
         return;
       }
       if (i === 0) this.listoEn = this.time.now;
@@ -190,156 +170,22 @@ export class EndingScene extends Phaser.Scene {
     this.tweens.add({ targets: haz, alpha: 0.6, duration: 900, yoyo: true, repeat: -1 });
   }
 
-  /* ------------------------------ 2. Continuará + mapa ------------------------------ */
-
-  private irMapa(): void {
+  private avanzar(): void {
     if (this.fase !== 'viaje') return;
-    this.fase = 'mapa';
-    this.listoEn = this.time.now;
+    if (this.listoEn === 0) return; // aún no aparece el primer texto
+    if (this.time.now - this.listoEn < 700) return;
+    this.irTuxtla();
+  }
+
+  /** Continuidad: del viaje se pasa directo a San Andrés Tuxtla (Nivel 2). */
+  private irTuxtla(): void {
+    if (this.fase !== 'viaje') return;
+    this.fase = 'saliendo';
+    sfx('ui_aceptar');
     this.cameras.main.fadeOut(600, 0, 0, 0);
     this.time.delayedCall(650, () => {
-      this.tweens.killAll();
-      this.children.removeAll(true);
-      this.cameras.main.fadeIn(800, 0, 0, 0);
-      this.dibujarMapa();
-    });
-  }
-
-  private dibujarMapa(): void {
-    if (this.textures.exists('mapa_ruta')) {
-      this.add.image(W / 2, H / 2, 'mapa_ruta').setDisplaySize(W, H);
-    } else {
-      const fondo = this.add.graphics();
-      fondo.fillStyle(0x0d1420, 1).fillRect(0, 0, W, H);
-      // Cuadrícula de pergamino digital.
-      fondo.lineStyle(1, 0x1a2a38, 1);
-      for (let x = 0; x < W; x += 32) fondo.lineBetween(x + 0.5, 0, x + 0.5, H);
-      for (let y = 0; y < H; y += 32) fondo.lineBetween(0, y + 0.5, W, y + 0.5);
-      const pts = CONTORNO.map(([x, y]) => new Phaser.Math.Vector2(x, y));
-      fondo.fillStyle(0x1c2b26, 1).fillPoints(pts, true);
-      fondo.lineStyle(1, 0x3f6e5f, 1).strokePoints(pts, true);
-    }
-
-    // Ruta punteada que se dibuja poco a poco.
-    const ruta = this.add.graphics();
-    const segs: Array<[number, number, number, number]> = [];
-    for (let i = 0; i < RUTA.length - 1; i++) segs.push([RUTA[i].x, RUTA[i].y, RUTA[i + 1].x, RUTA[i + 1].y]);
-    const prog = { t: 0 };
-    this.tweens.add({
-      targets: prog,
-      t: segs.length,
-      duration: 4200,
-      delay: 700,
-      ease: 'Sine.easeInOut',
-      onUpdate: () => {
-        ruta.clear();
-        ruta.fillStyle(0xf2c14e, 1);
-        for (let i = 0; i < segs.length && i < prog.t; i++) {
-          const [x0, y0, x1, y1] = segs[i];
-          const f = Math.min(1, prog.t - i);
-          const len = Math.hypot(x1 - x0, y1 - y0);
-          for (let d = 0; d < len * f; d += 6) {
-            const k = d / len;
-            ruta.fillRect(Math.round(x0 + (x1 - x0) * k), Math.round(y0 + (y1 - y0) * k), 2, 2);
-          }
-        }
-      },
-    });
-
-    RUTA.forEach((c, i) => {
-      const actual = i === 0;
-      const punto = this.add.circle(c.x, c.y, actual ? 5 : 3, actual ? 0x8ff7e1 : 0xe0457b).setAlpha(0);
-      const label = this.add
-        .text(c.x + (c.dx ?? 6), c.y + (c.dy ?? -12), `${c.n} · ${c.nombre}`, {
-          fontFamily: 'monospace',
-          fontSize: '8px',
-          color: actual ? '#8ff7e1' : '#efe6d2',
-          backgroundColor: '#07060dcc',
-          padding: { x: 2, y: 1 },
-        })
-        .setAlpha(0);
-      this.tweens.add({ targets: [punto, label], alpha: 1, duration: 300, delay: 700 + i * 460 });
-      if (actual) this.tweens.add({ targets: punto, scale: 1.6, duration: 700, yoyo: true, repeat: -1 });
-    });
-
-    this.add
-      .text(W / 2, 22, 'Rumbo a San Andrés Tuxtla', { fontFamily: 'monospace', fontSize: '19px', color: '#f2c14e', fontStyle: 'bold' })
-      .setOrigin(0.5, 0);
-    this.add
-      .text(W / 2, 50, 'La ruta del Códice de las Voces: seis fragmentos del sello', {
-        fontFamily: 'monospace',
-        fontSize: '9px',
-        color: '#cfd8d4',
-      })
-      .setOrigin(0.5, 0);
-    this.add
-      .text(W - 12, H - 14, 'E / Espacio', { fontFamily: 'monospace', fontSize: '8px', color: '#8b8aa0' })
-      .setOrigin(1, 0);
-    sfx('aprender');
-  }
-
-  /* ------------------------------ 3. resumen ------------------------------ */
-
-  private irResumen(): void {
-    this.fase = 'resumen';
-    this.listoEn = this.time.now;
-    this.cameras.main.fadeOut(500, 0, 0, 0);
-    this.time.delayedCall(550, () => {
-      this.tweens.killAll();
-      this.children.removeAll(true);
-      this.cameras.main.fadeIn(600, 0, 0, 0);
-      const ecos = Math.max(GameState.totalEcosEarned || 0, GameState.ecos || 0);
-      const conjuros = GameState.learnedSpells.length ? GameState.learnedSpells.join(' · ') : '—';
-      const mejoras = Object.entries(GameState.upgrades)
-        .filter(([, n]) => n > 0)
-        .map(([k, n]) => `${k} ${n}`)
-        .join(' · ');
-      const lineas = [
-        'Nivel 1 · Xalapa: el misterio del Parque Juárez',
-        '',
-        `Ecos liberados: ${ecos}`,
-        `Conjuros aprendidos: ${conjuros}`,
-        `Mejoras del altar: ${mejoras || 'ninguna'}`,
-        'Recompensa: el Códice de las Voces y el mapa',
-        '',
-        '«La memoria de un pueblo vive en quienes la comparten.»',
-      ];
-      this.add
-        .text(W / 2, 40, 'ECOS', { fontFamily: 'monospace', fontSize: '28px', color: '#8ff7e1', fontStyle: 'bold' })
-        .setOrigin(0.5, 0);
-      this.add
-        .text(W / 2, 96, lineas.join('\n'), {
-          fontFamily: 'monospace',
-          fontSize: '11px',
-          color: '#efe6d2',
-          align: 'center',
-          lineSpacing: 5,
-        })
-        .setOrigin(0.5, 0);
-      this.add
-        .text(W / 2, H - 50, 'Gracias por jugar · Listick Games', {
-          fontFamily: 'monospace',
-          fontSize: '10px',
-          color: '#e0457b',
-        })
-        .setOrigin(0.5, 0);
-      this.add
-        .text(W / 2, H - 28, 'E / Espacio: continuar a San Andrés Tuxtla', { fontFamily: 'monospace', fontSize: '9px', color: '#8b8aa0' })
-        .setOrigin(0.5, 0);
-    });
-  }
-
-  private avanzar(): void {
-    if (this.time.now - this.listoEn < 700) return;
-    if (this.fase === 'viaje') {
-      if (this.listoEn === 0) return; // aún no aparece el primer texto
-      this.irMapa();
-    } else if (this.fase === 'mapa') {
-      this.irResumen();
-    } else {
-      sfx('ui_aceptar');
       prepareTuxtlaEntry();
       this.scene.start('Level', { section: 'tuxtla' });
-    }
+    });
   }
 }

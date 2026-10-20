@@ -40,6 +40,7 @@ function harness() {
   let world;
   let options;
   let currentText = '';
+  let campaignCalls = null;
   const bus = {
     emit(name, payload) { emitted.push({ name, payload }); emitter.emit(name, payload); },
     scoped(scene, name, callback) {
@@ -69,6 +70,7 @@ function harness() {
     './LightTrail': { installLightTrail() {}, setObjective() {} },
     './Progression': { addEcos: (n) => { rewards.push(n); state.ecos += n; state.totalEcosEarned += n; } },
     '../data/tuxtla.json': config,
+    './Campaign': { prepareCatemacoEntry: () => campaignCalls?.push(['prepareCatemacoEntry']) },
   };
   const module = { exports: {} };
   const execute = vm.runInNewContext(`(function(require,module,exports) { ${code}\n})`, {}, {
@@ -93,7 +95,8 @@ function harness() {
         start: (key) => calls.push(['start', key]),
       },
     };
-    world = { scene, level, player: { controlsLocked: false }, enemies: [], timeScale: 1, flash() {} };
+    world = { scene, level, player: { controlsLocked: false }, enemies: [], timeScale: 1, flash() {}, gotoSection: (...args) => calls.push(['goto', ...args]) };
+    campaignCalls = calls;
     module.exports.installTuxtlaDirector(world);
     return { world, calls, timers, shutdown: () => scene.events.emit('shutdown') };
   }
@@ -188,7 +191,9 @@ await test('Fandango enseña VOZ, concede primer fragmento una vez y permite tí
   await h.act('n02_fandango');
   assert.equal(h.state.ecos, expected);
   await h.act('n02_salida');
-  assert.ok(calls.some(([action, name]) => action === 'start' && name === 'Title'));
+  // Continuidad entre niveles: la salida lleva a Catemaco (Nivel 3), ya no al título.
+  assert.ok(calls.some(([action]) => action === 'prepareCatemacoEntry'));
+  assert.ok(calls.some(([action, name]) => action === 'goto' && name === 'catemaco'));
 });
 
 await test('Muerte/reinstalación conserva checkpoint, contador, estrofas y premios', async () => {

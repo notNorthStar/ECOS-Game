@@ -1141,7 +1141,8 @@ class GdlDirector {
       this.setEclipse(config.eclipse.final);
       this.madreCall('freeMadre');
       this.calm();
-      this.music(config.musica.epilogo);
+      // Soundtrack del equipo: "Reencuentro con mamá" (audio/config.ts).
+      this.music('n10_reencuentro');
       this.world.flash(0xfff0c0, 1200);
       await this.say('n10_reencuentro');
       if (!this.alive) return;

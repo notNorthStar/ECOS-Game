@@ -9,6 +9,7 @@ import { installInteract, markUsed, type Interactable } from './Interact';
 import { installLightTrail, setObjective } from './LightTrail';
 import { addEcos } from './Progression';
 import config from '../data/tuxtla.json';
+import { prepareCatemacoEntry } from './Campaign';
 
 const flag = (key: string) => !!GameState.flags[`n02:${key}`];
 const remember = (key: string) => { GameState.flags[`n02:${key}`] = true; };
@@ -71,7 +72,8 @@ class TuxtlaDirector {
   private async intro(): Promise<void> {
     if (!this.alive) return;
     bus.emit('zone:name', { title: 'SAN ANDRÉS TUXTLA', subtitle: 'La música perdida' });
-    bus.emit('music', { track: 'n02_fandango' });
+    // Soundtrack del equipo mientras se buscan las estrofas; el fandango por capas suena al reconstruirlo.
+    bus.emit('music', { track: flag('fandango') ? 'n02_fandango' : 'n02_calle' });
     this.progress();
     if (!flag('intro')) {
       await playDialogue(this.world.scene, 'n02_intro');
@@ -104,7 +106,7 @@ class TuxtlaDirector {
     let target: Interactable | undefined;
     const find = (action: string) => this.world.level.interactables.find((it) => it.action === action);
     if (flag('completo')) {
-      text = 'Primer fragmento del Sello recuperado\nRumbo a Catemaco · E en la salida para volver al título';
+      text = 'Primer fragmento del Sello recuperado\nRumbo a Catemaco · E en la salida para seguir el viaje';
       target = find('n02_salida');
     } else if (!flag('musicos')) {
       text = 'Habla con los músicos de la plaza';
@@ -159,12 +161,9 @@ class TuxtlaDirector {
           else {
             await playDialogue(this.world.scene, 'n02_salida');
             if (!this.alive) return;
-            const sm = this.world.scene.scene;
-            for (const key of ['Hud', 'Dialogue', 'Spell', 'Altar', 'Diario', 'Pause']) {
-              if (sm.isActive(key) || sm.isPaused(key)) sm.stop(key);
-            }
-            bus.emit('music', { track: null });
-            sm.start('Title');
+            // Continuidad: el viaje sigue a Catemaco (Nivel 3).
+            prepareCatemacoEntry();
+            this.world.gotoSection('catemaco');
           }
           break;
         case 'n02_examinar': {
@@ -216,6 +215,8 @@ class TuxtlaDirector {
       return;
     }
     if (!flag('fandango')) {
+      // En la tarima vuelve el fandango por capas, ya con todas las estrofas.
+      bus.emit('music', { track: 'n02_fandango' });
       await playDialogue(this.world.scene, 'n02_fandango');
       if (!this.alive) return;
       remember('fandango');

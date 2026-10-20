@@ -312,6 +312,10 @@ export const PISTAS: Record<string, DefPista> = {
   ...PISTAS_N06,
   ...PISTAS_N07,
   ...PISTAS_N10,
+  // Pistas con grabación del equipo (audio/config.ts); esto es solo el respaldo sintetizado mientras carga el MP3.
+  n01_calles: EXPLORACION,
+  n02_calle: EXPLORACION,
+  n10_reencuentro: PISTAS_N10.n10_epilogo,
 };
 
 // ── Reproductor ───────────────────────────────────────────────────────────────

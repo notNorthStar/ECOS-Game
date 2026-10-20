@@ -4,7 +4,7 @@
   "width": 2560,
   "background": "fondo_calles",
   "ambience": { "fog": 0.55, "rain": true, "tint": "#7fa8a0", "darkness": 0.35 },
-  "music": "n01_exploracion",
+  "music": "n01_calles",
   "walk": [
     [[0, 222], [2560, 222], [2560, 345], [0, 345]]
   ],

@@ -334,10 +334,13 @@ function solFx(world: WorldApi, ev: SpellOutcomeEvent): void {
   const x0 = ev.x + ev.facing * s.forward;
   const yDraw = ev.y - 24;
   const depth = ev.y + FX_DEPTH_BIAS;
-  const beam = scene.add.rectangle(x0, yDraw, 4, half * 1.6, s.color, 0.75).setOrigin(ev.facing > 0 ? 0 : 1, 0.5).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth);
-  const core = scene.add.rectangle(x0, yDraw, 4, half * 0.5, 0xfff8d0, 1).setOrigin(ev.facing > 0 ? 0 : 1, 0.5).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth + 0.01);
-  const ground = scene.add.rectangle(x0, ev.y, 4, half * 2, s.color, 0.2).setOrigin(ev.facing > 0 ? 0 : 1, 0.5).setDepth(ev.y - FX_DEPTH_BIAS);
-  scene.tweens.add({ targets: [beam, core, ground], width: len, duration: 160, ease: 'Quad.easeOut' });
+  // El haz nace con su largo final y crece por escala: animar `width` no recalcula el origen y, mirando a la
+  // izquierda (origen 1), el haz crecía hacia el lado equivocado.
+  const ox = ev.facing > 0 ? 0 : 1;
+  const beam = scene.add.rectangle(x0, yDraw, len, half * 1.6, s.color, 0.75).setOrigin(ox, 0.5).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth).setScale(0.01, 1);
+  const core = scene.add.rectangle(x0, yDraw, len, half * 0.5, 0xfff8d0, 1).setOrigin(ox, 0.5).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth + 0.01).setScale(0.01, 1);
+  const ground = scene.add.rectangle(x0, ev.y, len, half * 2, s.color, 0.2).setOrigin(ox, 0.5).setDepth(ev.y - FX_DEPTH_BIAS).setScale(0.01, 1);
+  scene.tweens.add({ targets: [beam, core, ground], scaleX: 1, duration: 160, ease: 'Quad.easeOut' });
   scene.tweens.add({ targets: [beam, core, ground], alpha: 0, scaleY: 0.2, delay: 220, duration: 380, onComplete: () => [beam, core, ground].forEach((o) => o.destroy()) });
   const flare = scene.add.image(x0, yDraw, FB.glow).setTint(s.color).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth).setScale(1.4);
   scene.tweens.add({ targets: flare, alpha: 0, scale: 2.6, duration: 300, onComplete: () => flare.destroy() });
@@ -453,8 +456,9 @@ function fuegoFx(world: WorldApi, ev: SpellOutcomeEvent): void {
     });
   }
   // Franja de calor en el suelo.
-  const ground = scene.add.rectangle(x0, ev.y, 4, half * 2, s.color, 0.22).setOrigin(ev.facing > 0 ? 0 : 1, 0.5).setDepth(ev.y - FX_DEPTH_BIAS);
-  scene.tweens.add({ targets: ground, width: len, duration: steps * 18, ease: 'Linear' });
+  // Crece por escala (ver solFx): animar `width` con origen 1 la dibujaba hacia el lado contrario.
+  const ground = scene.add.rectangle(x0, ev.y, len, half * 2, s.color, 0.22).setOrigin(ev.facing > 0 ? 0 : 1, 0.5).setDepth(ev.y - FX_DEPTH_BIAS).setScale(0.01, 1);
+  scene.tweens.add({ targets: ground, scaleX: 1, duration: steps * 18, ease: 'Linear' });
   scene.tweens.add({ targets: ground, alpha: 0, delay: 360, duration: 420, onComplete: () => ground.destroy() });
   const flare = scene.add.image(x0, yDraw, FB.glow).setTint(0xffb040).setBlendMode(Phaser.BlendModes.ADD).setDepth(depth).setScale(1.2);
   scene.tweens.add({ targets: flare, alpha: 0, scale: 2.4, duration: 260, onComplete: () => flare.destroy() });
