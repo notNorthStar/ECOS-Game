@@ -37,7 +37,7 @@
     "descubrimiento": 4,
     "juguetes": 8,
     "pasaje": 20,
-    "fragmento": 30
+    "fragmento": 60
   },
   "maria": {
     "llegada": {
@@ -61,7 +61,7 @@
       "ms": 6500
     },
     "final": {
-      "text": "Dos fragmentos, y mis hijos todavía sin aparecer. No me detengo. Vamos por el siguiente.",
+      "text": "Tres fragmentos, y mis hijos todavía sin aparecer. No me detengo. Vamos por el siguiente.",
       "ms": 7000
     }
   }

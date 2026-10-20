@@ -41,7 +41,7 @@
   ],
   "interactables": [
     { "id": "n04_altar", "x": 1540, "y": 270, "radius": 34, "prompt": "Ofrendar", "action": "altar", "data": { "promptDy": 56 } },
-    { "id": "n04_fragmento", "x": 2150, "y": 296, "radius": 44, "prompt": "Tomar el fragmento", "action": "n04_fragmento", "data": {} },
+    { "id": "n04_fragmento", "x": 2150, "y": 296, "radius": 44, "prompt": "Tomar los fragmentos", "action": "n04_fragmento", "data": {} },
     { "id": "n04_salida", "x": 2330, "y": 298, "radius": 44, "prompt": "Salir del templo", "action": "n04_salida", "data": {} }
   ],
   "cameraBounds": { "x0": 0, "x1": 2400 }

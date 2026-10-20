@@ -37,14 +37,13 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 - **Nivel 1 en `main`:** el equipo integra los assets reales (otra IA, en un clon aparte); correcciones mínimas en archivos compartidos.
 - No hagas merges entre ramas ni a `main` sin autorización explícita del equipo. El alcance original del jam era el Nivel 1; la continuación se trabaja por indicación del equipo.
 
-**⚠️ DECISIÓN DE ALCANCE (2026-10-19): el Nivel 5 (Puebla) NO se implementa por falta de tiempo.** El juego salta de **Oaxaca (Nivel 4)** directamente a **CDMX (Nivel 6)**. No dediques tiempo a Puebla (senderos, rueda caída, Fuertes, la Nahuala). El NDD no se modifica: Puebla queda como parte de la visión, no del juego jugable. Al diseñar CDMX y lo que sigue, ten en cuenta lo que Puebla iba a entregar y que **ya no llega al jugador**:
-- **3.er fragmento del Sello:** no se obtiene en Puebla.
-- **Doble salto en los altares** (se desbloqueaba en Puebla): ya no tiene dónde desbloquearse.
-- **VERDAD y FUEGO** `[PROPUESTA]` (se aprendían en los Fuertes): CDMX y niveles posteriores los usan (nahuales, corona del Rey del Olvido, Don Ernesto).
-- **Encapuchados Negros** (primer rango medio): se presentaban en Puebla.
-- **La desesperación creciente de María** (diálogos de Puebla).
-
-**Cómo resolver cada punto está PENDIENTE de decisión del equipo** (por ejemplo: dar el fragmento al terminar Oaxaca, enseñar VERDAD/FUEGO en CDMX, presentar a los Encapuchados Negros en CDMX, mover el doble salto). Pregunta antes de decidirlo. Mientras tanto, la salida de Oaxaca debe llevar a CDMX (`Campaign.prepare…Entry`), no a Puebla.
+**⚠️ DECISIÓN DE ALCANCE (2026-10-19): el Nivel 5 (Puebla) NO se implementa por falta de tiempo.** El juego salta de **Oaxaca (Nivel 4)** directamente a **CDMX (Nivel 6)**. No dediques tiempo a Puebla (senderos, rueda caída, Fuertes, la Nahuala). El NDD no se modifica: Puebla queda como parte de la visión, no del juego jugable. **Lo que Puebla entregaba se reubica así (decidido por el equipo):**
+- **3.er fragmento del Sello → Oaxaca:** al vencer a la Bruja Guajolote se obtienen el 2.º **y** el 3.er fragmento (3 de 6). Ya implementado (flags `n04:fragmento` y `n04:fragmento_3`).
+- **Doble salto → CDMX:** se desbloquea en los Altares de la Memoria a partir de CDMX.
+- **VERDAD y FUEGO → CDMX:** se aprenden en CDMX (los necesitan los nahuales infiltrados y la corona del Rey del Olvido).
+- **Desesperación creciente de María → CDMX:** sus diálogos de Puebla pasan a CDMX.
+- **Encapuchados Negros:** se presentan en CDMX (ya figuraban en su ficha).
+La salida de Oaxaca debe llevar a CDMX (`Campaign.prepare…Entry`), no a Puebla.
 
 **Última actualización de contexto (2026-10-19):** el equipo pidió registrar como nueva idea de actualización la ampliación del Nivel 2, mayor dispersión de los cinco fragmentos musicales y un Chaneque Mayor en los fragmentos 2 (`monte`) y 5 (`memoria`). Se documentó en `docs/IDEAS_ACTUALIZACION.md` como ACT-N2-001; aún no cambia la implementación ni el NDD.
 
@@ -121,8 +120,8 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 | 2 | San Andrés Tuxtla: la música perdida | 🔨 Primer hito + segunda pasada visual (2026-10-19) | Rama separada: cinco estrofas, fandango por capas, VOZ, primer fragmento, altar y conexión desde Xalapa. Seis PNG parallax con paleta oficial y decorado detallado regenerado. TypeScript, build y 14 pruebas correctos; revisión parcial en navegador. Pendientes partida completa, cámara, revisión de arte y equilibrio. Ver docs/NIVEL_02.md |
 | 3 | Catemaco: el ritual del lago | 🔨 Jugable de principio a fin (2026-10-19) | Rama `nivel-3-catemaco`: brujos (LUZ, SOL, escudo U con clic derecho) → lago y campamento (9 encapuchados, 6 pistas, jaulas) → Balam + Luna (F) → 8 espíritus → Cabeza Olmeca (3 fases) → María. Personajes importantes con placeholder (§8.0). 25 pruebas (`npm run test:nivel3`). Pendientes: cámara, equilibrio, salida a Oaxaca. Ver `docs/NIVEL_03.md` y `docs/NIVEL_03_CONTRATOS.md` |
 | 4 | Oaxaca: los tejidos de la memoria | 🔨 Jugable de principio a fin (2026-10-19) | Rama `nivel-4-oaxaca` (sale del Nivel 3; Catemaco ya continúa a Oaxaca): calles + 3 artesanos (MEMORIA) → callejones (bestias, pasaje oculto) → Santo Domingo → Bruja Guajolote (humana/ave) → 2.º fragmento. María acompaña y ayuda en combate (lamento). 26 pruebas (`npm run test:nivel4`). Pendientes: cámara, equilibrio, salida a CDMX. Ver `docs/NIVEL_04.md` y `docs/NIVEL_04_CONTRATOS.md` |
-| 5 | Puebla: de la rueda caída a los Fuertes | ⏭️ **Se omite** (decisión del equipo, 2026-10-19) | No se implementa por tiempo; Oaxaca salta directo a CDMX. Lo que entregaba (3.er fragmento, doble salto, VERDAD/FUEGO, Encapuchados Negros) queda pendiente de reubicar. Ver la nota al inicio de este archivo |
-| 6 | CDMX 1: Isla de las Muñecas a Reforma | ⬜ Visión — **siguiente nivel** | Nahuales infiltrados. Se llega desde Oaxaca |
+| 5 | Puebla: de la rueda caída a los Fuertes | ⏭️ **Se omite** (decisión del equipo, 2026-10-19) | No se implementa por tiempo; Oaxaca salta directo a CDMX. Su 3.er fragmento se da en Oaxaca; doble salto, VERDAD, FUEGO, Encapuchados Negros y los diálogos de María pasan a CDMX. Ver la nota al inicio de este archivo |
+| 6 | CDMX 1: Isla de las Muñecas a Reforma | ⬜ Visión — **siguiente nivel** | Nahuales infiltrados. Se llega desde Oaxaca. **Además recibe de Puebla:** VERDAD y FUEGO, doble salto en los altares, Encapuchados Negros y la desesperación de María |
 | 7 | CDMX 2: teleférico, Rey del Olvido y Llorona | ⬜ Visión | Secuencia CONSUELO → MEMORIA → PAZ |
 | 8 | Guanajuato: minas y Calle del Truco | ⬜ Visión | |
 | 9 | Jalisco: haciendas y Panteón de Belén | ⬜ Visión | |

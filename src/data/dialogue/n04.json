@@ -149,15 +149,15 @@
     { "who": "n04_narrador", "text": "Con un chillido que sacude las bóvedas, el ave se desploma. El fuego fatuo se achica, se acuerda de dónde viene y se apaga." },
     { "who": "n04_narrador", "text": "Donde estaba el ave queda una mujer, dormida sobre el piso de cantera, con las manos manchadas de ceniza y un hilo de plumas negras entre los dedos. Ya no hay fuego en sus ojos. Solo cansancio." },
     { "who": "n04_tu", "text": "Se acabó. Ya no te manda nadie." },
-    { "who": "n04_narrador", "text": "Algo late en el retablo. El oro de las bóvedas se desprende en polvo luminoso y, en medio del altar, flota un fragmento brillante, del tamaño de una mano, tejido de luz." }
+    { "who": "n04_narrador", "text": "Algo late en el retablo. El oro de las bóvedas se desprende en polvo luminoso y, en medio del altar, flotan dos fragmentos brillantes, del tamaño de una mano, tejidos de luz." }
   ],
   "n04_fragmento": [
-    { "who": "n04_narrador", "text": "El segundo fragmento del Sello. Es tibio, y su superficie guarda grecas diminutas, patrones de memoria que giran lentamente." },
-    { "who": "n04_narrador", "text": "Al tocarlo, la gema de tu pecho se enciende y el Códice de las Voces se abre solo: dos de seis fragmentos marcados." },
-    { "who": "n04_tu", "text": "Dos. Faltan cuatro." }
+    { "who": "n04_narrador", "text": "Dos fragmentos del Sello que la Bruja custodiaba. Son tibios, y su superficie guarda grecas diminutas, patrones de memoria que giran lentamente." },
+    { "who": "n04_narrador", "text": "Al tocarlo, la gema de tu pecho se enciende y el Códice de las Voces se abre solo: tres de seis fragmentos marcados." },
+    { "who": "n04_tu", "text": "Tres. Ya vamos a la mitad." }
   ],
   "n04_salida": [
     { "who": "n04_narrador", "text": "Oaxaca respira. Desde las casas de colores empiezan a llegar voces: gente que sale a mirar las montañas por primera vez en mucho tiempo." },
-    { "who": "n04_narrador", "text": "El Códice marca ahora el camino al Altiplano. Aquí termina, por ahora, la parte jugable. Continuará." }
+    { "who": "n04_narrador", "text": "El Códice marca ahora el camino a la Ciudad de México. Aquí termina, por ahora, la parte jugable. Continuará." }
   ]
 }

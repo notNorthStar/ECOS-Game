@@ -349,8 +349,8 @@ class OaxacaDirector {
       }
       case 'santo_domingo': {
         const head = 'TEMPLO DE SANTO DOMINGO';
-        if (flag('fragmento')) return { text: `${head}\nE en la salida: camino al Altiplano`, target: this.find('n04_salida') ?? null };
-        if (flag('bruja')) return { text: `${head}\nToma el fragmento del Sello`, target: this.find('n04_fragmento') ?? null };
+        if (flag('fragmento')) return { text: `${head}\nE en la salida: camino a la CDMX`, target: this.find('n04_salida') ?? null };
+        if (flag('bruja')) return { text: `${head}\nToma los fragmentos del Sello`, target: this.find('n04_fragmento') ?? null };
         if (this.arenaOn) return { text: `${head}\nBruja Guajolote: LUZ en forma humana, SOL en ave`, target: null };
         return { text: `${head}\nEntra al interior dorado`, target: this.triggerCenter('bruja_arena') };
       }
@@ -718,7 +718,7 @@ class OaxacaDirector {
     return sprite as unknown as Phaser.GameObjects.Arc;
   }
 
-  /** Cierre de la jefa: el fuego fatuo se apaga y aparece el 2.º fragmento del Sello. */
+  /** Cierre de la jefa: el fuego fatuo se apaga y aparecen el 2.º y el 3.er fragmentos del Sello. */
   private async brujaFin(): Promise<void> {
     if (!this.alive || flag('bruja_fin')) return;
     const world = this.world;
@@ -746,11 +746,13 @@ class OaxacaDirector {
     await this.say('n04_fragmento');
     if (!this.alive) return;
     remember('fragmento');
+    // Decisión del equipo (2026-10-19): Puebla se omite y su fragmento (el 3.º) también se entrega aquí.
+    GameState.flags['n04:fragmento_3'] = true;
     this.award(config.rewards.fragmento, it);
     sfx('aprender');
     const frag = this.fragmento();
     if (frag) this.world.scene.tweens.add({ targets: frag, alpha: 0, duration: 700, onComplete: () => frag.setVisible(false) });
-    this.toast('2.º fragmento del Sello recuperado.', 5500);
+    this.toast('2.º y 3.er fragmentos del Sello recuperados (3 de 6).', 5500);
     this.mariaSay('final');
     this.refresh();
   }

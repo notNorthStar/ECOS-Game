@@ -605,7 +605,9 @@ await test('Santo Domingo: la arena inicia una vez con lockArena + arena:start; 
   assert.ok(h.dialogues.includes('n04_fragmento'));
   assert.equal(h.state.flags['n04:fragmento'], true);
   assert.equal(h.state.ecos, config.rewards.fragmento);
-  assert.ok(h.maria.some((t) => /Dos fragmentos/.test(t)), 'María dice algo breve al final');
+  // Puebla se omite: la Bruja entrega el 2.º y el 3.er fragmento (decisión del equipo, 2026-10-19).
+  assert.equal(h.state.flags['n04:fragmento_3'], true);
+  assert.ok(h.maria.some((t) => /Tres fragmentos/.test(t)), 'María dice algo breve al final');
   assert.equal(await h.act('n04_fragmento'), false, 'El fragmento no se toma dos veces');
   assert.equal(await h.act('n04_salida'), true);
   assert.ok(h.dialogues.includes('n04_salida'));

@@ -123,14 +123,14 @@
   - **Forma humana:** proyectiles de fuego fatuo; débil a LUZ.
   - **Forma de ave gigante:** embestidas y fuego en área; débil a SOL.
   - Alterna de forma cada cierto tiempo.
-- **Recompensa:** 2.º fragmento. **Ecos:** ~700.
+- **Recompensa:** 2.º fragmento **y 3.er fragmento** (este último era de Puebla, que se omite; decisión del equipo, 2026-10-19). **Ecos:** ~700.
 - **Música:** sones y jarabes oaxaqueños con banda de viento, en tono oscuro.
 - **Assets nuevos:** bestia, artesanos, ciudad, interior del templo y la bruja en sus dos formas.
 - **Duración:** 12–15 minutos.
 
 ### Nivel 5 — Puebla: de la rueda caída a los Fuertes
 
-> **⏭️ SE OMITE EN EL JUEGO (decisión del equipo, 2026-10-19), por falta de tiempo.** Oaxaca (Nivel 4) lleva directo a CDMX (Nivel 6). Esta ficha queda como visión; el NDD no cambia. Lo que entregaba Puebla (3.er fragmento, doble salto en los altares, VERDAD, FUEGO, primeros Encapuchados Negros y diálogos de María) está **pendiente de reubicar**: ver la nota de alcance en `AGENTS.md`.
+> **⏭️ SE OMITE EN EL JUEGO (decisión del equipo, 2026-10-19), por falta de tiempo.** Oaxaca (Nivel 4) lleva directo a CDMX (Nivel 6). Esta ficha queda como visión; el NDD no cambia. Lo que entregaba Puebla se reubica: el **3.er fragmento** se obtiene al vencer a la Bruja Guajolote en **Oaxaca** (junto con el 2.º); el **doble salto**, **VERDAD**, **FUEGO**, los primeros **Encapuchados Negros** y la **desesperación de María** pasan a **CDMX (Nivel 6)**. Ver la nota de alcance en `AGENTS.md`.
 
 - **Secciones:** senderos semiáridos (nopales y árboles color ceniza) → Angelópolis con la **rueda de la fortuna caída** (sección vertical por la estructura `[PROPUESTA]`) → centro con talavera rota y cables de neón → subida a los **Fuertes de Loreto y Guadalupe** (aprender **VERDAD** y **FUEGO** `[PROPUESTA]`).
 - **Enemigos:** Encapuchados Rojos y **Negros** (primer rango medio), chaneques y espíritus (Luna). María muestra cada vez más desesperación (diálogos).
@@ -144,6 +144,8 @@
 - **Duración:** 15 minutos.
 
 ### Nivel 6 — CDMX parte 1: de la Isla de las Muñecas a Reforma
+
+> **Recibe lo de Puebla (que se omite; decisión del equipo, 2026-10-19):** aquí se aprenden **VERDAD** y **FUEGO**, se desbloquea el **doble salto** en los Altares de la Memoria, aparecen los primeros **Encapuchados Negros** y se integra la **desesperación creciente de María** (diálogos que eran de Puebla). Se llega directo desde Oaxaca, con 3 fragmentos.
 - **Secciones:** **Isla de las Muñecas** y canales secos (emboscadas de **muñecas poseídas**, que se destruyen) → avenidas con ofrendas, papel picado y cempasúchil (aprender **DESCANSO** en una ofrenda `[PROPUESTA]`) → **Reforma** con el **Ángel de la Independencia caído**, pirámides y rascacielos al fondo → estación base del **teleférico**.
 - **Mecánica especial:** sobrevivientes con los que hablar; **algunos son nahuales infiltrados** que atacan por sorpresa (zarpazo fuerte; huyen con poca vida). Una pista sutil (Luna muestra su sombra animal) premia al jugador atento `[PROPUESTA]`.
 - **Enemigos:** muñecas (~15), chaneques, Encapuchados Rojos y Negros. **Minijefes:** 2–3 nahuales.
