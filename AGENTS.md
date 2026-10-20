@@ -47,6 +47,11 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 - **Encapuchados Negros:** se presentan en CDMX (ya figuraban en su ficha).
 La salida de Oaxaca debe llevar a CDMX (`Campaign.prepare…Entry`), no a Puebla.
 
+**⚠️ DECISIÓN DE ALCANCE (2026-10-19): los Niveles 8 (Guanajuato) y 9 (Jalisco) tampoco se implementan, por tiempo.** De la **CDMX parte 2 (Nivel 7)** se pasa **directo al final en Guadalajara (Nivel 10)**. No dediques tiempo a momias, minas, Don Ernesto, la hacienda ni el Vampiro. El NDD conserva el texto original con marcas de "versión jugable". **Ajustes a la historia (decididos por el equipo):**
+- **4.º, 5.º y 6.º fragmento → Nivel 7:** el Rey del Olvido los guardaba en el trono; el jugador sale de la CDMX con el Sello completo. Ya implementado (flags `n07:fragmento_4`, `_5` y `_6`).
+- **La falsa llamada** ya no manda a Guanajuato y Jalisco: la "madre" pide **llevar el Códice con los seis fragmentos a la Catedral de Guadalajara**. El giro del Nivel 10 no cambia (la llamada fue una simulación de la Cofradía).
+- Guanajuato y Jalisco no entregaban conjuros ni mejoras, así que no hay nada más que reubicar. La salida del Nivel 7 debe llevar a Guadalajara (hoy vuelve al título hasta que exista el Nivel 10).
+
 **Última actualización de contexto (2026-10-19):** el equipo pidió registrar como nueva idea de actualización la ampliación del Nivel 2, mayor dispersión de los cinco fragmentos musicales y un Chaneque Mayor en los fragmentos 2 (`monte`) y 5 (`memoria`). Se documentó en `docs/IDEAS_ACTUALIZACION.md` como ACT-N2-001; aún no cambia la implementación ni el NDD.
 
 ---
@@ -124,10 +129,10 @@ La salida de Oaxaca debe llevar a CDMX (`Campaign.prepare…Entry`), no a Puebla
 | 4 | Oaxaca: los tejidos de la memoria | 🔨 Jugable de principio a fin (2026-10-19) | Rama `nivel-4-oaxaca` (sale del Nivel 3; Catemaco ya continúa a Oaxaca): calles + 3 artesanos (MEMORIA) → callejones (bestias, pasaje oculto) → Santo Domingo → Bruja Guajolote (humana/ave) → 2.º fragmento. María acompaña y ayuda en combate (lamento). 26 pruebas (`npm run test:nivel4`). Pendientes: cámara, equilibrio, salida a CDMX. Ver `docs/NIVEL_04.md` y `docs/NIVEL_04_CONTRATOS.md` |
 | 5 | Puebla: de la rueda caída a los Fuertes | ⏭️ **Se omite** (decisión del equipo, 2026-10-19) | No se implementa por tiempo; Oaxaca salta directo a CDMX. Su 3.er fragmento se da en Oaxaca; doble salto, VERDAD, FUEGO, Encapuchados Negros y los diálogos de María pasan a CDMX. Ver la nota al inicio de este archivo |
 | 6 | CDMX 1: Isla de las Muñecas a Reforma | 🔨 Jugable de principio a fin (2026-10-19) — rama `nivel-6-cdmx` | Nahuales infiltrados. Se llega desde Oaxaca. **Además recibe de Puebla:** VERDAD y FUEGO, doble salto en los altares, Encapuchados Negros y la desesperación de María |
-| 7 | CDMX 2: teleférico, Rey del Olvido y Llorona | 🔨 Jugable de principio a fin (2026-10-19) — rama `nivel-7-cdmx2` | Cabina con 4 oleadas → torre (guardia de élite) → revelación sugerida → María se vuelve la Llorona (aliada) → Rey del Olvido (corona con SOL/FUEGO, sello con MEMORIA, invierte controles 3,5 s; se puede desactivar en accesibilidad) → CONSUELO → MEMORIA → PAZ → 4.º fragmento + llamada trampa → título. 31 pruebas (`npm run test:nivel7`). Pendientes: cámara, equilibrio, escuchar el arreglo de "La Llorona". Ver `docs/NIVEL_07.md` |
-| 8 | Guanajuato: minas y Calle del Truco | ⬜ Visión | |
-| 9 | Jalisco: haciendas y Panteón de Belén | ⬜ Visión | |
-| 10 | Guadalajara: la trampa y el eclipse final | ⬜ Visión | Secuencias ECOS y MAMA |
+| 7 | CDMX 2: teleférico, Rey del Olvido y Llorona | 🔨 Jugable de principio a fin (2026-10-19) — rama `nivel-7-cdmx2` | Cabina con 4 oleadas → torre (guardia de élite) → revelación sugerida → María se vuelve la Llorona (aliada) → Rey del Olvido (corona con SOL/FUEGO, sello con MEMORIA, invierte controles 3,5 s; se puede desactivar en accesibilidad) → CONSUELO → MEMORIA → PAZ → 4.º, 5.º y 6.º fragmento + llamada trampa a Guadalajara → título. 31 pruebas (`npm run test:nivel7`). Pendientes: cámara, equilibrio, escuchar el arreglo de "La Llorona". Ver `docs/NIVEL_07.md` |
+| 8 | Guanajuato: minas y Calle del Truco | ⏭️ **Se omite** (decisión del equipo, 2026-10-19) | No se implementa por tiempo; su 5.º fragmento lo da el Rey del Olvido (Nivel 7). Ver la nota de alcance al inicio |
+| 9 | Jalisco: haciendas y Panteón de Belén | ⏭️ **Se omite** (decisión del equipo, 2026-10-19) | No se implementa por tiempo; su 6.º fragmento lo da el Rey del Olvido (Nivel 7) |
+| 10 | Guadalajara: la trampa y el eclipse final | ⬜ Visión — **es el siguiente** | Se llega directo desde la CDMX con los 6 fragmentos. Secuencias ECOS y MAMA |
 
 Estados: ⬜ visión (solo diseño) · 🔨 en curso · ✅ jugable y pulido · ⏭️ se omite en el juego (sigue en la historia).
 

@@ -11,6 +11,7 @@ Juego de **exploración y acción 2D con profundidad**, en pixel art, ambientado
 > - **Nivel 4 · Oaxaca:** jugable de principio a fin en `nivel-4-oaxaca` (sale del Nivel 3; Catemaco continúa a Oaxaca). Guía: `docs/NIVEL_04.md`.
 > - **Nivel 6 · CDMX (parte 1):** jugable de principio a fin en `nivel-6-cdmx` (Oaxaca continúa a la CDMX). Guía: `docs/NIVEL_06.md`.
 > - **Nivel 7 · CDMX (parte 2):** jugable de principio a fin en `nivel-7-cdmx2` (la estación del Nivel 6 lleva al teleférico; al final vuelve al título). Guía: `docs/NIVEL_07.md`.
+> - **Niveles 8 · Guanajuato y 9 · Jalisco:** ⏭️ **se omiten por tiempo** (decisión del equipo, 2026-10-19). El Rey del Olvido entrega los fragmentos 4.º a 6.º y la CDMX lleva directo al final en **Guadalajara (Nivel 10)**, que es el siguiente.
 > - **Nivel 5 · Puebla:** ⏭️ **se omite por tiempo** (decisión del equipo, 2026-10-19). Oaxaca lleva directo a **CDMX (Nivel 6)**, que es el siguiente. Ver la nota de alcance en `AGENTS.md`.
 > - **Título:** 1 · Jugar con cámara · 2 · Solo teclado · **3 · Seleccionar nivel**: cualquier nivel y sección (incluidos los jefes) para probar sin pasarse el juego completo, con interruptor de cámara. Estado detallado: `AGENTS.md` §5.1.
 

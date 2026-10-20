@@ -277,7 +277,7 @@ La experiencia del juego se llama **Ecos**: fragmentos de memoria que se liberan
 
 ## 10. Historia y niveles (resumen; la versión completa está en `docs/NDD_v2.md`)
 
-**Título:** ECOS. Tres actos y 10 niveles: Xalapa → San Andrés Tuxtla → Catemaco → Oaxaca → Puebla → CDMX (dos partes, con teleférico) → Guanajuato → Jalisco → Guadalajara. Epílogo: "Las páginas en blanco".
+**Título:** ECOS. Tres actos y 10 niveles: Xalapa → San Andrés Tuxtla → Catemaco → Oaxaca → Puebla → CDMX (dos partes, con teleférico) → Guanajuato → Jalisco → Guadalajara. Epílogo: "Las páginas en blanco". **Versión jugable (2026-10-19):** se omiten Puebla, Guanajuato y Jalisco; la ruta queda Xalapa → San Andrés Tuxtla → Catemaco → Oaxaca → CDMX 1 → CDMX 2 → Guadalajara.
 
 **Desbloqueos por nivel:**
 
@@ -289,9 +289,9 @@ La experiencia del juego se llama **Ecos**: fragmentos de memoria que se liberan
 | 4 Oaxaca | 2.º fragmento + nuevas señas |
 | 5 Puebla | ⏭️ **Se omite en el juego** (2026-10-19). Su 3.er fragmento se da en Oaxaca; el doble salto, VERDAD y FUEGO pasan a CDMX |
 | 6 CDMX 1 | Acceso al teleférico |
-| 7 CDMX 2 | 4.º fragmento, conjuros de Consuelo, Memoria y Paz |
-| 8 Guanajuato | 5.º fragmento |
-| 9 Jalisco | 6.º fragmento |
+| 7 CDMX 2 | **4.º, 5.º y 6.º fragmento** (el Rey los guardaba), conjuros de Consuelo, Memoria y Paz; la llamada trampa manda a Guadalajara |
+| 8 Guanajuato | ⏭️ **Se omite en el juego** (2026-10-19). Su 5.º fragmento lo da el Rey del Olvido (CDMX 2) |
+| 9 Jalisco | ⏭️ **Se omite en el juego** (2026-10-19). Su 6.º fragmento lo da el Rey del Olvido (CDMX 2) |
 | 10 Guadalajara | Final |
 
 ---

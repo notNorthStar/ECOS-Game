@@ -17,12 +17,12 @@
 | 4 | I | **Oaxaca**: entrada → calles empedradas → taller de artesanos → Templo de Santo Domingo | Mañana nublada, montañas verdes | MEMORIA `[PROPUESTA]` | Mejoras de conjuros con artesanos `[PROPUESTA]` | Bestias corrompidas, Encapuchados Rojos | — | **Bruja Guajolote (Tlahuelpuchi)** | 2.º fragmento | 700 | Visión |
 | 5 | II | **Puebla**: senderos semiáridos → Angelópolis y la rueda caída → centro con talavera → Fuertes de Loreto y Guadalupe | Mediodía polvoso → atardecer | VERDAD, FUEGO `[PROPUESTA]` | **Doble salto** (en altares) | Encapuchados Rojos y Negros, chaneques, espíritus | — | **La Nahuala** | 3.er fragmento | 900 | ⏭️ **Se omite** (2026-10-19) |
 | 6 | II | **CDMX 1**: Isla de las Muñecas → canales secos → Reforma con el Ángel caído → estación del teleférico | Día gris; papel picado y cempasúchil | DESCANSO `[PROPUESTA]` | — | **Muñecas poseídas**, chaneques, encapuchados | **Nahuales infiltrados** | *(minijefes)* | Acceso al teleférico | 800 | Visión |
-| 7 | II | **CDMX 2**: ascenso en teleférico → torre de control → salón del Rey | Noche, tormenta eléctrica | CONSUELO, PAZ | — | Espíritus (Luna), **encapuchados élite** | — | **Rey del Olvido** (con la Llorona) | 4.º fragmento + llamada trampa | 1300 | Visión |
-| 8 | III | **Guanajuato**: callejones → Parroquia de San Miguel y Templo Expiatorio → minas | Tarde → oscuridad subterránea | — (refuerza LUZ y DESCANSO) | — | **Momias**, espíritus, nahuales | Nahuales | **Don Ernesto (Calle del Truco)** | 5.º fragmento | 1100 | Visión |
-| 9 | III | **Jalisco**: plantíos de agave → hacienda tequilera → Panteón de Belén | Cielo rojizo, el eclipse empieza | — | — | Todos los rangos de la Cofradía, bestias, chaneques | — | **Vampiro del Panteón de Belén** | 6.º fragmento | 1200 | Visión |
+| 7 | II | **CDMX 2**: ascenso en teleférico → torre de control → salón del Rey | Noche, tormenta eléctrica | CONSUELO, PAZ | — | Espíritus (Luna), **encapuchados élite** | — | **Rey del Olvido** (con la Llorona) | **4.º, 5.º y 6.º fragmento** + llamada trampa a Guadalajara | 1300 | Jugable (rama `nivel-7-cdmx2`) |
+| 8 | III | **Guanajuato**: callejones → Parroquia de San Miguel y Templo Expiatorio → minas | Tarde → oscuridad subterránea | — (refuerza LUZ y DESCANSO) | — | **Momias**, espíritus, nahuales | Nahuales | **Don Ernesto (Calle del Truco)** | 5.º fragmento | 1100 | ⏭️ **Se omite** (2026-10-19) |
+| 9 | III | **Jalisco**: plantíos de agave → hacienda tequilera → Panteón de Belén | Cielo rojizo, el eclipse empieza | — | — | Todos los rangos de la Cofradía, bestias, chaneques | — | **Vampiro del Panteón de Belén** | 6.º fragmento | 1200 | ⏭️ **Se omite** (2026-10-19) |
 | 10 | III | **Guadalajara**: avenidas con el estadio al fondo → centro → Catedral Metropolitana | Gran Eclipse | MAMA, ECOS `[PROPUESTA]` | Balam como jaguar luminoso | Todos | **Tzitzimime** (subjefes) | **Itzpapálotl** | Final | 800 (sin canje) | Visión |
 
-*Ecos acumulados al final del Nivel 9 ≈ 7,150: alcanza para todas las mejoras básicas (5,300) y parte de las opcionales (ver sección 5).*
+*Ecos acumulados al final del Nivel 9 ≈ 7,150: alcanza para todas las mejoras básicas (5,300) y parte de las opcionales (ver sección 5).* **Versión jugable (2026-10-19):** se omiten los niveles 5, 8 y 9, así que al llegar a Guadalajara el jugador lleva ≈ 3,950 Ecos (estimado de la tabla; el Nivel 7 ya da más en la práctica). Alcanza para la mayoría de las mejoras básicas; revisar costos en `src/data/progression.json` si el final resulta difícil.
 
 ---
 
@@ -162,12 +162,15 @@
   - La Llorona lo ataca con gritos espectrales.
   - **Objetivo:** destruir la corona con SOL o FUEGO y debilitarlo con MEMORIA.
 - **Después del jefe:** la Llorona fuera de control → **secuencia CONSUELO → MEMORIA → PAZ** (se aprenden aquí CONSUELO y PAZ, con el tiempo muy ralentizado). Se despide.
-- **Recompensa:** 4.º fragmento + **la llamada trampa** de la "madre". **Ecos:** ~1,300.
+- **Recompensa:** **4.º, 5.º y 6.º fragmento** (el Rey los guardaba en el trono: Guanajuato y Jalisco se omiten, decisión del equipo 2026-10-19) + **la llamada trampa** de la "madre", que ahora pide llevar el Códice completo a la Catedral de Guadalajara. **Ecos:** ~1,300.
 - **Música:** tormenta, coro lejano y el tema de la Llorona (canción tradicional instrumental, de dominio público) `[PROPUESTA: verificar la licencia del arreglo]`.
 - **Assets nuevos:** cabina del teleférico, torre, encapuchado élite (recolor), el Rey y la Llorona.
 - **Duración:** 15–18 minutos.
 
 ### Nivel 8 — Guanajuato: las minas y la Calle del Truco
+
+> **⏭️ SE OMITE EN EL JUEGO (decisión del equipo, 2026-10-19), por falta de tiempo.** La CDMX (Nivel 7) lleva directo a Guadalajara (Nivel 10). Esta ficha queda como visión; su 5.º fragmento lo da el Rey del Olvido. No entregaba conjuros ni mejoras. Ver la nota de alcance en `AGENTS.md`.
+
 - **Secciones:** letras de Guanajuato → callejones estrechos (NPCs que advierten de las momias) → Parroquia de San Miguel y Templo Expiatorio → **túneles mineros** (oscuridad: LUZ ilumina y Luna revela; charcos y madera podrida).
 - **Enemigos:** **momias** (~12, nuevo tipo; se liberan con DESCANSO), espíritus y emboscadas de nahuales.
 - **Jefe: Don Ernesto, el jugador de la Calle del Truco.**
@@ -181,6 +184,9 @@
 - **Duración:** 15 minutos.
 
 ### Nivel 9 — Jalisco: haciendas y Panteón de Belén
+
+> **⏭️ SE OMITE EN EL JUEGO (decisión del equipo, 2026-10-19), por falta de tiempo.** Esta ficha queda como visión; su 6.º fragmento lo da el Rey del Olvido (Nivel 7).
+
 - **Secciones:** plantíos de agave bajo un cielo rojizo → **hacienda tequilera** tomada por la Cofradía (oleadas de todos los rangos; aquí el **6.º fragmento**) → **Panteón de Belén** con el **Árbol del Vampiro**.
 - **Enemigos:** Cofradía de los tres rangos, bestias y chaneques.
 - **Jefe: el Vampiro del Panteón de Belén.**
@@ -192,6 +198,9 @@
 - **Duración:** 15 minutos.
 
 ### Nivel 10 — Guadalajara: la trampa y el eclipse final
+
+> **Se llega directo desde la CDMX (Nivel 7)** con los 6 fragmentos, siguiendo la falsa llamada (Guanajuato y Jalisco se omiten; decisión del equipo, 2026-10-19). La trampa y el giro no cambian.
+
 - **Secciones:** avenidas en ruinas con la silueta del estadio bajo el eclipse → centro histórico → **Catedral Metropolitana** (oleada final con todos los enemigos) → **emboscada en el altar mayor** (escena: la trampa, la llamada simulada y la madre usada para abrir el Códice).
 - **Fase 1: la horda y las Tzitzimime.**
   - Secuencia **ECOS** `[PROPUESTA]` para sobrecargar la gema y romper las ataduras.

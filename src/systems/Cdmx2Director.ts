@@ -24,7 +24,7 @@ import { prepareCdmx2Entry } from './Campaign';
  * - torre: guardia de élite (rank 'elite') y algún Negro; checkpoint, altar y puerta (exige limpiar a la élite).
  * - salon_trono: revelación (María SUGERIDA, sin mostrar nada) → mariaTransform() → summonLlorona() → Rey del Olvido
  *   (nace en la arena 'rey' del nivel) → 'boss:calmed' → CONSUELO → MEMORIA → PAZ (cámara muy lenta, sin castigo) →
- *   despedida → 4.º fragmento → consola con la falsa llamada → salida (por ahora, al título).
+ *   despedida → 4.º, 5.º y 6.º fragmento → consola con la falsa llamada → salida (por ahora, al título).
  *
  * Actions de interactuables: n07_examinar · altar · n07_consola. Actions de triggers: letras · dialogo · punto ·
  * ir_seccion · revelacion.
@@ -891,7 +891,10 @@ class Cdmx2Director {
     sfx('aprender');
     await this.say('n07_fragmento');
     if (!this.alive) return;
+    // Guanajuato y Jalisco se omiten (decisión del equipo, 2026-10-19): el Rey guardaba del 4.º al 6.º fragmento.
     remember('fragmento_4');
+    remember('fragmento_5');
+    remember('fragmento_6');
     this.award(config.rewards.fragmento);
     frag?.setAlpha(0);
   }
@@ -909,7 +912,7 @@ class Cdmx2Director {
     this.leaving = true;
     await this.wait(config.salida.esperaMs);
     if (!this.alive) return;
-    // Guanajuato aún no existe: por ahora se vuelve al título (cerrando el HUD y las capas, como Pausa → Salir).
+    // Sigue Guadalajara (Nivel 10), que aún no existe: por ahora se vuelve al título (cerrando el HUD y las capas, como Pausa → Salir).
     const sm = this.world.scene.scene;
     bus.emit('music', { track: null });
     for (const k of ['Spell', 'Dialogue', 'Altar', 'Diario', 'Hud']) {

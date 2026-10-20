@@ -409,8 +409,11 @@ await test('Los diálogos referenciados (niveles, director y datos) existen, tie
   // Contenido obligatorio de la historia y de la trampa.
   const text = (id) => dialogue[id].map((l) => l.text).join(' ');
   assert.match(text('n07_maria_olvido'), /Yo olvidé algo/);
-  assert.match(text('n07_consola_falsa'), /Guanajuato/);
-  assert.match(text('n07_consola_falsa'), /Jalisco/);
+  // Guanajuato y Jalisco se omiten (2026-10-19): la llamada trampa manda directo a la Catedral de Guadalajara.
+  assert.match(text('n07_consola_falsa'), /Guadalajara/);
+  assert.match(text('n07_consola_falsa'), /Catedral/);
+  assert.doesNotMatch(text('n07_consola_falsa'), /Guanajuato|Jalisco/);
+  assert.match(text('n07_fragmento'), /seis de seis/i);
   for (const id of ['n07_revelacion', 'n07_transformacion', 'n07_despedida']) {
     assert.doesNotMatch(text(id), /sangre|cadáver|cuerpo(s)? (sin vida|inerte)/i, `${id}: sin violencia gráfica`);
   }
@@ -646,7 +649,7 @@ await test('Rey calmado → CONSUELO → MEMORIA → PAZ (con un fallo repetido 
   assert.ok(h.toasts.some((t) => /Otra vez, con calma/.test(t)), 'del segundo fallo en adelante, aviso corto');
   assert.equal(h.state.hasMaria, false);
   assert.equal(h.state.flags['n07:despedida'], true);
-  assert.equal(h.state.flags['n07:fragmento_4'], true);
+  for (const n of [4, 5, 6]) assert.equal(h.state.flags[`n07:fragmento_${n}`], true, `fragmento ${n} (el Rey guardaba del 4.º al 6.º)`);
   assert.equal(h.state.flags['n07:final_fin'], true);
   assert.equal(h.state.flags['n07:completo'], undefined);
   assert.equal(h.state.hasBalam, true, 'Balam se queda');
@@ -660,7 +663,7 @@ await test('Rey calmado → CONSUELO → MEMORIA → PAZ (con un fallo repetido 
   assert.equal(await h.act('n07_consola'), true);
   assert.ok(h.dialogues.includes('n07_consola_falsa') && h.dialogues.includes('n07_cierre'));
   assert.equal(h.state.flags['n07:completo'], true);
-  assert.ok(h.toasts.some((t) => /Cuatro de seis/.test(t)));
+  assert.ok(h.toasts.some((t) => /Seis de seis/.test(t)));
   assert.deepEqual(h.calls.filter(([k]) => k === 'start'), [['start', 'Title']]);
   assert.equal(await h.act('n07_consola'), false, 'solo una vez');
   assert.equal(h.state.ecos, h.rewards.reduce((a, b) => a + b, 0));

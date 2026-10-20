@@ -90,6 +90,11 @@
 **Qué resultó:** contratos (`docs/NIVEL_07_CONTRATOS.md`), salida del Nivel 6 hacia el teleférico y cinco subagentes: escenario de la cabina, la torre y el salón con técnicos de la torre (Opus); controles invertidos, Llorona aliada, transformación de María, `castSpellNow`, CONSUELO y PAZ (Opus); el Rey del Olvido y la guardia de élite (Opus); mapas, guion, director y pruebas (Sonnet); música y efectos, con un arreglo propio de la melodía tradicional "La Llorona" (Sonnet). Partida completa en navegador; corregidas claves de props, sonidos duplicados o sin sintetizar, el HUD que quedaba sobre el título al final y los avisos largos que se cortaban (ahora hacen salto de línea).
 **Qué decidió o modificó el equipo:** cabina como arena en movimiento; la corona invierte los controles 3–4 s con aviso y opción de accesibilidad para desactivarlo; melodía tradicional con arreglo propio; revelación sugerida, sin mostrarla.
 
+## 2026-10-19 · Claude Code (Anthropic, Claude Opus 5.5) · Se omiten Guanajuato y Jalisco
+**Qué se pidió:** saltar Guanajuato (y, al confirmar, también Jalisco) por tiempo e ir directo al final, ajustando la historia.
+**Qué resultó:** marcas de "versión jugable" en `docs/NDD_v2.md` (niveles 5, 7, 8, 9 y 10; el texto original se conserva), nota de alcance y tabla en `AGENTS.md`, `NIVELES_ECOS.md`, `GDD_ECOS.md`, README y documentos del Nivel 7. En el juego: el Rey del Olvido entrega del 4.º al 6.º fragmento (`n07:fragmento_4`…`_6`) y la falsa llamada pide llevar el Códice completo a la Catedral de Guadalajara; pruebas del Nivel 7 actualizadas.
+**Qué decidió o modificó el equipo:** omitir los niveles 8 y 9; el Rey guardaba los tres fragmentos restantes; registrar el cambio como en Puebla (NDD marcado, sin reescribirlo).
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**

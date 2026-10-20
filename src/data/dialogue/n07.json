@@ -142,24 +142,24 @@
     { "who": "n07_balam", "text": "Balam se queda. Se sienta a tu lado, mirando por la ventana hasta que la bruma se pierde. Esta vez no gruñe: ronronea, bajito, como quien despide a alguien querido." }
   ],
   "n07_fragmento": [
-    { "who": "n07_narrador", "text": "En el trono, bajo los cables, la obsidiana se abre como un párpado. Dentro, envuelto en luz, late un fragmento del Sello. Al tocarlo, la gema vibra: cuatro de seis." },
-    { "who": "n07_tu", "text": "Cuatro fragmentos. Faltan dos." }
+    { "who": "n07_narrador", "text": "En el trono, bajo los cables, la obsidiana se abre como un párpado. Dentro, envueltos en luz, laten tres fragmentos del Sello: el Rey los había ido reuniendo para la Cofradía. Al tocarlos, la gema vibra con fuerza: seis de seis." },
+    { "who": "n07_tu", "text": "Seis fragmentos... El Sello está completo. Lo que mamá escondió por todo el país, el Rey lo tenía aquí." }
   ],
   "n07_consola_falsa": [
     { "who": "n07_narrador", "text": "Detrás del trono, una consola de comunicaciones sigue encendida. Es la que el Rey usaba para entrar en las mentes a distancia. La pantalla parpadea y, entre estática, acepta una frecuencia que reconoces." },
     { "who": "n07_voz", "text": "Línea abierta. Señal estable. Conectando con el contacto memorizado." },
     { "who": "n07_madre", "text": "¿Hijo? ¿Eres tú? Dime que eres tú." },
     { "who": "n07_tu", "text": "¡Mamá! ¿Dónde estás? ¿Estás bien? Voy por ti." },
-    { "who": "n07_madre", "text": "No. Escúchame: no vengas todavía. Todavía no. Me tienen, pero me cuidan. Si vienes ahora, no tendrás con qué detenerlos." },
-    { "who": "n07_madre", "text": "Quieren comerse el Sol. Un eclipse, y será de noche para siempre. Solo tú puedes impedirlo, pero necesitas los dos últimos fragmentos: están en Guanajuato y en Jalisco. Ve primero allá." },
-    { "who": "n07_tu", "text": "¿Guanajuato y Jalisco? Mamá, ¿cómo sabes...?" },
+    { "who": "n07_madre", "text": "Escúchame bien: no hagas nada por tu cuenta. Me tienen en Guadalajara, en la Catedral. Me cuidan, por ahora." },
+    { "who": "n07_madre", "text": "Quieren comerse el Sol. Un eclipse, y será de noche para siempre. Solo el Sello completo puede detenerlos: trae el Códice con los seis fragmentos a la Catedral. Yo te diré qué hacer cuando llegues." },
+    { "who": "n07_tu", "text": "¿Los seis? Mamá, ¿cómo sabes que ya los tengo?" },
     { "who": "n07_madre", "text": "Lo vi aquí. Lo escuché. Ve, hijo. Confía en mí. Te quiero." },
     { "who": "n07_narrador", "text": "La línea se corta con un chasquido. Balam inclina la cabeza, receloso, y mira la pantalla apagada. Hay algo en la voz de tu madre que se siente... pulido, como una moneda nueva." },
-    { "who": "n07_tu", "text": "Estaba viva. Estaba bien. Y sabe lo que viene. Vamos, Balam: primero Guanajuato." }
+    { "who": "n07_tu", "text": "Estaba viva. Estaba bien. Y nos está esperando. Vamos, Balam: a Guadalajara." }
   ],
   "n07_cierre": [
     { "who": "n07_narrador", "text": "Afuera la tormenta se abre. Por primera vez desde que subieron, entre las nubes asoma un pedazo de cielo, y por ese pedazo de cielo cae un hilo de luz." },
-    { "who": "n07_tu", "text": "Cuatro de seis. La Ciudad de México queda atrás." },
+    { "who": "n07_tu", "text": "Seis de seis. La Ciudad de México queda atrás; adelante, el eclipse." },
     { "who": "n07_narrador", "text": "Se vuelve a oír, a lo lejos, la canción de cuna. Alguien, en algún lugar, está cuidando a dos niños." }
   ],
   "n07_reintento": [

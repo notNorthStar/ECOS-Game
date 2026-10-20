@@ -1,4 +1,4 @@
-﻿import Phaser from 'phaser';
+import Phaser from 'phaser';
 import type { EnemyApi, WorldApi } from '../core/contracts';
 import { bus, sfx } from '../core/bus';
 import { GameState } from '../core/GameState';

@@ -3,13 +3,13 @@
 > Rama `nivel-7-cdmx2` (sale de `nivel-6-cdmx`). Historia **definitiva** en `docs/NDD_v2.md` (Nivel 7); contratos entre agentes en `docs/NIVEL_07_CONTRATOS.md`. Esta guía cubre la parte de **contenido**: niveles JSON, diálogos, números y el `Cdmx2Director`.
 > Pruebas: `npm run test:nivel7` (21 pruebas con el director real y mocks de Casting, Maria, Llorona y mundo).
 
-## 1. Recorrido (15–18 min, ~1,300 Ecos, 4.º fragmento + la falsa llamada)
+## 1. Recorrido (15–18 min, ~1,300 Ecos, 4.º, 5.º y 6.º fragmento + la falsa llamada)
 
 | Sección | Archivo | Ancho | Música | Qué pasa |
 |---|---|---|---|---|
 | `teleferico` | `src/data/levels/teleferico.json` | 800 | `n07_teleferico` | La cabina es una **arena fija** (`lockArena(0, 800)`). Intro (`n07_llegada`) y **4 oleadas** que entran por las puertas izquierda/derecha: espíritus `lunaOnly` (hay que usar Luna, F) y encapuchados rojos/negros. Tras la ola 1: tormenta; tras la ola 2: María ("Yo olvidé algo…"). Emite `cablecar:progress` 0→1; al llegar a la estación superior: `gotoSection('torre')`. |
 | `torre` | `torre.json` | 2600 | `n07_torre` | Pasillos con consolas. **7 encapuchados de élite** + 2 Negros. Punto de control al entrar y a la mitad (`mitad`), **altar** en x 1300, dos consolas examinables. La puerta del trono (`ir_seccion`, `requires: 'elite'`) no abre hasta vencer a la élite; al limpiarla: +Ecos y aviso. |
-| `salon_trono` | `salon_trono.json` | 1800 | `n07_salon` → `n07_jefe` → `n07_llorona` → `n07_salon` | Trigger `revelacion` → diálogo → `mariaTransform()` → `summonLlorona()` → Rey del Olvido (arena `rey`, x 600–1800). Al `boss:calmed`, secuencia final, despedida, 4.º fragmento, consola y salida al título. |
+| `salon_trono` | `salon_trono.json` | 1800 | `n07_salon` → `n07_jefe` → `n07_llorona` → `n07_salon` | Trigger `revelacion` → diálogo → `mariaTransform()` → `summonLlorona()` → Rey del Olvido (arena `rey`, x 600–1800). Al `boss:calmed`, secuencia final, despedida, 4.º–6.º fragmento, consola y salida al título. |
 
 ## 2. La revelación (sugerida, sin violencia gráfica)
 
@@ -21,7 +21,7 @@
 2. `boss:calmed` → flag `n07:rey`, música `n07_llorona`, `setLloronaWild(true)` y la secuencia (tiempo a `final.timeScale` = 0.12 en cada lanzamiento):
    `startLearning('CONSUELO')` → `castSpellNow('CONSUELO')` → `castSpellNow('MEMORIA')` → `startLearning('PAZ')` → `castSpellNow('PAZ')`.
 3. Un resultado `fail` repite **ese** paso sin castigo (primer fallo con diálogo de aliento, luego un aviso corto). Cada paso logrado deja el flag `n07:paso:<id>` y +Ecos una sola vez.
-4. `setLloronaWild(false)` → `n07_despedida` (recupera el amor por sus hijos; Balam se queda) → `dismissLlorona()`, `hasMaria = false` → `n07_fragmento` (flag `n07:fragmento_4`) → consola detrás del trono (E): `n07_consola_falsa` (la "madre" manda a Guanajuato y Jalisco; sutil, el jugador no lo sabe) → `n07_cierre` → `n07:completo` → `scene.start('Title')` (Guanajuato aún no existe; el destino está en `cdmx2.json` → `salida.escena`).
+4. `setLloronaWild(false)` → `n07_despedida` (recupera el amor por sus hijos; Balam se queda) → `dismissLlorona()`, `hasMaria = false` → `n07_fragmento` (flags `n07:fragmento_4`, `_5` y `_6`: el Rey guardaba tres fragmentos porque Guanajuato y Jalisco se omiten) → consola detrás del trono (E): `n07_consola_falsa` (la "madre" pide llevar el Códice con los seis fragmentos a la Catedral de Guadalajara; sutil, el jugador no sabe que es una trampa) → `n07_cierre` → `n07:completo` → título (Guadalajara, Nivel 10, aún no existe; el destino está en `cdmx2.json` → `salida.escena`).
 
 ## 4. Muerte y reintentos
 
@@ -63,4 +63,4 @@ Props que usan los niveles (el integrador debe mapearlos a lo que genere el esce
 
 ## 8. Pendientes
 
-Probar en navegador con las piezas reales (Rey, Llorona, MindControl, escenario), equilibrar las oleadas y la vida de la élite, y la salida real a Guanajuato (hoy título).
+Probar en navegador con las piezas reales (Rey, Llorona, MindControl, escenario), equilibrar las oleadas y la vida de la élite, y la salida real a Guadalajara (hoy título).

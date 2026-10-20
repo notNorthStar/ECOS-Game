@@ -1,4 +1,4 @@
-﻿import Phaser from 'phaser';
+import Phaser from 'phaser';
 import type { WorldApi } from '../core/contracts';
 import { bus } from '../core/bus';
 import { GameState } from '../core/GameState';

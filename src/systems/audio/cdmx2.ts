@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Nivel 7 (CDMX parte 2): pistas procedurales y efectos sintetizados.
  *
  * Pistas (se piden con `bus.emit('music', { track })`):

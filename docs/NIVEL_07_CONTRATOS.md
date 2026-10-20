@@ -9,7 +9,7 @@
 - **Música de la Llorona:** la **melodía tradicional "La Llorona" (dominio público)** en un **arreglo propio** generado por código; se registra en `CREDITOS.md`.
 - **Revelación de María, sugerida y sin mostrarla:** diálogo y recuerdos borrosos (agua, siluetas). Sin violencia gráfica.
 - Se llega desde la estación del teleférico del Nivel 6 (`prepareCdmx2Entry()` ya existe; selector de niveles: 3 entradas del Nivel 7).
-- Duración 15–18 min. Ecos ~1,300. Recompensa: **4.º fragmento** + **la falsa llamada** de la "madre".
+- Duración 15–18 min. Ecos ~1,300. Recompensa: **4.º fragmento** + **la falsa llamada** de la "madre". *(Actualizado 2026-10-19: Guanajuato y Jalisco se omiten; el Rey guarda del 4.º al 6.º fragmento y la llamada manda a la Catedral de Guadalajara.)*
 
 ## 2. Secciones
 
