@@ -2,7 +2,7 @@
 
 ## Continuación: San Andrés Tuxtla
 
-En la rama `codex/nivel-2-san-andres-tuxtla`, `Level` también carga la sección `tuxtla`.
+En la rama `nivel-2-san-andres-tuxtla-codex`, `Level` también carga la sección `tuxtla`.
 `installDirector()` deriva únicamente esa sección a `TuxtlaDirector`; las cuatro secciones de Xalapa conservan su director.
 `Campaign.prepareTuxtlaEntry()` prepara el paso entre niveles sin reiniciar Ecos, mejoras o maestría.
 El título permite iniciar N2 directamente y el resumen de Xalapa permite continuar con la partida actual.

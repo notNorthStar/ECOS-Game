@@ -1,6 +1,6 @@
 # Primer hito del Nivel 2 — 2026-10-19
 
-Rama: `codex/nivel-2-san-andres-tuxtla`. Base de `main`: `f60121c824dda0f69ff52fe8d2d46d655d6a4956`. Trabajo local, sin merge.
+Rama actual: `nivel-2-san-andres-tuxtla-codex` (antes `codex/nivel-2-san-andres-tuxtla`). Base de `main`: `f60121c824dda0f69ff52fe8d2d46d655d6a4956`. Sin merge.
 
 ## Implementado
 
@@ -48,7 +48,7 @@ El arte continúa marcado como reemplazable. La revisión cultural/musical y una
 
 ## ACT-N2-001: recorrido ampliado y guardianes — 2026-10-19
 
-La idea registrada por el equipo está implementada en `codex/nivel-2-san-andres-tuxtla`. Esta sección sustituye las cifras del primer hito para el estado actual.
+La idea registrada por el equipo está implementada en `nivel-2-san-andres-tuxtla-codex`. Esta sección sustituye las cifras del primer hito para el estado actual.
 
 - Mapa de **7200 px**, cinco estrofas separadas entre **1200 y 1400 px**, 14 chaneques comunes y dos Chaneques Mayores en `monte` (estrofa 2) y `memoria` (estrofa 5).
 - Dos arenas independientes, altares antes de cada encuentro y checkpoints tras resolverlos. Las estrofas custodiadas exigen purificar al guardián; morir conserva los encuentros resueltos y los premios.

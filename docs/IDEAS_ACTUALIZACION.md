@@ -4,7 +4,7 @@ Registro de nuevas ideas del equipo. Cada entrada distingue lo solicitado del es
 
 ## ACT-N2-001 — San Andrés Tuxtla: exploración ampliada y guardianes
 
-**Fecha:** 2026-10-19. **Origen:** petición directa del equipo. **Estado:** implementada en código en `codex/nivel-2-san-andres-tuxtla`; pendiente de equilibrio y partida humana completa. **Ámbito:** Nivel 2.
+**Fecha:** 2026-10-19. **Origen:** petición directa del equipo. **Estado:** implementada en código en `nivel-2-san-andres-tuxtla-codex`; pendiente de equilibrio y partida humana completa. **Ámbito:** Nivel 2.
 
 ### Cambios solicitados
 

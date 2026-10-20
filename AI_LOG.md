@@ -78,6 +78,14 @@
 
 **Qué decidió o modificó el equipo:** autorizó pasar de la idea registrada a su implementación. El ancho de 7200 px, posiciones y cifras iniciales de equilibrio fueron propuestos por la IA como parámetros configurables; la dificultad y duración siguen pendientes de una partida humana completa. El equipo mantiene la decisión narrativa sobre las cinco estrofas, VOZ y el primer Fragmento del Sello. NDD y módulo LSM intactos; no se sobrescribieron assets del equipo ni se incorporó código del Nivel 3 o de `main`.
 
+## 2026-10-19 18:01 (Ciudad de México) · Codex (OpenAI) · Nombre de rama y servicio de prueba
+
+**Qué se pidió:** hacer coincidir el nombre de la rama con el formato de las demás, incluir Codex y ejecutar el servicio para probar el juego.
+
+**Qué resultó:** rama `nivel-2-san-andres-tuxtla-codex`, antes `codex/nivel-2-san-andres-tuxtla`; referencias actuales de documentación actualizadas y registro histórico conservado. Se prepararon los archivos locales de MediaPipe y se comprobó en navegador la instancia Vite disponible en `http://127.0.0.1:5174/`, dejando abierta la pantalla de título. El puerto 5173 estaba ocupado por otra instancia que no respondía. Sin cambios de código del juego.
+
+**Qué decidió o modificó el equipo:** solicitó el cambio de nombre y la prueba local. Se adoptó el patrón `nivel-2-san-andres-tuxtla-codex`, tomando como referencia `nivel-3-catemaco`. Se conserva la restricción de no modificar `main` ni hacer merges.
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**
