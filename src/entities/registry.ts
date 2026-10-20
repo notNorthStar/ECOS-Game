@@ -1,4 +1,4 @@
-﻿import type { EnemyApi, EnemySpec, WorldApi } from '../core/contracts';
+import type { EnemyApi, EnemySpec, WorldApi } from '../core/contracts';
 import { Chaneque } from './Chaneque';
 import { ChanequeMayor } from './ChanequeMayor';
 import { Encapuchado } from './Encapuchado';
@@ -24,6 +24,10 @@ export function createEnemy(world: WorldApi, spec: EnemySpec): EnemyApi {
       return new Espiritu(world, spec.x, spec.y, spec.lunaOnly ?? true, spec.group);
     case 'cabeza_olmeca':
       return new CabezaOlmeca(world, spec.x, spec.y, spec.group);
+    // Nivel 4 (dueño: enemigos). Reemplazar al crear Bestia.ts y BrujaGuajolote.ts.
+    case 'bestia':
+    case 'bruja_guajolote':
+      throw new Error(`Enemigo del Nivel 4 sin implementar: ${spec.type}`);
     default: {
       const t: never = spec.type;
       throw new Error(`Tipo de enemigo desconocido: ${String(t)}`);

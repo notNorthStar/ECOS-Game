@@ -11,6 +11,7 @@ import { addEcos } from './Progression';
 import * as ShieldMod from './Shield';
 import * as LunaMod from './Luna';
 import config from '../data/catemaco.json';
+import { prepareOaxacaEntry } from './Campaign';
 
 /**
  * Director del Nivel 3 · Catemaco (dueño: contenido). Maneja las tres secciones del nivel
@@ -909,11 +910,8 @@ class CatemacoDirector {
     await this.say('n03_salida');
     if (!this.alive) return;
     remember('completo');
-    const sm = this.world.scene.scene;
-    for (const key of ['Hud', 'Dialogue', 'Spell', 'Altar', 'Diario', 'Pause']) {
-      if (sm.isActive(key) || sm.isPaused(key)) sm.stop(key);
-    }
-    bus.emit('music', { track: null });
-    sm.start('Title');
+    // Continúa a Oaxaca (Nivel 4) conservando Ecos, mejoras y maestría.
+    prepareOaxacaEntry();
+    this.world.gotoSection('oaxaca');
   }
 }

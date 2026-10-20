@@ -42,6 +42,11 @@ export interface BusEvents {
   'balam:awake': Record<string, never>;
   'cofradia:down': { enemy: EnemyApi };
   'olmeca:phase': { phase: 1 | 2 | 3 };
+  // Nivel 4: María en combate, bestias y pasaje, Bruja Guajolote
+  'maria:assist': { kind: string; x: number; y: number };
+  'maria:say': { text: string; ms?: number };
+  'pasaje:revealed': { id: string };
+  'bruja:form': { form: 'humana' | 'ave' };
   // Mundo / director
   'trigger:enter': { trigger: LevelTrigger };
   'interact': { id: string; action: string; data?: Record<string, unknown> };

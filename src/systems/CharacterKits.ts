@@ -17,6 +17,8 @@ export const KIT_IDS = [
   'protagonista', 'chaneque', 'chaneque_mayor', 'madre',
   // Nivel 3
   'encapuchado', 'espiritu', 'cabeza_olmeca', 'balam', 'maria',
+  // Nivel 4 (la bruja tiene dos formas: dos kits)
+  'bestia', 'bruja_guajolote', 'bruja_guajolote_ave',
 ] as const;
 
 export const kitBase = (id: string) => `assets/sprites/personajes/${id}/${id}_spritesheet`;
@@ -108,7 +110,7 @@ type Motion =
   | 'golpe' | 'invocar' | 'lanzar' | 'aturdido';
 
 function motionOf(animKey: string): Motion {
-  const k = animKey.replace(/^(protagonista|chaneque_mayor|chaneque|madre|encapuchado|espiritu|cabeza_olmeca|balam|maria)_/, '');
+  const k = animKey.replace(/^(protagonista|chaneque_mayor|chaneque|madre|encapuchado|espiritu|cabeza_olmeca|balam|maria|bestia|bruja_guajolote_ave|bruja_guajolote)_/, '');
   if (k === 'saltar_subida') return 'subida';
   if (k === 'saltar_caida') return 'caida';
   return (k as Motion) || 'reposo';

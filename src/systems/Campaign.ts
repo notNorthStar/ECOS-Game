@@ -27,3 +27,26 @@ export function prepareCatemacoEntry(): void {
   GameState.flags['n02:completo'] = true;
   GameState.flags['n02:fragmento'] = true;
 }
+
+/**
+ * Entrada a Oaxaca (Nivel 4) desde la salida de Catemaco o la selección directa de nivel.
+ * Garantiza lo obtenido en el Nivel 3: LUZ, SOL, escudo U, Balam + Luna y María como compañera.
+ */
+export function prepareOaxacaEntry(): void {
+  prepareCatemacoEntry();
+  GameState.section = 'oaxaca';
+  for (const id of ['LUZ', 'SOL']) {
+    if (!GameState.learnedSpells.includes(id)) GameState.learnedSpells.push(id);
+    GameState.mastery[id] ??= { level: 0, progress: 0 };
+  }
+  GameState.shield.unlocked = true;
+  GameState.shield.broken = false;
+  GameState.shield.active = false;
+  GameState.luna.unlocked = true;
+  GameState.luna.active = false;
+  GameState.hasBalam = true;
+  GameState.hasMaria = true;
+  GameState.checkpoint = null;
+  GameState.flags['n03:completo'] = true;
+  GameState.flags['n03:maria'] = true;
+}

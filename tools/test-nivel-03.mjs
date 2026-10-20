@@ -110,6 +110,8 @@ function harness({ spellDefs = true, withLunaApi = true } = {}) {
     },
     './Luna': withLunaApi ? { isLunaActive: () => false, unlockLuna: () => calls.push(['unlockLuna']) } : { isLunaActive: () => false },
     '../data/catemaco.json': config,
+    // La salida de Catemaco continúa a Oaxaca (Nivel 4).
+    './Campaign': { prepareOaxacaEntry: () => calls.push(['prepareOaxacaEntry']) },
   };
   const module = { exports: {} };
   vm.runInNewContext(`(function(require,module,exports) { ${code}\n})`, {}, {
@@ -571,7 +573,9 @@ await test('Jefe: la arena inicia una vez con lockArena + arena:start; boss:calm
   assert.equal(s.world.player.controlsLocked, false);
   assert.equal(await h.act('n03_salida'), true);
   assert.ok(h.dialogues.includes('n03_salida'));
-  assert.ok(h.calls.some(([k, key]) => k === 'start' && key === 'Title'));
+  // La salida continúa a Oaxaca (Nivel 4) en vez de volver al título.
+  assert.ok(h.calls.some(([k]) => k === 'prepareOaxacaEntry'));
+  assert.ok(h.calls.some(([k, key]) => k === 'goto' && key === 'oaxaca'));
   h.emit('boss:calmed', {});
   await flush();
   assert.equal(h.dialogues.filter((id) => id === 'n03_maria_1').length, 1, 'María no se repite');
@@ -596,7 +600,9 @@ await test('Respaldo del jefe: si la Cabeza no aparece, el nivel no se atasca', 
   assert.ok(h.calls.some(([k]) => k === 'unlockArena'));
   await h.act('n03_salida');
   assert.ok(h.dialogues.includes('n03_salida'));
-  assert.ok(h.calls.some(([k, key]) => k === 'start' && key === 'Title'));
+  // La salida continúa a Oaxaca (Nivel 4) en vez de volver al título.
+  assert.ok(h.calls.some(([k]) => k === 'prepareOaxacaEntry'));
+  assert.ok(h.calls.some(([k, key]) => k === 'goto' && key === 'oaxaca'));
   assert.equal(h.state.flags['n03:completo'], true);
 });
 

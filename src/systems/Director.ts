@@ -9,7 +9,8 @@ import { installLightTrail, setObjective } from './LightTrail';
 import { playDialogue } from '../scenes/DialogueScene';
 import { installTuxtlaDirector } from './TuxtlaDirector';
 import { installCatemacoDirector } from './CatemacoDirector';
-import { isCatemaco } from '../config/game';
+import { isCatemaco, isOaxaca } from '../config/game';
+import { installOaxacaDirector } from './OaxacaDirector';
 
 /**
  * Dueño: contenido. Guion del Nivel 1 (AGENTS.md §5.2, NIVELES_ECOS.md §4):
@@ -50,6 +51,10 @@ export function installDirector(world: WorldApi): void {
   }
   if (isCatemaco(world.level.id)) {
     installCatemacoDirector(world);
+    return;
+  }
+  if (isOaxaca(world.level.id)) {
+    installOaxacaDirector(world);
     return;
   }
   new Director(world);

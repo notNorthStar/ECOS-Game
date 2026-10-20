@@ -25,7 +25,14 @@ export const SLOWMO = {
 } as const;
 
 /** Secciones disponibles (NIVELES_ECOS.md §4). */
-export const SECTIONS = ['taller', 'calles', 'parque', 'jefe', 'tuxtla', 'catemaco', 'campamento', 'altar_olmeca'] as const;
+export const SECTIONS = [
+  'taller', 'calles', 'parque', 'jefe', 'tuxtla', 'catemaco', 'campamento', 'altar_olmeca',
+  'oaxaca', 'callejones', 'santo_domingo',
+] as const;
+
+/** Secciones del Nivel 4 (Oaxaca), en orden. */
+export const OAXACA_SECTIONS = ['oaxaca', 'callejones', 'santo_domingo'] as const;
+export const isOaxaca = (id: string): boolean => (OAXACA_SECTIONS as readonly string[]).includes(id);
 
 /** Secciones del Nivel 3 (Catemaco), en orden. */
 export const CATEMACO_SECTIONS = ['catemaco', 'campamento', 'altar_olmeca'] as const;

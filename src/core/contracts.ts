@@ -57,7 +57,10 @@ export interface PlayerApi extends DepthEntity {
   setPosition(x: number, y: number): void;
 }
 
-export type EnemyKind = 'chaneque' | 'chaneque_mayor' | 'encapuchado' | 'espiritu' | 'cabeza_olmeca';
+export type EnemyKind =
+  | 'chaneque' | 'chaneque_mayor' | 'encapuchado' | 'espiritu' | 'cabeza_olmeca'
+  // Nivel 4 (Oaxaca)
+  | 'bestia' | 'bruja_guajolote';
 export type ChanequeVariant = 'patrulla' | 'saltador' | 'travieso';
 /** Rangos de la Cofradía: el MISMO modelo con recolor (GDD §9). En el Nivel 3 solo aparece 'rojo'. */
 export type CofradiaRank = 'rojo' | 'negro' | 'elite';

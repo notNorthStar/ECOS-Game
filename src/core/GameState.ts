@@ -34,6 +34,8 @@ export const GameState = {
   // Habilidad Luna con Balam (dueño: systems/Luna.ts). Se desbloquea en Catemaco al despertar Balam.
   luna: { unlocked: false, energy: 1, active: false },
   hasBalam: false,
+  // María, compañera de viaje del Nivel 3 al 7 (dueño: systems/Maria.ts). En el Nivel 4 ayuda en combate.
+  hasMaria: false,
   // Progreso del nivel (dueño: Director)
   section: 'taller' as SectionId,
   checkpoint: null as null | { section: SectionId; x: number; y: number },
@@ -76,6 +78,7 @@ export function resetGameState(): void {
     shield: { unlocked: false, energy: 1, active: false, broken: false },
     luna: { unlocked: false, energy: 1, active: false },
     hasBalam: false,
+    hasMaria: false,
     section: 'taller',
     checkpoint: null,
     flags: {},
