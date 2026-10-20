@@ -95,6 +95,8 @@ class GdlDirector {
   private gapLeft = 0;
   private oleadaOn = false;
   private emboscadaOn = false;
+  /** Emboscada encolada desde tickCatedral (aún no empieza): evita encolarla dos veces. */
+  private emboscadaPend = false;
   // catedral_eclipse
   private fase: Fase = 'ninguna';
   private chainTries = 0;
@@ -509,7 +511,7 @@ class GdlDirector {
         this.leaveSection(data);
         break;
       case 'emboscada':
-        if (!this.ready || this.busy || this.anyLock || this.emboscadaOn || !flag('oleada_fin')) break;
+        if (!this.ready || this.busy || this.anyLock || this.emboscadaOn || this.emboscadaPend || !flag('oleada_fin')) break;
         await this.run(() => this.emboscada(data));
         break;
     }
@@ -621,6 +623,16 @@ class GdlDirector {
   }
 
   private tickCatedral(): void {
+    // El trigger del altar solo avisa al ENTRAR: si en ese momento había un diálogo o la oleada seguía,
+    // el aviso se perdía y había que salir y volver a entrar. Aquí se revisa en cada tick.
+    if (!this.oleadaOn && flag('oleada_fin') && !flag('emboscada') && this.ready && !this.busy && !this.anyLock && !this.emboscadaOn && !this.emboscadaPend) {
+      const t = this.world.level.triggers.find((tr) => tr.action === 'emboscada');
+      if (t && this.world.player.x >= t.x) {
+        this.emboscadaPend = true;
+        void this.run(() => this.emboscada((t.data ?? {}) as Record<string, unknown>)).finally(() => { this.emboscadaPend = false; });
+      }
+      return;
+    }
     if (!this.oleadaOn || this.busy || !this.ready) return;
     if (!this.tanda) {
       this.gapLeft -= config.tickMs;

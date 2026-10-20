@@ -1,0 +1,332 @@
+<title>Pruebas de ECOS</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: una columna de lectura (~68ch) con barra de progreso pegada arriba; cada nivel es un bloque con sus pruebas. */
+:root {
+  --bg: #f3f1f6;          /* papel lila muy claro, como la niebla de Xalapa de día */
+  --panel: #ffffff;
+  --ink: #1d1a2b;
+  --muted: #5d5872;
+  --line: #dcd7e6;
+  --teal: #0f7f6c;        /* la gema */
+  --rosa: #c42d66;        /* rosa mexicano */
+  --oro: #9a6a00;
+  --ok-bg: #e3f5ef;
+  --bad-bg: #fbe4ec;
+  --chip: #ece8f3;
+  --display: "Pixelify Sans", "Courier New", monospace;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d0b16; --panel: #17142a; --ink: #ece7f6; --muted: #a49dbb; --line: #2c2745;
+  --teal: #74ecd3; --rosa: #ff6f9f; --oro: #f2c14e; --ok-bg: #12302a; --bad-bg: #3a1424; --chip: #231f3a;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0d0b16; --panel: #17142a; --ink: #ece7f6; --muted: #a49dbb; --line: #2c2745;
+  --teal: #74ecd3; --rosa: #ff6f9f; --oro: #f2c14e; --ok-bg: #12302a; --bad-bg: #3a1424; --chip: #231f3a;
+  color-scheme: dark }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 760px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 64px; display: flex; flex-direction: column; gap: 28px; }
+h1, h2 { font-family: var(--display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: .02em; }
+h1 { font-size: clamp(2rem, 6vw, 2.8rem); line-height: 1.05; }
+h1 span { color: var(--teal); }
+h2 { font-size: 1.35rem; }
+p { margin: 0; }
+.lede { color: var(--muted); max-width: 62ch; }
+.eyebrow { font-family: var(--mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; color: var(--rosa); }
+
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); padding-block: 10px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.meter { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.meter-track { height: 8px; background: var(--chip); border-radius: 4px; overflow: hidden; display: flex; }
+.meter-ok { background: var(--teal); }
+.meter-bad { background: var(--rosa); }
+.counts { font-family: var(--mono); font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.counts b { color: var(--ink); }
+
+button { font: inherit; cursor: pointer; }
+.btn { font-family: var(--mono); font-size: .82rem; font-weight: 600; padding: 8px 12px; border-radius: 6px; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn:focus-visible, .mark:focus-visible, summary:focus-visible, textarea:focus-visible, input:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+.box ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; }
+kbd { font-family: var(--mono); font-size: .8em; background: var(--chip); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; }
+.tester { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.tester label { font-weight: 700; }
+.tester input { flex: 1 1 180px; min-width: 0; font: inherit; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+
+details.level { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+details.level > summary { list-style: none; padding: 14px 18px; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+details.level > summary::-webkit-details-marker { display: none; }
+details.level > summary::before { content: "▸"; font-family: var(--mono); color: var(--muted); transition: transform .15s; }
+details.level[open] > summary::before { transform: rotate(90deg); }
+.lvl-tag { font-family: var(--mono); font-size: .75rem; color: var(--rosa); letter-spacing: .08em; }
+.lvl-prog { margin-left: auto; font-family: var(--mono); font-size: .78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.lvl-body { padding: 0 18px 16px; display: flex; flex-direction: column; gap: 4px; }
+.lvl-note { color: var(--muted); font-size: .92rem; padding-bottom: 6px; }
+
+.item { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; padding: 10px 10px; border-radius: 8px; border-top: 1px solid var(--line); }
+.item:first-of-type { border-top: 0; }
+.item.ok { background: var(--ok-bg); }
+.item.bad { background: var(--bad-bg); }
+.item-text { min-width: 0; }
+.item-text strong { font-weight: 700; }
+.expect { display: block; color: var(--muted); font-size: .9rem; }
+.marks { display: flex; gap: 6px; align-items: start; }
+.mark { width: 40px; height: 34px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--muted); font-family: var(--mono); font-size: .8rem; font-weight: 600; }
+.mark[aria-pressed="true"].m-ok { background: var(--teal); color: var(--panel); border-color: var(--teal); }
+.mark[aria-pressed="true"].m-bad { background: var(--rosa); color: var(--panel); border-color: var(--rosa); }
+.note { grid-column: 1 / -1; width: 100%; font: inherit; font-size: .9rem; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--rosa); background: var(--panel); color: var(--ink); min-height: 60px; resize: vertical; }
+.new { font-family: var(--mono); font-size: .68rem; font-weight: 600; color: var(--oro); border: 1px solid var(--oro); border-radius: 4px; padding: 0 5px; margin-left: 6px; vertical-align: 2px; white-space: nowrap; }
+
+.report { display: flex; flex-direction: column; gap: 10px; }
+.report pre { margin: 0; font-family: var(--mono); font-size: .8rem; background: var(--chip); border: 1px solid var(--line); border-radius: 8px; padding: 12px; overflow-x: auto; white-space: pre-wrap; max-height: 320px; }
+.status { font-family: var(--mono); font-size: .8rem; color: var(--teal); min-height: 1.2em; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <span class="eyebrow">Listick Games · Game Jam ANIEI 2026</span>
+    <h1>Pruebas de <span>ECOS</span></h1>
+    <p class="lede">Juega cada nivel y marca cada prueba: <b>Sí</b> si pasó lo que dice "qué debe pasar", <b>No</b> si no. Cuando marques <b>No</b>, escribe qué viste. Al final copia el reporte y mándalo al equipo. Tus marcas se guardan solo en este navegador.</p>
+  </header>
+
+  <div class="bar" role="region" aria-label="Avance">
+    <div class="meter">
+      <div class="meter-track" aria-hidden="true"><div class="meter-ok" id="m-ok" style="width:0"></div><div class="meter-bad" id="m-bad" style="width:0"></div></div>
+      <span class="counts" id="counts">0 de 0 revisadas</span>
+    </div>
+    <button class="btn" id="go-report" type="button">Ver reporte</button>
+  </div>
+
+  <section class="box" aria-labelledby="h-antes">
+    <h2 id="h-antes">Antes de empezar</h2>
+    <div class="tester">
+      <label for="tester-name">Tu nombre</label>
+      <input id="tester-name" type="text" placeholder="Para saber quién reporta" autocomplete="name">
+    </div>
+    <ul>
+      <li>Usa <b>Chrome o Edge</b> en computadora. Si puedes, juega una vez <b>con cámara</b> y otra <b>solo con teclado</b>.</li>
+      <li>Para no repetir todo, en el título está <b>3 · Seleccionar nivel</b>: entras directo a cualquier nivel o jefe.</li>
+      <li>Sin cámara, los conjuros se escriben con el teclado letra por letra cuando aparece el deletreo.</li>
+      <li>Si una letra de LSM no la reconoce la cámara, presiona <kbd>F3</kbd> y toma una captura: muestra qué letras cree ver.</li>
+      <li>Al reportar una falla di <b>qué hacías</b>, <b>qué esperabas</b> y <b>qué pasó</b>. Una captura o video corto ayuda mucho.</li>
+    </ul>
+  </section>
+
+  <div id="levels" style="display:flex;flex-direction:column;gap:12px"></div>
+
+  <section class="box report" id="report" aria-labelledby="h-rep">
+    <h2 id="h-rep">Reporte</h2>
+    <p class="lede">Incluye todas las fallas con tus notas y lo que falta por revisar. Cópialo y pégalo en el chat del equipo.</p>
+    <pre id="report-text"></pre>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <button class="btn" id="copy" type="button">Copiar reporte</button>
+      <button class="btn ghost" id="reset" type="button">Borrar mis marcas</button>
+      <span class="status" id="status" role="status"></span>
+    </div>
+  </section>
+</div>
+
+<script>
+const LEVELS = [
+  { id: "gen", tag: "GENERAL", name: "Menú, opciones y lo que aplica a todo", items: [
+    ["El menú de inicio tiene música", "Suena el tema del menú después del primer clic o tecla."],
+    ["Jugar con cámara", "Pide permiso de la cámara; si lo niegas, sigue con teclado sin errores."],
+    ["Seleccionar nivel", "Lista todos los niveles y jefes; entrar a cualquiera funciona."],
+    ["Pausa con Esc", "Abre el menú de pausa; Opciones y Controles se ven bien; Continuar regresa al juego."],
+    ["Volumen de música y efectos", "Se puede subir y bajar en Pausa → Opciones."],
+    ["Morir y reaparecer", "Reapareces en el último punto de control sin perder Ecos."],
+    ["Altar de la Memoria", "Con E recupera vida y deja comprar mejoras con Ecos."],
+    ["Rueda de conjuros", "Mantener Q abre la rueda y el tiempo se hace lento; tocar Q lanza el conjuro elegido."],
+    ["Diario de Señas con Tab", "Muestra las letras y conjuros aprendidos."],
+    ["Escudo con clic derecho", "Mientras lo mantienes te protege y se gasta la barra."],
+    ["Accesibilidad: no invertir controles", "Con la opción activa, la corona del Rey del Olvido solo distorsiona la pantalla.", true],
+    ["Rendimiento", "El juego corre fluido; anota si se traba en alguna zona."],
+  ]},
+  { id: "n1", tag: "NIVEL 1", name: "Xalapa · El misterio del Parque Juárez", items: [
+    ["Taller: encontrar la pistola láser", "Aparece el tutorial de movimiento, salto, esquiva y disparo verde/rojo (1 / 2)."],
+    ["Aprender CALMA", "Con el grabado del taller el tiempo se hace muy lento y te enseña letra por letra."],
+    ["Calles con chaneques", "Suena la música de la calle del equipo; los chaneques agotados se calman con CALMA."],
+    ["Letras XALAPA y altar", "Funcionan como punto de control."],
+    ["Parque: 2 arenas", "Se cierran los lados hasta vencer a todos."],
+    ["Aprender PROTECCION", "La nota de la madre lo enseña antes del jefe; al lanzarlo devuelve un corazón."],
+    ["Jefe: Chaneque Mayor", "Suena su música de pelea; se calma con CALMA en sus ventanas."],
+    ["Antena y busto de Juárez", "La antena se rompe a disparos rojos; en el busto sale el Códice."],
+    ["Del Nivel 1 al 2 sin mapa", "Tras el viaje en auto entras directo a San Andrés Tuxtla; ya no aparece el mapa.", true],
+  ]},
+  { id: "n2", tag: "NIVEL 2", name: "San Andrés Tuxtla · La música perdida", items: [
+    ["Música de la calle de Tuxtla", "Suena el tema del equipo (guitarra) mientras buscas las estrofas.", true],
+    ["Hablar con los músicos", "Explican la misión de las 5 estrofas."],
+    ["Recuperar las 5 estrofas", "Cada guardián se calma y la estrofa se suma al contador."],
+    ["Reconstruir el fandango", "En la tarima suena el fandango por capas, completo."],
+    ["Aprender VOZ y 1.er fragmento", "Se aprende con guía y el fragmento se recibe."],
+    ["De Tuxtla a Catemaco", "Con E en la salida se pasa directo a Catemaco, sin volver al título.", true],
+  ]},
+  { id: "n3", tag: "NIVEL 3", name: "Catemaco · El ritual del lago", items: [
+    ["Música del pueblo de los brujos", "Suena el tema del Nivel 3 del equipo.", true],
+    ["Brujos: LUZ, SOL y escudo", "Te enseñan LUZ y SOL y desbloquean el escudo."],
+    ["SOL hacia la izquierda", "El rayo sale del jugador hacia la izquierda (antes salía al revés).", true],
+    ["Campamento: encapuchados y jaulas", "Se pueden liberar las jaulas y seguir las pistas."],
+    ["Balam y la Habilidad Luna (F)", "Con F se ven los espíritus; sin Luna son invisibles pero te atacan."],
+    ["Jefe: Cabeza Olmeca", "3 fases; CALMA no sirve; VOZ, LUZ y SOL sí. Se puede saltar sus rayos."],
+    ["María se une", "Al final María acompaña al jugador."],
+  ]},
+  { id: "n4", tag: "NIVEL 4", name: "Oaxaca · Los tejidos de la memoria", items: [
+    ["Artesanos y MEMORIA", "Los 3 artesanos enseñan MEMORIA."],
+    ["Bestias agotadas", "Una bestia agotada se purifica con MEMORIA; si no, se vuelve a levantar."],
+    ["Pasaje oculto", "Se abre en los callejones."],
+    ["María ayuda en combate", "Su lamento aturde a los enemigos de vez en cuando."],
+    ["Jefe: Bruja Guajolote", "Forma humana (LUZ) y de ave (SOL); al terminar te puedes mover normal."],
+    ["2.º y 3.er fragmento", "Se reciben los dos y se pasa a la CDMX."],
+  ]},
+  { id: "n6", tag: "NIVEL 6", name: "CDMX 1 · De la Isla de las Muñecas a Reforma", items: [
+    ["Muñecas y DESCANSO", "Las muñecas se liberan con DESCANSO."],
+    ["VERDAD y FUEGO", "Se aprenden en este nivel."],
+    ["FUEGO hacia la izquierda", "La llamarada y la franja del suelo salen hacia la izquierda.", true],
+    ["Doble salto", "Se compra en el altar y deja llegar a zonas altas."],
+    ["Nahuales disfrazados", "Con Luna se ve su sombra animal; VERDAD los revela."],
+    ["Jefe: la Nahuala", "VERDAD muestra a la verdadera entre las copias; FUEGO la cura."],
+    ["Estación del teleférico", "Lleva al Nivel 7."],
+  ]},
+  { id: "n7", tag: "NIVEL 7", name: "CDMX 2 · Teleférico, Rey del Olvido y la Llorona", items: [
+    ["Teleférico: 4 oleadas", "La ciudad sube por la ventana; los enemigos entran por las puertas."],
+    ["Torre: guardia de élite", "La puerta del salón abre solo al vencer a las 7 élites."],
+    ["Revelación y la Llorona", "María se transforma y pelea a tu lado gritándole al Rey."],
+    ["Jefe: Rey del Olvido", "Suena su música de pelea del equipo; la corona solo cae con SOL o FUEGO en sus ventanas.", true],
+    ["Controles invertidos", "Su pulso invierte las flechas unos 3,5 s, con aviso en pantalla."],
+    ["CONSUELO, MEMORIA y PAZ", "Un fallo repite ese paso sin castigo."],
+    ["Fragmentos 4 a 6 y la llamada", "Recibes 3 fragmentos; la llamada lleva a Guadalajara."],
+  ]},
+  { id: "n10", tag: "NIVEL 10", name: "Guadalajara · La trampa y el eclipse final", items: [
+    ["Avenida: 3 encuentros", "El sol se va eclipsando conforme avanzas; el altar es el último del juego."],
+    ["Catedral: oleada final", "3 tandas con todo tipo de enemigos."],
+    ["Emboscada en el altar", "Al llegar al altar mayor empieza la escena aunque llegues tarde o con un diálogo en curso.", true],
+    ["Atado: LUZ → MEMORIA → ECOS", "No te puedes mover; deletreas a escondidas. Un fallo repite el paso."],
+    ["Balam jaguar", "Crece y pelea solo contra los enemigos."],
+    ["3 Tzitzimime", "PROTECCION, LUZ y SOL les sirven."],
+    ["Itzpapálotl", "Sus cortes solo se ven con Luna. MAMA hace que tu madre la paralice; ahí ECOS golpea su núcleo (3 veces)."],
+    ["Reencuentro con mamá", "Suena la canción del reencuentro del equipo.", true],
+    ["Epílogo y créditos", "Las páginas en blanco, los créditos y vuelta al título."],
+  ]},
+  { id: "lsm", tag: "CÁMARA", name: "Lengua de Señas Mexicana con la cámara", items: [
+    ["Letras de CALMA y PROTECCION", "Se reconocen sosteniendo cada letra un momento."],
+    ["Letras de LUZ, SOL y VOZ", "La Z se hace con movimiento."],
+    ["Letras de ECOS y MAMA", "Nunca se han probado con cámara: revísalas con cuidado.", true],
+    ["Escudo con la seña U", "Mantener la U activa el escudo."],
+    ["Juego terminable sin cámara", "Todo se puede hacer con teclado."],
+  ]},
+];
+
+const KEY = "ecos-pruebas-v1";
+let state = { name: "", marks: {}, notes: {} };
+try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s) state = Object.assign(state, s); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+
+const total = LEVELS.reduce((n, l) => n + l.items.length, 0);
+const levelsEl = document.getElementById("levels");
+
+function render() {
+  levelsEl.innerHTML = "";
+  LEVELS.forEach((lvl, li) => {
+    const d = document.createElement("details");
+    d.className = "level"; d.id = "lvl-" + lvl.id;
+    if (li === 0 || li === 1) d.open = true;
+    const sum = document.createElement("summary");
+    sum.innerHTML = `<span class="lvl-tag">${lvl.tag}</span><h2 style="font-size:1.1rem">${lvl.name}</h2><span class="lvl-prog" id="p-${lvl.id}"></span>`;
+    d.appendChild(sum);
+    const body = document.createElement("div"); body.className = "lvl-body";
+    lvl.items.forEach(([title, expect, isNew], ii) => {
+      const k = `${lvl.id}-${ii}`;
+      const row = document.createElement("div"); row.className = "item"; row.dataset.k = k;
+      row.innerHTML = `<div class="item-text"><strong>${title}</strong>${isNew ? '<span class="new">RECIÉN ARREGLADO</span>' : ""}<span class="expect">Qué debe pasar: ${expect}</span></div>
+        <div class="marks" role="group" aria-label="Resultado de ${title}">
+          <button type="button" class="mark m-ok" aria-pressed="false" id="ok-${k}">Sí</button>
+          <button type="button" class="mark m-bad" aria-pressed="false" id="bad-${k}">No</button>
+        </div>`;
+      const note = document.createElement("textarea");
+      note.className = "note"; note.id = "note-" + k; note.placeholder = "¿Qué pasó? ¿Qué hacías justo antes?";
+      note.value = state.notes[k] || "";
+      note.addEventListener("input", () => { state.notes[k] = note.value; save(); renderReport(); });
+      row.appendChild(note);
+      row.querySelector(".m-ok").addEventListener("click", () => setMark(k, "ok"));
+      row.querySelector(".m-bad").addEventListener("click", () => setMark(k, "bad"));
+      body.appendChild(row);
+    });
+    d.appendChild(body);
+    levelsEl.appendChild(d);
+  });
+  refresh();
+}
+
+function setMark(k, v) {
+  state.marks[k] = state.marks[k] === v ? undefined : v;
+  if (!state.marks[k]) delete state.marks[k];
+  save(); refresh();
+  if (state.marks[k] === "bad") document.getElementById("note-" + k).focus();
+}
+
+function refresh() {
+  let ok = 0, bad = 0;
+  LEVELS.forEach((lvl) => {
+    let lo = 0, lb = 0;
+    lvl.items.forEach((_, ii) => {
+      const k = `${lvl.id}-${ii}`, m = state.marks[k];
+      const row = levelsEl.querySelector(`[data-k="${k}"]`);
+      row.classList.toggle("ok", m === "ok"); row.classList.toggle("bad", m === "bad");
+      row.querySelector(".m-ok").setAttribute("aria-pressed", m === "ok");
+      row.querySelector(".m-bad").setAttribute("aria-pressed", m === "bad");
+      row.querySelector(".note").hidden = m !== "bad";
+      if (m === "ok") lo++; if (m === "bad") lb++;
+    });
+    ok += lo; bad += lb;
+    document.getElementById("p-" + lvl.id).textContent = `${lo + lb}/${lvl.items.length}${lb ? ` · ${lb} con falla` : ""}`;
+  });
+  document.getElementById("m-ok").style.width = (ok / total * 100) + "%";
+  document.getElementById("m-bad").style.width = (bad / total * 100) + "%";
+  document.getElementById("counts").innerHTML = `<b>${ok + bad}</b> de ${total} revisadas · <b>${bad}</b> con falla`;
+  renderReport();
+}
+
+function reportText() {
+  const lines = [`REPORTE DE PRUEBAS · ECOS`, `Tester: ${state.name || "(sin nombre)"}`, ""];
+  let bad = 0, pend = 0;
+  const fails = [], pending = [];
+  LEVELS.forEach((lvl) => lvl.items.forEach(([title], ii) => {
+    const k = `${lvl.id}-${ii}`, m = state.marks[k];
+    if (m === "bad") { bad++; fails.push(`- [${lvl.tag}] ${title}: ${(state.notes[k] || "sin nota").trim()}`); }
+    if (!m) { pend++; pending.push(`- [${lvl.tag}] ${title}`); }
+  }));
+  lines.push(`Revisadas: ${total - pend} de ${total} · Fallas: ${bad}`, "");
+  lines.push("FALLAS:"); lines.push(...(fails.length ? fails : ["- Ninguna"])); lines.push("");
+  lines.push("SIN REVISAR:"); lines.push(...(pending.length ? pending : ["- Nada, revisé todo"]));
+  return lines.join("\n");
+}
+function renderReport() { document.getElementById("report-text").textContent = reportText(); }
+
+const nameEl = document.getElementById("tester-name");
+nameEl.value = state.name || "";
+nameEl.addEventListener("input", () => { state.name = nameEl.value; save(); renderReport(); });
+
+document.getElementById("go-report").addEventListener("click", () => document.getElementById("report").scrollIntoView({ behavior: "smooth", block: "start" }));
+const status = document.getElementById("status");
+document.getElementById("copy").addEventListener("click", () => {
+  const text = reportText();
+  const sel = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById("report-text")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); status.textContent = "Texto seleccionado: cópialo con Ctrl+C"; };
+  try { navigator.clipboard.writeText(text).then(() => { status.textContent = "Reporte copiado"; }, sel); } catch (e) { sel(); }
+});
+let armed = false;
+document.getElementById("reset").addEventListener("click", (ev) => {
+  if (!armed) { armed = true; ev.target.textContent = "Toca otra vez para borrar"; setTimeout(() => { armed = false; ev.target.textContent = "Borrar mis marcas"; }, 3000); return; }
+  state = { name: state.name, marks: {}, notes: {} }; save(); render(); armed = false; ev.target.textContent = "Borrar mis marcas"; status.textContent = "Marcas borradas";
+});
+
+render();
+</script>
