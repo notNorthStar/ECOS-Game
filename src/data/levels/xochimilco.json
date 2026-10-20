@@ -3,60 +3,366 @@
   "name": "Xochimilco · La Isla de las Muñecas",
   "width": 3000,
   "background": "fondo_xochimilco",
-  "ambience": { "fog": 0.34, "rain": false, "fireflies": false, "leaves": true, "dust": true, "tint": "#a8b898", "darkness": 0.36 },
+  "ambience": {
+    "fog": 0.34,
+    "rain": false,
+    "fireflies": false,
+    "leaves": true,
+    "dust": true,
+    "tint": "#a8b898",
+    "darkness": 0.36
+  },
   "music": "n06_xochimilco",
-  "walk": [[[0,222],[3000,222],[3000,345],[0,345]]],
+  "walk": [
+    [
+      [
+        0,
+        222
+      ],
+      [
+        3000,
+        222
+      ],
+      [
+        3000,
+        345
+      ],
+      [
+        0,
+        345
+      ]
+    ]
+  ],
   "obstacles": [
-    { "shape": "rect", "x": 980, "y": 236, "w": 80, "h": 18, "height": 58 },
-    { "shape": "rect", "x": 1760, "y": 268, "w": 50, "h": 16, "height": 28 }
+    {
+      "shape": "rect",
+      "x": 980,
+      "y": 236,
+      "w": 80,
+      "h": 18,
+      "height": 58
+    },
+    {
+      "shape": "rect",
+      "x": 1760,
+      "y": 268,
+      "w": 50,
+      "h": 16,
+      "height": 28
+    }
   ],
   "props": [
-    { "key": "prop_n06_embarcadero", "id": "n06_letrero", "x": 215, "y": 224 },
-    { "key": "prop_n06_trajinera", "x": 420, "y": 240 },
-    { "key": "prop_n06_ahuehuete", "x": 600, "y": 236 },
-    { "key": "prop_n06_munecas_colgadas", "x": 720, "y": 244 },
-    { "key": "prop_n06_trajinera", "id": "n06_trajinera_alta", "x": 1020, "y": 252 },
-    { "key": "prop_n06_ahuehuete", "x": 1180, "y": 236, "flipX": true },
-    { "key": "prop_n06_ofrenda_flotante", "id": "n06_ofrenda_fuego", "x": 1380, "y": 300 },
-    { "key": "altar_memoria", "id": "n06_altar", "x": 1500, "y": 255, "anim": "altar_memoria", "collide": { "rx": 18, "ry": 6 } },
-    { "key": "prop_n06_trajinera", "id": "n06_trajinera", "x": 1640, "y": 242, "flipX": true },
-    { "key": "prop_n06_munecas_colgadas", "x": 1920, "y": 244, "flipX": true },
-    { "key": "prop_n06_ahuehuete", "x": 2000, "y": 236 },
-    { "key": "prop_n06_arbol_munecas", "id": "n06_isla", "x": 2250, "y": 246, "collide": { "rx": 14, "ry": 4 } },
-    { "key": "prop_n06_trajinera", "x": 2450, "y": 240, "flipX": true },
-    { "key": "prop_n06_cempasuchil", "x": 2780, "y": 240 },
-    { "key": "prop_n06_junco", "x": 330, "y": 354, "foreground": true },
-    { "key": "prop_n06_junco", "x": 1200, "y": 352, "foreground": true, "flipX": true },
-    { "key": "prop_n06_junco", "x": 2100, "y": 354, "foreground": true },
-    { "key": "prop_n06_junco", "x": 2700, "y": 352, "foreground": true, "flipX": true }
+    {
+      "key": "prop_n06_trajinera",
+      "id": "n06_letrero",
+      "x": 215,
+      "y": 224
+    },
+    {
+      "key": "prop_n06_trajinera",
+      "x": 420,
+      "y": 240
+    },
+    {
+      "key": "prop_n06_ahuejote",
+      "x": 600,
+      "y": 236
+    },
+    {
+      "key": "prop_n06_arbol_munecas",
+      "x": 720,
+      "y": 244
+    },
+    {
+      "key": "prop_n06_trajinera",
+      "id": "n06_trajinera_alta",
+      "x": 1020,
+      "y": 252
+    },
+    {
+      "key": "prop_n06_ahuejote",
+      "x": 1180,
+      "y": 236,
+      "flipX": true
+    },
+    {
+      "key": "prop_n06_ofrenda_flotante",
+      "id": "n06_ofrenda_fuego",
+      "x": 1380,
+      "y": 300
+    },
+    {
+      "key": "altar_memoria",
+      "id": "n06_altar",
+      "x": 1500,
+      "y": 255,
+      "anim": "altar_memoria",
+      "collide": {
+        "rx": 18,
+        "ry": 6
+      }
+    },
+    {
+      "key": "prop_n06_trajinera",
+      "id": "n06_trajinera",
+      "x": 1640,
+      "y": 242,
+      "flipX": true
+    },
+    {
+      "key": "prop_n06_arbol_munecas",
+      "x": 1920,
+      "y": 244,
+      "flipX": true
+    },
+    {
+      "key": "prop_n06_ahuejote",
+      "x": 2000,
+      "y": 236
+    },
+    {
+      "key": "prop_n06_arbol_munecas",
+      "id": "n06_isla",
+      "x": 2250,
+      "y": 246,
+      "collide": {
+        "rx": 14,
+        "ry": 4
+      }
+    },
+    {
+      "key": "prop_n06_trajinera",
+      "x": 2450,
+      "y": 240,
+      "flipX": true
+    },
+    {
+      "key": "prop_n06_cempasuchil",
+      "x": 2780,
+      "y": 240
+    }
   ],
-  "spawn": { "x": 80, "y": 295 },
-  "spawns": { "inicio": { "x": 80, "y": 295 }, "checkpoint": { "x": 150, "y": 295 }, "altar": { "x": 1500, "y": 295 } },
+  "spawn": {
+    "x": 80,
+    "y": 295
+  },
+  "spawns": {
+    "inicio": {
+      "x": 80,
+      "y": 295
+    },
+    "checkpoint": {
+      "x": 150,
+      "y": 295
+    },
+    "altar": {
+      "x": 1500,
+      "y": 295
+    }
+  },
   "enemies": [
-    { "type": "muneca", "x": 880, "y": 265, "group": "muneca_a" },
-    { "type": "muneca", "x": 960, "y": 320, "group": "muneca_a" },
-    { "type": "muneca", "x": 1100, "y": 285, "group": "muneca_a" },
-    { "type": "muneca", "x": 1860, "y": 270, "group": "muneca_b" },
-    { "type": "muneca", "x": 1960, "y": 320, "group": "muneca_b" },
-    { "type": "muneca", "x": 2080, "y": 285, "group": "muneca_b" },
-    { "type": "muneca", "x": 2500, "y": 275, "group": "muneca_c" },
-    { "type": "muneca", "x": 2640, "y": 320, "group": "muneca_c" }
+    {
+      "type": "muneca",
+      "x": 880,
+      "y": 265,
+      "group": "muneca_a"
+    },
+    {
+      "type": "muneca",
+      "x": 960,
+      "y": 320,
+      "group": "muneca_a"
+    },
+    {
+      "type": "muneca",
+      "x": 1100,
+      "y": 285,
+      "group": "muneca_a"
+    },
+    {
+      "type": "muneca",
+      "x": 1860,
+      "y": 270,
+      "group": "muneca_b"
+    },
+    {
+      "type": "muneca",
+      "x": 1960,
+      "y": 320,
+      "group": "muneca_b"
+    },
+    {
+      "type": "muneca",
+      "x": 2080,
+      "y": 285,
+      "group": "muneca_b"
+    },
+    {
+      "type": "muneca",
+      "x": 2500,
+      "y": 275,
+      "group": "muneca_c"
+    },
+    {
+      "type": "muneca",
+      "x": 2640,
+      "y": 320,
+      "group": "muneca_c"
+    }
   ],
   "triggers": [
-    { "id": "n06_xochi_nombre", "x": 100, "y": 222, "w": 80, "h": 123, "action": "letras", "once": true, "data": { "title": "XOCHIMILCO", "subtitle": "La Isla de las Muñecas" } },
-    { "id": "n06_xochi_vista", "x": 330, "y": 222, "w": 40, "h": 123, "action": "dialogo", "once": true, "data": { "dialogue": "n06_xochi_vista", "maria": "canales" } },
-    { "id": "n06_emb_a", "x": 760, "y": 222, "w": 30, "h": 123, "action": "emboscada", "data": { "group": "muneca_a", "x0": 620, "x1": 1260 } },
-    { "id": "n06_emb_b", "x": 1700, "y": 222, "w": 30, "h": 123, "action": "emboscada", "data": { "group": "muneca_b", "x0": 1580, "x1": 2200 } },
-    { "id": "n06_emb_c", "x": 2330, "y": 222, "w": 30, "h": 123, "action": "emboscada", "data": { "group": "muneca_c", "x0": 2200, "x1": 2900 } },
-    { "id": "n06_a_avenidas", "x": 2940, "y": 222, "w": 40, "h": 123, "action": "ir_seccion", "data": { "section": "avenidas", "spawn": "inicio", "requires": "fuego" } }
+    {
+      "id": "n06_xochi_nombre",
+      "x": 100,
+      "y": 222,
+      "w": 80,
+      "h": 123,
+      "action": "letras",
+      "once": true,
+      "data": {
+        "title": "XOCHIMILCO",
+        "subtitle": "La Isla de las Muñecas"
+      }
+    },
+    {
+      "id": "n06_xochi_vista",
+      "x": 330,
+      "y": 222,
+      "w": 40,
+      "h": 123,
+      "action": "dialogo",
+      "once": true,
+      "data": {
+        "dialogue": "n06_xochi_vista",
+        "maria": "canales"
+      }
+    },
+    {
+      "id": "n06_emb_a",
+      "x": 760,
+      "y": 222,
+      "w": 30,
+      "h": 123,
+      "action": "emboscada",
+      "data": {
+        "group": "muneca_a",
+        "x0": 620,
+        "x1": 1260
+      }
+    },
+    {
+      "id": "n06_emb_b",
+      "x": 1700,
+      "y": 222,
+      "w": 30,
+      "h": 123,
+      "action": "emboscada",
+      "data": {
+        "group": "muneca_b",
+        "x0": 1580,
+        "x1": 2200
+      }
+    },
+    {
+      "id": "n06_emb_c",
+      "x": 2330,
+      "y": 222,
+      "w": 30,
+      "h": 123,
+      "action": "emboscada",
+      "data": {
+        "group": "muneca_c",
+        "x0": 2200,
+        "x1": 2900
+      }
+    },
+    {
+      "id": "n06_a_avenidas",
+      "x": 2940,
+      "y": 222,
+      "w": 40,
+      "h": 123,
+      "action": "ir_seccion",
+      "data": {
+        "section": "avenidas",
+        "spawn": "inicio",
+        "requires": "fuego"
+      }
+    }
   ],
   "interactables": [
-    { "id": "n06_letrero", "x": 215, "y": 252, "radius": 52, "prompt": "Examinar", "action": "n06_examinar", "data": { "dialogue": "n06_letrero", "descubrimiento": "letrero", "promptDy": 45 } },
-    { "id": "n06_cornisa_1", "x": 1020, "y": 245, "radius": 18, "prompt": "Registrar", "action": "n06_premio", "data": { "dialogue": "n06_cornisa_1", "promptDy": 40 } },
-    { "id": "n06_ofrenda_fuego", "x": 1380, "y": 300, "radius": 44, "prompt": "Encender las veladoras", "action": "n06_fuego", "data": {} },
-    { "id": "n06_altar", "x": 1500, "y": 270, "radius": 34, "prompt": "Ofrendar", "action": "altar", "data": { "promptDy": 56 } },
-    { "id": "n06_trajinera", "x": 1640, "y": 292, "radius": 40, "prompt": "Examinar", "action": "n06_examinar", "data": { "dialogue": "n06_trajinera", "descubrimiento": "trajinera" } },
-    { "id": "n06_isla", "x": 2250, "y": 296, "radius": 44, "prompt": "Examinar el árbol", "action": "n06_examinar", "data": { "dialogue": "n06_isla", "descubrimiento": "isla" } }
+    {
+      "id": "n06_letrero",
+      "x": 215,
+      "y": 252,
+      "radius": 52,
+      "prompt": "Examinar",
+      "action": "n06_examinar",
+      "data": {
+        "dialogue": "n06_letrero",
+        "descubrimiento": "letrero",
+        "promptDy": 45
+      }
+    },
+    {
+      "id": "n06_cornisa_1",
+      "x": 1020,
+      "y": 245,
+      "radius": 18,
+      "prompt": "Registrar",
+      "action": "n06_premio",
+      "data": {
+        "dialogue": "n06_cornisa_1",
+        "promptDy": 40
+      }
+    },
+    {
+      "id": "n06_ofrenda_fuego",
+      "x": 1380,
+      "y": 300,
+      "radius": 44,
+      "prompt": "Encender las veladoras",
+      "action": "n06_fuego",
+      "data": {}
+    },
+    {
+      "id": "n06_altar",
+      "x": 1500,
+      "y": 270,
+      "radius": 34,
+      "prompt": "Ofrendar",
+      "action": "altar",
+      "data": {
+        "promptDy": 56
+      }
+    },
+    {
+      "id": "n06_trajinera",
+      "x": 1640,
+      "y": 292,
+      "radius": 40,
+      "prompt": "Examinar",
+      "action": "n06_examinar",
+      "data": {
+        "dialogue": "n06_trajinera",
+        "descubrimiento": "trajinera"
+      }
+    },
+    {
+      "id": "n06_isla",
+      "x": 2250,
+      "y": 296,
+      "radius": 44,
+      "prompt": "Examinar el árbol",
+      "action": "n06_examinar",
+      "data": {
+        "dialogue": "n06_isla",
+        "descubrimiento": "isla"
+      }
+    }
   ],
-  "cameraBounds": { "x0": 0, "x1": 3000 }
+  "cameraBounds": {
+    "x0": 0,
+    "x1": 3000
+  }
 }

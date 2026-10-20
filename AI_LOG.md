@@ -80,6 +80,11 @@
 **Qué resultó:** contratos (`docs/NIVEL_04_CONTRATOS.md`), salida de Catemaco conectada a Oaxaca y cinco subagentes: escenario + artesanos (Opus), María en combate + MEMORIA (Opus), bestias + Bruja Guajolote (Opus), mapas + guion + pruebas (Sonnet) y audio con banda de viento (Sonnet). Partida completa en navegador; corregido el contador de misión que se encimaba con las barras del HUD.
 **Qué decidió o modificó el equipo:** incluir MEMORIA, sin tienda de mejoras de conjuros, María ayuda en combate, Templo de Santo Domingo. Los nombres de los artesanos (Gudelia, Facundo, Lucrecia) son propuesta y quedan por revisar.
 
+## 2026-10-19 21:30 · Claude Code (Anthropic, Claude Opus 5.5 + Sonnet 5.5) · Nivel 6, CDMX parte 1
+**Qué se pidió:** el Nivel 6 con la misma dinámica (Puebla se omite por tiempo; lo que entregaba se reubica).
+**Qué resultó:** contratos (`docs/NIVEL_06_CONTRATOS.md`), salida de Oaxaca hacia la CDMX y cinco subagentes: escenario + sobrevivientes (Opus), doble salto + obstáculos con altura + VERDAD/FUEGO/DESCANSO (Opus), muñecas + nahuales infiltrados + la Nahuala (Opus), mapas + guion + pruebas (Sonnet) y audio con organillo y percusión prehispánica (Sonnet). Partida completa en navegador; corregidas 17 claves de props inexistentes, el conteo de muñecas en las emboscadas y el umbral de salto de los láseres de la Cabeza Olmeca.
+**Qué decidió o modificó el equipo:** omitir Puebla; dar su fragmento en Oaxaca; mover doble salto, VERDAD, FUEGO y los diálogos de María a la CDMX; enseñar también DESCANSO; doble salto comprable con zonas opcionales; la Nahuala (antes de Puebla) como jefa de la CDMX; pista de Luna + VERDAD para los nahuales.
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**

@@ -64,3 +64,7 @@ Enemigos: 13 muñecas (4) + 3 chaneques (5) + 7 rojos (8) + 3 Negros (15) + 3 na
 - Confirmar con el agente de enemigos cómo salen del mundo las muñecas liberadas con DESCANSO y rotas con FUEGO (el director cuenta `alive && !purified`).
 - Probar VERDAD, FUEGO y DESCANSO con la cámara (DESCANSO tiene 8 letras).
 - El Nivel 7 no existe: la estación vuelve al título.
+
+## Estado verificado (2026-10-19)
+
+Partida completa en navegador, solo teclado: Xochimilco (3 emboscadas de muñecas, FUEGO, cornisa de doble salto) → avenidas (DESCANSO, VERDAD, nahual 1 descubierto con VERDAD, nahual 2 con zarpazo sorpresa al hablarle, ambos purificados con CALMA) → Reforma (Encapuchados Rojos y Negros, nahual 3, la Nahuala liberada con CALMA tras VERDAD + LUZ) → habitantes (Rey del Olvido) → estación → título. Corregido en la integración: 17 claves de props que no existían (se mapearon a arte existente) y las muñecas rotas no contaban en las emboscadas.

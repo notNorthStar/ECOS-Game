@@ -34,6 +34,7 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 - **Nivel 2, "San Andrés Tuxtla — La música perdida"** → `codex/nivel-2-san-andres-tuxtla` (ajustes y jugabilidad). Ver `docs/NIVEL_02.md`.
 - **Nivel 3, "Catemaco — El ritual del lago"** → `nivel-3-catemaco` (sale de la rama del Nivel 2; trae sus cambios cuando se suban). Ver `docs/NIVEL_03.md` y `docs/NIVEL_03_CONTRATOS.md`.
 - **Nivel 4, "Oaxaca — Los tejidos de la memoria"** → `nivel-4-oaxaca` (sale de la del Nivel 3). Ver `docs/NIVEL_04.md` y `docs/NIVEL_04_CONTRATOS.md`.
+- **Nivel 6, "CDMX parte 1 — De la Isla de las Muñecas a Reforma"** → `nivel-6-cdmx` (sale de la del Nivel 4; Oaxaca ya continúa a la CDMX). Ver `docs/NIVEL_06.md` y `docs/NIVEL_06_CONTRATOS.md`.
 - **Nivel 1 en `main`:** el equipo integra los assets reales (otra IA, en un clon aparte); correcciones mínimas en archivos compartidos.
 - No hagas merges entre ramas ni a `main` sin autorización explícita del equipo. El alcance original del jam era el Nivel 1; la continuación se trabaja por indicación del equipo.
 
@@ -121,7 +122,7 @@ La salida de Oaxaca debe llevar a CDMX (`Campaign.prepare…Entry`), no a Puebla
 | 3 | Catemaco: el ritual del lago | 🔨 Jugable de principio a fin (2026-10-19) | Rama `nivel-3-catemaco`: brujos (LUZ, SOL, escudo U con clic derecho) → lago y campamento (9 encapuchados, 6 pistas, jaulas) → Balam + Luna (F) → 8 espíritus → Cabeza Olmeca (3 fases) → María. Personajes importantes con placeholder (§8.0). 25 pruebas (`npm run test:nivel3`). Pendientes: cámara, equilibrio, salida a Oaxaca. Ver `docs/NIVEL_03.md` y `docs/NIVEL_03_CONTRATOS.md` |
 | 4 | Oaxaca: los tejidos de la memoria | 🔨 Jugable de principio a fin (2026-10-19) | Rama `nivel-4-oaxaca` (sale del Nivel 3; Catemaco ya continúa a Oaxaca): calles + 3 artesanos (MEMORIA) → callejones (bestias, pasaje oculto) → Santo Domingo → Bruja Guajolote (humana/ave) → 2.º fragmento. María acompaña y ayuda en combate (lamento). 26 pruebas (`npm run test:nivel4`). Pendientes: cámara, equilibrio, salida a CDMX. Ver `docs/NIVEL_04.md` y `docs/NIVEL_04_CONTRATOS.md` |
 | 5 | Puebla: de la rueda caída a los Fuertes | ⏭️ **Se omite** (decisión del equipo, 2026-10-19) | No se implementa por tiempo; Oaxaca salta directo a CDMX. Su 3.er fragmento se da en Oaxaca; doble salto, VERDAD, FUEGO, Encapuchados Negros y los diálogos de María pasan a CDMX. Ver la nota al inicio de este archivo |
-| 6 | CDMX 1: Isla de las Muñecas a Reforma | ⬜ Visión — **siguiente nivel** | Nahuales infiltrados. Se llega desde Oaxaca. **Además recibe de Puebla:** VERDAD y FUEGO, doble salto en los altares, Encapuchados Negros y la desesperación de María |
+| 6 | CDMX 1: Isla de las Muñecas a Reforma | 🔨 Jugable de principio a fin (2026-10-19) — rama `nivel-6-cdmx` | Nahuales infiltrados. Se llega desde Oaxaca. **Además recibe de Puebla:** VERDAD y FUEGO, doble salto en los altares, Encapuchados Negros y la desesperación de María |
 | 7 | CDMX 2: teleférico, Rey del Olvido y Llorona | ⬜ Visión | Secuencia CONSUELO → MEMORIA → PAZ |
 | 8 | Guanajuato: minas y Calle del Truco | ⬜ Visión | |
 | 9 | Jalisco: haciendas y Panteón de Belén | ⬜ Visión | |

@@ -3,72 +3,469 @@
   "name": "Avenidas · Día de Muertos",
   "width": 3200,
   "background": "fondo_avenidas",
-  "ambience": { "fog": 0.24, "rain": false, "fireflies": true, "leaves": false, "dust": true, "tint": "#d8a860", "darkness": 0.4 },
+  "ambience": {
+    "fog": 0.24,
+    "rain": false,
+    "fireflies": true,
+    "leaves": false,
+    "dust": true,
+    "tint": "#d8a860",
+    "darkness": 0.4
+  },
   "music": "n06_avenidas",
-  "walk": [[[0,222],[3200,222],[3200,345],[0,345]]],
+  "walk": [
+    [
+      [
+        0,
+        222
+      ],
+      [
+        3200,
+        222
+      ],
+      [
+        3200,
+        345
+      ],
+      [
+        0,
+        345
+      ]
+    ]
+  ],
   "obstacles": [
-    { "shape": "rect", "x": 540, "y": 232, "w": 90, "h": 18, "height": 60 },
-    { "shape": "rect", "x": 2860, "y": 236, "w": 90, "h": 18, "height": 60 }
+    {
+      "shape": "rect",
+      "x": 540,
+      "y": 232,
+      "w": 90,
+      "h": 18,
+      "height": 60
+    },
+    {
+      "shape": "rect",
+      "x": 2860,
+      "y": 236,
+      "w": 90,
+      "h": 18,
+      "height": 60
+    }
   ],
   "props": [
-    { "key": "prop_n06_arco_papel_picado", "id": "n06_arco", "x": 215, "y": 224 },
-    { "key": "prop_n06_papel_picado", "x": 440, "y": 230 },
-    { "key": "prop_n06_cornisa", "id": "n06_cornisa_prop_1", "x": 585, "y": 250 },
-    { "key": "prop_n06_ofrenda_grande", "id": "n06_ofrenda_descanso", "x": 720, "y": 250 },
-    { "key": "prop_n06_cempasuchil", "x": 860, "y": 242 },
-    { "key": "prop_n06_organillo", "id": "n06_organillo", "x": 960, "y": 300 },
-    { "key": "npc_sobreviviente_1", "id": "n06_cronista", "x": 1080, "y": 296, "anim": "npc_sobreviviente_1" },
-    { "key": "prop_n06_papel_picado", "x": 1180, "y": 230, "flipX": true },
-    { "key": "prop_n06_camioneta", "id": "n06_camioneta", "x": 1400, "y": 248, "flipX": true },
-    { "key": "npc_sobreviviente_3", "id": "n06_sobreviviente_a", "x": 1450, "y": 304, "anim": "npc_sobreviviente_3" },
-    { "key": "prop_n06_carreta_elotes", "x": 1620, "y": 252 },
-    { "key": "prop_n06_cempasuchil", "x": 1780, "y": 242, "flipX": true },
-    { "key": "altar_memoria", "id": "n06_altar", "x": 1950, "y": 255, "anim": "altar_memoria", "collide": { "rx": 18, "ry": 6 } },
-    { "key": "prop_n06_papel_picado", "x": 2100, "y": 230 },
-    { "key": "npc_sobreviviente_3", "id": "n06_sobreviviente_b", "x": 2250, "y": 300, "anim": "npc_sobreviviente_3" },
-    { "key": "prop_n06_puente_flores", "x": 2470, "y": 246 },
-    { "key": "prop_n06_catrina", "x": 2700, "y": 240 },
-    { "key": "prop_n06_cornisa", "id": "n06_cornisa_prop_2", "x": 2905, "y": 254 },
-    { "key": "prop_n06_cempasuchil", "x": 3040, "y": 242 },
-    { "key": "prop_n06_cempasuchil", "x": 360, "y": 354, "foreground": true },
-    { "key": "prop_n06_papel_picado", "x": 1500, "y": 354, "foreground": true },
-    { "key": "prop_n06_cempasuchil", "x": 2300, "y": 352, "foreground": true, "flipX": true }
+    {
+      "key": "prop_n06_papel_picado",
+      "id": "n06_arco",
+      "x": 215,
+      "y": 224
+    },
+    {
+      "key": "prop_n06_papel_picado",
+      "x": 440,
+      "y": 230
+    },
+    {
+      "key": "prop_n06_cornisa",
+      "id": "n06_cornisa_prop_1",
+      "x": 585,
+      "y": 250
+    },
+    {
+      "key": "prop_n06_ofrenda_grande",
+      "id": "n06_ofrenda_descanso",
+      "x": 720,
+      "y": 250
+    },
+    {
+      "key": "prop_n06_cempasuchil",
+      "x": 860,
+      "y": 242
+    },
+    {
+      "key": "npc_sobreviviente_4",
+      "id": "n06_organillo",
+      "x": 960,
+      "y": 300,
+      "anim": "npc_sobreviviente_4"
+    },
+    {
+      "key": "npc_sobreviviente_1",
+      "id": "n06_cronista",
+      "x": 1080,
+      "y": 296,
+      "anim": "npc_sobreviviente_1"
+    },
+    {
+      "key": "prop_n06_papel_picado",
+      "x": 1180,
+      "y": 230,
+      "flipX": true
+    },
+    {
+      "key": "prop_n06_auto_2",
+      "id": "n06_camioneta",
+      "x": 1400,
+      "y": 248,
+      "flipX": true
+    },
+    {
+      "key": "npc_sobreviviente_3",
+      "id": "n06_sobreviviente_a",
+      "x": 1450,
+      "y": 304,
+      "anim": "npc_sobreviviente_3"
+    },
+    {
+      "key": "prop_n06_auto",
+      "x": 1620,
+      "y": 252
+    },
+    {
+      "key": "prop_n06_cempasuchil",
+      "x": 1780,
+      "y": 242,
+      "flipX": true
+    },
+    {
+      "key": "altar_memoria",
+      "id": "n06_altar",
+      "x": 1950,
+      "y": 255,
+      "anim": "altar_memoria",
+      "collide": {
+        "rx": 18,
+        "ry": 6
+      }
+    },
+    {
+      "key": "prop_n06_papel_picado",
+      "x": 2100,
+      "y": 230
+    },
+    {
+      "key": "npc_sobreviviente_3",
+      "id": "n06_sobreviviente_b",
+      "x": 2250,
+      "y": 300,
+      "anim": "npc_sobreviviente_3"
+    },
+    {
+      "key": "prop_n06_maceta_cempasuchil",
+      "x": 2470,
+      "y": 246
+    },
+    {
+      "key": "prop_n06_calaveritas",
+      "x": 2700,
+      "y": 240
+    },
+    {
+      "key": "prop_n06_cornisa",
+      "id": "n06_cornisa_prop_2",
+      "x": 2905,
+      "y": 254
+    },
+    {
+      "key": "prop_n06_cempasuchil",
+      "x": 3040,
+      "y": 242
+    },
+    {
+      "key": "prop_n06_cempasuchil",
+      "x": 360,
+      "y": 354,
+      "foreground": true
+    },
+    {
+      "key": "prop_n06_papel_picado",
+      "x": 1500,
+      "y": 354,
+      "foreground": true
+    },
+    {
+      "key": "prop_n06_cempasuchil",
+      "x": 2300,
+      "y": 352,
+      "foreground": true,
+      "flipX": true
+    }
   ],
-  "spawn": { "x": 80, "y": 295 },
-  "spawns": { "inicio": { "x": 80, "y": 295 }, "checkpoint": { "x": 150, "y": 295 }, "altar": { "x": 1950, "y": 295 } },
+  "spawn": {
+    "x": 80,
+    "y": 295
+  },
+  "spawns": {
+    "inicio": {
+      "x": 80,
+      "y": 295
+    },
+    "checkpoint": {
+      "x": 150,
+      "y": 295
+    },
+    "altar": {
+      "x": 1950,
+      "y": 295
+    }
+  },
   "enemies": [
-    { "type": "encapuchado", "rank": "rojo", "x": 760, "y": 320 },
-    { "type": "muneca", "x": 880, "y": 265 },
-    { "type": "muneca", "x": 980, "y": 322 },
-    { "type": "chaneque", "variant": "patrulla", "x": 1360, "y": 270 },
-    { "type": "nahual", "id": "nahual_1", "disguise": "npc_sobreviviente_2", "x": 1660, "y": 292 },
-    { "type": "encapuchado", "rank": "rojo", "x": 1840, "y": 290 },
-    { "type": "chaneque", "variant": "saltador", "x": 2020, "y": 300 },
-    { "type": "muneca", "x": 2080, "y": 318 },
-    { "type": "muneca", "x": 2180, "y": 262 },
-    { "type": "chaneque", "variant": "travieso", "x": 2380, "y": 285 },
-    { "type": "nahual", "id": "nahual_2", "disguise": "npc_sobreviviente_4", "x": 2520, "y": 305 },
-    { "type": "encapuchado", "rank": "rojo", "x": 2660, "y": 265 },
-    { "type": "muneca", "x": 2780, "y": 300 }
+    {
+      "type": "encapuchado",
+      "rank": "rojo",
+      "x": 760,
+      "y": 320
+    },
+    {
+      "type": "muneca",
+      "x": 880,
+      "y": 265
+    },
+    {
+      "type": "muneca",
+      "x": 980,
+      "y": 322
+    },
+    {
+      "type": "chaneque",
+      "variant": "patrulla",
+      "x": 1360,
+      "y": 270
+    },
+    {
+      "type": "nahual",
+      "id": "nahual_1",
+      "disguise": "npc_sobreviviente_2",
+      "x": 1660,
+      "y": 292
+    },
+    {
+      "type": "encapuchado",
+      "rank": "rojo",
+      "x": 1840,
+      "y": 290
+    },
+    {
+      "type": "chaneque",
+      "variant": "saltador",
+      "x": 2020,
+      "y": 300
+    },
+    {
+      "type": "muneca",
+      "x": 2080,
+      "y": 318
+    },
+    {
+      "type": "muneca",
+      "x": 2180,
+      "y": 262
+    },
+    {
+      "type": "chaneque",
+      "variant": "travieso",
+      "x": 2380,
+      "y": 285
+    },
+    {
+      "type": "nahual",
+      "id": "nahual_2",
+      "disguise": "npc_sobreviviente_4",
+      "x": 2520,
+      "y": 305
+    },
+    {
+      "type": "encapuchado",
+      "rank": "rojo",
+      "x": 2660,
+      "y": 265
+    },
+    {
+      "type": "muneca",
+      "x": 2780,
+      "y": 300
+    }
   ],
   "triggers": [
-    { "id": "n06_avenidas_nombre", "x": 100, "y": 222, "w": 80, "h": 123, "action": "letras", "once": true, "data": { "title": "AVENIDAS", "subtitle": "Día de Muertos" } },
-    { "id": "n06_avenidas_vista", "x": 330, "y": 222, "w": 40, "h": 123, "action": "dialogo", "once": true, "data": { "dialogue": "n06_avenidas_vista", "maria": "avenidas" } },
-    { "id": "n06_tip_nahual", "x": 1390, "y": 222, "w": 30, "h": 123, "action": "dialogo", "data": { "flag": "tip_nahual", "toast": "Con Luna (F) puedes ver la sombra de los nahuales disfrazados; VERDAD los descubre" } },
-    { "id": "n06_a_reforma", "x": 3140, "y": 222, "w": 40, "h": 123, "action": "ir_seccion", "data": { "section": "reforma", "spawn": "inicio" } }
+    {
+      "id": "n06_avenidas_nombre",
+      "x": 100,
+      "y": 222,
+      "w": 80,
+      "h": 123,
+      "action": "letras",
+      "once": true,
+      "data": {
+        "title": "AVENIDAS",
+        "subtitle": "Día de Muertos"
+      }
+    },
+    {
+      "id": "n06_avenidas_vista",
+      "x": 330,
+      "y": 222,
+      "w": 40,
+      "h": 123,
+      "action": "dialogo",
+      "once": true,
+      "data": {
+        "dialogue": "n06_avenidas_vista",
+        "maria": "avenidas"
+      }
+    },
+    {
+      "id": "n06_tip_nahual",
+      "x": 1390,
+      "y": 222,
+      "w": 30,
+      "h": 123,
+      "action": "dialogo",
+      "data": {
+        "flag": "tip_nahual",
+        "toast": "Con Luna (F) puedes ver la sombra de los nahuales disfrazados; VERDAD los descubre"
+      }
+    },
+    {
+      "id": "n06_a_reforma",
+      "x": 3140,
+      "y": 222,
+      "w": 40,
+      "h": 123,
+      "action": "ir_seccion",
+      "data": {
+        "section": "reforma",
+        "spawn": "inicio"
+      }
+    }
   ],
   "interactables": [
-    { "id": "n06_arco", "x": 215, "y": 252, "radius": 52, "prompt": "Examinar", "action": "n06_examinar", "data": { "dialogue": "n06_arco", "descubrimiento": "arco", "promptDy": 45 } },
-    { "id": "n06_cornisa_2", "x": 585, "y": 241, "radius": 18, "prompt": "Registrar", "action": "n06_premio", "data": { "dialogue": "n06_cornisa_2", "promptDy": 40 } },
-    { "id": "n06_ofrenda_descanso", "x": 720, "y": 292, "radius": 46, "prompt": "Rezar ante la ofrenda", "action": "n06_descanso", "data": {} },
-    { "id": "n06_organillo", "x": 960, "y": 312, "radius": 38, "prompt": "Escuchar", "action": "n06_examinar", "data": { "dialogue": "n06_organillo", "descubrimiento": "organillo" } },
-    { "id": "n06_cronista", "x": 1080, "y": 296, "radius": 40, "prompt": "Hablar", "action": "n06_cronista", "data": {} },
-    { "id": "n06_sobreviviente_a", "x": 1450, "y": 304, "radius": 40, "prompt": "Hablar", "action": "n06_examinar", "data": { "dialogue": "n06_sobreviviente_a", "descubrimiento": "sobreviviente_a" } },
-    { "id": "n06_nahual_1", "x": 1660, "y": 292, "radius": 40, "prompt": "Hablar", "action": "n06_nahual", "data": { "nahualId": "nahual_1", "dialogue": "n06_nahual_1" } },
-    { "id": "n06_altar", "x": 1950, "y": 270, "radius": 34, "prompt": "Ofrendar", "action": "altar", "data": { "promptDy": 56 } },
-    { "id": "n06_sobreviviente_b", "x": 2250, "y": 300, "radius": 40, "prompt": "Hablar", "action": "n06_examinar", "data": { "dialogue": "n06_sobreviviente_b", "descubrimiento": "sobreviviente_b" } },
-    { "id": "n06_nahual_2", "x": 2520, "y": 305, "radius": 40, "prompt": "Hablar", "action": "n06_nahual", "data": { "nahualId": "nahual_2", "dialogue": "n06_nahual_2" } },
-    { "id": "n06_cornisa_3", "x": 2905, "y": 245, "radius": 18, "prompt": "Registrar", "action": "n06_premio", "data": { "dialogue": "n06_cornisa_3", "promptDy": 40 } }
+    {
+      "id": "n06_arco",
+      "x": 215,
+      "y": 252,
+      "radius": 52,
+      "prompt": "Examinar",
+      "action": "n06_examinar",
+      "data": {
+        "dialogue": "n06_arco",
+        "descubrimiento": "arco",
+        "promptDy": 45
+      }
+    },
+    {
+      "id": "n06_cornisa_2",
+      "x": 585,
+      "y": 241,
+      "radius": 18,
+      "prompt": "Registrar",
+      "action": "n06_premio",
+      "data": {
+        "dialogue": "n06_cornisa_2",
+        "promptDy": 40
+      }
+    },
+    {
+      "id": "n06_ofrenda_descanso",
+      "x": 720,
+      "y": 292,
+      "radius": 46,
+      "prompt": "Rezar ante la ofrenda",
+      "action": "n06_descanso",
+      "data": {}
+    },
+    {
+      "id": "n06_organillo",
+      "x": 960,
+      "y": 312,
+      "radius": 38,
+      "prompt": "Escuchar",
+      "action": "n06_examinar",
+      "data": {
+        "dialogue": "n06_organillo",
+        "descubrimiento": "organillo"
+      }
+    },
+    {
+      "id": "n06_cronista",
+      "x": 1080,
+      "y": 296,
+      "radius": 40,
+      "prompt": "Hablar",
+      "action": "n06_cronista",
+      "data": {}
+    },
+    {
+      "id": "n06_sobreviviente_a",
+      "x": 1450,
+      "y": 304,
+      "radius": 40,
+      "prompt": "Hablar",
+      "action": "n06_examinar",
+      "data": {
+        "dialogue": "n06_sobreviviente_a",
+        "descubrimiento": "sobreviviente_a"
+      }
+    },
+    {
+      "id": "n06_nahual_1",
+      "x": 1660,
+      "y": 292,
+      "radius": 40,
+      "prompt": "Hablar",
+      "action": "n06_nahual",
+      "data": {
+        "nahualId": "nahual_1",
+        "dialogue": "n06_nahual_1"
+      }
+    },
+    {
+      "id": "n06_altar",
+      "x": 1950,
+      "y": 270,
+      "radius": 34,
+      "prompt": "Ofrendar",
+      "action": "altar",
+      "data": {
+        "promptDy": 56
+      }
+    },
+    {
+      "id": "n06_sobreviviente_b",
+      "x": 2250,
+      "y": 300,
+      "radius": 40,
+      "prompt": "Hablar",
+      "action": "n06_examinar",
+      "data": {
+        "dialogue": "n06_sobreviviente_b",
+        "descubrimiento": "sobreviviente_b"
+      }
+    },
+    {
+      "id": "n06_nahual_2",
+      "x": 2520,
+      "y": 305,
+      "radius": 40,
+      "prompt": "Hablar",
+      "action": "n06_nahual",
+      "data": {
+        "nahualId": "nahual_2",
+        "dialogue": "n06_nahual_2"
+      }
+    },
+    {
+      "id": "n06_cornisa_3",
+      "x": 2905,
+      "y": 245,
+      "radius": 18,
+      "prompt": "Registrar",
+      "action": "n06_premio",
+      "data": {
+        "dialogue": "n06_cornisa_3",
+        "promptDy": 40
+      }
+    }
   ],
-  "cameraBounds": { "x0": 0, "x1": 3200 }
+  "cameraBounds": {
+    "x0": 0,
+    "x1": 3200
+  }
 }

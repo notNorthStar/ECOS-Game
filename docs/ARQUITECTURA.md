@@ -1,4 +1,13 @@
-# Arquitectura del juego (Niveles 1 a 4)
+# Arquitectura del juego (Niveles 1 a 4 y 6; el 5 se omite)
+
+## Continuación: CDMX parte 1 (Nivel 6)
+
+En la rama `nivel-6-cdmx`, `Level` carga además `xochimilco`, `avenidas` y `reforma` (`CDMX_SECTIONS` / `isCdmx()`); `installDirector()` las deriva a `CdmxDirector` y `LevelScene` instala `CdmxScenery`.
+- **Doble salto:** mejora `doble_salto` del Altar (`unlockFrom: cdmx`, flag `cdmx:visitada`). `Player` hace un segundo salto en el aire.
+- **Obstáculos con altura:** `LevelData.obstacles[].height` (`WalkMap`/`World`): el jugador los cruza si su z ≥ height y puede pararse encima; sin `height` siguen siendo muros. Alturas recomendadas en `config/movement.ts` (20–35 salto normal; 55–65 doble salto).
+- Enemigos `muneca` (se rompe o se libera con DESCANSO), `nahual` (`EnemySpec.id` + `disguise`; `nahual:reveal`/`revealed`/`fled`; sombra animal con Luna) y `nahuala` (copias ilusorias con `illusion = true`, trampas; se libera con CALMA).
+- Conjuros VERDAD, FUEGO y DESCANSO en `data/spells.json`. `Campaign.prepareCdmxEntry()` (título 9/0 y salida de Oaxaca). Flags `n06:`.
+Contratos: `docs/NIVEL_06_CONTRATOS.md`. Ruta y pruebas: `docs/NIVEL_06.md` y `npm run test:nivel6`.
 
 ## Continuación: Oaxaca (Nivel 4)
 
