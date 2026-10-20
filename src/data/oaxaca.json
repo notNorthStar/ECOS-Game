@@ -8,7 +8,7 @@
   "toastMs": 4200,
   "hud": {
     "x": 12,
-    "y": 74,
+    "y": 90,
     "fontSize": 10
   },
   "gates": {

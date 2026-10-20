@@ -6,7 +6,7 @@
   "jaulas": ["a", "b", "c"],
   "guardRadius": 150,
   "toastMs": 4200,
-  "hud": { "x": 12, "y": 74, "fontSize": 10 },
+  "hud": { "x": 12, "y": 90, "fontSize": 10 },
   "gates": { "catemacoX": 1700 },
   "escudo": {
     "piedras": 3,

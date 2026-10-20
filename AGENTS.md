@@ -33,6 +33,8 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 **Trabajo autorizado en curso (2026-10-19), una rama por nivel:**
 - **Nivel 2, "San Andrés Tuxtla — La música perdida"** → `codex/nivel-2-san-andres-tuxtla` (ajustes y jugabilidad). Ver `docs/NIVEL_02.md`.
 - **Nivel 3, "Catemaco — El ritual del lago"** → `nivel-3-catemaco` (sale de la rama del Nivel 2; trae sus cambios cuando se suban). Ver `docs/NIVEL_03.md` y `docs/NIVEL_03_CONTRATOS.md`.
+- **Nivel 4, "Oaxaca — Los tejidos de la memoria"** → `nivel-4-oaxaca` (sale de la del Nivel 3). Ver `docs/NIVEL_04.md` y `docs/NIVEL_04_CONTRATOS.md`.
+- **Nivel 1 en `main`:** el equipo integra los assets reales (otra IA, en un clon aparte); correcciones mínimas en archivos compartidos.
 - No hagas merges entre ramas ni a `main` sin autorización explícita del equipo. El alcance original del jam era el Nivel 1; la continuación se trabaja por indicación del equipo.
 
 **Última actualización de contexto (2026-10-19):** el equipo pidió registrar como nueva idea de actualización la ampliación del Nivel 2, mayor dispersión de los cinco fragmentos musicales y un Chaneque Mayor en los fragmentos 2 (`monte`) y 5 (`memoria`). Se documentó en `docs/IDEAS_ACTUALIZACION.md` como ACT-N2-001; aún no cambia la implementación ni el NDD.
@@ -109,7 +111,7 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 | 1 | Xalapa: el misterio del Parque Juárez | **🔨 Jugable de principio a fin (2026-10-19)** | Taller → calles → altar → parque (2 arenas) → PROTECCION → jefe → antena → busto → final. Arte generado (placeholders) esperando el del equipo; falta probar con cámara, pulido y .exe. Arquitectura: `docs/ARQUITECTURA.md` |
 | 2 | San Andrés Tuxtla: la música perdida | 🔨 Primer hito + segunda pasada visual (2026-10-19) | Rama separada: cinco estrofas, fandango por capas, VOZ, primer fragmento, altar y conexión desde Xalapa. Seis PNG parallax con paleta oficial y decorado detallado regenerado. TypeScript, build y 14 pruebas correctos; revisión parcial en navegador. Pendientes partida completa, cámara, revisión de arte y equilibrio. Ver docs/NIVEL_02.md |
 | 3 | Catemaco: el ritual del lago | 🔨 Jugable de principio a fin (2026-10-19) | Rama `nivel-3-catemaco`: brujos (LUZ, SOL, escudo U con clic derecho) → lago y campamento (9 encapuchados, 6 pistas, jaulas) → Balam + Luna (F) → 8 espíritus → Cabeza Olmeca (3 fases) → María. Personajes importantes con placeholder (§8.0). 25 pruebas (`npm run test:nivel3`). Pendientes: cámara, equilibrio, salida a Oaxaca. Ver `docs/NIVEL_03.md` y `docs/NIVEL_03_CONTRATOS.md` |
-| 4 | Oaxaca: los tejidos de la memoria | ⬜ Visión | |
+| 4 | Oaxaca: los tejidos de la memoria | 🔨 Jugable de principio a fin (2026-10-19) | Rama `nivel-4-oaxaca` (sale del Nivel 3; Catemaco ya continúa a Oaxaca): calles + 3 artesanos (MEMORIA) → callejones (bestias, pasaje oculto) → Santo Domingo → Bruja Guajolote (humana/ave) → 2.º fragmento. María acompaña y ayuda en combate (lamento). 26 pruebas (`npm run test:nivel4`). Pendientes: cámara, equilibrio, salida a CDMX. Ver `docs/NIVEL_04.md` y `docs/NIVEL_04_CONTRATOS.md` |
 | 5 | Puebla: de la rueda caída a los Fuertes | ⬜ Visión | Doble salto en los altares |
 | 6 | CDMX 1: Isla de las Muñecas a Reforma | ⬜ Visión | Nahuales infiltrados |
 | 7 | CDMX 2: teleférico, Rey del Olvido y Llorona | ⬜ Visión | Secuencia CONSUELO → MEMORIA → PAZ |

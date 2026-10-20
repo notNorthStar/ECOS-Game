@@ -1,4 +1,13 @@
-# Arquitectura del juego (Niveles 1, 2 y 3)
+# Arquitectura del juego (Niveles 1 a 4)
+
+## Continuación: Oaxaca (Nivel 4)
+
+En la rama `nivel-4-oaxaca`, `Level` carga además `oaxaca`, `callejones` y `santo_domingo` (`OAXACA_SECTIONS` / `isOaxaca()`); `installDirector()` las deriva a `OaxacaDirector` y `LevelScene` instala `OaxacaScenery`.
+- `systems/Maria.ts`: María compañera (`GameState.hasMaria`), sigue al jugador y lanza un lamento que aturde sin daño; `mariaSay()` para sus comentarios. Se instala en todas las secciones salvo las de Catemaco (ahí la maneja su director).
+- Enemigos `bestia` (se purifica con MEMORIA; las del pasaje llevan `group`) y `bruja_guajolote` (jefa con forma humana/ave, sello de 7 puntos).
+- Conjuro MEMORIA en `data/spells.json`. Eventos nuevos: `maria:assist`, `maria:say`, `pasaje:revealed`, `bruja:form`.
+- `Campaign.prepareOaxacaEntry()`: entrada desde la salida de Catemaco o el título (7/8). Flags `n04:`.
+Contratos: `docs/NIVEL_04_CONTRATOS.md`. Ruta y pruebas: `docs/NIVEL_04.md` y `npm run test:nivel4`.
 
 ## Continuación: Catemaco (Nivel 3)
 

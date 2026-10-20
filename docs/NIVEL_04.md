@@ -56,3 +56,7 @@ Enemigos: 10 bestias (12 Ecos, +50 % al purificar ≈ 180) + 11 encapuchados roj
 - Revisar `public/assets/escenarios/nivel-04-oaxaca/LEEME.md` cuando exista y ajustar las claves.
 - Pasar al CDMX (Nivel 6) cuando exista: hoy la salida del templo vuelve al título.
 - Probar MEMORIA con la cámara (MEMORIA tiene 7 letras).
+
+## Estado verificado (2026-10-19)
+
+Partida completa en navegador, solo teclado: artesanos (MEMORIA) → 7 enemigos de las calles → callejones (11 enemigos, comentario de María con los juguetes, pasaje revelado) → Santo Domingo → Bruja Guajolote (alterna humana/ave; LUZ y SOL en sus ventanas) → 2.º fragmento → título. Corregido: el contador de misión se encimaba con las barras de escudo/Luna/María (ahora en y = 90).

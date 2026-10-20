@@ -75,6 +75,11 @@
 **Qué resultó:** contratos (`docs/NIVEL_03_CONTRATOS.md`) y cinco subagentes en paralelo: escenario y NPCs comunes (Opus), escudo U + Luna + Balam (Opus), encapuchados + espíritus + Cabeza Olmeca (Opus), mapas + guion + diálogos + pruebas (Sonnet) y audio (Sonnet). Integración, partida completa en navegador y correcciones: campos de SOL desalineados, filtro de Luna demasiado fuerte, diálogos encadenados que podían dejar bloqueado al jugador, alias de efectos y `boss:phase` con 3 fases. La música MP3 del equipo quedó conectada al Nivel 1.
 **Qué decidió o modificó el equipo:** alcance completo, incluir SOL, escudo con clic derecho, y que los personajes importantes (enemigos, aliados, jefes) solo lleven placeholder porque su arte final lo hace el equipo. Los nombres de los brujos (Cirilo, Eulalia, Atanasio, Doña Chayo) son propuesta y quedan por revisar.
 
+## 2026-10-19 19:00 · Claude Code (Anthropic, Claude Opus 5.5 + Sonnet 5.5) · Nivel 4, Oaxaca
+**Qué se pidió:** el Nivel 4 con la misma dinámica del Nivel 3 (preguntas, plan, contratos, subagentes por modelo).
+**Qué resultó:** contratos (`docs/NIVEL_04_CONTRATOS.md`), salida de Catemaco conectada a Oaxaca y cinco subagentes: escenario + artesanos (Opus), María en combate + MEMORIA (Opus), bestias + Bruja Guajolote (Opus), mapas + guion + pruebas (Sonnet) y audio con banda de viento (Sonnet). Partida completa en navegador; corregido el contador de misión que se encimaba con las barras del HUD.
+**Qué decidió o modificó el equipo:** incluir MEMORIA, sin tienda de mejoras de conjuros, María ayuda en combate, Templo de Santo Domingo. Los nombres de los artesanos (Gudelia, Facundo, Lucrecia) son propuesta y quedan por revisar.
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**
