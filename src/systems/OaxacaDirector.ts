@@ -181,8 +181,12 @@ class OaxacaDirector {
     } finally {
       if (this.alive) {
         this.busy = false;
-        this.world.player.controlsLocked = this.saved.locked;
-        this.world.timeScale = this.saved.scale;
+        // No restaurar un bloqueo ajeno: si la secuencia empezó mientras terminaba un conjuro (p. ej. el que
+        // vence al jefe), el estado guardado era 'bloqueado / cámara lenta' y el jugador quedaba congelado.
+        // Solo un conjuro en curso puede seguir bloqueando; Casting restaura lo suyo al terminar.
+        const casting = GameState.casting;
+        this.world.player.controlsLocked = casting ? this.saved.locked : false;
+        this.world.timeScale = casting ? this.saved.scale : 1;
         this.refresh();
       }
     }
@@ -508,7 +512,7 @@ class OaxacaDirector {
         sfx('altar');
         const sm = this.world.scene.scene;
         // El menú reanuda Level y requiere que el bloqueo ya esté restaurado.
-        this.world.player.controlsLocked = this.saved.locked;
+        this.world.player.controlsLocked = GameState.casting ? this.saved.locked : false;
         sm.launch('Altar', { section: this.world.level.id, x: it.x, y: it.y });
         sm.bringToTop('Altar');
         sm.pause();

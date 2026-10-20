@@ -11,7 +11,7 @@ Juego de **exploración y acción 2D con profundidad**, en pixel art, ambientado
 > - **Nivel 4 · Oaxaca:** jugable de principio a fin en `nivel-4-oaxaca` (sale del Nivel 3; Catemaco continúa a Oaxaca). Guía: `docs/NIVEL_04.md`.
 > - **Nivel 6 · CDMX (parte 1):** jugable de principio a fin en `nivel-6-cdmx` (Oaxaca continúa a la CDMX). Guía: `docs/NIVEL_06.md`.
 > - **Nivel 5 · Puebla:** ⏭️ **se omite por tiempo** (decisión del equipo, 2026-10-19). Oaxaca lleva directo a **CDMX (Nivel 6)**, que es el siguiente. Ver la nota de alcance en `AGENTS.md`.
-> - En el título: 1–2 Xalapa, 3–4 Los Tuxtlas, 5–6 Catemaco, 7–8 Oaxaca, 9–0 CDMX (con cámara / solo teclado). Estado detallado: `AGENTS.md` §5.1.
+> - **Título:** 1 · Jugar con cámara · 2 · Solo teclado · **3 · Seleccionar nivel**: cualquier nivel y sección (incluidos los jefes) para probar sin pasarse el juego completo, con interruptor de cámara. Estado detallado: `AGENTS.md` §5.1.
 
 ## Controles
 

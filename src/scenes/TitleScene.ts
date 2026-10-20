@@ -4,6 +4,7 @@ import { GameState, resetGameState } from '../core/GameState';
 import { camView, lsm, showCamera } from '../systems/Lsm';
 import { COL, onDomKey, panel, txt } from './SpellScene';
 import { prepareCatemacoEntry, prepareCdmxEntry, prepareOaxacaEntry, prepareTuxtlaEntry } from '../systems/Campaign';
+import type { SectionId } from '../core/contracts';
 
 /**
  * Dueño: lsm. Título "ECOS" + elegir cámara o solo teclado + privacidad + prueba en vivo de la cámara
@@ -11,11 +12,56 @@ import { prepareCatemacoEntry, prepareCdmxEntry, prepareOaxacaEntry, prepareTuxt
  */
 type Phase = 'menu' | 'waiting' | 'test' | 'failed';
 
+type EntrySection = SectionId;
+type MenuEntry = { label: string; act: () => void; color?: string };
+
+/** Nivel 1 a media partida: láser, tutorial, CALMA y (desde el jefe) PROTECCIÓN, como si se hubiera jugado. */
+function prepareXalapa(section: 'calles' | 'parque' | 'jefe'): () => void {
+  return () => {
+    GameState.hasLaser = true;
+    const learn = (id: string) => {
+      if (!GameState.learnedSpells.includes(id)) GameState.learnedSpells.push(id);
+      GameState.mastery[id] ??= { level: 0, progress: 0 };
+    };
+    learn('CALMA');
+    GameState.selectedSpell = 'CALMA';
+    for (const f of ['intro', 'tutorial', 'tut_salto', 'tut_esquiva', 'tut_verde', 'tut_rojo', 'calma', 'gema']) GameState.flags[f] = true;
+    if (section !== 'calles') for (const f of ['in_calles', 'altar_intro', 'altar', 'letras']) GameState.flags[f] = true;
+    if (section === 'jefe') {
+      learn('PROTECCION');
+      for (const f of ['in_parque', 'arena_parque1', 'arena_parque2', 'proteccion']) GameState.flags[f] = true;
+    }
+  };
+}
+
+/** Selector de niveles (pruebas): cada sección con lo que el jugador ya tendría al llegar ahí. Puebla (N5) se omite. */
+const LEVEL_SELECT: ReadonlyArray<{ label: string; section: EntrySection; prep: (() => void) | null }> = [
+  { label: 'Nivel 1 · Xalapa — Taller de mamá', section: 'taller', prep: null },
+  { label: 'Nivel 1 · Xalapa — Calles', section: 'calles', prep: prepareXalapa('calles') },
+  { label: 'Nivel 1 · Xalapa — Parque Juárez', section: 'parque', prep: prepareXalapa('parque') },
+  { label: 'Nivel 1 · Xalapa — Jefe: Chaneque Mayor', section: 'jefe', prep: prepareXalapa('jefe') },
+  { label: 'Nivel 2 · San Andrés Tuxtla', section: 'tuxtla', prep: prepareTuxtlaEntry },
+  { label: 'Nivel 3 · Catemaco — Pueblo y brujos', section: 'catemaco', prep: prepareCatemacoEntry },
+  { label: 'Nivel 3 · Catemaco — Lago y campamento', section: 'campamento', prep: prepareCatemacoEntry },
+  { label: 'Nivel 3 · Catemaco — Jefe: Cabeza Olmeca', section: 'altar_olmeca', prep: prepareCatemacoEntry },
+  { label: 'Nivel 4 · Oaxaca — Ciudad y artesanos', section: 'oaxaca', prep: prepareOaxacaEntry },
+  { label: 'Nivel 4 · Oaxaca — Callejones', section: 'callejones', prep: prepareOaxacaEntry },
+  { label: 'Nivel 4 · Oaxaca — Jefa: Bruja Guajolote', section: 'santo_domingo', prep: prepareOaxacaEntry },
+  { label: 'Nivel 6 · CDMX — Xochimilco', section: 'xochimilco', prep: prepareCdmxEntry },
+  { label: 'Nivel 6 · CDMX — Avenidas', section: 'avenidas', prep: prepareCdmxEntry },
+  { label: 'Nivel 6 · CDMX — Jefa: la Nahuala', section: 'reforma', prep: prepareCdmxEntry },
+];
+
 export class TitleScene extends Phaser.Scene {
   private phase: Phase = 'menu';
-  private entrySection: 'taller' | 'tuxtla' | 'catemaco' | 'oaxaca' | 'xochimilco' = 'taller';
+  private entrySection: EntrySection = 'taller';
+  /** Lo que el jugador ya tendría al llegar a esa sección (null = partida nueva desde el taller). */
+  private entryPrep: (() => void) | null = null;
+  private inLevelSelect = false;
+  private useCamera = false;
+  private menuLayer?: Phaser.GameObjects.Container;
   private menuIdx = 0;
-  private menuItems: Array<{ label: Phaser.GameObjects.Text; act: () => void }> = [];
+  private menuItems: Array<{ label: Phaser.GameObjects.Text; act: () => void; color?: string }> = [];
   private cursor?: Phaser.GameObjects.Text;
   private overlay?: Phaser.GameObjects.Container;
   private liveLetter?: Phaser.GameObjects.Text;
@@ -30,6 +76,10 @@ export class TitleScene extends Phaser.Scene {
   create(): void {
     this.phase = 'menu';
     this.entrySection = 'taller';
+    this.entryPrep = null;
+    this.inLevelSelect = false;
+    this.useCamera = lsm.cameraReady;
+    this.menuLayer = undefined;
     this.menuIdx = 0;
     this.menuItems = [];
     this.motes = [];
@@ -44,30 +94,7 @@ export class TitleScene extends Phaser.Scene {
     this.drawBackground();
     this.drawLogo();
 
-    const ready = lsm.cameraReady;
-    const opts: Array<[string, () => void]> = [
-      [ready ? '1 · Xalapa · Cámara activa' : '1 · Xalapa · Con cámara', () => void this.chooseCamera()],
-      ['2 · Xalapa · Solo teclado', () => this.chooseKeyboard()],
-      ['3 · Los Tuxtlas · Con cámara', () => { this.entrySection = 'tuxtla'; void this.chooseCamera(); }],
-      ['4 · Los Tuxtlas · Solo teclado', () => { this.entrySection = 'tuxtla'; this.chooseKeyboard(); }],
-      ['5 · Catemaco · Con cámara', () => { this.entrySection = 'catemaco'; void this.chooseCamera(); }],
-      ['6 · Catemaco · Solo teclado', () => { this.entrySection = 'catemaco'; this.chooseKeyboard(); }],
-      ['7 · Oaxaca · Con cámara', () => { this.entrySection = 'oaxaca'; void this.chooseCamera(); }],
-      ['8 · Oaxaca · Solo teclado', () => { this.entrySection = 'oaxaca'; this.chooseKeyboard(); }],
-      ['9 · CDMX · Con cámara', () => { this.entrySection = 'xochimilco'; void this.chooseCamera(); }],
-      ['0 · CDMX · Solo teclado', () => { this.entrySection = 'xochimilco'; this.chooseKeyboard(); }],
-    ];
-    opts.forEach(([s, act], i) => {
-      const label = txt(this, 320, 146 + i * 11.5, s, 9, COL.ink, { ox: 0.5 });
-      label.setInteractive({ useHandCursor: true });
-      label.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => this.select(i));
-      label.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-        if (this.phase === 'menu') this.activate(i);
-      });
-      this.menuItems.push({ label, act });
-    });
-    this.cursor = txt(this, 0, 0, '>', 12, COL.gold);
-    this.select(0, true);
+    this.showMainMenu();
 
     txt(this, 320, 260, 'La cámara se procesa en tu equipo; no se graba ni se envía nada.', 8, COL.teal, { ox: 0.5 });
     txt(this, 320, 274, 'El juego se puede terminar completo solo con teclado.', 8, COL.dim, { ox: 0.5 });
@@ -80,7 +107,7 @@ export class TitleScene extends Phaser.Scene {
       COL.dim,
       { ox: 0.5, align: 'center', wrap: 600 },
     );
-    txt(this, 320, 340, '↑↓ / 1–9, 0 · Enter · ratón            Listick Games · Game Jam ANIEI 2026', 8, COL.dim, { ox: 0.5 });
+    txt(this, 320, 340, '↑↓ · Enter · ratón · Esc: volver            Listick Games · Game Jam ANIEI 2026', 8, COL.dim, { ox: 0.5 });
 
     onDomKey(this, (e) => this.onKey(e));
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
@@ -197,11 +224,74 @@ export class TitleScene extends Phaser.Scene {
   }
 
   /* ----------------------------- menú ----------------------------- */
+
+  /** Construye una lista de opciones (reemplaza la anterior). */
+  private buildMenu(entries: MenuEntry[], y0: number, step: number, size: number, backdrop?: { y: number; h: number }): void {
+    this.menuLayer?.destroy();
+    const c = this.add.container(0, 0);
+    if (backdrop) {
+      c.add(this.add.rectangle(0, 0, 640, 360, 0x05060a, 0.82).setOrigin(0));
+      c.add(panel(this, 96, backdrop.y, 448, backdrop.h, COL.tealN));
+    }
+    this.menuItems = [];
+    entries.forEach(({ label: s, act, color }, i) => {
+      const label = txt(this, 320, Math.round(y0 + i * step), s, size, color ?? COL.ink, { ox: 0.5 });
+      label.setInteractive({ useHandCursor: true });
+      label.on(Phaser.Input.Events.GAMEOBJECT_POINTER_OVER, () => this.select(i));
+      label.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+        if (this.phase === 'menu') this.activate(i);
+      });
+      c.add(label);
+      this.menuItems.push({ label, act, color });
+    });
+    this.cursor = txt(this, 0, 0, '>', size + 2, COL.gold);
+    c.add(this.cursor);
+    this.menuLayer = c;
+    this.menuIdx = 0;
+    this.select(0, true);
+  }
+
+  private showMainMenu(): void {
+    this.inLevelSelect = false;
+    const ready = lsm.cameraReady;
+    this.buildMenu(
+      [
+        { label: ready ? '1 · Jugar · Cámara activa' : '1 · Jugar · Con cámara', act: () => this.begin('taller', null, true) },
+        { label: '2 · Jugar · Solo teclado', act: () => this.begin('taller', null, false) },
+        { label: '3 · Seleccionar nivel', act: () => this.showLevelSelect() },
+      ],
+      168,
+      18,
+      12,
+    );
+  }
+
+  /** Selector de niveles y secciones (para probar sin pasarse el juego completo). */
+  private showLevelSelect(): void {
+    this.inLevelSelect = true;
+    const cam = this.useCamera ? 'SÍ' : 'NO (solo teclado)';
+    const entries: MenuEntry[] = [
+      { label: `Cámara: ${cam}  ·  Enter para cambiar`, act: () => { this.useCamera = !this.useCamera; const i = this.menuIdx; this.showLevelSelect(); this.select(i, true); }, color: COL.teal },
+      ...LEVEL_SELECT.map((l) => ({ label: l.label, act: () => this.begin(l.section, l.prep, this.useCamera) })),
+      { label: '← Volver (Esc)', act: () => this.showMainMenu(), color: COL.dim },
+    ];
+    this.buildMenu(entries, 30, 17.5, 9, { y: 12, h: 336 });
+    this.menuLayer?.add(txt(this, 320, 16, 'SELECCIONAR NIVEL', 10, COL.gold, { ox: 0.5 }));
+  }
+
+  /** Arranca en una sección: prepara lo que el jugador ya tendría al llegar ahí y elige cámara o teclado. */
+  private begin(section: EntrySection, prep: (() => void) | null, camera: boolean): void {
+    this.entrySection = section;
+    this.entryPrep = prep;
+    if (camera) void this.chooseCamera();
+    else this.chooseKeyboard();
+  }
+
   private select(i: number, silent = false): void {
     if (this.phase !== 'menu') return;
     if (i !== this.menuIdx && !silent) sfx('ui_mover');
     this.menuIdx = i;
-    this.menuItems.forEach((m, j) => m.label.setColor(j === i ? COL.gold : COL.ink));
+    this.menuItems.forEach((m, j) => m.label.setColor(j === i ? COL.gold : (m.color ?? COL.ink)));
     const l = this.menuItems[i].label;
     this.cursor?.setPosition(Math.round(l.x - l.width / 2 - 16), l.y);
   }
@@ -217,16 +307,10 @@ export class TitleScene extends Phaser.Scene {
       if (e.code === 'ArrowUp' || e.code === 'KeyW') this.select((this.menuIdx + this.menuItems.length - 1) % this.menuItems.length);
       else if (e.code === 'ArrowDown' || e.code === 'KeyS') this.select((this.menuIdx + 1) % this.menuItems.length);
       else if (e.code === 'Enter' || e.code === 'Space' || e.code === 'NumpadEnter') this.activate(this.menuIdx);
-      else if (e.code === 'Digit1' || e.code === 'Numpad1') this.activate(0);
-      else if (e.code === 'Digit2' || e.code === 'Numpad2') this.activate(1);
-      else if (e.code === 'Digit3' || e.code === 'Numpad3') this.activate(2);
-      else if (e.code === 'Digit4' || e.code === 'Numpad4') this.activate(3);
-      else if (e.code === 'Digit5' || e.code === 'Numpad5') this.activate(4);
-      else if (e.code === 'Digit6' || e.code === 'Numpad6') this.activate(5);
-      else if (e.code === 'Digit7' || e.code === 'Numpad7') this.activate(6);
-      else if (e.code === 'Digit8' || e.code === 'Numpad8') this.activate(7);
-      else if (e.code === 'Digit9' || e.code === 'Numpad9') this.activate(8);
-      else if (e.code === 'Digit0' || e.code === 'Numpad0') this.activate(9);
+      else if (e.code === 'Escape' && this.inLevelSelect) this.showMainMenu();
+      else if (!this.inLevelSelect && (e.code === 'Digit1' || e.code === 'Numpad1')) this.activate(0);
+      else if (!this.inLevelSelect && (e.code === 'Digit2' || e.code === 'Numpad2')) this.activate(1);
+      else if (!this.inLevelSelect && (e.code === 'Digit3' || e.code === 'Numpad3')) this.activate(2);
     } else if (this.phase === 'test' || this.phase === 'failed') {
       if (e.code === 'Enter' || e.code === 'Space' || e.code === 'NumpadEnter' || e.code === 'Escape') this.startGame();
     }
@@ -310,10 +394,8 @@ export class TitleScene extends Phaser.Scene {
     camView.hide();
     sfx('ui_aceptar');
     resetGameState(); // conserva settings
-    if (this.entrySection === 'tuxtla') prepareTuxtlaEntry();
-    if (this.entrySection === 'catemaco') prepareCatemacoEntry();
-    if (this.entrySection === 'oaxaca') prepareOaxacaEntry();
-    if (this.entrySection === 'xochimilco') prepareCdmxEntry();
+    this.entryPrep?.();
+    GameState.section = this.entrySection;
     this.cameras.main.fadeOut(400, 0, 0, 0);
     this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
       this.scene.start('Level', { section: this.entrySection });
