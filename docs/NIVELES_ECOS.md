@@ -15,7 +15,7 @@
 | 2 | I | **San Andrés Tuxtla**: entrada → pueblo silenciado → plaza del fandango | Atardecer, calor húmedo | VOZ `[PROPUESTA]` | Misión musical | Chaneques rezagados | — | *(sin jefe: misión del fandango)* | 1.er fragmento | 250 | Visión |
 | 3 | I | **Catemaco**: orilla del lago → campamento de la Cofradía → altar principal | Noche cerrada, neblina, luna | LUZ, SOL `[PROPUESTA]`, **Escudo (U)** | **Balam + Habilidad Luna**, **Escudo**; se une María | Encapuchados Rojos, espíritus | — | **Cabeza Olmeca Poseída** | Balam, Luna, Escudo | 600 | Visión |
 | 4 | I | **Oaxaca**: entrada → calles empedradas → taller de artesanos → Templo de Santo Domingo | Mañana nublada, montañas verdes | MEMORIA `[PROPUESTA]` | Mejoras de conjuros con artesanos `[PROPUESTA]` | Bestias corrompidas, Encapuchados Rojos | — | **Bruja Guajolote (Tlahuelpuchi)** | 2.º fragmento | 700 | Visión |
-| 5 | II | **Puebla**: senderos semiáridos → Angelópolis y la rueda caída → centro con talavera → Fuertes de Loreto y Guadalupe | Mediodía polvoso → atardecer | VERDAD, FUEGO `[PROPUESTA]` | **Doble salto** (en altares) | Encapuchados Rojos y Negros, chaneques, espíritus | — | **La Nahuala** | 3.er fragmento | 900 | Visión |
+| 5 | II | **Puebla**: senderos semiáridos → Angelópolis y la rueda caída → centro con talavera → Fuertes de Loreto y Guadalupe | Mediodía polvoso → atardecer | VERDAD, FUEGO `[PROPUESTA]` | **Doble salto** (en altares) | Encapuchados Rojos y Negros, chaneques, espíritus | — | **La Nahuala** | 3.er fragmento | 900 | ⏭️ **Se omite** (2026-10-19) |
 | 6 | II | **CDMX 1**: Isla de las Muñecas → canales secos → Reforma con el Ángel caído → estación del teleférico | Día gris; papel picado y cempasúchil | DESCANSO `[PROPUESTA]` | — | **Muñecas poseídas**, chaneques, encapuchados | **Nahuales infiltrados** | *(minijefes)* | Acceso al teleférico | 800 | Visión |
 | 7 | II | **CDMX 2**: ascenso en teleférico → torre de control → salón del Rey | Noche, tormenta eléctrica | CONSUELO, PAZ | — | Espíritus (Luna), **encapuchados élite** | — | **Rey del Olvido** (con la Llorona) | 4.º fragmento + llamada trampa | 1300 | Visión |
 | 8 | III | **Guanajuato**: callejones → Parroquia de San Miguel y Templo Expiatorio → minas | Tarde → oscuridad subterránea | — (refuerza LUZ y DESCANSO) | — | **Momias**, espíritus, nahuales | Nahuales | **Don Ernesto (Calle del Truco)** | 5.º fragmento | 1100 | Visión |
@@ -129,6 +129,9 @@
 - **Duración:** 12–15 minutos.
 
 ### Nivel 5 — Puebla: de la rueda caída a los Fuertes
+
+> **⏭️ SE OMITE EN EL JUEGO (decisión del equipo, 2026-10-19), por falta de tiempo.** Oaxaca (Nivel 4) lleva directo a CDMX (Nivel 6). Esta ficha queda como visión; el NDD no cambia. Lo que entregaba Puebla (3.er fragmento, doble salto en los altares, VERDAD, FUEGO, primeros Encapuchados Negros y diálogos de María) está **pendiente de reubicar**: ver la nota de alcance en `AGENTS.md`.
+
 - **Secciones:** senderos semiáridos (nopales y árboles color ceniza) → Angelópolis con la **rueda de la fortuna caída** (sección vertical por la estructura `[PROPUESTA]`) → centro con talavera rota y cables de neón → subida a los **Fuertes de Loreto y Guadalupe** (aprender **VERDAD** y **FUEGO** `[PROPUESTA]`).
 - **Enemigos:** Encapuchados Rojos y **Negros** (primer rango medio), chaneques y espíritus (Luna). María muestra cada vez más desesperación (diálogos).
 - **Jefe: La Nahuala** (patio central de Loreto).

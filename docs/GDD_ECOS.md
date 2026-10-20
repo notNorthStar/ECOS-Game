@@ -42,6 +42,7 @@ La referencia es el prototipo **Worlorn** (`docs/referencias/worlorn/worlorn_ref
 - El salto es un **eje de altura independiente** (Z): el personaje sube y baja, pero **su sombra se queda en el suelo**, marcando su posición en la franja. Esto es clave para que se lea bien.
 - Sirve para esquivar ataques bajos, saltar obstáculos y subir a bordes, bancas o plataformas bajas.
 - **Doble salto:** se desbloquea **desde el Nivel 5 (Puebla)**: a partir de ahí aparece en los Altares de la Memoria y se compra con Ecos (sección 5.1). Da acceso a zonas antes inalcanzables.
+  - **⚠️ 2026-10-19:** Puebla se omite en el juego; dónde se desbloquea el doble salto queda **pendiente de decidir** (ver AGENTS.md).
 
 ### 2.2 Verticalidad (subir edificios, terrazas, el teleférico)
 `[PROPUESTA — CONFIRMAR]` En una vista con profundidad, la verticalidad se resuelve así:
@@ -286,7 +287,7 @@ La experiencia del juego se llama **Ecos**: fragmentos de memoria que se liberan
 | 2 San Andrés Tuxtla | 1.er fragmento |
 | 3 Catemaco | Balam + **Habilidad Luna**; **Escudo (seña U)**, enseñado por los brujos buenos de Catemaco; se une María |
 | 4 Oaxaca | 2.º fragmento + nuevas señas |
-| 5 Puebla | 3.er fragmento + **doble salto disponible** en los Altares de la Memoria |
+| 5 Puebla | 3.er fragmento + **doble salto disponible** en los Altares de la Memoria · ⏭️ **se omite en el juego** (2026-10-19); sus recompensas quedan por reubicar |
 | 6 CDMX 1 | Acceso al teleférico |
 | 7 CDMX 2 | 4.º fragmento, conjuros de Consuelo, Memoria y Paz |
 | 8 Guanajuato | 5.º fragmento |
