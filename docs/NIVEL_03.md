@@ -35,7 +35,7 @@ Duración objetivo: 12–15 min. Ecos objetivo: ~600.
 |---|---|
 | Interactuar / hablar | **E** |
 | Escudo U (sin cámara) | **clic derecho mantenido** (con cámara: seña U sostenida) |
-| Luna | **F** mantenida |
+| Luna | **F** (alterna encendido/apagado; gasta barra y se recarga sola) |
 | Conjuro | **Q** (LUZ y SOL se eligen en la rueda con Q mantenida) |
 | Láser rojo (daña/inconscientes) | **2**; verde: **1** |
 
@@ -71,6 +71,10 @@ Director: brujos 2×8 + escudo 15 + descubrimientos 3×5 + pistas 6×8 + deducci
 - Enemigos: `encapuchado` (emite `cofradia:down`), `espiritu` (`enemy:purified`), `cabeza_olmeca` (`olmeca:phase`, `boss:vulnerable`, `boss:calmed`).
 - Escenario: los NPC y props están en el JSON de cada sección (`npc_brujo_1/2/3`, `npc_poblador_n03_1/2`, `prop_n03_*`); `installCatemacoScenery` no debe volver a colocarlos. María usa el sprite `npc_maria` si existe; si no, un bloque morado con una M.
 
+## Estado verificado (2026-10-19)
+
+Partida completa en navegador, solo teclado: brujos → 3 encapuchados → campamento (9 encapuchados, 6 pistas, 3 jaulas) → Balam + Luna → 8 espíritus → Cabeza Olmeca (3 fases) → María → título, ~460 Ecos. El equipo lo probó y confirmó que funciona. Corregido en la integración: daño de SOL, filtro de Luna, diálogos encadenados que bloqueaban al jugador, textos de Luna.
+
 ## Pruebas
 
 `npm run test:nivel3` (25 pruebas): datos (ids, anchos, música, conteos de enemigos, suelo transitable para interactuables/enemigos/spawns/triggers), diálogos referenciados, `checkWord` de LUZ y SOL y el director real con adaptadores: orden de los brujos, práctica del escudo, pistas, jaulas y Balam, compuertas de espíritus, arena y María, persistencia tras morir y respaldos. No sustituye pruebas en navegador, con cámara o de audio.
@@ -80,6 +84,8 @@ Director: brujos 2×8 + escudo 15 + descubrimientos 3×5 + pistas 6×8 + deducci
 - Prueba humana completa (duración, equilibrio de Ecos, dificultad del campamento) y con cámara (seña U).
 - María aún no es compañera jugable: tras unirse queda en la explanada. Balam lo gestiona `Balam.ts`.
 - Pantalla «Continuará» real: ahora la salida regresa al título.
-- Sin sigilo real: la «infiltración» son patrullas con detección normal y pistas; si el equipo quiere cono de visión, requiere cambios en `Encapuchado.ts`.
+- Conectar la salida del Nivel 2 con Catemaco (hoy el Nivel 2 vuelve al título); se hace al juntar las ramas.
+- Equilibrio: el escudo mantenido se vacía en ~5 s; las ventanas de la Cabeza tardan en abrirse.
+- Sigilo: los encapuchados ya tienen cono de visión (« ? » al sospechar, « ! » al verte) y reciben daño doble si los atacas sin que te vean; falta ajustar la dificultad.
 - Revisar el texto de las pistas y de los brujos con el equipo (nombres propios de la región inventados: Cirilo, Eulalia, Atanasio, Doña Chayo).
 - Si el estilo pide más enemigos antes de las jaulas, añadir specs en el JSON (el test valida suelo).

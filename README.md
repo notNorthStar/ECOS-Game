@@ -4,7 +4,27 @@
 
 Juego de **exploración y acción 2D con profundidad**, en pixel art, ambientado en un México retrofuturista colapsado. El protagonista, criado en **Lengua de Señas Mexicana (LSM)** por su madre sorda, lanza conjuros **deletreando en LSM frente a la cámara web**, o con el teclado, para purificar a los seres del folclor y enfrentar a la Cofradía del Espejo Negro.
 
-> **Estado:** Nivel 1 (Xalapa) jugable según documentación; primer hito del Nivel 2 (San Andrés Tuxtla) implementado en `codex/nivel-2-san-andres-tuxtla`, pendiente de pulido y validación completa. Guía: `docs/NIVEL_02.md`; comprobaciones y límites: `REPORTE_DEMO.md`. Estado de todos los niveles: `AGENTS.md` §5.1.
+> **Estado (2026-10-19):**
+> - **Nivel 1 · Xalapa:** jugable de principio a fin (`main`).
+> - **Nivel 2 · San Andrés Tuxtla:** jugable en `codex/nivel-2-san-andres-tuxtla`, en pulido. Guía: `docs/NIVEL_02.md`.
+> - **Nivel 3 · Catemaco:** jugable de principio a fin en `nivel-3-catemaco` (sale del Nivel 2). Guía: `docs/NIVEL_03.md`.
+> - En el título: 1–2 Xalapa, 3–4 Los Tuxtlas, 5–6 Catemaco (con cámara / solo teclado). Estado detallado: `AGENTS.md` §5.1.
+
+## Controles
+
+| Acción | Tecla |
+|---|---|
+| Moverse (a lo ancho y en profundidad) | **WASD** |
+| Correr / esquivar | **Shift** mantenido / **doble Shift** o **C** |
+| Saltar | **Espacio** |
+| Disparar · láser verde / rojo | **Clic izquierdo** o **X** · **1** / **2** |
+| Interactuar | **E** |
+| Conjuro: lanzar / rueda | **Q** tocar / **Q** mantener |
+| Escudo (desde Catemaco) | **Clic derecho** mantenido, o la seña **U** frente a la cámara |
+| Habilidad Luna (desde Catemaco) | **F** (alterna) |
+| Diario de Señas · Pausa | **Tab** · **Esc** |
+
+La música arranca al 30 % de volumen; se ajusta en **Pausa → Opciones**.
 
 ---
 

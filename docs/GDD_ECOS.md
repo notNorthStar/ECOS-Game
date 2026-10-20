@@ -66,13 +66,13 @@ La referencia es el prototipo **Worlorn** (`docs/referencias/worlorn/worlorn_ref
 | Conjuro seleccionado | **Q** (toque) | Ver sección 6 |
 | Rueda de conjuros | **Q** (mantener) | Ver sección 6 |
 | Habilidad Luna (Balam) | **F** | Decidido |
-| Escudo (sin cámara) | **Alt izquierdo** (mantener) | Con cámara: mostrar la seña **U**. Ver sección 6.6 y nota 2 |
+| Escudo (sin cámara) | **Clic derecho** (mantener) | Con cámara: mostrar la seña **U**. Decidido 2026-10-19 (nota 2) |
 | Diario de Señas | **Tab** | |
 | Pausa | **Esc** | |
 
 **Notas técnicas (conflictos con el navegador):**
 1. **No usar Ctrl para esquivar ni para ninguna acción.** En el navegador, **Ctrl+W cierra la pestaña** y no se puede bloquear, y W es la tecla de avanzar. Ctrl+S y Ctrl+D también abren menús del navegador.
-2. **Alt izquierdo (escudo) — riesgos que hay que probar en Chrome, Edge y el .exe:**
+2. **Escudo: se usa CLIC DERECHO, no Alt (decidido 2026-10-19).** Se descartó Alt izquierdo por estos riesgos:
    - **Alt + Espacio** (escudo + salto) abre el **menú de la ventana de Windows**. Lo maneja el sistema operativo y **el juego no puede bloquearlo**. Es una combinación natural en combate.
    - **Alt + D** (escudo + moverse a la derecha) enfoca la barra de direcciones y **Alt + F** abre el menú del navegador. Hay que bloquearlos (`preventDefault` en `keydown` y `keyup` cuando `altKey` está activo) y verificar que funcione.
    - Al soltar Alt, el navegador puede mover el foco a su menú. Hay que bloquearlo también en `keyup`.
@@ -208,7 +208,7 @@ La experiencia del juego se llama **Ecos**: fragmentos de memoria que se liberan
 - **Seña:** la letra **U** del alfabeto manual de LSM, por su forma. **Verificar con fuente oficial que la U de LSM es estática** y cuál es su forma exacta.
 - **Activación:**
   - **Con cámara:** mientras la seña U esté visible y estable frente a la cámara, el escudo se mantiene. Al bajar la mano, se apaga.
-  - **Sin cámara:** **mantener Alt izquierdo** (ver nota 2 de controles).
+  - **Sin cámara:** **mantener clic derecho** (ver nota 2 de controles).
 - **Efecto:**
   - **Reduce el daño recibido** y **repele ataques**: proyectiles rebotados y retroceso a los enemigos que golpean el escudo. Reducción de daño: **~60 %** (ajustable en `config.ts`).
   - El jugador **se mueve, corre y salta con normalidad** con el escudo activo.
@@ -334,5 +334,5 @@ La experiencia del juego se llama **Ecos**: fragmentos de memoria que se liberan
 ## 16. Pendientes de confirmar
 1. Calor o energía del láser (sección 4), propuesto pero no confirmado.
 2. Fecha y hora exactas de entrega.
-3. Resultado de las pruebas de Alt para el escudo (si falla: clic derecho).
+3. ~~Resultado de las pruebas de Alt para el escudo~~ → resuelto 2026-10-19: el escudo usa clic derecho.
 4. Cómo se resuelve la verticalidad (sección 2.2), propuesto pero no confirmado.

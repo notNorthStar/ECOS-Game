@@ -30,7 +30,10 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 **ECOS** es un juego de **exploración y acción 2D de desplazamiento lateral con profundidad**, en pixel art, en un México retrofuturista colapsado. El protagonista, hijo de una criptógrafa sorda que lo crió en **Lengua de Señas Mexicana (LSM)**, lanza conjuros **deletreando en LSM** con la **cámara web** (MediaPipe) o con el **teclado**, purifica a los seres del folclor y combate a la Cofradía del Espejo Negro.
 
 **Cómo se trabaja:** el juego se desarrolla **por niveles**, uno por sesión o por hito. El nivel en curso y el estado de todos están en la sección 5.
-**Objetivo actual autorizado (2026-10-19):** desarrollar el **Nivel 2, "San Andrés Tuxtla — La música perdida"**, en `codex/nivel-2-san-andres-tuxtla`, con subagentes. No modificar la rama `main` ni hacer merges sin autorización explícita. El alcance original del jam era el Nivel 1; la continuación se trabaja por indicación del equipo. Ver `docs/NIVEL_02.md`.
+**Trabajo autorizado en curso (2026-10-19), una rama por nivel:**
+- **Nivel 2, "San Andrés Tuxtla — La música perdida"** → `codex/nivel-2-san-andres-tuxtla` (ajustes y jugabilidad). Ver `docs/NIVEL_02.md`.
+- **Nivel 3, "Catemaco — El ritual del lago"** → `nivel-3-catemaco` (sale de la rama del Nivel 2; trae sus cambios cuando se suban). Ver `docs/NIVEL_03.md` y `docs/NIVEL_03_CONTRATOS.md`.
+- No hagas merges entre ramas ni a `main` sin autorización explícita del equipo. El alcance original del jam era el Nivel 1; la continuación se trabaja por indicación del equipo.
 
 **Última actualización de contexto (2026-10-19):** el equipo pidió registrar como nueva idea de actualización la ampliación del Nivel 2, mayor dispersión de los cinco fragmentos musicales y un Chaneque Mayor en los fragmentos 2 (`monte`) y 5 (`memoria`). Se documentó en `docs/IDEAS_ACTUALIZACION.md` como ACT-N2-001; aún no cambia la implementación ni el NDD.
 
@@ -81,7 +84,7 @@ Si el GDD y este archivo se contradicen en diseño, **gana el GDD**; en temas t�
 | Interactuar | **E** |
 | Conjuro: lanzar / rueda | **Q** toque / **Q** mantener (umbral **200 ms**) |
 | Habilidad Luna | **F** |
-| Escudo sin cámara | **Alt izquierdo** mantenido; si falla, **clic derecho** |
+| Escudo sin cámara | **Clic derecho** mantenido (decidido 2026-10-19: Alt+Espacio abre el menú de Windows y no se puede bloquear) |
 | Diario de Señas | **Tab** |
 | Pausa | **Esc** |
 

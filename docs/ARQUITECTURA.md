@@ -1,4 +1,20 @@
-# Arquitectura del juego (Niveles 1 y 2)
+# Arquitectura del juego (Niveles 1, 2 y 3)
+
+## Continuación: Catemaco (Nivel 3)
+
+En la rama `nivel-3-catemaco`, `Level` carga además las secciones `catemaco`, `campamento` y `altar_olmeca` (`CATEMACO_SECTIONS` e `isCatemaco()` en `config/game.ts`).
+`installDirector()` las deriva a `CatemacoDirector`; `LevelScene` instala `CatemacoScenery` para esas secciones.
+Sistemas nuevos, instalados en todas las secciones y apagados hasta desbloquearse (`GameState.shield` / `GameState.luna` / `GameState.hasBalam`):
+- `systems/Shield.ts`: escudo U (seña U con cámara o clic derecho). Todo golpe al jugador pasa por `shieldFilterHit` dentro de `EnemyBase.hitPlayer`.
+- `systems/Luna.ts` + `systems/Balam.ts`: Habilidad Luna (F) y el compañero. `isLunaActive()` decide si las entidades `lunaOnly` existen.
+- Enemigos `encapuchado` (rangos rojo/negro/élite por recolor), `espiritu` (`lunaOnly`) y `cabeza_olmeca` (jefe de 3 fases).
+- Conjuros LUZ y SOL en `data/spells.json`; sus parámetros los lee `spellParam()`.
+Eventos nuevos del bus: `shield:state`, `shield:block`, `luna:state`, `balam:awake`, `cofradia:down` y `olmeca:phase`. `boss:phase` admite fase 3.
+Flags con prefijo `n03:`. `Campaign.prepareCatemacoEntry()` prepara la entrada directa desde el título (opciones 5/6).
+`playDialogue` espera a que el diálogo anterior termine de cerrarse antes de abrir el siguiente: encadenar diálogos ya no bloquea al jugador.
+Contratos: `docs/NIVEL_03_CONTRATOS.md`. Ruta, datos y pruebas: `docs/NIVEL_03.md` y `npm run test:nivel3`.
+
+**Personajes (`AGENTS.md` §8.0):** los importantes (enemigos, aliados, jefes) usan placeholder y `CharacterKits` los reemplaza solo con la carpeta del kit del equipo; los NPCs comunes llevan diseño propio.
 
 ## Continuación: San Andrés Tuxtla
 
