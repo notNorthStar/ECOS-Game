@@ -75,7 +75,7 @@ export interface EnemyApi extends DepthEntity {
   group?: string;
   /** Ecos base que da (GDD 5.1). */
   readonly ecos: number;
-  /** Solo existe para el jugador con la Habilidad Luna activa: invisible, intangible y sin atacar sin ella (Nivel 3+). */
+  /** Solo se puede ver, golpear y purificar con la Habilidad Luna activa; sin ella es invisible pero SÍ ataca (Nivel 3+). */
   readonly lunaOnly?: boolean;
   /** Aplica un conjuro. Devuelve true si tuvo efecto. */
   applySpell(ev: SpellOutcomeEvent): boolean;

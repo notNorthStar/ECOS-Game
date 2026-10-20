@@ -101,6 +101,13 @@ export function installCombat(world: WorldApi): void {
       playerShield.until = performance.now() + ms;
       playerShield.reduction = spellParam('PROTECCION', 'shieldReduction', SHIELD.reduction);
       playerShield.debt = 0;
+      // Cada PROTECCION (no fallida, también en automático) devuelve corazones (decisión del equipo, 2026-10-19).
+      const heal = spellParam('PROTECCION', 'heal', 1);
+      if (GameState.hp < GameState.maxHp && heal > 0) {
+        GameState.hp = Math.min(GameState.maxHp, GameState.hp + heal);
+        healFx(world);
+        bus.emit('hud:toast', { text: '+1 corazón', ms: 900 });
+      }
     }
     // Copia: applySpell puede invocar enemigos o sacarlos del mundo.
     for (const e of [...world.enemies]) {
@@ -159,6 +166,22 @@ export function installCombat(world: WorldApi): void {
   };
   scene.events.once('shutdown', cleanup);
   scene.events.once('destroy', cleanup);
+}
+
+/** Destello dorado que sube por el jugador al recuperar vida. */
+function healFx(world: WorldApi): void {
+  const scene = world.scene;
+  const p = world.player;
+  sfx('mejora');
+  for (let i = 0; i < 8; i++) {
+    const s = scene.add
+      .image(p.x + (Math.random() - 0.5) * 20, p.y - p.z - 6, FB.glow)
+      .setTint(0xff7a9a)
+      .setBlendMode(Phaser.BlendModes.ADD)
+      .setScale(0.35)
+      .setDepth(p.y + FX_DEPTH_BIAS);
+    scene.tweens.add({ targets: s, y: s.y - 30 - Math.random() * 20, alpha: 0, duration: 650 + i * 40, onComplete: () => s.destroy() });
+  }
 }
 
 /** Anillo que muestra el área del conjuro en el suelo. */

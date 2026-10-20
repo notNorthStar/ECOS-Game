@@ -13,9 +13,11 @@ import {
 
 /**
  * Espíritu (Nivel 3, sendero al altar olmeca). Criatura flotante ~40 px, translúcida. Placeholder simple.
- * lunaOnly (por defecto): sin Luna es invisible (alpha 0), intangible, no ataca y no bloquea.
- * Con Luna: brilla, deriva hacia el jugador (con correa a su punto de origen), lo toca y le drena vida,
- * y su cuerpo empuja al jugador (bloquea el paso en grupo).
+ * lunaOnly (por defecto): SIEMPRE ataca (deriva hacia el jugador con correa a su punto de origen, lo toca y le
+ * drena vida), pero sin Luna es invisible e intocable: no se le puede ver ni golpear ni purificar (decisión del
+ * equipo, 2026-10-19: el chiste es que necesitas Luna para defenderte). Sin Luna solo deja un destello tenue al
+ * preparar el golpe, y la primera vez que te hiere avisa que actives Luna.
+ * Con Luna: brilla, se le puede golpear y su cuerpo empuja al jugador (bloquea el paso en grupo).
  * Afinidades (contratos §5): LUZ purifica (en radio) · CALMA purifica · SOL daña · VOZ aturde · PROTECCION ➖ · láser ✖.
  * Con vida en 0 (SOL) queda agotado: se purifica con LUZ / CALMA o se va solo con los Ecos base.
  */
@@ -46,6 +48,8 @@ function ensureEspirituTexture(scene: Phaser.Scene): string {
 
 export class Espiritu extends EnemyBase {
   kind: EnemyKind = 'espiritu';
+  /** El aviso "algo invisible te ataca" sale una sola vez por partida. */
+  static toldInvisible = false;
   /** Jefe que lo invocó (la Cabeza Olmeca): al calmarla, se disipa. */
   summonedBy: EnemyApi | null = null;
   private st: St = 'float';
@@ -135,13 +139,11 @@ export class Espiritu extends EnemyBase {
     }
     this.wasTangible = tangible;
 
-    // Sin Luna no ataca: cancela lo que estuviera haciendo.
-    if (!tangible && (this.st === 'drift' || this.st === 'windup' || this.st === 'touch')) this.set('float');
-
     switch (this.st) {
       case 'float':
         this.wander(dt);
-        if (tangible && planeDist(this.x, this.y, p.x, p.y) < S.aggroRadius) this.set('drift');
+        // Ataca con o sin Luna: invisible no significa inofensivo.
+        if (planeDist(this.x, this.y, p.x, p.y) < S.aggroRadius) this.set('drift');
         break;
       case 'drift': {
         const leash = planeDist(this.x, this.y, this.homeX, this.homeY) > S.leashRadius;
@@ -166,6 +168,10 @@ export class Espiritu extends EnemyBase {
           if (planeDist(this.x, this.y, p.x, p.y) < S.attack.range + 6 && Math.abs(p.y - this.y) < DEPTH_TOLERANCE * 1.5) {
             if (hitPlayer(this.world, { damage: S.attack.damage, stun: 0, kind: 'melee', sourceX: this.x, knockback: S.attack.knockback })) {
               this.drainFx();
+              if (!tangible && !Espiritu.toldInvisible) {
+                Espiritu.toldInvisible = true;
+                bus.emit('hud:toast', { text: 'Algo invisible te ataca. Pulsa F (Luna) para verlo y defenderte.', ms: 4200 });
+              }
             }
           }
         }
@@ -177,7 +183,7 @@ export class Espiritu extends EnemyBase {
       case 'recover':
         if (this.stT >= 0) {
           this.cooldown = randRange(S.attack.cooldown);
-          this.set(tangible ? 'drift' : 'float');
+          this.set('drift');
         }
         break;
       case 'dizzy':
@@ -238,12 +244,14 @@ export class Espiritu extends EnemyBase {
     this.shadow.setAlpha(this.vis * 0.25);
     this.stars.forEach((s) => s.setAlpha(this.vis));
     const windup = this.st === 'windup' ? 0.4 + 0.4 * Math.abs(Math.sin(this.stT * 18)) : 0;
+    // Invisible: solo un destello tenue al preparar el golpe, como pista para activar Luna.
+    const hint = !this.tangible && (this.st === 'windup' || this.st === 'touch') ? S.invisibleHintAlpha * (0.5 + windup) : 0;
     this.glow
       .setPosition(this.x, this.y - this.z - this.height * 0.55)
       .setDepth(this.y - 0.1)
       .setScale(1.6 + windup)
       .setTint(this.st === 'windup' ? 0xa0c0ff : hexColor(S.color))
-      .setAlpha(this.vis * (0.35 + windup) * dim);
+      .setAlpha(Math.max(this.vis * (0.35 + windup) * dim, hint));
   }
 
   private drainFx(): void {

@@ -46,7 +46,7 @@ Flags de progreso del nivel: prefijo **`n03:`** en `GameState.flags`. Escudo y L
 | | LUZ (3) | SOL (3) | VOZ | CALMA | PROTECCION | Láser rojo |
 |---|---|---|---|---|---|---|
 | Encapuchado | aturde | **inconsciente** (daño fuerte) | aturde | ✖ sin efecto | empuja | daño → inconsciente |
-| Espíritu (`lunaOnly`) | **purifica** | daña | aturde | purifica | ➖ | ✖ (no le afecta) |
+| Espíritu (`lunaOnly`: siempre ataca; sin Luna es invisible e intocable) | **purifica** | daña | aturde | purifica | ➖ | ✖ (no le afecta) |
 | Cabeza Olmeca | ✅ en ventana | ✅ en ventana | ✅ en ventana | ❌ (se enfurece) | ➖ | ✖ (piedra) |
 
 LUZ: purifica espíritus en radio; ilumina. SOL: ráfaga ofensiva en línea hacia donde mira el jugador. Valida los nombres con `checkWord()`.

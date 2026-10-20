@@ -44,7 +44,7 @@
       "name": "PROTECCIÓN",
       "type": "purificacion",
       "title": "Protección",
-      "desc": "Purifica en un área pequeña y te da un breve escudo pasivo.",
+      "desc": "Purifica en un área pequeña, te da un breve escudo pasivo y te devuelve un corazón.",
       "learnedFrom": "Nota de la madre junto al Códice",
       "color": "#f2c86b",
       "letterWindowMs": 4500,
@@ -52,7 +52,8 @@
       "effect": {
         "purifyRadius": 56,
         "shieldMs": 3000,
-        "shieldReduction": 0.6
+        "shieldReduction": 0.6,
+        "heal": 1
       }
     },
     {

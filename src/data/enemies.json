@@ -215,6 +215,7 @@
     "bob": 3,
     "alpha": 0.78,
     "fadeSpeed": 4,
+    "invisibleHintAlpha": 0.22,
     "aggroRadius": 190,
     "leashRadius": 160,
     "driftSpeed": 34,
