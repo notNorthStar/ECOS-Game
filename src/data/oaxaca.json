@@ -1,0 +1,68 @@
+{
+  "note": "Números del Nivel 4 (dueño: contenido). Todo lo ajustable del director de Oaxaca vive aquí.",
+  "artesanos": [
+    "gudelia",
+    "facundo",
+    "lucrecia"
+  ],
+  "toastMs": 4200,
+  "hud": {
+    "x": 12,
+    "y": 74,
+    "fontSize": 10
+  },
+  "gates": {
+    "memoriaX": 2000,
+    "pasajeX": 2520
+  },
+  "pasaje": {
+    "id": "corazon",
+    "x0": 2080,
+    "x1": 2480,
+    "muroId": "n04_muro_pasaje",
+    "texturaAbierta": "prop_n04_muro_abierto"
+  },
+  "arena": {
+    "x0": 1600,
+    "x1": 2400,
+    "grupo": "bruja",
+    "musicaJefe": "n04_jefe",
+    "musicaTemplo": "n04_templo"
+  },
+  "respaldoJefeMs": 6000,
+  "comentarioMariaMs": 6500,
+  "rewards": {
+    "artesano": 8,
+    "memoria": 15,
+    "descubrimiento": 4,
+    "juguetes": 8,
+    "pasaje": 20,
+    "fragmento": 30
+  },
+  "maria": {
+    "llegada": {
+      "text": "Tanta gente, tantas puertas... ¿y si alguno de mis niños está detrás de una? Yo voy a mirarlas todas.",
+      "ms": 6500
+    },
+    "artesanos": {
+      "text": "Estos hilos... mis hijos tenían una cobija así, de colores. Todavía huele a ellos, ¿sabes?",
+      "ms": 6000
+    },
+    "juguetes": {
+      "text": "Un trompo... Uno de mis niños tenía uno igualito. ¿Quién se lleva a los niños y deja sus juguetes en el suelo?",
+      "ms": 7000
+    },
+    "ropa": {
+      "text": "Es ropita de niños. Alguien la lavó hoy... alguien la esperaba. Tenemos que seguir, por favor.",
+      "ms": 7000
+    },
+    "templo": {
+      "text": "Allá adentro hay algo muy frío. Pero si hay una pista de mis hijos, voy a entrar de todos modos.",
+      "ms": 6500
+    },
+    "final": {
+      "text": "Dos fragmentos, y mis hijos todavía sin aparecer. No me detengo. Vamos por el siguiente.",
+      "ms": 7000
+    }
+  }
+}

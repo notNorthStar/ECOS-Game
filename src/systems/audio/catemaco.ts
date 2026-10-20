@@ -85,7 +85,7 @@ function tamborLejano(m: Motor, d: AudioNode, t: number, vol: number): void {
   ruido(m, d, t, 0.14, vol * 0.5, { filtro: 'lowpass', frec: 320, envio: 0.7 });
 }
 
-interface CfgDrone {
+export interface CfgDrone {
   notas: Array<[number, OscillatorType]>;
   filtro: number;
   vol: number;
@@ -97,7 +97,7 @@ interface CfgDrone {
 }
 
 /** Bordón continuo con barrido de filtro; admite intensidad. */
-function drone(m: Motor, s: AudioNode, t: number, cfg: CfgDrone): Persistente {
+export function drone(m: Motor, s: AudioNode, t: number, cfg: CfgDrone): Persistente {
   const { ctx } = m;
   const lp = ctx.createBiquadFilter();
   lp.type = 'lowpass';
@@ -141,7 +141,7 @@ function drone(m: Motor, s: AudioNode, t: number, cfg: CfgDrone): Persistente {
   };
 }
 
-interface CfgRuido {
+export interface CfgRuido {
   filtro: BiquadFilterType;
   frec: number;
   q?: number;
@@ -153,7 +153,7 @@ interface CfgRuido {
 }
 
 /** Ruido continuo filtrado (agua, viento) con modulación lenta. */
-function ruidoContinuo(m: Motor, s: AudioNode, t: number, cfg: CfgRuido): Persistente {
+export function ruidoContinuo(m: Motor, s: AudioNode, t: number, cfg: CfgRuido): Persistente {
   const { ctx } = m;
   const src = ctx.createBufferSource();
   src.buffer = m.ruido;
@@ -200,7 +200,7 @@ function ruidoContinuo(m: Motor, s: AudioNode, t: number, cfg: CfgRuido): Persis
   };
 }
 
-function unir(...ps: Persistente[]): Persistente {
+export function unir(...ps: Persistente[]): Persistente {
   return {
     parar: (tf) => ps.forEach((p) => p.parar(tf)),
     intensidad: (v, ti) => ps.forEach((p) => p.intensidad?.(v, ti)),

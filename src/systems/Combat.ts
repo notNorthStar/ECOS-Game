@@ -166,6 +166,7 @@ function spellRing(world: WorldApi, ev: SpellOutcomeEvent): void {
   const scene = world.scene;
   if (ev.spellId === 'LUZ') return luzFx(world, ev);
   if (ev.spellId === 'SOL') return solFx(world, ev);
+  if (ev.spellId === 'MEMORIA') return memoriaFx(world, ev);
   if (ev.spellId === 'VOZ') {
     const radius = spellParam('VOZ', 'stunRadius', SPELLS_FX.VOZ.stunRadius) * powerScale(ev.power);
     const wave = scene.add.image(ev.x, ev.y, FB.ring).setTint(0xf2c86b)
@@ -209,6 +210,83 @@ function luzFx(world: WorldApi, ev: SpellOutcomeEvent): void {
   scene.tweens.add({ targets: glow, scale: (r / 16) * 0.9, alpha: { from: 0.95, to: 0 }, duration: 520, ease: 'Quad.easeOut', onComplete: () => glow.destroy() });
   burst(scene, 'light', cx, ev.y - 24, ev.y + FX_DEPTH_BIAS, 22);
   world.flash(s.color, 120);
+}
+
+/**
+ * MEMORIA (Nivel 4): "los tejidos guardan la memoria". Hilos de colores que salen del jugador y se tejen
+ * en rombos concéntricos (patrón de grecas/rombos de los textiles oaxaqueños) mientras se expanden por el suelo.
+ */
+function memoriaFx(world: WorldApi, ev: SpellOutcomeEvent): void {
+  const scene = world.scene;
+  const s = SPELLS_FX.MEMORIA;
+  const r = spellParam('MEMORIA', 'purifyRadius', s.purifyRadius) * powerScale(ev.power);
+  const cx = ev.x + ev.facing * s.forward;
+  const cy = ev.y;
+  const cols = s.colors;
+  const g = scene.add.graphics().setDepth(ev.y - FX_DEPTH_BIAS);
+  const lift = scene.add.graphics().setDepth(ev.y + FX_DEPTH_BIAS).setBlendMode(Phaser.BlendModes.ADD);
+  const phase = Math.random() * Math.PI;
+  const anim = { k: 0 };
+  const draw = () => {
+    const k = anim.k;
+    const grow = Math.min(1, k / 0.6);
+    const R = r * (1 - Math.pow(1 - grow, 3));
+    const fade = k < 0.6 ? 1 : 1 - (k - 0.6) / 0.4;
+    g.clear();
+    lift.clear();
+    // Hilos radiales en zigzag (como la urdimbre), cada uno de un color de la paleta.
+    for (let i = 0; i < s.threads; i++) {
+      const a = phase + (i / s.threads) * Math.PI * 2;
+      const c = cols[i % cols.length];
+      g.lineStyle(1.5, c, 0.85 * fade);
+      g.beginPath();
+      g.moveTo(cx, cy);
+      const steps = 6;
+      for (let j = 1; j <= steps; j++) {
+        const d = (R * j) / steps;
+        const zig = (j % 2 ? 1 : -1) * 3;
+        const px = cx + Math.cos(a) * d - Math.sin(a) * zig;
+        const py = cy + (Math.sin(a) * d + Math.cos(a) * zig) * 0.5;
+        g.lineTo(px, py);
+      }
+      g.strokePath();
+    }
+    // Rombos concéntricos (trama) con pequeños escalones de greca en las puntas.
+    for (let j = 1; j <= s.rings; j++) {
+      const rr = (R * j) / s.rings;
+      const c = cols[(j + 1) % cols.length];
+      g.lineStyle(2, c, 0.75 * fade);
+      g.strokePoints([
+        new Phaser.Math.Vector2(cx - rr, cy),
+        new Phaser.Math.Vector2(cx, cy - rr * 0.5),
+        new Phaser.Math.Vector2(cx + rr, cy),
+        new Phaser.Math.Vector2(cx, cy + rr * 0.5),
+      ], true);
+      const st = 4 + j;
+      g.fillStyle(c, 0.6 * fade);
+      g.fillRect(cx - rr - st / 2, cy - 1, st, 2).fillRect(cx + rr - st / 2, cy - 1, st, 2);
+    }
+    // Brillo del tejido que se levanta un poco del suelo.
+    lift.fillStyle(0xfff0e0, 0.18 * fade).fillEllipse(cx, cy - 6, R * 1.2, R * 0.35);
+  };
+  draw();
+  scene.tweens.add({
+    targets: anim,
+    k: 1,
+    duration: s.fxMs,
+    ease: 'Linear',
+    onUpdate: draw,
+    onComplete: () => {
+      g.destroy();
+      lift.destroy();
+    },
+  });
+  // Motas de colores que suben (la memoria que regresa).
+  for (let i = 0; i < 5; i++) {
+    scene.time.delayedCall(i * 70, () => burst(scene, 'calm', cx + (Math.random() - 0.5) * r, cy - 10, ev.y + FX_DEPTH_BIAS, 3));
+  }
+  world.flash(0xf0c0ff, 110);
+  sfx('memoria');
 }
 
 /** SOL: ráfaga en línea hacia donde mira el jugador (haz que crece, núcleo blanco y partículas a lo largo). */

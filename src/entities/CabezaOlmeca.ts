@@ -105,7 +105,7 @@ export class CabezaOlmeca extends EnemyBase {
   private beamT = 0;
   private eyes: Phaser.GameObjects.Image[] = [];
   private eyeMode: 'on' | 'charge' | 'off' | 'calm' = 'on';
-  private told = { laser: false, closed: false, rage: false, luna: false, window: false };
+  private told = { laser: false, closed: false, rage: false, luna: false, window: false, memoria: false };
 
   constructor(world: WorldApi, x: number, y: number, group?: string) {
     super(world, x, y, {
@@ -547,6 +547,14 @@ export class CabezaOlmeca extends EnemyBase {
     if (ev.spellId === 'CALMA') {
       if (!near) return false;
       this.enrage();
+      return false;
+    }
+    if (ev.spellId === 'MEMORIA') {
+      // Nivel 4: ➖ (la piedra no guarda memoria rota: la posesión es de la Cofradía).
+      if (near && !this.told.memoria) {
+        this.told.memoria = true;
+        bus.emit('hud:toast', { text: 'MEMORIA no la alcanza: usa LUZ, SOL o VOZ en su ventana', ms: 2600 });
+      }
       return false;
     }
     if (ev.spellId !== 'LUZ' && ev.spellId !== 'SOL' && ev.spellId !== 'VOZ') return false; // PROTECCION ➖

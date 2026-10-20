@@ -6,7 +6,7 @@ import { FX_DEPTH_BIAS, SPELLS_FX } from '../config/combat';
 import enemiesData from '../data/enemies.json';
 import { isShieldActive } from '../systems/Shield';
 import {
-  EnemyBase, FB, burst, hexColor, hitPlayer, inLuzRadius, inSolLine, lunaVisible, planeDist, powerScale, rand, randRange,
+  EnemyBase, FB, burst, hexColor, hitPlayer, inLuzRadius, inMemoriaRadius, inSolLine, lunaVisible, planeDist, powerScale, rand, randRange,
   smokeFx, solDamage, solKnockback, spellParam,
 } from './EnemyBase';
 
@@ -28,6 +28,7 @@ type St = 'patrol' | 'alert' | 'combat' | 'staffWindup' | 'staffActive' | 'boltW
 
 /** Aviso de CALMA una sola vez por partida. */
 let toldCalma = false;
+let toldMemoria = false;
 
 const texKey = (rank: CofradiaRank) => `__cb_encapuchado_${rank}`;
 
@@ -695,6 +696,14 @@ export class Encapuchado extends EnemyBase {
         if (!toldCalma && planeDist(this.x, this.y, ev.x, ev.y) < r * 1.5) {
           toldCalma = true;
           bus.emit('hud:toast', { text: 'La Cofradía no es un ser del folclor: usa el láser rojo o SOL', ms: 3200 });
+        }
+        return false;
+      }
+      case 'MEMORIA': {
+        // Nivel 4: ➖ (no es un ser del folclor; su memoria no está rota, está vendida).
+        if (!toldMemoria && inMemoriaRadius(ev, this.x, this.y, 'stunRadius')) {
+          toldMemoria = true;
+          bus.emit('hud:toast', { text: 'MEMORIA no afecta a la Cofradía: usa SOL o el láser rojo', ms: 3000 });
         }
         return false;
       }

@@ -1,0 +1,58 @@
+{
+  "id": "callejones",
+  "name": "Callejones · El mercado arruinado",
+  "width": 3000,
+  "background": "fondo_callejones",
+  "ambience": { "fog": 0.34, "rain": false, "fireflies": false, "leaves": false, "dust": true, "tint": "#b89878", "darkness": 0.4 },
+  "music": "n04_ciudad",
+  "walk": [[[0,222],[3000,222],[3000,345],[0,345]]],
+  "obstacles": [],
+  "props": [
+    { "key": "prop_n04_farol", "x": 180, "y": 226 },
+    { "key": "prop_n04_puesto", "x": 440, "y": 238 },
+    { "key": "prop_n04_puesto_roto", "x": 700, "y": 240, "flipX": true },
+    { "key": "prop_n04_agave", "x": 880, "y": 238 },
+    { "key": "prop_n04_juguetes", "id": "n04_juguetes", "x": 990, "y": 306 },
+    { "key": "prop_n04_puesto", "x": 1180, "y": 238 },
+    { "key": "prop_n04_farol", "x": 1320, "y": 226 },
+    { "key": "altar_memoria", "id": "n04_altar", "x": 1450, "y": 255, "anim": "altar_memoria", "collide": { "rx": 18, "ry": 6 } },
+    { "key": "prop_n04_puesto_roto", "x": 1620, "y": 240 },
+    { "key": "prop_n04_ropa", "id": "n04_ropa", "x": 1740, "y": 306 },
+    { "key": "prop_n04_puesto", "x": 1900, "y": 238, "flipX": true },
+    { "key": "prop_n04_retablo", "id": "n04_retablo", "x": 2040, "y": 240 },
+    { "key": "prop_n04_farol", "x": 2140, "y": 226 },
+    { "key": "prop_n04_muro_cerrado", "id": "n04_muro_pasaje", "x": 2640, "y": 340 },
+    { "key": "prop_n04_agave", "x": 360, "y": 354, "foreground": true },
+    { "key": "prop_n04_agave", "x": 1560, "y": 352, "foreground": true, "flipX": true },
+    { "key": "prop_n04_agave", "x": 2300, "y": 354, "foreground": true }
+  ],
+  "spawn": { "x": 80, "y": 295 },
+  "spawns": { "inicio": { "x": 80, "y": 295 }, "checkpoint": { "x": 150, "y": 295 }, "altar": { "x": 1450, "y": 295 }, "pasaje": { "x": 2460, "y": 295 } },
+  "enemies": [
+    { "type": "bestia", "x": 560, "y": 285 },
+    { "type": "bestia", "x": 820, "y": 318 },
+    { "type": "bestia", "x": 1100, "y": 262 },
+    { "type": "bestia", "x": 1290, "y": 300 },
+    { "type": "bestia", "x": 2150, "y": 290 },
+    { "type": "bestia", "x": 2290, "y": 262 },
+    { "type": "bestia", "x": 2410, "y": 318 },
+    { "type": "encapuchado", "rank": "rojo", "x": 700, "y": 262 },
+    { "type": "encapuchado", "rank": "rojo", "x": 1000, "y": 320 },
+    { "type": "encapuchado", "rank": "rojo", "x": 1650, "y": 285 },
+    { "type": "encapuchado", "rank": "rojo", "x": 1930, "y": 318 }
+  ],
+  "triggers": [
+    { "id": "n04_callejones_nombre", "x": 100, "y": 222, "w": 80, "h": 123, "action": "letras", "once": true, "data": { "title": "CALLEJONES", "subtitle": "El mercado arruinado" } },
+    { "id": "n04_mercado_vista", "x": 300, "y": 222, "w": 40, "h": 123, "action": "dialogo", "once": true, "data": { "dialogue": "n04_mercado_vista" } },
+    { "id": "n04_muro_vista", "x": 2020, "y": 222, "w": 40, "h": 123, "action": "dialogo", "once": true, "data": { "dialogue": "n04_muro_vista", "toast": "Purifica con MEMORIA a las bestias de esta calle: algo las ata al muro." } },
+    { "id": "n04_a_santo_domingo", "x": 2940, "y": 222, "w": 40, "h": 123, "action": "ir_seccion", "data": { "section": "santo_domingo", "spawn": "inicio", "requires": "pasaje" } }
+  ],
+  "interactables": [
+    { "id": "n04_altar", "x": 1450, "y": 270, "radius": 34, "prompt": "Ofrendar", "action": "altar", "data": { "promptDy": 56 } },
+    { "id": "n04_juguetes", "x": 990, "y": 306, "radius": 40, "prompt": "Examinar", "action": "n04_juguetes", "data": { "dialogue": "n04_juguetes", "maria": "juguetes", "descubrimiento": "juguetes" } },
+    { "id": "n04_ropa", "x": 1740, "y": 306, "radius": 40, "prompt": "Examinar", "action": "n04_juguetes", "data": { "dialogue": "n04_ropa", "maria": "ropa", "descubrimiento": "ropa" } },
+    { "id": "n04_retablo", "x": 2040, "y": 262, "radius": 40, "prompt": "Examinar", "action": "n04_examinar", "data": { "dialogue": "n04_retablo", "descubrimiento": "retablo" } },
+    { "id": "n04_muro", "x": 2560, "y": 300, "radius": 50, "prompt": "Examinar el muro", "action": "n04_muro", "data": {} }
+  ],
+  "cameraBounds": { "x0": 0, "x1": 3000 }
+}

@@ -433,6 +433,15 @@ export function inSolLine(ev: SpellOutcomeEvent, x: number, y: number, extra = 0
   return along >= -extra && along <= len + extra && Math.abs(y - ev.y) <= half + extra * 0.25;
 }
 
+/* ----------------------- MEMORIA (Nivel 4) ----------------------- */
+
+/** ¿(x, y) está en el tejido de MEMORIA? key = 'purifyRadius' (purificar) o 'stunRadius' (aturdir). */
+export function inMemoriaRadius(ev: SpellOutcomeEvent, x: number, y: number, key: 'purifyRadius' | 'stunRadius' = 'purifyRadius', extra = 0): boolean {
+  const s = SPELLS_FX.MEMORIA;
+  const r = spellParam('MEMORIA', key, s[key]) * powerScale(ev.power) + extra;
+  return planeDist(x, y, ev.x + ev.facing * s.forward, ev.y) <= r;
+}
+
 /** Daño de SOL según la fuerza (parcial = proporcional). */
 export const solDamage = (ev: SpellOutcomeEvent) => spellParam('SOL', 'damage', SPELLS_FX.SOL.damage) * Math.max(0.3, Math.min(1, ev.power));
 export const solKnockback = (ev: SpellOutcomeEvent) => spellParam('SOL', 'knockback', SPELLS_FX.SOL.knockback) * Math.max(0.3, Math.min(1, ev.power));

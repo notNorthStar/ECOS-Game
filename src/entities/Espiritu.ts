@@ -7,7 +7,7 @@ import enemiesData from '../data/enemies.json';
 import progression from '../data/progression.json';
 import { isLunaActive } from '../systems/Luna';
 import {
-  EnemyBase, FB, burst, hexColor, hitPlayer, inLuzRadius, inSolLine, planeDist, powerScale, purifyFx, rand, randRange,
+  EnemyBase, FB, burst, hexColor, hitPlayer, inLuzRadius, inMemoriaRadius, inSolLine, planeDist, powerScale, purifyFx, rand, randRange,
   solDamage, solKnockback, spellParam,
 } from './EnemyBase';
 
@@ -305,6 +305,11 @@ export class Espiritu extends EnemyBase {
         this.purify(perfect);
         return true;
       }
+      case 'MEMORIA':
+        // Nivel 4: purifica como CALMA dentro de su radio.
+        if (!inMemoriaRadius(ev, this.x, this.y)) return false;
+        this.purify(perfect);
+        return true;
       case 'SOL':
         if (!inSolLine(ev, this.x, this.y, this.radius)) return false;
         return this.takeHit({ damage: solDamage(ev), stun: 0, kind: 'spell', sourceX: ev.x, knockback: solKnockback(ev) * 0.5 });

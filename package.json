@@ -14,9 +14,11 @@
     "typecheck": "tsc --noEmit",
     "test:nivel2": "node tools/test-nivel-02.mjs",
     "test:nivel3": "node tools/test-nivel-03.mjs",
+    "test:nivel4": "node tools/test-nivel-04.mjs",
     "placeholders": "node tools/gen-placeholders.mjs",
     "scenery:nivel2": "node tools/gen-tuxtla-scenery.mjs",
-    "scenery:nivel3": "node tools/gen-catemaco-scenery.mjs"
+    "scenery:nivel3": "node tools/gen-catemaco-scenery.mjs",
+    "scenery:nivel4": "node tools/gen-oaxaca-scenery.mjs"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "1.0.1",

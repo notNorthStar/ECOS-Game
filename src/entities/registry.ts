@@ -4,6 +4,8 @@ import { ChanequeMayor } from './ChanequeMayor';
 import { Encapuchado } from './Encapuchado';
 import { Espiritu } from './Espiritu';
 import { CabezaOlmeca } from './CabezaOlmeca';
+import { Bestia } from './Bestia';
+import { BrujaGuajolote } from './BrujaGuajolote';
 
 /**
  * Fábrica de enemigos (dueño: combate). La usa LevelScene.spawnEnemy(spec):
@@ -24,10 +26,11 @@ export function createEnemy(world: WorldApi, spec: EnemySpec): EnemyApi {
       return new Espiritu(world, spec.x, spec.y, spec.lunaOnly ?? true, spec.group);
     case 'cabeza_olmeca':
       return new CabezaOlmeca(world, spec.x, spec.y, spec.group);
-    // Nivel 4 (dueño: enemigos). Reemplazar al crear Bestia.ts y BrujaGuajolote.ts.
+    // Nivel 4 (dueño: enemigos). group en bestias: arena y/o las que abren el pasaje (las de grupo no se retiran).
     case 'bestia':
+      return new Bestia(world, spec.x, spec.y, spec.group);
     case 'bruja_guajolote':
-      throw new Error(`Enemigo del Nivel 4 sin implementar: ${spec.type}`);
+      return new BrujaGuajolote(world, spec.x, spec.y, spec.group);
     default: {
       const t: never = spec.type;
       throw new Error(`Tipo de enemigo desconocido: ${String(t)}`);

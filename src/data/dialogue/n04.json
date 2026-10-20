@@ -1,0 +1,163 @@
+{
+  "_hablantes": {
+    "n04_narrador": { "nombre": "", "retrato": "" },
+    "n04_tu": { "nombre": "Tú", "retrato": "retrato_protagonista" },
+    "n04_maria": { "nombre": "María", "retrato": "" },
+    "n04_gudelia": { "nombre": "Doña Gudelia", "retrato": "" },
+    "n04_facundo": { "nombre": "Don Facundo", "retrato": "" },
+    "n04_lucrecia": { "nombre": "Doña Lucrecia", "retrato": "" },
+    "n04_viajero": { "nombre": "Viajero", "retrato": "" },
+    "n04_vendedora": { "nombre": "Doña Eufemia", "retrato": "" },
+    "n04_arriero": { "nombre": "Arriero", "retrato": "" },
+    "n04_nina": { "nombre": "Muchacha", "retrato": "" }
+  },
+
+  "n04_intro": [
+    { "who": "n04_narrador", "text": "Oaxaca. El sol de la tarde se rompe contra las montañas verdes y tiñe de ocre las casas de cantera. Todo sería bello si las ventanas no estuvieran vacías." },
+    { "who": "n04_tu", "text": "El Códice marca el segundo sello en el corazón de la ciudad. Pero antes hay que cruzar las calles." },
+    { "who": "n04_narrador", "text": "Balam olfatea el aire. María aprieta el rebozo contra el pecho y mira cada puerta, cada balcón, cada rincón por donde pudiera asomar una cabecita." }
+  ],
+  "n04_letras": [
+    { "who": "n04_narrador", "text": "Las letras de OAXACA, gastadas por el sol y el polvo, siguen en pie a la entrada de la ciudad. Alguien trenzó listones de colores en la A, y una veladora arde al lado, en un Altar de la Memoria." }
+  ],
+
+  "n04_calles_vista": [
+    { "who": "n04_narrador", "text": "Un grito se corta al fondo de la calle. Hombres de capa roja rodean a unos viajeros junto a un puesto volteado." },
+    { "who": "n04_tu", "text": "La Cofradía otra vez. Hay que sacarlos de ahí." }
+  ],
+  "n04_poblador_1": [
+    { "who": "n04_viajero", "text": "Veníamos de la Sierra con las mulas cargadas de tejido, y los encapuchados nos cerraron el paso. Dicen que buscan algo en el corazón de la ciudad." },
+    { "who": "n04_tu", "text": "¿Qué cosa?" },
+    { "who": "n04_viajero", "text": "No lo dicen. Pero el que más sabe de esto es el taller de los artesanos, calle arriba. Ellos entienden lo que está pasando con las bestias." }
+  ],
+  "n04_cartel": [
+    { "who": "n04_narrador", "text": "Un cartel pegado a una pared: «VELA DE LAS ANIMAS, SOLO ESTE AÑO NO HABRÁ». Debajo, con carbón: «Los animalitos del cerro bajaron cambiados»." }
+  ],
+  "n04_poblador_2": [
+    { "who": "n04_vendedora", "text": "Mijo, aquí las bestias de la fiesta, los alebrijes, los nahuales del cerro, siempre fueron de respeto. Pero algo les metieron adentro: les prendieron un fuego verde en los ojos." },
+    { "who": "n04_vendedora", "text": "No quieren hacer daño. Se ve que sufren. Lo malo es que ya no se acuerdan de quiénes son." }
+  ],
+  "n04_poblador_3": [
+    { "who": "n04_arriero", "text": "Si vas al taller de los tejedores, saluda a Doña Gudelia de mi parte. Ella me enseñó que un tejido bien hecho no se olvida: cada vuelta del hilo es un recuerdo que alguien decidió guardar." },
+    { "who": "n04_arriero", "text": "Por eso los de la capa roja odian los telares. Cuando alguien guarda su memoria en un tejido, ya no se la pueden quitar." }
+  ],
+
+  "n04_taller_vista": [
+    { "who": "n04_narrador", "text": "Al final de la calle, bajo un portal lleno de lanas teñidas, un telar de pedal sigue vivo. Tres personas trabajan en él sin levantar la mirada, como si el mundo no se estuviera cayendo." }
+  ],
+  "n04_textiles": [
+    { "who": "n04_narrador", "text": "Tapetes y rebozos cuelgan de una cuerda: grana cochinilla, añil, verde de pericón. Las grecas son las mismas una y otra vez, escalones, rombos, ríos, como un idioma que se repite para no perderse." }
+  ],
+  "n04_telar": [
+    { "who": "n04_narrador", "text": "Un telar de pedal a medio tejer. El patrón avanza vuelta tras vuelta: un ciclo de rombos que se abre y se cierra. Tocas la urdimbre y la gema responde con un latido tibio." }
+  ],
+
+  "n04_gudelia": [
+    { "who": "n04_gudelia", "text": "Pasa, hijo, y no pises la lana. Te vi pelear desde aquí. Tienes la luz de quien cuida a alguien que ya no está cerca." },
+    { "who": "n04_tu", "text": "Mi mamá. La Cofradía se la llevó. Busco el segundo sello." },
+    { "who": "n04_gudelia", "text": "Entonces viniste al lugar correcto. Mira este tejido: cada greca es una palabra. El escalón es el cerro, el rombo es el ojo del abuelo, la espiral es la vuelta de la vida." },
+    { "who": "n04_gudelia", "text": "Mi abuela me enseñó que un tejido es una memoria hecha de hilo. Si lo sabes leer, no se pierde ni el nombre del que lo tejió." },
+    { "who": "n04_maria", "text": "¿Y si alguien perdió el hilo? ¿Se puede volver a encontrar?" },
+    { "who": "n04_gudelia", "text": "Si alguien lo está buscando, mija, todavía hay hilo." },
+    { "who": "n04_gudelia", "text": "Ve con Don Facundo, que él entiende de las bestias." }
+  ],
+  "n04_gudelia_repite": [
+    { "who": "n04_gudelia", "text": "Todo patrón guarda algo, hijo. Un día, cuando esto termine, te voy a tejer uno con el nombre de tu mamá." }
+  ],
+  "n04_facundo_pendiente": [
+    { "who": "n04_facundo", "text": "Primero habla con Doña Gudelia, muchacho. Ella te explica el telar; yo solo te explico lo que el telar no dice." }
+  ],
+  "n04_facundo": [
+    { "who": "n04_facundo", "text": "Las bestias que viste no nacieron malas. Son guardianes del cerro, nahuales de la sierra, alebrijes de los talleres. Los quiere el pueblo, y por eso los eligió la Cofradía." },
+    { "who": "n04_tu", "text": "¿Por qué ellos?" },
+    { "who": "n04_facundo", "text": "Porque son memoria viva. Cada alebrije lleva en el cuerpo los colores de un recuerdo de sus tallistas. Si les borras la memoria, quedan hambrientos, furiosos, sin nombre." },
+    { "who": "n04_facundo", "text": "Pelear no sirve. Puedes agotarlas con el láser rojo, pero siguen enfermas. Hay que devolverles lo que les quitaron. Eso lo enseña Doña Lucrecia, la que teje las señas." }
+  ],
+  "n04_facundo_repite": [
+    { "who": "n04_facundo", "text": "Cuando una bestia te mire, no veas a un monstruo. Ve un tejido al que le arrancaron un hilo." }
+  ],
+  "n04_lucrecia_pendiente": [
+    { "who": "n04_lucrecia", "text": "Todavía no, mijo. Escucha primero a Gudelia y a Facundo. Una seña como la que te toca se aprende despacio, con la lana ya en las manos." }
+  ],
+  "n04_lucrecia": [
+    { "who": "n04_lucrecia", "text": "Ya te explicaron. Entonces lo que sigue es la seña. Se llama MEMORIA, y no es un golpe: es una pregunta que le haces a la bestia, y la respuesta es lo que ella fue." },
+    { "who": "n04_narrador", "text": "Doña Lucrecia desenreda un hilo rojo y lo pone en tus manos. El hilo, de pronto, pesa como un recuerdo." },
+    { "who": "n04_lucrecia", "text": "Deletréala poco a poco, letra por letra, como se teje: una vuelta, otra vuelta, otra. Si te equivocas, deshaces y vuelves a empezar." }
+  ],
+  "n04_memoria_fin": [
+    { "who": "n04_lucrecia", "text": "Así. Ya tienes MEMORIA. Cuando una bestia esté agotada, o cuando te mire sin atacar, úsala. Y si dentro de las ruinas te toca una bruja, también le va a doler lo que recuerde." },
+    { "who": "n04_narrador", "text": "Un hilo de luz rojiza se enreda en tu muñeca y se apaga. El latido de la gema coincide con el del telar." },
+    { "who": "n04_tu", "text": "Gracias. Les prometo que las traeré de vuelta." },
+    { "who": "n04_lucrecia", "text": "Ve por los callejones. Dicen que hay un pasaje que solo las bestias saben abrir. Que el hilo te guíe." }
+  ],
+  "n04_lucrecia_repite": [
+    { "who": "n04_lucrecia", "text": "Si dudas de la seña, practícala con calma, hijo. Los hilos se deshacen y se vuelven a tejer. El olvido, no." }
+  ],
+
+  "n04_bestias_vista": [
+    { "who": "n04_narrador", "text": "Entre las casas, tres siluetas de ojos verdes dan vueltas alrededor de una familia de viajeros acorralada. Son criaturas de colores quebrados: un lomo de alebrije, un hocico de nahual, cuernos de venado." },
+    { "who": "n04_tu", "text": "Son ellas. No quieren lastimar... pero lo van a hacer." }
+  ],
+  "n04_poblador_4": [
+    { "who": "n04_nina", "text": "Mi abuela decía que si el alebrije te mira de frente, no hay que correr. Que hay que acordarse de él en voz bajita. Pero a mí me da mucho miedo." },
+    { "who": "n04_tu", "text": "No tengas miedo. Yo me encargo." }
+  ],
+
+  "n04_mercado_vista": [
+    { "who": "n04_narrador", "text": "El Mercado de los Callejones no es más que esqueletos de madera y toldos desgarrados. Pimientos, chiles y trozos de barro cuecen bajo un sol de otro mundo. Falta el pregón de la gente." },
+    { "who": "n04_tu", "text": "No se oye nada. Y eso es lo peor." }
+  ],
+  "n04_juguetes": [
+    { "who": "n04_narrador", "text": "Entre la tierra y los trastos rotos, una caja de madera desbordada: carritos de barro, un trompo, un alebrije diminuto con una pata despintada. Alguien salió corriendo sin cerrarla." }
+  ],
+  "n04_ropa": [
+    { "who": "n04_narrador", "text": "Un tendedero a medio caer: camisitas bordadas, un huipil de niña, un par de huaraches chiquitos. Todavía huelen a jabón." }
+  ],
+  "n04_retablo": [
+    { "who": "n04_narrador", "text": "Un retablo de lámina colgado en la pared: una virgen entre nubes y, a sus pies, un cerro de cuyo vientre salen luces. Alguien escribió abajo, con letra temblorosa: «Por haber vuelto a casa»." }
+  ],
+  "n04_muro_vista": [
+    { "who": "n04_narrador", "text": "Al final del callejón, un muro de cantera cubierto de grecas. Algo en su tejido de piedra se mueve, como si respirara." },
+    { "who": "n04_tu", "text": "Este dibujo se parece a los del taller. Es un telar... hecho muro." }
+  ],
+  "n04_muro_cerrado": [
+    { "who": "n04_narrador", "text": "Un muro tejido en piedra. Las grecas forman un patrón cerrado, pero hay un hueco en la trama: falta un recuerdo. Las bestias de esta calle lo saben." }
+  ],
+  "n04_pasaje": [
+    { "who": "n04_narrador", "text": "Las últimas bestias dejan de gruñir. El fuego verde de sus ojos se apaga, y se acuerdan: un nombre, un cerro, la mano que las talló." },
+    { "who": "n04_narrador", "text": "Las grecas del muro se encienden una a una. La trama se completa, la piedra se abre como un telar que se recoge y, detrás, aparece un pasaje oculto hacia el corazón de la ciudad." },
+    { "who": "n04_tu", "text": "Lo abrieron ellas. Se acordaron." },
+    { "who": "n04_narrador", "text": "Los alebrijes inclinan la cabeza y se pierden entre los toldos. A lo lejos se alza la silueta de las ruinas del Templo de Santo Domingo." }
+  ],
+  "n04_muro_abierto": [
+    { "who": "n04_narrador", "text": "El muro quedó abierto, con las grecas aún brillando. Al otro lado, una escalinata de cantera sube al corazón de Oaxaca." }
+  ],
+
+  "n04_explanada_vista": [
+    { "who": "n04_narrador", "text": "La explanada frente al templo está cercada con carretas y sacos de arena. Encapuchados rojos hacen guardia entre fogatas verdes. Detrás, la fachada barroca de cantera verde, agrietada, dorada por dentro como una herida." }
+  ],
+  "n04_templo_vista": [
+    { "who": "n04_narrador", "text": "El Templo de Santo Domingo. Los santos de piedra tienen los ojos tapados con trapos negros. Dentro, el oro de las bóvedas parpadea al ritmo de un fuego que no es humano." },
+    { "who": "n04_tu", "text": "Aquí está el segundo sello. Lo siento en el pecho." }
+  ],
+  "n04_bruja_intro": [
+    { "who": "n04_narrador", "text": "Una risa que parece sonar de varias gargantas sacude el altar. Del retablo dorado baja una mujer sin sombra, con el cabello suelto y los ojos encendidos de verde." },
+    { "who": "n04_tu", "text": "Tú trabajas para la Cofradía." },
+    { "who": "n04_narrador", "text": "«Tlahuelpuchi», susurran las sombras del templo. Y la mujer, como respuesta, se dobla hacia atrás, se extiende, se emplumeja: un gigantesco guajolote negro envuelto en fuego fatuo." }
+  ],
+  "n04_bruja_fin": [
+    { "who": "n04_narrador", "text": "Con un chillido que sacude las bóvedas, el ave se desploma. El fuego fatuo se achica, se acuerda de dónde viene y se apaga." },
+    { "who": "n04_narrador", "text": "Donde estaba el ave queda una mujer, dormida sobre el piso de cantera, con las manos manchadas de ceniza y un hilo de plumas negras entre los dedos. Ya no hay fuego en sus ojos. Solo cansancio." },
+    { "who": "n04_tu", "text": "Se acabó. Ya no te manda nadie." },
+    { "who": "n04_narrador", "text": "Algo late en el retablo. El oro de las bóvedas se desprende en polvo luminoso y, en medio del altar, flota un fragmento brillante, del tamaño de una mano, tejido de luz." }
+  ],
+  "n04_fragmento": [
+    { "who": "n04_narrador", "text": "El segundo fragmento del Sello. Es tibio, y su superficie guarda grecas diminutas, patrones de memoria que giran lentamente." },
+    { "who": "n04_narrador", "text": "Al tocarlo, la gema de tu pecho se enciende y el Códice de las Voces se abre solo: dos de seis fragmentos marcados." },
+    { "who": "n04_tu", "text": "Dos. Faltan cuatro." }
+  ],
+  "n04_salida": [
+    { "who": "n04_narrador", "text": "Oaxaca respira. Desde las casas de colores empiezan a llegar voces: gente que sale a mirar las montañas por primera vez en mucho tiempo." },
+    { "who": "n04_narrador", "text": "El Códice marca ahora el camino al Altiplano. Aquí termina, por ahora, la parte jugable. Continuará." }
+  ]
+}

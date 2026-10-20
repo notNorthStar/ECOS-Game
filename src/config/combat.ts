@@ -107,6 +107,25 @@ export const SPELLS_FX = {
     forward: 12,
     color: 0xffb040,
   },
+  /**
+   * MEMORIA (Nivel 4): un tejido de hilos luminosos que se expande alrededor del jugador.
+   * Purifica bestias corrompidas (agotadas o no) y folclor en purifyRadius; aturde en stunRadius;
+   * contra la Bruja Guajolote avanza el sello × bossSeal en su ventana.
+   * Mandan effect.purifyRadius / stunRadius / stun / bossSeal de spells.json (dueño: sistemas).
+   */
+  MEMORIA: {
+    purifyRadius: 130,
+    stunRadius: 150,
+    stun: 3,
+    bossSeal: 1,
+    forward: 12,
+    /** Paleta textil oaxaqueña de los hilos (rosa, oro, turquesa, morado, naranja). */
+    colors: [0xe8407a, 0xf2c86b, 0x40c8b8, 0x9a60e0, 0xff8040],
+    /** Hilos que salen del centro y rombos concéntricos del patrón. */
+    threads: 14,
+    rings: 3,
+    fxMs: 950,
+  },
 } as const;
 
 /** Escudo pasivo de PROTECCION (respaldo; mandan effect.shieldMs / shieldReduction de spells.json). */

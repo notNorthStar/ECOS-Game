@@ -2,7 +2,8 @@
   "note": "Conjuros del juego (dueño: lsm). Cada nombre se valida con checkWord() al cargar. Valores ajustables: ventanas (ms), efectos (px, ms) y puntos de maestría por nivel. Ver GDD §6 y NIVELES_ECOS.md §3.",
   "effectDoc": {
     "LUZ": "purifyRadius (px): purifica espíritus agotados o lunaOnly dentro del radio · stunRadius (px) + stun: aturde a encapuchados y otros · knockback (px) · lightRadius (px) + lightMs: ilumina/disipa niebla alrededor del jugador · bossDamage: golpes de conjuro efectivos contra la Cabeza Olmeca en su ventana. Radios × powerScale(power).",
-    "SOL": "length (px) hacia facing, |Δy| <= width: ráfaga en línea · damage (pts de vida del enemigo; el encapuchado rojo tiene 60, así que un SOL perfecto lo deja inconsciente; cada rango lo escala con solMult de enemies.json) · knockback (px) · stun · beamMs: duración visual del rayo. Daño × power. Contra la Cabeza Olmeca cuenta como sello en su ventana (enemies.json → cabeza_olmeca.seal)."
+    "SOL": "length (px) hacia facing, |Δy| <= width: ráfaga en línea · damage (pts de vida del enemigo; el encapuchado rojo tiene 60, así que un SOL perfecto lo deja inconsciente; cada rango lo escala con solMult de enemies.json) · knockback (px) · stun · beamMs: duración visual del rayo. Daño × power. Contra la Cabeza Olmeca cuenta como sello en su ventana (enemies.json → cabeza_olmeca.seal).",
+    "MEMORIA": "purifyRadius (px): purifica a las bestias corrompidas (agotadas o no) dentro del radio; al purificarse revelan el pasaje oculto ('pasaje:revealed', lo emite quien corresponda) · stunRadius (px) + stun: aturde a lo demás que esté cerca (al encapuchado no le hace nada: ➖) · bossSeal: avance del sello de la Bruja Guajolote si la alcanza en su ventana de vulnerabilidad (afinidad ✅ en ambas formas). Radios × powerScale(power); bossSeal × power si es parcial."
   },
   "masteryRules": {
     "partialMinFraction": 0.8,
@@ -91,6 +92,23 @@
         "knockback": 30,
         "stun": 1,
         "beamMs": 450
+      }
+    },
+    {
+      "id": "MEMORIA",
+      "name": "MEMORIA",
+      "type": "purificacion",
+      "title": "Memoria",
+      "desc": "Los tejidos guardan la memoria. Devuelve a las bestias corrompidas lo que eran y las purifica; al recordar, revelan pasajes ocultos. Fuerte contra la Bruja Guajolote.",
+      "learnedFrom": "Artesanos tejedores de Oaxaca",
+      "color": "#e0609a",
+      "letterWindowMs": 4200,
+      "masteryPoints": [2, 3, 4],
+      "effect": {
+        "purifyRadius": 120,
+        "stunRadius": 160,
+        "stun": 4,
+        "bossSeal": 1
       }
     }
   ]

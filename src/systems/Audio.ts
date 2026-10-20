@@ -5,13 +5,14 @@ import { obtenerMotor, type Motor } from './audio/motor';
 import { ALIAS, EFECTOS, MAX_VOCES, reiniciarLetras } from './audio/efectos';
 import { Musica, PISTAS, type ArchivoMusica } from './audio/musica';
 import { MAPA_MUSICA } from './audio/config';
+import { setFormaBruja } from './audio/oaxaca';
 
 /**
  * Sistema de audio de ECOS (WebAudio puro, sin el SoundManager de Phaser).
  *
  * - Efectos: `bus.emit('sfx', { name })` o `sfx(name)`. Si existe
  *   `public/assets/audio/sfx/sfx_<name>.ogg` se usa el archivo; si no, se sintetiza.
- * - Música: `bus.emit('music', { track })` con 'n01_taller' | 'n01_exploracion' | 'n01_combate' |
+ * - Música: `bus.emit('music', { track })` con 'n04_ciudad' | 'n04_combate' | 'n04_templo' | 'n04_jefe' | 'n01_taller' | 'n01_exploracion' | 'n01_combate' |
  *   'n01_jefe' | 'n02_fandango' | 'n03_pueblo' | 'n03_lago' | 'n03_altar' | 'n03_jefe' | 'titulo'
  *   (o null para silencio). Si existe `musica_<track>.ogg` (o .mp3) se usa en bucle; si no, el archivo
  *   del equipo indicado en `audio/config.ts` (MAPA_MUSICA); si tampoco, se genera de forma procedural. El fandango usa siempre capas procedurales
@@ -222,6 +223,7 @@ function conectarBus(): void {
     const pista = normalizarPista(track);
     musica?.reproducir(pista);
     if (pista === 'n03_jefe') musica?.setIntensidad(intensidadOlmeca);
+    if (pista !== 'n04_jefe') setFormaBruja('humana');
   });
   bus.on('fandango:progress', ({ recovered, total }) => musica?.setProgresoFandango(recovered, total));
 
@@ -240,7 +242,8 @@ function conectarBus(): void {
   bus.on('spell:resolved', ({ outcome, spellId }) => {
     reproducirSfx(outcome === 'perfect' ? 'perfecto' : outcome === 'partial' ? 'conjuro_ok' : 'conjuro_fallo');
     if (outcome !== 'fail') {
-      if (spellId === 'LUZ') reproducirSfx('luz');
+      if (spellId === 'MEMORIA') reproducirSfx('memoria');
+      else if (spellId === 'LUZ') reproducirSfx('luz');
       else if (spellId === 'SOL') reproducirSfx('sol');
     }
     reiniciarLetras();
@@ -253,6 +256,11 @@ function conectarBus(): void {
   bus.on('boss:phase', ({ phase }) => {
     // En el Nivel 3 la intensidad la gobierna 'olmeca:phase'.
     if (musica?.actual?.startsWith('n03_')) return;
+    // Nivel 4: la fase 1/2/3 de la Bruja sube la intensidad de n04_jefe (sin rugido de Chaneque).
+    if (musica?.actual?.startsWith('n04_')) {
+      musica.setIntensidad(phase === 1 ? 0 : phase === 2 ? 0.55 : 1);
+      return;
+    }
     if (phase === 2) {
       musica?.setIntensidad(1);
       reproducirSfx('jefe_rugido');
@@ -288,6 +296,14 @@ function conectarBus(): void {
   });
   bus.on('antenna:destroyed', () => reproducirSfx('antena_rota'));
 
+  // Nivel 4: María, pasajes y Bruja Guajolote.
+  bus.on('maria:assist', () => reproducirSfx('maria_lamento'));
+  bus.on('pasaje:revealed', () => reproducirSfx('pasaje_abre'));
+  bus.on('bruja:form', ({ form }) => {
+    reproducirSfx('bruja_transformar');
+    setFormaBruja(form);
+  });
+
   // Progresión.
   bus.on('ecos:changed', () => reproducirSfx('eco'));
   bus.on('upgrade:bought', () => reproducirSfx('mejora'));
@@ -296,11 +312,24 @@ function conectarBus(): void {
   bus.on('arena:start', () => {
     if (!musica) return;
     const actual = musica.actual;
+    // Nivel 4: solo la ciudad cede a n04_combate; el templo y el jefe no cambian.
+    if (actual?.startsWith('n04_')) {
+      if (actual === 'n04_ciudad') {
+        musicaPrevia = actual;
+        musica.reproducir('n04_combate');
+      }
+      return;
+    }
     if (actual === 'n01_jefe' || actual === 'n01_combate' || actual === 'n02_fandango' || actual === 'n03_jefe' || actual === 'n03_altar') return;
     musicaPrevia = actual;
     musica.reproducir('n01_combate');
   });
   bus.on('arena:clear', () => {
+    if (musica?.actual === 'n04_combate') {
+      musica.reproducir(musicaPrevia ?? 'n04_ciudad');
+      musicaPrevia = null;
+      return;
+    }
     if (!musica || musica.actual !== 'n01_combate') return;
     musica.reproducir(musicaPrevia ?? 'n01_exploracion');
     musicaPrevia = null;

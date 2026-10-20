@@ -557,6 +557,279 @@
       "placeholder": true,
       "generator": "tools/gen-catemaco-scenery.mjs",
       "generatedSha256": "77d08a8c97f1064bcba7280c7cdaebe3883b3dcd9fe9394ce01064328403c7c1"
+    },
+    {
+      "key": "fondo_oaxaca_capa0",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_oaxaca_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "869d2579377133a95468d914de7a94fd87d0e364d56d435ff585f343f546cb38"
+    },
+    {
+      "key": "fondo_oaxaca_capa1",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_oaxaca_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "a0a3790148fa58ae94c98fc31581fcad07951dfe484ba9b2a01c1c7d89f71a4a"
+    },
+    {
+      "key": "fondo_oaxaca_capa2",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_oaxaca_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "5c62237be84d52525f1e99880252166a5bf1fd8f1c28ae8f1baf629189309072"
+    },
+    {
+      "key": "fondo_oaxaca_capa3",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_oaxaca_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "d022c8abce45007a4f2f22d8c2d427d3473a8d2dee2094e16cc8096ece2ce532"
+    },
+    {
+      "key": "fondo_oaxaca_capa4",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_oaxaca_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "dd9e4c1251f66e10003d1c0f3369586d9451bd03cf12ff089a63dc9cca2deac3"
+    },
+    {
+      "key": "fondo_oaxaca_capa5",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_oaxaca_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "4d50ca6f848ad0729632eb15c68ec9c0ad29a21d94078fca41b91d7b3a32cce1"
+    },
+    {
+      "key": "fondo_callejones_capa0",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_callejones_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "5602a10ce7afc86a91156eabaddb0b53f0752a9199b3728dd14dc6121f011ccf"
+    },
+    {
+      "key": "fondo_callejones_capa1",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_callejones_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "e4a3abde02008038e8c7e9993a93cce3663998b819c6b6ca6a77128d5cf06496"
+    },
+    {
+      "key": "fondo_callejones_capa2",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_callejones_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "03b5562b57f54048c42eb61d97738290a85c3aabfdef7cdcc778aa1ac28ed7f4"
+    },
+    {
+      "key": "fondo_callejones_capa3",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_callejones_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "9f93f2907618ac8ae7db7bed2e1e9bf49dcd306e7da37e5e15707d3917f7d339"
+    },
+    {
+      "key": "fondo_callejones_capa4",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_callejones_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "250ab4f9aeb30e559b2c69dd3f20ad79ef7afadb52efcbcfabf1504e83af3837"
+    },
+    {
+      "key": "fondo_callejones_capa5",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_callejones_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "8ad6417350b2f618e8e79a5577f4072cdb712c039dedced9c3b8dd184a7e8863"
+    },
+    {
+      "key": "fondo_santo_domingo_capa0",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_santo_domingo_capa0.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "d7b16b83a5c2f504564c647258aac14209ad1b9d14e27bd47cbb20ad1d9ea801"
+    },
+    {
+      "key": "fondo_santo_domingo_capa1",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_santo_domingo_capa1.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "40a87ac6f4e478dfb5031d7d511e28f39dcccb3be6caf275ce05774a84fa9bfa"
+    },
+    {
+      "key": "fondo_santo_domingo_capa2",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_santo_domingo_capa2.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "2c2c486c201d9baa98327903822b52b03a9e4c83f885610210fa23a973b81808"
+    },
+    {
+      "key": "fondo_santo_domingo_capa3",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_santo_domingo_capa3.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "8477c847443ddd25b342dd1f9f4f858820b70b98628d6b41b54da7718b7ebf11"
+    },
+    {
+      "key": "fondo_santo_domingo_capa4",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_santo_domingo_capa4.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "2cbb25d8aeae0b261b5c10c172cf9a6ee23a35ca9ed46458790c18d64fdf2bdd"
+    },
+    {
+      "key": "fondo_santo_domingo_capa5",
+      "path": "assets/escenarios/nivel-04-oaxaca/fondos/fondo_santo_domingo_capa5.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "ac786e15125e9255c690ba3d777cfaa46eb9f11d052eb2770ab4caa94171b83e"
+    },
+    {
+      "key": "prop_n04_letras_oaxaca",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_letras_oaxaca.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "6d784ef50d9b5d3840bfb9bf604a639a21c1f5511f866c696a473d9d8640b26c"
+    },
+    {
+      "key": "prop_n04_telar",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_telar.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "adc3f437ad1b137ff421b0c832309495e6b28c84177ee8720aa10316069b5eb2"
+    },
+    {
+      "key": "prop_n04_puesto",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_puesto.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "3893efa8dbe1210f380bbfbfb80142eec271492a88d71d629a6cf2c9cd225b9c"
+    },
+    {
+      "key": "prop_n04_puesto_roto",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_puesto_roto.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "beb1ed4c1ab871d17a2d3b2dc941c039f55cb0b936d158bf5ca5d81f9a481992"
+    },
+    {
+      "key": "prop_n04_ollas",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_ollas.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "53a69ed7f91547139c666b4642cf7bb963be752868fe5a0e34bbb022996e66c1"
+    },
+    {
+      "key": "prop_n04_olla",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_olla.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "361b014f25061d141c9037af66cab29451ec2c21958d6cb841cf6ea90e0ff89e"
+    },
+    {
+      "key": "prop_n04_canastas",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_canastas.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "9f5b50de9fc92efa3b7aa9b58d9bddaa594c59c260d0394ead05d063b61b7ea5"
+    },
+    {
+      "key": "prop_n04_agave",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_agave.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "6348e342a8a28438b13a032af396e5941751a9e9950b72b7ce1c5d1865ae5add"
+    },
+    {
+      "key": "prop_n04_agave_grande",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_agave_grande.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "482300505c7633a804b228eaa682353d6032c528843eeffbcca2c8ecc8d943c9"
+    },
+    {
+      "key": "prop_n04_andamio",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_andamio.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "8147dbfd5e13cb23bd25f77797184227e39d8e3125b57831b90005c9864535a2"
+    },
+    {
+      "key": "prop_n04_retablo",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_retablo.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "e502567db6b7bb5d66bc36d084d414783a354d6dc3486b69e49dabdb3724d17c"
+    },
+    {
+      "key": "prop_n04_campana",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_campana.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "2060f546501b81b48b243bcbefe418c68fc21ab325bc30ef6a4bbd190aea9cf6"
+    },
+    {
+      "key": "prop_n04_juguetes",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_juguetes.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "e607b466e808b1af552ad48174b509a77dc72ab2411ac16ef2063c2e50d7e88a"
+    },
+    {
+      "key": "prop_n04_ropa_ninos",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_ropa_ninos.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "3535251f29b82f5796cb697e767445dad20975517e008db2d064b331081074df"
+    },
+    {
+      "key": "prop_n04_escombros",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_escombros.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "e74b98207a8a0f241354bae6aa9bf579f447f83eaf11fd828241e4a9bcfb9566"
+    },
+    {
+      "key": "prop_n04_barricada",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_barricada.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "139a05e39915557eb2818fd02374f420a02a94418830cdb6567fffdb47d4169c"
+    },
+    {
+      "key": "prop_n04_cartel",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_cartel.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "add63f42b31f8eec72ab7e1dc72c009fc6dc04be0f2ab438638efcc745243c27"
+    },
+    {
+      "key": "prop_n04_columna_rota",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_columna_rota.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "c7a2b64e915a58ba915981079eb24bfe1e6f90870bee770884f364c8ff2aa1b0"
+    },
+    {
+      "key": "prop_n04_estandarte",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_estandarte.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "a3c0e54344aac20b1685d823dc0dd4efeb05303e04a445223d3b00d88145ce65"
+    },
+    {
+      "key": "prop_n04_fachada_templo",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_fachada_templo.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "0ec0953535ea92c7dc4b733ef6f31e4913e52c64a04827c9c3b1721525b79f19"
+    },
+    {
+      "key": "prop_n04_ropa",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_ropa.png",
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "3535251f29b82f5796cb697e767445dad20975517e008db2d064b331081074df"
     }
   ],
   "sheets": [
@@ -1162,6 +1435,292 @@
       "placeholder": true,
       "generator": "tools/gen-catemaco-scenery.mjs",
       "generatedSha256": "ce724102616dc89161d044bf8e6398e340b446fb8c6e9d662899c6f9624e0003"
+    },
+    {
+      "key": "prop_n04_textil_1",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_textil_1.png",
+      "frameWidth": 28,
+      "frameHeight": 50,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.98,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "b0a5e6e7a26343a0ec35a9d944377b5cbe387eedd847cfd560dacf1f34074a11"
+    },
+    {
+      "key": "prop_n04_textil_2",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_textil_2.png",
+      "frameWidth": 28,
+      "frameHeight": 50,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.98,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "da56f3d06d3c36d6e334ce60728d4f5b861f0d3a9c380347b7ad6d81e28e1ed9"
+    },
+    {
+      "key": "prop_n04_textil_3",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_textil_3.png",
+      "frameWidth": 28,
+      "frameHeight": 50,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.98,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "768e8c2bb0fe39486a71d5f04fcfa10d4ce4a7cdf871b43bfc4433227d2bf2f6"
+    },
+    {
+      "key": "prop_n04_textil_4",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_textil_4.png",
+      "frameWidth": 28,
+      "frameHeight": 50,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.98,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "0abc1a1368792461619c7bd9180bf809a94383fa3f4a3d9b8d519c3fb7626fe3"
+    },
+    {
+      "key": "prop_n04_muro_pasaje_cerrado",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_muro_pasaje_cerrado.png",
+      "frameWidth": 112,
+      "frameHeight": 104,
+      "frames": 2,
+      "frameRate": 2,
+      "repeat": -1,
+      "originY": 0.9904,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "7e72b7b3bb6471d26863a5d918122914ad9ce4d16454fa08a0676aa46439839c"
+    },
+    {
+      "key": "prop_n04_muro_pasaje_abierto",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_muro_pasaje_abierto.png",
+      "frameWidth": 112,
+      "frameHeight": 104,
+      "frames": 2,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.9904,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "640c869eb11123ec9390d419f84ec88dc1756d471745229c8655c359794e98a2"
+    },
+    {
+      "key": "prop_n04_velas",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_velas.png",
+      "frameWidth": 32,
+      "frameHeight": 20,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.95,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "788a658b647f4ac74698c4956c98a5ff1769be540566489510cc1f727a67357a"
+    },
+    {
+      "key": "prop_n04_vela",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_vela.png",
+      "frameWidth": 8,
+      "frameHeight": 16,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.9375,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "b376622e744c61be2742c54d75f6fccf82f8634c9b8b790128bef0d2e8bad1db"
+    },
+    {
+      "key": "prop_n04_fragmento_sello",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_fragmento_sello.png",
+      "frameWidth": 20,
+      "frameHeight": 20,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.95,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "4cb2586674586985723ddb5035691e48266b534b8bf52c8d5483834bcedce93b"
+    },
+    {
+      "key": "prop_n04_farol",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_farol.png",
+      "frameWidth": 16,
+      "frameHeight": 72,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.9861,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "6708ddce561c15305381120eead47ed97dc84726cf953107671a72fe7a95acc7"
+    },
+    {
+      "key": "prop_n04_papel_picado",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_papel_picado.png",
+      "frameWidth": 128,
+      "frameHeight": 28,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.9643,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "c70a1ecf6fd8e744b04106ec92dcc01d35034b4a1f4bc6a2fd1cbc067b8cbb12"
+    },
+    {
+      "key": "npc_artesano_1",
+      "path": "assets/sprites/npcs/npc_artesano_1.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 5,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "21d0b08a73dddddba5beb5b89096d00452f5014a10d25b26b421437737c6eac1"
+    },
+    {
+      "key": "npc_artesano_2",
+      "path": "assets/sprites/npcs/npc_artesano_2.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "071c693e421d20126f0842b62f014c18915199e1078c1d6dffbc912a6254fce0"
+    },
+    {
+      "key": "npc_artesano_3",
+      "path": "assets/sprites/npcs/npc_artesano_3.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 6,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "1fbaccab7a890c18d86ec4bf62217b0e68a638226835fd7ea9250f8a0a75bda4"
+    },
+    {
+      "key": "npc_poblador_n04_1",
+      "path": "assets/sprites/npcs/npc_poblador_n04_1.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "1b022c3ac21330d49d0c7c2bce718d10d9e4a43a0c72aca5e7c89295bf79288e"
+    },
+    {
+      "key": "npc_poblador_n04_2",
+      "path": "assets/sprites/npcs/npc_poblador_n04_2.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "d0f0dcac35957226f7708424b5e5b8cd6f019ab13a9c586d5454ccfed4cdbfbd"
+    },
+    {
+      "key": "prop_n04_candelabro",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_candelabro.png",
+      "frameWidth": 32,
+      "frameHeight": 72,
+      "frames": 4,
+      "frameRate": 8,
+      "repeat": -1,
+      "originY": 0.9861,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "79a6da47dd89ae8bb12fc16a03919a40939bb5105f0222cc55cc3261cdfedb46"
+    },
+    {
+      "key": "prop_n04_textiles",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_textiles.png",
+      "frameWidth": 80,
+      "frameHeight": 64,
+      "frames": 4,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.9844,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "46e2fdf43af82427337102b93efc3f5c7270e64c0be954d511f177c0b72981db"
+    },
+    {
+      "key": "prop_n04_muro_cerrado",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_muro_cerrado.png",
+      "frameWidth": 112,
+      "frameHeight": 104,
+      "frames": 2,
+      "frameRate": 2,
+      "repeat": -1,
+      "originY": 0.9904,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "7e72b7b3bb6471d26863a5d918122914ad9ce4d16454fa08a0676aa46439839c"
+    },
+    {
+      "key": "prop_n04_muro_abierto",
+      "path": "assets/escenarios/nivel-04-oaxaca/props/prop_n04_muro_abierto.png",
+      "frameWidth": 112,
+      "frameHeight": 104,
+      "frames": 2,
+      "frameRate": 3,
+      "repeat": -1,
+      "originY": 0.9904,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "640c869eb11123ec9390d419f84ec88dc1756d471745229c8655c359794e98a2"
+    },
+    {
+      "key": "npc_poblador_n04_3",
+      "path": "assets/sprites/npcs/npc_poblador_n04_3.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "af3f4a7e3db2ab62c122f56c51d238f271a992fd3433ee08a725468fd3e06026"
+    },
+    {
+      "key": "npc_poblador_n04_4",
+      "path": "assets/sprites/npcs/npc_poblador_n04_4.png",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frames": 4,
+      "frameRate": 4,
+      "repeat": -1,
+      "originY": 0.975,
+      "placeholder": true,
+      "generator": "tools/gen-oaxaca-scenery.mjs",
+      "generatedSha256": "5bf44dc4d5e457c56b7af047c3af320eac496bb46791ef84ae852177958eee7d"
     }
   ]
 }

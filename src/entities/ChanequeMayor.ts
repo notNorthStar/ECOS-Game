@@ -636,7 +636,8 @@ export class ChanequeMayor extends EnemyBase {
       if (!inSolLine(ev, this.x, this.y, this.radius)) return false;
       return this.takeHit({ damage: solDamage(ev) * B.solDamageMult, stun: 0, kind: 'spell', sourceX: ev.x, knockback: 0 });
     }
-    if (ev.spellId !== 'CALMA') return false; // PROTECCION: neutra
+    // Nivel 4: MEMORIA cuenta como CALMA (es folclor). PROTECCION: neutra.
+    if (ev.spellId !== 'CALMA' && ev.spellId !== 'MEMORIA') return false;
     if (planeDist(this.x, this.y, ev.x, ev.y) > 260) return false;
     if (this.st !== 'vulnerable') {
       if (!this.toldNotVulnerable) {

@@ -247,3 +247,19 @@ Dirección: noche cerrada y neblina espesa junto a la laguna; tono detectivesco 
 | `sprites/npcs/npc_brujo_1..3.png`, `npc_poblador_n03_1..2.png` | 64×80 | 4 · 4–5 fps | Pivote (32, 78), originY 0.975; NPCs comunes con diseño completo (§8.0 de AGENTS.md) |
 
 Decorado por código (`src/world/CatemacoDecor.ts`): halos que laten sobre faroles, ventanas, antorchas y braseros pintados en la capa 3; destellos de luna en la laguna; neblina baja teñida por sección; luciérnagas (pueblo), chispas (campamento) y motas enfermizas (altar); brillo de los círculos rituales. Con "reducir efectos" todo queda quieto.
+
+## 11. Nivel 4 — Oaxaca: escenarios, props y NPCs comunes
+
+Dirección: atardecer apagado que cae en noche; casas coloniales de colores vivos (rosa, añil, ocre, verde, terracota, turquesa) semidestruidas, con pretil y marcos de **cantera verde** (rampa `#365e5a` `#4f7c6e` `#77a08a`), Sierra verde al fondo; callejones y mercado arruinado; ruinas fortificadas del Templo de Santo Domingo con interior dorado en penumbra y fuego fatuo verde-azulado (turquesa §3). Textiles con patrones geométricos propios (greca escalonada tipo Mitla, rombos, estrella, zigzag), sin copiar diseños de autor. Solo paleta §3, 1×, alfa 0/255. Generador: `npm run scenery:nivel4` (`tools/gen-oaxaca-scenery.mjs`, marca `ECOS-placeholder:oaxaca-v1` + hash; nunca pisa arte del equipo). Detalle y claves: `public/assets/escenarios/nivel-04-oaxaca/LEEME.md`.
+
+| Archivo (bajo `public/assets/`) | Medidas | Cuadros | Notas |
+|---|---|---|---|
+| `escenarios/nivel-04-oaxaca/fondos/fondo_oaxaca_capa0..5.png` | 735 · 994 · 1584 · 2174 · 3000 · 3590 × 360 | 1 | Calles, taller (x ≈ 1500), plaza de las letras (x 140–470) |
+| `…/fondos/fondo_callejones_capa0..5.png` | 735 · 994 · 1584 · 2174 · 3000 · 3590 × 360 | 1 | Callejones, murales, mercado (x 1000–1900) |
+| `…/fondos/fondo_santo_domingo_capa0..5.png` | 711 · 904 · 1344 · 1784 · 2400 · 2840 × 360 | 1 | Explanada, templo (x ≈ 900), interior desde x ≈ 1650, arena (2030, 286) |
+| `…/props/prop_n04_*.png` | 8×16 … 176×72 | 1 o 2–4 | 34 props; tabla completa en el LEEME |
+| `sprites/npcs/npc_artesano_1..3.png`, `npc_poblador_n04_1..4.png` | 64×80 | 4 · 3–6 fps | Pivote (32, 78), originY 0.975; NPCs comunes con diseño completo (§8.0 de AGENTS.md) |
+
+María, las bestias corrompidas y la Bruja Guajolote son personajes importantes: **no** están aquí (placeholders del agente de enemigos/sistemas; arte final del equipo).
+
+Decorado por código (`src/world/OaxacaDecor.ts`): halos que laten en faroles, ventanas, velas, retablos y vanos de fuego fatuo pintados en la capa 3; papel picado animado en los cables; polvo a la deriva (ciudad, callejones) y brasas de fuego fatuo que suben (templo); neblina baja teñida; brillo del círculo de la arena; luz de velas, candelabros, faroles, fragmento y muro abierto; el muro-pasaje cambia a abierto con `pasaje:revealed`. Con "reducir efectos" todo queda quieto; todo usa `world.timeScale`.

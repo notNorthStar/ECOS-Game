@@ -5,7 +5,7 @@ import { DEPTH_TOLERANCE } from '../config/game';
 import { FX_DEPTH_BIAS, SPELLS_FX } from '../config/combat';
 import enemiesData from '../data/enemies.json';
 import progression from '../data/progression.json';
-import { EnemyBase, FB, burst, hexColor, inLuzRadius, inSolLine, planeDist, powerScale, purifyFx, rand, randRange, solDamage, solKnockback, spellParam , hitPlayer } from './EnemyBase';
+import { EnemyBase, FB, burst, hexColor, inLuzRadius, inMemoriaRadius, inSolLine, planeDist, powerScale, purifyFx, rand, randRange, solDamage, solKnockback, spellParam , hitPlayer } from './EnemyBase';
 
 /**
  * Chaneque (NIVELES §4, GDD §9). Pequeño, rápido, en grupos de 3–6, con travesuras.
@@ -435,6 +435,13 @@ export class Chaneque extends EnemyBase {
         ? Math.max(spellParam('CALMA', 'purifyRadius', s.purifyRadius), spellParam('CALMA', 'calmRadius', s.calmRadius))
         : spellParam('CALMA', 'calmRadius', s.calmRadius);
       if (d > r * powerScale(power)) return false;
+      this.z = 0;
+      this.purify(ev.outcome === 'perfect');
+      return true;
+    }
+    // Nivel 4. MEMORIA: purifica como CALMA (es un ser del folclor) dentro de su radio.
+    if (ev.spellId === 'MEMORIA') {
+      if (!inMemoriaRadius(ev, this.x, this.y)) return false;
       this.z = 0;
       this.purify(ev.outcome === 'perfect');
       return true;

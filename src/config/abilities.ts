@@ -78,3 +78,68 @@ export const BALAM = {
   /** Radio de colisión en el plano. */
   radius: 6,
 } as const;
+
+/**
+ * MARÍA, compañera de viaje (Nivel 4, dueño: sistemas). Ver docs/NIVEL_04_CONTRATOS.md §5.
+ * Sigue al jugador del lado contrario a Balam (delante en profundidad y más lejos) y, en combate,
+ * lanza un LAMENTO que aturde en área sin daño. Tiempos en segundos de mundo (respetan timeScale).
+ */
+export const MARIA = {
+  /** Distancia detrás del jugador (px) y desfase en profundidad (Balam va en −8: ella del otro lado). */
+  followBehind: 46,
+  followDepth: 12,
+  /** Velocidad base y de alcance (px/s). */
+  speed: 110,
+  catchUpSpeed: 240,
+  /** Si se aleja más que esto, reaparece junto al jugador. */
+  teleportDist: 340,
+  /** Radio de colisión en el plano. */
+  radius: 8,
+
+  /* ----------------------------- Lamento ----------------------------- */
+  /** Recarga entre lamentos (s). El contrato pide ~8–12 s. */
+  cooldown: 10,
+  /** Primer lamento posible tras entrar a la sección (s). */
+  firstDelay: 4,
+  /** Preparación visible antes de la onda (s). */
+  windup: 0.55,
+  /** Busca enemigos a esta distancia de ella (plano del suelo, px) … */
+  triggerRange: 170,
+  /** … y solo si el jugador también está cerca de alguno (px), para que sea apoyo en SU combate. */
+  playerRange: 260,
+  /** Radio del aturdimiento (plano del suelo, px). */
+  radiusStun: 150,
+  /** Aturdimiento a encapuchados, bestias, chaneques (su umbral es 4 en enemies.json). */
+  stun: 5,
+  /** Aturdimiento leve a jefes (umbral 12: suma, no los marea solo). */
+  bossStun: 2,
+  /** Jefes: reciben bossStun. */
+  bossKinds: ['chaneque_mayor', 'bruja_guajolote'] as readonly string[],
+  /** Inmunes al lamento (no los toca). */
+  immuneKinds: ['cabeza_olmeca'] as readonly string[],
+  /** Color de la onda (azul pálido). */
+  color: 0xbfd8ff,
+  colorCore: 0xe8f2ff,
+  /** Duración visual de la onda (ms). */
+  ringMs: 520,
+
+  /* ---------------------------- Comentarios --------------------------- */
+  /** Duración por defecto del globo (ms). */
+  sayMs: 3800,
+  /** Ancho máximo del globo (px). */
+  bubbleWidth: 150,
+  /** Mínimo entre frases propias (s); el director puede hablar cuando quiera. */
+  idleSayMinSec: 60,
+  /** Tiempo en reposo (sin moverse ni combatir) antes de decir algo (s). */
+  idleSaySec: 6,
+  /** Primera frase propia posible tras entrar a la sección (s). */
+  idleFirstSec: 25,
+  /** Frases propias: SOLO su angustia por sus hijos (nada de su pasado). */
+  idlePhrases: [
+    '¿Dónde estarán ahora…? ¿Tendrán frío?',
+    'Les prometí que volvería por ellos.',
+    'Cada niño que veo me parece uno de los míos.',
+    'Alguien aquí tiene que haberlos visto. Tiene que ser.',
+    'No puedo detenerme. Ellos me están esperando.',
+  ] as readonly string[],
+} as const;

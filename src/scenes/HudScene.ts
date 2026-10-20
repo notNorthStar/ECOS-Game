@@ -4,6 +4,7 @@ import { GameState } from '../core/GameState';
 import { GAME_HEIGHT, GAME_WIDTH } from '../config/game';
 import { HUD, LASER } from '../config/combat';
 import { lsm } from '../systems/Lsm';
+import { getMariaStatus } from '../systems/Maria';
 
 /**
  * HUD (dueño: combate). Escena 'Hud', encima de 'Level'.
@@ -60,10 +61,11 @@ const TX = {
   gem: '__hud_gema',
   hand: '__hud_mano_u',
   moon: '__hud_luna',
+  maria: '__hud_maria',
 };
 
 /** Posiciones de las barras de escudo y Luna (Nivel 3). */
-const ABIL = { iconX: 30, barX: 38, barW: 46, shieldY: 52, lunaY: 64 };
+const ABIL = { iconX: 30, barX: 38, barW: 46, shieldY: 52, lunaY: 64, mariaY: 76 };
 
 function textStyle(size: number, color = '#f4ead2', stroke = '#10101a'): Phaser.Types.GameObjects.Text.TextStyle {
   const scale = GameState.settings.textScale || 1;
@@ -110,6 +112,8 @@ export class HudScene extends Phaser.Scene {
   private abilityBars!: Phaser.GameObjects.Graphics;
   private shieldLabel!: Phaser.GameObjects.Text;
   private lunaLabel!: Phaser.GameObjects.Text;
+  // Nivel 4 (dueño: sistemas): recarga del lamento de María.
+  private mariaIcon!: Phaser.GameObjects.Image;
 
   constructor() {
     super('Hud');
@@ -143,6 +147,7 @@ export class HudScene extends Phaser.Scene {
     this.lunaIcon = this.add.image(ABIL.iconX, ABIL.lunaY, TX.moon);
     this.shieldLabel = this.add.text(ABIL.barX + ABIL.barW + 5, ABIL.shieldY, '', textStyle(7, '#ff7a6a')).setOrigin(0, 0.5);
     this.lunaLabel = this.add.text(ABIL.barX + ABIL.barW + 5, ABIL.lunaY, '', textStyle(7, '#bfe6ff')).setOrigin(0, 0.5);
+    this.mariaIcon = this.add.image(ABIL.iconX, ABIL.mariaY, TX.maria).setVisible(false);
 
     // Conjuro seleccionado (abajo a la izquierda).
     this.spellName = this.add.text(0, 0, '', textStyle(9, '#c8ffe0')).setOrigin(0, 0.5);
@@ -187,7 +192,7 @@ export class HudScene extends Phaser.Scene {
   /* ---------------------------- Texturas ---------------------------- */
 
   private makeTextures(): void {
-    if (this.textures.exists(TX.heartFull) && this.textures.exists(TX.moon)) return;
+    if (this.textures.exists(TX.heartFull) && this.textures.exists(TX.maria)) return;
     const g = this.make.graphics({}, false);
     // Segmento de vida 12×12: rombo verde-jade (la gema), lleno / vacío.
     const seg = (fill: number, edge: number, a: number) => {
@@ -230,6 +235,11 @@ export class HudScene extends Phaser.Scene {
     }
     g.fillStyle(0xffffff, 1).fillPoints(pts, true);
     g.generateTexture(TX.moon, 10, 10);
+    // María: silueta con rebozo 9×11, blanca para teñirla.
+    g.clear();
+    g.fillStyle(0xffffff, 1).fillEllipse(4.5, 3, 7, 6).fillTriangle(1, 3, 8, 3, 4.5, 11).fillTriangle(2, 6, 8, 6, 9, 11).fillRect(1, 6, 7, 5);
+    g.fillStyle(0x808080, 1).fillRect(5, 2, 2, 3);
+    g.generateTexture(TX.maria, 9, 11);
     g.destroy();
   }
 
@@ -343,6 +353,16 @@ export class HudScene extends Phaser.Scene {
       this.lunaIcon.setTint(lu.active ? 0xe8f6ff : 0x5a6a8a).setScale(lu.active ? 1 + 0.1 * Math.sin(this.t * 4) : 1);
       bar(ABIL.lunaY, lu.energy, lu.active ? 0xbfe6ff : 0x6a8ad0, lu.active ? 0xbfe6ff : 0x2a3a5a);
       this.lunaLabel.setText(lu.active ? '' : 'F');
+    }
+
+    // María: recarga de su lamento (solo si está en escena).
+    const ma = getMariaStatus();
+    const showMaria = GameState.hasMaria && ma.visible;
+    this.mariaIcon.setVisible(showMaria);
+    if (showMaria) {
+      const ready = ma.charge >= 1;
+      this.mariaIcon.setTint(ma.casting ? 0xffffff : ready ? 0xbfd8ff : 0x5a6a8a).setScale(ma.casting ? 1 + 0.15 * Math.sin(this.t * 20) : 1);
+      bar(ABIL.mariaY, ma.charge, ma.casting ? 0xe8f2ff : ready ? 0xbfd8ff : 0x6a7ab0, ready ? 0xbfd8ff : 0x2a3a5a);
     }
   }
 
