@@ -95,6 +95,11 @@
 **Qué resultó:** marcas de "versión jugable" en `docs/NDD_v2.md` (niveles 5, 7, 8, 9 y 10; el texto original se conserva), nota de alcance y tabla en `AGENTS.md`, `NIVELES_ECOS.md`, `GDD_ECOS.md`, README y documentos del Nivel 7. En el juego: el Rey del Olvido entrega del 4.º al 6.º fragmento (`n07:fragmento_4`…`_6`) y la falsa llamada pide llevar el Códice completo a la Catedral de Guadalajara; pruebas del Nivel 7 actualizadas.
 **Qué decidió o modificó el equipo:** omitir los niveles 8 y 9; el Rey guardaba los tres fragmentos restantes; registrar el cambio como en Puebla (NDD marcado, sin reescribirlo).
 
+## 2026-10-19 · Claude Code (Anthropic, Claude Opus 5.5 + Sonnet 5.5) · Nivel 10, Guadalajara (final) y arreglos
+**Qué se pidió:** el Nivel 10 con la misma dinámica; arreglos del equipo (SOL y FUEGO hacia la izquierda, continuidad entre niveles sin el mapa animado, integrar los soundtracks de la rama `soundtrack`); llenar la ficha técnica; build web para itch.io.
+**Qué resultó:** contratos (`docs/NIVEL_10_CONTRATOS.md`) y cinco subagentes: escenario de la avenida, la Catedral, el techo abierto y el epílogo (Opus); Balam jaguar, la madre, ataduras, ECOS/MAMA y escena de epílogo con créditos (Opus); Tzitzimime e Itzpapálotl (Opus); mapas, guion, director y pruebas (Sonnet); música y efectos (Sonnet). Integración y partida completa en navegador. Arreglos: el haz de SOL y la franja de FUEGO crecían hacia el lado contrario al mirar a la izquierda; el Nivel 1 pasa directo a Tuxtla y Tuxtla a Catemaco; 11 soundtracks del equipo asignados por nombre. Ficha técnica llenada por un subagente (copia en Descargas).
+**Qué decidió o modificó el equipo:** recorrido avenida + Catedral; cadena LUZ → MEMORIA → ECOS atado; MAMA abre las ventanas de Itzpapálotl; Balam jaguar como aliado; quitar el mapa animado; asignación de soundtracks por nombre; build solo web (sin ejecutable por ahora).
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**
