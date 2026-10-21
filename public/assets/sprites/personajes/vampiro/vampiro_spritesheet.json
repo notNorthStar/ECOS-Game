@@ -1,11 +1,11 @@
 {
  "personaje": "vampiro",
  "tipo": "humanoide",
- "frameWidth": 122,
- "frameHeight": 105,
+ "frameWidth": 128,
+ "frameHeight": 120,
  "pivot": {
-  "x": 61,
-  "y": 103
+  "x": 60,
+  "y": 116
  },
  "frames": [
   {
@@ -13,192 +13,496 @@
    "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 122,
-   "h": 105
+   "w": 128,
+   "h": 120
   },
   {
    "name": "vampiro_reposo_2",
    "vista": "reposo_2",
-   "x": 122,
+   "x": 128,
    "y": 0,
-   "w": 122,
-   "h": 105
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_reposo_3",
+   "vista": "reposo_3",
+   "x": 256,
+   "y": 0,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_reposo_4",
+   "vista": "reposo_4",
+   "x": 384,
+   "y": 0,
+   "w": 128,
+   "h": 120
   },
   {
    "name": "vampiro_caminar_1",
    "vista": "caminar_1",
-   "x": 244,
+   "x": 512,
    "y": 0,
-   "w": 122,
-   "h": 105
+   "w": 128,
+   "h": 120
   },
   {
    "name": "vampiro_caminar_2",
    "vista": "caminar_2",
-   "x": 366,
+   "x": 640,
    "y": 0,
-   "w": 122,
-   "h": 105
+   "w": 128,
+   "h": 120
   },
   {
    "name": "vampiro_caminar_3",
    "vista": "caminar_3",
-   "x": 488,
+   "x": 768,
    "y": 0,
-   "w": 122,
-   "h": 105
+   "w": 128,
+   "h": 120
   },
   {
    "name": "vampiro_caminar_4",
    "vista": "caminar_4",
-   "x": 610,
+   "x": 896,
    "y": 0,
-   "w": 122,
-   "h": 105
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_caminar_5",
+   "vista": "caminar_5",
+   "x": 0,
+   "y": 120,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_caminar_6",
+   "vista": "caminar_6",
+   "x": 128,
+   "y": 120,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_caminar_7",
+   "vista": "caminar_7",
+   "x": 256,
+   "y": 120,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_caminar_8",
+   "vista": "caminar_8",
+   "x": 384,
+   "y": 120,
+   "w": 128,
+   "h": 120
   },
   {
    "name": "vampiro_correr_1",
    "vista": "correr_1",
-   "x": 0,
-   "y": 105,
-   "w": 122,
-   "h": 105
+   "x": 512,
+   "y": 120,
+   "w": 128,
+   "h": 120
   },
   {
    "name": "vampiro_correr_2",
    "vista": "correr_2",
-   "x": 122,
-   "y": 105,
-   "w": 122,
-   "h": 105
+   "x": 640,
+   "y": 120,
+   "w": 128,
+   "h": 120
   },
   {
    "name": "vampiro_correr_3",
    "vista": "correr_3",
-   "x": 244,
-   "y": 105,
-   "w": 122,
-   "h": 105
+   "x": 768,
+   "y": 120,
+   "w": 128,
+   "h": 120
   },
   {
    "name": "vampiro_correr_4",
    "vista": "correr_4",
-   "x": 366,
-   "y": 105,
-   "w": 122,
-   "h": 105
+   "x": 896,
+   "y": 120,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_preparar",
-   "vista": "preparar",
-   "x": 488,
-   "y": 105,
-   "w": 122,
-   "h": 105
-  },
-  {
-   "name": "vampiro_atacar",
-   "vista": "atacar",
-   "x": 610,
-   "y": 105,
-   "w": 122,
-   "h": 105
-  },
-  {
-   "name": "vampiro_guardia",
-   "vista": "guardia",
+   "name": "vampiro_correr_5",
+   "vista": "correr_5",
    "x": 0,
-   "y": 210,
-   "w": 122,
-   "h": 105
+   "y": 240,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_conjuro",
-   "vista": "conjuro",
-   "x": 122,
-   "y": 210,
-   "w": 122,
-   "h": 105
+   "name": "vampiro_correr_6",
+   "vista": "correr_6",
+   "x": 128,
+   "y": 240,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_lanzar_1",
-   "vista": "lanzar_1",
-   "x": 244,
-   "y": 210,
-   "w": 122,
-   "h": 105
+   "name": "vampiro_correr_7",
+   "vista": "correr_7",
+   "x": 256,
+   "y": 240,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_lanzar_2",
-   "vista": "lanzar_2",
-   "x": 366,
-   "y": 210,
-   "w": 122,
-   "h": 105
+   "name": "vampiro_correr_8",
+   "vista": "correr_8",
+   "x": 384,
+   "y": 240,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_salto",
-   "vista": "salto",
-   "x": 488,
-   "y": 210,
-   "w": 122,
-   "h": 105
+   "name": "vampiro_subida_1",
+   "vista": "subida_1",
+   "x": 512,
+   "y": 240,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_caida",
-   "vista": "caida",
-   "x": 610,
-   "y": 210,
-   "w": 122,
-   "h": 105
+   "name": "vampiro_subida_2",
+   "vista": "subida_2",
+   "x": 640,
+   "y": 240,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_agacharse",
-   "vista": "agacharse",
+   "name": "vampiro_caida_1",
+   "vista": "caida_1",
+   "x": 768,
+   "y": 240,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_caida_2",
+   "vista": "caida_2",
+   "x": 896,
+   "y": 240,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_aterrizar_1",
+   "vista": "aterrizar_1",
    "x": 0,
-   "y": 315,
-   "w": 122,
-   "h": 105
+   "y": 360,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_esquivar",
-   "vista": "esquivar",
-   "x": 122,
-   "y": 315,
-   "w": 122,
-   "h": 105
+   "name": "vampiro_aterrizar_2",
+   "vista": "aterrizar_2",
+   "x": 128,
+   "y": 360,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_golpe_bajo",
-   "vista": "golpe_bajo",
-   "x": 244,
-   "y": 315,
-   "w": 122,
-   "h": 105
+   "name": "vampiro_esquivar_1",
+   "vista": "esquivar_1",
+   "x": 256,
+   "y": 360,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_dano",
-   "vista": "dano",
-   "x": 366,
-   "y": 315,
-   "w": 122,
-   "h": 105
+   "name": "vampiro_esquivar_2",
+   "vista": "esquivar_2",
+   "x": 384,
+   "y": 360,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_derrota",
-   "vista": "derrota",
-   "x": 488,
-   "y": 315,
-   "w": 122,
-   "h": 105
+   "name": "vampiro_esquivar_3",
+   "vista": "esquivar_3",
+   "x": 512,
+   "y": 360,
+   "w": 128,
+   "h": 120
   },
   {
-   "name": "vampiro_caido",
-   "vista": "caido",
-   "x": 610,
-   "y": 315,
-   "w": 122,
-   "h": 105
+   "name": "vampiro_conjuro_1",
+   "vista": "conjuro_1",
+   "x": 640,
+   "y": 360,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_conjuro_2",
+   "vista": "conjuro_2",
+   "x": 768,
+   "y": 360,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_conjuro_3",
+   "vista": "conjuro_3",
+   "x": 896,
+   "y": 360,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_conjuro_4",
+   "vista": "conjuro_4",
+   "x": 0,
+   "y": 480,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_invocar_1",
+   "vista": "invocar_1",
+   "x": 128,
+   "y": 480,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_invocar_2",
+   "vista": "invocar_2",
+   "x": 256,
+   "y": 480,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_invocar_3",
+   "vista": "invocar_3",
+   "x": 384,
+   "y": 480,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_invocar_4",
+   "vista": "invocar_4",
+   "x": 512,
+   "y": 480,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_purificar_1",
+   "vista": "purificar_1",
+   "x": 640,
+   "y": 480,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_purificar_2",
+   "vista": "purificar_2",
+   "x": 768,
+   "y": 480,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_purificar_3",
+   "vista": "purificar_3",
+   "x": 896,
+   "y": 480,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_ataque_1",
+   "vista": "ataque_1",
+   "x": 0,
+   "y": 600,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_ataque_2",
+   "vista": "ataque_2",
+   "x": 128,
+   "y": 600,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_ataque_3",
+   "vista": "ataque_3",
+   "x": 256,
+   "y": 600,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_ataque_4",
+   "vista": "ataque_4",
+   "x": 384,
+   "y": 600,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_golpe_1",
+   "vista": "golpe_1",
+   "x": 512,
+   "y": 600,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_interactuar_1",
+   "vista": "interactuar_1",
+   "x": 640,
+   "y": 600,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_interactuar_2",
+   "vista": "interactuar_2",
+   "x": 768,
+   "y": 600,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_dano_1",
+   "vista": "dano_1",
+   "x": 896,
+   "y": 600,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_dano_2",
+   "vista": "dano_2",
+   "x": 0,
+   "y": 720,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_aturdido_1",
+   "vista": "aturdido_1",
+   "x": 128,
+   "y": 720,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_aturdido_2",
+   "vista": "aturdido_2",
+   "x": 256,
+   "y": 720,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_aturdido_3",
+   "vista": "aturdido_3",
+   "x": 384,
+   "y": 720,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_aturdido_4",
+   "vista": "aturdido_4",
+   "x": 512,
+   "y": 720,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_agotado_1",
+   "vista": "agotado_1",
+   "x": 640,
+   "y": 720,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_agotado_2",
+   "vista": "agotado_2",
+   "x": 768,
+   "y": 720,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_agotado_3",
+   "vista": "agotado_3",
+   "x": 896,
+   "y": 720,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_agotado_4",
+   "vista": "agotado_4",
+   "x": 0,
+   "y": 840,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_morir_2",
+   "vista": "morir_2",
+   "x": 128,
+   "y": 840,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_morir_3",
+   "vista": "morir_3",
+   "x": 256,
+   "y": 840,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_morir_4",
+   "vista": "morir_4",
+   "x": 384,
+   "y": 840,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_morir_5",
+   "vista": "morir_5",
+   "x": 512,
+   "y": 840,
+   "w": 128,
+   "h": 120
+  },
+  {
+   "name": "vampiro_morir_6",
+   "vista": "morir_6",
+   "x": 640,
+   "y": 840,
+   "w": 128,
+   "h": 120
   }
  ],
  "escala": 1,
@@ -206,163 +510,196 @@
   "reposo": {
    "frames": [
     0,
-    1
-   ],
-   "fps": 2.5,
-   "loop": true
-  },
-  "caminar": {
-   "frames": [
+    1,
     2,
-    3,
-    4,
-    5
-   ],
-   "fps": 8,
-   "loop": true
-  },
-  "correr": {
-   "frames": [
-    6,
-    7,
-    8,
-    9
-   ],
-   "fps": 11,
-   "loop": true
-  },
-  "golpe": {
-   "frames": [
-    10
-   ],
-   "fps": 1,
-   "loop": false
-  },
-  "ataque": {
-   "frames": [
-    10,
-    11
-   ],
-   "fps": 9,
-   "loop": false
-  },
-  "disparar": {
-   "frames": [
-    11
-   ],
-   "fps": 1,
-   "loop": false
-  },
-  "conjuro": {
-   "frames": [
-    13,
-    14
-   ],
-   "fps": 4,
-   "loop": true
-  },
-  "invocar": {
-   "frames": [
-    12,
-    13
+    3
    ],
    "fps": 3,
    "loop": true
   },
-  "lanzar": {
+  "caminar": {
    "frames": [
-    14,
-    15
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
    ],
    "fps": 9,
+   "loop": true
+  },
+  "correr": {
+   "frames": [
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+   ],
+   "fps": 13,
+   "loop": true
+  },
+  "subida": {
+   "frames": [
+    20,
+    21
+   ],
+   "fps": 8,
    "loop": false
   },
   "salto": {
    "frames": [
-    16
+    20,
+    21
    ],
-   "fps": 1,
-   "loop": false
-  },
-  "subida": {
-   "frames": [
-    16
-   ],
-   "fps": 1,
+   "fps": 8,
    "loop": false
   },
   "caida": {
    "frames": [
-    17
+    22,
+    23
    ],
-   "fps": 1,
+   "fps": 6,
    "loop": false
   },
   "aterrizar": {
    "frames": [
-    18
+    24,
+    25
    ],
-   "fps": 1,
+   "fps": 14,
    "loop": false
   },
   "esquivar": {
    "frames": [
-    19
+    26,
+    27,
+    28
    ],
-   "fps": 1,
+   "fps": 10,
+   "loop": false
+  },
+  "conjuro": {
+   "frames": [
+    29,
+    30,
+    31,
+    32
+   ],
+   "fps": 6,
+   "loop": true
+  },
+  "invocar": {
+   "frames": [
+    33,
+    34,
+    35,
+    36
+   ],
+   "fps": 6,
+   "loop": true
+  },
+  "purificar": {
+   "frames": [
+    37,
+    38,
+    39
+   ],
+   "fps": 4,
+   "loop": false
+  },
+  "ataque": {
+   "frames": [
+    40,
+    41,
+    42,
+    43
+   ],
+   "fps": 11,
+   "loop": false
+  },
+  "golpe": {
+   "frames": [
+    44,
+    40
+   ],
+   "fps": 6,
+   "loop": false
+  },
+  "lanzar": {
+   "frames": [
+    44,
+    41,
+    43
+   ],
+   "fps": 9,
    "loop": false
   },
   "interactuar": {
    "frames": [
-    18
+    45,
+    46
    ],
-   "fps": 1,
+   "fps": 5,
    "loop": false
   },
   "dano": {
    "frames": [
-    21
+    47,
+    48
    ],
-   "fps": 1,
+   "fps": 8,
    "loop": false
   },
   "aturdido": {
    "frames": [
-    22
+    49,
+    50,
+    51,
+    52
    ],
-   "fps": 1,
-   "loop": false
+   "fps": 4,
+   "loop": true
   },
   "agotado": {
    "frames": [
-    22
+    53,
+    54,
+    55,
+    56
    ],
-   "fps": 1,
-   "loop": false
-  },
-  "purificar": {
-   "frames": [
-    22
-   ],
-   "fps": 1,
-   "loop": false
+   "fps": 3,
+   "loop": true
   },
   "morir": {
    "frames": [
-    21,
-    23
+    53,
+    57,
+    58,
+    59,
+    60,
+    61
    ],
-   "fps": 5,
+   "fps": 6,
+   "loop": false
+  },
+  "disparar": {
+   "frames": [
+    41,
+    43
+   ],
+   "fps": 9,
    "loop": false
   }
  },
- "cuadrosPorVariante": 24,
- "generadoPor": "tools/codex-sheets.py",
- "fuente": {
-  "vampiro": {
-   "escala_fuente": 0.4184,
-   "alto_de_pie_fuente": 239.0
-  }
- },
+ "cuadrosPorVariante": 62,
+ "generadoPor": "tools/pixel/generar.py",
  "alto": 100
 }

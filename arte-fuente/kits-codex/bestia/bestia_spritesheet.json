@@ -1,0 +1,568 @@
+{
+ "personaje": "bestia",
+ "tipo": "criatura",
+ "frameWidth": 98,
+ "frameHeight": 82,
+ "pivot": {
+  "x": 49,
+  "y": 80
+ },
+ "frames": [
+  {
+   "name": "bestia_1_reposo_1",
+   "vista": "der",
+   "x": 0,
+   "y": 0,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_reposo_2",
+   "vista": "reposo_2",
+   "x": 98,
+   "y": 0,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_caminar_1",
+   "vista": "caminar_1",
+   "x": 196,
+   "y": 0,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_caminar_2",
+   "vista": "caminar_2",
+   "x": 294,
+   "y": 0,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_caminar_3",
+   "vista": "caminar_3",
+   "x": 392,
+   "y": 0,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_caminar_4",
+   "vista": "caminar_4",
+   "x": 490,
+   "y": 0,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_correr_1",
+   "vista": "correr_1",
+   "x": 0,
+   "y": 82,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_correr_2",
+   "vista": "correr_2",
+   "x": 98,
+   "y": 82,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_correr_3",
+   "vista": "correr_3",
+   "x": 196,
+   "y": 82,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_correr_4",
+   "vista": "correr_4",
+   "x": 294,
+   "y": 82,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_preparar",
+   "vista": "preparar",
+   "x": 392,
+   "y": 82,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_atacar",
+   "vista": "atacar",
+   "x": 490,
+   "y": 82,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_guardia",
+   "vista": "guardia",
+   "x": 0,
+   "y": 164,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_conjuro",
+   "vista": "conjuro",
+   "x": 98,
+   "y": 164,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_lanzar_1",
+   "vista": "lanzar_1",
+   "x": 196,
+   "y": 164,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_lanzar_2",
+   "vista": "lanzar_2",
+   "x": 294,
+   "y": 164,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_salto",
+   "vista": "salto",
+   "x": 392,
+   "y": 164,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_caida",
+   "vista": "caida",
+   "x": 490,
+   "y": 164,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_agacharse",
+   "vista": "agacharse",
+   "x": 0,
+   "y": 246,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_esquivar",
+   "vista": "esquivar",
+   "x": 98,
+   "y": 246,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_golpe_bajo",
+   "vista": "golpe_bajo",
+   "x": 196,
+   "y": 246,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_dano",
+   "vista": "dano",
+   "x": 294,
+   "y": 246,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_derrota",
+   "vista": "derrota",
+   "x": 392,
+   "y": 246,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_1_caido",
+   "vista": "caido",
+   "x": 490,
+   "y": 246,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_reposo_1",
+   "vista": "reposo_1",
+   "x": 0,
+   "y": 328,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_reposo_2",
+   "vista": "reposo_2",
+   "x": 98,
+   "y": 328,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_caminar_1",
+   "vista": "caminar_1",
+   "x": 196,
+   "y": 328,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_caminar_2",
+   "vista": "caminar_2",
+   "x": 294,
+   "y": 328,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_caminar_3",
+   "vista": "caminar_3",
+   "x": 392,
+   "y": 328,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_caminar_4",
+   "vista": "caminar_4",
+   "x": 490,
+   "y": 328,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_correr_1",
+   "vista": "correr_1",
+   "x": 0,
+   "y": 410,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_correr_2",
+   "vista": "correr_2",
+   "x": 98,
+   "y": 410,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_correr_3",
+   "vista": "correr_3",
+   "x": 196,
+   "y": 410,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_correr_4",
+   "vista": "correr_4",
+   "x": 294,
+   "y": 410,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_preparar",
+   "vista": "preparar",
+   "x": 392,
+   "y": 410,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_atacar",
+   "vista": "atacar",
+   "x": 490,
+   "y": 410,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_guardia",
+   "vista": "guardia",
+   "x": 0,
+   "y": 492,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_conjuro",
+   "vista": "conjuro",
+   "x": 98,
+   "y": 492,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_lanzar_1",
+   "vista": "lanzar_1",
+   "x": 196,
+   "y": 492,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_lanzar_2",
+   "vista": "lanzar_2",
+   "x": 294,
+   "y": 492,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_salto",
+   "vista": "salto",
+   "x": 392,
+   "y": 492,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_caida",
+   "vista": "caida",
+   "x": 490,
+   "y": 492,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_agacharse",
+   "vista": "agacharse",
+   "x": 0,
+   "y": 574,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_esquivar",
+   "vista": "esquivar",
+   "x": 98,
+   "y": 574,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_golpe_bajo",
+   "vista": "golpe_bajo",
+   "x": 196,
+   "y": 574,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_dano",
+   "vista": "dano",
+   "x": 294,
+   "y": 574,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_derrota",
+   "vista": "derrota",
+   "x": 392,
+   "y": 574,
+   "w": 98,
+   "h": 82
+  },
+  {
+   "name": "bestia_3_caido",
+   "vista": "caido",
+   "x": 490,
+   "y": 574,
+   "w": 98,
+   "h": 82
+  }
+ ],
+ "escala": 1,
+ "animaciones": {
+  "reposo": {
+   "frames": [
+    0,
+    1
+   ],
+   "fps": 2.5,
+   "loop": true
+  },
+  "caminar": {
+   "frames": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "fps": 8,
+   "loop": true
+  },
+  "correr": {
+   "frames": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "fps": 11,
+   "loop": true
+  },
+  "golpe": {
+   "frames": [
+    10
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "ataque": {
+   "frames": [
+    10,
+    11
+   ],
+   "fps": 9,
+   "loop": false
+  },
+  "disparar": {
+   "frames": [
+    11
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "conjuro": {
+   "frames": [
+    13,
+    14
+   ],
+   "fps": 4,
+   "loop": true
+  },
+  "invocar": {
+   "frames": [
+    12,
+    13
+   ],
+   "fps": 3,
+   "loop": true
+  },
+  "lanzar": {
+   "frames": [
+    14,
+    15
+   ],
+   "fps": 9,
+   "loop": false
+  },
+  "salto": {
+   "frames": [
+    16
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "subida": {
+   "frames": [
+    16
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "caida": {
+   "frames": [
+    17
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "aterrizar": {
+   "frames": [
+    18
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "esquivar": {
+   "frames": [
+    19
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "interactuar": {
+   "frames": [
+    18
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "dano": {
+   "frames": [
+    21
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "aturdido": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "agotado": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "purificar": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "morir": {
+   "frames": [
+    21,
+    23
+   ],
+   "fps": 5,
+   "loop": false
+  }
+ },
+ "cuadrosPorVariante": 24,
+ "generadoPor": "tools/codex-sheets.py",
+ "fuente": {
+  "bestia-1": {
+   "escala_fuente": 0.2957,
+   "alto_de_pie_fuente": 257.0
+  },
+  "bestia-3": {
+   "escala_fuente": 0.3028,
+   "alto_de_pie_fuente": 251.0
+  }
+ },
+ "alto": 76,
+ "variants": [
+  "1",
+  "3"
+ ]
+}

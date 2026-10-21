@@ -2,10 +2,10 @@
  "personaje": "bruja_guajolote",
  "tipo": "humanoide",
  "frameWidth": 128,
- "frameHeight": 118,
+ "frameHeight": 136,
  "pivot": {
   "x": 64,
-  "y": 116
+  "y": 132
  },
  "frames": [
   {
@@ -14,7 +14,7 @@
    "x": 0,
    "y": 0,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
    "name": "bruja_guajolote_reposo_2",
@@ -22,183 +22,511 @@
    "x": 128,
    "y": 0,
    "w": 128,
-   "h": 118
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_reposo_3",
+   "vista": "reposo_3",
+   "x": 256,
+   "y": 0,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_reposo_4",
+   "vista": "reposo_4",
+   "x": 384,
+   "y": 0,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_reposo_5",
+   "vista": "reposo_5",
+   "x": 512,
+   "y": 0,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_reposo_6",
+   "vista": "reposo_6",
+   "x": 640,
+   "y": 0,
+   "w": 128,
+   "h": 136
   },
   {
    "name": "bruja_guajolote_caminar_1",
    "vista": "caminar_1",
-   "x": 256,
+   "x": 768,
    "y": 0,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
    "name": "bruja_guajolote_caminar_2",
    "vista": "caminar_2",
-   "x": 384,
+   "x": 896,
    "y": 0,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
    "name": "bruja_guajolote_caminar_3",
    "vista": "caminar_3",
-   "x": 512,
-   "y": 0,
+   "x": 0,
+   "y": 136,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
    "name": "bruja_guajolote_caminar_4",
    "vista": "caminar_4",
-   "x": 640,
-   "y": 0,
+   "x": 128,
+   "y": 136,
    "w": 128,
-   "h": 118
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_caminar_5",
+   "vista": "caminar_5",
+   "x": 256,
+   "y": 136,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_caminar_6",
+   "vista": "caminar_6",
+   "x": 384,
+   "y": 136,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_caminar_7",
+   "vista": "caminar_7",
+   "x": 512,
+   "y": 136,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_caminar_8",
+   "vista": "caminar_8",
+   "x": 640,
+   "y": 136,
+   "w": 128,
+   "h": 136
   },
   {
    "name": "bruja_guajolote_correr_1",
    "vista": "correr_1",
-   "x": 0,
-   "y": 118,
+   "x": 768,
+   "y": 136,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
    "name": "bruja_guajolote_correr_2",
    "vista": "correr_2",
-   "x": 128,
-   "y": 118,
+   "x": 896,
+   "y": 136,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
    "name": "bruja_guajolote_correr_3",
    "vista": "correr_3",
-   "x": 256,
-   "y": 118,
+   "x": 0,
+   "y": 272,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
    "name": "bruja_guajolote_correr_4",
    "vista": "correr_4",
-   "x": 384,
-   "y": 118,
-   "w": 128,
-   "h": 118
-  },
-  {
-   "name": "bruja_guajolote_preparar",
-   "vista": "preparar",
-   "x": 512,
-   "y": 118,
-   "w": 128,
-   "h": 118
-  },
-  {
-   "name": "bruja_guajolote_atacar",
-   "vista": "atacar",
-   "x": 640,
-   "y": 118,
-   "w": 128,
-   "h": 118
-  },
-  {
-   "name": "bruja_guajolote_guardia",
-   "vista": "guardia",
-   "x": 0,
-   "y": 236,
-   "w": 128,
-   "h": 118
-  },
-  {
-   "name": "bruja_guajolote_conjuro",
-   "vista": "conjuro",
    "x": 128,
-   "y": 236,
+   "y": 272,
    "w": 128,
-   "h": 118
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_correr_5",
+   "vista": "correr_5",
+   "x": 256,
+   "y": 272,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_correr_6",
+   "vista": "correr_6",
+   "x": 384,
+   "y": 272,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_correr_7",
+   "vista": "correr_7",
+   "x": 512,
+   "y": 272,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_correr_8",
+   "vista": "correr_8",
+   "x": 640,
+   "y": 272,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_subida_1",
+   "vista": "subida_1",
+   "x": 768,
+   "y": 272,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_subida_2",
+   "vista": "subida_2",
+   "x": 896,
+   "y": 272,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_caida_1",
+   "vista": "caida_1",
+   "x": 0,
+   "y": 408,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_caida_2",
+   "vista": "caida_2",
+   "x": 128,
+   "y": 408,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_aterrizar_1",
+   "vista": "aterrizar_1",
+   "x": 256,
+   "y": 408,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_aterrizar_2",
+   "vista": "aterrizar_2",
+   "x": 384,
+   "y": 408,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_esquivar_1",
+   "vista": "esquivar_1",
+   "x": 512,
+   "y": 408,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_esquivar_2",
+   "vista": "esquivar_2",
+   "x": 640,
+   "y": 408,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_esquivar_3",
+   "vista": "esquivar_3",
+   "x": 768,
+   "y": 408,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_conjuro_1",
+   "vista": "conjuro_1",
+   "x": 896,
+   "y": 408,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_conjuro_2",
+   "vista": "conjuro_2",
+   "x": 0,
+   "y": 544,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_conjuro_3",
+   "vista": "conjuro_3",
+   "x": 128,
+   "y": 544,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_conjuro_4",
+   "vista": "conjuro_4",
+   "x": 256,
+   "y": 544,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_invocar_1",
+   "vista": "invocar_1",
+   "x": 384,
+   "y": 544,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_invocar_2",
+   "vista": "invocar_2",
+   "x": 512,
+   "y": 544,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_invocar_3",
+   "vista": "invocar_3",
+   "x": 640,
+   "y": 544,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_invocar_4",
+   "vista": "invocar_4",
+   "x": 768,
+   "y": 544,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_purificar_1",
+   "vista": "purificar_1",
+   "x": 896,
+   "y": 544,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_purificar_2",
+   "vista": "purificar_2",
+   "x": 0,
+   "y": 680,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_purificar_3",
+   "vista": "purificar_3",
+   "x": 128,
+   "y": 680,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_purificar_4",
+   "vista": "purificar_4",
+   "x": 256,
+   "y": 680,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_ataque_1",
+   "vista": "ataque_1",
+   "x": 384,
+   "y": 680,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_ataque_2",
+   "vista": "ataque_2",
+   "x": 512,
+   "y": 680,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_ataque_3",
+   "vista": "ataque_3",
+   "x": 640,
+   "y": 680,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_ataque_4",
+   "vista": "ataque_4",
+   "x": 768,
+   "y": 680,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_ataque_5",
+   "vista": "ataque_5",
+   "x": 896,
+   "y": 680,
+   "w": 128,
+   "h": 136
   },
   {
    "name": "bruja_guajolote_lanzar_1",
    "vista": "lanzar_1",
-   "x": 256,
-   "y": 236,
+   "x": 0,
+   "y": 816,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
    "name": "bruja_guajolote_lanzar_2",
    "vista": "lanzar_2",
-   "x": 384,
-   "y": 236,
-   "w": 128,
-   "h": 118
-  },
-  {
-   "name": "bruja_guajolote_salto",
-   "vista": "salto",
-   "x": 512,
-   "y": 236,
-   "w": 128,
-   "h": 118
-  },
-  {
-   "name": "bruja_guajolote_caida",
-   "vista": "caida",
-   "x": 640,
-   "y": 236,
-   "w": 128,
-   "h": 118
-  },
-  {
-   "name": "bruja_guajolote_agacharse",
-   "vista": "agacharse",
-   "x": 0,
-   "y": 354,
-   "w": 128,
-   "h": 118
-  },
-  {
-   "name": "bruja_guajolote_esquivar",
-   "vista": "esquivar",
    "x": 128,
-   "y": 354,
+   "y": 816,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
-   "name": "bruja_guajolote_golpe_bajo",
-   "vista": "golpe_bajo",
+   "name": "bruja_guajolote_lanzar_3",
+   "vista": "lanzar_3",
    "x": 256,
-   "y": 354,
+   "y": 816,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
-   "name": "bruja_guajolote_dano",
-   "vista": "dano",
+   "name": "bruja_guajolote_lanzar_4",
+   "vista": "lanzar_4",
    "x": 384,
-   "y": 354,
+   "y": 816,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
-   "name": "bruja_guajolote_derrota",
-   "vista": "derrota",
+   "name": "bruja_guajolote_interactuar_1",
+   "vista": "interactuar_1",
    "x": 512,
-   "y": 354,
+   "y": 816,
    "w": 128,
-   "h": 118
+   "h": 136
   },
   {
-   "name": "bruja_guajolote_caido",
-   "vista": "caido",
+   "name": "bruja_guajolote_interactuar_2",
+   "vista": "interactuar_2",
    "x": 640,
-   "y": 354,
+   "y": 816,
    "w": 128,
-   "h": 118
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_dano_1",
+   "vista": "dano_1",
+   "x": 768,
+   "y": 816,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_dano_2",
+   "vista": "dano_2",
+   "x": 896,
+   "y": 816,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_dano_3",
+   "vista": "dano_3",
+   "x": 0,
+   "y": 952,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_aturdido_1",
+   "vista": "aturdido_1",
+   "x": 128,
+   "y": 952,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_aturdido_2",
+   "vista": "aturdido_2",
+   "x": 256,
+   "y": 952,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_aturdido_3",
+   "vista": "aturdido_3",
+   "x": 384,
+   "y": 952,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_aturdido_4",
+   "vista": "aturdido_4",
+   "x": 512,
+   "y": 952,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_morir_2",
+   "vista": "morir_2",
+   "x": 640,
+   "y": 952,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_morir_3",
+   "vista": "morir_3",
+   "x": 768,
+   "y": 952,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_morir_4",
+   "vista": "morir_4",
+   "x": 896,
+   "y": 952,
+   "w": 128,
+   "h": 136
+  },
+  {
+   "name": "bruja_guajolote_morir_5",
+   "vista": "morir_5",
+   "x": 0,
+   "y": 1088,
+   "w": 128,
+   "h": 136
   }
  ],
  "escala": 1,
@@ -206,163 +534,202 @@
   "reposo": {
    "frames": [
     0,
-    1
-   ],
-   "fps": 2.5,
-   "loop": true
-  },
-  "caminar": {
-   "frames": [
+    1,
     2,
     3,
     4,
     5
    ],
-   "fps": 8,
+   "fps": 5,
    "loop": true
   },
-  "correr": {
+  "caminar": {
    "frames": [
     6,
     7,
     8,
-    9
-   ],
-   "fps": 11,
-   "loop": true
-  },
-  "golpe": {
-   "frames": [
-    10
-   ],
-   "fps": 1,
-   "loop": false
-  },
-  "ataque": {
-   "frames": [
+    9,
     10,
-    11
-   ],
-   "fps": 9,
-   "loop": false
-  },
-  "disparar": {
-   "frames": [
-    11
-   ],
-   "fps": 1,
-   "loop": false
-  },
-  "conjuro": {
-   "frames": [
-    13,
-    14
-   ],
-   "fps": 4,
-   "loop": true
-  },
-  "invocar": {
-   "frames": [
+    11,
     12,
     13
    ],
-   "fps": 3,
+   "fps": 9,
    "loop": true
   },
-  "lanzar": {
+  "correr": {
    "frames": [
     14,
-    15
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
    ],
-   "fps": 9,
+   "fps": 13,
+   "loop": true
+  },
+  "subida": {
+   "frames": [
+    22,
+    23
+   ],
+   "fps": 8,
    "loop": false
   },
   "salto": {
    "frames": [
-    16
+    22,
+    23
    ],
-   "fps": 1,
-   "loop": false
-  },
-  "subida": {
-   "frames": [
-    16
-   ],
-   "fps": 1,
+   "fps": 8,
    "loop": false
   },
   "caida": {
    "frames": [
-    17
+    24,
+    25
    ],
-   "fps": 1,
+   "fps": 6,
    "loop": false
   },
   "aterrizar": {
    "frames": [
-    18
+    26,
+    27
    ],
-   "fps": 1,
+   "fps": 14,
    "loop": false
   },
   "esquivar": {
    "frames": [
-    19
+    28,
+    29,
+    30
    ],
-   "fps": 1,
+   "fps": 12,
+   "loop": false
+  },
+  "conjuro": {
+   "frames": [
+    31,
+    32,
+    33,
+    34
+   ],
+   "fps": 7,
+   "loop": true
+  },
+  "invocar": {
+   "frames": [
+    35,
+    36,
+    37,
+    38
+   ],
+   "fps": 7,
+   "loop": true
+  },
+  "purificar": {
+   "frames": [
+    39,
+    40,
+    41,
+    42
+   ],
+   "fps": 4,
+   "loop": false
+  },
+  "ataque": {
+   "frames": [
+    43,
+    44,
+    45,
+    46,
+    47
+   ],
+   "fps": 10,
+   "loop": false
+  },
+  "golpe": {
+   "frames": [
+    43,
+    44
+   ],
+   "fps": 6,
+   "loop": false
+  },
+  "lanzar": {
+   "frames": [
+    48,
+    49,
+    50,
+    51
+   ],
+   "fps": 9,
    "loop": false
   },
   "interactuar": {
    "frames": [
-    18
+    52,
+    53
    ],
-   "fps": 1,
+   "fps": 5,
    "loop": false
   },
   "dano": {
    "frames": [
-    21
+    54,
+    55,
+    56
    ],
-   "fps": 1,
+   "fps": 9,
    "loop": false
   },
   "aturdido": {
    "frames": [
-    22
+    57,
+    58,
+    59,
+    60
    ],
-   "fps": 1,
-   "loop": false
+   "fps": 5,
+   "loop": true
   },
   "agotado": {
    "frames": [
-    22
+    57,
+    58,
+    59,
+    60
    ],
-   "fps": 1,
-   "loop": false
-  },
-  "purificar": {
-   "frames": [
-    22
-   ],
-   "fps": 1,
-   "loop": false
+   "fps": 5,
+   "loop": true
   },
   "morir": {
    "frames": [
-    21,
-    23
+    54,
+    61,
+    62,
+    63,
+    64
    ],
    "fps": 5,
    "loop": false
+  },
+  "disparar": {
+   "frames": [
+    49,
+    50,
+    51
+   ],
+   "fps": 10,
+   "loop": false
   }
  },
- "cuadrosPorVariante": 24,
- "generadoPor": "tools/codex-sheets.py",
- "fuente": {
-  "bruja": {
-   "escala_fuente": 0.4487,
-   "alto_de_pie_fuente": 234.0
-  }
- },
- "alto": 105
+ "cuadrosPorVariante": 65,
+ "generadoPor": "tools/pixel/generar.py",
+ "alto": 106
 }

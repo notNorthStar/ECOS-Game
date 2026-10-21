@@ -1,396 +1,1020 @@
 {
  "personaje": "nahual_animal",
  "tipo": "criatura",
- "frameWidth": 108,
- "frameHeight": 89,
+ "frameWidth": 120,
+ "frameHeight": 112,
  "pivot": {
-  "x": 54,
-  "y": 87
+  "x": 60,
+  "y": 109
  },
  "frames": [
   {
    "name": "nahual_animal_lobo_reposo_1",
-   "vista": "der",
+   "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 108,
-   "h": 89
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_lobo_reposo_2",
    "vista": "reposo_2",
-   "x": 108,
+   "x": 120,
    "y": 0,
-   "w": 108,
-   "h": 89
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_reposo_3",
+   "vista": "reposo_3",
+   "x": 240,
+   "y": 0,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_reposo_4",
+   "vista": "reposo_4",
+   "x": 360,
+   "y": 0,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_reposo_5",
+   "vista": "reposo_5",
+   "x": 480,
+   "y": 0,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_lobo_caminar_1",
    "vista": "caminar_1",
-   "x": 216,
+   "x": 600,
    "y": 0,
-   "w": 108,
-   "h": 89
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_lobo_caminar_2",
    "vista": "caminar_2",
-   "x": 324,
+   "x": 720,
    "y": 0,
-   "w": 108,
-   "h": 89
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_lobo_caminar_3",
    "vista": "caminar_3",
-   "x": 432,
+   "x": 840,
    "y": 0,
-   "w": 108,
-   "h": 89
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_lobo_caminar_4",
    "vista": "caminar_4",
-   "x": 540,
-   "y": 0,
-   "w": 108,
-   "h": 89
+   "x": 0,
+   "y": 112,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_caminar_5",
+   "vista": "caminar_5",
+   "x": 120,
+   "y": 112,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_caminar_6",
+   "vista": "caminar_6",
+   "x": 240,
+   "y": 112,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_caminar_7",
+   "vista": "caminar_7",
+   "x": 360,
+   "y": 112,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_caminar_8",
+   "vista": "caminar_8",
+   "x": 480,
+   "y": 112,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_lobo_correr_1",
    "vista": "correr_1",
-   "x": 0,
-   "y": 89,
-   "w": 108,
-   "h": 89
+   "x": 600,
+   "y": 112,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_lobo_correr_2",
    "vista": "correr_2",
-   "x": 108,
-   "y": 89,
-   "w": 108,
-   "h": 89
+   "x": 720,
+   "y": 112,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_lobo_correr_3",
    "vista": "correr_3",
-   "x": 216,
-   "y": 89,
-   "w": 108,
-   "h": 89
+   "x": 840,
+   "y": 112,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_lobo_correr_4",
    "vista": "correr_4",
-   "x": 324,
-   "y": 89,
-   "w": 108,
-   "h": 89
-  },
-  {
-   "name": "nahual_animal_lobo_preparar",
-   "vista": "preparar",
-   "x": 432,
-   "y": 89,
-   "w": 108,
-   "h": 89
-  },
-  {
-   "name": "nahual_animal_lobo_atacar",
-   "vista": "atacar",
-   "x": 540,
-   "y": 89,
-   "w": 108,
-   "h": 89
-  },
-  {
-   "name": "nahual_animal_lobo_guardia",
-   "vista": "guardia",
    "x": 0,
-   "y": 178,
-   "w": 108,
-   "h": 89
+   "y": 224,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_lobo_conjuro",
-   "vista": "conjuro",
-   "x": 108,
-   "y": 178,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_lobo_correr_5",
+   "vista": "correr_5",
+   "x": 120,
+   "y": 224,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_lobo_lanzar_1",
-   "vista": "lanzar_1",
-   "x": 216,
-   "y": 178,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_lobo_correr_6",
+   "vista": "correr_6",
+   "x": 240,
+   "y": 224,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_lobo_lanzar_2",
-   "vista": "lanzar_2",
-   "x": 324,
-   "y": 178,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_lobo_correr_7",
+   "vista": "correr_7",
+   "x": 360,
+   "y": 224,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_lobo_salto",
-   "vista": "salto",
-   "x": 432,
-   "y": 178,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_lobo_correr_8",
+   "vista": "correr_8",
+   "x": 480,
+   "y": 224,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_lobo_caida",
-   "vista": "caida",
-   "x": 540,
-   "y": 178,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_lobo_ataque_1",
+   "vista": "ataque_1",
+   "x": 600,
+   "y": 224,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_lobo_agacharse",
-   "vista": "agacharse",
+   "name": "nahual_animal_lobo_ataque_2",
+   "vista": "ataque_2",
+   "x": 720,
+   "y": 224,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_ataque_3",
+   "vista": "ataque_3",
+   "x": 840,
+   "y": 224,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_ataque_4",
+   "vista": "ataque_4",
    "x": 0,
-   "y": 267,
-   "w": 108,
-   "h": 89
+   "y": 336,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_lobo_esquivar",
-   "vista": "esquivar",
-   "x": 108,
-   "y": 267,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_lobo_ataque_7",
+   "vista": "ataque_7",
+   "x": 120,
+   "y": 336,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_lobo_golpe_bajo",
-   "vista": "golpe_bajo",
-   "x": 216,
-   "y": 267,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_lobo_ataque_8",
+   "vista": "ataque_8",
+   "x": 240,
+   "y": 336,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_lobo_dano",
-   "vista": "dano",
-   "x": 324,
-   "y": 267,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_lobo_ataque_9",
+   "vista": "ataque_9",
+   "x": 360,
+   "y": 336,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_lobo_derrota",
-   "vista": "derrota",
-   "x": 432,
-   "y": 267,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_lobo_golpe_1",
+   "vista": "golpe_1",
+   "x": 480,
+   "y": 336,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_lobo_caido",
-   "vista": "caido",
-   "x": 540,
-   "y": 267,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_lobo_golpe_2",
+   "vista": "golpe_2",
+   "x": 600,
+   "y": 336,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_invocar_1",
+   "vista": "invocar_1",
+   "x": 720,
+   "y": 336,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_invocar_2",
+   "vista": "invocar_2",
+   "x": 840,
+   "y": 336,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_invocar_3",
+   "vista": "invocar_3",
+   "x": 0,
+   "y": 448,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_invocar_4",
+   "vista": "invocar_4",
+   "x": 120,
+   "y": 448,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_salto_1",
+   "vista": "salto_1",
+   "x": 240,
+   "y": 448,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_salto_2",
+   "vista": "salto_2",
+   "x": 360,
+   "y": 448,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_caida_1",
+   "vista": "caida_1",
+   "x": 480,
+   "y": 448,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_aterrizar_1",
+   "vista": "aterrizar_1",
+   "x": 600,
+   "y": 448,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_aterrizar_2",
+   "vista": "aterrizar_2",
+   "x": 720,
+   "y": 448,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_esquivar_2",
+   "vista": "esquivar_2",
+   "x": 840,
+   "y": 448,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_interactuar_1",
+   "vista": "interactuar_1",
+   "x": 0,
+   "y": 560,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_interactuar_2",
+   "vista": "interactuar_2",
+   "x": 120,
+   "y": 560,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_dano_1",
+   "vista": "dano_1",
+   "x": 240,
+   "y": 560,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_dano_2",
+   "vista": "dano_2",
+   "x": 360,
+   "y": 560,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_dano_3",
+   "vista": "dano_3",
+   "x": 480,
+   "y": 560,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_aturdido_1",
+   "vista": "aturdido_1",
+   "x": 600,
+   "y": 560,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_aturdido_2",
+   "vista": "aturdido_2",
+   "x": 720,
+   "y": 560,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_aturdido_3",
+   "vista": "aturdido_3",
+   "x": 840,
+   "y": 560,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_aturdido_4",
+   "vista": "aturdido_4",
+   "x": 0,
+   "y": 672,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_agotado_1",
+   "vista": "agotado_1",
+   "x": 120,
+   "y": 672,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_agotado_2",
+   "vista": "agotado_2",
+   "x": 240,
+   "y": 672,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_agotado_3",
+   "vista": "agotado_3",
+   "x": 360,
+   "y": 672,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_purificar_1",
+   "vista": "purificar_1",
+   "x": 480,
+   "y": 672,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_purificar_2",
+   "vista": "purificar_2",
+   "x": 600,
+   "y": 672,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_purificar_3",
+   "vista": "purificar_3",
+   "x": 720,
+   "y": 672,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_purificar_4",
+   "vista": "purificar_4",
+   "x": 840,
+   "y": 672,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_purificar_5",
+   "vista": "purificar_5",
+   "x": 0,
+   "y": 784,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_purificar_6",
+   "vista": "purificar_6",
+   "x": 120,
+   "y": 784,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_morir_2",
+   "vista": "morir_2",
+   "x": 240,
+   "y": 784,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_morir_3",
+   "vista": "morir_3",
+   "x": 360,
+   "y": 784,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_morir_4",
+   "vista": "morir_4",
+   "x": 480,
+   "y": 784,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_morir_5",
+   "vista": "morir_5",
+   "x": 600,
+   "y": 784,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_lobo_morir_6",
+   "vista": "morir_6",
+   "x": 720,
+   "y": 784,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_ave_reposo_1",
-   "vista": "reposo_1",
-   "x": 0,
-   "y": 356,
-   "w": 108,
-   "h": 89
+   "vista": "lado_der",
+   "x": 840,
+   "y": 784,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_ave_reposo_2",
    "vista": "reposo_2",
-   "x": 108,
-   "y": 356,
-   "w": 108,
-   "h": 89
+   "x": 0,
+   "y": 896,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_reposo_3",
+   "vista": "reposo_3",
+   "x": 120,
+   "y": 896,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_reposo_4",
+   "vista": "reposo_4",
+   "x": 240,
+   "y": 896,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_reposo_5",
+   "vista": "reposo_5",
+   "x": 360,
+   "y": 896,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_ave_caminar_1",
    "vista": "caminar_1",
-   "x": 216,
-   "y": 356,
-   "w": 108,
-   "h": 89
+   "x": 480,
+   "y": 896,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_ave_caminar_2",
    "vista": "caminar_2",
-   "x": 324,
-   "y": 356,
-   "w": 108,
-   "h": 89
+   "x": 600,
+   "y": 896,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_ave_caminar_3",
    "vista": "caminar_3",
-   "x": 432,
-   "y": 356,
-   "w": 108,
-   "h": 89
+   "x": 720,
+   "y": 896,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_ave_caminar_4",
    "vista": "caminar_4",
-   "x": 540,
-   "y": 356,
-   "w": 108,
-   "h": 89
+   "x": 840,
+   "y": 896,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_caminar_5",
+   "vista": "caminar_5",
+   "x": 0,
+   "y": 1008,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_caminar_6",
+   "vista": "caminar_6",
+   "x": 120,
+   "y": 1008,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_caminar_7",
+   "vista": "caminar_7",
+   "x": 240,
+   "y": 1008,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_caminar_8",
+   "vista": "caminar_8",
+   "x": 360,
+   "y": 1008,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_ave_correr_1",
    "vista": "correr_1",
-   "x": 0,
-   "y": 445,
-   "w": 108,
-   "h": 89
+   "x": 480,
+   "y": 1008,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_ave_correr_2",
    "vista": "correr_2",
-   "x": 108,
-   "y": 445,
-   "w": 108,
-   "h": 89
+   "x": 600,
+   "y": 1008,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_ave_correr_3",
    "vista": "correr_3",
-   "x": 216,
-   "y": 445,
-   "w": 108,
-   "h": 89
+   "x": 720,
+   "y": 1008,
+   "w": 120,
+   "h": 112
   },
   {
    "name": "nahual_animal_ave_correr_4",
    "vista": "correr_4",
-   "x": 324,
-   "y": 445,
-   "w": 108,
-   "h": 89
+   "x": 840,
+   "y": 1008,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_preparar",
-   "vista": "preparar",
-   "x": 432,
-   "y": 445,
-   "w": 108,
-   "h": 89
-  },
-  {
-   "name": "nahual_animal_ave_atacar",
-   "vista": "atacar",
-   "x": 540,
-   "y": 445,
-   "w": 108,
-   "h": 89
-  },
-  {
-   "name": "nahual_animal_ave_guardia",
-   "vista": "guardia",
+   "name": "nahual_animal_ave_correr_5",
+   "vista": "correr_5",
    "x": 0,
-   "y": 534,
-   "w": 108,
-   "h": 89
+   "y": 1120,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_conjuro",
-   "vista": "conjuro",
-   "x": 108,
-   "y": 534,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_ave_correr_6",
+   "vista": "correr_6",
+   "x": 120,
+   "y": 1120,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_lanzar_1",
-   "vista": "lanzar_1",
-   "x": 216,
-   "y": 534,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_ave_correr_7",
+   "vista": "correr_7",
+   "x": 240,
+   "y": 1120,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_lanzar_2",
-   "vista": "lanzar_2",
-   "x": 324,
-   "y": 534,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_ave_correr_8",
+   "vista": "correr_8",
+   "x": 360,
+   "y": 1120,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_salto",
-   "vista": "salto",
-   "x": 432,
-   "y": 534,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_ave_ataque_1",
+   "vista": "ataque_1",
+   "x": 480,
+   "y": 1120,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_caida",
-   "vista": "caida",
-   "x": 540,
-   "y": 534,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_ave_ataque_2",
+   "vista": "ataque_2",
+   "x": 600,
+   "y": 1120,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_agacharse",
-   "vista": "agacharse",
+   "name": "nahual_animal_ave_ataque_3",
+   "vista": "ataque_3",
+   "x": 720,
+   "y": 1120,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_ataque_4",
+   "vista": "ataque_4",
+   "x": 840,
+   "y": 1120,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_ataque_7",
+   "vista": "ataque_7",
    "x": 0,
-   "y": 623,
-   "w": 108,
-   "h": 89
+   "y": 1232,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_esquivar",
-   "vista": "esquivar",
-   "x": 108,
-   "y": 623,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_ave_ataque_8",
+   "vista": "ataque_8",
+   "x": 120,
+   "y": 1232,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_golpe_bajo",
-   "vista": "golpe_bajo",
-   "x": 216,
-   "y": 623,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_ave_ataque_9",
+   "vista": "ataque_9",
+   "x": 240,
+   "y": 1232,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_dano",
-   "vista": "dano",
-   "x": 324,
-   "y": 623,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_ave_golpe_1",
+   "vista": "golpe_1",
+   "x": 360,
+   "y": 1232,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_derrota",
-   "vista": "derrota",
-   "x": 432,
-   "y": 623,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_ave_golpe_2",
+   "vista": "golpe_2",
+   "x": 480,
+   "y": 1232,
+   "w": 120,
+   "h": 112
   },
   {
-   "name": "nahual_animal_ave_caido",
-   "vista": "caido",
-   "x": 540,
-   "y": 623,
-   "w": 108,
-   "h": 89
+   "name": "nahual_animal_ave_invocar_1",
+   "vista": "invocar_1",
+   "x": 600,
+   "y": 1232,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_invocar_2",
+   "vista": "invocar_2",
+   "x": 720,
+   "y": 1232,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_invocar_3",
+   "vista": "invocar_3",
+   "x": 840,
+   "y": 1232,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_invocar_4",
+   "vista": "invocar_4",
+   "x": 0,
+   "y": 1344,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_salto_1",
+   "vista": "salto_1",
+   "x": 120,
+   "y": 1344,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_salto_2",
+   "vista": "salto_2",
+   "x": 240,
+   "y": 1344,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_caida_1",
+   "vista": "caida_1",
+   "x": 360,
+   "y": 1344,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_aterrizar_1",
+   "vista": "aterrizar_1",
+   "x": 480,
+   "y": 1344,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_aterrizar_2",
+   "vista": "aterrizar_2",
+   "x": 600,
+   "y": 1344,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_esquivar_2",
+   "vista": "esquivar_2",
+   "x": 720,
+   "y": 1344,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_interactuar_1",
+   "vista": "interactuar_1",
+   "x": 840,
+   "y": 1344,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_interactuar_2",
+   "vista": "interactuar_2",
+   "x": 0,
+   "y": 1456,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_dano_1",
+   "vista": "dano_1",
+   "x": 120,
+   "y": 1456,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_dano_2",
+   "vista": "dano_2",
+   "x": 240,
+   "y": 1456,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_dano_3",
+   "vista": "dano_3",
+   "x": 360,
+   "y": 1456,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_aturdido_1",
+   "vista": "aturdido_1",
+   "x": 480,
+   "y": 1456,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_aturdido_2",
+   "vista": "aturdido_2",
+   "x": 600,
+   "y": 1456,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_aturdido_3",
+   "vista": "aturdido_3",
+   "x": 720,
+   "y": 1456,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_aturdido_4",
+   "vista": "aturdido_4",
+   "x": 840,
+   "y": 1456,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_agotado_1",
+   "vista": "agotado_1",
+   "x": 0,
+   "y": 1568,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_agotado_2",
+   "vista": "agotado_2",
+   "x": 120,
+   "y": 1568,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_agotado_3",
+   "vista": "agotado_3",
+   "x": 240,
+   "y": 1568,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_purificar_1",
+   "vista": "purificar_1",
+   "x": 360,
+   "y": 1568,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_purificar_2",
+   "vista": "purificar_2",
+   "x": 480,
+   "y": 1568,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_purificar_3",
+   "vista": "purificar_3",
+   "x": 600,
+   "y": 1568,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_purificar_4",
+   "vista": "purificar_4",
+   "x": 720,
+   "y": 1568,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_purificar_5",
+   "vista": "purificar_5",
+   "x": 840,
+   "y": 1568,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_purificar_6",
+   "vista": "purificar_6",
+   "x": 0,
+   "y": 1680,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_morir_2",
+   "vista": "morir_2",
+   "x": 120,
+   "y": 1680,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_morir_3",
+   "vista": "morir_3",
+   "x": 240,
+   "y": 1680,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_morir_4",
+   "vista": "morir_4",
+   "x": 360,
+   "y": 1680,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_morir_5",
+   "vista": "morir_5",
+   "x": 480,
+   "y": 1680,
+   "w": 120,
+   "h": 112
+  },
+  {
+   "name": "nahual_animal_ave_morir_6",
+   "vista": "morir_6",
+   "x": 600,
+   "y": 1680,
+   "w": 120,
+   "h": 112
   }
  ],
  "escala": 1,
@@ -398,168 +1022,220 @@
   "reposo": {
    "frames": [
     0,
-    1
+    1,
+    2,
+    3,
+    4,
+    4
    ],
-   "fps": 2.5,
+   "fps": 5,
    "loop": true
   },
   "caminar": {
    "frames": [
-    2,
-    3,
-    4,
-    5
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
    ],
-   "fps": 8,
+   "fps": 9,
    "loop": true
   },
   "correr": {
    "frames": [
-    6,
-    7,
-    8,
-    9
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
    ],
-   "fps": 11,
+   "fps": 13,
    "loop": true
-  },
-  "golpe": {
-   "frames": [
-    10
-   ],
-   "fps": 1,
-   "loop": false
   },
   "ataque": {
    "frames": [
-    10,
-    11
+    21,
+    22,
+    23,
+    24,
+    23,
+    24,
+    25,
+    26,
+    27
    ],
-   "fps": 9,
+   "fps": 12,
    "loop": false
   },
-  "disparar": {
+  "golpe": {
    "frames": [
-    11
+    28,
+    29
    ],
-   "fps": 1,
-   "loop": false
-  },
-  "conjuro": {
-   "frames": [
-    13,
-    14
-   ],
-   "fps": 4,
-   "loop": true
-  },
-  "invocar": {
-   "frames": [
-    12,
-    13
-   ],
-   "fps": 3,
+   "fps": 6,
    "loop": true
   },
   "lanzar": {
    "frames": [
-    14,
-    15
+    21,
+    22,
+    23,
+    24,
+    23,
+    24,
+    25,
+    26,
+    27
    ],
-   "fps": 9,
+   "fps": 12,
    "loop": false
+  },
+  "disparar": {
+   "frames": [
+    21,
+    22,
+    23,
+    24,
+    23,
+    24,
+    25,
+    26,
+    27
+   ],
+   "fps": 12,
+   "loop": false
+  },
+  "invocar": {
+   "frames": [
+    30,
+    31,
+    32,
+    33
+   ],
+   "fps": 7,
+   "loop": true
+  },
+  "conjuro": {
+   "frames": [
+    30,
+    31,
+    32,
+    33
+   ],
+   "fps": 7,
+   "loop": true
   },
   "salto": {
    "frames": [
-    16
+    34,
+    35
    ],
-   "fps": 1,
+   "fps": 8,
    "loop": false
   },
   "subida": {
    "frames": [
-    16
+    35
    ],
    "fps": 1,
    "loop": false
   },
   "caida": {
    "frames": [
-    17
+    36
    ],
    "fps": 1,
    "loop": false
   },
   "aterrizar": {
    "frames": [
-    18
+    37,
+    38
    ],
-   "fps": 1,
+   "fps": 10,
    "loop": false
   },
   "esquivar": {
    "frames": [
-    19
+    34,
+    39,
+    34
    ],
-   "fps": 1,
+   "fps": 10,
    "loop": false
   },
   "interactuar": {
    "frames": [
-    18
+    40,
+    41,
+    40
    ],
-   "fps": 1,
+   "fps": 6,
    "loop": false
   },
   "dano": {
    "frames": [
-    21
+    42,
+    43,
+    44
    ],
-   "fps": 1,
+   "fps": 12,
    "loop": false
   },
   "aturdido": {
    "frames": [
-    22
+    45,
+    46,
+    47,
+    48
    ],
-   "fps": 1,
-   "loop": false
+   "fps": 6,
+   "loop": true
   },
   "agotado": {
    "frames": [
-    22
+    49,
+    50,
+    51,
+    50
    ],
-   "fps": 1,
-   "loop": false
+   "fps": 4,
+   "loop": true
   },
   "purificar": {
    "frames": [
-    22
+    52,
+    53,
+    54,
+    55,
+    56,
+    57
    ],
-   "fps": 1,
+   "fps": 6,
    "loop": false
   },
   "morir": {
    "frames": [
-    21,
-    23
+    42,
+    58,
+    59,
+    60,
+    61,
+    62
    ],
-   "fps": 5,
+   "fps": 8,
    "loop": false
   }
  },
- "cuadrosPorVariante": 24,
- "generadoPor": "tools/codex-sheets.py",
- "fuente": {
-  "nahual": {
-   "escala_fuente": 0.3485,
-   "alto_de_pie_fuente": 241.0
-  },
-  "bestia-2": {
-   "escala_fuente": 0.317,
-   "alto_de_pie_fuente": 265.0
-  }
- },
+ "cuadrosPorVariante": 63,
+ "generadoPor": "tools/pixel/generar.py",
  "alto": 84,
  "variants": [
   "lobo",

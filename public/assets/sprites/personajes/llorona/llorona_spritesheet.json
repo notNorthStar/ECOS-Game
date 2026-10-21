@@ -1,11 +1,11 @@
 {
  "personaje": "llorona",
  "tipo": "humanoide",
- "frameWidth": 98,
- "frameHeight": 82,
+ "frameWidth": 96,
+ "frameHeight": 88,
  "pivot": {
-  "x": 49,
-  "y": 80
+  "x": 48,
+  "y": 85
  },
  "frames": [
   {
@@ -13,192 +13,472 @@
    "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 98,
-   "h": 82
+   "w": 96,
+   "h": 88
   },
   {
    "name": "llorona_reposo_2",
    "vista": "reposo_2",
-   "x": 98,
+   "x": 96,
    "y": 0,
-   "w": 98,
-   "h": 82
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_reposo_3",
+   "vista": "reposo_3",
+   "x": 192,
+   "y": 0,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_reposo_4",
+   "vista": "reposo_4",
+   "x": 288,
+   "y": 0,
+   "w": 96,
+   "h": 88
   },
   {
    "name": "llorona_caminar_1",
    "vista": "caminar_1",
-   "x": 196,
+   "x": 384,
    "y": 0,
-   "w": 98,
-   "h": 82
+   "w": 96,
+   "h": 88
   },
   {
    "name": "llorona_caminar_2",
    "vista": "caminar_2",
-   "x": 294,
+   "x": 480,
    "y": 0,
-   "w": 98,
-   "h": 82
+   "w": 96,
+   "h": 88
   },
   {
    "name": "llorona_caminar_3",
    "vista": "caminar_3",
-   "x": 392,
+   "x": 576,
    "y": 0,
-   "w": 98,
-   "h": 82
+   "w": 96,
+   "h": 88
   },
   {
    "name": "llorona_caminar_4",
    "vista": "caminar_4",
-   "x": 490,
+   "x": 672,
    "y": 0,
-   "w": 98,
-   "h": 82
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_caminar_5",
+   "vista": "caminar_5",
+   "x": 0,
+   "y": 88,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_caminar_6",
+   "vista": "caminar_6",
+   "x": 96,
+   "y": 88,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_caminar_7",
+   "vista": "caminar_7",
+   "x": 192,
+   "y": 88,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_caminar_8",
+   "vista": "caminar_8",
+   "x": 288,
+   "y": 88,
+   "w": 96,
+   "h": 88
   },
   {
    "name": "llorona_correr_1",
    "vista": "correr_1",
-   "x": 0,
-   "y": 82,
-   "w": 98,
-   "h": 82
+   "x": 384,
+   "y": 88,
+   "w": 96,
+   "h": 88
   },
   {
    "name": "llorona_correr_2",
    "vista": "correr_2",
-   "x": 98,
-   "y": 82,
-   "w": 98,
-   "h": 82
+   "x": 480,
+   "y": 88,
+   "w": 96,
+   "h": 88
   },
   {
    "name": "llorona_correr_3",
    "vista": "correr_3",
-   "x": 196,
-   "y": 82,
-   "w": 98,
-   "h": 82
+   "x": 576,
+   "y": 88,
+   "w": 96,
+   "h": 88
   },
   {
    "name": "llorona_correr_4",
    "vista": "correr_4",
-   "x": 294,
-   "y": 82,
-   "w": 98,
-   "h": 82
+   "x": 672,
+   "y": 88,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_preparar",
-   "vista": "preparar",
-   "x": 392,
-   "y": 82,
-   "w": 98,
-   "h": 82
-  },
-  {
-   "name": "llorona_atacar",
-   "vista": "atacar",
-   "x": 490,
-   "y": 82,
-   "w": 98,
-   "h": 82
-  },
-  {
-   "name": "llorona_guardia",
-   "vista": "guardia",
+   "name": "llorona_correr_5",
+   "vista": "correr_5",
    "x": 0,
-   "y": 164,
-   "w": 98,
-   "h": 82
+   "y": 176,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_conjuro",
-   "vista": "conjuro",
-   "x": 98,
-   "y": 164,
-   "w": 98,
-   "h": 82
+   "name": "llorona_correr_6",
+   "vista": "correr_6",
+   "x": 96,
+   "y": 176,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_lanzar_1",
-   "vista": "lanzar_1",
-   "x": 196,
-   "y": 164,
-   "w": 98,
-   "h": 82
+   "name": "llorona_correr_7",
+   "vista": "correr_7",
+   "x": 192,
+   "y": 176,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_lanzar_2",
-   "vista": "lanzar_2",
-   "x": 294,
-   "y": 164,
-   "w": 98,
-   "h": 82
+   "name": "llorona_correr_8",
+   "vista": "correr_8",
+   "x": 288,
+   "y": 176,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_salto",
-   "vista": "salto",
-   "x": 392,
-   "y": 164,
-   "w": 98,
-   "h": 82
+   "name": "llorona_subida_1",
+   "vista": "subida_1",
+   "x": 384,
+   "y": 176,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_caida",
-   "vista": "caida",
-   "x": 490,
-   "y": 164,
-   "w": 98,
-   "h": 82
+   "name": "llorona_subida_2",
+   "vista": "subida_2",
+   "x": 480,
+   "y": 176,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_agacharse",
-   "vista": "agacharse",
+   "name": "llorona_caida_1",
+   "vista": "caida_1",
+   "x": 576,
+   "y": 176,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_caida_2",
+   "vista": "caida_2",
+   "x": 672,
+   "y": 176,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_aterrizar_1",
+   "vista": "aterrizar_1",
    "x": 0,
-   "y": 246,
-   "w": 98,
-   "h": 82
+   "y": 264,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_esquivar",
-   "vista": "esquivar",
-   "x": 98,
-   "y": 246,
-   "w": 98,
-   "h": 82
+   "name": "llorona_aterrizar_2",
+   "vista": "aterrizar_2",
+   "x": 96,
+   "y": 264,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_golpe_bajo",
-   "vista": "golpe_bajo",
-   "x": 196,
-   "y": 246,
-   "w": 98,
-   "h": 82
+   "name": "llorona_esquivar_1",
+   "vista": "esquivar_1",
+   "x": 192,
+   "y": 264,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_dano",
-   "vista": "dano",
-   "x": 294,
-   "y": 246,
-   "w": 98,
-   "h": 82
+   "name": "llorona_esquivar_2",
+   "vista": "esquivar_2",
+   "x": 288,
+   "y": 264,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_derrota",
-   "vista": "derrota",
-   "x": 392,
-   "y": 246,
-   "w": 98,
-   "h": 82
+   "name": "llorona_esquivar_3",
+   "vista": "esquivar_3",
+   "x": 384,
+   "y": 264,
+   "w": 96,
+   "h": 88
   },
   {
-   "name": "llorona_caido",
-   "vista": "caido",
-   "x": 490,
-   "y": 246,
-   "w": 98,
-   "h": 82
+   "name": "llorona_esquivar_4",
+   "vista": "esquivar_4",
+   "x": 480,
+   "y": 264,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_conjuro_1",
+   "vista": "conjuro_1",
+   "x": 576,
+   "y": 264,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_conjuro_2",
+   "vista": "conjuro_2",
+   "x": 672,
+   "y": 264,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_conjuro_3",
+   "vista": "conjuro_3",
+   "x": 0,
+   "y": 352,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_conjuro_4",
+   "vista": "conjuro_4",
+   "x": 96,
+   "y": 352,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_invocar_1",
+   "vista": "invocar_1",
+   "x": 192,
+   "y": 352,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_invocar_2",
+   "vista": "invocar_2",
+   "x": 288,
+   "y": 352,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_invocar_3",
+   "vista": "invocar_3",
+   "x": 384,
+   "y": 352,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_invocar_4",
+   "vista": "invocar_4",
+   "x": 480,
+   "y": 352,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_purificar_1",
+   "vista": "purificar_1",
+   "x": 576,
+   "y": 352,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_purificar_2",
+   "vista": "purificar_2",
+   "x": 672,
+   "y": 352,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_purificar_3",
+   "vista": "purificar_3",
+   "x": 0,
+   "y": 440,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_ataque_1",
+   "vista": "ataque_1",
+   "x": 96,
+   "y": 440,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_ataque_2",
+   "vista": "ataque_2",
+   "x": 192,
+   "y": 440,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_ataque_3",
+   "vista": "ataque_3",
+   "x": 288,
+   "y": 440,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_interactuar_1",
+   "vista": "interactuar_1",
+   "x": 384,
+   "y": 440,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_interactuar_2",
+   "vista": "interactuar_2",
+   "x": 480,
+   "y": 440,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_dano_1",
+   "vista": "dano_1",
+   "x": 576,
+   "y": 440,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_dano_2",
+   "vista": "dano_2",
+   "x": 672,
+   "y": 440,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_aturdido_1",
+   "vista": "aturdido_1",
+   "x": 0,
+   "y": 528,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_aturdido_2",
+   "vista": "aturdido_2",
+   "x": 96,
+   "y": 528,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_aturdido_3",
+   "vista": "aturdido_3",
+   "x": 192,
+   "y": 528,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_aturdido_4",
+   "vista": "aturdido_4",
+   "x": 288,
+   "y": 528,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_morir_1",
+   "vista": "morir_1",
+   "x": 384,
+   "y": 528,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_morir_2",
+   "vista": "morir_2",
+   "x": 480,
+   "y": 528,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_morir_3",
+   "vista": "morir_3",
+   "x": 576,
+   "y": 528,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_morir_4",
+   "vista": "morir_4",
+   "x": 672,
+   "y": 528,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_morir_5",
+   "vista": "morir_5",
+   "x": 0,
+   "y": 616,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_disparar_1",
+   "vista": "disparar_1",
+   "x": 96,
+   "y": 616,
+   "w": 96,
+   "h": 88
+  },
+  {
+   "name": "llorona_disparar_2",
+   "vista": "disparar_2",
+   "x": 192,
+   "y": 616,
+   "w": 96,
+   "h": 88
   }
  ],
  "escala": 1,
@@ -206,163 +486,196 @@
   "reposo": {
    "frames": [
     0,
-    1
+    1,
+    2,
+    3
    ],
-   "fps": 2.5,
+   "fps": 3.5,
    "loop": true
   },
   "caminar": {
    "frames": [
-    2,
-    3,
     4,
-    5
-   ],
-   "fps": 8,
-   "loop": true
-  },
-  "correr": {
-   "frames": [
+    5,
     6,
     7,
     8,
-    9
-   ],
-   "fps": 11,
-   "loop": true
-  },
-  "golpe": {
-   "frames": [
-    10
-   ],
-   "fps": 1,
-   "loop": false
-  },
-  "ataque": {
-   "frames": [
+    9,
     10,
     11
    ],
    "fps": 9,
-   "loop": false
-  },
-  "disparar": {
-   "frames": [
-    11
-   ],
-   "fps": 1,
-   "loop": false
-  },
-  "conjuro": {
-   "frames": [
-    13,
-    14
-   ],
-   "fps": 4,
    "loop": true
   },
-  "invocar": {
+  "correr": {
    "frames": [
     12,
-    13
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
    ],
-   "fps": 3,
+   "fps": 12,
    "loop": true
   },
-  "lanzar": {
+  "subida": {
    "frames": [
-    14,
-    15
+    20,
+    21
    ],
-   "fps": 9,
+   "fps": 8,
    "loop": false
   },
   "salto": {
    "frames": [
-    16
+    20,
+    21
    ],
-   "fps": 1,
-   "loop": false
-  },
-  "subida": {
-   "frames": [
-    16
-   ],
-   "fps": 1,
+   "fps": 8,
    "loop": false
   },
   "caida": {
    "frames": [
-    17
+    22,
+    23
    ],
-   "fps": 1,
+   "fps": 6,
    "loop": false
   },
   "aterrizar": {
    "frames": [
-    18
+    24,
+    25
    ],
-   "fps": 1,
+   "fps": 14,
    "loop": false
   },
   "esquivar": {
    "frames": [
-    19
+    26,
+    27,
+    28,
+    29
    ],
-   "fps": 1,
+   "fps": 13,
+   "loop": false
+  },
+  "conjuro": {
+   "frames": [
+    30,
+    31,
+    32,
+    33
+   ],
+   "fps": 6,
+   "loop": true
+  },
+  "invocar": {
+   "frames": [
+    34,
+    35,
+    36,
+    37
+   ],
+   "fps": 7,
+   "loop": true
+  },
+  "purificar": {
+   "frames": [
+    38,
+    39,
+    40
+   ],
+   "fps": 6,
+   "loop": true
+  },
+  "ataque": {
+   "frames": [
+    41,
+    42,
+    43
+   ],
+   "fps": 10,
+   "loop": false
+  },
+  "golpe": {
+   "frames": [
+    41,
+    42,
+    43
+   ],
+   "fps": 10,
+   "loop": false
+  },
+  "lanzar": {
+   "frames": [
+    41,
+    42,
+    43
+   ],
+   "fps": 10,
    "loop": false
   },
   "interactuar": {
    "frames": [
-    18
+    44,
+    45
    ],
-   "fps": 1,
+   "fps": 5,
    "loop": false
   },
   "dano": {
    "frames": [
-    21
+    46,
+    47
    ],
-   "fps": 1,
+   "fps": 8,
    "loop": false
   },
   "aturdido": {
    "frames": [
-    22
+    48,
+    49,
+    50,
+    51
    ],
-   "fps": 1,
-   "loop": false
+   "fps": 4,
+   "loop": true
   },
   "agotado": {
    "frames": [
-    22
+    48,
+    49,
+    50,
+    51
    ],
-   "fps": 1,
-   "loop": false
-  },
-  "purificar": {
-   "frames": [
-    22
-   ],
-   "fps": 1,
-   "loop": false
+   "fps": 4,
+   "loop": true
   },
   "morir": {
    "frames": [
-    21,
-    23
+    52,
+    53,
+    54,
+    55,
+    56
    ],
-   "fps": 5,
+   "fps": 6,
+   "loop": false
+  },
+  "disparar": {
+   "frames": [
+    57,
+    58
+   ],
+   "fps": 10,
    "loop": false
   }
  },
- "cuadrosPorVariante": 24,
- "generadoPor": "tools/codex-sheets.py",
- "fuente": {
-  "llorona": {
-   "escala_fuente": 0.3173,
-   "alto_de_pie_fuente": 239.5
-  }
- },
- "alto": 76
+ "cuadrosPorVariante": 59,
+ "generadoPor": "tools/pixel/generar.py",
+ "alto": 75
 }

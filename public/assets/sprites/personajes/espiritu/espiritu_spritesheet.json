@@ -1,11 +1,11 @@
 {
  "personaje": "espiritu",
  "tipo": "humanoide",
- "frameWidth": 86,
- "frameHeight": 79,
+ "frameWidth": 80,
+ "frameHeight": 96,
  "pivot": {
-  "x": 43,
-  "y": 77
+  "x": 40,
+  "y": 92
  },
  "frames": [
   {
@@ -13,384 +13,1040 @@
    "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 86,
-   "h": 79
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_hombre_reposo_2",
    "vista": "reposo_2",
-   "x": 86,
+   "x": 80,
    "y": 0,
-   "w": 86,
-   "h": 79
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_reposo_3",
+   "vista": "reposo_3",
+   "x": 160,
+   "y": 0,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_reposo_4",
+   "vista": "reposo_4",
+   "x": 240,
+   "y": 0,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_reposo_5",
+   "vista": "reposo_5",
+   "x": 320,
+   "y": 0,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_reposo_6",
+   "vista": "reposo_6",
+   "x": 400,
+   "y": 0,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_hombre_caminar_1",
    "vista": "caminar_1",
-   "x": 172,
+   "x": 480,
    "y": 0,
-   "w": 86,
-   "h": 79
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_hombre_caminar_2",
    "vista": "caminar_2",
-   "x": 258,
+   "x": 560,
    "y": 0,
-   "w": 86,
-   "h": 79
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_hombre_caminar_3",
    "vista": "caminar_3",
-   "x": 344,
-   "y": 0,
-   "w": 86,
-   "h": 79
+   "x": 0,
+   "y": 96,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_hombre_caminar_4",
    "vista": "caminar_4",
-   "x": 430,
-   "y": 0,
-   "w": 86,
-   "h": 79
+   "x": 80,
+   "y": 96,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_caminar_5",
+   "vista": "caminar_5",
+   "x": 160,
+   "y": 96,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_caminar_6",
+   "vista": "caminar_6",
+   "x": 240,
+   "y": 96,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_caminar_7",
+   "vista": "caminar_7",
+   "x": 320,
+   "y": 96,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_caminar_8",
+   "vista": "caminar_8",
+   "x": 400,
+   "y": 96,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_hombre_correr_1",
    "vista": "correr_1",
-   "x": 0,
-   "y": 79,
-   "w": 86,
-   "h": 79
+   "x": 480,
+   "y": 96,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_hombre_correr_2",
    "vista": "correr_2",
-   "x": 86,
-   "y": 79,
-   "w": 86,
-   "h": 79
+   "x": 560,
+   "y": 96,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_hombre_correr_3",
    "vista": "correr_3",
-   "x": 172,
-   "y": 79,
-   "w": 86,
-   "h": 79
+   "x": 0,
+   "y": 192,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_hombre_correr_4",
    "vista": "correr_4",
-   "x": 258,
-   "y": 79,
-   "w": 86,
-   "h": 79
+   "x": 80,
+   "y": 192,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_preparar",
-   "vista": "preparar",
-   "x": 344,
-   "y": 79,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_correr_5",
+   "vista": "correr_5",
+   "x": 160,
+   "y": 192,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_atacar",
-   "vista": "atacar",
-   "x": 430,
-   "y": 79,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_correr_6",
+   "vista": "correr_6",
+   "x": 240,
+   "y": 192,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_guardia",
-   "vista": "guardia",
+   "name": "espiritu_hombre_correr_7",
+   "vista": "correr_7",
+   "x": 320,
+   "y": 192,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_correr_8",
+   "vista": "correr_8",
+   "x": 400,
+   "y": 192,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_subida_1",
+   "vista": "subida_1",
+   "x": 480,
+   "y": 192,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_subida_2",
+   "vista": "subida_2",
+   "x": 560,
+   "y": 192,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_caida_1",
+   "vista": "caida_1",
    "x": 0,
-   "y": 158,
-   "w": 86,
-   "h": 79
+   "y": 288,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_conjuro",
-   "vista": "conjuro",
-   "x": 86,
-   "y": 158,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_caida_2",
+   "vista": "caida_2",
+   "x": 80,
+   "y": 288,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_lanzar_1",
-   "vista": "lanzar_1",
-   "x": 172,
-   "y": 158,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_aterrizar_1",
+   "vista": "aterrizar_1",
+   "x": 160,
+   "y": 288,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_lanzar_2",
-   "vista": "lanzar_2",
-   "x": 258,
-   "y": 158,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_aterrizar_2",
+   "vista": "aterrizar_2",
+   "x": 240,
+   "y": 288,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_salto",
-   "vista": "salto",
-   "x": 344,
-   "y": 158,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_esquivar_1",
+   "vista": "esquivar_1",
+   "x": 320,
+   "y": 288,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_caida",
-   "vista": "caida",
-   "x": 430,
-   "y": 158,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_esquivar_2",
+   "vista": "esquivar_2",
+   "x": 400,
+   "y": 288,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_agacharse",
-   "vista": "agacharse",
+   "name": "espiritu_hombre_esquivar_3",
+   "vista": "esquivar_3",
+   "x": 480,
+   "y": 288,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_conjuro_1",
+   "vista": "conjuro_1",
+   "x": 560,
+   "y": 288,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_conjuro_2",
+   "vista": "conjuro_2",
    "x": 0,
-   "y": 237,
-   "w": 86,
-   "h": 79
+   "y": 384,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_esquivar",
-   "vista": "esquivar",
-   "x": 86,
-   "y": 237,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_conjuro_3",
+   "vista": "conjuro_3",
+   "x": 80,
+   "y": 384,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_golpe_bajo",
-   "vista": "golpe_bajo",
-   "x": 172,
-   "y": 237,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_conjuro_4",
+   "vista": "conjuro_4",
+   "x": 160,
+   "y": 384,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_dano",
-   "vista": "dano",
-   "x": 258,
-   "y": 237,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_invocar_1",
+   "vista": "invocar_1",
+   "x": 240,
+   "y": 384,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_derrota",
-   "vista": "derrota",
-   "x": 344,
-   "y": 237,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_invocar_2",
+   "vista": "invocar_2",
+   "x": 320,
+   "y": 384,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_hombre_caido",
-   "vista": "caido",
-   "x": 430,
-   "y": 237,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_hombre_invocar_3",
+   "vista": "invocar_3",
+   "x": 400,
+   "y": 384,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_invocar_4",
+   "vista": "invocar_4",
+   "x": 480,
+   "y": 384,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_purificar_1",
+   "vista": "purificar_1",
+   "x": 560,
+   "y": 384,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_purificar_2",
+   "vista": "purificar_2",
+   "x": 0,
+   "y": 480,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_purificar_3",
+   "vista": "purificar_3",
+   "x": 80,
+   "y": 480,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_purificar_4",
+   "vista": "purificar_4",
+   "x": 160,
+   "y": 480,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_ataque_1",
+   "vista": "ataque_1",
+   "x": 240,
+   "y": 480,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_ataque_2",
+   "vista": "ataque_2",
+   "x": 320,
+   "y": 480,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_ataque_3",
+   "vista": "ataque_3",
+   "x": 400,
+   "y": 480,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_ataque_4",
+   "vista": "ataque_4",
+   "x": 480,
+   "y": 480,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_ataque_5",
+   "vista": "ataque_5",
+   "x": 560,
+   "y": 480,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_interactuar_1",
+   "vista": "interactuar_1",
+   "x": 0,
+   "y": 576,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_interactuar_2",
+   "vista": "interactuar_2",
+   "x": 80,
+   "y": 576,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_dano_1",
+   "vista": "dano_1",
+   "x": 160,
+   "y": 576,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_dano_2",
+   "vista": "dano_2",
+   "x": 240,
+   "y": 576,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_aturdido_1",
+   "vista": "aturdido_1",
+   "x": 320,
+   "y": 576,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_aturdido_2",
+   "vista": "aturdido_2",
+   "x": 400,
+   "y": 576,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_aturdido_3",
+   "vista": "aturdido_3",
+   "x": 480,
+   "y": 576,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_aturdido_4",
+   "vista": "aturdido_4",
+   "x": 560,
+   "y": 576,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_agotado_1",
+   "vista": "agotado_1",
+   "x": 0,
+   "y": 672,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_agotado_2",
+   "vista": "agotado_2",
+   "x": 80,
+   "y": 672,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_agotado_3",
+   "vista": "agotado_3",
+   "x": 160,
+   "y": 672,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_agotado_4",
+   "vista": "agotado_4",
+   "x": 240,
+   "y": 672,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_morir_2",
+   "vista": "morir_2",
+   "x": 320,
+   "y": 672,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_morir_3",
+   "vista": "morir_3",
+   "x": 400,
+   "y": 672,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_morir_4",
+   "vista": "morir_4",
+   "x": 480,
+   "y": 672,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_morir_5",
+   "vista": "morir_5",
+   "x": 560,
+   "y": 672,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_hombre_morir_6",
+   "vista": "morir_6",
+   "x": 0,
+   "y": 768,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_mujer_reposo_1",
-   "vista": "reposo_1",
-   "x": 0,
-   "y": 316,
-   "w": 86,
-   "h": 79
+   "vista": "lado_der",
+   "x": 80,
+   "y": 768,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_mujer_reposo_2",
    "vista": "reposo_2",
-   "x": 86,
-   "y": 316,
-   "w": 86,
-   "h": 79
+   "x": 160,
+   "y": 768,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_reposo_3",
+   "vista": "reposo_3",
+   "x": 240,
+   "y": 768,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_reposo_4",
+   "vista": "reposo_4",
+   "x": 320,
+   "y": 768,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_reposo_5",
+   "vista": "reposo_5",
+   "x": 400,
+   "y": 768,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_reposo_6",
+   "vista": "reposo_6",
+   "x": 480,
+   "y": 768,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_mujer_caminar_1",
    "vista": "caminar_1",
-   "x": 172,
-   "y": 316,
-   "w": 86,
-   "h": 79
+   "x": 560,
+   "y": 768,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_mujer_caminar_2",
    "vista": "caminar_2",
-   "x": 258,
-   "y": 316,
-   "w": 86,
-   "h": 79
+   "x": 0,
+   "y": 864,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_mujer_caminar_3",
    "vista": "caminar_3",
-   "x": 344,
-   "y": 316,
-   "w": 86,
-   "h": 79
+   "x": 80,
+   "y": 864,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_mujer_caminar_4",
    "vista": "caminar_4",
-   "x": 430,
-   "y": 316,
-   "w": 86,
-   "h": 79
+   "x": 160,
+   "y": 864,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_caminar_5",
+   "vista": "caminar_5",
+   "x": 240,
+   "y": 864,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_caminar_6",
+   "vista": "caminar_6",
+   "x": 320,
+   "y": 864,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_caminar_7",
+   "vista": "caminar_7",
+   "x": 400,
+   "y": 864,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_caminar_8",
+   "vista": "caminar_8",
+   "x": 480,
+   "y": 864,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_mujer_correr_1",
    "vista": "correr_1",
-   "x": 0,
-   "y": 395,
-   "w": 86,
-   "h": 79
+   "x": 560,
+   "y": 864,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_mujer_correr_2",
    "vista": "correr_2",
-   "x": 86,
-   "y": 395,
-   "w": 86,
-   "h": 79
+   "x": 0,
+   "y": 960,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_mujer_correr_3",
    "vista": "correr_3",
-   "x": 172,
-   "y": 395,
-   "w": 86,
-   "h": 79
+   "x": 80,
+   "y": 960,
+   "w": 80,
+   "h": 96
   },
   {
    "name": "espiritu_mujer_correr_4",
    "vista": "correr_4",
-   "x": 258,
-   "y": 395,
-   "w": 86,
-   "h": 79
+   "x": 160,
+   "y": 960,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_preparar",
-   "vista": "preparar",
-   "x": 344,
-   "y": 395,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_correr_5",
+   "vista": "correr_5",
+   "x": 240,
+   "y": 960,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_atacar",
-   "vista": "atacar",
-   "x": 430,
-   "y": 395,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_correr_6",
+   "vista": "correr_6",
+   "x": 320,
+   "y": 960,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_guardia",
-   "vista": "guardia",
+   "name": "espiritu_mujer_correr_7",
+   "vista": "correr_7",
+   "x": 400,
+   "y": 960,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_correr_8",
+   "vista": "correr_8",
+   "x": 480,
+   "y": 960,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_subida_1",
+   "vista": "subida_1",
+   "x": 560,
+   "y": 960,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_subida_2",
+   "vista": "subida_2",
    "x": 0,
-   "y": 474,
-   "w": 86,
-   "h": 79
+   "y": 1056,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_conjuro",
-   "vista": "conjuro",
-   "x": 86,
-   "y": 474,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_caida_1",
+   "vista": "caida_1",
+   "x": 80,
+   "y": 1056,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_lanzar_1",
-   "vista": "lanzar_1",
-   "x": 172,
-   "y": 474,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_caida_2",
+   "vista": "caida_2",
+   "x": 160,
+   "y": 1056,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_lanzar_2",
-   "vista": "lanzar_2",
-   "x": 258,
-   "y": 474,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_aterrizar_1",
+   "vista": "aterrizar_1",
+   "x": 240,
+   "y": 1056,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_salto",
-   "vista": "salto",
-   "x": 344,
-   "y": 474,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_aterrizar_2",
+   "vista": "aterrizar_2",
+   "x": 320,
+   "y": 1056,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_caida",
-   "vista": "caida",
-   "x": 430,
-   "y": 474,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_esquivar_1",
+   "vista": "esquivar_1",
+   "x": 400,
+   "y": 1056,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_agacharse",
-   "vista": "agacharse",
+   "name": "espiritu_mujer_esquivar_2",
+   "vista": "esquivar_2",
+   "x": 480,
+   "y": 1056,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_esquivar_3",
+   "vista": "esquivar_3",
+   "x": 560,
+   "y": 1056,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_conjuro_1",
+   "vista": "conjuro_1",
    "x": 0,
-   "y": 553,
-   "w": 86,
-   "h": 79
+   "y": 1152,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_esquivar",
-   "vista": "esquivar",
-   "x": 86,
-   "y": 553,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_conjuro_2",
+   "vista": "conjuro_2",
+   "x": 80,
+   "y": 1152,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_golpe_bajo",
-   "vista": "golpe_bajo",
-   "x": 172,
-   "y": 553,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_conjuro_3",
+   "vista": "conjuro_3",
+   "x": 160,
+   "y": 1152,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_dano",
-   "vista": "dano",
-   "x": 258,
-   "y": 553,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_conjuro_4",
+   "vista": "conjuro_4",
+   "x": 240,
+   "y": 1152,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_derrota",
-   "vista": "derrota",
-   "x": 344,
-   "y": 553,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_invocar_1",
+   "vista": "invocar_1",
+   "x": 320,
+   "y": 1152,
+   "w": 80,
+   "h": 96
   },
   {
-   "name": "espiritu_mujer_caido",
-   "vista": "caido",
-   "x": 430,
-   "y": 553,
-   "w": 86,
-   "h": 79
+   "name": "espiritu_mujer_invocar_2",
+   "vista": "invocar_2",
+   "x": 400,
+   "y": 1152,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_invocar_3",
+   "vista": "invocar_3",
+   "x": 480,
+   "y": 1152,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_invocar_4",
+   "vista": "invocar_4",
+   "x": 560,
+   "y": 1152,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_purificar_1",
+   "vista": "purificar_1",
+   "x": 0,
+   "y": 1248,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_purificar_2",
+   "vista": "purificar_2",
+   "x": 80,
+   "y": 1248,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_purificar_3",
+   "vista": "purificar_3",
+   "x": 160,
+   "y": 1248,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_purificar_4",
+   "vista": "purificar_4",
+   "x": 240,
+   "y": 1248,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_ataque_1",
+   "vista": "ataque_1",
+   "x": 320,
+   "y": 1248,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_ataque_2",
+   "vista": "ataque_2",
+   "x": 400,
+   "y": 1248,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_ataque_3",
+   "vista": "ataque_3",
+   "x": 480,
+   "y": 1248,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_ataque_4",
+   "vista": "ataque_4",
+   "x": 560,
+   "y": 1248,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_ataque_5",
+   "vista": "ataque_5",
+   "x": 0,
+   "y": 1344,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_interactuar_1",
+   "vista": "interactuar_1",
+   "x": 80,
+   "y": 1344,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_interactuar_2",
+   "vista": "interactuar_2",
+   "x": 160,
+   "y": 1344,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_dano_1",
+   "vista": "dano_1",
+   "x": 240,
+   "y": 1344,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_dano_2",
+   "vista": "dano_2",
+   "x": 320,
+   "y": 1344,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_aturdido_1",
+   "vista": "aturdido_1",
+   "x": 400,
+   "y": 1344,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_aturdido_2",
+   "vista": "aturdido_2",
+   "x": 480,
+   "y": 1344,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_aturdido_3",
+   "vista": "aturdido_3",
+   "x": 560,
+   "y": 1344,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_aturdido_4",
+   "vista": "aturdido_4",
+   "x": 0,
+   "y": 1440,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_agotado_1",
+   "vista": "agotado_1",
+   "x": 80,
+   "y": 1440,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_agotado_2",
+   "vista": "agotado_2",
+   "x": 160,
+   "y": 1440,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_agotado_3",
+   "vista": "agotado_3",
+   "x": 240,
+   "y": 1440,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_agotado_4",
+   "vista": "agotado_4",
+   "x": 320,
+   "y": 1440,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_morir_2",
+   "vista": "morir_2",
+   "x": 400,
+   "y": 1440,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_morir_3",
+   "vista": "morir_3",
+   "x": 480,
+   "y": 1440,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_morir_4",
+   "vista": "morir_4",
+   "x": 560,
+   "y": 1440,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_morir_5",
+   "vista": "morir_5",
+   "x": 0,
+   "y": 1536,
+   "w": 80,
+   "h": 96
+  },
+  {
+   "name": "espiritu_mujer_morir_6",
+   "vista": "morir_6",
+   "x": 80,
+   "y": 1536,
+   "w": 80,
+   "h": 96
   }
  ],
  "escala": 1,
@@ -398,168 +1054,205 @@
   "reposo": {
    "frames": [
     0,
-    1
-   ],
-   "fps": 2.5,
-   "loop": true
-  },
-  "caminar": {
-   "frames": [
+    1,
     2,
     3,
     4,
     5
+   ],
+   "fps": 5,
+   "loop": true
+  },
+  "caminar": {
+   "frames": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
    ],
    "fps": 8,
    "loop": true
   },
   "correr": {
    "frames": [
-    6,
-    7,
-    8,
-    9
-   ],
-   "fps": 11,
-   "loop": true
-  },
-  "golpe": {
-   "frames": [
-    10
-   ],
-   "fps": 1,
-   "loop": false
-  },
-  "ataque": {
-   "frames": [
-    10,
-    11
-   ],
-   "fps": 9,
-   "loop": false
-  },
-  "disparar": {
-   "frames": [
-    11
-   ],
-   "fps": 1,
-   "loop": false
-  },
-  "conjuro": {
-   "frames": [
-    13,
-    14
-   ],
-   "fps": 4,
-   "loop": true
-  },
-  "invocar": {
-   "frames": [
-    12,
-    13
-   ],
-   "fps": 3,
-   "loop": true
-  },
-  "lanzar": {
-   "frames": [
     14,
-    15
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
    ],
-   "fps": 9,
+   "fps": 12,
+   "loop": true
+  },
+  "subida": {
+   "frames": [
+    22,
+    23
+   ],
+   "fps": 8,
    "loop": false
   },
   "salto": {
    "frames": [
-    16
+    22,
+    23
    ],
-   "fps": 1,
-   "loop": false
-  },
-  "subida": {
-   "frames": [
-    16
-   ],
-   "fps": 1,
+   "fps": 8,
    "loop": false
   },
   "caida": {
    "frames": [
-    17
+    24,
+    25
    ],
-   "fps": 1,
+   "fps": 6,
    "loop": false
   },
   "aterrizar": {
    "frames": [
-    18
+    26,
+    27
    ],
-   "fps": 1,
+   "fps": 12,
    "loop": false
   },
   "esquivar": {
    "frames": [
-    19
+    28,
+    29,
+    30
    ],
-   "fps": 1,
+   "fps": 12,
+   "loop": false
+  },
+  "conjuro": {
+   "frames": [
+    31,
+    32,
+    33,
+    34
+   ],
+   "fps": 6,
+   "loop": true
+  },
+  "invocar": {
+   "frames": [
+    35,
+    36,
+    37,
+    38
+   ],
+   "fps": 6,
+   "loop": true
+  },
+  "purificar": {
+   "frames": [
+    39,
+    40,
+    41,
+    42
+   ],
+   "fps": 5,
+   "loop": false
+  },
+  "ataque": {
+   "frames": [
+    43,
+    44,
+    45,
+    46,
+    47
+   ],
+   "fps": 10,
+   "loop": false
+  },
+  "golpe": {
+   "frames": [
+    43,
+    44,
+    45,
+    46,
+    47
+   ],
+   "fps": 10,
+   "loop": false
+  },
+  "lanzar": {
+   "frames": [
+    43,
+    45,
+    47
+   ],
+   "fps": 9,
    "loop": false
   },
   "interactuar": {
    "frames": [
-    18
+    48,
+    49
    ],
-   "fps": 1,
+   "fps": 5,
    "loop": false
   },
   "dano": {
    "frames": [
-    21
+    50,
+    51
    ],
-   "fps": 1,
+   "fps": 8,
    "loop": false
   },
   "aturdido": {
    "frames": [
-    22
+    52,
+    53,
+    54,
+    55
    ],
-   "fps": 1,
-   "loop": false
+   "fps": 4,
+   "loop": true
   },
   "agotado": {
    "frames": [
-    22
+    56,
+    57,
+    58,
+    59
    ],
-   "fps": 1,
-   "loop": false
-  },
-  "purificar": {
-   "frames": [
-    22
-   ],
-   "fps": 1,
-   "loop": false
+   "fps": 3,
+   "loop": true
   },
   "morir": {
    "frames": [
-    21,
-    23
+    50,
+    60,
+    61,
+    62,
+    63,
+    64
    ],
-   "fps": 5,
+   "fps": 7,
+   "loop": false
+  },
+  "disparar": {
+   "frames": [
+    44,
+    45,
+    47
+   ],
+   "fps": 10,
    "loop": false
   }
  },
- "cuadrosPorVariante": 24,
- "generadoPor": "tools/codex-sheets.py",
- "fuente": {
-  "espiritu-hombre": {
-   "escala_fuente": 0.2897,
-   "alto_de_pie_fuente": 248.5
-  },
-  "espiritu-mujer": {
-   "escala_fuente": 0.2988,
-   "alto_de_pie_fuente": 241.0
-  }
- },
+ "cuadrosPorVariante": 65,
+ "generadoPor": "tools/pixel/generar.py",
  "alto": 72,
  "variants": [
   "hombre",

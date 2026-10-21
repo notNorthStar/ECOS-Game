@@ -1,11 +1,11 @@
 {
  "personaje": "nahuala",
  "tipo": "humanoide",
- "frameWidth": 110,
- "frameHeight": 104,
+ "frameWidth": 120,
+ "frameHeight": 124,
  "pivot": {
-  "x": 55,
-  "y": 102
+  "x": 60,
+  "y": 120
  },
  "frames": [
   {
@@ -13,192 +13,528 @@
    "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 110,
-   "h": 104
+   "w": 120,
+   "h": 124
   },
   {
    "name": "nahuala_reposo_2",
    "vista": "reposo_2",
-   "x": 110,
+   "x": 120,
    "y": 0,
-   "w": 110,
-   "h": 104
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_reposo_3",
+   "vista": "reposo_3",
+   "x": 240,
+   "y": 0,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_reposo_4",
+   "vista": "reposo_4",
+   "x": 360,
+   "y": 0,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_reposo_5",
+   "vista": "reposo_5",
+   "x": 480,
+   "y": 0,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_reposo_6",
+   "vista": "reposo_6",
+   "x": 600,
+   "y": 0,
+   "w": 120,
+   "h": 124
   },
   {
    "name": "nahuala_caminar_1",
    "vista": "caminar_1",
-   "x": 220,
+   "x": 720,
    "y": 0,
-   "w": 110,
-   "h": 104
+   "w": 120,
+   "h": 124
   },
   {
    "name": "nahuala_caminar_2",
    "vista": "caminar_2",
-   "x": 330,
+   "x": 840,
    "y": 0,
-   "w": 110,
-   "h": 104
+   "w": 120,
+   "h": 124
   },
   {
    "name": "nahuala_caminar_3",
    "vista": "caminar_3",
-   "x": 440,
-   "y": 0,
-   "w": 110,
-   "h": 104
+   "x": 0,
+   "y": 124,
+   "w": 120,
+   "h": 124
   },
   {
    "name": "nahuala_caminar_4",
    "vista": "caminar_4",
-   "x": 550,
-   "y": 0,
-   "w": 110,
-   "h": 104
+   "x": 120,
+   "y": 124,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_caminar_5",
+   "vista": "caminar_5",
+   "x": 240,
+   "y": 124,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_caminar_6",
+   "vista": "caminar_6",
+   "x": 360,
+   "y": 124,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_caminar_7",
+   "vista": "caminar_7",
+   "x": 480,
+   "y": 124,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_caminar_8",
+   "vista": "caminar_8",
+   "x": 600,
+   "y": 124,
+   "w": 120,
+   "h": 124
   },
   {
    "name": "nahuala_correr_1",
    "vista": "correr_1",
-   "x": 0,
-   "y": 104,
-   "w": 110,
-   "h": 104
+   "x": 720,
+   "y": 124,
+   "w": 120,
+   "h": 124
   },
   {
    "name": "nahuala_correr_2",
    "vista": "correr_2",
-   "x": 110,
-   "y": 104,
-   "w": 110,
-   "h": 104
+   "x": 840,
+   "y": 124,
+   "w": 120,
+   "h": 124
   },
   {
    "name": "nahuala_correr_3",
    "vista": "correr_3",
-   "x": 220,
-   "y": 104,
-   "w": 110,
-   "h": 104
+   "x": 0,
+   "y": 248,
+   "w": 120,
+   "h": 124
   },
   {
    "name": "nahuala_correr_4",
    "vista": "correr_4",
-   "x": 330,
-   "y": 104,
-   "w": 110,
-   "h": 104
+   "x": 120,
+   "y": 248,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_preparar",
-   "vista": "preparar",
-   "x": 440,
-   "y": 104,
-   "w": 110,
-   "h": 104
+   "name": "nahuala_correr_5",
+   "vista": "correr_5",
+   "x": 240,
+   "y": 248,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_atacar",
-   "vista": "atacar",
-   "x": 550,
-   "y": 104,
-   "w": 110,
-   "h": 104
+   "name": "nahuala_correr_6",
+   "vista": "correr_6",
+   "x": 360,
+   "y": 248,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_guardia",
-   "vista": "guardia",
+   "name": "nahuala_correr_7",
+   "vista": "correr_7",
+   "x": 480,
+   "y": 248,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_correr_8",
+   "vista": "correr_8",
+   "x": 600,
+   "y": 248,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_subida_1",
+   "vista": "subida_1",
+   "x": 720,
+   "y": 248,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_subida_2",
+   "vista": "subida_2",
+   "x": 840,
+   "y": 248,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_caida_1",
+   "vista": "caida_1",
    "x": 0,
-   "y": 208,
-   "w": 110,
-   "h": 104
+   "y": 372,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_conjuro",
-   "vista": "conjuro",
-   "x": 110,
-   "y": 208,
-   "w": 110,
-   "h": 104
+   "name": "nahuala_caida_2",
+   "vista": "caida_2",
+   "x": 120,
+   "y": 372,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_aterrizar_1",
+   "vista": "aterrizar_1",
+   "x": 240,
+   "y": 372,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_aterrizar_2",
+   "vista": "aterrizar_2",
+   "x": 360,
+   "y": 372,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_esquivar_1",
+   "vista": "esquivar_1",
+   "x": 480,
+   "y": 372,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_esquivar_2",
+   "vista": "esquivar_2",
+   "x": 600,
+   "y": 372,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_esquivar_3",
+   "vista": "esquivar_3",
+   "x": 720,
+   "y": 372,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_conjuro_1",
+   "vista": "conjuro_1",
+   "x": 840,
+   "y": 372,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_conjuro_2",
+   "vista": "conjuro_2",
+   "x": 0,
+   "y": 496,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_conjuro_3",
+   "vista": "conjuro_3",
+   "x": 120,
+   "y": 496,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_conjuro_4",
+   "vista": "conjuro_4",
+   "x": 240,
+   "y": 496,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_invocar_1",
+   "vista": "invocar_1",
+   "x": 360,
+   "y": 496,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_invocar_2",
+   "vista": "invocar_2",
+   "x": 480,
+   "y": 496,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_invocar_3",
+   "vista": "invocar_3",
+   "x": 600,
+   "y": 496,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_invocar_4",
+   "vista": "invocar_4",
+   "x": 720,
+   "y": 496,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_purificar_1",
+   "vista": "purificar_1",
+   "x": 840,
+   "y": 496,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_purificar_2",
+   "vista": "purificar_2",
+   "x": 0,
+   "y": 620,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_purificar_3",
+   "vista": "purificar_3",
+   "x": 120,
+   "y": 620,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_purificar_4",
+   "vista": "purificar_4",
+   "x": 240,
+   "y": 620,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_ataque_1",
+   "vista": "ataque_1",
+   "x": 360,
+   "y": 620,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_ataque_2",
+   "vista": "ataque_2",
+   "x": 480,
+   "y": 620,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_ataque_3",
+   "vista": "ataque_3",
+   "x": 600,
+   "y": 620,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_ataque_4",
+   "vista": "ataque_4",
+   "x": 720,
+   "y": 620,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_golpe_1",
+   "vista": "golpe_1",
+   "x": 840,
+   "y": 620,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_golpe_2",
+   "vista": "golpe_2",
+   "x": 0,
+   "y": 744,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_golpe_3",
+   "vista": "golpe_3",
+   "x": 120,
+   "y": 744,
+   "w": 120,
+   "h": 124
   },
   {
    "name": "nahuala_lanzar_1",
    "vista": "lanzar_1",
-   "x": 220,
-   "y": 208,
-   "w": 110,
-   "h": 104
+   "x": 240,
+   "y": 744,
+   "w": 120,
+   "h": 124
   },
   {
    "name": "nahuala_lanzar_2",
    "vista": "lanzar_2",
-   "x": 330,
-   "y": 208,
-   "w": 110,
-   "h": 104
+   "x": 360,
+   "y": 744,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_salto",
-   "vista": "salto",
-   "x": 440,
-   "y": 208,
-   "w": 110,
-   "h": 104
+   "name": "nahuala_lanzar_3",
+   "vista": "lanzar_3",
+   "x": 480,
+   "y": 744,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_caida",
-   "vista": "caida",
-   "x": 550,
-   "y": 208,
-   "w": 110,
-   "h": 104
+   "name": "nahuala_interactuar_1",
+   "vista": "interactuar_1",
+   "x": 600,
+   "y": 744,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_agacharse",
-   "vista": "agacharse",
+   "name": "nahuala_interactuar_2",
+   "vista": "interactuar_2",
+   "x": 720,
+   "y": 744,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_dano_1",
+   "vista": "dano_1",
+   "x": 840,
+   "y": 744,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_dano_2",
+   "vista": "dano_2",
    "x": 0,
-   "y": 312,
-   "w": 110,
-   "h": 104
+   "y": 868,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_esquivar",
-   "vista": "esquivar",
-   "x": 110,
-   "y": 312,
-   "w": 110,
-   "h": 104
+   "name": "nahuala_aturdido_1",
+   "vista": "aturdido_1",
+   "x": 120,
+   "y": 868,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_golpe_bajo",
-   "vista": "golpe_bajo",
-   "x": 220,
-   "y": 312,
-   "w": 110,
-   "h": 104
+   "name": "nahuala_aturdido_2",
+   "vista": "aturdido_2",
+   "x": 240,
+   "y": 868,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_dano",
-   "vista": "dano",
-   "x": 330,
-   "y": 312,
-   "w": 110,
-   "h": 104
+   "name": "nahuala_aturdido_3",
+   "vista": "aturdido_3",
+   "x": 360,
+   "y": 868,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_derrota",
-   "vista": "derrota",
-   "x": 440,
-   "y": 312,
-   "w": 110,
-   "h": 104
+   "name": "nahuala_aturdido_4",
+   "vista": "aturdido_4",
+   "x": 480,
+   "y": 868,
+   "w": 120,
+   "h": 124
   },
   {
-   "name": "nahuala_caido",
-   "vista": "caido",
-   "x": 550,
-   "y": 312,
-   "w": 110,
-   "h": 104
+   "name": "nahuala_agotado_1",
+   "vista": "agotado_1",
+   "x": 600,
+   "y": 868,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_agotado_2",
+   "vista": "agotado_2",
+   "x": 720,
+   "y": 868,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_agotado_3",
+   "vista": "agotado_3",
+   "x": 840,
+   "y": 868,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_agotado_4",
+   "vista": "agotado_4",
+   "x": 0,
+   "y": 992,
+   "w": 120,
+   "h": 124
+  },
+  {
+   "name": "nahuala_morir_2",
+   "vista": "morir_2",
+   "x": 120,
+   "y": 992,
+   "w": 120,
+   "h": 124
   }
  ],
  "escala": 1,
@@ -206,163 +542,201 @@
   "reposo": {
    "frames": [
     0,
-    1
-   ],
-   "fps": 2.5,
-   "loop": true
-  },
-  "caminar": {
-   "frames": [
+    1,
     2,
     3,
     4,
     5
    ],
-   "fps": 8,
+   "fps": 5,
    "loop": true
   },
-  "correr": {
+  "caminar": {
    "frames": [
     6,
     7,
     8,
-    9
-   ],
-   "fps": 11,
-   "loop": true
-  },
-  "golpe": {
-   "frames": [
-    10
-   ],
-   "fps": 1,
-   "loop": false
-  },
-  "ataque": {
-   "frames": [
+    9,
     10,
-    11
-   ],
-   "fps": 9,
-   "loop": false
-  },
-  "disparar": {
-   "frames": [
-    11
-   ],
-   "fps": 1,
-   "loop": false
-  },
-  "conjuro": {
-   "frames": [
-    13,
-    14
-   ],
-   "fps": 4,
-   "loop": true
-  },
-  "invocar": {
-   "frames": [
+    11,
     12,
     13
    ],
-   "fps": 3,
+   "fps": 9,
    "loop": true
   },
-  "lanzar": {
+  "correr": {
    "frames": [
     14,
-    15
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
    ],
-   "fps": 9,
+   "fps": 13,
+   "loop": true
+  },
+  "subida": {
+   "frames": [
+    22,
+    23
+   ],
+   "fps": 8,
    "loop": false
   },
   "salto": {
    "frames": [
-    16
+    22,
+    23
    ],
-   "fps": 1,
-   "loop": false
-  },
-  "subida": {
-   "frames": [
-    16
-   ],
-   "fps": 1,
+   "fps": 8,
    "loop": false
   },
   "caida": {
    "frames": [
-    17
+    24,
+    25
    ],
-   "fps": 1,
+   "fps": 6,
    "loop": false
   },
   "aterrizar": {
    "frames": [
-    18
+    26,
+    27
    ],
-   "fps": 1,
+   "fps": 14,
    "loop": false
   },
   "esquivar": {
    "frames": [
-    19
+    28,
+    29,
+    30
    ],
-   "fps": 1,
+   "fps": 12,
+   "loop": false
+  },
+  "conjuro": {
+   "frames": [
+    31,
+    32,
+    33,
+    34
+   ],
+   "fps": 7,
+   "loop": true
+  },
+  "invocar": {
+   "frames": [
+    35,
+    36,
+    37,
+    38
+   ],
+   "fps": 6,
+   "loop": true
+  },
+  "purificar": {
+   "frames": [
+    39,
+    40,
+    41,
+    42
+   ],
+   "fps": 5,
+   "loop": false
+  },
+  "ataque": {
+   "frames": [
+    43,
+    44,
+    45,
+    46
+   ],
+   "fps": 11,
+   "loop": false
+  },
+  "golpe": {
+   "frames": [
+    47,
+    48,
+    49
+   ],
+   "fps": 7,
+   "loop": false
+  },
+  "lanzar": {
+   "frames": [
+    50,
+    51,
+    52
+   ],
+   "fps": 9,
    "loop": false
   },
   "interactuar": {
    "frames": [
-    18
+    53,
+    54
    ],
-   "fps": 1,
+   "fps": 5,
    "loop": false
   },
   "dano": {
    "frames": [
-    21
+    55,
+    56
    ],
-   "fps": 1,
+   "fps": 8,
    "loop": false
   },
   "aturdido": {
    "frames": [
-    22
+    57,
+    58,
+    59,
+    60
    ],
-   "fps": 1,
-   "loop": false
+   "fps": 5,
+   "loop": true
   },
   "agotado": {
    "frames": [
-    22
+    61,
+    62,
+    63,
+    64
    ],
-   "fps": 1,
-   "loop": false
-  },
-  "purificar": {
-   "frames": [
-    22
-   ],
-   "fps": 1,
-   "loop": false
+   "fps": 4,
+   "loop": true
   },
   "morir": {
    "frames": [
-    21,
-    23
+    55,
+    65,
+    39,
+    40,
+    41,
+    42
    ],
    "fps": 5,
    "loop": false
+  },
+  "disparar": {
+   "frames": [
+    50,
+    51,
+    52
+   ],
+   "fps": 9,
+   "loop": false
   }
  },
- "cuadrosPorVariante": 24,
- "generadoPor": "tools/codex-sheets.py",
- "fuente": {
-  "nahuala": {
-   "escala_fuente": 0.4098,
-   "alto_de_pie_fuente": 244.0
-  }
- },
+ "cuadrosPorVariante": 66,
+ "generadoPor": "tools/pixel/generar.py",
  "alto": 100
 }
