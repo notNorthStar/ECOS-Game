@@ -14,10 +14,10 @@ Qué agrega sobre la biblioteca (sin tocarla):
       - **ancla fija** (`ancla_fija = True`): para lo que flota, el cuadro NO se alinea al píxel más bajo (los
         pies colgando harían saltar el cuerpo) sino a la altura que tiene la pose base;
       - `post(lz, c, pose)`: último retoque sobre el lienzo ya contorneado.
-  * `instalar_variantes(...)`: `generar.py` no sabe de variantes; este parche envuelve su `empaquetar` (solo para
-    los ids que lo piden) para que dibuje TODAS las variantes y arme la hoja con `variants` +
-    `cuadrosPorVariante` como la lee `src/systems/CharacterKits.ts`. También guarda una hoja de revisión por
-    variante (`revision/<id>_<variante>.png`) y registra el fondo de comparación del personaje.
+  * `kit_variantes(personaje, variantes)`: lo que `generar.py` necesita para empaquetar TODAS las variantes en
+    una hoja (`VARIANTES_KIT`, `cuadro_variante`, `revision_variantes`; ver su docstring). La revisión extra es
+    una hoja por variante (`revision/<id>_<variante>.png`, salvo la primera) y la comparativa
+    `revision/<id>_variantes.png`. El fondo de comparación lo declara cada personaje con `FONDO = (...)`.
 """
 from __future__ import annotations
 
@@ -178,101 +178,23 @@ def motas(lz: Lienzo, centro, mat: int, k: int, pts=((-14, -10), (12, -18), (16,
 
 
 # =============================================================================================
-#  Variantes en el kit: parche de generar.py
+#  Variantes en el kit (las empaqueta generar.py)
 # =============================================================================================
 
-_VARIANTES: Dict[str, tuple] = {}
+def kit_variantes(P: RigEspectro, variantes: Sequence[str]):
+    """(VARIANTES_KIT, cuadro_variante, revision_variantes) para `generar.py`: la variante va en
+    `pose.extra['variante']`; sin ella, `P.cuadro` dibuja la primera."""
+    vs = list(variantes)
 
+    def cuadro_variante(v: str, pose: Pose):
+        return P.cuadro(pose.con(extra={'variante': v}))
 
-def _modulos_generar():
-    out = []
-    for nombre in ('__main__', 'generar'):
-        m = sys.modules.get(nombre)
-        if m is not None and hasattr(m, 'empaquetar') and hasattr(m, 'FONDOS') and m not in out:
-            out.append(m)
-    return out
-
-
-def registrar_fondo(pid: str, nivel: str, seccion: str, gy: int):
-    for g in _modulos_generar():
-        g.FONDOS.setdefault(pid, (nivel, seccion, gy))
-
-
-def instalar_variantes(pid: str, personaje: RigEspectro, variantes: Sequence[str]):
-    """Hace que `generar.py <pid>` escriba un kit con todas las variantes."""
-    _VARIANTES[pid] = (personaje, list(variantes))
-    for g in _modulos_generar():
-        if getattr(g.empaquetar, '_espectros', False):
-            continue
-        previo_emp = g.empaquetar
-        mod_gen = g
-
-        def empaquetar(pid_, cuadros, anims, fw, fh, pivote, tipo, alto, *a, _prev=previo_emp, _g=mod_gen, **kw):
-            if pid_ not in _VARIANTES:
-                return _prev(pid_, cuadros, anims, fw, fh, pivote, tipo, alto, *a, **kw)
-            P, vs = _VARIANTES[pid_]
-            return empaquetar_variantes(pid_, P, vs, cuadros, anims, fw, fh, pivote, tipo, alto,
-                                        rev=getattr(_g, 'REV', None))
-
-        empaquetar._espectros = True
-        g.empaquetar = empaquetar
-
-
-def empaquetar_variantes(pid: str, P: RigEspectro, vs: List[str], cuadros0, anims: Dict[str, Anim], fw, fh,
-                         pivote, tipo, alto, rev: Optional[str] = None, columnas: int = 8):
-    """Hoja con todas las variantes: la variante k ocupa los cuadros k·n … k·n+n−1, y `animaciones` usa índices
-    DENTRO de la variante (iguales para todas). Dos cuadros se comparten solo si son idénticos en TODAS."""
-    por_var: Dict[str, Dict[str, List[np.ndarray]]] = {vs[0]: cuadros0}
-    for v in vs[1:]:
-        por_var[v] = {m: [P.cuadro(p.con(extra={'variante': v})) for p in anims[m].poses] for m in cuadros0}
-    claves: Dict[bytes, int] = {}
-    orden: List[tuple] = []          # (motion, n) del primer uso de cada cuadro único
-    animaciones = {}
-    for motion, lista in cuadros0.items():
-        idxs = []
-        for n in range(len(lista)):
-            k = b''.join(por_var[v][motion][n].tobytes() for v in vs)
-            if k not in claves:
-                claves[k] = len(orden)
-                orden.append((motion, n))
-            idxs.append(claves[k])
-        a = anims[motion]
-        animaciones[motion] = {'frames': idxs, 'fps': a.fps, 'loop': a.loop}
-    n = len(orden)
-    total = n * len(vs)
-    cols = min(columnas, total)
-    rows = (total + cols - 1) // cols
-    sheet = np.zeros((rows * fh, cols * fw, 4), np.uint8)
-    frames = []
-    for vi, v in enumerate(vs):
-        for i, (motion, k) in enumerate(orden):
-            j = vi * n + i
-            x, y = (j % cols) * fw, (j // cols) * fh
-            sheet[y:y + fh, x:x + fw] = por_var[v][motion][k]
-            vista = 'lado_der' if (motion == 'reposo' and k == 0) else f'{motion}_{k + 1}'
-            frames.append({'name': f'{pid}_{v}_{motion}_{k + 1}', 'vista': vista, 'x': x, 'y': y, 'w': fw, 'h': fh})
-    for v in vs:
-        nc = contar_colores([im for l in por_var[v].values() for im in l])
-        print(f'  variante {v}: {nc} colores' + ('  AVISO más de 32' if nc > 32 else ''))
-        if rev and v != vs[0]:
+    def revision_variantes(pid, por_var, anims: Dict[str, Anim], pivote, rev: str):
+        for v in vs[1:]:
             hoja_revision(pid, por_var[v], anims, 4, pivote).save(os.path.join(rev, f'{pid}_{v}.png'))
-    if rev:
-        comparativa(por_var, vs, fw, fh).save(os.path.join(rev, f'{pid}_variantes.png'))
-    js = {
-        'personaje': pid,
-        'tipo': tipo,
-        'frameWidth': fw,
-        'frameHeight': fh,
-        'pivot': {'x': pivote[0], 'y': pivote[1]},
-        'frames': frames,
-        'escala': 1,
-        'animaciones': animaciones,
-        'cuadrosPorVariante': n,
-        'generadoPor': 'tools/pixel/generar.py',
-        'alto': alto,
-        'variants': list(vs),
-    }
-    return sheet, js
+        comparativa(por_var, vs, P.fw, P.fh).save(os.path.join(rev, f'{pid}_variantes.png'))
+
+    return vs, cuadro_variante, revision_variantes
 
 
 def comparativa(por_var, vs, fw, fh, escala=3):

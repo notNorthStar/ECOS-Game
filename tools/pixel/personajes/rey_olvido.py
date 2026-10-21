@@ -5,7 +5,10 @@ y el SELLO de la memoria (medallón con espiral violeta) al pecho, que late cuan
 
 Diseño Codex (rey-del-olvido.png) con más detalle: huesos color cantera vieja, túnica y cabellera moradas, oro.
 Al purificarse la llama y los ojos pasan de verde a dorado; al morir se arrodilla, se desploma y en parte se
-deshace en humo (sin violencia)."""
+deshace en humo (sin violencia).
+
+Dos variantes en la misma hoja (VARIANTES_KIT): 'corona' y 'sin_corona' (el cráneo sin la corona de oro). El juego
+cambia a 'sin_corona' cuando el jugador rompe la corona con SOL/FUEGO (src/entities/ReyOlvido.ts)."""
 from __future__ import annotations
 
 import math
@@ -79,6 +82,13 @@ CRANEOS = {
 }
 
 
+# Sin corona: las puntas y la banda de oro se vuelven la bóveda del cráneo (las astas siguen saliendo de ahí).
+SIN_CORONA = {0: '...............', 1: '...............', 2: '...............',
+              3: '.....bbccdd....', 4: '...abccddddc...'}
+
+_VAR = {'v': 'corona'}
+
+
 def _craneo(cara: str, boca: int) -> Mapa:
     if boca >= 2 and cara != 'parpadeo':
         base = CRANEOS['grito']
@@ -86,6 +96,8 @@ def _craneo(cara: str, boca: int) -> Mapa:
             base = _var(base, {7: 'abccccdddddxxdc', 8: 'abbcccddxxxGxdc'})
     else:
         base = CRANEOS.get(cara, CRANEO)
+    if _VAR['v'] == 'sin_corona':
+        base = _var(base, SIN_CORONA)
     return Mapa.de_texto(base, LEY_CRANEO, PAL, ANCLAS_CRANEO)
 
 
@@ -450,3 +462,14 @@ def animaciones():
 
 
 PERSONAJE = ReyOlvido()
+
+# Variantes del kit (ver generar.py): la primera es la que dibuja PERSONAJE.cuadro tal cual.
+VARIANTES_KIT = ['corona', 'sin_corona']
+
+
+def cuadro_variante(v, pose):
+    _VAR['v'] = v
+    try:
+        return PERSONAJE.cuadro(pose)
+    finally:
+        _VAR['v'] = VARIANTES_KIT[0]

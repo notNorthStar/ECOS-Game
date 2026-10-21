@@ -493,7 +493,7 @@ export class Encapuchado extends EnemyBase {
     if (this.eyeGlow) {
       const pulse = 0.75 + 0.25 * Math.sin(this.scene.time.now / 160 + this.uid);
       this.eyeGlow
-        .setPosition(this.x + this.facing * 4, this.y - this.z - this.bob - 54)
+        .setPosition(this.x + this.facing * 4, this.y - this.z - this.bob - (this.kit ? 61 : 54))
         .setDepth(this.y + FX_DEPTH_BIAS)
         .setAlpha(this.R.eyeGlow * pulse * this.sprite.alpha);
     }
@@ -635,8 +635,9 @@ export class Encapuchado extends EnemyBase {
   }
 
   private updateOrb(): void {
-    const ox = this.x + this.facing * 14;
-    const oy = this.y - this.z - 64;
+    // Con el kit: en la mano que conjura (cuadros de 'conjuro'); sin él, la del placeholder.
+    const ox = this.x + this.facing * (this.kit ? 22 : 14);
+    const oy = this.y - this.z - (this.kit ? 65 : 64);
     if (!this.orb) {
       this.orb = this.scene.add.image(ox, oy, FB.glow).setTint(hexColor(BOLT.color)).setBlendMode(Phaser.BlendModes.ADD).setScale(0.2);
     }

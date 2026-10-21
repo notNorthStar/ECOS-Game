@@ -182,7 +182,7 @@ export class NahualaCopia extends EnemyBase {
     this.shadow.setAlpha(luna ? 0.08 : 0.35);
     this.render(dt);
     const top = this.y - this.z - this.bob;
-    this.eye.setPosition(this.x + this.facing * 3, top - 57).setAlpha(this.sprite.alpha * 0.7).setDepth(this.y + FX_DEPTH_BIAS);
+    this.eye.setPosition(this.x + this.facing * (this.kit ? W.eye.dx : 3), top - (this.kit ? W.eye.dy : 57)).setAlpha(this.sprite.alpha * 0.7).setDepth(this.y + FX_DEPTH_BIAS);
   }
 
   takeHit(_hit: Hit): boolean {
@@ -824,7 +824,7 @@ export class Nahuala extends EnemyBase {
       .setAlpha(luna ? 0.45 + 0.15 * Math.sin(t * 6) : rage ? 0.3 : 0)
       .setDepth(this.y - 0.2);
     this.eye
-      .setPosition(this.x + this.facing * 3, top - 57)
+      .setPosition(this.x + this.facing * (this.kit ? W.eye.dx : 3), top - (this.kit ? W.eye.dy : 57))
       .setAlpha(calmed || this.st === 'exhausted' ? 0 : (luna ? 1 : 0.7) * this.sprite.alpha)
       .setScale(luna ? 0.3 : 0.22)
       .setDepth(this.y + FX_DEPTH_BIAS);

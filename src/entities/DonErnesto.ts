@@ -884,9 +884,15 @@ export class DonErnesto extends EnemyBase {
     }
     // Ojos de brasa.
     const glow = calmed ? 0 : exhausted ? 0.15 : attacking || this.rageT > 0 ? 1 : 0.6 + 0.25 * Math.sin(t * 5);
-    const ey = top - this.height * 0.75;
-    this.eyeR.setPosition(this.x + this.facing * 5, ey).setAlpha(glow).setDepth(this.y + FX_DEPTH_BIAS);
-    this.eyeL.setPosition(this.x - this.facing * 2, ey).setAlpha(glow * 0.8).setDepth(this.y + FX_DEPTH_BIAS);
+    if (this.kit) {
+      // Pixel art de perfil: un solo ojo visible, bajo el ala del sombrero (eye.dx/dy sobre los pies).
+      this.eyeR.setPosition(this.x + this.facing * E.eye.dx, top - E.eye.dy).setAlpha(glow).setDepth(this.y + FX_DEPTH_BIAS);
+      this.eyeL.setAlpha(0);
+    } else {
+      const ey = top - 75;
+      this.eyeR.setPosition(this.x + this.facing * 5, ey).setAlpha(glow).setDepth(this.y + FX_DEPTH_BIAS);
+      this.eyeL.setPosition(this.x - this.facing * 2, ey).setAlpha(glow * 0.8).setDepth(this.y + FX_DEPTH_BIAS);
+    }
   }
 
   protected onDestroy(): void {

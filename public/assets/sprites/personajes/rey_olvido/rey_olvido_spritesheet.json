@@ -9,7 +9,7 @@
  },
  "frames": [
   {
-   "name": "rey_olvido_reposo_1",
+   "name": "rey_olvido_corona_reposo_1",
    "vista": "lado_der",
    "x": 0,
    "y": 0,
@@ -17,7 +17,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_reposo_2",
+   "name": "rey_olvido_corona_reposo_2",
    "vista": "reposo_2",
    "x": 164,
    "y": 0,
@@ -25,7 +25,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_reposo_3",
+   "name": "rey_olvido_corona_reposo_3",
    "vista": "reposo_3",
    "x": 328,
    "y": 0,
@@ -33,7 +33,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_reposo_4",
+   "name": "rey_olvido_corona_reposo_4",
    "vista": "reposo_4",
    "x": 492,
    "y": 0,
@@ -41,7 +41,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_reposo_5",
+   "name": "rey_olvido_corona_reposo_5",
    "vista": "reposo_5",
    "x": 656,
    "y": 0,
@@ -49,7 +49,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_reposo_6",
+   "name": "rey_olvido_corona_reposo_6",
    "vista": "reposo_6",
    "x": 820,
    "y": 0,
@@ -57,7 +57,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_caminar_1",
+   "name": "rey_olvido_corona_caminar_1",
    "vista": "caminar_1",
    "x": 984,
    "y": 0,
@@ -65,7 +65,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_caminar_2",
+   "name": "rey_olvido_corona_caminar_2",
    "vista": "caminar_2",
    "x": 1148,
    "y": 0,
@@ -73,7 +73,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_caminar_3",
+   "name": "rey_olvido_corona_caminar_3",
    "vista": "caminar_3",
    "x": 0,
    "y": 140,
@@ -81,7 +81,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_caminar_4",
+   "name": "rey_olvido_corona_caminar_4",
    "vista": "caminar_4",
    "x": 164,
    "y": 140,
@@ -89,7 +89,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_caminar_5",
+   "name": "rey_olvido_corona_caminar_5",
    "vista": "caminar_5",
    "x": 328,
    "y": 140,
@@ -97,7 +97,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_caminar_6",
+   "name": "rey_olvido_corona_caminar_6",
    "vista": "caminar_6",
    "x": 492,
    "y": 140,
@@ -105,7 +105,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_caminar_7",
+   "name": "rey_olvido_corona_caminar_7",
    "vista": "caminar_7",
    "x": 656,
    "y": 140,
@@ -113,7 +113,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_caminar_8",
+   "name": "rey_olvido_corona_caminar_8",
    "vista": "caminar_8",
    "x": 820,
    "y": 140,
@@ -121,7 +121,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_correr_1",
+   "name": "rey_olvido_corona_correr_1",
    "vista": "correr_1",
    "x": 984,
    "y": 140,
@@ -129,7 +129,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_correr_2",
+   "name": "rey_olvido_corona_correr_2",
    "vista": "correr_2",
    "x": 1148,
    "y": 140,
@@ -137,7 +137,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_correr_3",
+   "name": "rey_olvido_corona_correr_3",
    "vista": "correr_3",
    "x": 0,
    "y": 280,
@@ -145,7 +145,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_correr_4",
+   "name": "rey_olvido_corona_correr_4",
    "vista": "correr_4",
    "x": 164,
    "y": 280,
@@ -153,7 +153,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_correr_5",
+   "name": "rey_olvido_corona_correr_5",
    "vista": "correr_5",
    "x": 328,
    "y": 280,
@@ -161,7 +161,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_correr_6",
+   "name": "rey_olvido_corona_correr_6",
    "vista": "correr_6",
    "x": 492,
    "y": 280,
@@ -169,7 +169,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_correr_7",
+   "name": "rey_olvido_corona_correr_7",
    "vista": "correr_7",
    "x": 656,
    "y": 280,
@@ -177,7 +177,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_correr_8",
+   "name": "rey_olvido_corona_correr_8",
    "vista": "correr_8",
    "x": 820,
    "y": 280,
@@ -185,7 +185,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_golpe_1",
+   "name": "rey_olvido_corona_golpe_1",
    "vista": "golpe_1",
    "x": 984,
    "y": 280,
@@ -193,7 +193,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_golpe_2",
+   "name": "rey_olvido_corona_golpe_2",
    "vista": "golpe_2",
    "x": 1148,
    "y": 280,
@@ -201,7 +201,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_golpe_3",
+   "name": "rey_olvido_corona_golpe_3",
    "vista": "golpe_3",
    "x": 0,
    "y": 420,
@@ -209,7 +209,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_golpe_4",
+   "name": "rey_olvido_corona_golpe_4",
    "vista": "golpe_4",
    "x": 164,
    "y": 420,
@@ -217,7 +217,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_ataque_1",
+   "name": "rey_olvido_corona_ataque_1",
    "vista": "ataque_1",
    "x": 328,
    "y": 420,
@@ -225,7 +225,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_ataque_2",
+   "name": "rey_olvido_corona_ataque_2",
    "vista": "ataque_2",
    "x": 492,
    "y": 420,
@@ -233,7 +233,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_ataque_3",
+   "name": "rey_olvido_corona_ataque_3",
    "vista": "ataque_3",
    "x": 656,
    "y": 420,
@@ -241,7 +241,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_ataque_4",
+   "name": "rey_olvido_corona_ataque_4",
    "vista": "ataque_4",
    "x": 820,
    "y": 420,
@@ -249,7 +249,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_conjuro_1",
+   "name": "rey_olvido_corona_conjuro_1",
    "vista": "conjuro_1",
    "x": 984,
    "y": 420,
@@ -257,7 +257,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_conjuro_2",
+   "name": "rey_olvido_corona_conjuro_2",
    "vista": "conjuro_2",
    "x": 1148,
    "y": 420,
@@ -265,7 +265,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_conjuro_3",
+   "name": "rey_olvido_corona_conjuro_3",
    "vista": "conjuro_3",
    "x": 0,
    "y": 560,
@@ -273,7 +273,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_conjuro_4",
+   "name": "rey_olvido_corona_conjuro_4",
    "vista": "conjuro_4",
    "x": 164,
    "y": 560,
@@ -281,7 +281,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_conjuro_5",
+   "name": "rey_olvido_corona_conjuro_5",
    "vista": "conjuro_5",
    "x": 328,
    "y": 560,
@@ -289,7 +289,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_conjuro_6",
+   "name": "rey_olvido_corona_conjuro_6",
    "vista": "conjuro_6",
    "x": 492,
    "y": 560,
@@ -297,7 +297,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_invocar_1",
+   "name": "rey_olvido_corona_invocar_1",
    "vista": "invocar_1",
    "x": 656,
    "y": 560,
@@ -305,7 +305,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_invocar_2",
+   "name": "rey_olvido_corona_invocar_2",
    "vista": "invocar_2",
    "x": 820,
    "y": 560,
@@ -313,7 +313,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_invocar_3",
+   "name": "rey_olvido_corona_invocar_3",
    "vista": "invocar_3",
    "x": 984,
    "y": 560,
@@ -321,7 +321,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_invocar_4",
+   "name": "rey_olvido_corona_invocar_4",
    "vista": "invocar_4",
    "x": 1148,
    "y": 560,
@@ -329,7 +329,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_invocar_5",
+   "name": "rey_olvido_corona_invocar_5",
    "vista": "invocar_5",
    "x": 0,
    "y": 700,
@@ -337,7 +337,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_lanzar_1",
+   "name": "rey_olvido_corona_lanzar_1",
    "vista": "lanzar_1",
    "x": 164,
    "y": 700,
@@ -345,7 +345,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_lanzar_2",
+   "name": "rey_olvido_corona_lanzar_2",
    "vista": "lanzar_2",
    "x": 328,
    "y": 700,
@@ -353,7 +353,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_lanzar_3",
+   "name": "rey_olvido_corona_lanzar_3",
    "vista": "lanzar_3",
    "x": 492,
    "y": 700,
@@ -361,7 +361,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_lanzar_4",
+   "name": "rey_olvido_corona_lanzar_4",
    "vista": "lanzar_4",
    "x": 656,
    "y": 700,
@@ -369,7 +369,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_salto_1",
+   "name": "rey_olvido_corona_salto_1",
    "vista": "salto_1",
    "x": 820,
    "y": 700,
@@ -377,7 +377,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_salto_2",
+   "name": "rey_olvido_corona_salto_2",
    "vista": "salto_2",
    "x": 984,
    "y": 700,
@@ -385,7 +385,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_salto_3",
+   "name": "rey_olvido_corona_salto_3",
    "vista": "salto_3",
    "x": 1148,
    "y": 700,
@@ -393,7 +393,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_caida_1",
+   "name": "rey_olvido_corona_caida_1",
    "vista": "caida_1",
    "x": 0,
    "y": 840,
@@ -401,7 +401,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_caida_2",
+   "name": "rey_olvido_corona_caida_2",
    "vista": "caida_2",
    "x": 164,
    "y": 840,
@@ -409,7 +409,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_aterrizar_1",
+   "name": "rey_olvido_corona_aterrizar_1",
    "vista": "aterrizar_1",
    "x": 328,
    "y": 840,
@@ -417,7 +417,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_aterrizar_2",
+   "name": "rey_olvido_corona_aterrizar_2",
    "vista": "aterrizar_2",
    "x": 492,
    "y": 840,
@@ -425,7 +425,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_esquivar_2",
+   "name": "rey_olvido_corona_esquivar_2",
    "vista": "esquivar_2",
    "x": 656,
    "y": 840,
@@ -433,7 +433,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_esquivar_3",
+   "name": "rey_olvido_corona_esquivar_3",
    "vista": "esquivar_3",
    "x": 820,
    "y": 840,
@@ -441,7 +441,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_interactuar_1",
+   "name": "rey_olvido_corona_interactuar_1",
    "vista": "interactuar_1",
    "x": 984,
    "y": 840,
@@ -449,7 +449,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_interactuar_2",
+   "name": "rey_olvido_corona_interactuar_2",
    "vista": "interactuar_2",
    "x": 1148,
    "y": 840,
@@ -457,7 +457,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_dano_1",
+   "name": "rey_olvido_corona_dano_1",
    "vista": "dano_1",
    "x": 0,
    "y": 980,
@@ -465,7 +465,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_dano_2",
+   "name": "rey_olvido_corona_dano_2",
    "vista": "dano_2",
    "x": 164,
    "y": 980,
@@ -473,7 +473,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_dano_3",
+   "name": "rey_olvido_corona_dano_3",
    "vista": "dano_3",
    "x": 328,
    "y": 980,
@@ -481,7 +481,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_aturdido_1",
+   "name": "rey_olvido_corona_aturdido_1",
    "vista": "aturdido_1",
    "x": 492,
    "y": 980,
@@ -489,7 +489,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_aturdido_2",
+   "name": "rey_olvido_corona_aturdido_2",
    "vista": "aturdido_2",
    "x": 656,
    "y": 980,
@@ -497,7 +497,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_aturdido_3",
+   "name": "rey_olvido_corona_aturdido_3",
    "vista": "aturdido_3",
    "x": 820,
    "y": 980,
@@ -505,7 +505,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_aturdido_4",
+   "name": "rey_olvido_corona_aturdido_4",
    "vista": "aturdido_4",
    "x": 984,
    "y": 980,
@@ -513,7 +513,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_purificar_1",
+   "name": "rey_olvido_corona_purificar_1",
    "vista": "purificar_1",
    "x": 1148,
    "y": 980,
@@ -521,7 +521,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_purificar_2",
+   "name": "rey_olvido_corona_purificar_2",
    "vista": "purificar_2",
    "x": 0,
    "y": 1120,
@@ -529,7 +529,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_purificar_3",
+   "name": "rey_olvido_corona_purificar_3",
    "vista": "purificar_3",
    "x": 164,
    "y": 1120,
@@ -537,7 +537,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_purificar_4",
+   "name": "rey_olvido_corona_purificar_4",
    "vista": "purificar_4",
    "x": 328,
    "y": 1120,
@@ -545,7 +545,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_purificar_5",
+   "name": "rey_olvido_corona_purificar_5",
    "vista": "purificar_5",
    "x": 492,
    "y": 1120,
@@ -553,7 +553,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_morir_1",
+   "name": "rey_olvido_corona_morir_1",
    "vista": "morir_1",
    "x": 656,
    "y": 1120,
@@ -561,7 +561,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_morir_2",
+   "name": "rey_olvido_corona_morir_2",
    "vista": "morir_2",
    "x": 820,
    "y": 1120,
@@ -569,7 +569,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_morir_3",
+   "name": "rey_olvido_corona_morir_3",
    "vista": "morir_3",
    "x": 984,
    "y": 1120,
@@ -577,7 +577,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_morir_4",
+   "name": "rey_olvido_corona_morir_4",
    "vista": "morir_4",
    "x": 1148,
    "y": 1120,
@@ -585,7 +585,7 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_morir_5",
+   "name": "rey_olvido_corona_morir_5",
    "vista": "morir_5",
    "x": 0,
    "y": 1260,
@@ -593,10 +593,602 @@
    "h": 140
   },
   {
-   "name": "rey_olvido_morir_6",
+   "name": "rey_olvido_corona_morir_6",
    "vista": "morir_6",
    "x": 164,
    "y": 1260,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_reposo_1",
+   "vista": "lado_der",
+   "x": 328,
+   "y": 1260,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_reposo_2",
+   "vista": "reposo_2",
+   "x": 492,
+   "y": 1260,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_reposo_3",
+   "vista": "reposo_3",
+   "x": 656,
+   "y": 1260,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_reposo_4",
+   "vista": "reposo_4",
+   "x": 820,
+   "y": 1260,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_reposo_5",
+   "vista": "reposo_5",
+   "x": 984,
+   "y": 1260,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_reposo_6",
+   "vista": "reposo_6",
+   "x": 1148,
+   "y": 1260,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_caminar_1",
+   "vista": "caminar_1",
+   "x": 0,
+   "y": 1400,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_caminar_2",
+   "vista": "caminar_2",
+   "x": 164,
+   "y": 1400,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_caminar_3",
+   "vista": "caminar_3",
+   "x": 328,
+   "y": 1400,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_caminar_4",
+   "vista": "caminar_4",
+   "x": 492,
+   "y": 1400,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_caminar_5",
+   "vista": "caminar_5",
+   "x": 656,
+   "y": 1400,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_caminar_6",
+   "vista": "caminar_6",
+   "x": 820,
+   "y": 1400,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_caminar_7",
+   "vista": "caminar_7",
+   "x": 984,
+   "y": 1400,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_caminar_8",
+   "vista": "caminar_8",
+   "x": 1148,
+   "y": 1400,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_correr_1",
+   "vista": "correr_1",
+   "x": 0,
+   "y": 1540,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_correr_2",
+   "vista": "correr_2",
+   "x": 164,
+   "y": 1540,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_correr_3",
+   "vista": "correr_3",
+   "x": 328,
+   "y": 1540,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_correr_4",
+   "vista": "correr_4",
+   "x": 492,
+   "y": 1540,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_correr_5",
+   "vista": "correr_5",
+   "x": 656,
+   "y": 1540,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_correr_6",
+   "vista": "correr_6",
+   "x": 820,
+   "y": 1540,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_correr_7",
+   "vista": "correr_7",
+   "x": 984,
+   "y": 1540,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_correr_8",
+   "vista": "correr_8",
+   "x": 1148,
+   "y": 1540,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_golpe_1",
+   "vista": "golpe_1",
+   "x": 0,
+   "y": 1680,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_golpe_2",
+   "vista": "golpe_2",
+   "x": 164,
+   "y": 1680,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_golpe_3",
+   "vista": "golpe_3",
+   "x": 328,
+   "y": 1680,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_golpe_4",
+   "vista": "golpe_4",
+   "x": 492,
+   "y": 1680,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_ataque_1",
+   "vista": "ataque_1",
+   "x": 656,
+   "y": 1680,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_ataque_2",
+   "vista": "ataque_2",
+   "x": 820,
+   "y": 1680,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_ataque_3",
+   "vista": "ataque_3",
+   "x": 984,
+   "y": 1680,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_ataque_4",
+   "vista": "ataque_4",
+   "x": 1148,
+   "y": 1680,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_conjuro_1",
+   "vista": "conjuro_1",
+   "x": 0,
+   "y": 1820,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_conjuro_2",
+   "vista": "conjuro_2",
+   "x": 164,
+   "y": 1820,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_conjuro_3",
+   "vista": "conjuro_3",
+   "x": 328,
+   "y": 1820,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_conjuro_4",
+   "vista": "conjuro_4",
+   "x": 492,
+   "y": 1820,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_conjuro_5",
+   "vista": "conjuro_5",
+   "x": 656,
+   "y": 1820,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_conjuro_6",
+   "vista": "conjuro_6",
+   "x": 820,
+   "y": 1820,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_invocar_1",
+   "vista": "invocar_1",
+   "x": 984,
+   "y": 1820,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_invocar_2",
+   "vista": "invocar_2",
+   "x": 1148,
+   "y": 1820,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_invocar_3",
+   "vista": "invocar_3",
+   "x": 0,
+   "y": 1960,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_invocar_4",
+   "vista": "invocar_4",
+   "x": 164,
+   "y": 1960,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_invocar_5",
+   "vista": "invocar_5",
+   "x": 328,
+   "y": 1960,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_lanzar_1",
+   "vista": "lanzar_1",
+   "x": 492,
+   "y": 1960,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_lanzar_2",
+   "vista": "lanzar_2",
+   "x": 656,
+   "y": 1960,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_lanzar_3",
+   "vista": "lanzar_3",
+   "x": 820,
+   "y": 1960,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_lanzar_4",
+   "vista": "lanzar_4",
+   "x": 984,
+   "y": 1960,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_salto_1",
+   "vista": "salto_1",
+   "x": 1148,
+   "y": 1960,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_salto_2",
+   "vista": "salto_2",
+   "x": 0,
+   "y": 2100,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_salto_3",
+   "vista": "salto_3",
+   "x": 164,
+   "y": 2100,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_caida_1",
+   "vista": "caida_1",
+   "x": 328,
+   "y": 2100,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_caida_2",
+   "vista": "caida_2",
+   "x": 492,
+   "y": 2100,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_aterrizar_1",
+   "vista": "aterrizar_1",
+   "x": 656,
+   "y": 2100,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_aterrizar_2",
+   "vista": "aterrizar_2",
+   "x": 820,
+   "y": 2100,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_esquivar_2",
+   "vista": "esquivar_2",
+   "x": 984,
+   "y": 2100,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_esquivar_3",
+   "vista": "esquivar_3",
+   "x": 1148,
+   "y": 2100,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_interactuar_1",
+   "vista": "interactuar_1",
+   "x": 0,
+   "y": 2240,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_interactuar_2",
+   "vista": "interactuar_2",
+   "x": 164,
+   "y": 2240,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_dano_1",
+   "vista": "dano_1",
+   "x": 328,
+   "y": 2240,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_dano_2",
+   "vista": "dano_2",
+   "x": 492,
+   "y": 2240,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_dano_3",
+   "vista": "dano_3",
+   "x": 656,
+   "y": 2240,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_aturdido_1",
+   "vista": "aturdido_1",
+   "x": 820,
+   "y": 2240,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_aturdido_2",
+   "vista": "aturdido_2",
+   "x": 984,
+   "y": 2240,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_aturdido_3",
+   "vista": "aturdido_3",
+   "x": 1148,
+   "y": 2240,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_aturdido_4",
+   "vista": "aturdido_4",
+   "x": 0,
+   "y": 2380,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_purificar_1",
+   "vista": "purificar_1",
+   "x": 164,
+   "y": 2380,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_purificar_2",
+   "vista": "purificar_2",
+   "x": 328,
+   "y": 2380,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_purificar_3",
+   "vista": "purificar_3",
+   "x": 492,
+   "y": 2380,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_purificar_4",
+   "vista": "purificar_4",
+   "x": 656,
+   "y": 2380,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_purificar_5",
+   "vista": "purificar_5",
+   "x": 820,
+   "y": 2380,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_morir_1",
+   "vista": "morir_1",
+   "x": 984,
+   "y": 2380,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_morir_2",
+   "vista": "morir_2",
+   "x": 1148,
+   "y": 2380,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_morir_3",
+   "vista": "morir_3",
+   "x": 0,
+   "y": 2520,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_morir_4",
+   "vista": "morir_4",
+   "x": 164,
+   "y": 2520,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_morir_5",
+   "vista": "morir_5",
+   "x": 328,
+   "y": 2520,
+   "w": 164,
+   "h": 140
+  },
+  {
+   "name": "rey_olvido_sin_corona_morir_6",
+   "vista": "morir_6",
+   "x": 492,
+   "y": 2520,
    "w": 164,
    "h": 140
   }
@@ -811,5 +1403,9 @@
  },
  "cuadrosPorVariante": 74,
  "generadoPor": "tools/pixel/generar.py",
- "alto": 118
+ "alto": 118,
+ "variants": [
+  "corona",
+  "sin_corona"
+ ]
 }

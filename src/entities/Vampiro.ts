@@ -843,7 +843,10 @@ export class Vampiro extends EnemyBase {
     const off = this.st === 'calmed' || this.st === 'exhausted' || this.st === 'mist';
     const hungry = this.isAttackState;
     this.eye
-      .setPosition(this.x + this.facing * (this.bestial ? 8 : 4), top - this.height * (this.bestial ? 0.8 : 0.88))
+      .setPosition(
+        this.x + this.facing * (this.kit ? V.eye.dx : this.bestial ? 8 : 4),
+        top - (this.kit ? V.eye.dy : this.bestial ? 77 : 84),
+      )
       .setAlpha(off ? 0 : (hungry ? 1 : this.st === 'dormant' ? 0.35 : 0.6 + 0.25 * Math.sin(t * 4)) * this.sprite.alpha)
       .setScale(hungry ? 0.28 : 0.18)
       .setDepth(this.y + FX_DEPTH_BIAS);

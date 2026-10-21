@@ -181,8 +181,8 @@ export class Tzitzimitl extends EnemyBase {
     this.hitDone = false;
     if (this.flashT <= 0) this.sprite.setTintMode(Phaser.TintModes.MULTIPLY).setTint(this.baseTint);
     const anim: Record<St, string> = {
-      dormant: 'reposo', intro: 'invocar', idle: 'caminar', diveWindup: 'salto', diveUp: 'salto', diveAim: 'salto',
-      diveWarn: 'salto', diveFall: 'caida', diveRecover: 'aterrizar', rainWindup: 'conjuro', chargeWindup: 'golpe',
+      dormant: 'reposo', intro: 'invocar', idle: 'caminar', diveWindup: 'salto', diveUp: 'subida', diveAim: 'subida',
+      diveWarn: 'subida', diveFall: 'caida', diveRecover: 'aterrizar', rainWindup: 'conjuro', chargeWindup: 'golpe',
       charge: 'ataque', chargeRecover: 'reposo', stunned: 'aturdido', falling: 'morir',
     };
     this.play(`tzitzimitl_${anim[st]}`);

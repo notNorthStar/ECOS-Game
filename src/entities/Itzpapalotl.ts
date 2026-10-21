@@ -259,8 +259,9 @@ export class Itzpapalotl extends EnemyBase {
     this.cocoon.setVisible(false);
     this.cocoonGlow.setVisible(false);
     this.sprite.setVisible(true).setAlpha(0);
-    this.wingL.setVisible(true);
-    this.wingR.setVisible(true);
+    // Con el kit de pixel art las alas ya vienen en el sprite: las de código quedan solo para el placeholder.
+    this.wingL.setVisible(!this.kit);
+    this.wingR.setVisible(!this.kit);
     this.core.setVisible(true);
     this.scene.tweens.add({ targets: this.sprite, alpha: 1, duration: 400 });
     this.set('intro');
@@ -760,6 +761,12 @@ export class Itzpapalotl extends EnemyBase {
   }
 
   private corePos(): { x: number; y: number } {
+    // Con el kit: la gema roja del pecho del sprite (core.dx/dy sobre los pies; 'bowed' en la pose de aturdida,
+    // que es la de la parálisis de la madre, justo cuando se golpea el núcleo con ECOS).
+    if (this.kit) {
+      const k = this.st === 'stagger' || this.st === 'stunned' ? I.core.bowed : I.core;
+      return { x: this.x + this.facing * k.dx, y: this.y - this.z - this.bob - k.dy };
+    }
     return { x: this.x + this.facing * 2, y: this.y - this.z - this.bob - I.frame.feetY + 46 };
   }
 
@@ -1028,6 +1035,8 @@ export class Itzpapalotl extends EnemyBase {
       const ay = top - I.wing.offsetY;
       this.wingL.setPosition(Math.round(this.x - I.wing.offsetX), Math.round(ay)).setScale(sx, 1).setAngle(-droop).setTint(tint).setAlpha(this.wingsBroken ? 0.6 : 1).setDepth(this.y - 0.2);
       this.wingR.setPosition(Math.round(this.x + I.wing.offsetX), Math.round(ay)).setScale(sx, 1).setAngle(droop).setTint(tint).setAlpha(this.wingsBroken ? 0.6 : 1).setDepth(this.y - 0.2);
+      // Alas del sprite: el estado se lee en el tinte de todo el cuerpo (rotas → apagada; expuestas → rosada).
+      if (this.kit) this.setBaseTint(this.wingsBroken ? 0xb4acc4 : tint);
     }
     // Núcleo: brillo en el pecho; abierto (dorado, grande) durante la parálisis.
     const c = this.corePos();

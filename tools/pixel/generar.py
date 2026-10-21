@@ -13,6 +13,17 @@ Salidas:
   arte-fuente/pixel/revision/<id>_fondo.png    el personaje sobre un fondo del juego a 1:1 y ×3
 Antes de sobrescribir un kit que no generó este script, lo respalda en arte-fuente/kits-codex/<id>/
 (si el respaldo ya existe, no lo pisa).
+
+Contrato de un módulo tools/pixel/personajes/<id>.py
+  PERSONAJE          rig con .cuadro(pose), .fw, .fh, .pivote, .tipo, .alto
+  animaciones()      {motion: Anim}
+  FONDO              (opcional) (nivel, sección, y del suelo) para la hoja <id>_fondo.png (FONDOS manda)
+  VARIANTES_KIT      (opcional) versiones del personaje en la misma hoja ('variants' + 'cuadrosPorVariante').
+                     La primera es la que dibuja PERSONAJE.cuadro(pose) tal cual; las demás se piden a
+  cuadro_variante(v, pose) -> cuadro
+  revision_variantes(pid, por_var, anims, pivote, carpeta)   (opcional) hojas de revisión extra por variante
+Los tres lotes con variantes (_espectros, _humanoides, _criaturas) exponen `kit_variantes(...)`, que devuelve
+(VARIANTES_KIT, cuadro_variante, revision_variantes) para su tipo de rig.
 """
 from __future__ import annotations
 
@@ -29,7 +40,7 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, AQUI)
 ROOT = os.path.dirname(os.path.dirname(AQUI))
 
-from lib import contar_colores, empaquetar, hoja_revision, sobre_fondo, _fuente  # noqa: E402
+from lib import contar_colores, empaquetar, empaquetar_variantes, hoja_revision, sobre_fondo, _fuente  # noqa: E402
 
 KITS = os.path.join(ROOT, 'public', 'assets', 'sprites', 'personajes')
 REV = os.path.join(ROOT, 'arte-fuente', 'pixel', 'revision')
@@ -82,7 +93,21 @@ def generar(pid: str, escribir_kit: bool = True, solo=None):
     cuadros = {}
     for motion, a in anims.items():
         cuadros[motion] = [P.cuadro(pose) for pose in a.poses]
-    sheet, js = empaquetar(pid, cuadros, anims, P.fw, P.fh, P.pivote, P.tipo, P.alto)
+    variantes = list(getattr(mod, 'VARIANTES_KIT', None) or ())
+    if variantes:
+        por_var = {variantes[0]: cuadros}
+        for v in variantes[1:]:
+            por_var[v] = {m: [mod.cuadro_variante(v, pose) for pose in anims[m].poses] for m in cuadros}
+        sheet, js = empaquetar_variantes(pid, por_var, anims, P.fw, P.fh, P.pivote, P.tipo, P.alto)
+        for v in variantes:
+            nc = contar_colores([im for lista in por_var[v].values() for im in lista])
+            print(f'  variante {v}: {nc} colores' + ('  AVISO más de 32' if nc > 32 else ''))
+        rev_var = getattr(mod, 'revision_variantes', None)
+        if rev_var:
+            os.makedirs(REV, exist_ok=True)
+            rev_var(pid, por_var, anims, P.pivote, REV)
+    else:
+        sheet, js = empaquetar(pid, cuadros, anims, P.fw, P.fh, P.pivote, P.tipo, P.alto)
     ncol = contar_colores([sheet])
     total = sum(len(v) for v in cuadros.values())
     print(f'{pid}: {len(anims)} animaciones, {total} cuadros ({len(js["frames"])} únicos), {ncol} colores'
@@ -90,7 +115,7 @@ def generar(pid: str, escribir_kit: bool = True, solo=None):
     os.makedirs(REV, exist_ok=True)
     hoja_revision(pid, cuadros, anims, 4, P.pivote).save(os.path.join(REV, f'{pid}.png'))
     # sobre fondo
-    niv, sec, gy = FONDOS.get(pid, ('nivel-01-xalapa', 'calles', 300))
+    niv, sec, gy = FONDOS.get(pid) or getattr(mod, 'FONDO', None) or ('nivel-01-xalapa', 'calles', 300)
     bg = fondo(niv, sec)
     muestras = []
     orden = [m for m in ('reposo', 'caminar', 'correr', 'disparar', 'conjuro', 'ataque', 'golpe', 'invocar') if m in cuadros]
@@ -112,7 +137,7 @@ def generar(pid: str, escribir_kit: bool = True, solo=None):
         d = os.path.join(KITS, pid)
         os.makedirs(d, exist_ok=True)
         Image.fromarray(sheet).save(os.path.join(d, f'{pid}_spritesheet.png'), optimize=True)
-        with open(os.path.join(d, f'{pid}_spritesheet.json'), 'w', encoding='utf-8') as f:
+        with open(os.path.join(d, f'{pid}_spritesheet.json'), 'w', encoding='utf-8', newline='\n') as f:
             json.dump(js, f, ensure_ascii=False, indent=1)
         print(f'  kit → {os.path.relpath(d, ROOT)}')
     return cuadros, anims

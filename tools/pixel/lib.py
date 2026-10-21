@@ -714,6 +714,60 @@ def empaquetar(pid: str, cuadros: Dict[str, List[np.ndarray]], anims: Dict[str, 
     return sheet, js
 
 
+def empaquetar_variantes(pid: str, por_var: Dict[str, Dict[str, List[np.ndarray]]], anims: Dict[str, Anim],
+                         fw: int, fh: int, pivote: Tuple[int, int], tipo: str, alto: int, columnas: int = 8,
+                         extra: Optional[dict] = None):
+    """Hoja con VARIAS versiones del mismo personaje (formato de src/systems/CharacterKits.ts):
+    `por_var` = {variante: {motion: [cuadros]}} con las variantes en orden (la primera es la principal).
+    La variante k ocupa los cuadros k·n … k·n+n−1 con el MISMO orden interno, y `animaciones` usa índices
+    DENTRO de la variante (iguales para todas). Dos cuadros se comparten solo si son idénticos en TODAS."""
+    vs = list(por_var)
+    base = por_var[vs[0]]
+    claves: Dict[bytes, int] = {}
+    orden: List[Tuple[str, int]] = []          # (motion, n) del primer uso de cada cuadro único
+    animaciones = {}
+    for motion, lista in base.items():
+        idxs = []
+        for n in range(len(lista)):
+            k = b''.join(por_var[v][motion][n].tobytes() for v in vs)
+            if k not in claves:
+                claves[k] = len(orden)
+                orden.append((motion, n))
+            idxs.append(claves[k])
+        a = anims[motion]
+        animaciones[motion] = {'frames': idxs, 'fps': a.fps, 'loop': a.loop}
+    npv = len(orden)
+    total = npv * len(vs)
+    cols = min(columnas, total)
+    rows = (total + cols - 1) // cols
+    sheet = np.zeros((rows * fh, cols * fw, 4), np.uint8)
+    frames = []
+    for vi, v in enumerate(vs):
+        for i, (motion, k) in enumerate(orden):
+            j = vi * npv + i
+            x, y = (j % cols) * fw, (j // cols) * fh
+            sheet[y:y + fh, x:x + fw] = por_var[v][motion][k]
+            vista = 'lado_der' if (motion == 'reposo' and k == 0) else f'{motion}_{k + 1}'
+            frames.append({'name': f'{pid}_{v}_{motion}_{k + 1}', 'vista': vista, 'x': x, 'y': y, 'w': fw, 'h': fh})
+    js = {
+        'personaje': pid,
+        'tipo': tipo,
+        'frameWidth': fw,
+        'frameHeight': fh,
+        'pivot': {'x': pivote[0], 'y': pivote[1]},
+        'frames': frames,
+        'escala': 1,
+        'animaciones': animaciones,
+        'cuadrosPorVariante': npv,
+        'generadoPor': 'tools/pixel/generar.py',
+        'alto': alto,
+        'variants': vs,
+    }
+    if extra:
+        js.update(extra)
+    return sheet, js
+
+
 def _fuente(tam: int = 12):
     for f in ('C:/Windows/Fonts/consola.ttf', 'C:/Windows/Fonts/arial.ttf'):
         if os.path.exists(f):

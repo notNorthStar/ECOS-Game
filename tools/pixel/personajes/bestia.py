@@ -8,8 +8,8 @@ anterior ('1' y '3', de las hojas Codex bestia-1.png y bestia-3.png):
 Ambas: encorvadas, brazos largos con garras, pies digitígrados, un ojo que brilla en ámbar. Al purificarse el ojo
 pasa a turquesa sereno; al morir se arrodillan y se deshacen en humo (sin violencia).
 
-Rig: `_criaturas.BestiaBipeda` (sobre Humanoide). Las dos variantes van en la misma hoja: `instalar_variantes`
-hace que `generar.py` escriba `variants: ['1', '3']` y `cuadrosPorVariante` (ver _criaturas.py)."""
+Rig: `_criaturas.BestiaBipeda` (sobre Humanoide). Las dos variantes van en la misma hoja: `VARIANTES_KIT`
+(de `kit_variantes`) hace que `generar.py` escriba `variants: ['1', '3']` y `cuadrosPorVariante`."""
 from __future__ import annotations
 
 import os
@@ -18,7 +18,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from lib import Material, Paleta, Pose, mas  # noqa: E402
-from personajes._criaturas import BestiaBipeda, animaciones_bestia, instalar_variantes  # noqa: E402
+from personajes._criaturas import BestiaBipeda, animaciones_bestia, kit_variantes  # noqa: E402
 
 PAL = Paleta([
     Material('piel1', ['#152536', '#24394a', '#33505a', '#8aa4a8'],  '#0a0f1a'),
@@ -133,4 +133,4 @@ def animaciones():
 
 
 PERSONAJE = Bestia()
-instalar_variantes(PERSONAJE, ['1', '3'])
+VARIANTES_KIT, cuadro_variante, revision_variantes = kit_variantes(PERSONAJE, ['1', '3'])

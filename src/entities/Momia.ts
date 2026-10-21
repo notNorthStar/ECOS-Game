@@ -390,7 +390,7 @@ export class Momia extends EnemyBase {
     const off = this.st === 'exhausted' || this.st === 'purifying' || this.st === 'idle';
     const pulse = reduceFx() ? 0.8 : 0.6 + 0.3 * Math.sin(this.scene.time.now / 200 + this.uid);
     this.eyes
-      .setPosition(this.x + this.facing * 7, top - this.height * 0.86)
+      .setPosition(this.x + this.facing * (this.kit ? M.eye.dx : 7), top - (this.kit ? M.eye.dy : 55))
       .setAlpha(off ? (this.st === 'idle' ? 0.3 : 0) : (this.isAttacking ? 1 : pulse) * this.sprite.alpha)
       .setScale(this.isAttacking ? 0.24 : 0.16)
       .setDepth(this.y + FX_DEPTH_BIAS);

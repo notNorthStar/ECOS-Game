@@ -2,14 +2,9 @@
 
 Contenido
 ---------
-* `instalar_variantes(personaje, variantes)`: `generar.py` solo sabe empaquetar UNA versión por kit. Los kits
-  con `variants` (bestia: '1'/'3'; nahual_animal: 'lobo'/'ave') necesitan que la variante k ocupe los cuadros
-  k·n … k·n+n−1 con el MISMO orden interno. Sin tocar `generar.py`, el módulo del personaje llama a esta función
-  al importarse: envuelve el `empaquetar` que ve `generar.py` (solo para ese id) y
-    - vuelve a dibujar cada pose con cada variante (`personaje.variante = v`),
-    - deduplica los cuadros con la clave CONJUNTA de todas las variantes (así los índices coinciden),
-    - escribe `variants` y `cuadrosPorVariante` en el JSON (formato de src/systems/CharacterKits.ts),
-    - guarda una hoja de revisión extra por variante: `arte-fuente/pixel/revision/<id>_<variante>.png`.
+* `kit_variantes(personaje, variantes)`: kits con `variants` (bestia: '1'/'3'; nahual_animal: 'lobo'/'ave').
+  Devuelve lo que `generar.py` necesita para empaquetarlas en una hoja (cada pose se vuelve a dibujar con
+  `personaje.variante = v`) y una hoja de revisión extra por variante: `revision/<id>_<variante>.png`.
 * `Cuadrupedo` + `PoseQ`: rig 2D de perfil para cuadrúpedos (Balam, Balam jaguar). Patas por cinemática
   INVERSA: cada pata se define por dónde pisa (adelanto, altura) y el ángulo del metacarpo/metatarso; codo y
   rodilla salen solos (codo hacia atrás, rodilla hacia adelante, corvejón atrás), así las patas apoyadas no
@@ -37,92 +32,29 @@ Punto = Tuple[float, float]
 
 
 # =============================================================================================
-#  Variantes en generar.py (sin editarlo)
+#  Variantes en el kit (las empaqueta generar.py)
 # =============================================================================================
 
-def instalar_variantes(personaje, variantes: Sequence[str]):
-    """Hace que `generar.py` empaquete `personaje` con todas sus `variantes` (ver doc del módulo)."""
-    variantes = list(variantes)
-    personaje.variante = variantes[0]
-    for mod in list(sys.modules.values()):
-        g = getattr(mod, '__dict__', None)
-        if not isinstance(g, dict) or 'empaquetar' not in g or 'generar' not in g or 'KITS' not in g:
-            continue
-        orig = g['empaquetar']
-        hechos = getattr(orig, '_criaturas_ids', set())
-        if personaje.id in hechos:
-            continue
+def kit_variantes(personaje, variantes: Sequence[str]):
+    """(VARIANTES_KIT, cuadro_variante, revision_variantes) para `generar.py`. Deja `personaje.variante` en la
+    primera (la que dibuja `personaje.cuadro` tal cual)."""
+    vs = list(variantes)
+    personaje.variante = vs[0]
 
-        def envoltura(pid, cuadros, anims, fw, fh, pivote, tipo, alto, columnas=8, extra=None, _orig=orig, _g=g):
-            if pid != personaje.id:
-                return _orig(pid, cuadros, anims, fw, fh, pivote, tipo, alto, columnas, extra)
-            return empaquetar_variantes(personaje, variantes, cuadros, anims, fw, fh, pivote, tipo, alto,
-                                        columnas, extra, _g.get('REV'))
+    def cuadro_variante(v: str, pose):
+        previa = personaje.variante
+        personaje.variante = v
+        try:
+            return personaje.cuadro(pose)
+        finally:
+            personaje.variante = previa
 
-        envoltura._criaturas_ids = set(hechos) | {personaje.id}
-        g['empaquetar'] = envoltura
-
-
-def empaquetar_variantes(P, variantes, cuadros0, anims, fw, fh, pivote, tipo, alto, columnas=8, extra=None,
-                         rev_dir=None):
-    pid = P.id
-    previa = getattr(P, 'variante', variantes[0])
-    por_var: Dict[str, Dict[str, List[np.ndarray]]] = {}
-    for v in variantes:
-        if v == previa:
-            por_var[v] = cuadros0
-            continue
-        P.variante = v
-        por_var[v] = {m: [P.cuadro(p) for p in anims[m].poses] for m in cuadros0}
-    P.variante = previa
-    claves: Dict[bytes, int] = {}
-    orden: List[Tuple[str, int]] = []
-    animaciones = {}
-    for m, lista in cuadros0.items():
-        idxs = []
-        for n in range(len(lista)):
-            k = b''.join(por_var[v][m][n].tobytes() for v in variantes)
-            if k not in claves:
-                claves[k] = len(orden)
-                orden.append((m, n))
-            idxs.append(claves[k])
-        a = anims[m]
-        animaciones[m] = {'frames': idxs, 'fps': a.fps, 'loop': a.loop}
-    npv = len(orden)
-    total = npv * len(variantes)
-    cols = min(columnas, total)
-    rows = (total + cols - 1) // cols
-    sheet = np.zeros((rows * fh, cols * fw, 4), np.uint8)
-    frames = []
-    for vi, v in enumerate(variantes):
-        for i, (m, n) in enumerate(orden):
-            gi = vi * npv + i
-            x, y = (gi % cols) * fw, (gi // cols) * fh
-            sheet[y:y + fh, x:x + fw] = por_var[v][m][n]
-            vista = 'lado_der' if (m == 'reposo' and n == 0) else f'{m}_{n + 1}'
-            frames.append({'name': f'{pid}_{v}_{m}_{n + 1}', 'vista': vista, 'x': x, 'y': y, 'w': fw, 'h': fh})
-    js = {
-        'personaje': pid,
-        'tipo': tipo,
-        'frameWidth': fw,
-        'frameHeight': fh,
-        'pivot': {'x': pivote[0], 'y': pivote[1]},
-        'frames': frames,
-        'escala': 1,
-        'animaciones': animaciones,
-        'cuadrosPorVariante': npv,
-        'generadoPor': 'tools/pixel/generar.py',
-        'alto': alto,
-        'variants': list(variantes),
-    }
-    if extra:
-        js.update(extra)
-    if rev_dir:
-        os.makedirs(rev_dir, exist_ok=True)
-        for v in variantes:
+    def revision_variantes(pid, por_var, anims, pivote, rev_dir):
+        for v in vs:
             hoja_revision(pid, por_var[v], anims, 4, pivote).save(os.path.join(rev_dir, f'{pid}_{v}.png'))
-    print(f'  {pid}: variantes {variantes}, {npv} cuadros por variante')
-    return sheet, js
+        print(f'  {pid}: variantes {vs}, {sum(len(l) for l in por_var[vs[0]].values())} poses por variante')
+
+    return vs, cuadro_variante, revision_variantes
 
 
 # =============================================================================================

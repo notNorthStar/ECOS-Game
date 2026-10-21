@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lib import Anim, Capa, Mapa, Material, Paleta, Pose, dir_ang, mas, previo  # noqa: E402
 from manos import dibujar_mano  # noqa: E402
 from anim_humano import animaciones_humanas  # noqa: E402
-from personajes._espectros import RigEspectro, eje, instalar_variantes, motas, registrar_fondo, torso_vacio  # noqa: E402
+from personajes._espectros import RigEspectro, eje, kit_variantes, motas, torso_vacio  # noqa: E402
 
 NAVY = '#141c2c'
 ECTO = ['#2c3c56', '#4d6684', '#7e98b2', '#b2c6d8', '#e2ecf4']
@@ -299,8 +299,8 @@ def lerp(a, b, t):
 
 
 PERSONAJE = Espiritu()
-instalar_variantes('espiritu', PERSONAJE, ['hombre', 'mujer'])
-registrar_fondo('espiritu', 'nivel-03-catemaco', 'altar_olmeca', 296)
+VARIANTES_KIT, cuadro_variante, revision_variantes = kit_variantes(PERSONAJE, ['hombre', 'mujer'])
+FONDO = ('nivel-03-catemaco', 'altar_olmeca', 296)
 
 # ------------------------------------------------------------------------------------------------
 # Animaciones (flotando: pies colgando, la túnica ondula; 'fase' mueve las ondas, 'viento' alarga los jirones)

@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lib import Anim, Capa, Mapa, Material, Paleta, Pose, dir_ang, mas, mat_rot  # noqa: E402
 from manos import dibujar_mano  # noqa: E402
 from anim_humano import animaciones_humanas, CAMINAR  # noqa: E402
-from personajes._espectros import RigEspectro, eje, motas, registrar_fondo, torso_vacio  # noqa: E402
+from personajes._espectros import RigEspectro, eje, motas, torso_vacio  # noqa: E402
 
 PAL = Paleta([
     # 'piel' = venda (las manos de manos.py usan 'piel')
@@ -251,7 +251,7 @@ def lerp(a, b, t):
 
 
 PERSONAJE = Momia()
-registrar_fondo('momia', 'nivel-07-cdmx2', 'torre', 300)
+FONDO = ('nivel-07-cdmx2', 'torre', 300)
 
 BASE = Pose(tronco=8, cabeza=6, hombro_c=8, codo_c=16, hombro_l=-2, codo_l=14,
             muslo_c=6, rodilla_c=8, pie_c=0, muslo_l=-6, rodilla_l=6, pie_l=0, mano_c='abierta', mano_l='abierta')

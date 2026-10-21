@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lib import Anim, Capa, Material, Paleta, Pose, dir_ang, mas  # noqa: E402
 from manos import dibujar_mano  # noqa: E402
 from anim_humano import animaciones_humanas, CAMINAR  # noqa: E402
-from personajes._espectros import RigEspectro, eje, motas, registrar_fondo, torso_vacio  # noqa: E402
+from personajes._espectros import RigEspectro, eje, motas, torso_vacio  # noqa: E402
 
 PAL = Paleta([
     Material('piel',    ['#686270', '#a39aa4', '#d2cac6', '#efe8e0'],  '#28202e'),
@@ -284,7 +284,7 @@ def lerp_p(a, b, t):
 
 
 PERSONAJE = Vampiro()
-registrar_fondo('vampiro', 'nivel-10-guadalajara', 'catedral', 310)
+FONDO = ('nivel-10-guadalajara', 'catedral', 310)
 
 BASE = Pose(tronco=2, cabeza=2, hombro_c=6, codo_c=16, hombro_l=-6, codo_l=14,
             muslo_c=5, rodilla_c=3, pie_c=0, muslo_l=-4, rodilla_l=2, pie_l=0, mano_c='abierta', mano_l='abierta')

@@ -13,7 +13,8 @@ import {
 /**
  * EL REY DEL OLVIDO (jefe del Nivel 7, contratos §5). kitId 'rey_olvido'; si el equipo no entregó el kit,
  * PLACEHOLDER SIMPLE (AGENTS §8.0): humanoide imponente (~88 px con la corona, cuadro 96×96, pies en y = 94),
- * túnica oscura y capa. La CORONA se dibuja aparte (brilla, se agrieta y se rompe) para que se lea siempre.
+ * túnica oscura y capa. Con el placeholder la CORONA se dibuja aparte (brilla, se agrieta y se rompe). Con el kit
+ * de pixel art la corona viene en el sprite: variante 'corona' / 'sin_corona' (al romperse) y un brillo encima.
  *
  * - Se activa con el jugador a < activateRadius (el director llama lockArena). Barra de jefe como los demás.
  * - CORONA con vida propia ('rey:crown' {hp, max, broken}). Solo SOL o FUEGO la dañan, y solo en su VENTANA
@@ -113,6 +114,8 @@ export class ReyClon extends EnemyBase {
       kitId: 'rey_olvido',
     });
     this.group = owner.group;
+    // El kit trae la corona dibujada: el clon copia al Rey (con o sin corona).
+    this.kit?.setVariant(owner.crownBroken ? 'sin_corona' : 'corona');
     this.sideBias = this.uid % 2 ? 1 : -1;
     this.setBaseTint(hexColor(R.colors.clone));
     this.sprite.setAlpha(0);
@@ -318,6 +321,9 @@ export class ReyOlvido extends EnemyBase {
     this.pulseGfx = scene.add.graphics();
     this.crownGlow = scene.add.image(x, y, FB.glow).setBlendMode(Phaser.BlendModes.ADD).setTint(hexColor(R.colors.crownGlow)).setAlpha(0.5);
     this.crown = scene.add.image(x, y, CROWN_TEX).setOrigin(0.5, 1);
+    // Con el kit la corona ya viene dibujada en el sprite (variante 'corona'); al romperse pasa a 'sin_corona'.
+    // La corona por código queda solo para el placeholder.
+    this.kit?.setVariant('corona');
     this.eye = scene.add.image(x, y, FB.glow).setBlendMode(Phaser.BlendModes.ADD).setTint(hexColor(R.colors.eyes)).setScale(0.22);
     // El grito de la Llorona (aliada, dueño: sistemas) aturde al Rey y disipa clones.
     bus.scoped(scene, 'llorona:scream', (ev) => this.onScream(ev.x, ev.y));
@@ -607,8 +613,11 @@ export class ReyOlvido extends EnemyBase {
     this.set('beamFire');
   }
 
+  /** Base de la corona (su centro queda 6 px más arriba). Con el kit, la del sprite (crown.dx/dy); sin él, la del placeholder. */
   private crownPos(): { x: number; y: number } {
-    return { x: this.x + this.facing * 2, y: this.y - this.z - this.bob - this.height + R.crown.offsetY };
+    // Aturdido (ventana) el sprite se encorva y la cabeza baja y se adelanta: 'bowed'.
+    const k = this.kit ? (this.st === 'window' ? R.crown.bowed : R.crown) : { dx: 2, dy: 80 };
+    return { x: this.x + this.facing * k.dx, y: this.y - this.z - this.bob - k.dy };
   }
 
   private updateBeams(dt: number): void {
@@ -1050,6 +1059,8 @@ export class ReyOlvido extends EnemyBase {
     const calmed = this.st === 'calmed';
     const exposed = this.st === 'window' && !this.crownBroken;
     const visible = !this.crownBroken && !calmed;
+    // Con el kit: una sola corona, la del sprite. Rota → variante sin corona.
+    this.kit?.setVariant(this.crownBroken ? 'sin_corona' : 'corona');
     // Corona: se agrieta (se apaga) al perder vida; en su ventana brilla naranja.
     const k = this.crownHp / R.crown.hp;
     const base = Phaser.Display.Color.Interpolate.ColorWithColor(
@@ -1057,7 +1068,7 @@ export class ReyOlvido extends EnemyBase {
     );
     const tint = exposed ? hexColor(R.colors.crownExposed) : Phaser.Display.Color.GetColor(base.r, base.g, base.b);
     this.crown
-      .setVisible(visible)
+      .setVisible(visible && !this.kit)
       .setPosition(Math.round(c.x), Math.round(c.y))
       .setFlipX(this.facing < 0)
       .setTint(tint)
@@ -1066,12 +1077,13 @@ export class ReyOlvido extends EnemyBase {
       .setVisible(visible)
       .setPosition(c.x, c.y - 6)
       .setTint(exposed ? hexColor(R.colors.crownExposed) : hexColor(R.colors.crownGlow))
-      .setScale(exposed ? 1.3 + 0.2 * Math.sin(t * 10) : 0.8 + 0.08 * Math.sin(t * 3))
-      .setAlpha(exposed ? 0.85 : 0.35 + 0.2 * k)
+      .setScale(exposed ? 1.3 + 0.2 * Math.sin(t * 10) : (this.kit ? 0.5 : 0.8) + 0.08 * Math.sin(t * 3))
+      .setAlpha(exposed ? 0.85 : (this.kit ? 0.2 + 0.25 * k : 0.35 + 0.2 * k))
       .setDepth(this.y + 0.05);
     const top = this.y - this.z - this.bob;
+    const eye = this.kit ? (this.st === 'window' ? R.eye.bowed : R.eye) : { dx: 3, dy: 75 };
     this.eye
-      .setPosition(this.x + this.facing * 3, top - 75)
+      .setPosition(this.x + this.facing * eye.dx, top - eye.dy)
       .setAlpha(calmed || this.st === 'dormant' ? 0 : 0.6 + 0.3 * Math.sin(t * 4))
       .setScale(this.rageT > 0 ? 0.32 : 0.22)
       .setTint(this.rageT > 0 ? 0xff60c0 : hexColor(R.colors.eyes))

@@ -11,9 +11,8 @@ Don Ernesto). Se apoya en `lib.py` / `humanoide.py` sin modificarlos.
   * `capa_trasera(...)`: capa que cae de los hombros por detrás, ondea con el viento y termina en jirones.
   * `rasgar(...)`: borde inferior en jirones (diente de sierra irregular pero determinista).
   * Efectos sin contorno: `chispas`, `humo`, `estela`.
-  * `instalar_variantes(...)`: empaquetado con variantes (`variants` + `cuadrosPorVariante`) cuando se
-    genera con `tools/pixel/generar.py`, que solo sabe empaquetar una variante: se envuelve su `empaquetar`
-    desde aquí (sin editar generar.py) y además se escribe una hoja de revisión por variante.
+  * `kit_variantes(variantes, render)`: lo que `generar.py` necesita para empaquetar todas las variantes en una
+    hoja (`variants` + `cuadrosPorVariante`); la revisión extra es `revision/<id>_variantes.png`.
 """
 from __future__ import annotations
 
@@ -386,92 +385,26 @@ def desvanecer(img: np.ndarray, k: float, semilla: int = 0) -> np.ndarray:
 
 
 # =============================================================================================
-#  Empaquetado con variantes (envuelve el empaquetar de generar.py sin editarlo)
+#  Variantes en el kit (las empaqueta generar.py)
 # =============================================================================================
 
-def instalar_variantes(pid: str, variantes: Sequence[str], render: Callable[[str, Pose], np.ndarray]):
-    """Cuando `tools/pixel/generar.py` empaquete `pid`, vuelve a dibujar cada pose en cada variante y arma la hoja
-    con bloques consecutivos de `cuadrosPorVariante` cuadros (el formato que lee CharacterKits.ts).
-    La primera variante es la que generar.py ya dibujó (y la que muestra su hoja de revisión); además se guarda
-    `arte-fuente/pixel/revision/<pid>_variantes.png` con el reposo, caminar, ataque y conjuro de cada una."""
-    for nombre in ('__main__', 'generar'):
-        g = sys.modules.get(nombre)
-        if g is None or not hasattr(g, 'empaquetar') or getattr(g, 'GEN', None) != 'tools/pixel/generar.py':
-            continue
-        orig = g.empaquetar
-        if getattr(orig, '_variantes', None) is not None:
-            orig._variantes[pid] = (list(variantes), render)
-            continue
+def kit_variantes(variantes: Sequence[str], render: Callable[[str, Pose], np.ndarray]):
+    """(VARIANTES_KIT, cuadro_variante, revision_variantes) para `generar.py`. `render(v, pose)` dibuja la pose
+    en la variante `v` (la primera es la que dibuja `PERSONAJE.cuadro` tal cual). La revisión extra,
+    `arte-fuente/pixel/revision/<pid>_variantes.png`, muestra reposo, caminar, ataque, conjuro… de cada una."""
+    vs = list(variantes)
 
-        def envuelto(p, cuadros, anims, fw, fh, pivote, tipo, alto, columnas=8, extra=None, _orig=orig, _g=g):
-            reg = envuelto._variantes.get(p)
-            if not reg:
-                return _orig(p, cuadros, anims, fw, fh, pivote, tipo, alto, columnas, extra)
-            vs, rend = reg
-            return _empaquetar_variantes(p, vs, rend, cuadros, anims, fw, fh, pivote, tipo, alto, columnas, extra,
-                                         getattr(_g, 'REV', None))
-
-        envuelto._variantes = {pid: (list(variantes), render)}
-        g.empaquetar = envuelto
-
-
-def _empaquetar_variantes(pid, vs, render, cuadros0, anims, fw, fh, pivote, tipo, alto, columnas, extra, rev_dir):
-    from lib import contar_colores
-    # cuadros de cada variante (la primera ya viene dibujada)
-    por_var: Dict[str, Dict[str, List[np.ndarray]]] = {vs[0]: cuadros0}
-    for v in vs[1:]:
-        por_var[v] = {m: [render(v, pose) for pose in anims[m].poses] for m in cuadros0}
-    # índices únicos compartidos: la clave es la tupla de los cuadros de TODAS las variantes
-    claves: Dict[bytes, int] = {}
-    unicos: List[Tuple[str, int]] = []
-    animaciones = {}
-    for motion, lista in cuadros0.items():
-        idxs = []
-        for n in range(len(lista)):
-            k = b''.join(por_var[v][motion][n].tobytes() for v in vs)
-            if k not in claves:
-                claves[k] = len(unicos)
-                unicos.append((motion, n))
-            idxs.append(claves[k])
-        a = anims[motion]
-        animaciones[motion] = {'frames': idxs, 'fps': a.fps, 'loop': a.loop}
-    n = len(unicos)
-    total = n * len(vs)
-    cols = min(columnas, total)
-    rows = (total + cols - 1) // cols
-    sheet = np.zeros((rows * fh, cols * fw, 4), np.uint8)
-    frames = []
-    for vi, v in enumerate(vs):
-        for i, (motion, k) in enumerate(unicos):
-            j = vi * n + i
-            x, y = (j % cols) * fw, (j // cols) * fh
-            sheet[y:y + fh, x:x + fw] = por_var[v][motion][k]
-            vista = 'lado_der' if (i == 0) else f'{motion}_{k + 1}'
-            frames.append({'name': f'{pid}_{v}_{motion}_{k + 1}', 'vista': vista, 'x': x, 'y': y, 'w': fw, 'h': fh})
-    for v in vs:
-        nc = contar_colores([por_var[v][m][k] for m, k in unicos])
-        print(f'  variante {v}: {nc} colores' + ('  AVISO más de 32' if nc > 32 else ''))
-    js = {
-        'personaje': pid, 'tipo': tipo, 'frameWidth': fw, 'frameHeight': fh,
-        'pivot': {'x': pivote[0], 'y': pivote[1]}, 'frames': frames, 'escala': 1, 'animaciones': animaciones,
-        'cuadrosPorVariante': n, 'generadoPor': 'tools/pixel/generar.py', 'alto': alto, 'variants': list(vs),
-    }
-    if extra:
-        js.update(extra)
-    if rev_dir:
+    def revision_variantes(pid, por_var, anims, pivote, rev_dir):
         try:
-            os.makedirs(rev_dir, exist_ok=True)
-            sel = [m for m in ('reposo', 'caminar', 'correr', 'ataque', 'conjuro', 'dano', 'aturdido', 'morir') if m in cuadros0]
-            filas = {}
-            an = {}
+            from lib import Anim
+            sel = [m for m in ('reposo', 'caminar', 'correr', 'ataque', 'conjuro', 'dano', 'aturdido', 'morir')
+                   if m in por_var[vs[0]]]
+            filas, an = {}, {}
             for v in vs:
-                lst = []
-                for m in sel:
-                    lst += por_var[v][m]
-                filas[v] = lst
-                from lib import Anim
+                filas[v] = [im for m in sel for im in por_var[v][m]]
                 an[v] = Anim([], 0, False)
             hoja_revision(pid, filas, an, 3, pivote).save(os.path.join(rev_dir, f'{pid}_variantes.png'))
         except Exception as e:  # la revisión no debe tumbar el kit
             print('  (no se pudo escribir la revisión de variantes:', e, ')')
-    return sheet, js
+
+    return vs, render, revision_variantes

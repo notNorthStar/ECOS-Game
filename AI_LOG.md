@@ -105,6 +105,11 @@
 **Qué resultó:** seis subagentes (arte, enemigos, contenido, interfaz, mecánicas, bugs) más integración: 24 kits animados por cuadros desde las hojas de Codex (`tools/codex-sheets.py`), protagonista y madre ajustados por código, Bruja Guajolote ave y detalles de Don Ernesto dibujados por código; momias, Vampiro y Don Ernesto; final extendido; `CargaScene` con imágenes sin spoilers y 33 consejos; Pixelify Sans en todo el juego; barra de vida; cooldowns; auditoría de niveles (`tools/auditar-niveles.mjs`). Pruebas: 176 en total, todas pasan; probado en navegador Guadalajara de punta a punta.
 **Qué decidió o modificó el equipo:** el arte de Codex (hojas de 24 poses) y los concept arts de carga son del equipo; ajustes por código del protagonista y la madre; momias, Vampiro (Catedral) y Don Ernesto monstruoso (avenida); `bestia-2` como nahual; cooldowns propuestos; fuente pixel legible; una imagen y un consejo por carga.
 
+## 2026-10-21 · Claude Code (Anthropic, Claude Opus 5.5) · Pixel art propio (rama `pixel-art-propio`)
+**Qué se pidió:** cambiar todos los personajes por pixel art construido pixel a pixel, con todas sus animaciones, basado en los concept arts y las hojas de Codex, para que coincida con el estilo de los fondos y con más detalle; protagonista como joven adulto (18–20 años), mismo tamaño (~72 px). Primero un piloto.
+**Qué resultó:** `tools/pixel/` (biblioteca de dibujo por capas, rig 2D de poses, manos de LSM, `generar.py` con variantes) y un módulo por personaje en `tools/pixel/personajes/`. Piloto (protagonista, madre, Chaneque Mayor) y luego cinco subagentes en paralelo para los otros 21 kits; un sexto integró en el juego (brillos de ojos, alturas en `enemies.json`, Rey con variante `sin_corona`, alas de Itzpapálotl en el sprite, muñeca que se rompe con su propia animación, disparo a la altura de la pistola). Kits de Codex respaldados en `arte-fuente/kits-codex/`; hojas de revisión y capturas en `arte-fuente/pixel/`. Pruebas y auditoría pasan; revisado en navegador nivel por nivel.
+**Qué decidió o modificó el equipo:** pidió el cambio, aprobó el piloto y la edad del protagonista; los diseños siguen las hojas de Codex del equipo.
+
 <!-- Plantilla para nuevas entradas:
 ## AAAA-MM-DD HH:MM · <herramienta>
 **Qué se pidió:**

@@ -17,8 +17,9 @@ import { kitAnimatorFor, type KitAnimator } from './CharacterKits';
 const TEX = { body: '__balam_ph', eye: '__balam_ojo' };
 /** Placeholder: cuadro 32×24, pies en y = 22, mirando a la derecha. */
 const FRAME = { w: 32, h: 24, feetY: 22 };
-/** Ojos respecto a los pies (mirando a la derecha). */
+/** Ojos respecto a los pies (mirando a la derecha): del placeholder y del kit de pixel art (ojo verde dibujado). */
 const EYES = { x: 8, y: -13, gap: 2 };
+const EYES_KIT = { x: 12, y: -24, gap: 2 };
 
 let pendingSpawn: { x: number; y: number } | null = null;
 let current: { x: number; y: number } | null = null;
@@ -167,10 +168,11 @@ export function installBalam(world: WorldApi): void {
     const target = GameState.luna.active ? 1 : 0;
     eyeGlow += (target - eyeGlow) * Math.min(1, realDt * 6);
     const pulse = GameState.settings.reduceFx ? 1 : 0.8 + 0.2 * Math.sin(time * 6);
-    const ex = sprite.x + facing * EYES.x;
-    const ey = sprite.y + EYES.y;
+    const E = kit ? EYES_KIT : EYES;
+    const ex = sprite.x + facing * E.x;
+    const ey = sprite.y + E.y;
     eyes.forEach((e, i) => {
-      e.setPosition(ex + facing * EYES.gap * i, ey)
+      e.setPosition(ex + facing * E.gap * i, ey)
         .setDepth(cat.y + 0.2)
         .setAlpha(0.15 + 0.85 * eyeGlow * pulse)
         .setScale(0.8 + 0.7 * eyeGlow);

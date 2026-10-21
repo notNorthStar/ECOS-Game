@@ -363,11 +363,12 @@ export class Muneca extends EnemyBase {
   }
 
   private placeEyes(): void {
-    const head = this.y - this.z - this.bob - this.fullHeight * 0.95;
+    // Con el kit: el ojo dibujado (eye.dx/dy sobre los pies, igual en las 4 muñecas); sin él, el placeholder.
+    const head = this.y - this.z - this.bob - (this.kit ? M.eye.dy : 28);
     const on = this.st !== 'hidden' && this.st !== 'freed' && this.st !== 'broken';
     const pulse = 0.6 + 0.4 * Math.sin(this.scene.time.now / 120 + this.uid);
     this.eyes
-      .setPosition(this.x + this.facing * 2, head)
+      .setPosition(this.x + this.facing * (this.kit ? M.eye.dx : 2), head)
       .setAlpha(on ? (this.isAttacking ? 1 : pulse) * this.sprite.alpha : 0)
       .setScale(this.isAttacking ? 0.26 : 0.18)
       .setDepth(this.y + FX_DEPTH_BIAS);
@@ -450,7 +451,11 @@ export class Muneca extends EnemyBase {
     const c = M.colors;
     const top = this.y - this.z;
     const depth = this.y + FX_DEPTH_BIAS;
-    for (let i = 0; i < M.pieces; i++) {
+    // Con el kit, el propio sprite se rompe ('morir': la cabeza se suelta y cae): se deja como decorado que se
+    // desvanece y solo saltan unas pocas astillas por código (sin duplicar la muñeca en pedazos).
+    const leftover = this.playLeftover('morir', byFire ? 0x8a7468 : undefined);
+    const pieces = leftover ? Math.ceil(M.pieces / 3) : M.pieces;
+    for (let i = 0; i < pieces; i++) {
       const cloth = i % 2 === 0;
       const pal = cloth ? c.cloth : c.porcelain;
       const col = hexColor(pal[i % pal.length]);
@@ -474,6 +479,24 @@ export class Muneca extends EnemyBase {
     burst(this.scene, 'smoke', this.x, top - 10, depth, 4);
     bus.emit('ecos:gained', { amount: this._ecos, x: this.x, y: this.y - 20 });
     this.leaveWorld();
+  }
+
+  /** Deja en el sitio una copia del sprite que reproduce una vez el motion del kit y se desvanece. */
+  private playLeftover(motion: string, tint?: number): Phaser.GameObjects.Image | null {
+    const kit = this.kit;
+    const anim = kit?.kit.anims?.[motion];
+    if (!kit || !anim) return null;
+    const sp = this.sprite;
+    const off = Math.max(0, (kit.kit.variants ?? []).indexOf(kit.variant ?? '')) * kit.kit.framesPerVariant;
+    const rest = this.scene.add.image(sp.x, sp.y, kit.kit.texture, anim.frames[0] + off)
+      .setOrigin(sp.originX, sp.originY).setDepth(sp.depth).setFlipX(sp.flipX).setScale(sp.scaleX, sp.scaleY);
+    if (tint !== undefined) rest.setTint(tint);
+    const step = 1000 / anim.fps;
+    anim.frames.forEach((f, i) => {
+      if (i > 0) this.scene.time.delayedCall(i * step, () => rest.active && rest.setFrame(f + off));
+    });
+    this.scene.tweens.add({ targets: rest, alpha: 0, delay: anim.frames.length * step + M.inertSeconds * 500, duration: 700, onComplete: () => rest.destroy() });
+    return rest;
   }
 
   /** DESCANSO: el alma sale como una lucecita y la muñeca queda inerte (Ecos con bono). */

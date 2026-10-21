@@ -8,7 +8,7 @@
 
 Al purificarse el brillo de los ojos pasa a turquesa sereno; al morir caen de rodillas y se deshacen en humo.
 
-Rig: `_criaturas.BestiaBipeda` (sobre Humanoide). Ambas variantes van en la misma hoja: `instalar_variantes` hace
+Rig: `_criaturas.BestiaBipeda` (sobre Humanoide). Ambas variantes van en la misma hoja: `VARIANTES_KIT` hace
 que `generar.py` escriba `variants: ['lobo', 'ave']` y `cuadrosPorVariante`."""
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from lib import Material, Paleta, Pose, mas  # noqa: E402
-from personajes._criaturas import BestiaBipeda, animaciones_bestia, instalar_variantes  # noqa: E402
+from personajes._criaturas import BestiaBipeda, animaciones_bestia, kit_variantes  # noqa: E402
 
 PAL = Paleta([
     Material('piel_lobo', ['#1e120e', '#3a2418', '#5c3a24', '#8a5a34'],  '#140a08'),
@@ -165,4 +165,4 @@ def animaciones():
 
 
 PERSONAJE = NahualAnimal()
-instalar_variantes(PERSONAJE, ['lobo', 'ave'])
+VARIANTES_KIT, cuadro_variante, revision_variantes = kit_variantes(PERSONAJE, ['lobo', 'ave'])

@@ -23,7 +23,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lib import Anim, Capa, Material, Paleta, Pose, dir_ang, fk_brazo, mas  # noqa: E402
 from manos import dibujar_mano  # noqa: E402
 from anim_humano import animaciones_humanas  # noqa: E402
-from personajes._espectros import (RigEspectro, eje, instalar_variantes, motas, registrar_fondo,  # noqa: E402
+from personajes._espectros import (RigEspectro, eje, kit_variantes, motas,  # noqa: E402
                                    torso_vacio)
 
 PIEL = ['#6a6070', '#a49aa2', '#d6cec8', '#f2ece2']
@@ -368,8 +368,8 @@ def lerp(a, b, t):
 
 
 PERSONAJE = Muneca()
-instalar_variantes('muneca', PERSONAJE, ['1', '2', '3', '4'])
-registrar_fondo('muneca', 'nivel-06-cdmx', 'xochimilco', 300)
+VARIANTES_KIT, cuadro_variante, revision_variantes = kit_variantes(PERSONAJE, ['1', '2', '3', '4'])
+FONDO = ('nivel-06-cdmx', 'xochimilco', 300)
 
 BASE = Pose(tronco=2, cabeza=0, hombro_c=8, codo_c=10, hombro_l=-6, codo_l=8,
             muslo_c=4, rodilla_c=2, pie_c=0, muslo_l=-4, rodilla_l=2, pie_l=0, mano_c='abierta', mano_l='abierta')

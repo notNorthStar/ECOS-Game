@@ -74,8 +74,8 @@ export const HURT = {
 /** Disparo: el jugador solo PIDE el disparo; Combat decide. */
 export const SHOOT = {
   /** Altura del cañón sobre los pies (z del disparo = z del jugador + esto). */
-  muzzleZ: 43,
-  muzzleX: 24,
+  muzzleZ: 51,
+  muzzleX: 30,
   /** Repetición al mantener X o clic izquierdo (s). */
   holdRepeat: 0.24,
 } as const;

@@ -29,7 +29,7 @@ El JSON trae además del formato del kit:
 - `"animaciones": { "<motion>": { "frames": [i…], "fps": n, "loop": bool } }` — índices dentro de la variante.
 - `"escala"` — multiplicador de tamaño en pantalla (el animador lo multiplica por la escala de la entidad).
 - `"variants"` + `"cuadrosPorVariante"` — versiones del mismo personaje (encapuchado `rojo/negro/elite`,
-  espiritu `hombre/mujer`, bestia `1/3`, muneca `1…4`). En código: `kitAnimatorFor(sprite, id, variante)` o
+  espiritu `hombre/mujer`, bestia `1/3`, muneca `1…4`, nahual_animal `lobo/ave`, rey_olvido `corona/sin_corona`). En código: `kitAnimatorFor(sprite, id, variante)` o
   `animador.setVariant(variante)`; sin variante se elige una estable por sprite.
 
 ids: protagonista, madre, chaneque, chaneque_mayor, encapuchado, espiritu, cabeza_olmeca, balam, balam_jaguar,

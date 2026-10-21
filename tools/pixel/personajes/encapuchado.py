@@ -27,7 +27,7 @@ from lib import Anim, Capa, Mapa, Material, Paleta, Pose, dir_ang, mas, mat_rot 
 from manos import dibujar_mano  # noqa: E402
 from anim_humano import animaciones_humanas  # noqa: E402
 from personajes._humanoides import (HumanoideX, capa_trasera, chispas, desvanecer, falda, humo,  # noqa: E402
-                                    instalar_variantes, rasgar, variante)
+                                    kit_variantes, rasgar, variante)
 
 VARIANTES = ('rojo', 'negro', 'elite')
 
@@ -404,4 +404,4 @@ def _render(v, pose):
         usar_variante('rojo')
 
 
-instalar_variantes('encapuchado', VARIANTES, _render)
+VARIANTES_KIT, cuadro_variante, revision_variantes = kit_variantes(VARIANTES, _render)

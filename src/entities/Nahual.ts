@@ -698,8 +698,12 @@ export class Nahual extends EnemyBase {
     if (this.disguised) eyeA = luna ? 0.5 : 0;
     else if (this.animal && this.st !== 'purifying' && this.st !== 'exhausted') eyeA = 0.75 * this.sprite.alpha;
     const top = this.y - this.z - this.bob;
-    const ex = this.disguised ? this.x + this.facing * 3 : this.x + this.facing * 34;
-    const ey = this.disguised ? top - HU.height * 0.8 : top - AN.height * 0.82;
+    // Con los kits: el ojo dibujado (humano; lobo o ave según la variante de la forma animal).
+    const eye = this.disguised
+      ? (this.kit ? HU.eye : { dx: 3, dy: 56 })
+      : this.animalKit ? (AN.eye as Record<string, { dx: number; dy: number }>)[this.animalKit.variant ?? 'lobo'] ?? AN.eye.lobo : { dx: 34, dy: 38 };
+    const ex = this.x + this.facing * eye.dx;
+    const ey = top - eye.dy;
     this.eyes.setPosition(ex, ey).setAlpha(eyeA).setDepth(this.y + FX_DEPTH_BIAS);
   }
 
