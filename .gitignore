@@ -27,3 +27,5 @@ desktop.ini
 *.mov
 *.mp4
 *.zip
+
+__pycache__/
