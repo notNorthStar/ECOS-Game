@@ -1,10 +1,10 @@
 {
  "personaje": "vampiro",
  "tipo": "humanoide",
- "frameWidth": 120,
+ "frameWidth": 122,
  "frameHeight": 105,
  "pivot": {
-  "x": 60,
+  "x": 61,
   "y": 103
  },
  "frames": [
@@ -13,47 +13,47 @@
    "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_reposo_2",
    "vista": "reposo_2",
-   "x": 120,
+   "x": 122,
    "y": 0,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_caminar_1",
    "vista": "caminar_1",
-   "x": 240,
+   "x": 244,
    "y": 0,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_caminar_2",
    "vista": "caminar_2",
-   "x": 360,
+   "x": 366,
    "y": 0,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_caminar_3",
    "vista": "caminar_3",
-   "x": 480,
+   "x": 488,
    "y": 0,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_caminar_4",
    "vista": "caminar_4",
-   "x": 600,
+   "x": 610,
    "y": 0,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
@@ -61,47 +61,47 @@
    "vista": "correr_1",
    "x": 0,
    "y": 105,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_correr_2",
    "vista": "correr_2",
-   "x": 120,
+   "x": 122,
    "y": 105,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_correr_3",
    "vista": "correr_3",
-   "x": 240,
+   "x": 244,
    "y": 105,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_correr_4",
    "vista": "correr_4",
-   "x": 360,
+   "x": 366,
    "y": 105,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_preparar",
    "vista": "preparar",
-   "x": 480,
+   "x": 488,
    "y": 105,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_atacar",
    "vista": "atacar",
-   "x": 600,
+   "x": 610,
    "y": 105,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
@@ -109,47 +109,47 @@
    "vista": "guardia",
    "x": 0,
    "y": 210,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_conjuro",
    "vista": "conjuro",
-   "x": 120,
+   "x": 122,
    "y": 210,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_lanzar_1",
    "vista": "lanzar_1",
-   "x": 240,
+   "x": 244,
    "y": 210,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_lanzar_2",
    "vista": "lanzar_2",
-   "x": 360,
+   "x": 366,
    "y": 210,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_salto",
    "vista": "salto",
-   "x": 480,
+   "x": 488,
    "y": 210,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_caida",
    "vista": "caida",
-   "x": 600,
+   "x": 610,
    "y": 210,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
@@ -157,47 +157,47 @@
    "vista": "agacharse",
    "x": 0,
    "y": 315,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_esquivar",
    "vista": "esquivar",
-   "x": 120,
+   "x": 122,
    "y": 315,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_golpe_bajo",
    "vista": "golpe_bajo",
-   "x": 240,
+   "x": 244,
    "y": 315,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_dano",
    "vista": "dano",
-   "x": 360,
+   "x": 366,
    "y": 315,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_derrota",
    "vista": "derrota",
-   "x": 480,
+   "x": 488,
    "y": 315,
-   "w": 120,
+   "w": 122,
    "h": 105
   },
   {
    "name": "vampiro_caido",
    "vista": "caido",
-   "x": 600,
+   "x": 610,
    "y": 315,
-   "w": 120,
+   "w": 122,
    "h": 105
   }
  ],
@@ -360,8 +360,8 @@
  "generadoPor": "tools/codex-sheets.py",
  "fuente": {
   "vampiro": {
-   "escala_fuente": 0.4167,
-   "alto_de_pie_fuente": 240.0
+   "escala_fuente": 0.4184,
+   "alto_de_pie_fuente": 239.0
   }
  },
  "alto": 100

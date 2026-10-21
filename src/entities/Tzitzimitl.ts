@@ -243,6 +243,8 @@ export class Tzitzimitl extends EnemyBase {
         this.updateIdle(dt);
         break;
       case 'diveWindup':
+        // En la picada y aturdida sigue mirando al jugador (con el kit por cuadros se veía de espaldas).
+        this.facePlayer();
         this.telegraph(0x302050);
         if (this.stT >= T.dive.windup) {
           this.set('diveUp');
@@ -250,18 +252,21 @@ export class Tzitzimitl extends EnemyBase {
         }
         break;
       case 'diveUp': {
+        this.facePlayer();
         const k = Math.min(1, this.stT / T.dive.riseSeconds);
         this.z = T.dive.height * k * k;
         if (k >= 1) this.set('diveAim');
         break;
       }
       case 'diveAim':
+        this.facePlayer();
         // Arriba, fuera de la pantalla: la sombra sigue al jugador.
         this.followGround(p.x, p.y);
         this.drawDiveWarn(false);
         if (this.stT >= T.dive.trackSeconds) this.set('diveWarn');
         break;
       case 'diveWarn':
+        this.facePlayer();
         this.drawDiveWarn(true);
         if (this.stT >= T.dive.warnSeconds) {
           this.set('diveFall');
@@ -269,6 +274,7 @@ export class Tzitzimitl extends EnemyBase {
         }
         break;
       case 'diveFall': {
+        this.facePlayer();
         const k = Math.min(1, this.stT / T.dive.fallSeconds);
         this.z = T.dive.height * (1 - k);
         this.drawDiveWarn(true);
@@ -276,6 +282,7 @@ export class Tzitzimitl extends EnemyBase {
         break;
       }
       case 'diveRecover':
+        this.facePlayer();
         if (this.stT >= T.dive.recover) this.toIdle();
         break;
       case 'rainWindup':
@@ -297,9 +304,11 @@ export class Tzitzimitl extends EnemyBase {
         this.updateCharge(dt);
         break;
       case 'chargeRecover':
+        this.facePlayer();
         if (this.stT >= T.charge.recover) this.toIdle();
         break;
       case 'stunned':
+        this.facePlayer();
         this.stunLeft -= dt;
         if (this.stunLeft <= 0) {
           this.setStars(false);

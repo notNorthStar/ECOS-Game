@@ -95,3 +95,5 @@ Notas:
 - Protagonista y madre: cabeza ×0.80 y cuerpo ×1.18 en las poses erguidas; color con 62 % de saturación y 86 % de brillo.
 - Don Ernesto: piel verde ceniza, ojos que brillan, cuernos sobre el sombrero y doble contorno carmesí.
 - Cabeza Olmeca: la hoja son expresiones (ojos verdes = ataque, X = derrota, ojos cerrados = calma).
+- Dirección: todas las poses deben mirar a la derecha. Celdas espejadas (ESPEJAR): chaneque-mayor.png [0, 1, 2, 3, 4, 12, 16, 20, 22, 23].
+- Hojas oscuras con silueta del canal alfa (HOJAS_MATE): bestia-1, bestia-2, bestia-3, bruja, itzpapalotl, llorona, maria, miembro-cofradia-negro, miembro-cofradia-rojo, miembro-cofradia-rojo-negro, momia, nahual, nahual-humano, nahuala, rey-del-olvido, tzitzimime, vampiro.

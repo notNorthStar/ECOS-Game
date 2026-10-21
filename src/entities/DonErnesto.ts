@@ -241,6 +241,7 @@ export class DonErnesto extends EnemyBase {
         }
         break;
       case 'roulette':
+        this.facePlayer();
         this.updateRoulette();
         break;
       case 'hellfireWindup':
@@ -275,11 +276,14 @@ export class DonErnesto extends EnemyBase {
         break;
       }
       case 'vulnerable':
+        // Aturdido, pero sin darle la espalda al jugador (kit por cuadros).
+        this.facePlayer();
         this.vulnerableLeft -= dt;
         if (Math.random() < dt * 5) burst(this.scene, 'smoke', this.x + rand(-10, 10), this.y - this.height * 0.6, this.y + FX_DEPTH_BIAS, 1);
         if (this.vulnerableLeft <= 0) this.endVulnerable();
         break;
       case 'exhausted':
+        this.facePlayer();
         if (Math.random() < dt * 3) burst(this.scene, 'smoke', this.x + rand(-8, 8), this.y - 30, this.y + FX_DEPTH_BIAS, 1);
         break;
       case 'calmed':

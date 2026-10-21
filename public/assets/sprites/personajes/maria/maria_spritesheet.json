@@ -1,11 +1,11 @@
 {
  "personaje": "maria",
  "tipo": "humanoide",
- "frameWidth": 84,
- "frameHeight": 74,
+ "frameWidth": 82,
+ "frameHeight": 75,
  "pivot": {
-  "x": 42,
-  "y": 72
+  "x": 41,
+  "y": 73
  },
  "frames": [
   {
@@ -13,192 +13,192 @@
    "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 84,
-   "h": 74
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_reposo_2",
    "vista": "reposo_2",
-   "x": 84,
+   "x": 82,
    "y": 0,
-   "w": 84,
-   "h": 74
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_caminar_1",
    "vista": "caminar_1",
-   "x": 168,
+   "x": 164,
    "y": 0,
-   "w": 84,
-   "h": 74
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_caminar_2",
    "vista": "caminar_2",
-   "x": 252,
+   "x": 246,
    "y": 0,
-   "w": 84,
-   "h": 74
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_caminar_3",
    "vista": "caminar_3",
-   "x": 336,
+   "x": 328,
    "y": 0,
-   "w": 84,
-   "h": 74
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_caminar_4",
    "vista": "caminar_4",
-   "x": 420,
+   "x": 410,
    "y": 0,
-   "w": 84,
-   "h": 74
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_correr_1",
    "vista": "correr_1",
    "x": 0,
-   "y": 74,
-   "w": 84,
-   "h": 74
+   "y": 75,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_correr_2",
    "vista": "correr_2",
-   "x": 84,
-   "y": 74,
-   "w": 84,
-   "h": 74
+   "x": 82,
+   "y": 75,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_correr_3",
    "vista": "correr_3",
-   "x": 168,
-   "y": 74,
-   "w": 84,
-   "h": 74
+   "x": 164,
+   "y": 75,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_correr_4",
    "vista": "correr_4",
-   "x": 252,
-   "y": 74,
-   "w": 84,
-   "h": 74
+   "x": 246,
+   "y": 75,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_preparar",
    "vista": "preparar",
-   "x": 336,
-   "y": 74,
-   "w": 84,
-   "h": 74
+   "x": 328,
+   "y": 75,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_atacar",
    "vista": "atacar",
-   "x": 420,
-   "y": 74,
-   "w": 84,
-   "h": 74
+   "x": 410,
+   "y": 75,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_guardia",
    "vista": "guardia",
    "x": 0,
-   "y": 148,
-   "w": 84,
-   "h": 74
+   "y": 150,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_conjuro",
    "vista": "conjuro",
-   "x": 84,
-   "y": 148,
-   "w": 84,
-   "h": 74
+   "x": 82,
+   "y": 150,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_lanzar_1",
    "vista": "lanzar_1",
-   "x": 168,
-   "y": 148,
-   "w": 84,
-   "h": 74
+   "x": 164,
+   "y": 150,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_lanzar_2",
    "vista": "lanzar_2",
-   "x": 252,
-   "y": 148,
-   "w": 84,
-   "h": 74
+   "x": 246,
+   "y": 150,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_salto",
    "vista": "salto",
-   "x": 336,
-   "y": 148,
-   "w": 84,
-   "h": 74
+   "x": 328,
+   "y": 150,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_caida",
    "vista": "caida",
-   "x": 420,
-   "y": 148,
-   "w": 84,
-   "h": 74
+   "x": 410,
+   "y": 150,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_agacharse",
    "vista": "agacharse",
    "x": 0,
-   "y": 222,
-   "w": 84,
-   "h": 74
+   "y": 225,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_esquivar",
    "vista": "esquivar",
-   "x": 84,
-   "y": 222,
-   "w": 84,
-   "h": 74
+   "x": 82,
+   "y": 225,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_golpe_bajo",
    "vista": "golpe_bajo",
-   "x": 168,
-   "y": 222,
-   "w": 84,
-   "h": 74
+   "x": 164,
+   "y": 225,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_dano",
    "vista": "dano",
-   "x": 252,
-   "y": 222,
-   "w": 84,
-   "h": 74
+   "x": 246,
+   "y": 225,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_derrota",
    "vista": "derrota",
-   "x": 336,
-   "y": 222,
-   "w": 84,
-   "h": 74
+   "x": 328,
+   "y": 225,
+   "w": 82,
+   "h": 75
   },
   {
    "name": "maria_caido",
    "vista": "caido",
-   "x": 420,
-   "y": 222,
-   "w": 84,
-   "h": 74
+   "x": 410,
+   "y": 225,
+   "w": 82,
+   "h": 75
   }
  ],
  "escala": 1,
@@ -360,8 +360,8 @@
  "generadoPor": "tools/codex-sheets.py",
  "fuente": {
   "maria": {
-   "escala_fuente": 0.2893,
-   "alto_de_pie_fuente": 242.0
+   "escala_fuente": 0.2905,
+   "alto_de_pie_fuente": 241.0
   }
  },
  "alto": 70

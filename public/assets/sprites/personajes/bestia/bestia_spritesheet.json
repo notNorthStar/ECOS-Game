@@ -2,10 +2,10 @@
  "personaje": "bestia",
  "tipo": "criatura",
  "frameWidth": 98,
- "frameHeight": 89,
+ "frameHeight": 82,
  "pivot": {
   "x": 49,
-  "y": 87
+  "y": 80
  },
  "frames": [
   {
@@ -14,7 +14,7 @@
    "x": 0,
    "y": 0,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_reposo_2",
@@ -22,7 +22,7 @@
    "x": 98,
    "y": 0,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_caminar_1",
@@ -30,7 +30,7 @@
    "x": 196,
    "y": 0,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_caminar_2",
@@ -38,7 +38,7 @@
    "x": 294,
    "y": 0,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_caminar_3",
@@ -46,7 +46,7 @@
    "x": 392,
    "y": 0,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_caminar_4",
@@ -54,343 +54,343 @@
    "x": 490,
    "y": 0,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_correr_1",
    "vista": "correr_1",
    "x": 0,
-   "y": 89,
+   "y": 82,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_correr_2",
    "vista": "correr_2",
    "x": 98,
-   "y": 89,
+   "y": 82,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_correr_3",
    "vista": "correr_3",
    "x": 196,
-   "y": 89,
+   "y": 82,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_correr_4",
    "vista": "correr_4",
    "x": 294,
-   "y": 89,
+   "y": 82,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_preparar",
    "vista": "preparar",
    "x": 392,
-   "y": 89,
+   "y": 82,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_atacar",
    "vista": "atacar",
    "x": 490,
-   "y": 89,
+   "y": 82,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_guardia",
    "vista": "guardia",
    "x": 0,
-   "y": 178,
+   "y": 164,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_conjuro",
    "vista": "conjuro",
    "x": 98,
-   "y": 178,
+   "y": 164,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_lanzar_1",
    "vista": "lanzar_1",
    "x": 196,
-   "y": 178,
+   "y": 164,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_lanzar_2",
    "vista": "lanzar_2",
    "x": 294,
-   "y": 178,
+   "y": 164,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_salto",
    "vista": "salto",
    "x": 392,
-   "y": 178,
+   "y": 164,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_caida",
    "vista": "caida",
    "x": 490,
-   "y": 178,
+   "y": 164,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_agacharse",
    "vista": "agacharse",
    "x": 0,
-   "y": 267,
+   "y": 246,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_esquivar",
    "vista": "esquivar",
    "x": 98,
-   "y": 267,
+   "y": 246,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_golpe_bajo",
    "vista": "golpe_bajo",
    "x": 196,
-   "y": 267,
+   "y": 246,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_dano",
    "vista": "dano",
    "x": 294,
-   "y": 267,
+   "y": 246,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_derrota",
    "vista": "derrota",
    "x": 392,
-   "y": 267,
+   "y": 246,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_1_caido",
    "vista": "caido",
    "x": 490,
-   "y": 267,
+   "y": 246,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_reposo_1",
    "vista": "reposo_1",
    "x": 0,
-   "y": 356,
+   "y": 328,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_reposo_2",
    "vista": "reposo_2",
    "x": 98,
-   "y": 356,
+   "y": 328,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_caminar_1",
    "vista": "caminar_1",
    "x": 196,
-   "y": 356,
+   "y": 328,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_caminar_2",
    "vista": "caminar_2",
    "x": 294,
-   "y": 356,
+   "y": 328,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_caminar_3",
    "vista": "caminar_3",
    "x": 392,
-   "y": 356,
+   "y": 328,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_caminar_4",
    "vista": "caminar_4",
    "x": 490,
-   "y": 356,
+   "y": 328,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_correr_1",
    "vista": "correr_1",
    "x": 0,
-   "y": 445,
+   "y": 410,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_correr_2",
    "vista": "correr_2",
    "x": 98,
-   "y": 445,
+   "y": 410,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_correr_3",
    "vista": "correr_3",
    "x": 196,
-   "y": 445,
+   "y": 410,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_correr_4",
    "vista": "correr_4",
    "x": 294,
-   "y": 445,
+   "y": 410,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_preparar",
    "vista": "preparar",
    "x": 392,
-   "y": 445,
+   "y": 410,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_atacar",
    "vista": "atacar",
    "x": 490,
-   "y": 445,
+   "y": 410,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_guardia",
    "vista": "guardia",
    "x": 0,
-   "y": 534,
+   "y": 492,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_conjuro",
    "vista": "conjuro",
    "x": 98,
-   "y": 534,
+   "y": 492,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_lanzar_1",
    "vista": "lanzar_1",
    "x": 196,
-   "y": 534,
+   "y": 492,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_lanzar_2",
    "vista": "lanzar_2",
    "x": 294,
-   "y": 534,
+   "y": 492,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_salto",
    "vista": "salto",
    "x": 392,
-   "y": 534,
+   "y": 492,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_caida",
    "vista": "caida",
    "x": 490,
-   "y": 534,
+   "y": 492,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_agacharse",
    "vista": "agacharse",
    "x": 0,
-   "y": 623,
+   "y": 574,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_esquivar",
    "vista": "esquivar",
    "x": 98,
-   "y": 623,
+   "y": 574,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_golpe_bajo",
    "vista": "golpe_bajo",
    "x": 196,
-   "y": 623,
+   "y": 574,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_dano",
    "vista": "dano",
    "x": 294,
-   "y": 623,
+   "y": 574,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_derrota",
    "vista": "derrota",
    "x": 392,
-   "y": 623,
+   "y": 574,
    "w": 98,
-   "h": 89
+   "h": 82
   },
   {
    "name": "bestia_3_caido",
    "vista": "caido",
    "x": 490,
-   "y": 623,
+   "y": 574,
    "w": 98,
-   "h": 89
+   "h": 82
   }
  ],
  "escala": 1,
@@ -552,12 +552,12 @@
  "generadoPor": "tools/codex-sheets.py",
  "fuente": {
   "bestia-1": {
-   "escala_fuente": 0.3385,
-   "alto_de_pie_fuente": 224.5
+   "escala_fuente": 0.2957,
+   "alto_de_pie_fuente": 257.0
   },
   "bestia-3": {
-   "escala_fuente": 0.3016,
-   "alto_de_pie_fuente": 252.0
+   "escala_fuente": 0.3028,
+   "alto_de_pie_fuente": 251.0
   }
  },
  "alto": 76,

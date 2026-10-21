@@ -33,7 +33,6 @@
 | Pista | Archivo | Autor | Licencia | Enlace | ¿Modificada? |
 |---|---|---|---|---|---|
 | Soundtrack original de ECOS (compuesto y producido por el equipo en REAPER): menú de inicio, taller, calles y parque de Xalapa, pelea y jefe Chaneque Mayor, calles de San Andrés Tuxtla, pueblo de Catemaco, pelea contra el Rey del Olvido y reencuentro con mamá. | `public/assets/audio/musica/` (`InstrumentalMenuInicio`, `InstrumentalNivel1Casa`, `InstrumentalNivel1Calle`, `Nivel1_Calle_Chaneques*`, `IntroPelea`/`LoopPelea`, `*PeleaChanequeMayor`, `Nivel2_Calle_Chaneques*`, `Nivel3_Calle_Loop`, `*PeleaReyDelOlvido`, `ReencuentroConMama`; asignación en `src/systems/audio/config.ts`) | Listick Games | Propia | — | No aplica (obra original) |
-| La Llorona — melodía tradicional mexicana (dominio público), arreglo original para ECOS por Listick Games (generado por código). | `src/systems/audio/cdmx2.ts` (pista `n07_llorona`, sintetizada en tiempo real) | Tradicional (melodía); Listick Games (arreglo) | Melodía: dominio público · Arreglo: propio | — | Sí: arreglo y orquestación originales |
 | Pistas del Nivel 10 (Guadalajara): `n10_avenida`, `n10_catedral`, `n10_tzitzimime`, `n10_itzpapalotl`, `n10_epilogo`. Originales, generadas por código; inspiradas en el son jalisciense y en la música barroca de órgano y la percusión prehispánica (teponaztli, huéhuetl), sin usar grabaciones. | `src/systems/audio/gdl.ts` (sintetizadas en tiempo real) | Listick Games | Propia | — | No aplica (obra original) |
 
 ## Efectos de sonido
@@ -47,12 +46,13 @@
 | Fuente | Archivo | Autor | Licencia | Enlace |
 |---|---|---|---|---|
 | Pixelify Sans (pesos 400 y 700, subconjunto latino: acentos, ñ, ¿ y ¡) — fuente de toda la interfaz | `public/assets/fuentes/pixelify-sans-400.woff2`, `pixelify-sans-700.woff2` (licencia completa en `public/assets/fuentes/OFL-PixelifySans.txt`; se carga en `src/ui/fuente.ts`) | Stefie Justprince / The Pixelify Sans Project Authors | SIL Open Font License 1.1 | https://github.com/eifetx/Pixelify-Sans · archivos tomados del paquete npm `@fontsource/pixelify-sans` 5.3.0 (sin modificar) |
+| Atkinson Hyperlegible (pesos 400, 700 y 400 cursiva, subconjunto latino: acentos, ñ, ¿ y ¡) — fuente de lectura para textos largos (cuerpo de los diálogos, consejos de la pantalla de carga) | `public/assets/fuentes/atkinson-hyperlegible-400.woff2`, `atkinson-hyperlegible-700.woff2`, `atkinson-hyperlegible-400-italic.woff2` (licencia completa en `public/assets/fuentes/OFL-AtkinsonHyperlegible.txt`; se carga en `src/ui/fuente.ts`) | Braille Institute of America | SIL Open Font License 1.1 | https://www.brailleinstitute.org/freefont · archivos tomados del paquete npm `@fontsource/atkinson-hyperlegible` 5.3.0 (sin modificar) |
 
 ## Arte del equipo
 
 | Asset | Archivo | Autor | Licencia | Notas |
 |---|---|---|---|---|
-| Concept arts de las pantallas de carga (15 escenas del juego y sus misiones) | `public/assets/ui/carga/carga_01…15.jpg` (originales en `arte-fuente/ia-generado/pantallas-carga/`) | Jose Manuel Hernández Pacheco (concept arts), con apoyo de Gemini Nano Banana | Propia | Reescaladas a 640×360 |
+| Concept arts de las pantallas de carga (15 escenas del juego y sus misiones) | `public/assets/ui/carga/carga_01…15.jpg` (originales en `arte-fuente/ia-generado/pantallas-carga/`) | Jose Manuel Hernández Pacheco (concept arts), con apoyo de Gemini Nano Banana | Propia | Versiones en alta calidad (JPG, tamaño original) en public/assets/ui/carga/hd/, mostradas sin efectos; respaldo de 640×360 en public/assets/ui/carga/ |
 | Hojas de personajes en pixel art (24 poses por personaje, con variantes) | `public/assets/sprites/personajes/<id>/` (originales en `arte-fuente/ia-generado/codex-hojas/`) | Codex (OpenAI), dirigido por el equipo | Propia | Recortadas, sin fondo y escaladas con `tools/codex-sheets.py`; protagonista y madre ajustados por código (proporción y color); Bruja Guajolote ave y detalles de Don Ernesto dibujados por código (Claude Code) |
 
 ## Gráficos de terceros

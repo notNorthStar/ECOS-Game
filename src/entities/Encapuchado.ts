@@ -24,6 +24,8 @@ import {
 
 const E = enemiesData.encapuchado;
 const BOLT = E.bolt;
+/** Brillo de borde de la capa negra: color frío (luz de luna) y opacidad. */
+const RIM = { color: 0x9aa6d0, alpha: 0.55 };
 
 type St = 'patrol' | 'alert' | 'combat' | 'staffWindup' | 'staffActive' | 'boltWindup' | 'recover' | 'hurt' | 'dizzy' | 'down';
 
@@ -239,6 +241,24 @@ export class Encapuchado extends EnemyBase {
   private walkPhase = Math.random() * 10;
   /** Brillo rojo de los ojos (solo élite). */
   private eyeGlow: Phaser.GameObjects.Image | null = null;
+  /** Brillo de borde de la capa negra (negro y élite). */
+  private rim: Phaser.GameObjects.Sprite | null = null;
+
+  /** Copia el cuadro, espejo, escala y ángulo del sprite al brillo de borde. */
+  private syncRim(): void {
+    const r = this.rim;
+    if (!r) return;
+    const s = this.sprite;
+    r.setTexture(s.texture.key, s.frame.name)
+      .setOrigin(s.originX, s.originY)
+      .setFlipX(s.flipX)
+      .setScale(s.scaleX, s.scaleY)
+      .setAngle(s.angle)
+      .setPosition(s.x - 1, s.y - 1)
+      .setDepth(s.depth - 0.01)
+      .setVisible(s.visible)
+      .setAlpha(RIM.alpha * s.alpha);
+  }
 
   constructor(world: WorldApi, x: number, y: number, rank: CofradiaRank = 'rojo', group?: string) {
     const R = E.ranks[rank];
@@ -270,6 +290,13 @@ export class Encapuchado extends EnemyBase {
     // Élite (Nivel 7): ojos rojos que brillan, con o sin kit (Negro con detalles rojos).
     if (R.eyeGlow > 0) {
       this.eyeGlow = this.scene.add.image(x, y, FB.glow).setTint(hexColor(R.trim)).setBlendMode(Phaser.BlendModes.ADD).setScale(0.32, 0.2).setAlpha(R.eyeGlow);
+    }
+    // Capa negra (negro y élite) sobre fondos oscuros: un brillo de borde (rim light) sutil, luz de arriba a
+    // la izquierda, para que la silueta no se pierda. Es una copia rellena de color frío, 1 px arriba-izquierda,
+    // detrás del sprite. Solo visual: no toca la lógica.
+    if (this.kit && (rank === 'negro' || rank === 'elite')) {
+      this.rim = this.scene.add.sprite(x, y, this.sprite.texture.key, this.sprite.frame.name)
+        .setTintMode(Phaser.TintModes.FILL).setTint(RIM.color).setAlpha(RIM.alpha);
     }
     // Los de un grupo de arena aparecen ya alertas.
     if (group) this.becomeAware(false);
@@ -459,6 +486,7 @@ export class Encapuchado extends EnemyBase {
     } else if (!this.hasArt) this.bob = 0;
 
     this.render(dt);
+    this.syncRim();
     this.icon?.setPosition(this.x, this.y - this.z - this.height - 6).setDepth(this.y + FX_DEPTH_BIAS);
     if (this.icon && this.iconChar === '!' && this.st !== 'alert' && this.stT > 1.2) this.setIcon('');
     this.drawCone();
@@ -683,6 +711,8 @@ export class Encapuchado extends EnemyBase {
     this.set('down');
     this.eyeGlow?.destroy();
     this.eyeGlow = null;
+    this.rim?.destroy();
+    this.rim = null;
     this.sprite.setTintMode(Phaser.TintModes.MULTIPLY).setTint(this.baseTint);
     sfx('encapuchado_cae');
     bus.emit('ecos:gained', { amount: this._ecos, x: this.x, y: this.y - 30 });
@@ -764,5 +794,7 @@ export class Encapuchado extends EnemyBase {
     this.clearOrb();
     this.eyeGlow?.destroy();
     this.eyeGlow = null;
+    this.rim?.destroy();
+    this.rim = null;
   }
 }

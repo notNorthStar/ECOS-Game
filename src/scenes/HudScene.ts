@@ -583,6 +583,8 @@ export class HudScene extends Phaser.Scene {
   update(_time: number, deltaMs: number): void {
     const dt = Math.min(0.1, deltaMs / 1000);
     this.t += dt;
+    // La barra del jefe ocupa el mismo lugar que la caja de diálogo: se oculta mientras alguien habla.
+    this.bossBox.setAlpha(this.scene.isActive('Dialogue') ? 0 : 1);
     // Mientras se ve la pantalla de carga, el nombre de zona y los avisos esperan.
     const enCarga = this.scene.isActive('Carga');
     if (pending.zone && !enCarga) {

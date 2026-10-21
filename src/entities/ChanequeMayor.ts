@@ -211,6 +211,7 @@ export class ChanequeMayor extends EnemyBase {
         if (this.stT >= B.melee.active) this.set('recover');
         break;
       case 'recover':
+        this.facePlayer();
         if (this.stT >= B.melee.recover) this.toIdle();
         break;
       case 'slamWindup':
@@ -229,6 +230,7 @@ export class ChanequeMayor extends EnemyBase {
         break;
       case 'slamAir': {
         const t = Math.min(1, this.stT / B.slam.airTime);
+        this.facePlayer();
         // Sigue un poco al jugador durante la primera mitad del salto.
         if (t < 0.5) {
           this.slamTo.x += (p.x - this.slamTo.x) * Math.min(1, dt * 2);
@@ -248,6 +250,7 @@ export class ChanequeMayor extends EnemyBase {
         break;
       }
       case 'slamWave':
+        this.facePlayer();
         // Espera a que la onda termine; si no tocó al jugador, queda vulnerable (salto fallido).
         if (this.waves.length === 0 && this.stT > 0.2) {
           if (!this.waveHitPlayer) this.startVulnerable(B.vulnerableMissedJump);
@@ -255,6 +258,7 @@ export class ChanequeMayor extends EnemyBase {
         }
         break;
       case 'summon':
+        this.facePlayer();
         if (this.stT >= B.summon.windup && !this.hitDone) {
           this.hitDone = true;
           this.summon();
@@ -292,11 +296,14 @@ export class ChanequeMayor extends EnemyBase {
         }
         break;
       case 'vulnerable':
+        // Aturdido, pero sin darle la espalda al jugador (con el kit por cuadros se notaba mucho).
+        this.facePlayer();
         this.vulnerableLeft -= dt;
         this.pushHud();
         if (this.vulnerableLeft <= 0) this.endVulnerable();
         break;
       case 'phaseChange':
+        this.facePlayer();
         this.electricT -= dt;
         if (this.electricT <= 0) {
           this.electricT = 0.06;

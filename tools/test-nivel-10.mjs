@@ -519,7 +519,7 @@ await test('gdl.json: avisos ≤ 90 caracteres, números coherentes y música de
   assert.ok(directos >= 300 && directos <= 700, `recompensas directas razonables (${directos})`);
 });
 
-await test('Créditos: equipo real de Listick Games, IAs, herramientas, La Llorona (dominio público) y declaración de IA; sin marcadores "[nombre]"', () => {
+await test('Créditos: equipo real de Listick Games, IAs, herramientas, soundtrack del equipo y declaración de IA; sin marcadores "[nombre]"', () => {
   assert.equal(creditos.estudio, 'Listick Games');
   const all = JSON.stringify(creditos);
   assert.doesNotMatch(all, /\[nombre\]/);
@@ -537,7 +537,9 @@ await test('Créditos: equipo real de Listick Games, IAs, herramientas, La Lloro
   assert.match(ias.lineas[0].roles.join(','), /Soporte Narrativo.*Documentación/);
   const herramientas = creditos.secciones.find((sec) => sec.titulo === 'Herramientas').lineas.join(' ');
   for (const re of [/Phaser 4/, /TypeScript/, /Vite/, /MediaPipe Tasks Vision/, /Web Audio API/, /Node\.js/, /Python/, /Pillow/, /Git/, /GitHub/, /REAPER/]) assert.match(herramientas, re);
-  for (const re of [/Llorona/, /dominio público/, /arreglo/i, /inteligencia artificial/i, /AI_LOG\.md/, /Lengua de Señas Mexicana/]) assert.match(all, re);
+  // La pista de La Llorona no suena en el juego (decisión del equipo, 2026-10-20): no debe acreditarse.
+  assert.doesNotMatch(all, /dominio público/);
+  for (const re of [/inteligencia artificial/i, /AI_LOG\.md/, /Lengua de Señas Mexicana/, /REAPER/]) assert.match(all, re);
   for (const sec of creditos.secciones) assert.ok(sec.titulo && sec.lineas.length > 0);
   assert.ok(creditos.cierre);
   // CREDITOS.md en sincronía.

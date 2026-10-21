@@ -1,11 +1,11 @@
 {
  "personaje": "llorona",
  "tipo": "humanoide",
- "frameWidth": 102,
- "frameHeight": 83,
+ "frameWidth": 98,
+ "frameHeight": 82,
  "pivot": {
-  "x": 51,
-  "y": 81
+  "x": 49,
+  "y": 80
  },
  "frames": [
   {
@@ -13,192 +13,192 @@
    "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 102,
-   "h": 83
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_reposo_2",
    "vista": "reposo_2",
-   "x": 102,
+   "x": 98,
    "y": 0,
-   "w": 102,
-   "h": 83
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_caminar_1",
    "vista": "caminar_1",
-   "x": 204,
+   "x": 196,
    "y": 0,
-   "w": 102,
-   "h": 83
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_caminar_2",
    "vista": "caminar_2",
-   "x": 306,
+   "x": 294,
    "y": 0,
-   "w": 102,
-   "h": 83
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_caminar_3",
    "vista": "caminar_3",
-   "x": 408,
+   "x": 392,
    "y": 0,
-   "w": 102,
-   "h": 83
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_caminar_4",
    "vista": "caminar_4",
-   "x": 510,
+   "x": 490,
    "y": 0,
-   "w": 102,
-   "h": 83
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_correr_1",
    "vista": "correr_1",
    "x": 0,
-   "y": 83,
-   "w": 102,
-   "h": 83
+   "y": 82,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_correr_2",
    "vista": "correr_2",
-   "x": 102,
-   "y": 83,
-   "w": 102,
-   "h": 83
+   "x": 98,
+   "y": 82,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_correr_3",
    "vista": "correr_3",
-   "x": 204,
-   "y": 83,
-   "w": 102,
-   "h": 83
+   "x": 196,
+   "y": 82,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_correr_4",
    "vista": "correr_4",
-   "x": 306,
-   "y": 83,
-   "w": 102,
-   "h": 83
+   "x": 294,
+   "y": 82,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_preparar",
    "vista": "preparar",
-   "x": 408,
-   "y": 83,
-   "w": 102,
-   "h": 83
+   "x": 392,
+   "y": 82,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_atacar",
    "vista": "atacar",
-   "x": 510,
-   "y": 83,
-   "w": 102,
-   "h": 83
+   "x": 490,
+   "y": 82,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_guardia",
    "vista": "guardia",
    "x": 0,
-   "y": 166,
-   "w": 102,
-   "h": 83
+   "y": 164,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_conjuro",
    "vista": "conjuro",
-   "x": 102,
-   "y": 166,
-   "w": 102,
-   "h": 83
+   "x": 98,
+   "y": 164,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_lanzar_1",
    "vista": "lanzar_1",
-   "x": 204,
-   "y": 166,
-   "w": 102,
-   "h": 83
+   "x": 196,
+   "y": 164,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_lanzar_2",
    "vista": "lanzar_2",
-   "x": 306,
-   "y": 166,
-   "w": 102,
-   "h": 83
+   "x": 294,
+   "y": 164,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_salto",
    "vista": "salto",
-   "x": 408,
-   "y": 166,
-   "w": 102,
-   "h": 83
+   "x": 392,
+   "y": 164,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_caida",
    "vista": "caida",
-   "x": 510,
-   "y": 166,
-   "w": 102,
-   "h": 83
+   "x": 490,
+   "y": 164,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_agacharse",
    "vista": "agacharse",
    "x": 0,
-   "y": 249,
-   "w": 102,
-   "h": 83
+   "y": 246,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_esquivar",
    "vista": "esquivar",
-   "x": 102,
-   "y": 249,
-   "w": 102,
-   "h": 83
+   "x": 98,
+   "y": 246,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_golpe_bajo",
    "vista": "golpe_bajo",
-   "x": 204,
-   "y": 249,
-   "w": 102,
-   "h": 83
+   "x": 196,
+   "y": 246,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_dano",
    "vista": "dano",
-   "x": 306,
-   "y": 249,
-   "w": 102,
-   "h": 83
+   "x": 294,
+   "y": 246,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_derrota",
    "vista": "derrota",
-   "x": 408,
-   "y": 249,
-   "w": 102,
-   "h": 83
+   "x": 392,
+   "y": 246,
+   "w": 98,
+   "h": 82
   },
   {
    "name": "llorona_caido",
    "vista": "caido",
-   "x": 510,
-   "y": 249,
-   "w": 102,
-   "h": 83
+   "x": 490,
+   "y": 246,
+   "w": 98,
+   "h": 82
   }
  ],
  "escala": 1,

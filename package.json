@@ -25,7 +25,9 @@
     "scenery:nivel4": "node tools/gen-oaxaca-scenery.mjs",
     "scenery:nivel6": "node tools/gen-cdmx-scenery.mjs",
     "scenery:nivel7": "node tools/gen-cdmx2-scenery.mjs",
-    "scenery:nivel10": "node tools/gen-gdl-scenery.mjs"
+    "scenery:nivel10": "node tools/gen-gdl-scenery.mjs",
+    "electron:dev": "electron .",
+    "dist:win": "npm run build && electron-builder --win portable"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "1.0.1",
@@ -33,7 +35,40 @@
   },
   "devDependencies": {
     "@types/node": "24.19.2",
+    "electron": "^44.9.3",
+    "electron-builder": "^26.15.3",
     "typescript": "5.9.3",
     "vite": "7.3.7"
+  },
+  "main": "electron/main.cjs",
+  "author": "Listick Games",
+  "build": {
+    "appId": "mx.listickgames.ecos",
+    "productName": "ECOS",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**",
+      "electron/**",
+      "package.json",
+      "!node_modules/**"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "electron/icon.png",
+      "signAndEditExecutable": false
+    },
+    "portable": {
+      "artifactName": "ECOS-${version}-portable.exe"
+    }
   }
 }

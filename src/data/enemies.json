@@ -239,7 +239,7 @@
     "activateRadius": 300,
     "spellRange": 360,
     "band": [222, 343],
-    "eyes": { "dx": 20, "dy": 70, "color": "#ff4060", "offColor": "#3a3438", "calmColor": "#9affc0" },
+    "eyes": { "dx": 20, "dy": 70, "kit": { "cx": 25, "dx": 22, "dy": 50 }, "color": "#ff4060", "offColor": "#3a3438", "calmColor": "#9affc0" },
     "seal": { "perPhase": [2, 2, 3], "partial": 1, "perfect": 2 },
     "vulnerableSeconds": 5,
     "idleBetween": [1.0, 1.8],

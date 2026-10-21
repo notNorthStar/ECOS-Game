@@ -12,6 +12,7 @@ import * as ShieldMod from './Shield';
 import * as LunaMod from './Luna';
 import config from '../data/catemaco.json';
 import { prepareOaxacaEntry } from './Campaign';
+import { getKit, kitAnimatorFor } from './CharacterKits';
 
 import { FUENTE, tamFuente } from '../ui/fuente';
 /**
@@ -872,9 +873,42 @@ class CatemacoDirector {
     await this.run(() => this.mariaScene(true));
   }
 
-  private spawnMaria(x: number, y: number): Phaser.GameObjects.GameObject {
+  /** María en la escena del altar. Devuelve algo con `x` que el director puede mover con un tween. */
+  private spawnMaria(x: number, y: number): { x: number } {
     const scene = this.world.scene;
-    let obj: Phaser.GameObjects.GameObject;
+    let obj: { x: number };
+    // Con el kit de María (arte de Codex) se usa su sprite animado: camina mientras el tween la mueve, mira
+    // hacia donde va y, quieta, hacia el jugador. Antes salía el rectángulo morado con "M" porque solo se
+    // buscaba la textura suelta 'npc_maria', que nunca existió.
+    if (getKit('maria')) {
+      const sp = scene.add.sprite(x, y, '__DEFAULT');
+      const kit = kitAnimatorFor(sp, 'maria')!;
+      const shadow = scene.add.ellipse(x, y, 22, 6, 0x000000, 0.35).setDepth(DEPTH.shadow + y * 0.0001);
+      // El tween mueve este "cuerpo" (x en el suelo); el sprite lo sigue cada cuadro.
+      const body = { x, y, destroy: () => { sp.destroy(); shadow.destroy(); } };
+      let lastX = x;
+      let t = 0;
+      let facing: 1 | -1 = x <= this.world.player.x ? 1 : -1;
+      const tick = (_time: number, delta: number) => {
+        if (!sp.active) return;
+        const dt = delta / 1000;
+        t += dt;
+        const dx = body.x - lastX;
+        lastX = body.x;
+        const moving = Math.abs(dx) > 0.01;
+        if (moving) facing = dx > 0 ? 1 : -1;
+        else if (Math.abs(this.world.player.x - body.x) > 6) facing = this.world.player.x >= body.x ? 1 : -1;
+        kit.setAnim(moving ? 'maria_caminar' : 'maria_reposo');
+        sp.setPosition(Math.round(body.x), Math.round(body.y)).setDepth(body.y);
+        shadow.setPosition(Math.round(body.x), Math.round(body.y));
+        kit.apply(facing, t);
+      };
+      scene.events.on(Phaser.Scenes.Events.UPDATE, tick);
+      scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => scene.events.off(Phaser.Scenes.Events.UPDATE, tick));
+      sp.once(Phaser.GameObjects.Events.DESTROY, () => scene.events.off(Phaser.Scenes.Events.UPDATE, tick));
+      tick(0, 0);
+      return body;
+    }
     if (scene.textures.exists('npc_maria')) {
       obj = scene.add.sprite(x, y, 'npc_maria').setOrigin(0.5, 1).setDepth(y);
     } else {
@@ -894,7 +928,7 @@ class CatemacoDirector {
     const world = this.world;
     const cfg = config.maria;
     const y = 300;
-    const maria = this.spawnMaria(cfg.entraDesdeX, y) as Phaser.GameObjects.GameObject & { x: number };
+    const maria = this.spawnMaria(cfg.entraDesdeX, y);
     this.thaw();
     world.scene.tweens.add({
       targets: maria, x: cfg.llegaA, duration: (Math.abs(cfg.entraDesdeX - cfg.llegaA) / cfg.velocidadPx) * 1000,

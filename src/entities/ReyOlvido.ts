@@ -441,12 +441,15 @@ export class ReyOlvido extends EnemyBase {
         }
         break;
       case 'window':
+        // Aturdido pero sigue mirando al jugador (con kit por cuadros se veía de espaldas si lo rodeabas).
+        this.facePlayer();
         this.windowLeft -= dt;
         if (this.stT > 1.5) this.setStars(false);
         if (Math.random() < dt * 4) burst(this.scene, this.crownBroken ? 'smoke' : 'sun', this.x + rand(-8, 8), this.y - this.height - 4, this.y + FX_DEPTH_BIAS, 1);
         if (this.windowLeft <= 0) this.closeWindow();
         break;
       case 'crownBreak':
+        this.facePlayer();
         if (Math.random() < dt * 10) burst(this.scene, 'dark', this.x + rand(-10, 10), this.y - rand(40, 90), this.y + FX_DEPTH_BIAS, 1);
         if (this.stT >= R.crown.brokenStunSeconds) this.openWindow(R.vulnerableSeconds, true);
         break;

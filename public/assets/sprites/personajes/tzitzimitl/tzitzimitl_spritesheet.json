@@ -1,11 +1,11 @@
 {
  "personaje": "tzitzimitl",
  "tipo": "humanoide",
- "frameWidth": 152,
- "frameHeight": 118,
+ "frameWidth": 156,
+ "frameHeight": 120,
  "pivot": {
-  "x": 76,
-  "y": 116
+  "x": 78,
+  "y": 118
  },
  "frames": [
   {
@@ -13,192 +13,192 @@
    "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 152,
-   "h": 118
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_reposo_2",
    "vista": "reposo_2",
-   "x": 152,
+   "x": 156,
    "y": 0,
-   "w": 152,
-   "h": 118
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_caminar_1",
    "vista": "caminar_1",
-   "x": 304,
+   "x": 312,
    "y": 0,
-   "w": 152,
-   "h": 118
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_caminar_2",
    "vista": "caminar_2",
-   "x": 456,
+   "x": 468,
    "y": 0,
-   "w": 152,
-   "h": 118
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_caminar_3",
    "vista": "caminar_3",
-   "x": 608,
+   "x": 624,
    "y": 0,
-   "w": 152,
-   "h": 118
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_caminar_4",
    "vista": "caminar_4",
-   "x": 760,
+   "x": 780,
    "y": 0,
-   "w": 152,
-   "h": 118
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_correr_1",
    "vista": "correr_1",
    "x": 0,
-   "y": 118,
-   "w": 152,
-   "h": 118
+   "y": 120,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_correr_2",
    "vista": "correr_2",
-   "x": 152,
-   "y": 118,
-   "w": 152,
-   "h": 118
+   "x": 156,
+   "y": 120,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_correr_3",
    "vista": "correr_3",
-   "x": 304,
-   "y": 118,
-   "w": 152,
-   "h": 118
+   "x": 312,
+   "y": 120,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_correr_4",
    "vista": "correr_4",
-   "x": 456,
-   "y": 118,
-   "w": 152,
-   "h": 118
+   "x": 468,
+   "y": 120,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_preparar",
    "vista": "preparar",
-   "x": 608,
-   "y": 118,
-   "w": 152,
-   "h": 118
+   "x": 624,
+   "y": 120,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_atacar",
    "vista": "atacar",
-   "x": 760,
-   "y": 118,
-   "w": 152,
-   "h": 118
+   "x": 780,
+   "y": 120,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_guardia",
    "vista": "guardia",
    "x": 0,
-   "y": 236,
-   "w": 152,
-   "h": 118
+   "y": 240,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_conjuro",
    "vista": "conjuro",
-   "x": 152,
-   "y": 236,
-   "w": 152,
-   "h": 118
+   "x": 156,
+   "y": 240,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_lanzar_1",
    "vista": "lanzar_1",
-   "x": 304,
-   "y": 236,
-   "w": 152,
-   "h": 118
+   "x": 312,
+   "y": 240,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_lanzar_2",
    "vista": "lanzar_2",
-   "x": 456,
-   "y": 236,
-   "w": 152,
-   "h": 118
+   "x": 468,
+   "y": 240,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_salto",
    "vista": "salto",
-   "x": 608,
-   "y": 236,
-   "w": 152,
-   "h": 118
+   "x": 624,
+   "y": 240,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_caida",
    "vista": "caida",
-   "x": 760,
-   "y": 236,
-   "w": 152,
-   "h": 118
+   "x": 780,
+   "y": 240,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_agacharse",
    "vista": "agacharse",
    "x": 0,
-   "y": 354,
-   "w": 152,
-   "h": 118
+   "y": 360,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_esquivar",
    "vista": "esquivar",
-   "x": 152,
-   "y": 354,
-   "w": 152,
-   "h": 118
+   "x": 156,
+   "y": 360,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_golpe_bajo",
    "vista": "golpe_bajo",
-   "x": 304,
-   "y": 354,
-   "w": 152,
-   "h": 118
+   "x": 312,
+   "y": 360,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_dano",
    "vista": "dano",
-   "x": 456,
-   "y": 354,
-   "w": 152,
-   "h": 118
+   "x": 468,
+   "y": 360,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_derrota",
    "vista": "derrota",
-   "x": 608,
-   "y": 354,
-   "w": 152,
-   "h": 118
+   "x": 624,
+   "y": 360,
+   "w": 156,
+   "h": 120
   },
   {
    "name": "tzitzimitl_caido",
    "vista": "caido",
-   "x": 760,
-   "y": 354,
-   "w": 152,
-   "h": 118
+   "x": 780,
+   "y": 360,
+   "w": 156,
+   "h": 120
   }
  ],
  "escala": 1,
@@ -360,8 +360,8 @@
  "generadoPor": "tools/codex-sheets.py",
  "fuente": {
   "tzitzimime": {
-   "escala_fuente": 0.474,
-   "alto_de_pie_fuente": 221.5
+   "escala_fuente": 0.4805,
+   "alto_de_pie_fuente": 218.5
   }
  },
  "alto": 105

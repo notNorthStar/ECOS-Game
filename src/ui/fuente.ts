@@ -1,7 +1,8 @@
 import type Phaser from 'phaser';
 
 /* =====================================================================================
- * Fuente de la interfaz (dueño: interfaz).
+ * Fuentes de la interfaz (dueño: interfaz).
+ * Atkinson Hyperlegible (OFL 1.1) para textos largos: ver FUENTE_LECTURA más abajo.
  * Pixelify Sans (SIL Open Font License 1.1), incluida en public/assets/fuentes/ (sin CDN).
  * Tiene acentos, ñ, ¿ y ¡. Créditos en CREDITOS.md → Tipografías.
  *
@@ -13,11 +14,75 @@ import type Phaser from 'phaser';
 /** Familia CSS para Phaser.Text: la pixel y, de respaldo, monoespaciadas del sistema. */
 export const FUENTE = '"Pixelify Sans", "Courier New", monospace';
 
-/** Archivos de la fuente (relativos a index.html: Vite sirve public/ en la raíz y base es './'). */
+/**
+ * Fuente de LECTURA para textos largos (cuerpo de los diálogos, consejos de la carga…).
+ * Atkinson Hyperlegible (SIL OFL 1.1, Braille Institute): sans diseñada para máxima legibilidad.
+ * No es pixel art a propósito: el equipo pidió que los diálogos se lean sin esfuerzo.
+ * Úsala con `estiloLectura` y `nitidez()` para que no se vea borrosa al escalar el lienzo.
+ */
+export const FUENTE_LECTURA = '"Atkinson Hyperlegible", "Segoe UI", Arial, sans-serif';
+
+/** Archivos de las fuentes (relativos a index.html: Vite sirve public/ en la raíz y base es './'). */
 const ARCHIVOS = [
-  { peso: '400', url: './assets/fuentes/pixelify-sans-400.woff2' },
-  { peso: '700', url: './assets/fuentes/pixelify-sans-700.woff2' },
+  { familia: 'Pixelify Sans', peso: '400', estilo: 'normal', url: './assets/fuentes/pixelify-sans-400.woff2' },
+  { familia: 'Pixelify Sans', peso: '700', estilo: 'normal', url: './assets/fuentes/pixelify-sans-700.woff2' },
+  { familia: 'Atkinson Hyperlegible', peso: '400', estilo: 'normal', url: './assets/fuentes/atkinson-hyperlegible-400.woff2' },
+  { familia: 'Atkinson Hyperlegible', peso: '700', estilo: 'normal', url: './assets/fuentes/atkinson-hyperlegible-700.woff2' },
+  { familia: 'Atkinson Hyperlegible', peso: '400', estilo: 'italic', url: './assets/fuentes/atkinson-hyperlegible-400-italic.woff2' },
 ] as const;
+
+/** Tamaños de la fuente de lectura (px del lienzo de 640×360). */
+export const TAM_LECTURA = {
+  /** Cuerpo de los diálogos. */
+  dialogo: 13,
+  /** Mínimo al que se encoge una línea muy larga para caber en la caja. */
+  minimo: 10,
+} as const;
+
+/** Estilo de texto largo con la fuente legible (sin contorno grueso: se lee mejor limpio sobre fondo oscuro). */
+export function estiloLectura(
+  px: number,
+  color = '#efe6d2',
+  opts: { cursiva?: boolean; negrita?: boolean } = {},
+): Phaser.Types.GameObjects.Text.TextStyle {
+  const estilo = [opts.cursiva ? 'italic' : '', opts.negrita ? 'bold' : ''].filter(Boolean).join(' ');
+  return {
+    fontFamily: FUENTE_LECTURA,
+    fontSize: `${Math.round(px * 2) / 2}px`,
+    fontStyle: estilo || 'normal',
+    color,
+    padding: { top: PAD_ACENTO },
+  };
+}
+
+/**
+ * Factor real entre un pixel del lienzo (640×360) y un pixel físico de la pantalla
+ * (escala del FIT × devicePixelRatio). Se usa como `resolution` del Text para que se dibuje nítido.
+ */
+export function escalaPantalla(game: Phaser.Game): number {
+  const ancho = game.canvas?.getBoundingClientRect().width || game.scale.width;
+  const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+  const f = (ancho / game.scale.width) * dpr;
+  // En cuartos para no regenerar la textura por variaciones mínimas; tope para no gastar memoria.
+  return limitar(Math.ceil(f * 4) / 4, 1, 4);
+}
+
+function limitar(v: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, v));
+}
+
+/**
+ * Hace nítido un Text: lo genera a la resolución real de la pantalla y lo muestrea con filtro lineal
+ * (el juego usa pixelArt=NEAREST, que con texto suavizado se ve dentado). Devuelve la resolución aplicada.
+ * Llamarla de nuevo (p. ej. en update) solo regenera si cambió el tamaño de la ventana.
+ */
+export function nitidez(texto: Phaser.GameObjects.Text, game: Phaser.Game): number {
+  const r = escalaPantalla(game);
+  if (texto.style.resolution !== r) texto.setResolution(r);
+  // Filtro lineal (0 = LINEAR en Phaser.Textures.FilterMode); se conserva al actualizar el texto.
+  if (texto.texture.source[0]?.scaleMode !== 0) texto.texture.setFilter(0);
+  return r;
+}
 
 /**
  * Tamaños nítidos. Pixelify Sans dibuja su "pixel" en ~92 unidades de 1000, así que a 11 px
@@ -90,14 +155,20 @@ export function cargarFuente(timeoutMs = 3000): Promise<void> {
   const trabajo = (async () => {
     if (typeof document === 'undefined' || !('fonts' in document) || typeof FontFace === 'undefined') return;
     await Promise.all(
-      ARCHIVOS.map(async ({ peso, url }) => {
-        const cara = new FontFace('Pixelify Sans', `url(${url}) format('woff2')`, { weight: peso, style: 'normal' });
-        document.fonts.add(await cara.load());
+      ARCHIVOS.map(async ({ familia, peso, estilo, url }) => {
+        try {
+          const cara = new FontFace(familia, `url(${url}) format('woff2')`, { weight: peso, style: estilo });
+          document.fonts.add(await cara.load());
+        } catch (err) {
+          // Una cara que falle no impide las demás (cada familia tiene respaldo del sistema).
+          console.warn(`[ECOS] No se pudo cargar ${familia} ${peso} ${estilo}`, err);
+        }
       }),
     );
-    // Asegura que el lienzo 2D ya la tenga lista (incluye acentos).
+    // Asegura que el lienzo 2D ya las tenga listas (incluye acentos).
     await document.fonts.load(`11px "Pixelify Sans"`, 'ÁÉÍÓÚáéíóúÑñ¿¡');
-  })().catch((err: unknown) => console.warn('[ECOS] No se pudo cargar la fuente pixel; uso monospace', err));
+    await document.fonts.load(`12px "Atkinson Hyperlegible"`, 'ÁÉÍÓÚáéíóúÑñ¿¡');
+  })().catch((err: unknown) => console.warn('[ECOS] No se pudieron cargar las fuentes; uso las del sistema', err));
   const limite = new Promise<void>((r) => setTimeout(r, timeoutMs));
   cargada = Promise.race([trabajo, limite]);
   return cargada;

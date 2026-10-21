@@ -1273,6 +1273,9 @@ class GdlDirector {
       bus.emit('arena:clear', { group });
     }
     this.refresh();
+    // Soundtrack del equipo: "Reencuentro con mamá" entra justo al vencer a los jefes finales y sigue
+    // mientras el jugador camina hacia ella, la libera y hablan (decisión del equipo, 2026-10-20).
+    this.music('n10_reencuentro');
     await this.run(async () => {
       remember('itzpa_cae');
       this.world.flash(0xffffff, 900);
@@ -1280,8 +1283,6 @@ class GdlDirector {
       await this.say('n10_final');
       if (!this.alive) return;
       this.setEclipse(config.eclipse.final);
-      // Silencio de la batalla; el "Reencuentro con mamá" suena al liberarla.
-      bus.emit('music', { track: null });
     });
     if (!this.alive) return;
     this.esperarLiberacion();
@@ -1308,7 +1309,7 @@ class GdlDirector {
       await this.conversacion();
       return;
     }
-    bus.emit('music', { track: null });
+    this.music('n10_reencuentro');
     this.esperarLiberacion();
   }
 

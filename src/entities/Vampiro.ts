@@ -217,6 +217,7 @@ export class Vampiro extends EnemyBase {
         if (planeDist(this.x, this.y, p.x, p.y) < V.transformRadius) this.activate();
         break;
       case 'transform': {
+        this.facePlayer();
         const k = Math.min(1, this.stT / V.transformSeconds);
         if (!reduceFx() && Math.random() < dt * 30) burst(this.scene, 'mist', this.x + rand(-20, 20), this.y - rand(10, 90), this.y + FX_DEPTH_BIAS, 1);
         // Tiembla y a la mitad cambia de forma.
@@ -280,11 +281,14 @@ export class Vampiro extends EnemyBase {
         this.updateMist(dt);
         break;
       case 'vulnerable':
+        // Aturdido, pero sin darle la espalda al jugador (kit por cuadros).
+        this.facePlayer();
         this.vulnerableLeft -= dt;
         if (Math.random() < dt * 5) burst(this.scene, 'mist', this.x + rand(-10, 10), this.y - this.height * 0.6, this.y + FX_DEPTH_BIAS, 1);
         if (this.vulnerableLeft <= 0) this.endVulnerable();
         break;
       case 'exhausted':
+        this.facePlayer();
         if (Math.random() < dt * 3) burst(this.scene, 'mist', this.x + rand(-8, 8), this.y - 30, this.y + FX_DEPTH_BIAS, 1);
         break;
       case 'calmed':

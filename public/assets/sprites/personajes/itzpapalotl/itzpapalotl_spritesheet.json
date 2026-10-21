@@ -2,10 +2,10 @@
  "personaje": "itzpapalotl",
  "tipo": "humanoide",
  "frameWidth": 172,
- "frameHeight": 150,
+ "frameHeight": 149,
  "pivot": {
   "x": 86,
-  "y": 148
+  "y": 147
  },
  "frames": [
   {
@@ -14,7 +14,7 @@
    "x": 0,
    "y": 0,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_reposo_2",
@@ -22,7 +22,7 @@
    "x": 172,
    "y": 0,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_caminar_1",
@@ -30,7 +30,7 @@
    "x": 344,
    "y": 0,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_caminar_2",
@@ -38,7 +38,7 @@
    "x": 516,
    "y": 0,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_caminar_3",
@@ -46,7 +46,7 @@
    "x": 688,
    "y": 0,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_caminar_4",
@@ -54,151 +54,151 @@
    "x": 860,
    "y": 0,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_correr_1",
    "vista": "correr_1",
    "x": 0,
-   "y": 150,
+   "y": 149,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_correr_2",
    "vista": "correr_2",
    "x": 172,
-   "y": 150,
+   "y": 149,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_correr_3",
    "vista": "correr_3",
    "x": 344,
-   "y": 150,
+   "y": 149,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_correr_4",
    "vista": "correr_4",
    "x": 516,
-   "y": 150,
+   "y": 149,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_preparar",
    "vista": "preparar",
    "x": 688,
-   "y": 150,
+   "y": 149,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_atacar",
    "vista": "atacar",
    "x": 860,
-   "y": 150,
+   "y": 149,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_guardia",
    "vista": "guardia",
    "x": 0,
-   "y": 300,
+   "y": 298,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_conjuro",
    "vista": "conjuro",
    "x": 172,
-   "y": 300,
+   "y": 298,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_lanzar_1",
    "vista": "lanzar_1",
    "x": 344,
-   "y": 300,
+   "y": 298,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_lanzar_2",
    "vista": "lanzar_2",
    "x": 516,
-   "y": 300,
+   "y": 298,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_salto",
    "vista": "salto",
    "x": 688,
-   "y": 300,
+   "y": 298,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_caida",
    "vista": "caida",
    "x": 860,
-   "y": 300,
+   "y": 298,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_agacharse",
    "vista": "agacharse",
    "x": 0,
-   "y": 450,
+   "y": 447,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_esquivar",
    "vista": "esquivar",
    "x": 172,
-   "y": 450,
+   "y": 447,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_golpe_bajo",
    "vista": "golpe_bajo",
    "x": 344,
-   "y": 450,
+   "y": 447,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_dano",
    "vista": "dano",
    "x": 516,
-   "y": 450,
+   "y": 447,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_derrota",
    "vista": "derrota",
    "x": 688,
-   "y": 450,
+   "y": 447,
    "w": 172,
-   "h": 150
+   "h": 149
   },
   {
    "name": "itzpapalotl_caido",
    "vista": "caido",
    "x": 860,
-   "y": 450,
+   "y": 447,
    "w": 172,
-   "h": 150
+   "h": 149
   }
  ],
  "escala": 1,

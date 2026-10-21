@@ -303,6 +303,8 @@ export class Itzpapalotl extends EnemyBase {
         break;
       }
       case 'hatch':
+        // En todos sus estados mira al jugador (con el kit por cuadros se veía de espaldas).
+        this.facePlayer();
         if (Math.random() < dt * (6 + 30 * (this.stT / I.cocoon.hatchSeconds))) {
           burst(this.scene, 'dark', this.x + rand(-18, 18), this.y - rand(10, I.cocoon.h - 6), this.y + FX_DEPTH_BIAS, 2);
         }
@@ -322,19 +324,23 @@ export class Itzpapalotl extends EnemyBase {
         if (this.stT >= I.butterflies.windup * this.haste) this.releaseButterflies();
         break;
       case 'flapWindup':
+        this.facePlayer();
         this.telegraph(0x503070);
         this.drawFlapWarn();
         if (this.stT >= I.flap.windup * this.haste) this.startGust();
         break;
       case 'flapGust':
+        this.facePlayer();
         this.updateGust(dt);
         break;
       case 'riftWindup':
+        this.facePlayer();
         this.telegraph(0x601080);
         if (Math.random() < dt * 14) burst(this.scene, 'dark', this.x + rand(-20, 20), this.y - rand(30, 90), this.y + FX_DEPTH_BIAS, 1);
         if (this.stT >= I.rifts.windup * this.haste) this.openRifts();
         break;
       case 'stunned':
+        this.facePlayer();
         this.stunLeft -= dt;
         if (this.stunLeft <= 0) {
           this.setStars(false);
@@ -342,11 +348,13 @@ export class Itzpapalotl extends EnemyBase {
         }
         break;
       case 'stagger':
+        this.facePlayer();
         this.staggerLeft -= dt;
         if (Math.random() < dt * 6) burst(this.scene, 'calm', this.x + rand(-10, 10), this.y - this.height * 0.6, this.y + FX_DEPTH_BIAS, 1);
         if (this.staggerLeft <= 0) this.endStagger();
         break;
       case 'recoil':
+        this.facePlayer();
         if (Math.random() < dt * 12) burst(this.scene, 'light', this.x + rand(-12, 12), this.y - rand(30, 90), this.y + FX_DEPTH_BIAS, 1);
         if (this.stT >= I.core.recoilSeconds) this.toIdle();
         break;

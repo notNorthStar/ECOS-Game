@@ -2,43 +2,34 @@ import Phaser from 'phaser';
 import { sfx } from '../core/bus';
 import { GameState } from '../core/GameState';
 import { GAME_HEIGHT, GAME_WIDTH, isCatemaco, isCdmx, isCdmx2, isGdl, isOaxaca } from '../config/game';
-import { conEscala, estiloTexto, TAM } from '../ui/fuente';
+import { mostrarCapaCarga, type CapaCarga } from '../ui/cargaOverlay';
 import consejosData from '../data/consejos.json';
 
 /**
  * Pantalla de carga entre niveles (dueño: interfaz). Clave 'Carga'.
  *
  * La lanza LevelScene encima del nivel (ya pausado) cuando GameState.pendingLoadScreen está activo
- * (lo pone Campaign en cada prepare…Entry()). Muestra una imagen al azar de public/assets/ui/carga/,
- * el lugar al que vas y un consejo al azar de src/data/consejos.json. Se cierra con E / Espacio /
- * Enter / clic o sola a los ~5 s, y reanuda el nivel (y el diálogo de entrada, si lo había).
+ * (lo pone Campaign en cada prepare…Entry()). Muestra una de las 15 ilustraciones al azar (cualquiera,
+ * aunque adelante escenas: lo pidió el equipo; solo no repite la inmediata anterior), el lugar al que
+ * vas y un consejo al azar de src/data/consejos.json. Se cierra con E / Espacio / Enter / clic o sola
+ * a los ~5 s, y reanuda el nivel (y el diálogo de entrada, si lo había).
+ *
+ * La imagen y los textos van en una capa HTML encima del canvas (src/ui/cargaOverlay.ts) para verse a
+ * calidad completa y sin efectos: los originales están en public/assets/ui/carga/hd/ (hasta 1920 px).
+ * Las versiones de 640×360 (carga_NN.jpg) solo se dibujan en el lienzo si la HD no carga.
  */
 
 const W = GAME_WIDTH;
 const H = GAME_HEIGHT;
-/** Número de imágenes carga_01.jpg … carga_NN.jpg (640×360). */
+/** Número de imágenes: hd/carga_01.jpg … hd/carga_NN.jpg (y su respaldo carga_NN.jpg de 640×360). */
 const IMAGENES = 15;
-/**
- * Sin spoilers: a partir de qué nivel de destino puede salir cada imagen (índice 0 = carga_01).
- * Las escenas de jefes y giros salen solo después de ese momento; la emboscada final (13, 15) y el
- * epílogo (14) nunca salen en la carga (99).
- */
-const DESDE_NIVEL = [1, 1, 2, 2, 3, 4, 4, 4, 6, 7, 10, 10, 99, 99, 99];
-
-/** Nivel de destino de la sección de entrada (para elegir imágenes sin spoilers). */
-function nivelDe(section: string): number {
-  if (section === 'tuxtla') return 2;
-  if (isCatemaco(section)) return 3;
-  if (isOaxaca(section)) return 4;
-  if (isCdmx(section)) return 6;
-  if (isCdmx2(section)) return 7;
-  if (isGdl(section)) return 10;
-  return 1;
-}
 /** Avanza sola tras este tiempo (ms). */
 const AUTO_MS = 5200;
 /** Ignora pulsaciones al inicio (la E que cerró el nivel anterior no debe saltarse la carga). */
 const BLOQUEO_MS = 450;
+/** Fundidos de entrada y salida (ms). */
+const FUNDIDO_ENTRADA = 350;
+const FUNDIDO_SALIDA = 300;
 
 const CONSEJOS: string[] = (consejosData as { consejos: string[] }).consejos;
 
@@ -71,8 +62,7 @@ export class CargaScene extends Phaser.Scene {
   private inicio = 0;
   private cerrando = false;
   private pausoDialogo = false;
-  private barra!: Phaser.GameObjects.Graphics;
-  private aviso!: Phaser.GameObjects.Text;
+  private capa: CapaCarga | null = null;
 
   constructor() {
     super('Carga');
@@ -81,10 +71,8 @@ export class CargaScene extends Phaser.Scene {
   init(data: { section?: string; nombre?: string }): void {
     this.section = data?.section ?? GameState.section;
     this.nombre = data?.nombre ?? '';
-    const nivel = nivelDe(this.section);
-    const permitidas = Array.from({ length: IMAGENES }, (_, i) => i).filter((i) => DESDE_NIVEL[i] <= nivel);
-    const pos = alAzar(permitidas.length, permitidas.indexOf(ultimaImagen));
-    ultimaImagen = permitidas[pos] ?? 0;
+    // Cualquiera de las 15, sin filtro por nivel; solo evita repetir la de la carga anterior.
+    ultimaImagen = alAzar(IMAGENES, ultimaImagen);
     this.imagen = ultimaImagen + 1;
     this.cerrando = false;
     this.pausoDialogo = false;
@@ -95,7 +83,7 @@ export class CargaScene extends Phaser.Scene {
   }
 
   preload(): void {
-    // Solo la imagen elegida (≈100 KB): no se precargan las 15.
+    // Respaldo de 640×360 de la imagen elegida (≈100 KB): solo se dibuja si la HD no carga.
     if (!this.textures.exists(this.clave)) this.load.image(this.clave, `assets/ui/carga/${this.clave}.jpg`);
   }
 
@@ -109,47 +97,23 @@ export class CargaScene extends Phaser.Scene {
     }
     this.scene.bringToTop();
 
-    // Imagen a pantalla completa (cover) o, si no cargó, un fondo liso.
+    // Fondo liso; la ilustración en alta calidad va en la capa HTML (sin oscurecidos ni efectos).
     this.add.rectangle(0, 0, W, H, 0x07060d).setOrigin(0);
-    if (this.textures.exists(this.clave)) {
-      const img = this.add.image(W / 2, H / 2, this.clave);
-      const s = Math.max(W / img.width, H / img.height);
-      img.setScale(s);
-      // Paneo lento (Ken Burns) muy leve; sin él si se piden menos efectos.
-      if (!GameState.settings.reduceFx) this.tweens.add({ targets: img, scale: s * 1.04, duration: AUTO_MS + 800, ease: 'Sine.easeOut' });
-    }
 
-    // Oscurecido: franja superior suave y degradado inferior en bandas (pixel art, sin degradados finos).
-    const g = this.add.graphics();
-    for (let i = 0; i < 8; i++) g.fillStyle(0x05060a, 0.5 - i * 0.06).fillRect(0, i * 6, W, 6);
-    for (let i = 0; i < 16; i++) g.fillStyle(0x05060a, 0.06 + i * 0.055).fillRect(0, H - 150 + i * 6, W, 6);
-    g.fillStyle(0x05060a, 0.92).fillRect(0, H - 54, W, 54);
-
-    const escala = GameState.settings.textScale || 1;
     const { lugar, nivel } = destino(this.section, this.nombre);
-
-    // Destino (arriba a la izquierda).
-    this.add.text(16, 12, 'RUMBO A', estiloTexto(TAM.chico, '#8ff7e1')).setLetterSpacing(2);
-    this.add.text(16, 25, lugar, { ...estiloTexto(TAM.cartel, '#fff2c8', { grosor: 4 }) });
-    if (nivel) this.add.text(16, 51, nivel, estiloTexto(TAM.chico, '#c8d8c0'));
-
-    // Consejo (abajo).
     ultimoConsejo = alAzar(CONSEJOS.length, ultimoConsejo);
-    const consejo = CONSEJOS[ultimoConsejo] ?? '';
-    const y0 = H - 92;
-    this.add.text(16, y0, 'CONSEJO', estiloTexto(TAM.chico, '#f2c86b')).setLetterSpacing(2);
-    g.fillStyle(0xf2c86b, 1).fillRect(16, y0 + 15, 22, 1);
-    this.add.text(16, y0 + 22, consejo, {
-      ...estiloTexto(conEscala(TAM.medio, escala), '#efe6d2'),
-      wordWrap: { width: W - 32, useAdvancedWrap: true },
-      lineSpacing: 2,
+    this.capa = mostrarCapaCarga(this, {
+      src: `assets/ui/carga/hd/${this.clave}.jpg`,
+      lugar,
+      nivel,
+      consejo: CONSEJOS[ultimoConsejo] ?? '',
+      escalaTexto: GameState.settings.textScale || 1,
+      fundidoMs: FUNDIDO_ENTRADA,
+      alFallar: () => this.dibujarRespaldo(),
     });
+    if (!this.capa) this.dibujarRespaldo();
 
-    // Aviso para continuar y barra del tiempo restante.
-    this.aviso = this.add.text(W - 16, H - 14, 'E / Espacio para continuar', estiloTexto(TAM.chico, '#8b8aa0')).setOrigin(1, 1);
-    this.barra = this.add.graphics();
-
-    // Entrada.
+    // Entrada (la capa HTML no captura el ratón: todo llega a Phaser).
     const avanzar = () => this.cerrar();
     const kb = this.input.keyboard;
     kb?.on('keydown-E', avanzar);
@@ -157,20 +121,37 @@ export class CargaScene extends Phaser.Scene {
     kb?.on('keydown-ENTER', avanzar);
     this.input.on('pointerdown', avanzar);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+      // La capa se quita siempre al detenerse la escena (continuar, volver al título, reinicio…).
+      this.capa?.quitar();
+      this.capa = null;
       kb?.off('keydown-E', avanzar);
       kb?.off('keydown-SPACE', avanzar);
       kb?.off('keydown-ENTER', avanzar);
       this.input.off('pointerdown', avanzar);
     });
+    this.events.once(Phaser.Scenes.Events.DESTROY, () => this.capa?.quitar());
 
-    this.cameras.main.fadeIn(350, 0, 0, 0);
+    this.cameras.main.fadeIn(FUNDIDO_ENTRADA, 0, 0, 0);
+  }
+
+  /** Respaldo dentro del lienzo (640×360) si la capa HTML o su imagen no están disponibles. */
+  private dibujarRespaldo(): void {
+    if (!this.sys.isActive() || !this.textures.exists(this.clave)) return;
+    const img = this.add.image(W / 2, H / 2, this.clave);
+    img.setScale(Math.max(W / img.width, H / img.height));
+    // Encima del fondo liso (índice 1), por debajo de todo lo demás.
+    this.children.moveTo(img, 1);
   }
 
   update(time: number): void {
+    // Si el nivel de debajo desapareció (vuelta al título, reinicio…), la carga se va con él (y su capa HTML).
+    if (!this.scene.isActive('Level') && !this.scene.isPaused('Level')) {
+      this.scene.stop();
+      return;
+    }
     const t = time - this.inicio;
     const r = Phaser.Math.Clamp(t / AUTO_MS, 0, 1);
-    this.barra.clear().fillStyle(0x3cc4b8, 0.8).fillRect(0, H - 2, Math.round(W * r), 2);
-    this.aviso.setAlpha(0.55 + 0.45 * Math.abs(Math.sin(t / 420)));
+    this.capa?.actualizar(r, 0.55 + 0.45 * Math.abs(Math.sin(t / 420)));
     if (t >= AUTO_MS) this.cerrar();
   }
 
@@ -178,7 +159,8 @@ export class CargaScene extends Phaser.Scene {
     if (this.cerrando || this.time.now - this.inicio < BLOQUEO_MS) return;
     this.cerrando = true;
     sfx('ui_aceptar');
-    this.cameras.main.fadeOut(300, 0, 0, 0);
+    this.capa?.fundirSalida(FUNDIDO_SALIDA);
+    this.cameras.main.fadeOut(FUNDIDO_SALIDA, 0, 0, 0);
     this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
       if (this.scene.isPaused('Level')) this.scene.resume('Level');
       if (this.pausoDialogo && this.scene.isPaused('Dialogue')) this.scene.resume('Dialogue');

@@ -255,6 +255,8 @@ export class CabezaOlmeca extends EnemyBase {
     }
 
     if (this.st !== 'calmed') this.pushPlayer();
+    // La cara (kit por cuadros: 3/4 hacia la derecha) mira al jugador. Antes `facing` se quedaba en 1.
+    if (this.st !== 'calmed' && Math.abs(p.x - this.x) > 8) this.facing = p.x > this.x ? 1 : -1;
     this.updateLanes(dt);
     this.updateBeams(dt);
     this.render(dt);
@@ -289,6 +291,16 @@ export class CabezaOlmeca extends EnemyBase {
     this.world.moveActor(p, nx * (min - d), ny * (min - d) * 0.5);
   }
 
+  /**
+   * Posición de un ojo (side −1 / 1 = izquierdo / derecho en pantalla). Con el kit de Codex la cara está en
+   * 3/4 hacia donde mira: los ojos se corren hacia `facing` (eyes.kit en enemies.json) y se espejan con ella.
+   */
+  private eyePos(side: number): { x: number; dy: number } {
+    const k = this.kit ? B.eyes.kit : null;
+    if (!k) return { x: this.x + side * B.eyes.dx, dy: B.eyes.dy };
+    return { x: this.x + this.facing * k.cx + side * k.dx, dy: k.dy };
+  }
+
   private placeEyes(): void {
     const t = performance.now() / 1000;
     const color =
@@ -297,7 +309,8 @@ export class CabezaOlmeca extends EnemyBase {
     const scale = this.eyeMode === 'charge' ? 1.1 : this.eyeMode === 'off' ? 0.5 : 0.8;
     const top = this.y - this.z - this.bob;
     this.eyes.forEach((e, i) => {
-      e.setPosition(this.x + (i === 0 ? -B.eyes.dx : B.eyes.dx), top - B.eyes.dy)
+      const ep = this.eyePos(i === 0 ? -1 : 1);
+      e.setPosition(ep.x, top - ep.dy)
         .setTint(color)
         .setAlpha(Math.max(0, base) * this.sprite.alpha)
         .setScale(scale, scale * 0.6)
@@ -445,8 +458,9 @@ export class CabezaOlmeca extends EnemyBase {
       }
       const sweep = Math.min(Bm.range, Bm.sweepSpeed * b.t);
       const front = start + b.side * sweep;
-      const eyeX = this.x + b.side * B.eyes.dx;
-      const eyeY = this.y - B.eyes.dy;
+      const ep = this.eyePos(b.side);
+      const eyeX = ep.x;
+      const eyeY = this.y - ep.dy;
       const flick = 0.8 + 0.2 * Math.sin(b.t * 60);
       g.lineStyle(7, 0xff2040, 0.35 * flick).lineBetween(eyeX, eyeY, start, yDraw).lineBetween(start, yDraw, front, yDraw);
       g.lineStyle(3, 0xff6070, 0.9 * flick).lineBetween(eyeX, eyeY, start, yDraw).lineBetween(start, yDraw, front, yDraw);

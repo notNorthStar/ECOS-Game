@@ -744,12 +744,12 @@
  "generadoPor": "tools/codex-sheets.py",
  "fuente": {
   "miembro-cofradia-rojo": {
-   "escala_fuente": 0.341,
-   "alto_de_pie_fuente": 217.0
+   "escala_fuente": 0.3418,
+   "alto_de_pie_fuente": 216.5
   },
   "miembro-cofradia-negro": {
-   "escala_fuente": 0.3203,
-   "alto_de_pie_fuente": 231.0
+   "escala_fuente": 0.3183,
+   "alto_de_pie_fuente": 232.5
   },
   "miembro-cofradia-rojo-negro": {
    "escala_fuente": 0.3274,

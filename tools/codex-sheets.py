@@ -7,7 +7,9 @@ Cada hoja mide 1536×1024: 6 columnas × 4 filas = 24 poses de 256×256, fondo o
 
   1. Quita el fondo: relleno desde las líneas de la cuadrícula por píxeles "suaves" (el fondo es un
      degradado; el personaje tiene contorno oscuro definido), huecos encerrados con color de fondo y
-     limpieza del halo del borde.
+     limpieza del halo del borde. En las hojas OSCURAS (HOJAS_MATE) se usa la silueta del canal alfa de la
+     hoja, refinada con el fondo estimado y el contorno (mask_from_matte). Las celdas que miran a la
+     izquierda (ESPEJAR) se espejan para que todas miren a la derecha.
   2. Ajustes por código (protagonista y madre: cabeza más chica, cuerpo más largo, color más sobrio;
      Don Ernesto: más monstruoso).
   3. Escala TODA la hoja con el mismo factor (vecino más cercano sobre el color suavizado 3×3) para que
@@ -155,6 +157,28 @@ KITS = {
 MAX_COLORS = 32
 SMOOTH_T = 3.0     # salto máximo de color entre vecinos (tras suavizar 3×3) para considerarlo fondo
 
+# ----------------------------------------------------------------------------------------------
+# Hojas OSCURAS (capas negras, plumas, pelo sobre un fondo también oscuro): el relleno por píxeles
+# "suaves" se comía partes del personaje (la capa del encapuchado negro quedaba como mancha recortada).
+# Estas hojas traen en su canal alfa una silueta (mate) del personaje: se usa como máscara principal y
+# se refina con el contorno oscuro y la diferencia contra el fondo estimado por celda (ver mask_from_matte).
+# ----------------------------------------------------------------------------------------------
+HOJAS_MATE = {
+    'miembro-cofradia-negro', 'miembro-cofradia-rojo-negro', 'miembro-cofradia-rojo',
+    'nahuala', 'llorona', 'bruja', 'tzitzimime', 'itzpapalotl', 'rey-del-olvido', 'vampiro',
+    'bestia-1', 'bestia-2', 'bestia-3', 'nahual', 'nahual-humano', 'maria', 'momia',
+}
+
+# ----------------------------------------------------------------------------------------------
+# Celdas que en la hoja de Codex miran a la IZQUIERDA (el juego asume que TODAS miran a la derecha
+# y espeja cuando el personaje mira a la izquierda). Se espejan aquí para normalizar. Revisado a mano
+# con arte-fuente/codex/revision/<id>.png. Sin esto el Chaneque Mayor parecía mirar siempre a la
+# derecha: su reposo y su caminata venían al revés y al espejarlos quedaban de espaldas al jugador.
+# ----------------------------------------------------------------------------------------------
+ESPEJAR = {
+    'chaneque-mayor': {0, 1, 2, 3, 4, 12, 16, 20, 22, 23},
+}
+
 
 # ============================================ utilidades ============================================
 
@@ -277,6 +301,47 @@ def remove_background(rgb):
         edge = ~bg & dilate(bg)
         bg |= edge & (dist < 22)
     return ~bg
+
+
+def matte_usable(alpha):
+    """¿El canal alfa de la hoja es una silueta de verdad (ni todo opaco ni todo transparente)?"""
+    if alpha is None:
+        return False
+    on = float((alpha >= 128).mean())
+    return 0.05 < on < 0.8
+
+
+def mask_from_matte(rgb, alpha):
+    """
+    Hojas oscuras: máscara = silueta del canal alfa, refinada.
+      1. Base: alfa ≥ 128 (la silueta ya separa capa negra y fondo negro, cosa que el color no puede).
+      2. Fondo estimado por zona: promedio (convolución normalizada) de los píxeles con alfa bajo.
+      3. Halo: en una franja de 4 px pegada al borde de la silueta se quitan, desde afuera hacia adentro,
+         los píxeles que se parecen al fondo estimado. El contorno oscuro del personaje es más negro que
+         el degradado del fondo, así que queda como borde y frena la limpieza.
+      4. Huecos interiores chicos (motas de la silueta) se rellenan; los grandes (entre piernas) se respetan.
+    """
+    H, W, _ = rgb.shape
+    m = alpha >= 128
+    out = alpha < 32
+    wsum = box(out.astype(np.float32), 14)
+    bmod = box(rgb * out[..., None], 14) / np.maximum(wsum, 1e-3)[..., None]
+    dist = np.sqrt(((rgb - bmod) ** 2).sum(-1))
+    Lp, Lb = lum(rgb), lum(bmod)
+    band = m & ~(~dilate(~m, 4))           # franja de 4 px dentro del borde
+    parecido = band & (dist < 12) & (Lp >= Lb - 6)   # igual al fondo y no más oscuro (no es contorno)
+    halo = grow(dilate(~m) & parecido, parecido)
+    m &= ~halo
+    # huecos interiores pequeños (≤ 40 px a resolución completa) → personaje
+    holes = ~m
+    lab, sizes = components(holes[::2, ::2])
+    small = np.zeros_like(holes[::2, ::2])
+    border = set(np.unique(np.concatenate([lab[0], lab[-1], lab[:, 0], lab[:, -1]])))
+    for i, s in enumerate(sizes):
+        if i and s <= 10 and i not in border:
+            small |= lab == i
+    m |= np.kron(small, np.ones((2, 2), bool))[:H, :W]
+    return m
 
 
 # =================================== ajustes por código (fuente) ===================================
@@ -766,8 +831,13 @@ def load_sheet(name):
     Así una pose que invade la celda vecina sale completa y la vecina no hereda el pedazo. Si dos poses quedaron
     pegadas en una sola mancha, esa mancha sí se corta por la cuadrícula.
     """
-    rgb = np.asarray(Image.open(os.path.join(SRC, name + '.png')).convert('RGB')).astype(np.float32)
-    fg = remove_background(rgb)
+    src = Image.open(os.path.join(SRC, name + '.png'))
+    rgb = np.asarray(src.convert('RGB')).astype(np.float32)
+    alpha = np.asarray(src.convert('RGBA'))[..., 3] if 'A' in src.mode else None
+    if name in HOJAS_MATE and matte_usable(alpha):
+        fg = mask_from_matte(rgb, alpha)
+    else:
+        fg = remove_background(rgb)
     H, W = fg.shape
     er = ~dilate(~fg, 2)
     half = er[::2, ::2]
@@ -865,6 +935,10 @@ def process_sheet(name, alto, ajuste):
     vis = rgb.copy()
     vis[~fg] = vis[~fg] * 0.15 + np.array([255, 0, 255]) * 0.85
     Image.fromarray(vis.astype(np.uint8)).resize((768, 512), Image.NEAREST).save(os.path.join(REV, f'_fondo_{name}.png'))
+    # normaliza la dirección: las celdas que miran a la izquierda se espejan (ver ESPEJAR)
+    for i in ESPEJAR.get(name, ()):
+        c_rgb, c_m = cells[i]
+        cells[i] = (c_rgb[:, ::-1].copy(), c_m[:, ::-1].copy())
     ref = float(np.median([height_of(m) for _, m in cells[:6]]))
     if ajuste == 'prota':
         cells = ajuste_prota(cells, ref)
@@ -1019,7 +1093,10 @@ def write_mapeo(results):
               '- `nahual_animal` usa `nahual.png` (forma animal del nahual). `bestia-2.png` no se usa (las bestias son 1 y 3).',
               '- Protagonista y madre: cabeza ×0.80 y cuerpo ×1.18 en las poses erguidas; color con 62 % de saturación y 86 % de brillo.',
               '- Don Ernesto: piel verde ceniza, ojos que brillan, cuernos sobre el sombrero y doble contorno carmesí.',
-              '- Cabeza Olmeca: la hoja son expresiones (ojos verdes = ataque, X = derrota, ojos cerrados = calma).', '']
+              '- Cabeza Olmeca: la hoja son expresiones (ojos verdes = ataque, X = derrota, ojos cerrados = calma).',
+              '- Dirección: todas las poses deben mirar a la derecha. Celdas espejadas (ESPEJAR): '
+              + '; '.join(f'{h}.png {sorted(c)}' for h, c in ESPEJAR.items()) + '.',
+              '- Hojas oscuras con silueta del canal alfa (HOJAS_MATE): ' + ', '.join(sorted(HOJAS_MATE)) + '.', '']
     with open(os.path.join(ROOT, 'arte-fuente', 'codex', 'MAPEO.md'), 'w', encoding='utf-8', newline='\n') as f:
         f.write('\n'.join(lines))
 

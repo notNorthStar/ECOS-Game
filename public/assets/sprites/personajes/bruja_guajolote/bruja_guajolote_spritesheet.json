@@ -1,11 +1,11 @@
 {
  "personaje": "bruja_guajolote",
  "tipo": "humanoide",
- "frameWidth": 126,
- "frameHeight": 117,
+ "frameWidth": 128,
+ "frameHeight": 118,
  "pivot": {
-  "x": 63,
-  "y": 115
+  "x": 64,
+  "y": 116
  },
  "frames": [
   {
@@ -13,192 +13,192 @@
    "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 126,
-   "h": 117
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_reposo_2",
    "vista": "reposo_2",
-   "x": 126,
+   "x": 128,
    "y": 0,
-   "w": 126,
-   "h": 117
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_caminar_1",
    "vista": "caminar_1",
-   "x": 252,
+   "x": 256,
    "y": 0,
-   "w": 126,
-   "h": 117
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_caminar_2",
    "vista": "caminar_2",
-   "x": 378,
+   "x": 384,
    "y": 0,
-   "w": 126,
-   "h": 117
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_caminar_3",
    "vista": "caminar_3",
-   "x": 504,
+   "x": 512,
    "y": 0,
-   "w": 126,
-   "h": 117
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_caminar_4",
    "vista": "caminar_4",
-   "x": 630,
+   "x": 640,
    "y": 0,
-   "w": 126,
-   "h": 117
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_correr_1",
    "vista": "correr_1",
    "x": 0,
-   "y": 117,
-   "w": 126,
-   "h": 117
+   "y": 118,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_correr_2",
    "vista": "correr_2",
-   "x": 126,
-   "y": 117,
-   "w": 126,
-   "h": 117
+   "x": 128,
+   "y": 118,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_correr_3",
    "vista": "correr_3",
-   "x": 252,
-   "y": 117,
-   "w": 126,
-   "h": 117
+   "x": 256,
+   "y": 118,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_correr_4",
    "vista": "correr_4",
-   "x": 378,
-   "y": 117,
-   "w": 126,
-   "h": 117
+   "x": 384,
+   "y": 118,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_preparar",
    "vista": "preparar",
-   "x": 504,
-   "y": 117,
-   "w": 126,
-   "h": 117
+   "x": 512,
+   "y": 118,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_atacar",
    "vista": "atacar",
-   "x": 630,
-   "y": 117,
-   "w": 126,
-   "h": 117
+   "x": 640,
+   "y": 118,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_guardia",
    "vista": "guardia",
    "x": 0,
-   "y": 234,
-   "w": 126,
-   "h": 117
+   "y": 236,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_conjuro",
    "vista": "conjuro",
-   "x": 126,
-   "y": 234,
-   "w": 126,
-   "h": 117
+   "x": 128,
+   "y": 236,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_lanzar_1",
    "vista": "lanzar_1",
-   "x": 252,
-   "y": 234,
-   "w": 126,
-   "h": 117
+   "x": 256,
+   "y": 236,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_lanzar_2",
    "vista": "lanzar_2",
-   "x": 378,
-   "y": 234,
-   "w": 126,
-   "h": 117
+   "x": 384,
+   "y": 236,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_salto",
    "vista": "salto",
-   "x": 504,
-   "y": 234,
-   "w": 126,
-   "h": 117
+   "x": 512,
+   "y": 236,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_caida",
    "vista": "caida",
-   "x": 630,
-   "y": 234,
-   "w": 126,
-   "h": 117
+   "x": 640,
+   "y": 236,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_agacharse",
    "vista": "agacharse",
    "x": 0,
-   "y": 351,
-   "w": 126,
-   "h": 117
+   "y": 354,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_esquivar",
    "vista": "esquivar",
-   "x": 126,
-   "y": 351,
-   "w": 126,
-   "h": 117
+   "x": 128,
+   "y": 354,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_golpe_bajo",
    "vista": "golpe_bajo",
-   "x": 252,
-   "y": 351,
-   "w": 126,
-   "h": 117
+   "x": 256,
+   "y": 354,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_dano",
    "vista": "dano",
-   "x": 378,
-   "y": 351,
-   "w": 126,
-   "h": 117
+   "x": 384,
+   "y": 354,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_derrota",
    "vista": "derrota",
-   "x": 504,
-   "y": 351,
-   "w": 126,
-   "h": 117
+   "x": 512,
+   "y": 354,
+   "w": 128,
+   "h": 118
   },
   {
    "name": "bruja_guajolote_caido",
    "vista": "caido",
-   "x": 630,
-   "y": 351,
-   "w": 126,
-   "h": 117
+   "x": 640,
+   "y": 354,
+   "w": 128,
+   "h": 118
   }
  ],
  "escala": 1,
@@ -360,8 +360,8 @@
  "generadoPor": "tools/codex-sheets.py",
  "fuente": {
   "bruja": {
-   "escala_fuente": 0.4468,
-   "alto_de_pie_fuente": 235.0
+   "escala_fuente": 0.4487,
+   "alto_de_pie_fuente": 234.0
   }
  },
  "alto": 105

@@ -113,6 +113,8 @@ function harness({ spellDefs = true, withLunaApi = true } = {}) {
     '../data/catemaco.json': config,
     // La salida de Catemaco continúa a Oaxaca (Nivel 4).
     './Campaign': { prepareOaxacaEntry: () => calls.push(['prepareOaxacaEntry']) },
+    // Sin kits en la prueba: María usa el placeholder (en el juego, su kit animado).
+    './CharacterKits': { getKit: () => undefined, kitAnimatorFor: () => null },
   };
   const module = { exports: {} };
   vm.runInNewContext(`(function(require,module,exports) { ${code}\n})`, {}, {

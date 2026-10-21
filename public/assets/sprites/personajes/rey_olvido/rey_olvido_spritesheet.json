@@ -1,11 +1,11 @@
 {
  "personaje": "rey_olvido",
  "tipo": "humanoide",
- "frameWidth": 134,
- "frameHeight": 124,
+ "frameWidth": 136,
+ "frameHeight": 125,
  "pivot": {
-  "x": 67,
-  "y": 122
+  "x": 68,
+  "y": 123
  },
  "frames": [
   {
@@ -13,192 +13,192 @@
    "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 134,
-   "h": 124
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_reposo_2",
    "vista": "reposo_2",
-   "x": 134,
+   "x": 136,
    "y": 0,
-   "w": 134,
-   "h": 124
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_caminar_1",
    "vista": "caminar_1",
-   "x": 268,
+   "x": 272,
    "y": 0,
-   "w": 134,
-   "h": 124
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_caminar_2",
    "vista": "caminar_2",
-   "x": 402,
+   "x": 408,
    "y": 0,
-   "w": 134,
-   "h": 124
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_caminar_3",
    "vista": "caminar_3",
-   "x": 536,
+   "x": 544,
    "y": 0,
-   "w": 134,
-   "h": 124
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_caminar_4",
    "vista": "caminar_4",
-   "x": 670,
+   "x": 680,
    "y": 0,
-   "w": 134,
-   "h": 124
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_correr_1",
    "vista": "correr_1",
    "x": 0,
-   "y": 124,
-   "w": 134,
-   "h": 124
+   "y": 125,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_correr_2",
    "vista": "correr_2",
-   "x": 134,
-   "y": 124,
-   "w": 134,
-   "h": 124
+   "x": 136,
+   "y": 125,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_correr_3",
    "vista": "correr_3",
-   "x": 268,
-   "y": 124,
-   "w": 134,
-   "h": 124
+   "x": 272,
+   "y": 125,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_correr_4",
    "vista": "correr_4",
-   "x": 402,
-   "y": 124,
-   "w": 134,
-   "h": 124
+   "x": 408,
+   "y": 125,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_preparar",
    "vista": "preparar",
-   "x": 536,
-   "y": 124,
-   "w": 134,
-   "h": 124
+   "x": 544,
+   "y": 125,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_atacar",
    "vista": "atacar",
-   "x": 670,
-   "y": 124,
-   "w": 134,
-   "h": 124
+   "x": 680,
+   "y": 125,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_guardia",
    "vista": "guardia",
    "x": 0,
-   "y": 248,
-   "w": 134,
-   "h": 124
+   "y": 250,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_conjuro",
    "vista": "conjuro",
-   "x": 134,
-   "y": 248,
-   "w": 134,
-   "h": 124
+   "x": 136,
+   "y": 250,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_lanzar_1",
    "vista": "lanzar_1",
-   "x": 268,
-   "y": 248,
-   "w": 134,
-   "h": 124
+   "x": 272,
+   "y": 250,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_lanzar_2",
    "vista": "lanzar_2",
-   "x": 402,
-   "y": 248,
-   "w": 134,
-   "h": 124
+   "x": 408,
+   "y": 250,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_salto",
    "vista": "salto",
-   "x": 536,
-   "y": 248,
-   "w": 134,
-   "h": 124
+   "x": 544,
+   "y": 250,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_caida",
    "vista": "caida",
-   "x": 670,
-   "y": 248,
-   "w": 134,
-   "h": 124
+   "x": 680,
+   "y": 250,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_agacharse",
    "vista": "agacharse",
    "x": 0,
-   "y": 372,
-   "w": 134,
-   "h": 124
+   "y": 375,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_esquivar",
    "vista": "esquivar",
-   "x": 134,
-   "y": 372,
-   "w": 134,
-   "h": 124
+   "x": 136,
+   "y": 375,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_golpe_bajo",
    "vista": "golpe_bajo",
-   "x": 268,
-   "y": 372,
-   "w": 134,
-   "h": 124
+   "x": 272,
+   "y": 375,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_dano",
    "vista": "dano",
-   "x": 402,
-   "y": 372,
-   "w": 134,
-   "h": 124
+   "x": 408,
+   "y": 375,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_derrota",
    "vista": "derrota",
-   "x": 536,
-   "y": 372,
-   "w": 134,
-   "h": 124
+   "x": 544,
+   "y": 375,
+   "w": 136,
+   "h": 125
   },
   {
    "name": "rey_olvido_caido",
    "vista": "caido",
-   "x": 670,
-   "y": 372,
-   "w": 134,
-   "h": 124
+   "x": 680,
+   "y": 375,
+   "w": 136,
+   "h": 125
   }
  ],
  "escala": 1,
@@ -360,8 +360,8 @@
  "generadoPor": "tools/codex-sheets.py",
  "fuente": {
   "rey-del-olvido": {
-   "escala_fuente": 0.4866,
-   "alto_de_pie_fuente": 242.5
+   "escala_fuente": 0.4989,
+   "alto_de_pie_fuente": 236.5
   }
  },
  "alto": 118

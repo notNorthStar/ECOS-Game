@@ -6,7 +6,7 @@ import { createHandDiagram } from '../lsm/adapters/phaser/HandDiagram';
 import { camView, lsm, showCamera } from '../systems/Lsm';
 import { getActiveCast, wheelState } from '../systems/Casting';
 import { getMastery, getSpellDef, MASTERY_MAX } from '../systems/Mastery';
-import { FUENTE, PAD_ACENTO, tamFuente } from '../ui/fuente';
+import { FUENTE, FUENTE_LECTURA, nitidez, PAD_ACENTO, tamFuente } from '../ui/fuente';
 
 /* =====================================================================================
  * Utilidades de interfaz compartidas por las escenas de lsm (Title, Spell, Diario, Pause).
@@ -45,19 +45,23 @@ export function txt(
   color: string = COL.ink,
   opts: { ox?: number; oy?: number; wrap?: number; align?: string; stroke?: boolean } = {},
 ): Phaser.GameObjects.Text {
+  // Los textos largos (con salto de línea: descripciones del Diario, de la rueda y del aprendizaje) usan la
+  // fuente de lectura, nítida a la escala real de la pantalla (pedido del equipo: la pixel cansa al leer).
+  const lectura = !!opts.wrap;
   const t = scene.add.text(Math.round(x), Math.round(y), s, {
-    fontFamily: FONT,
-    fontSize: `${tamFuente(size)}px`,
+    fontFamily: lectura ? FUENTE_LECTURA : FONT,
+    fontSize: lectura ? `${size <= 8 ? 12 : 13}px` : `${tamFuente(size)}px`,
     // La pixel en negrita solo luce en tamaños grandes; en chico se empasta.
-    fontStyle: size >= 24 ? 'bold' : 'normal',
+    fontStyle: !lectura && size >= 24 ? 'bold' : 'normal',
     color,
     align: opts.align ?? 'left',
     wordWrap: opts.wrap ? { width: opts.wrap } : undefined,
-    lineSpacing: 1,
+    lineSpacing: lectura ? 2 : 1,
     padding: { top: PAD_ACENTO }, // acentos de mayúsculas sin recortar
   });
-  if (opts.stroke !== false) t.setStroke('#05060a', 3);
+  if (opts.stroke !== false) t.setStroke('#05060a', lectura ? 2 : 3);
   t.setOrigin(opts.ox ?? 0, opts.oy ?? 0);
+  if (lectura) nitidez(t, scene.game);
   return t;
 }
 

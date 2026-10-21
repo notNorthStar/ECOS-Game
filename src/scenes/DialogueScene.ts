@@ -1,7 +1,7 @@
-﻿import Phaser from 'phaser';
+import Phaser from 'phaser';
 import { bus, sfx } from '../core/bus';
 import { GameState } from '../core/GameState';
-import { conEscala, FUENTE, PAD_ACENTO, TAM } from '../ui/fuente';
+import { conEscala, estiloLectura, FUENTE, nitidez, PAD_ACENTO, TAM, TAM_LECTURA } from '../ui/fuente';
 import { keys } from '../config/controls';
 import { GAME_HEIGHT, GAME_WIDTH } from '../config/game';
 import type { WorldApi } from '../core/contracts';
@@ -70,7 +70,8 @@ export function playDialogue(scene: Phaser.Scene, id: string): Promise<void> {
 }
 
 const CPS = 45; // caracteres por segundo
-const CAJA = { x: 12, y: GAME_HEIGHT - 92, w: GAME_WIDTH - 24, h: 82 };
+// Caja algo más alta que antes: el cuerpo usa la fuente legible a 12 px y caben 4 líneas holgadas.
+const CAJA = { x: 12, y: GAME_HEIGHT - 100, w: GAME_WIDTH - 24, h: 90 };
 
 export class DialogueScene extends Phaser.Scene {
   private id = '';
@@ -85,6 +86,10 @@ export class DialogueScene extends Phaser.Scene {
   private retrato?: Phaser.GameObjects.Image;
   private retratoMarco!: Phaser.GameObjects.Graphics;
   private flecha!: Phaser.GameObjects.Text;
+  /** Tamaño base del cuerpo (px del lienzo) según la escala de texto de accesibilidad. */
+  private tamCuerpo: number = TAM_LECTURA.dialogo;
+  /** Línea actual con los saltos de renglón ya calculados (para la máquina de escribir). */
+  private envuelto = '';
   private prevLock = { controls: false, keys: false };
   private cerrando = false;
   /** true desde que el diálogo terminó hasta que Phaser detiene la escena. */
@@ -149,14 +154,15 @@ export class DialogueScene extends Phaser.Scene {
       color: '#f2c14e',
       padding: { top: PAD_ACENTO },
     });
+    // Cuerpo con la fuente legible (no pixel), generado a la resolución real de la pantalla para que
+    // se vea nítido aunque el lienzo de 640×360 esté escalado.
+    this.tamCuerpo = Math.max(TAM_LECTURA.minimo, Math.round(TAM_LECTURA.dialogo * s * 2) / 2);
     this.texto = this.add.text(0, 0, '', {
-      fontFamily: FUENTE,
-      fontSize: `${conEscala(TAM.normal, s)}px`,
-      color: '#efe6d2',
-      lineSpacing: 2,
-      padding: { top: PAD_ACENTO },
+      ...estiloLectura(this.tamCuerpo),
+      lineSpacing: 1,
       wordWrap: { width: CAJA.w - 90, useAdvancedWrap: true },
     });
+    nitidez(this.texto, this.game);
     this.flecha = this.add
       .text(CAJA.x + CAJA.w - 14, CAJA.y + CAJA.h - 14, '▼', {
         fontFamily: FUENTE,
@@ -195,11 +201,13 @@ export class DialogueScene extends Phaser.Scene {
       if (w?.player) w.player.controlsLocked = true;
       keys.locked = true;
     }
+    // Si cambia el tamaño de la ventana (pantalla completa…), regenera el texto a la nueva resolución.
+    nitidez(this.texto, this.game);
     if (!this.escribiendo) return;
-    const linea = this.lineas[this.idx];
-    this.visibles = Math.min(linea.text.length, this.visibles + (CPS * delta) / 1000);
-    this.texto.setText(linea.text.slice(0, Math.floor(this.visibles)));
-    if (this.visibles >= linea.text.length) {
+    const total = this.envuelto.length;
+    this.visibles = Math.min(total, this.visibles + (CPS * delta) / 1000);
+    this.texto.setText(this.envuelto.slice(0, Math.floor(this.visibles)));
+    if (this.visibles >= total) {
       this.escribiendo = false;
       this.flecha.setVisible(true);
     }
@@ -253,9 +261,14 @@ export class DialogueScene extends Phaser.Scene {
     const tx = conRetrato ? CAJA.x + 70 : CAJA.x + 16;
     this.texto.setPosition(tx, CAJA.y + (h.nombre ? 18 : 12));
     this.texto.setWordWrapWidth(CAJA.x + CAJA.w - 16 - tx, true);
-    // La fuente pixel no tiene cursiva: el narrador se distingue solo por el color.
-    this.texto.setFontStyle('');
-    this.texto.setColor(linea.who === 'narrador' ? '#cfd8d4' : linea.who === 'mama' ? '#f4d6e2' : '#efe6d2');
+    // El narrador va en cursiva (la fuente legible sí la tiene) y con un color más frío.
+    // (hay narradores por nivel: 'narrador', 'n03_narrador'…).
+    const esNarrador = /(^|_)narrador$/.test(linea.who);
+    this.texto.setFontStyle(esNarrador ? 'italic' : 'normal');
+    this.texto.setColor(esNarrador ? '#cfd8d4': linea.who === 'mama' ? '#f4d6e2' : '#efe6d2');
+    this.ajustarTamano(linea.text, CAJA.y + CAJA.h - 6 - this.texto.y);
+    // Saltos de línea ya resueltos con el texto completo: así las palabras no brincan de renglón al escribirse.
+    this.envuelto = this.texto.getWrappedText(linea.text).join('\n');
 
     this.nombreFondo.clear();
     this.nombre.setText(h.nombre);
@@ -270,14 +283,24 @@ export class DialogueScene extends Phaser.Scene {
     this.flecha.setVisible(false);
   }
 
+  /** Encoge el cuerpo (hasta TAM_LECTURA.minimo) si la línea completa no cabe en la caja. */
+  private ajustarTamano(texto: string, altoDisponible: number): void {
+    let px = this.tamCuerpo;
+    this.texto.setFontSize(`${px}px`);
+    this.texto.setText(texto);
+    while (this.texto.height > altoDisponible && px > TAM_LECTURA.minimo) {
+      px -= 0.5;
+      this.texto.setFontSize(`${px}px`);
+    }
+  }
+
   private avanzar(): void {
     if (this.cerrando) return;
     // Evita que la misma pulsación que abrió el diálogo lo adelante.
     if (this.time.now - this.abiertoEn < 220) return;
     if (this.escribiendo) {
-      const linea = this.lineas[this.idx];
-      this.visibles = linea.text.length;
-      this.texto.setText(linea.text);
+      this.visibles = this.envuelto.length;
+      this.texto.setText(this.envuelto);
       this.escribiendo = false;
       this.flecha.setVisible(true);
       return;

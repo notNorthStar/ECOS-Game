@@ -1,10 +1,10 @@
 {
  "personaje": "momia",
  "tipo": "humanoide",
- "frameWidth": 80,
+ "frameWidth": 82,
  "frameHeight": 76,
  "pivot": {
-  "x": 40,
+  "x": 41,
   "y": 74
  },
  "frames": [
@@ -13,47 +13,47 @@
    "vista": "lado_der",
    "x": 0,
    "y": 0,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_reposo_2",
    "vista": "reposo_2",
-   "x": 80,
+   "x": 82,
    "y": 0,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_caminar_1",
    "vista": "caminar_1",
-   "x": 160,
+   "x": 164,
    "y": 0,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_caminar_2",
    "vista": "caminar_2",
-   "x": 240,
+   "x": 246,
    "y": 0,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_caminar_3",
    "vista": "caminar_3",
-   "x": 320,
+   "x": 328,
    "y": 0,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_caminar_4",
    "vista": "caminar_4",
-   "x": 400,
+   "x": 410,
    "y": 0,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
@@ -61,47 +61,47 @@
    "vista": "correr_1",
    "x": 0,
    "y": 76,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_correr_2",
    "vista": "correr_2",
-   "x": 80,
+   "x": 82,
    "y": 76,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_correr_3",
    "vista": "correr_3",
-   "x": 160,
+   "x": 164,
    "y": 76,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_correr_4",
    "vista": "correr_4",
-   "x": 240,
+   "x": 246,
    "y": 76,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_preparar",
    "vista": "preparar",
-   "x": 320,
+   "x": 328,
    "y": 76,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_atacar",
    "vista": "atacar",
-   "x": 400,
+   "x": 410,
    "y": 76,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
@@ -109,47 +109,47 @@
    "vista": "guardia",
    "x": 0,
    "y": 152,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_conjuro",
    "vista": "conjuro",
-   "x": 80,
+   "x": 82,
    "y": 152,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_lanzar_1",
    "vista": "lanzar_1",
-   "x": 160,
+   "x": 164,
    "y": 152,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_lanzar_2",
    "vista": "lanzar_2",
-   "x": 240,
+   "x": 246,
    "y": 152,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_salto",
    "vista": "salto",
-   "x": 320,
+   "x": 328,
    "y": 152,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_caida",
    "vista": "caida",
-   "x": 400,
+   "x": 410,
    "y": 152,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
@@ -157,47 +157,47 @@
    "vista": "agacharse",
    "x": 0,
    "y": 228,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_esquivar",
    "vista": "esquivar",
-   "x": 80,
+   "x": 82,
    "y": 228,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_golpe_bajo",
    "vista": "golpe_bajo",
-   "x": 160,
+   "x": 164,
    "y": 228,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_dano",
    "vista": "dano",
-   "x": 240,
+   "x": 246,
    "y": 228,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_derrota",
    "vista": "derrota",
-   "x": 320,
+   "x": 328,
    "y": 228,
-   "w": 80,
+   "w": 82,
    "h": 76
   },
   {
    "name": "momia_caido",
    "vista": "caido",
-   "x": 400,
+   "x": 410,
    "y": 228,
-   "w": 80,
+   "w": 82,
    "h": 76
   }
  ],
@@ -360,8 +360,8 @@
  "generadoPor": "tools/codex-sheets.py",
  "fuente": {
   "momia": {
-   "escala_fuente": 0.284,
-   "alto_de_pie_fuente": 253.5
+   "escala_fuente": 0.2835,
+   "alto_de_pie_fuente": 254.0
   }
  },
  "alto": 72

@@ -360,8 +360,8 @@
  "generadoPor": "tools/codex-sheets.py",
  "fuente": {
   "nahuala": {
-   "escala_fuente": 0.4082,
-   "alto_de_pie_fuente": 245.0
+   "escala_fuente": 0.4098,
+   "alto_de_pie_fuente": 244.0
   }
  },
  "alto": 100
