@@ -52,8 +52,8 @@
 
 | Asset | Archivo | Autor | Licencia | Notas |
 |---|---|---|---|---|
-| Concept arts de las pantallas de carga (15 escenas del juego y sus misiones) | `public/assets/ui/carga/carga_01…15.jpg` (originales en `loadscreens/`) | Jose Manuel Hernández Pacheco (concept arts), con apoyo de Gemini Nano Banana | Propia | Reescaladas a 640×360 |
-| Hojas de personajes en pixel art (24 poses por personaje, con variantes) | `public/assets/sprites/personajes/<id>/` (originales en `assets-codex/`) | Codex (OpenAI), dirigido por el equipo | Propia | Recortadas, sin fondo y escaladas con `tools/codex-sheets.py`; protagonista y madre ajustados por código (proporción y color); Bruja Guajolote ave y detalles de Don Ernesto dibujados por código (Claude Code) |
+| Concept arts de las pantallas de carga (15 escenas del juego y sus misiones) | `public/assets/ui/carga/carga_01…15.jpg` (originales en `arte-fuente/ia-generado/pantallas-carga/`) | Jose Manuel Hernández Pacheco (concept arts), con apoyo de Gemini Nano Banana | Propia | Reescaladas a 640×360 |
+| Hojas de personajes en pixel art (24 poses por personaje, con variantes) | `public/assets/sprites/personajes/<id>/` (originales en `arte-fuente/ia-generado/codex-hojas/`) | Codex (OpenAI), dirigido por el equipo | Propia | Recortadas, sin fondo y escaladas con `tools/codex-sheets.py`; protagonista y madre ajustados por código (proporción y color); Bruja Guajolote ave y detalles de Don Ernesto dibujados por código (Claude Code) |
 
 ## Gráficos de terceros
 

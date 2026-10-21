@@ -4,8 +4,8 @@
 
 ## Decisiones del equipo (2026-10-20)
 
-- **Arte:** las hojas de Codex en `assets-codex/` (1536×1024, 6 columnas × 4 filas = 24 poses, fondo de color sin transparencia) son el arte de los personajes. Se recortan, se quita el fondo, se escalan y se integran como kits animados por cuadros.
-  - **Protagonista y madre:** se ajustan **por código** (cabeza más chica, cuerpo más alargado, colores más sobrios, menos "infantil"), conservando sus poses. Referencia de proporción: `assets-codex/ejemplos-prota/` (64×80).
+- **Arte:** las hojas de Codex en `arte-fuente/ia-generado/codex-hojas/` (1536×1024, 6 columnas × 4 filas = 24 poses, fondo de color sin transparencia) son el arte de los personajes. Se recortan, se quita el fondo, se escalan y se integran como kits animados por cuadros.
+  - **Protagonista y madre:** se ajustan **por código** (cabeza más chica, cuerpo más alargado, colores más sobrios, menos "infantil"), conservando sus poses. Referencia de proporción: `arte-fuente/ia-generado/codex-hojas/ejemplos-prota/` (64×80).
   - **Bruja Guajolote ave:** no existe hoja; se dibuja **por código** siguiendo el estilo y la paleta de `bruja.png`.
   - `exec-aed9e3b4-….png` = **bestia-2**, pero se usa como **nahual** (forma animal).
   - Varias versiones del mismo enemigo (muñecas 1–4, bestias 1 y 3, espíritu hombre/mujer, cofradía roja/negra/roja-negra) → variedad: cada instancia elige una al azar o por rango.
@@ -13,7 +13,7 @@
   - Al implementar: efectos (luces, partículas, auras, láseres) acordes a cada personaje.
 - **Enemigos nuevos (eran de niveles omitidos):** **Momias** (común; DESCANSO las purifica) en la avenida y la Catedral; **Vampiro** (minijefe en la Catedral, antes de la emboscada; débil a SOL y LUZ); **Don Ernesto** (minijefe al final de la avenida de Guadalajara; **más monstruoso que un señor común**: cartas espectrales, ruleta de azar, fuego infernal; VERDAD revela sus trampas; FUEGO lo cura).
 - **Trama:** al vencer a Itzpapálotl, el jugador **camina hacia la madre**, la libera con **E** y **habla con ella**; después llega el epílogo.
-- **Pantallas de carga:** entre niveles (no entre secciones), **1 imagen al azar** de `loadscreens/` + **1 consejo al azar**; se pasa con E/Espacio/clic o sola a los ~5 s.
+- **Pantallas de carga:** entre niveles (no entre secciones), **1 imagen al azar** de `arte-fuente/ia-generado/pantallas-carga/` + **1 consejo al azar**; se pasa con E/Espacio/clic o sola a los ~5 s.
 - **HUD:** barra de vida en lugar de corazones; interfaz minimalista (esquina, pequeña); **fuente pixel legible** (OFL, incluida en el juego, registrada en `CREDITOS.md`).
 - **Mecánicas:** cooldowns por conjuro (ajustables en `spells.json`): PROTECCION 20 s; daño (LUZ, SOL, FUEGO, VERDAD, VOZ, ECOS) 6–8 s; CALMA 1.5 s; DESCANSO y MEMORIA 4 s; historia (CONSUELO, PAZ, MAMA) sin cooldown en sus secuencias. **PROTECCION:** cura 1 corazón (1 unidad de vida); se mejora en el altar a 2 y 3; su maestría **solo** sube con esas mejoras del altar (no por lanzarlo).
 - **Bugs:** revisar todo: muros invisibles, objetos con E sin aviso, y la salida del taller del Nivel 1 (debe ser obvia).

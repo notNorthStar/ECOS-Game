@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-codex-sheets.py — Convierte las hojas de Codex (assets-codex/*.png) en kits animados del juego.
+codex-sheets.py — Convierte las hojas de Codex (arte-fuente/ia-generado/codex-hojas/*.png) en kits animados del juego.
 
 Cada hoja mide 1536×1024: 6 columnas × 4 filas = 24 poses de 256×256, fondo oscuro con degradado
 (sin transparencia) y el personaje mirando a la derecha. Por cada personaje:
@@ -36,7 +36,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, 'assets-codex')
+SRC = os.path.join(ROOT, 'arte-fuente', 'ia-generado', 'codex-hojas')
 OUT = os.path.join(ROOT, 'public', 'assets', 'sprites', 'personajes')
 REV = os.path.join(ROOT, 'arte-fuente', 'codex', 'revision')
 PREV = os.path.join(ROOT, 'arte-fuente', 'kits-previos')

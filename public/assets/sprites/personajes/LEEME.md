@@ -21,7 +21,7 @@ Para otro personaje, agrégalo a `KIT_IDS` en `src/systems/CharacterKits.ts` (o 
 
 ## Kits animados por cuadros (versión extendida, 2026-10-20)
 
-Las carpetas actuales las genera `tools/codex-sheets.py` a partir de las hojas de Codex (`assets-codex/`):
+Las carpetas actuales las genera `tools/codex-sheets.py` a partir de las hojas de Codex (`arte-fuente/ia-generado/codex-hojas/`):
 `python -I tools/codex-sheets.py [ids…]`. Mapeo de poses y tamaños: `arte-fuente/codex/MAPEO.md`;
 revisión visual: `arte-fuente/codex/revision/<id>.png`.
 
