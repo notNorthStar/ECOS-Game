@@ -7,6 +7,7 @@ import enemiesData from '../data/enemies.json';
 import progression from '../data/progression.json';
 import { EnemyBase, FB, burst, hexColor, inLuzRadius, inMemoriaRadius, inSolLine, planeDist, powerScale, purifyFx, rand, randRange, solDamage, solKnockback, spellParam, hitPlayer, inVerdadRadius, inFuegoLine, verdadStun, fuegoDamage, fuegoKnockback, burnFx } from './EnemyBase';
 
+import { FUENTE } from '../ui/fuente';
 /**
  * Chaneque (NIVELES §4, GDD §9). Pequeño, rápido, en grupos de 3–6, con travesuras.
  * Variantes: patrulla (rodea y se acomoda en la profundidad), saltador (salta en z hacia el jugador),
@@ -359,7 +360,7 @@ export class Chaneque extends EnemyBase {
   private showAlert(on: boolean): void {
     if (on && !this.alert) {
       this.alert = this.scene.add
-        .text(this.x, this.y, '!', { fontFamily: 'monospace', fontSize: '12px', color: '#ffe070', stroke: '#3a2000', strokeThickness: 3 })
+        .text(this.x, this.y, '!', { fontFamily: FUENTE, fontSize: '13px', color: '#ffe070', stroke: '#3a2000', strokeThickness: 3 })
         .setOrigin(0.5, 1);
       this.scene.tweens.add({ targets: this.alert, scale: { from: 1.6, to: 1 }, duration: 150 });
     } else if (!on && this.alert) {

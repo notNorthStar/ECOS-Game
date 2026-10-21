@@ -5,6 +5,7 @@ import { keys } from '../config/controls';
 import { GAME_HEIGHT, GAME_WIDTH } from '../config/game';
 import { prepareTuxtlaEntry } from '../systems/Campaign';
 
+import { FUENTE, tamFuente } from '../ui/fuente';
 // Dueño: contenido. Cierre del Nivel 1 (AGENTS.md §5.2 paso 8):
 // pantalla de carga narrativa (el auto compartido con estudiantes rumbo a Los Tuxtlas) y, al terminar,
 // continúa directo a San Andrés Tuxtla (Nivel 2). El mapa animado de la ruta y el resumen se quitaron
@@ -78,14 +79,14 @@ export class EndingScene extends Phaser.Scene {
     caja.fillStyle(0x07060d, 0.75).fillRect(0, H - 62, W, 62);
     caja.fillStyle(0xe0457b, 1).fillRect(0, H - 62, W, 1);
     const texto = this.add.text(24, H - 50, '', {
-      fontFamily: 'monospace',
-      fontSize: `${Math.round(11 * (GameState.settings.textScale || 1))}px`,
+      fontFamily: FUENTE,
+      fontSize: `${tamFuente(Math.round(11 * (GameState.settings.textScale || 1)))}px`,
       color: '#efe6d2',
       wordWrap: { width: W - 48, useAdvancedWrap: true },
       lineSpacing: 3,
     });
     this.add
-      .text(W - 12, 10, 'Rumbo a Los Tuxtlas…', { fontFamily: 'monospace', fontSize: '9px', color: '#8ff7e1' })
+      .text(W - 12, 10, 'Rumbo a Los Tuxtlas…', { fontFamily: FUENTE, fontSize: '11px', color: '#8ff7e1' })
       .setOrigin(1, 0);
 
     let i = 0;
@@ -93,7 +94,7 @@ export class EndingScene extends Phaser.Scene {
       if (this.fase !== 'viaje') return;
       if (i >= TEXTOS_VIAJE.length) {
         this.add
-          .text(W - 12, H - 14, 'E / Espacio', { fontFamily: 'monospace', fontSize: '8px', color: '#8b8aa0' })
+          .text(W - 12, H - 14, 'E / Espacio', { fontFamily: FUENTE, fontSize: '11px', color: '#8b8aa0' })
           .setOrigin(1, 0);
         this.time.delayedCall(3500, () => this.irTuxtla());
         return;

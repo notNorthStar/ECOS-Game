@@ -4,6 +4,7 @@ import { bus } from '../core/bus';
 import { GameState } from '../core/GameState';
 import { DEPTH } from '../config/game';
 
+import { FUENTE, tamFuente } from '../ui/fuente';
 /**
  * Dueño: sistemas (Nivel 7). CORONA DEL REY DEL OLVIDO: controles invertidos unos segundos.
  * LevelScene llama installMindControl(world) en todas las secciones.
@@ -78,8 +79,8 @@ export function installMindControl(world: WorldApi): void {
     const scale = GameState.settings.textScale || 1;
     const txt = scene.add
       .text(W / 2, H * 0.28, MC.warnText, {
-        fontFamily: 'monospace',
-        fontSize: `${Math.round(12 * scale)}px`,
+        fontFamily: FUENTE,
+        fontSize: `${tamFuente(Math.round(12 * scale))}px`,
         color: '#f0d8ff',
         stroke: '#2a0a40',
         strokeThickness: 3,

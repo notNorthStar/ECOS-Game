@@ -12,6 +12,7 @@ import * as MariaMod from './Maria';
 import config from '../data/oaxaca.json';
 import { prepareCdmxEntry, prepareOaxacaEntry } from './Campaign';
 
+import { FUENTE, tamFuente } from '../ui/fuente';
 /**
  * Director del Nivel 4 · Oaxaca (dueño: contenido). Maneja las tres secciones del nivel
  * (oaxaca → callejones → santo_domingo) con un switch por world.level.id, siguiendo el patrón de
@@ -61,7 +62,7 @@ class OaxacaDirector {
   constructor(private world: WorldApi) {
     const scene = world.scene;
     this.counter = scene.add.text(config.hud.x, config.hud.y, '', {
-      fontFamily: 'monospace', fontSize: `${config.hud.fontSize}px`,
+      fontFamily: FUENTE, fontSize: `${tamFuente(config.hud.fontSize)}px`,
       color: '#fff0ce', backgroundColor: '#171521cc', padding: { x: 5, y: 4 },
       lineSpacing: 3,
     }).setScrollFactor(0).setDepth(DEPTH.ui);
@@ -155,7 +156,7 @@ class OaxacaDirector {
     sfx('conjuro_ok');
     const p = at ?? this.world.player;
     const text = this.world.scene.add.text(p.x, p.y - 36, `+${amount} Ecos`, {
-      fontFamily: 'monospace', fontSize: '10px', color: '#f2c14e', stroke: '#0b0a14', strokeThickness: 3,
+      fontFamily: FUENTE, fontSize: '11px', color: '#f2c14e', stroke: '#0b0a14', strokeThickness: 3,
     }).setOrigin(0.5).setDepth(DEPTH.ui - 1);
     this.world.scene.tweens.add({
       targets: text, y: p.y - 70, alpha: 0, duration: 1400, onComplete: () => text.destroy(),

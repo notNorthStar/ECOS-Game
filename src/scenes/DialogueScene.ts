@@ -1,6 +1,7 @@
 ﻿import Phaser from 'phaser';
 import { bus, sfx } from '../core/bus';
 import { GameState } from '../core/GameState';
+import { conEscala, FUENTE, PAD_ACENTO, TAM } from '../ui/fuente';
 import { keys } from '../config/controls';
 import { GAME_HEIGHT, GAME_WIDTH } from '../config/game';
 import type { WorldApi } from '../core/contracts';
@@ -143,30 +144,31 @@ export class DialogueScene extends Phaser.Scene {
     this.retratoMarco = this.add.graphics();
     this.nombreFondo = this.add.graphics();
     this.nombre = this.add.text(0, 0, '', {
-      fontFamily: 'monospace',
-      fontSize: `${Math.round(10 * s)}px`,
+      fontFamily: FUENTE,
+      fontSize: `${conEscala(TAM.chico, s)}px`,
       color: '#f2c14e',
-      fontStyle: 'bold',
+      padding: { top: PAD_ACENTO },
     });
     this.texto = this.add.text(0, 0, '', {
-      fontFamily: 'monospace',
-      fontSize: `${Math.round(11 * s)}px`,
+      fontFamily: FUENTE,
+      fontSize: `${conEscala(TAM.normal, s)}px`,
       color: '#efe6d2',
-      lineSpacing: 3,
+      lineSpacing: 2,
+      padding: { top: PAD_ACENTO },
       wordWrap: { width: CAJA.w - 90, useAdvancedWrap: true },
     });
     this.flecha = this.add
       .text(CAJA.x + CAJA.w - 14, CAJA.y + CAJA.h - 14, '▼', {
-        fontFamily: 'monospace',
+        fontFamily: FUENTE,
         fontSize: '9px',
         color: '#7fe0c8',
       })
       .setVisible(false);
     this.tweens.add({ targets: this.flecha, y: '+=2', duration: 400, yoyo: true, repeat: -1 });
     this.add
-      .text(CAJA.x + CAJA.w - 6, CAJA.y + CAJA.h + 2, 'E / Espacio', {
-        fontFamily: 'monospace',
-        fontSize: '8px',
+      .text(CAJA.x + CAJA.w - 6, CAJA.y + CAJA.h + 1, 'E / Espacio', {
+        fontFamily: FUENTE,
+        fontSize: `${TAM.chico}px`,
         color: '#8b8aa0',
       })
       .setOrigin(1, 0);
@@ -251,7 +253,8 @@ export class DialogueScene extends Phaser.Scene {
     const tx = conRetrato ? CAJA.x + 70 : CAJA.x + 16;
     this.texto.setPosition(tx, CAJA.y + (h.nombre ? 18 : 12));
     this.texto.setWordWrapWidth(CAJA.x + CAJA.w - 16 - tx, true);
-    this.texto.setFontStyle(linea.who === 'narrador' ? 'italic' : '');
+    // La fuente pixel no tiene cursiva: el narrador se distingue solo por el color.
+    this.texto.setFontStyle('');
     this.texto.setColor(linea.who === 'narrador' ? '#cfd8d4' : linea.who === 'mama' ? '#f4d6e2' : '#efe6d2');
 
     this.nombreFondo.clear();

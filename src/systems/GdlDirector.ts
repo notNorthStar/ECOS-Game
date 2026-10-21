@@ -16,6 +16,7 @@ import * as EpilogoMod from '../scenes/EpilogoScene';
 import config from '../data/gdl.json';
 import { prepareGdlEntry } from './Campaign';
 
+import { FUENTE, tamFuente } from '../ui/fuente';
 /**
  * Director del Nivel 10 · Guadalajara, el final (dueño: contenido). Secciones: gdl_avenida → catedral → catedral_eclipse.
  * Mismo patrón que Cdmx2Director (Nivel 7): el progreso vive en GameState.flags con prefijo `n10:` y sobrevive a la
@@ -23,8 +24,11 @@ import { prepareGdlEntry } from './Campaign';
  *
  * - gdl_avenida: intro, `eclipse:progress` 0→0.6 según el avance, 3 encuentros tipo arena (triggers `encuentro`), altar,
  *   punto de control y puerta a la Catedral (exige haber despejado los 3 encuentros).
- * - catedral: oleada final en 3 tandas (arena fija); al limpiar aparece la madre; el trigger del altar mayor lanza la
- *   emboscada (diálogos, Códice robado, techo abierto) → gotoSection('catedral_eclipse').
+ * - gdl_avenida: además, momias y el minijefe Don Ernesto (4.º encuentro, antes de la puerta; con diálogo de presentación).
+ * - catedral: oleada final en 3 tandas (arena fija, con momias) → minijefe Vampiro (grupo `vampiro`) → aparece la madre; el
+ *   trigger del altar mayor lanza la emboscada (diálogos, Códice robado, techo abierto) → gotoSection('catedral_eclipse').
+ * - final extendido: al `boss:calmed` el jugador RECUPERA el control (sin enemigos); un rastro de luz lo lleva a la madre;
+ *   cerca aparece "Liberar a mamá (E)" (action `n10_liberar`) → freeMadre() + conversación (n10_reencuentro*) → epílogo.
  * - catedral_eclipse: atado (`GameState.bound`) → LUZ → MEMORIA → aprender ECOS → ECOS (un fallo repite ese paso sin
  *   castigo) → Balam jaguar → Fase 1 (3 Tzitzimime, 1 → 2, con oleada menor) → el capullo estalla → Fase 2 (Itzpapálotl:
  *   MAMA abre la ventana, ECOS golpea el núcleo) → `boss:calmed` → final → epílogo.
@@ -40,7 +44,20 @@ const flag = (key: string) => !!GameState.flags[`n10:${key}`];
 const remember = (key: string) => { GameState.flags[`n10:${key}`] = true; };
 
 type Pt = { x: number; y: number };
-type Encuentro = { id: string; nombre: string; grupo: string; x0: number; x1: number; aviso?: string; dialogo?: string };
+type Encuentro = {
+  id: string; nombre: string; grupo: string; x0: number; x1: number; aviso?: string; dialogo?: string;
+  /** Minijefe (Don Ernesto): paga `rewards.minijefe`. */
+  jefe?: boolean;
+  /** Diálogo de presentación, antes de bloquear la arena. */
+  intro?: string;
+  respaldoMs?: number;
+};
+type VampiroCfg = {
+  grupo: string; nombre: string; intro: string; fin: string; aviso?: string; respaldoMs: number; minMs: number; pausaMs: number;
+};
+type LiberarCfg = {
+  dialogos: string[]; aviso: string; rompeMaxMs: number; acercaMs: number; pasoX: number; gestoMs: number; calmarEn: number; pausaMs: number;
+};
 type Tanda = { id: string; nombre: string; grupo: string; fin?: string };
 type Paso = { id: string; tipo: 'aprender' | 'lanzar'; conjuro: string; intro?: string; ok?: string; repite?: string };
 type PasoF1 = { id: string; grupo: string; tzitzimime: number; dialogo?: string; aviso?: string };
@@ -53,17 +70,22 @@ type BalamExtra = {
 type MadreExtra = {
   placeMadre?: (world: WorldApi, x: number, y: number) => void;
   wakeMadre?: () => void;
-  freeMadre?: () => void;
+  freeMadre?: () => Promise<void> | void;
+  /** Versión extendida: libre y de pie, camina y hace señas sin paralizar a nadie. */
+  madreApproach?: (x: number, ms?: number) => Promise<void>;
+  madreGesture?: (ms?: number) => Promise<void>;
 };
 type SceneryExtra = { openCathedralRoof?: (ms: number) => void };
 type EpilogoExtra = { startEpilogo?: (scene: Phaser.Scene) => void };
-type Fase = 'ninguna' | 'cadena' | 'f1' | 'capullo' | 'f2' | 'fin';
+type Fase = 'ninguna' | 'cadena' | 'f1' | 'capullo' | 'f2' | 'fin' | 'liberar';
 
 const ENCUENTROS = config.avenida.encuentros as unknown as Encuentro[];
 const TANDAS = config.catedral.tandas as unknown as Tanda[];
 const PASOS = config.final.pasos as unknown as Paso[];
 const PASOS_F1 = config.final.fase1.pasos as unknown as PasoF1[];
 const AVISOS = config.avisos as Record<string, string>;
+const VAMPIRO = config.catedral.vampiro as unknown as VampiroCfg;
+const LIBERAR = config.final.liberar as unknown as LiberarCfg;
 
 const TITULOS: Record<string, { title: string; subtitle: string }> = {
   gdl_avenida: { title: 'GUADALAJARA', subtitle: 'Bajo el eclipse' },
@@ -87,13 +109,14 @@ class GdlDirector {
   private lastHint = -99999;
   private counter: Phaser.GameObjects.Text;
   // avenida
-  private enc: (Activo & { def: Encuentro }) | null = null;
+  private enc: (Activo & { def: Encuentro; pendiente?: boolean }) | null = null;
   private maxX = 0;
   private lastEclipse = -1;
   // catedral
   private tanda: (Activo & { index: number }) | null = null;
   private gapLeft = 0;
   private oleadaOn = false;
+  private vamp: (Activo & { pendiente: boolean }) | null = null;
   private emboscadaOn = false;
   /** Emboscada encolada desde tickCatedral (aún no empieza): evita encolarla dos veces. */
   private emboscadaPend = false;
@@ -113,12 +136,13 @@ class GdlDirector {
   private coreHits = 0;
   private staggerOn = false;
   private finaleRunning = false;
+  private liberando = false;
   private lastMama = 0;
 
   constructor(private world: WorldApi) {
     const scene = world.scene;
     this.counter = scene.add.text(config.hud.x, config.hud.y, '', {
-      fontFamily: 'monospace', fontSize: `${config.hud.fontSize}px`,
+      fontFamily: FUENTE, fontSize: `${tamFuente(config.hud.fontSize)}px`,
       color: '#fff0ce', backgroundColor: '#171521cc', padding: { x: 5, y: 4 },
       lineSpacing: 3,
     }).setScrollFactor(0).setDepth(DEPTH.ui);
@@ -203,7 +227,7 @@ class GdlDirector {
     sfx('conjuro_ok');
     const p = at ?? this.world.player;
     const text = this.world.scene.add.text(p.x, p.y - 36, `+${amount} Ecos`, {
-      fontFamily: 'monospace', fontSize: '10px', color: '#f2c14e', stroke: '#0b0a14', strokeThickness: 3,
+      fontFamily: FUENTE, fontSize: '11px', color: '#f2c14e', stroke: '#0b0a14', strokeThickness: 3,
     }).setOrigin(0.5).setDepth(DEPTH.ui - 1);
     this.world.scene.tweens.add({
       targets: text, y: p.y - 70, alpha: 0, duration: 1400, onComplete: () => text.destroy(),
@@ -283,10 +307,20 @@ class GdlDirector {
     try { mod.placeMadre(this.world, at.x, at.y); } catch (err) { console.warn('[ECOS] placeMadre falló', err); }
   }
 
-  private madreCall(name: 'wakeMadre' | 'freeMadre'): void {
+  private madreCall(name: 'wakeMadre' | 'freeMadre'): Promise<void> {
     const fn = (MadreMod as unknown as MadreExtra)[name];
-    if (!fn) { console.warn(`[ECOS] Madre.${name} aún no existe.`); return; }
-    try { fn(); } catch (err) { console.warn(`[ECOS] ${name} falló`, err); }
+    if (!fn) { console.warn(`[ECOS] Madre.${name} aún no existe.`); return Promise.resolve(); }
+    try { return Promise.resolve(fn()).catch((err) => console.warn(`[ECOS] ${name} falló`, err)); } catch (err) {
+      console.warn(`[ECOS] ${name} falló`, err);
+      return Promise.resolve();
+    }
+  }
+
+  /** madreApproach / madreGesture con tope de espera: la conversación nunca se cuelga si la madre no responde. */
+  private async madreMove(name: 'madreApproach' | 'madreGesture', arg: number, maxMs: number): Promise<void> {
+    const fn = (MadreMod as unknown as MadreExtra)[name];
+    if (!fn) return;
+    try { await Promise.race([Promise.resolve(fn(arg)), this.wait(maxMs)]); } catch (err) { console.warn(`[ECOS] ${name} falló`, err); }
   }
 
   /** Balam crece a jaguar luminoso (con tope de espera: nunca deja la secuencia colgada). */
@@ -373,6 +407,7 @@ class GdlDirector {
       }
       case 'catedral': {
         if (!flag('oleada_fin')) {
+          if (this.vamp || this.tandasHechas() >= TANDAS.length) return { text: `${VAMPIRO.nombre.toUpperCase()}\nSOL y LUZ lo hieren`, target: null };
           const total = TANDAS.length;
           const index = Math.min(this.tandasHechas() + 1, total);
           return { text: `OLEADA FINAL ${index}/${total}\nLuna (F) revela a los espíritus`, target: null };
@@ -381,6 +416,10 @@ class GdlDirector {
       }
       case 'catedral_eclipse': {
         if (flag('completo')) return { text: 'EL SOL REGRESA', target: null };
+        if (this.fase === 'liberar') {
+          const it = this.world.level.interactables.find((x) => x.action === 'n10_liberar');
+          return { text: 'EL SOL REGRESA\nLibera a tu madre (E)', target: it ? { x: it.x, y: it.y } : null };
+        }
         if (this.fase === 'cadena' || (!flag('libre') && this.fase === 'ninguna')) {
           return { text: 'ATADO\nDeletrea a escondidas: LUZ · MEMORIA · ECOS', target: null };
         }
@@ -450,6 +489,8 @@ class GdlDirector {
       case 'n10_examinar':
       case 'altar':
         return !this.enc;
+      case 'n10_liberar':
+        return this.fase === 'liberar' && !this.liberando && !flag('completo');
       default:
         return false;
     }
@@ -550,11 +591,30 @@ class GdlDirector {
     const def = ENCUENTROS.find((e) => e.id === data.id);
     if (!def || !this.alive || !this.ready || this.busy || this.leaving || this.anyLock) return;
     if (flag(`enc:${def.id}`)) return;
-    this.enc = { def, grupo: def.grupo, start: this.world.scene.time.now, seen: false };
+    const enc: NonNullable<GdlDirector['enc']> = { def, grupo: def.grupo, start: this.world.scene.time.now, seen: false };
+    this.enc = enc;
+    if (def.intro && !flag(`dlg:${def.id}_intro`)) {
+      // Minijefe con presentación: la arena se bloquea al terminar el diálogo (mientras tanto el encuentro ya cuenta
+      // como activo, así que no se puede disparar dos veces ni salir por la puerta).
+      remember(`dlg:${def.id}_intro`);
+      enc.pendiente = true;
+      const dialogue = def.intro;
+      void this.run(() => this.say(dialogue)).then(() => { if (this.alive && this.enc === enc) this.beginEncounter(enc); });
+      this.refresh();
+      return;
+    }
+    this.beginEncounter(enc);
+  }
+
+  private beginEncounter(enc: NonNullable<GdlDirector['enc']>): void {
+    const def = enc.def;
+    enc.pendiente = false;
+    enc.start = this.world.scene.time.now;
     this.world.lockArena(def.x0, def.x1);
     bus.emit('arena:start', { group: def.grupo });
-    this.enc.seen = this.groupAlive(def.grupo);
+    enc.seen = this.groupAlive(def.grupo);
     sfx('chaneque_risa');
+    if (def.jefe) this.world.shake(0.005, 300);
     if (def.aviso && !flag(`tip:${def.aviso}`)) {
       remember(`tip:${def.aviso}`);
       this.aviso(def.aviso, 6000);
@@ -564,12 +624,13 @@ class GdlDirector {
 
   private checkEncounter(): void {
     const e = this.enc;
-    if (!e) return;
+    if (!e || e.pendiente) return;
     const alive = this.world.enemies.filter((en) => en.group === e.grupo && en.alive && !en.purified);
     if (alive.length > 0) e.seen = true;
     const elapsed = this.world.scene.time.now - e.start;
     if (elapsed < config.avenida.minMs || alive.length > 0) return;
-    if (e.seen || elapsed > config.avenida.respaldoMs) this.endEncounter();
+    // Si el tipo de enemigo aún no está integrado (el grupo nunca aparece), el respaldo evita atascar la puerta.
+    if (e.seen || elapsed > (e.def.respaldoMs ?? config.avenida.respaldoMs)) this.endEncounter();
   }
 
   private endEncounter(): void {
@@ -579,7 +640,7 @@ class GdlDirector {
     remember(`enc:${e.def.id}`);
     this.world.unlockArena();
     bus.emit('arena:clear', { group: e.grupo });
-    this.award(config.rewards.encuentro);
+    this.award(e.def.jefe ? config.rewards.minijefe : config.rewards.encuentro);
     if (e.def.dialogo) {
       const dialogue = e.def.dialogo;
       void this.run(() => this.say(dialogue));
@@ -615,7 +676,7 @@ class GdlDirector {
 
   private startOleada(): void {
     if (!this.alive || this.oleadaOn) return;
-    if (this.tandasHechas() >= TANDAS.length) { this.oleadaFin(); return; }
+    if (this.tandasHechas() >= TANDAS.length && flag('vampiro_fin')) { this.oleadaFin(); return; }
     this.oleadaOn = true;
     this.world.lockArena(config.catedral.arena.x0, config.catedral.arena.x1);
     this.gapLeft = 1200;
@@ -634,6 +695,7 @@ class GdlDirector {
       return;
     }
     if (!this.oleadaOn || this.busy || !this.ready) return;
+    if (this.vamp) { this.tickVampiro(); return; }
     if (!this.tanda) {
       this.gapLeft -= config.tickMs;
       if (this.gapLeft <= 0) this.nextTanda();
@@ -649,7 +711,7 @@ class GdlDirector {
 
   private nextTanda(): void {
     const index = TANDAS.findIndex((t) => !flag(`tanda:${t.id}`));
-    if (index < 0) { this.oleadaFin(); return; }
+    if (index < 0) { this.afterTandas(); return; }
     const def = TANDAS[index];
     this.tanda = { index, grupo: def.grupo, start: this.world.scene.time.now, seen: false };
     bus.emit('arena:start', { group: def.grupo });
@@ -669,7 +731,7 @@ class GdlDirector {
     this.award(config.rewards.tanda);
     this.gapLeft = config.catedral.pausaTandaMs;
     if (this.tandasHechas() >= TANDAS.length) {
-      this.oleadaFin();
+      this.afterTandas();
     } else {
       this.aviso('tanda_fin');
       if (def.fin) { const dialogue = def.fin; void this.run(() => this.say(dialogue)); }
@@ -677,9 +739,64 @@ class GdlDirector {
     this.refresh();
   }
 
+  /** Terminadas las tandas viene el minijefe (Vampiro) y, solo después, el altar mayor. */
+  private afterTandas(): void {
+    if (flag('vampiro_fin') || !VAMPIRO) { this.oleadaFin(); return; }
+    this.startVampiro();
+  }
+
+  private startVampiro(): void {
+    if (this.vamp || !this.alive) return;
+    const v: NonNullable<GdlDirector['vamp']> = { grupo: VAMPIRO.grupo, start: this.world.scene.time.now, seen: false, pendiente: true };
+    this.vamp = v;
+    const begin = () => {
+      if (!this.alive || this.vamp !== v) return;
+      v.pendiente = false;
+      v.start = this.world.scene.time.now;
+      bus.emit('arena:start', { group: VAMPIRO.grupo });
+      v.seen = this.groupAlive(VAMPIRO.grupo);
+      sfx('chaneque_risa');
+      this.world.shake(0.006, 320);
+      this.world.flash(0x7a2a4a, 260);
+      if (VAMPIRO.aviso) this.aviso(VAMPIRO.aviso, 6000);
+      this.refresh();
+    };
+    this.refresh();
+    void this.run(async () => {
+      await this.wait(VAMPIRO.pausaMs);
+      if (!flag('dlg:vampiro_intro')) {
+        remember('dlg:vampiro_intro');
+        await this.say(VAMPIRO.intro);
+      }
+    }).then(begin);
+  }
+
+  private tickVampiro(): void {
+    const v = this.vamp;
+    if (!v || v.pendiente) return;
+    const alive = this.world.enemies.filter((e) => e.group === v.grupo && e.alive && !e.purified);
+    if (alive.length > 0) v.seen = true;
+    const elapsed = this.world.scene.time.now - v.start;
+    if (elapsed < VAMPIRO.minMs || alive.length > 0) return;
+    // Sin el Vampiro integrado (el grupo nunca aparece), el respaldo evita atascar la Catedral.
+    if (v.seen || elapsed > VAMPIRO.respaldoMs) this.endVampiro();
+  }
+
+  private endVampiro(): void {
+    const v = this.vamp;
+    if (!v) return;
+    v.pendiente = true; // el Vampiro se da por terminado hasta que acabe su diálogo (oleadaFin lo limpia)
+    remember('vampiro_fin');
+    bus.emit('arena:clear', { group: v.grupo });
+    this.award(config.rewards.minijefe);
+    this.world.flash(0xfff0c0, 500);
+    void this.run(() => this.say(VAMPIRO.fin)).then(() => { if (this.alive) this.oleadaFin(); });
+  }
+
   private oleadaFin(): void {
     this.oleadaOn = false;
     this.tanda = null;
+    this.vamp = null;
     remember('oleada_fin');
     this.world.unlockArena();
     const spawn = this.world.level.spawns?.altar_mayor;
@@ -750,6 +867,9 @@ class GdlDirector {
         this.discover(it.data?.descubrimiento, it);
         break;
       }
+      case 'n10_liberar':
+        await this.liberarMadre();
+        break;
       case 'altar': {
         GameState.hp = GameState.maxHp;
         this.checkpoint(this.world.level.spawns?.altar ?? { x: it.x, y: it.y + 28 });
@@ -850,6 +970,11 @@ class GdlDirector {
     }
     this.placeMadre(config.final.madre);
     this.ready = true;
+    if (flag('itzpa_cae')) {
+      // La jefa ya cayó: no hay pelea que repetir, solo liberar a la madre y hablar con ella.
+      await this.reanudarFinal();
+      return;
+    }
     if (flag('libre')) {
       // Reintento tras morir: no se repite la cadena atada; Balam vuelve a despertar y se retoma la fase alcanzada.
       this.setBound(false);
@@ -1133,6 +1258,10 @@ class GdlDirector {
 
   /* ----------------------------- final ----------------------------- */
 
+  /**
+   * Itzpapálotl cae (boss:calmed). Versión extendida: tras el diálogo el jugador RECUPERA el control, sin enemigos; un
+   * rastro de luz lo lleva a la madre y cerca aparece "Liberar a mamá (E)" (liberarMadre → conversación → epílogo).
+   */
   private async finale(): Promise<void> {
     if (!this.alive || this.finaleRunning || flag('completo')) return;
     this.finaleRunning = true;
@@ -1151,21 +1280,77 @@ class GdlDirector {
       await this.say('n10_final');
       if (!this.alive) return;
       this.setEclipse(config.eclipse.final);
-      this.madreCall('freeMadre');
-      this.calm();
-      // Soundtrack del equipo: "Reencuentro con mamá" (audio/config.ts).
-      this.music('n10_reencuentro');
-      this.world.flash(0xfff0c0, 1200);
-      await this.say('n10_reencuentro');
-      if (!this.alive) return;
-      this.award(config.rewards.final);
-      remember('completo');
+      // Silencio de la batalla; el "Reencuentro con mamá" suena al liberarla.
+      bus.emit('music', { track: null });
     });
-    if (!this.alive || !flag('completo')) { this.finaleRunning = false; return; }
-    this.leaving = true;
-    await this.wait(config.epilogo.pausaMs);
     if (!this.alive) return;
-    this.goEpilogo();
+    this.esperarLiberacion();
+  }
+
+  /** Deja al jugador libre para caminar hasta la madre (objetivo de luz + interactuable `n10_liberar`). */
+  private esperarLiberacion(): void {
+    this.fase = 'liberar';
+    this.liberando = false;
+    this.aviso(LIBERAR.aviso, 7000);
+    this.refresh();
+  }
+
+  /** Reintento tras la caída de Itzpapálotl (se salió a medias): sin pelea, directo a liberar o a la conversación. */
+  private async reanudarFinal(): Promise<void> {
+    this.finaleRunning = true;
+    this.setBound(false);
+    this.setEclipse(config.eclipse.final);
+    if (flag('madre_libre')) {
+      this.fase = 'fin';
+      this.music('n10_reencuentro');
+      await Promise.race([this.madreCall('freeMadre'), this.wait(LIBERAR.rompeMaxMs)]);
+      if (!this.alive) return;
+      await this.conversacion();
+      return;
+    }
+    bus.emit('music', { track: null });
+    this.esperarLiberacion();
+  }
+
+  /** E sobre la madre: se rompen las cadenas (freeMadre), suena n10_reencuentro y hablan. Nunca deja nada bloqueado. */
+  private async liberarMadre(): Promise<void> {
+    if (this.fase !== 'liberar' || this.liberando || flag('completo')) return;
+    this.liberando = true;
+    this.fase = 'fin';
+    remember('madre_libre');
+    this.refresh();
+    try {
+      this.music('n10_reencuentro');
+      this.world.flash(0xfff0c0, 900);
+      await Promise.race([this.madreCall('freeMadre'), this.wait(LIBERAR.rompeMaxMs)]);
+      if (!this.alive) return;
+      await this.conversacion();
+    } finally {
+      // Si algo falló a medias, el jugador puede volver a intentarlo con E (no se queda sin salida).
+      if (this.alive && !flag('completo')) this.esperarLiberacion();
+    }
+  }
+
+  /** La conversación con la madre (n10_reencuentro*): ella habla en señas; Balam vuelve a ser gato; luego el epílogo. */
+  private async conversacion(): Promise<void> {
+    const p = this.world.player;
+    await this.madreMove('madreApproach', p.x + LIBERAR.pasoX, LIBERAR.acercaMs + 600);
+    if (!this.alive) return;
+    const ids = LIBERAR.dialogos;
+    for (let i = 0; i < ids.length; i++) {
+      if (i === LIBERAR.calmarEn) this.calm();
+      // Sus manos se mueven mientras se muestra el diálogo (no se espera: es solo la animación).
+      void this.madreMove('madreGesture', LIBERAR.gestoMs, LIBERAR.gestoMs + 500);
+      await this.say(ids[i]);
+      if (!this.alive) return;
+    }
+    // Por si la lista de diálogos no llegó al punto de calmar a Balam.
+    if (GameState.balamJaguar) this.calm();
+    this.setEclipse(config.eclipse.final);
+    this.award(config.rewards.final);
+    remember('completo');
+    this.leaving = true;
+    void this.wait(config.epilogo.pausaMs).then(() => { if (this.alive) this.goEpilogo(); });
   }
 
   /** Epílogo: startEpilogo(scene) de EpilogoScene. Sin él, vuelve al título como PauseScene.quitToTitle. */

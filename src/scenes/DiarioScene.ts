@@ -3,7 +3,7 @@ import { bus, sfx } from '../core/bus';
 import { GameState } from '../core/GameState';
 import { LETTERS } from '../lsm';
 import { createHandDiagram } from '../lsm/adapters/phaser/HandDiagram';
-import { getMastery, getSpellDef, MASTERY_MAX, pointsToNext } from '../systems/Mastery';
+import { getMastery, getSpellDef, isMasteryFromUpgrade, MASTERY_MAX, pointsToNext } from '../systems/Mastery';
 import { COL, masteryDots, onDomKey, panel, txt } from './SpellScene';
 
 /**
@@ -73,10 +73,13 @@ export class DiarioScene extends Phaser.Scene {
       );
       return;
     }
-    // lista de conjuros (izquierda)
+    // lista de conjuros (izquierda). Con muchos conjuros (Nivel 7 en adelante) la lista se compacta:
+    // la maestría va a la derecha del nombre en vez de debajo, para que no se salga del panel.
+    const compacta = learned.length > 8;
+    const paso = compacta ? Math.min(22, Math.floor(268 / learned.length)) : 30;
     learned.forEach((id, i) => {
       const def = getSpellDef(id);
-      const y = 48 + i * 30;
+      const y = 48 + i * paso;
       const sel = i === this.spellIdx;
       const t = txt(this, 30, y, `${sel ? '>' : ' '} ${(def?.name ?? id).toUpperCase()}`, 10, sel ? COL.gold : COL.ink);
       t.setInteractive({ useHandCursor: true });
@@ -87,7 +90,7 @@ export class DiarioScene extends Phaser.Scene {
         this.render();
       });
       c.add(t);
-      c.add(masteryDots(this, 52, y + 18, id));
+      c.add(compacta ? masteryDots(this, 136, y + 7, id) : masteryDots(this, 52, y + 18, id));
     });
     const g = this.add.graphics();
     g.lineStyle(1, COL.edgeN, 1).lineBetween(150.5, 44, 150.5, 320);
@@ -105,31 +108,43 @@ export class DiarioScene extends Phaser.Scene {
         this,
         606,
         48,
-        m.level >= MASTERY_MAX ? 'Dominado: se lanza solo' : `Maestría ${m.level}/3 · faltan ${pointsToNext(id)} pts`,
+        isMasteryFromUpgrade(id)
+          ? `Maestría ${m.level}/3 · se mejora en el Altar de la Memoria`
+          : m.level >= MASTERY_MAX ? 'Dominado: se lanza solo' : `Maestría ${m.level}/3 · faltan ${pointsToNext(id)} pts`,
         8,
         COL.dim,
         { ox: 1 },
       ),
     );
-    c.add(txt(this, x0, 66, def.desc, 8, COL.ink, { wrap: 440 }));
-    if (def.learnedFrom) c.add(txt(this, x0, 80, `Aprendido: ${def.learnedFrom}`, 8, COL.dim, { wrap: 440 }));
+    // Descripción y origen: se apilan según lo que ocupen (la fuente pixel no cabe en alturas fijas).
+    const desc = txt(this, x0, 64, def.desc, 8, COL.ink, { wrap: 440 });
+    c.add(desc);
+    let bottom = desc.y + desc.height;
+    if (def.learnedFrom) {
+      const from = txt(this, x0, bottom + 1, `Aprendido: ${def.learnedFrom}`, 8, COL.dim, { wrap: 440 });
+      c.add(from);
+      bottom = from.y + from.height;
+    }
 
-    // letras con su mano
+    // letras con su mano (la fila baja si la descripción es larga; las casillas miden 80 de alto)
     const L = def.letters;
     const cell = 44;
+    const top = Math.max(98, Math.ceil(bottom) + 4);
+    const boxH = 80;
+    const shift = Math.max(0, top + boxH - 190);
     const startX = Math.round(x0 + (440 - L.length * cell) / 2);
     L.forEach((letter, i) => {
       const cx = startX + i * cell + cell / 2;
       const sel = i === this.letterIdx;
       const bg = this.add.graphics();
-      bg.fillStyle(sel ? 0x1c2c3e : 0x0e1522, 1).fillRect(cx - 20, 98, 40, 92);
-      bg.lineStyle(1, sel ? COL.goldN : COL.edgeN, 1).strokeRect(cx - 19.5, 98.5, 39, 91);
+      bg.fillStyle(sel ? 0x1c2c3e : 0x0e1522, 1).fillRect(cx - 20, top, 40, boxH);
+      bg.lineStyle(1, sel ? COL.goldN : COL.edgeN, 1).strokeRect(cx - 19.5, top + 0.5, 39, boxH - 1);
       c.add(bg);
-      const hand = createHandDiagram(this, cx, 140, letter, 1);
-      hand.setScale(0.75);
+      const hand = createHandDiagram(this, cx, top + 36, letter, 1);
+      hand.setScale(0.7);
       this.hands.push(hand);
-      c.add(txt(this, cx, 178, letter, 12, sel ? COL.gold : COL.ink, { ox: 0.5, oy: 0.5 }));
-      const zone = this.add.zone(cx, 144, 40, 92).setInteractive({ useHandCursor: true });
+      c.add(txt(this, cx, top + boxH - 11, letter, 12, sel ? COL.gold : COL.ink, { ox: 0.5, oy: 0.5 }));
+      const zone = this.add.zone(cx, top + boxH / 2, 40, boxH).setInteractive({ useHandCursor: true });
       zone.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
         this.letterIdx = i;
         sfx('ui_mover');
@@ -141,12 +156,20 @@ export class DiarioScene extends Phaser.Scene {
     // letra seleccionada en grande
     const letter = L[this.letterIdx];
     const ld = LETTERS[letter];
-    const big = createHandDiagram(this, x0 + 60, 262, letter, 2);
+    // La mano grande cuelga hacia abajo desde su centro: se sube para no pisar el pie del panel.
+    const big = createHandDiagram(this, x0 + 60, 250 + Math.min(shift, 6), letter, 2);
     this.hands.push(big);
-    c.add(txt(this, x0 + 130, 204, letter, 32, COL.gold));
-    c.add(txt(this, x0 + 130, 246, ld?.desc ?? 'Seña sin descripción.', 10, COL.ink, { wrap: 300 }));
-    if (ld?.motion) c.add(txt(this, x0 + 130, 296, 'Lleva movimiento: traza la Z con el índice.', 8, COL.gold));
-    c.add(txt(this, x0 + 130, 310, 'Esquema provisional, pendiente de verificar con la SEP.', 8, COL.dim));
+    c.add(txt(this, x0 + 130, 200 + shift, letter, 32, COL.gold));
+    const ldesc = txt(this, x0 + 130, 240 + shift, ld?.desc ?? 'Seña sin descripción.', 10, COL.ink, { wrap: 300 });
+    c.add(ldesc);
+    // Notas al pie, debajo de la descripción de la seña, sin pasar del pie del panel.
+    let ny = Math.min(310, Math.max(ldesc.y + ldesc.height + 3, 282));
+    if (ld?.motion) {
+      ny = Math.min(296, ny);
+      c.add(txt(this, x0 + 130, ny, 'Lleva movimiento: traza la Z con el índice.', 8, COL.gold));
+      ny += 14;
+    }
+    c.add(txt(this, x0 + 130, ny, 'Esquema provisional, pendiente de verificar con la SEP.', 8, COL.dim));
   }
 
   private close(): void {

@@ -207,6 +207,9 @@ export class Espiritu extends EnemyBase {
     const bob = this.st === 'exhausted' ? 0 : Math.sin(this.floatT * 2.4 + this.uid) * S.bob;
     this.z = Math.max(2, (this.st === 'exhausted' ? S.hoverZ * 0.3 : S.hoverZ) + bob);
     this.applyVisibility(dt);
+    // Halo amplio y polvo de luz que se desprende al flotar (solo cuando existe para el jugador).
+    this.setAura(hexColor(S.color), this.st === 'exhausted' ? 0.12 : 0.26, { w: 72, h: 58, dy: 0.5, pulse: 0.35 });
+    this.trailFx(dt, this.tangible && this.st !== 'exhausted' && this.st !== 'purifying', 'stardust', 3, 0.45, 9);
     this.render(dt);
   }
 

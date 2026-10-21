@@ -40,6 +40,12 @@ export class World implements WorldApi {
   private debug: DebugOverlay;
   private triggersInside = new Set<string>();
   private transitioning = false;
+  /** Cortina de luz que marca los bordes de una arena o compuerta (antes eran muros invisibles). */
+  private barreraG: Phaser.GameObjects.Graphics;
+  private barreraT = 0;
+  /** performance.now() del último empujón del jugador contra la barrera (la hace brillar). */
+  private barreraToque = 0;
+  private franjaCache = new Map<number, { top: number; bottom: number }>();
 
   constructor(
     readonly scene: Phaser.Scene,
@@ -87,6 +93,7 @@ export class World implements WorldApi {
 
     // Efectos en coordenadas del mundo: por encima de los actores, debajo del primer plano.
     this.fxLayer = scene.add.layer().setDepth(DEPTH.foreground - 10);
+    this.barreraG = scene.add.graphics().setDepth(DEPTH.foreground - 4);
 
     const p0 = this.map.nearestWalkable(start.x, start.y, 7);
     // El jugador consulta su "suelo" (altura del bloque bajo sus pies) al WalkMap.
@@ -158,8 +165,14 @@ export class World implements WorldApi {
       // Límites del mundo y de la arena solo para el jugador (los enemigos pueden entrar desde fuera).
       const x0 = (this.arena?.x0 ?? 0) + a.radius;
       const x1 = (this.arena?.x1 ?? this.level.width) - a.radius;
-      if (a.x < x0 && a.x < ox) a.x = Math.min(ox, x0);
-      if (a.x > x1 && a.x > ox) a.x = Math.max(ox, x1);
+      if (a.x < x0 && a.x < ox) {
+        a.x = Math.min(ox, x0);
+        if (this.arena && this.arena.x0 > 0) this.barreraToque = performance.now();
+      }
+      if (a.x > x1 && a.x > ox) {
+        a.x = Math.max(ox, x1);
+        if (this.arena && this.arena.x1 < this.level.width) this.barreraToque = performance.now();
+      }
     }
   }
 
@@ -311,7 +324,70 @@ export class World implements WorldApi {
     cam.scrollX += (target - cam.scrollX) * Math.min(1, dt * CAMERA.lerp);
 
     this.atmosphere.update(frozen ? 0 : dt * Math.max(0.15, this._timeScale), cam.scrollX);
+    this.dibujarBarreras(dt);
     this.debug.draw(this._entities, this.scene.game.loop.actualFps, this._timeScale);
+  }
+
+  /** Alto de la franja transitable en una x (para dibujar la cortina de la barrera). */
+  private franjaEn(x: number): { top: number; bottom: number } {
+    const k = Math.round(x);
+    const c = this.franjaCache.get(k);
+    if (c) return c;
+    let top = Infinity;
+    let bottom = -Infinity;
+    for (let y = 100; y < GAME_HEIGHT; y += 2) {
+      if (!this.map.inWalk(k, y) && !this.map.inWalk(k - 12, y) && !this.map.inWalk(k + 12, y)) continue;
+      top = Math.min(top, y);
+      bottom = Math.max(bottom, y);
+    }
+    const r = Number.isFinite(top) ? { top, bottom } : { top: 222, bottom: 345 };
+    this.franjaCache.set(k, r);
+    return r;
+  }
+
+  /**
+   * Bordes de la arena o compuerta (lockArena) que no son el borde del nivel: una cortina de luz
+   * de la gema, tenue de lejos, más clara al acercarse y brillante al empujarla. Así el jugador ve
+   * que hay un límite (y el director explica por qué con su aviso) en lugar de chocar con "nada".
+   */
+  private dibujarBarreras(dt: number): void {
+    const g = this.barreraG;
+    g.clear();
+    const a = this.arena;
+    if (!a) return;
+    this.barreraT += dt;
+    const p = this.player;
+    const toque = Math.max(0, 1 - (performance.now() - this.barreraToque) / 700);
+    const bordes: Array<{ x: number; dir: 1 | -1 }> = [];
+    if (a.x0 > 1) bordes.push({ x: a.x0, dir: 1 });
+    if (a.x1 < this.level.width - 1) bordes.push({ x: a.x1, dir: -1 });
+    for (const b of bordes) {
+      const { top, bottom } = this.franjaEn(b.x);
+      const alto = 56; // la cortina se levanta sobre el suelo
+      const y0 = top - alto;
+      const h = bottom - y0;
+      const cerca = Phaser.Math.Clamp(1 - Math.abs(p.x - b.x) / 110, 0, 1);
+      const pulso = 0.5 + 0.5 * Math.sin(this.barreraT * 3);
+      const k = Math.min(1, 0.22 + 0.3 * cerca + 0.55 * toque + 0.06 * pulso);
+      // El núcleo va un poco hacia dentro: el borde de la cámara de la arena coincide con la barrera.
+      const x = b.x + b.dir * 5;
+      g.fillStyle(0x2a6f6a, 0.35 * k).fillRect(x - 9, y0, 18, h);
+      g.fillStyle(0x8ff7e1, 0.45 * k).fillRect(x - 4, y0, 8, h);
+      g.fillStyle(0xe8fff8, 0.85 * k).fillRect(x - 1, y0, 2, h);
+      // Rombos de la gema a lo largo de la cortina y motas que suben.
+      for (let yy = top; yy <= bottom; yy += 24) {
+        const s = 2 + pulso;
+        g.fillStyle(0xc8fff2, 0.7 * k).fillTriangle(x - s, yy, x, yy - s * 1.6, x + s, yy).fillTriangle(x - s, yy, x, yy + s * 1.6, x + s, yy);
+      }
+      for (let i = 0; i < 12; i++) {
+        const ph = (this.barreraT * 0.3 + i / 12) % 1;
+        const my = bottom - ph * h;
+        const mx = x + Math.sin(ph * 11 + i * 1.7) * 6;
+        g.fillStyle(0xffffff, k * (1 - ph)).fillRect(mx, my, 1.5, 1.5);
+      }
+      // Base iluminada en el suelo.
+      g.fillStyle(0x8ff7e1, 0.18 * k).fillEllipse(x, bottom, 26, 8);
+    }
   }
 }
 

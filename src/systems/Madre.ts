@@ -20,6 +20,11 @@ import { getSpellDef } from './Mastery';
  *   a madreSign() solo. El director también puede llamarla directamente (sin doble ventana: ver arriba).
  * - freeMadre(): las cadenas se rompen en luz. Resuelve al terminar.
  * - getMadrePosition(): posición en el plano del suelo (null si no está).
+ * Versión extendida (final): tras freeMadre() queda LIBRE Y DE PIE (ojos y gema encendidos, sin cadenas, mirando
+ * al jugador, respirando). Para la conversación del reencuentro:
+ * - madreApproach(x, ms): da unos pasos hacia x en el mismo plano (resuelve al llegar).
+ * - madreGesture(ms): hace señas SIN paralizar a nadie (emite solo 'madre:sign'; no 'itzpa:stagger').
+ * - isMadreFree(): true si ya no está encadenada.
  * Nunca recibe daño: es intangible, NO se agrega a world.entities.
  * Arte: kit del equipo `madre` (KitAnimator) si existe; si no, placeholder simple (AGENTS.md §8.0):
  * humanoide 64×80, pivote (32, 78).
@@ -53,7 +58,10 @@ interface Instance {
   place(x: number, y: number): void;
   wake(): void;
   sign(): Promise<void>;
+  gesture(ms?: number): Promise<void>;
+  approach(x: number, ms?: number): Promise<void>;
   free(): Promise<void>;
+  isFree(): boolean;
   position(): { x: number; y: number } | null;
 }
 
@@ -91,6 +99,21 @@ export function madreSign(): Promise<void> {
 /** Las cadenas de luz se rompen. Resuelve al terminar el efecto. */
 export function freeMadre(): Promise<void> {
   return inst ? inst.free() : Promise.resolve();
+}
+
+/** Hace señas sin paralizar a Itzpapálotl (conversaciones). Resuelve al terminar. */
+export function madreGesture(ms = 1400): Promise<void> {
+  return inst ? inst.gesture(ms) : Promise.resolve();
+}
+
+/** Camina hacia x (mismo plano del suelo). Resuelve al llegar; sin madre en escena, resuelve de inmediato. */
+export function madreApproach(x: number, ms = 900): Promise<void> {
+  return inst ? inst.approach(x, ms) : Promise.resolve();
+}
+
+/** ¿Ya no está encadenada? (false si no está colocada). */
+export function isMadreFree(): boolean {
+  return inst ? inst.isFree() : false;
 }
 
 /** Posición de la madre en el plano del suelo (null si no está colocada). */
@@ -158,6 +181,9 @@ export function installMadre(world: WorldApi): void {
   let awakeK = 0;
   let signing: { t: number; ms: number; promise: Promise<void>; resolve: () => void } | null = null;
   let freeing: Promise<void> | null = null;
+  /** Libre y de pie: tras romper las cadenas (ojos abiertos, mira al jugador, respira). */
+  let standing = false;
+  let walking = false;
   const pending: Array<() => void> = [];
 
   const reduceFx = () => GameState.settings.reduceFx;
@@ -179,6 +205,8 @@ export function installMadre(world: WorldApi): void {
     chained = true;
     awakeK = 0;
     freeing = null;
+    standing = false;
+    walking = false;
     if (signing) signing.resolve();
     signing = null;
     pending.splice(0).forEach((r) => r());
@@ -235,6 +263,36 @@ export function installMadre(world: WorldApi): void {
     return promise;
   };
 
+  /** Señas de conversación: igual que sign() pero sin 'itzpa:stagger'. */
+  const gesture = (ms = 1400): Promise<void> => {
+    if (!sprite) return Promise.resolve();
+    if (signing) return signing.promise;
+    let resolve!: () => void;
+    const promise = new Promise<void>((r) => (resolve = r));
+    signing = { t: 0, ms, promise, resolve };
+    if (!awake) wake();
+    bus.emit('madre:sign', { x: me.x, y: me.y, ms });
+    return promise;
+  };
+
+  /** Unos pasos hacia x (mismo plano). Nunca deja la promesa colgada: clear() la resuelve. */
+  const approach = (x: number, ms = 900): Promise<void> => {
+    if (!sprite) return Promise.resolve();
+    if (Math.abs(x - me.x) < 2) return Promise.resolve();
+    return new Promise<void>((resolve) => {
+      pending.push(resolve);
+      walking = true;
+      facing = x >= me.x ? 1 : -1;
+      const done = () => {
+        walking = false;
+        const i = pending.indexOf(resolve);
+        if (i >= 0) pending.splice(i, 1);
+        resolve();
+      };
+      scene.tweens.add({ targets: me, x, duration: ms, ease: 'Sine.easeInOut', onComplete: done });
+    });
+  };
+
   const free = (): Promise<void> => {
     if (!sprite) return Promise.resolve();
     if (freeing) return freeing;
@@ -264,6 +322,7 @@ export function installMadre(world: WorldApi): void {
       pending.push(resolve);
       scene.time.delayedCall(MD.freeMs, () => {
         chained = false;
+        standing = true;
         chains?.clear();
         freeing = null;
         const i = pending.indexOf(resolve);
@@ -273,6 +332,8 @@ export function installMadre(world: WorldApi): void {
     });
     // Desde ya dejan de dibujarse completas: se ven "rotas" mientras vuelan los eslabones.
     chained = false;
+    standing = true;
+    wake(); // libre: abre los ojos y la gema se enciende
     return freeing;
   };
 
@@ -289,7 +350,7 @@ export function installMadre(world: WorldApi): void {
     const realDt = Math.min(deltaMs / 1000, 0.05);
     time += realDt;
     const p = world.player;
-    if (Math.abs(p.x - me.x) > 6) facing = p.x >= me.x ? 1 : -1;
+    if (!walking && Math.abs(p.x - me.x) > 6) facing = p.x >= me.x ? 1 : -1;
 
     // Señas (en tiempo real: la ventana no depende de la ralentización).
     let signK = 0;
@@ -304,14 +365,16 @@ export function installMadre(world: WorldApi): void {
       }
     }
 
-    sprite.setPosition(Math.round(me.x), Math.round(me.y)).setDepth(me.y);
+    // Camina con un pequeño vaivén; de pie, respira un poco más hondo que encadenada.
+    const bob = walking ? -Math.abs(Math.sin(time * 9)) * 2 : 0;
+    sprite.setPosition(Math.round(me.x), Math.round(me.y + bob)).setDepth(me.y);
     if (kit) {
       kit.setAnim(signing ? 'madre_conjuro' : 'madre_reposo');
       kit.apply(facing, time);
     } else {
       sprite.setFlipX(facing < 0);
       // Respira despacio; dormida, casi no se mueve.
-      sprite.setScale(1, 1 + Math.sin(time * (awake ? 2.4 : 1.2)) * (awake ? 0.015 : 0.006));
+      sprite.setScale(1, 1 + Math.sin(time * (awake ? 2.4 : 1.2)) * (standing ? 0.02 : awake ? 0.015 : 0.006));
     }
     shadow.setPosition(Math.round(me.x), Math.round(me.y)).setDepth(DEPTH.shadow + me.y * 0.0001);
 
@@ -377,6 +440,9 @@ export function installMadre(world: WorldApi): void {
     wake,
     sign,
     free,
+    gesture,
+    approach,
+    isFree: () => !!sprite && !chained,
     position: () => (sprite ? { x: me.x, y: me.y } : null),
   };
   inst = self;

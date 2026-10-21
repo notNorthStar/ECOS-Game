@@ -6,7 +6,7 @@ import { isAction, keys, SPELL_HOLD_MS } from '../config/controls';
 import { SLOWMO } from '../config/game';
 import type { SpellResult, SpellSession } from '../lsm';
 import { camView, lsm, showCamera } from './Lsm';
-import { getSpellDef, isMastered, recordCast } from './Mastery';
+import { COOLDOWN_RULES, getSpellDef, isMastered, recordCast } from './Mastery';
 import { isShieldActive } from './Shield';
 
 /**
@@ -30,6 +30,8 @@ export interface ActiveCast {
   result: SpellResult | null;
   /** performance.now() en que terminó (para la animación del resultado). */
   endedAt: number;
+  /** true si lo pidió el director (castSpellNow): ignora la recarga y no la inicia. */
+  forced?: boolean;
 }
 
 /** Estado de la rueda, compartido con SpellScene. */
@@ -41,6 +43,65 @@ export const wheelState = {
 
 let active: ActiveCast | null = null;
 let learning = false;
+
+/* ============================== RECARGAS (cooldowns) ============================== */
+
+interface CooldownState {
+  remaining: number;
+  total: number;
+  /** ms acumulados desde el último 'spell:cooldown' emitido. */
+  sinceEmit: number;
+}
+/** Intervalo entre avisos 'spell:cooldown' mientras corre una recarga. */
+const COOLDOWN_EMIT_MS = 250;
+const cooldowns = new Map<string, CooldownState>();
+
+/** Recarga restante y total (ms) de un conjuro. remaining 0 = listo. */
+export function getCooldown(spellId: string): { remaining: number; total: number } {
+  const c = cooldowns.get(spellId);
+  if (c) return { remaining: Math.max(0, c.remaining), total: c.total };
+  return { remaining: 0, total: getSpellDef(spellId)?.cooldownMs ?? 0 };
+}
+
+function startCooldown(spellId: string, totalMs: number): void {
+  if (totalMs <= 0) return;
+  cooldowns.set(spellId, { remaining: totalMs, total: totalMs, sinceEmit: 0 });
+  bus.emit('spell:cooldown', { spellId, remaining: totalMs, total: totalMs });
+}
+
+/** Avanza las recargas con tiempo REAL del juego (el delta de la escena: no corre en pausa ni se ralentiza). */
+function tickCooldowns(deltaMs: number): void {
+  const dt = Math.max(0, Math.min(100, deltaMs));
+  for (const [id, c] of cooldowns) {
+    c.remaining -= dt;
+    c.sinceEmit += dt;
+    if (c.remaining <= 0) {
+      cooldowns.delete(id);
+      bus.emit('spell:cooldown', { spellId: id, remaining: 0, total: c.total });
+    } else if (c.sinceEmit >= COOLDOWN_EMIT_MS) {
+      c.sinceEmit = 0;
+      bus.emit('spell:cooldown', { spellId: id, remaining: c.remaining, total: c.total });
+    }
+  }
+}
+
+/** Limpia todas las recargas (nuevo nivel o reaparición), avisando al HUD. */
+function resetCooldowns(): void {
+  for (const [id, c] of cooldowns) bus.emit('spell:cooldown', { spellId: id, remaining: 0, total: c.total });
+  cooldowns.clear();
+}
+
+/** Inicia la recarga tras un lanzamiento deletreado o automático (no forzado por el director). */
+function startCooldownAfter(spellId: string, outcome: 'fail' | 'partial' | 'perfect'): void {
+  const total = getSpellDef(spellId)?.cooldownMs ?? 0;
+  if (total <= 0) return;
+  if (outcome === 'fail') {
+    const penalty = Math.min(COOLDOWN_RULES.failMaxMs, Math.round(total * COOLDOWN_RULES.failFraction));
+    if (penalty > 0) startCooldown(spellId, penalty);
+    return;
+  }
+  startCooldown(spellId, total);
+}
 
 /** El deletreo en curso (o el último resultado mientras se muestra). */
 export function getActiveCast(): ActiveCast | null {
@@ -135,6 +196,7 @@ export function openDiario(world: WorldApi): void {
 
 export function installCasting(world: WorldApi): void {
   currentWorld = world;
+  resetCooldowns();
   const scene = world.scene;
   const sm = scene.scene;
   let qDownAt = -1; // performance.now() al presionar Q (o -1)
@@ -172,6 +234,7 @@ export function installCasting(world: WorldApi): void {
 
   /* ---------- lanzar ---------- */
   let forcedPrev: { locked: boolean; scale: number } | null = null;
+  let lastCdToastAt = 0;
   /** forced = conjuro pedido por el director (castSpellNow): sin exigir selección ni escudo abajo. */
   const cast = (forced?: string) => {
     if (!forced && (!GameState.learnedSpells.length || !GameState.selectedSpell || isStorySpell(GameState.selectedSpell))) {
@@ -184,6 +247,22 @@ export function installCasting(world: WorldApi): void {
       return;
     }
     const spellId = forced ?? GameState.selectedSpell!;
+    // Recarga: solo para Q/rueda (y el lanzado automático); castSpellNow de la historia la ignora.
+    if (!forced) {
+      const cd = getCooldown(spellId);
+      if (cd.remaining > 0) {
+        const nowMs = performance.now();
+        if (nowMs - lastCdToastAt > 500) {
+          lastCdToastAt = nowMs;
+          bus.emit('hud:toast', {
+            text: `${getSpellDef(spellId)?.title.toUpperCase() ?? spellId} se recarga: ${Math.ceil(cd.remaining / 1000)} s`,
+            ms: 1100,
+          });
+          sfx('ui_mover');
+        }
+        return;
+      }
+    }
     bus.emit('spell:begin', { spellId });
     if (isMastered(spellId)) {
       active = {
@@ -192,6 +271,7 @@ export function installCasting(world: WorldApi): void {
         auto: true,
         result: { word: spellId, correct: 1, total: 1, fraction: 1, speedRatio: 0, power: 1, outcome: 'perfect' },
         endedAt: performance.now(),
+        forced: !!forced,
       };
       sm.launch('Spell', { mode: 'cast' });
       sm.bringToTop('Spell');
@@ -202,7 +282,7 @@ export function installCasting(world: WorldApi): void {
     const now = performance.now();
     lsm.setMode('spell');
     const session = lsm.startSpell(def?.name ?? spellId, now, { letterWindowMs: letterWindowFor(spellId) });
-    active = { spellId, session, auto: false, result: null, endedAt: 0 };
+    active = { spellId, session, auto: false, result: null, endedAt: 0, forced: !!forced };
     GameState.casting = true;
     // Lanzado por el director: al terminar se devuelve el bloqueo y la ralentización que él tenía.
     forcedPrev = forced ? { locked: world.player.controlsLocked, scale: world.timeScale } : null;
@@ -289,7 +369,8 @@ export function installCasting(world: WorldApi): void {
   document.addEventListener('fullscreenchange', onFullscreen);
 
   /* ---------- cada cuadro, en tiempo real ---------- */
-  const onUpdate = () => {
+  const onUpdate = (_t?: number, deltaMs?: number) => {
+    tickCooldowns(deltaMs ?? 16);
     const now = performance.now();
     if (qDownAt >= 0 && !wheelState.open && now - qDownAt >= SPELL_HOLD_MS) {
       if (world.player.controlsLocked || GameState.casting || learning) qDownAt = -1;
@@ -350,6 +431,7 @@ export function installCasting(world: WorldApi): void {
 function emitResolved(world: WorldApi, cast: ActiveCast): void {
   const r = cast.result!;
   const p = world.player;
+  if (!cast.forced) startCooldownAfter(cast.spellId, r.outcome);
   const ev: SpellOutcomeEvent = {
     spellId: cast.spellId,
     outcome: r.outcome,
@@ -375,7 +457,7 @@ function emitResolved(world: WorldApi, cast: ActiveCast): void {
  * CONSUELO → MEMORIA → PAZ del Nivel 7) y resuelve con su resultado: el mismo SpellOutcomeEvent que se emite
  * en 'spell:resolved' (outcome 'fail' | 'partial' | 'perfect'). Funciona con cámara y con teclado (Esc cancela →
  * 'fail'), con ralentización y maestría como un lanzamiento normal (si está dominado, sale 'perfect' auto).
- * Si en este momento se está deletreando o aprendiendo otro conjuro (o hay pausa), espera a que termine.
+ * IGNORA la recarga (cooldownMs): no la respeta ni la inicia. Si en este momento se está deletreando o aprendiendo otro conjuro (o hay pausa), espera a que termine.
  * No cambia GameState.selectedSpell. Si la escena se apaga antes, resuelve 'fail'.
  */
 export function castSpellNow(world: WorldApi, spellId: string): Promise<SpellOutcomeEvent> {

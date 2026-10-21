@@ -3,6 +3,7 @@ import manifest from '../data/assets.json';
 import { GAME_HEIGHT, GAME_WIDTH } from '../config/game';
 import { isKitFile, queueKits, registerKits } from '../systems/CharacterKits';
 
+import { FUENTE } from '../ui/fuente';
 // Dueño: arte. Carga el manifiesto src/data/assets.json (lo genera `npm run placeholders`),
 // crea una animación por cada tira con la MISMA clave que su textura y pasa a 'Title'.
 // Reemplazar un PNG por arte del equipo (mismo nombre y medidas) no requiere tocar este código.
@@ -99,7 +100,7 @@ export class BootScene extends Phaser.Scene {
     const gem = this.add.graphics();
     const bar = this.add.graphics();
     const label = this.add
-      .text(cx, cy + 34, 'DESPERTANDO LOS ECOS…', { fontFamily: 'monospace', fontSize: '10px', color: '#9af8e8' })
+      .text(cx, cy + 34, 'DESPERTANDO LOS ECOS…', { fontFamily: FUENTE, fontSize: '11px', color: '#9af8e8' })
       .setOrigin(0.5, 0);
     const drawGem = (p: number): void => {
       gem.clear();

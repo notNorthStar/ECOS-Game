@@ -10,7 +10,14 @@
     "CONSUELO": "Conjuro de HISTORIA (type 'historia': no entra en la rueda ni se selecciona; lo lanza el director con castSpellNow en la secuencia final del Nivel 7). calmRadius (px): alcance del consuelo alrededor del jugador (la Llorona fuera de control dentro del radio se aquieta) · calmMs: cuánto dura la calma antes de volver a agitarse si la secuencia no sigue · lightMs: duración del brillo cálido. Radio × powerScale(power). No daña ni aturde a nadie.",
     "PAZ": "Conjuro de HISTORIA (type 'historia'; ver CONSUELO). Cierra la secuencia CONSUELO → MEMORIA → PAZ: libera a la Llorona, que recupera el recuerdo del amor por sus hijos y se despide. peaceRadius (px): alcance de la luz de paz · lightMs: duración del brillo. Radio × powerScale(power). No daña ni aturde a nadie.",
     "ECOS": "Conjuro de HISTORIA con \"combate\": true (Nivel 10): se aprende atado en la Catedral (secuencia LUZ → MEMORIA → ECOS, el director lo lanza con castSpellNow) y, una vez aprendido, SÍ entra en la rueda y se lanza con Q durante el combate final. Combat lo entrega a applySpell() de cada enemigo como un conjuro más: Itzpapálotl decide si rebota (fuera de la ventana de MAMA, con aviso) o golpea el núcleo (coreHits por lanzamiento no fallido, solo con 'itzpa:stagger' activo). reach (px): alcance alrededor del jugador · stunRadius (px) + stun (s): aturdimiento leve (➖) a otros enemigos cercanos · lightMs: duración del brillo de las voces. Radios × powerScale(power).",
+    "cooldownMs": "Recarga del conjuro en ms (0 = sin recarga). Se inicia al lanzarlo (Casting). PROTECCION 20000; daño: LUZ 6000, VOZ 7000, VERDAD 7000, SOL 8000, FUEGO 8000, ECOS 6000; CALMA 1500; DESCANSO y MEMORIA 4000; MAMA 3000 (evita spamear la parálisis de Itzpapálotl; la ventana dura 3500); CONSUELO y PAZ 0. Los conjuros lanzados por el director con castSpellNow (cadena atado del Nivel 10, CONSUELO → MEMORIA → PAZ del 7) IGNORAN la recarga: ni la respetan ni la inician.",
+    "PROTECCION": "Cura getProteccionHeal() de vida: effect.heal es la base (nivel 0 de la mejora 'proteccion' del Altar) y progression.json → upgrades.proteccion.heal da 1, 2 y 3. Su maestría = nivel de esa mejora (no sube lanzándolo ni se auto-lanza).",
     "MAMA": "Conjuro de HISTORIA con \"combate\": true (Nivel 10, 'señas familiares'): se aprende en la Fase 2 de Itzpapálotl y se lanza con Q (o rueda) cuando quieras. Si la madre está despierta en el altar (systems/Madre.ts), cualquier resultado no fallido llama a madreSign(): responde en señas (signMs) y emite 'madre:sign' + 'itzpa:stagger' {ms: staggerMs}, la única ventana para que ECOS golpee el núcleo. Si la madre ya está respondiendo, no se encadena otra ventana. No daña a nadie."
+  },
+  "cooldownRules": {
+    "_nota": "Un lanzamiento FALLIDO (o cancelado con Esc) deja una recarga corta: failFraction del cooldownMs del conjuro, con tope failMaxMs.",
+    "failFraction": 0.25,
+    "failMaxMs": 2000
   },
   "masteryRules": {
     "partialMinFraction": 0.8,
@@ -20,6 +27,7 @@
   "spells": [
     {
       "id": "VOZ",
+      "cooldownMs": 7000,
       "name": "VOZ",
       "type": "purificacion",
       "title": "Voz",
@@ -32,6 +40,7 @@
     },
     {
       "id": "CALMA",
+      "cooldownMs": 1500,
       "name": "CALMA",
       "type": "purificacion",
       "title": "Calma",
@@ -48,6 +57,7 @@
     },
     {
       "id": "PROTECCION",
+      "cooldownMs": 20000,
       "name": "PROTECCIÓN",
       "type": "purificacion",
       "title": "Protección",
@@ -65,6 +75,7 @@
     },
     {
       "id": "LUZ",
+      "cooldownMs": 6000,
       "name": "LUZ",
       "type": "purificacion",
       "title": "Luz",
@@ -85,6 +96,7 @@
     },
     {
       "id": "SOL",
+      "cooldownMs": 8000,
       "name": "SOL",
       "type": "ofensivo",
       "title": "Sol",
@@ -104,6 +116,7 @@
     },
     {
       "id": "MEMORIA",
+      "cooldownMs": 4000,
       "name": "MEMORIA",
       "type": "purificacion",
       "title": "Memoria",
@@ -121,6 +134,7 @@
     },
     {
       "id": "VERDAD",
+      "cooldownMs": 7000,
       "name": "VERDAD",
       "type": "revelacion",
       "title": "Verdad",
@@ -137,6 +151,7 @@
     },
     {
       "id": "FUEGO",
+      "cooldownMs": 8000,
       "name": "FUEGO",
       "type": "ofensivo",
       "title": "Fuego",
@@ -155,6 +170,7 @@
     },
     {
       "id": "DESCANSO",
+      "cooldownMs": 4000,
       "name": "DESCANSO",
       "type": "purificacion",
       "title": "Descanso",
@@ -170,6 +186,7 @@
     },
     {
       "id": "CONSUELO",
+      "cooldownMs": 0,
       "name": "CONSUELO",
       "type": "historia",
       "title": "Consuelo",
@@ -186,6 +203,7 @@
     },
     {
       "id": "PAZ",
+      "cooldownMs": 0,
       "name": "PAZ",
       "type": "historia",
       "title": "Paz",
@@ -201,6 +219,7 @@
     },
     {
       "id": "ECOS",
+      "cooldownMs": 6000,
       "name": "ECOS",
       "type": "historia",
       "combate": true,
@@ -220,6 +239,7 @@
     },
     {
       "id": "MAMA",
+      "cooldownMs": 3000,
       "name": "MAMÁ",
       "type": "historia",
       "combate": true,

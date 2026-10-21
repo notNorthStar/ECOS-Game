@@ -21,6 +21,8 @@ export interface BusEvents {
   'spell:letter': { letter: string; ok: boolean };
   'spell:resolved': SpellOutcomeEvent;
   'spell:learned': { spellId: string };
+  /** Recarga de un conjuro: al empezar, cada ~250 ms mientras corre y una vez final con remaining 0 (ms). */
+  'spell:cooldown': { spellId: string; remaining: number; total: number };
   // Enemigos
   'enemy:hit': { enemy: EnemyApi; kind: 'green' | 'red' | 'spell' };
   'enemy:exhausted': { enemy: EnemyApi };

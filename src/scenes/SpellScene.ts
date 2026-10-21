@@ -6,13 +6,15 @@ import { createHandDiagram } from '../lsm/adapters/phaser/HandDiagram';
 import { camView, lsm, showCamera } from '../systems/Lsm';
 import { getActiveCast, wheelState } from '../systems/Casting';
 import { getMastery, getSpellDef, MASTERY_MAX } from '../systems/Mastery';
+import { FUENTE, PAD_ACENTO, tamFuente } from '../ui/fuente';
 
 /* =====================================================================================
  * Utilidades de interfaz compartidas por las escenas de lsm (Title, Spell, Diario, Pause).
- * Texto monoespaciado en tamaños enteros (el lienzo es de 640×360 con escalado entero).
+ * Texto con la fuente pixel de la interfaz (src/ui/fuente.ts) en tamaños nítidos
+ * (el lienzo es de 640×360 con escalado entero).
  * ===================================================================================== */
 
-export const FONT = '"Courier New", Consolas, monospace';
+export const FONT = FUENTE;
 
 export const COL = {
   ink: '#e8e0d0',
@@ -30,7 +32,10 @@ export const COL = {
   edgeN: 0x2a3a52,
 } as const;
 
-/** Texto nítido: tamaño entero, posición redondeada, contorno oscuro de 2 px. */
+/**
+ * Texto nítido: posición redondeada y contorno oscuro. `size` se expresa en la escala anterior
+ * (monospace) y tamFuente() lo convierte al tamaño legible de la fuente pixel (mínimo 11 px).
+ */
 export function txt(
   scene: Phaser.Scene,
   x: number,
@@ -42,12 +47,14 @@ export function txt(
 ): Phaser.GameObjects.Text {
   const t = scene.add.text(Math.round(x), Math.round(y), s, {
     fontFamily: FONT,
-    fontSize: `${Math.round(size)}px`,
-    fontStyle: 'bold',
+    fontSize: `${tamFuente(size)}px`,
+    // La pixel en negrita solo luce en tamaños grandes; en chico se empasta.
+    fontStyle: size >= 24 ? 'bold' : 'normal',
     color,
     align: opts.align ?? 'left',
     wordWrap: opts.wrap ? { width: opts.wrap } : undefined,
-    lineSpacing: 2,
+    lineSpacing: 1,
+    padding: { top: PAD_ACENTO }, // acentos de mayúsculas sin recortar
   });
   if (opts.stroke !== false) t.setStroke('#05060a', 3);
   t.setOrigin(opts.ox ?? 0, opts.oy ?? 0);
@@ -573,23 +580,24 @@ export class SpellScene extends Phaser.Scene {
     if (this.learnStep === 'intro') {
       page.add(txt(this, 320, 56, 'NUEVO CONJURO', 10, COL.teal, { ox: 0.5 }));
       page.add(txt(this, 320, 74, def.name.toUpperCase(), 32, COL.gold, { ox: 0.5 }));
-      page.add(txt(this, 320, 118, def.desc, 10, COL.ink, { ox: 0.5, wrap: 440, align: 'center' }));
-      page.add(
-        txt(
-          this,
-          320,
-          156,
-          'Los conjuros se deletrean en Lengua de Señas Mexicana (LSM), letra por letra, con el alfabeto manual que te enseñó tu madre.',
-          10,
-          COL.ink,
-          { ox: 0.5, wrap: 440, align: 'center' },
-        ),
+      // Bloques apilados según su altura real (la fuente pixel ocupa más que la monoespaciada).
+      const d1 = txt(this, 320, 118, def.desc, 10, COL.ink, { ox: 0.5, wrap: 440, align: 'center' });
+      page.add(d1);
+      const d2 = txt(
+        this,
+        320,
+        Math.max(156, d1.y + d1.height + 8),
+        'Los conjuros se deletrean en Lengua de Señas Mexicana (LSM), letra por letra, con el alfabeto manual que te enseñó tu madre.',
+        10,
+        COL.ink,
+        { ox: 0.5, wrap: 440, align: 'center' },
       );
+      page.add(d2);
       page.add(
         txt(
           this,
           320,
-          206,
+          Math.max(206, d2.y + d2.height + 10),
           lsm.cameraReady
             ? 'Con la cámara: haz cada seña y sostenla un momento.'
             : 'Sin cámara: escribe cada letra en el teclado mientras miras la seña.',
@@ -662,12 +670,13 @@ export class SpellScene extends Phaser.Scene {
     // end
     page.add(txt(this, 320, 70, '¡APRENDISTE', 16, COL.teal, { ox: 0.5 }));
     page.add(txt(this, 320, 92, `${def.name.toUpperCase()}!`, 32, COL.gold, { ox: 0.5 }));
-    page.add(txt(this, 320, 140, def.desc, 10, COL.ink, { ox: 0.5, wrap: 440, align: 'center' }));
+    const fin = txt(this, 320, 140, def.desc, 10, COL.ink, { ox: 0.5, wrap: 440, align: 'center' });
+    page.add(fin);
     page.add(
       txt(
         this,
         320,
-        184,
+        Math.max(184, fin.y + fin.height + 8),
         'Q (tocar): lanzar el conjuro seleccionado\nQ (mantener): rueda de conjuros\nTab: Diario de Señas',
         10,
         COL.ink,

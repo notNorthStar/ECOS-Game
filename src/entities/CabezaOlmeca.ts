@@ -267,6 +267,8 @@ export class CabezaOlmeca extends EnemyBase {
   }
 
   private telegraph(on: boolean): void {
+    // Aviso visible: brillo en el pecho y anillo en el suelo (EnemyBase.warnFx).
+    if (on) this.warnFx(0x602018);
     if (this.flashT > 0) return;
     if (on) {
       const blink = Math.floor(this.stT * 12) % 2 === 0;

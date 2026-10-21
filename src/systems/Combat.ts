@@ -9,7 +9,7 @@ import { Espiritu } from '../entities/Espiritu';
 import { NahualaCopia } from '../entities/Nahuala';
 import { Tzitzimitl } from '../entities/Tzitzimitl';
 import { LaserShot, laserTargets, type LaserTarget } from '../entities/LaserShot';
-import { installProgression } from './Progression';
+import { getProteccionHeal, installProgression } from './Progression';
 import { hideBossBar, showPrompt } from '../scenes/HudScene';
 
 /**
@@ -111,11 +111,11 @@ export function installCombat(world: WorldApi): void {
       playerShield.reduction = spellParam('PROTECCION', 'shieldReduction', SHIELD.reduction);
       playerShield.debt = 0;
       // Cada PROTECCION (no fallida, también en automático) devuelve corazones (decisión del equipo, 2026-10-19).
-      const heal = spellParam('PROTECCION', 'heal', 1);
+      const heal = getProteccionHeal(); // 1, 2 o 3 según la mejora 'Protección' del Altar
       if (GameState.hp < GameState.maxHp && heal > 0) {
         GameState.hp = Math.min(GameState.maxHp, GameState.hp + heal);
         healFx(world);
-        bus.emit('hud:toast', { text: '+1 corazón', ms: 900 });
+        bus.emit('hud:toast', { text: heal > 1 ? `+${heal} de vida` : '+1 de vida', ms: 900 });
       }
     }
     // Copia: applySpell puede invocar enemigos o sacarlos del mundo.

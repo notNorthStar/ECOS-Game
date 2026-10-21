@@ -431,6 +431,11 @@ export class BrujaGuajolote extends EnemyBase {
     this.updateBolts(dt);
     this.updatePuddles(dt);
     if (this.st !== 'dormant' && this.st !== 'calmed') this.pushHud();
+    // Forma de ave: suelta plumas oscuras al moverse (muchas al embestir o aletear); humana: chispas de fuego fatuo.
+    const ave = this.form === 'ave' && this.st !== 'calmed' && this.st !== 'dormant';
+    const wild = this.st === 'charge' || this.st === 'flap';
+    this.trailFx(dt, ave, 'feather', wild ? 24 : 2.5, 0.6, 30);
+    this.trailFx(dt, this.form === 'humana' && this.st !== 'calmed' && this.st !== 'dormant', 'sparkGreen', 2, 0.3, 8);
     this.render(dt);
     this.placeFx(dt);
   }
@@ -447,6 +452,8 @@ export class BrujaGuajolote extends EnemyBase {
   }
 
   private telegraph(color: number): void {
+    // Aviso visible: brillo en el pecho y anillo en el suelo (EnemyBase.warnFx).
+    this.warnFx(color);
     if (this.flashT > 0) return;
     const blink = Math.floor(this.stT * 14) % 2 === 0;
     this.sprite.setTintMode(Phaser.TintModes.ADD).setTint(blink ? color : 0x000000);

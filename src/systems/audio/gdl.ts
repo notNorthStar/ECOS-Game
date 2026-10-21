@@ -741,6 +741,40 @@ Object.assign(EFECTOS_N10, {
   },
 } satisfies Record<string, Sintetizador>);
 
+// Versión extendida: momias, Vampiro y Don Ernesto (los piden Momia.ts, Vampiro.ts y DonErnesto.ts).
+const polvo = (m: Motor, d: AudioNode, t: number, dur: number, vol: number) =>
+  ruido(m, d, t, dur, vol, { filtro: 'bandpass', frec: 900, hasta: 300, q: 0.8, ataque: 0.05, envio: 0.4 });
+Object.assign(EFECTOS_N10, {
+  // Momia
+  momia_gemido: (m, d, t) => { coro(m, d, t, 40, 1.2, 0.07, 'o', 0); tono(m, d, t, 110, 1.2, 0.05, { tipo: 'sawtooth', hasta: 80, filtro: 500, vibrato: 4, vibratoProf: 15 }); return 1.3; },
+  momia_vendas: (m, d, t) => { ruido(m, d, t, 0.35, 0.12, { filtro: 'highpass', frec: 1800, hasta: 4000 }); return 0.4; },
+  momia_agarre: (m, d, t) => { polvo(m, d, t, 0.25, 0.14); tono(m, d, t, 140, 0.2, 0.12, { hasta: 70 }); return 0.4; },
+  momia_grito: (m, d, t) => { coro(m, d, t, 45, 1.0, 0.09, 'a', 0); polvo(m, d, t, 1.0, 0.16); return 1.2; },
+  momia_agotada: (m, d, t) => { tono(m, d, t, 160, 0.6, 0.08, { hasta: 60, filtro: 600 }); polvo(m, d, t + 0.1, 0.5, 0.1); return 0.8; },
+  momia_descansa: (m, d, t) => { pad(m, d, t, [57, 62, 66], 1.6, 0.05, 1600); [81, 86].forEach((n, i) => campana(m, d, t + i * 0.3, mtof(n), 1.4, 0.04, 0.9)); return 1.9; },
+  // Vampiro
+  vampiro_transforma: (m, d, t) => { tono(m, d, t, 200, 0.9, 0.12, { tipo: 'sawtooth', hasta: 60, filtro: 900, vibrato: 10, vibratoProf: 40 }); ruido(m, d, t, 0.8, 0.12, { filtro: 'bandpass', frec: 3000, hasta: 600, q: 1.5 }); return 1.1; },
+  vampiro_sisea: (m, d, t) => { ruido(m, d, t, 0.6, 0.12, { filtro: 'highpass', frec: 4000, ataque: 0.1 }); return 0.7; },
+  vampiro_zarpazo: (m, d, t) => { ruido(m, d, t, 0.12, 0.2, { filtro: 'bandpass', frec: 2500, hasta: 800, q: 1.2 }); return 0.2; },
+  vampiro_murcielagos: (m, d, t) => { for (let i = 0; i < 8; i++) tono(m, d, t + i * 0.05, 4000 + i * 300, 0.04, 0.03, { tipo: 'square', filtro: 8000 }); ruido(m, d, t, 0.5, 0.06, { filtro: 'highpass', frec: 3000 }); return 0.6; },
+  vampiro_raices: (m, d, t) => { tono(m, d, t, 80, 0.6, 0.16, { hasta: 45, filtro: 300 }); ruido(m, d, t, 0.5, 0.1, { filtro: 'lowpass', frec: 500 }); return 0.7; },
+  vampiro_raiz: (m, d, t) => { ruido(m, d, t, 0.18, 0.12, { filtro: 'lowpass', frec: 700 }); return 0.25; },
+  vampiro_niebla: (m, d, t) => { ruido(m, d, t, 0.9, 0.08, { filtro: 'bandpass', frec: 600, hasta: 2000, q: 0.7, ataque: 0.3, envio: 0.7 }); return 1.0; },
+  vampiro_agotado: (m, d, t) => { tono(m, d, t, 300, 0.7, 0.08, { tipo: 'sawtooth', hasta: 90, filtro: 800 }); return 0.8; },
+  vampiro_liberar: (m, d, t) => { pad(m, d, t, [55, 62, 67], 1.8, 0.05, 1800); for (let i = 0; i < 6; i++) tono(m, d, t + 0.2 + i * 0.07, 3500 + i * 250, 0.05, 0.02, { tipo: 'square', filtro: 7000 }); return 2.0; },
+  // Don Ernesto
+  ernesto_risa: (m, d, t) => { for (let i = 0; i < 4; i++) coro(m, d, t + i * 0.16, 38 - i, 0.18, 0.08, 'a', 0); tono(m, d, t, 70, 0.8, 0.07, { tipo: 'sawtooth', hasta: 50, filtro: 400 }); return 0.9; },
+  ernesto_barajea: (m, d, t) => { for (let i = 0; i < 10; i++) ruido(m, d, t + i * 0.035, 0.02, 0.1, { filtro: 'highpass', frec: 3500 }); return 0.5; },
+  ernesto_cartas: (m, d, t) => { for (let i = 0; i < 4; i++) ruido(m, d, t + i * 0.06, 0.08, 0.1, { filtro: 'bandpass', frec: 2500, hasta: 5000, q: 2 }); return 0.4; },
+  ernesto_estalla: (m, d, t) => { ruido(m, d, t, 0.3, 0.2, { filtro: 'lowpass', frec: 1500, hasta: 200 }); tono(m, d, t, 120, 0.3, 0.12, { hasta: 50 }); return 0.4; },
+  ernesto_ruleta: (m, d, t) => { for (let i = 0; i < 14; i++) tono(m, d, t + i * (0.05 + i * 0.008), 1400, 0.02, 0.05, { tipo: 'square', filtro: 3000 }); return 2.2; },
+  ernesto_ruleta_fin: (m, d, t) => { campana(m, d, t, mtof(76), 1.0, 0.08, 0.8); tono(m, d, t, 90, 0.4, 0.1, { hasta: 60 }); return 1.0; },
+  ernesto_fuego: (m, d, t) => { ruido(m, d, t, 0.8, 0.14, { filtro: 'lowpass', frec: 900, hasta: 300, ataque: 0.1 }); tono(m, d, t, 60, 0.8, 0.08, { hasta: 40, filtro: 200 }); return 0.9; },
+  ernesto_baston: (m, d, t) => { tono(m, d, t, 180, 0.12, 0.16, { hasta: 70 }); ruido(m, d, t, 0.06, 0.12, { filtro: 'highpass', frec: 2000 }); return 0.2; },
+  ernesto_agotado: (m, d, t) => { tono(m, d, t, 220, 0.8, 0.09, { tipo: 'sawtooth', hasta: 60, filtro: 700 }); return 0.9; },
+  ernesto_liberar: (m, d, t) => { pad(m, d, t, [52, 59, 64, 68], 2.0, 0.05, 1800); [79, 84, 88].forEach((n, i) => campana(m, d, t + 0.3 + i * 0.3, mtof(n), 1.4, 0.04, 0.9)); return 2.4; },
+} satisfies Record<string, Sintetizador>);
+
 export const MAX_VOCES_N10: Record<string, number> = {
   atado_on: 1,
   atado_off: 1,

@@ -39,10 +39,10 @@ export function startEpilogo(scene: Phaser.Scene): void {
 
 const CREDITOS = import.meta.glob('../data/creditos.json', { eager: true, import: 'default' }) as Record<string, unknown>;
 
-/** Línea de créditos: encabezado (dorado, más grande), texto normal o separación. */
+/** Línea de créditos: encabezado (dorado, más grande), nombre de persona/herramienta (turquesa), texto normal o separación. */
 interface Linea {
   text: string;
-  kind: 'titulo' | 'texto' | 'espacio';
+  kind: 'titulo' | 'nombre' | 'texto' | 'espacio';
 }
 
 /** Respaldo con el mismo formato que creditos.json (titulo, estudio, evento, equipo, secciones, cierre). */
@@ -64,9 +64,23 @@ const RESPALDO_CREDITOS: unknown = {
   cierre: 'Gracias por jugar.',
 };
 
+/** Persona o IA con varios roles: {nombre, roles[]} (o {nombre, rol}) → nombre + sus roles separados por «·». */
+function lineasPersona(m: unknown, out: Linea[]): void {
+  if (!m || typeof m !== 'object') return;
+  const o = m as Record<string, unknown>;
+  const nombre = typeof o.nombre === 'string' && o.nombre.trim() ? o.nombre : null;
+  const roles = Array.isArray(o.roles) ? o.roles.filter((r): r is string => typeof r === 'string' && !!r.trim()) : [];
+  if (typeof o.rol === 'string' && o.rol.trim()) roles.push(o.rol);
+  if (!nombre && !roles.length) return;
+  out.push({ text: '', kind: 'espacio' });
+  if (nombre) out.push({ text: nombre, kind: 'nombre' });
+  if (roles.length) out.push({ text: roles.join(' · '), kind: 'texto' });
+}
+
 /**
- * Formato acordado con contenido (data/creditos.json): titulo, estudio, evento, equipo[{rol, nombre}],
- * secciones[{titulo, lineas[]}], cierre. Devuelve null si el JSON no tiene esa forma (se usa el lector genérico).
+ * Formato acordado con contenido (data/creditos.json): titulo, estudio, evento, equipo[{nombre, roles[]}],
+ * secciones[{titulo, lineas[]}] (cada línea es un texto o un {nombre, roles[]}), cierre. Devuelve null si el JSON
+ * no tiene esa forma (se usa el lector genérico).
  */
 function lineasFormato(data: unknown): Linea[] | null {
   if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
@@ -78,17 +92,16 @@ function lineasFormato(data: unknown): Linea[] | null {
   for (const k of ['estudio', 'evento']) if (str(o[k])) out.push({ text: String(o[k]), kind: 'texto' });
   if (Array.isArray(o.equipo) && o.equipo.length) {
     out.push({ text: '', kind: 'espacio' }, { text: 'Equipo', kind: 'titulo' });
-    for (const m of o.equipo as Array<Record<string, unknown>>) {
-      const rol = str(m?.rol);
-      const nombre = str(m?.nombre);
-      if (rol || nombre) out.push({ text: rol && nombre ? `${rol} — ${nombre}` : (rol ?? nombre)!, kind: 'texto' });
-    }
+    for (const m of o.equipo as Array<Record<string, unknown>>) lineasPersona(m, out);
   }
   for (const sec of (Array.isArray(o.secciones) ? o.secciones : []) as Array<Record<string, unknown>>) {
     out.push({ text: '', kind: 'espacio' });
     if (str(sec?.titulo)) out.push({ text: String(sec.titulo), kind: 'titulo' });
     const ls = Array.isArray(sec?.lineas) ? sec.lineas : [];
-    for (const l of ls) if (str(l)) out.push({ text: String(l), kind: 'texto' });
+    for (const l of ls) {
+      if (str(l)) out.push({ text: String(l), kind: 'texto' });
+      else if (l && typeof l === 'object') lineasPersona(l, out);
+    }
   }
   return out;
 }
@@ -253,7 +266,7 @@ export class EpilogoScene extends Phaser.Scene {
 
   update(_t: number, delta: number): void {
     if (this.fase !== 'creditos' || !this.rollo) return;
-    const vel = this.rapido ? 120 : 22; // px/s
+    const vel = this.rapido ? 120 : 26; // px/s
     this.rollo.y -= vel * (delta / 1000);
     if (this.rollo.y <= this.rolloFin) {
       this.rollo.y = this.rolloFin;
@@ -460,15 +473,15 @@ export class EpilogoScene extends Phaser.Scene {
       const t = this.add
         .text(W / 2, y, l.text, {
           fontFamily: FONT,
-          fontSize: ts(l.kind === 'titulo' ? 12 : 9),
-          color: l.kind === 'titulo' ? '#f2c14e' : '#efe6d2',
-          fontStyle: l.kind === 'titulo' ? 'bold' : 'normal',
+          fontSize: ts(l.kind === 'titulo' ? 12 : l.kind === 'nombre' ? 10 : 9),
+          color: l.kind === 'titulo' ? '#f2c14e' : l.kind === 'nombre' ? '#8ff7e1' : '#efe6d2',
+          fontStyle: l.kind === 'titulo' || l.kind === 'nombre' ? 'bold' : 'normal',
           align: 'center',
           wordWrap: { width: W - 120, useAdvancedWrap: true },
         })
         .setOrigin(0.5, 0);
       rollo.add(t);
-      y += t.height + (l.kind === 'titulo' ? 6 : 3);
+      y += t.height + (l.kind === 'titulo' ? 6 : l.kind === 'nombre' ? 2 : 3);
     }
     y += 30;
     rollo.add(this.add.text(W / 2, y, cierreCreditos(), { fontFamily: FONT, fontSize: ts(12), color: '#e0457b' }).setOrigin(0.5, 0));

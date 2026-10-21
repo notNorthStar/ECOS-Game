@@ -6,7 +6,9 @@
     "n10_madre": { "nombre": "Mamá (en señas)", "retrato": "" },
     "n10_mando": { "nombre": "Alto Mando de la Cofradía", "retrato": "" },
     "n10_mando_2": { "nombre": "Voz del Alto Mando", "retrato": "" },
-    "n10_itzpa": { "nombre": "Itzpapálotl", "retrato": "" }
+    "n10_itzpa": { "nombre": "Itzpapálotl", "retrato": "" },
+    "n10_ernesto": { "nombre": "Don Ernesto", "retrato": "" },
+    "n10_vampiro": { "nombre": "El Hombre del Traje", "retrato": "" }
   },
 
   "n10_llegada": [
@@ -28,11 +30,22 @@
     { "who": "n10_tu", "text": "Tambores. Alguien está llamando al eclipse." }
   ],
   "n10_av3_fin": [
-    { "who": "n10_narrador", "text": "La guardia del estadio queda dormida en el suelo, con las capuchas torcidas. Al fondo, entre el humo, se levanta la fachada de la Catedral: dos torres negras contra el sol mordido." },
-    { "who": "n10_tu", "text": "Ahí. Mamá está ahí." }
+    { "who": "n10_narrador", "text": "La guardia del estadio queda dormida en el suelo, con las capuchas torcidas. Al fondo, entre el humo, se levanta la fachada de la Catedral: dos torres negras contra el sol mordido. Delante de la puerta, algo brilla: una luz de farol, y alguien sentado bajo ella." },
+    { "who": "n10_tu", "text": "Ahí. Mamá está ahí. Y esa luz no es de nadie bueno." }
   ],
-  "n10_puerta": [
-    { "who": "n10_narrador", "text": "La puerta de la Catedral está entreabierta. De adentro sale olor a cera, incienso y ceniza, y una luz violeta que no es de vitral." },
+  "n10_ernesto_intro": [
+    { "who": "n10_narrador", "text": "Al final de la avenida, bajo un farol que todavía parpadea, hay una mesa de juego armada con un cajón de fruta y un mantel verde. Sobre el mantel, una baraja abierta en abanico y una moneda que no deja de girar. Detrás, entre el humo, se adivina la puerta de la Catedral." },
+    { "who": "n10_narrador", "text": "Frente a la mesa, un hombre de sombrero y chaleco te sonríe con demasiados dientes. Su sombra en el piso no coincide con su cuerpo: es más grande y se agita sola." },
+    { "who": "n10_ernesto", "text": "Pase, pase, joven. Siéntese. Aquí se apuesta con lo que se tiene, y yo, ¡ay!, ya aposté hasta lo que no era mío." },
+    { "who": "n10_tu", "text": "Solo busco a mi madre. Déjeme pasar." },
+    { "who": "n10_ernesto", "text": "Don Ernesto, para servirle. Una noche gané lo que no debí ganar, y a quien me lo dio le debo la eternidad. Hoy cuido esta puerta. Es un buen trato: no me pide nada, solo que nadie pase." },
+    { "who": "n10_narrador", "text": "Balam eriza el lomo. La moneda se queda quieta, de canto, y las cartas del abanico se levantan solas: del reverso asoma un fuego bajito, rojo, que no da calor." },
+    { "who": "n10_ernesto", "text": "La suerte es una sola, joven, y esta noche ya tiene dueño. Reparta usted... o reparto yo." }
+  ],
+  "n10_ernesto_fin": [
+    { "who": "n10_narrador", "text": "La última carta se quema sin ruido. Don Ernesto se queda mirando sus manos vacías y, por primera vez, no sonríe: parece un hombre muy cansado." },
+    { "who": "n10_ernesto", "text": "Se acabó la racha. Gracias, joven. Hacía siglos que nadie me ganaba limpio... Vaya con su madre. Y si sale de esta, nunca apueste lo que no es suyo." },
+    { "who": "n10_narrador", "text": "Su silueta se vuelve humo de copal y el viento se la lleva, por fin sin deudas. La mesa se deshace en hojas secas. Al fondo, la puerta de la Catedral queda entreabierta: de adentro sale olor a cera, incienso y ceniza, y una luz violeta que no es de vitral." },
     { "who": "n10_balam", "text": "Balam se detiene en el umbral y bufa, bajito. Quiere que te des la vuelta." },
     { "who": "n10_tu", "text": "Si hay trampa, la veremos venir. Pero no pienso dejarla sola." }
   ],
@@ -52,6 +65,19 @@
     { "who": "n10_narrador", "text": "Las muñecas se rompen, los encapuchados quedan dormidos y los espíritus se disuelven en luz. Del fondo de la nave llega un olor a tierra mojada y a pelo que no es de nadie." },
     { "who": "n10_balam", "text": "Balam gruñe hacia el fondo: lo que viene no huele a gente." },
     { "who": "n10_tu", "text": "Nahuales. Es la última tanda." }
+  ],
+  "n10_vampiro_intro": [
+    { "who": "n10_narrador", "text": "La nave quedó en silencio, pero no vacía. Junto al altar, entre dos columnas, hay un hombre alto de traje antiguo, de espaldas, con las manos cruzadas como quien espera un tren. No hay velas a su alrededor y, sin embargo, su sombra es la más nítida de la Catedral." },
+    { "who": "n10_tu", "text": "¿Quién es usted? Esta gente ya no tiene a nadie más que mandar..." },
+    { "who": "n10_vampiro", "text": "Los de la Cofradía pagan puntual, joven, y yo vivo de ser puntual. Me pidieron que no llegaras con tu madre antes de tiempo. Nada personal. Solo apetito." },
+    { "who": "n10_narrador", "text": "Se vuelve despacio. Su piel tiene el color del papel viejo y las luces de los candelabros se estiran hacia él, como si la nave le diera de beber. El traje se desgarra sin ruido, su sombra se hace alas, y el hombre se encoge y se alarga a la vez: una criatura de capa negra, ojos de brasa y pasos que no tocan el piso." },
+    { "who": "n10_balam", "text": "Balam bufa hacia la oscuridad, pegado a tu tobillo. Odia la oscuridad que se mueve." },
+    { "who": "n10_tu", "text": "Es de noche para él, no para nosotros. Si lo que le duele es la luz, se la damos." }
+  ],
+  "n10_vampiro_fin": [
+    { "who": "n10_narrador", "text": "La criatura cae de rodillas. La capa se vuelve ceniza fina y el hombre alto reaparece un instante, con el traje intacto, mareado. Alza la cara hacia la poca luz que se cuela por los vitrales rotos." },
+    { "who": "n10_vampiro", "text": "Hace tanto que no veía la luz sin tener que huir de ella... Quédate con ella, joven. Yo ya no la necesito." },
+    { "who": "n10_narrador", "text": "Se disuelve en una bruma dorada. El camino hacia el altar mayor queda libre." }
   ],
   "n10_madre_vista": [
     { "who": "n10_narrador", "text": "La nave se queda en calma. Al fondo, en el altar mayor, hay una silueta sentada con cadenas de luz en las muñecas y la cabeza baja. Reconoces el moño torcido y las manos grandes, acostumbradas a hablar." },
@@ -185,16 +211,33 @@
     { "who": "n10_narrador", "text": "El tercer golpe de ECOS atraviesa el núcleo. Itzpapálotl se queda inmóvil; luego se quiebra en obsidiana y luz, y cada esquirla se vuelve una mariposa blanca que sube hacia el disco negro." },
     { "who": "n10_itzpa", "text": "Recordar... duele menos de lo que creí." },
     { "who": "n10_mando", "text": "No... El Sello... ¡el Sello era nuestro!" },
-    { "who": "n10_narrador", "text": "Las cadenas de luz se deshacen. Los encapuchados se bajan las capuchas, mareados, y uno a uno se sientan en el suelo sin saber dónde están." },
-    { "who": "n10_tu", "text": "Se acabó." }
+    { "who": "n10_narrador", "text": "Los hilos de luz que sujetaban a los encapuchados se deshacen. Se bajan las capuchas, mareados, y uno a uno se sientan en el suelo sin saber dónde están. En la nave ya no queda nada que pelear. Solo siguen en su sitio las cadenas del altar mayor, brillando como un reproche." },
+    { "who": "n10_tu", "text": "Se acabó. Mamá..." },
+    { "who": "n10_balam", "text": "Balam, todavía hecho de luz, te empuja con el hombro hacia el altar." }
   ],
   "n10_reencuentro": [
-    { "who": "n10_narrador", "text": "El techo abierto se llena de oro: el sol regresa por el borde del eclipse y la luz baja por la nave como agua tibia. Tu madre se levanta del altar con las manos libres, y por fin se mueven." },
+    { "who": "n10_narrador", "text": "Los últimos eslabones de luz se apagan antes de tocar el piso. Tu madre queda de rodillas, con las manos libres, y se las queda mirando: abre y cierra los dedos, como quien comprueba que siguen siendo suyos." },
+    { "who": "n10_narrador", "text": "El techo abierto se llena de oro. El sol regresa por el borde del eclipse y la luz baja por la nave como agua tibia. Te arrodillas frente a ella y le preguntas con las manos, despacio: «¿estás bien?»." },
+    { "who": "n10_narrador", "text": "Ella te sostiene la cara entre las palmas, como cuando eras chico y volvías de la calle con las rodillas raspadas. Luego se aparta lo justo para poder hablar." },
     { "who": "n10_madre", "text": "Hijo. Te vi pelear. Te vi aprender. Estoy aquí." },
     { "who": "n10_tu", "text": "Mamá." },
-    { "who": "n10_narrador", "text": "Lo dices con las manos, M-A-M-A, y ella te contesta con la seña de casa que significa «aquí estoy». El Códice cae, entero, sobre sus manos unidas, y sus páginas respiran." },
+    { "who": "n10_narrador", "text": "Lo dices con las manos, M-A-M-A, y ella te contesta con la seña de casa que significa «aquí estoy»." }
+  ],
+  "n10_reencuentro_2": [
+    { "who": "n10_narrador", "text": "Se pone de pie con tu ayuda, despacio. Su mirada se pierde un momento en el cielo que se aclara y frunce el ceño: busca algo que ya no está." },
+    { "who": "n10_madre", "text": "Hay huecos. Rostros, un par de nombres, una calle entera de la que me falta el final. Me quitaron cosas, y no sé cuáles." },
+    { "who": "n10_tu", "text": "Yo te cuento lo que falte. Y lo que no se pueda contar, lo escribimos otra vez." },
+    { "who": "n10_narrador", "text": "Se lo dices con señas amplias, sin prisa, para que no se te escape ninguna. Ella te mira un buen rato; luego una sonrisa le sube desde las manos." },
+    { "who": "n10_madre", "text": "Eso me gusta más que recordarlo todo." },
+    { "who": "n10_narrador", "text": "Balam se acerca con pasos de gato y le empuja la mano con la frente. La luz que lo envolvía se afloja, se encoge, y en un parpadeo vuelve a ser el pequeño alebrije de siempre." },
+    { "who": "n10_madre", "text": "Gracias por cuidarlo. Y por cuidarte. A los dos." }
+  ],
+  "n10_reencuentro_3": [
+    { "who": "n10_narrador", "text": "Entre las cenizas de la tarima, el Códice se abre solo. Sus páginas respiran; muchas recuperaron la tinta y otras quedaron en blanco, limpias, como esperando. Tu madre lo recoge con las dos manos y lo sostiene contra el pecho." },
+    { "who": "n10_madre", "text": "Quedaron páginas sin escribir." },
+    { "who": "n10_tu", "text": "Para que las llenemos con todos los que se acuerden." },
     { "who": "n10_madre", "text": "Vámonos a casa. Todavía hay mucho por escribir." },
-    { "who": "n10_balam", "text": "Balam, otra vez pequeño, se enrosca en tu hombro y ronronea." }
+    { "who": "n10_balam", "text": "Balam salta a tu hombro y ronronea." }
   ],
   "n10_reintento": [
     { "who": "n10_narrador", "text": "Te levantas. Balam ruge a tu lado y, desde el altar, tu madre sostiene la luz con la mirada." }

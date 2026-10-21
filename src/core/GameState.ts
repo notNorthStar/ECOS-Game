@@ -18,7 +18,7 @@ export const GameState = {
   // Ecos y mejoras (dueño: Progression)
   ecos: 0,
   totalEcosEarned: 0,
-  upgrades: { vida: 0, dano: 0, velocidad: 0 } as Record<string, number>,
+  upgrades: { vida: 0, dano: 0, velocidad: 0, proteccion: 0 } as Record<string, number>,
   // Láser (dueño: Combat)
   hasLaser: false,
   laserMode: 'green' as LaserMode,
@@ -45,6 +45,8 @@ export const GameState = {
   section: 'taller' as SectionId,
   checkpoint: null as null | { section: SectionId; x: number; y: number },
   flags: {} as Record<string, boolean>,
+  // Pantalla de carga entre niveles (dueño: interfaz). Campaign la pide en cada prepare…Entry(); LevelScene la consume.
+  pendingLoadScreen: false,
   // Opciones (dueño: Title / Pause)
   settings: {
     camera: false, // la cámara quedó activa y lista
@@ -72,7 +74,7 @@ export function resetGameState(): void {
     maxHp: 5,
     ecos: 0,
     totalEcosEarned: 0,
-    upgrades: { vida: 0, dano: 0, velocidad: 0 },
+    upgrades: { vida: 0, dano: 0, velocidad: 0, proteccion: 0 },
     hasLaser: false,
     laserMode: 'green',
     laserHeat: 0,
@@ -91,5 +93,6 @@ export function resetGameState(): void {
     section: 'taller',
     checkpoint: null,
     flags: {},
+    pendingLoadScreen: false,
   });
 }

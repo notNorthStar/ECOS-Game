@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
 import { bus, sfx, type BusEvents } from '../core/bus';
 import { GameState } from '../core/GameState';
-import { DEPTH_TOLERANCE } from '../config/game';
+import { DEPTH, DEPTH_TOLERANCE, GAME_HEIGHT, GAME_WIDTH } from '../config/game';
+import { FUENTE, TAM, tamFuente } from '../ui/fuente';
 import type { EnemyApi, LevelTrigger, SectionId, WorldApi } from '../core/contracts';
 import * as Casting from './Casting';
 import { installInteract, markUsed, type Interactable } from './Interact';
@@ -87,6 +88,14 @@ class Director {
   private calmadoEn = 0;
   private avisoSalida = 0;
   private avisoVerde = false;
+  /** Texto del paso del tutorial en curso (para el objetivo del HUD). */
+  private pasoTutorial: string | null = null;
+  /** Objetivo actual (rastro de luz y flecha de borde de pantalla). */
+  private objetivo: { x: number; y: number } | null = null;
+  private objTxt: Phaser.GameObjects.Text;
+  private flechaG: Phaser.GameObjects.Graphics;
+  private flechaTxt: Phaser.GameObjects.Text;
+  private puertaFx: { glow: Phaser.GameObjects.Graphics; cartel: Phaser.GameObjects.Container } | null = null;
 
   constructor(private w: WorldApi) {
     const scene = w.scene;
@@ -94,10 +103,35 @@ class Director {
       this.vivo = false;
       this.esperaBlanco?.resolve(false);
       this.esperaBlanco = null;
+      scene.events.off(Phaser.Scenes.Events.UPDATE, this.onUpdate, this);
     });
 
-    installInteract(w, { enabled: (it) => this.habilitado(it) });
+    installInteract(w, { enabled: (it) => this.habilitado(it), prompt: (it) => this.textoAviso(it) });
     installLightTrail(w);
+
+    // Objetivo en el HUD (misma posición y estilo que el contador de los otros niveles).
+    this.objTxt = scene.add
+      .text(12, 90, '', {
+        fontFamily: FUENTE,
+        fontSize: `${tamFuente(TAM.chico)}px`,
+        color: '#fff0ce',
+        backgroundColor: '#171521cc',
+        padding: { x: 5, y: 4 },
+        lineSpacing: 2,
+        wordWrap: { width: 230 },
+      })
+      .setScrollFactor(0)
+      .setDepth(DEPTH.ui)
+      .setVisible(false);
+    // Flecha en el borde de la pantalla cuando el objetivo queda fuera de la vista.
+    this.flechaG = scene.add.graphics().setScrollFactor(0).setDepth(DEPTH.ui);
+    this.flechaTxt = scene.add
+      .text(0, 0, '', { fontFamily: FUENTE, fontSize: `${tamFuente(TAM.chico)}px`, color: '#c8fff2', stroke: '#0b0a14', strokeThickness: 3 })
+      .setScrollFactor(0)
+      .setDepth(DEPTH.ui)
+      .setOrigin(0.5)
+      .setVisible(false);
+    scene.events.on(Phaser.Scenes.Events.UPDATE, this.onUpdate, this);
 
     bus.scoped(scene, 'trigger:enter', ({ trigger }) => void this.onTrigger(trigger));
     bus.scoped(scene, 'interact', (p) => void this.onInteract(p.id, p.action, p.data));
@@ -275,9 +309,141 @@ class Director {
   private actualizarObjetivo(): void {
     if (!this.vivo) return;
     const o = this.calcularObjetivo();
+    this.objetivo = o;
     const payload = o ? { x: o.x, y: o.y, section: this.w.level.id as SectionId } : null;
     setObjective(payload);
     bus.emit('objective', payload);
+    this.actualizarTextoObjetivo();
+    this.actualizarPuerta();
+  }
+
+  /** Qué tiene que hacer el jugador ahora, en una línea (objetivo del HUD). */
+  private textoObjetivo(): string | null {
+    switch (this.w.level.id) {
+      case 'taller':
+        if (!flag('intro')) return null;
+        if (!GameState.hasLaser) return 'Recoge la pistola láser de mamá, junto a la mesa (E)';
+        if (!flag('tutorial')) return this.pasoTutorial ?? 'Práctica con el blanco del taller';
+        if (!flag('calma')) return 'Lee el grabado de la pared (E)';
+        return 'Sal del taller por la puerta de la derecha →';
+      case 'calles':
+        if (!flag('altar')) return 'Sigue el rastro de luz hasta las letras de XALAPA';
+        return 'Sigue la calle hacia la derecha, al Parque Juárez →';
+      case 'parque':
+        if (!flag('arena_parque1') || !flag('arena_parque2')) return 'Calma a los chaneques del parque';
+        if (!flag('proteccion')) return 'Sube a la terraza por las escaleras: la nota de mamá está junto al farol';
+        return 'Sigue el camino del parque hacia la derecha →';
+      case 'jefe':
+        if (!flag('boss')) return 'Calma al Chaneque Mayor';
+        if (!flag('antena')) return 'Rompe la antena con el láser ROJO (2)';
+        if (!flag('codice')) return 'Ve al busto de Benito Juárez (E)';
+        return null;
+      default:
+        return null;
+    }
+  }
+
+  private actualizarTextoObjetivo(): void {
+    if (!this.vivo) return;
+    const t = this.textoObjetivo();
+    this.objTxt.setText(t ? `OBJETIVO\n${t}` : '').setVisible(!!t);
+  }
+
+  /** Texto del aviso de E según el progreso (la puerta avisa si todavía no se puede salir). */
+  private textoAviso(it: Interactable): string | undefined {
+    if (it.action === 'salir') {
+      const req = str(it.data as Datos, 'requiere');
+      if (req && !flag(req)) return `${it.prompt} (aún no)`;
+    }
+    return undefined;
+  }
+
+  /** Por qué todavía no se puede salir (en el taller, el paso concreto que falta). */
+  private motivoSalida(d: Datos): string {
+    if (this.w.level.id === 'taller') {
+      if (!GameState.hasLaser) return 'Antes de salir, recoge la pistola láser de mamá (está junto a la mesa).';
+      if (!flag('tutorial')) return 'Antes de salir, termina la práctica con el blanco del taller.';
+      if (!flag('calma')) return 'Antes de salir, lee el grabado de la pared (E): la gema te lo pide.';
+    }
+    return str(d, 'aviso') ?? 'Todavía no.';
+  }
+
+  /** Cada cuadro: flecha de borde de pantalla hacia el objetivo cuando queda fuera de la vista. */
+  private onUpdate(): void {
+    if (!this.vivo) return;
+    const g = this.flechaG;
+    g.clear();
+    const o = this.objetivo;
+    const p = this.w.player;
+    const ocupado = !p || p.controlsLocked || this.scene.scene.isActive('Dialogue');
+    if (!o || ocupado) {
+      this.flechaTxt.setVisible(false);
+      return;
+    }
+    const cam = this.scene.cameras.main;
+    const sx = o.x - cam.scrollX;
+    const fuera = sx < 0 ? -1 : sx > GAME_WIDTH ? 1 : 0;
+    if (!fuera) {
+      this.flechaTxt.setVisible(false);
+      return;
+    }
+    const t = this.scene.time.now / 1000;
+    const bote = Math.sin(t * 6) * 3;
+    const x = fuera > 0 ? GAME_WIDTH - 14 + bote : 14 - bote;
+    const y = Phaser.Math.Clamp(o.y - cam.scrollY - 30, 120, GAME_HEIGHT - 90);
+    g.fillStyle(0x0b0a14, 0.6).fillCircle(x - fuera * 2, y, 11);
+    g.fillStyle(0x8ff7e1, 0.95).fillTriangle(x + fuera * 8, y, x - fuera * 5, y - 8, x - fuera * 5, y + 8);
+    const salida = this.w.level.id === 'taller' && flag('calma');
+    this.flechaTxt
+      .setText(salida ? 'Salida' : 'Objetivo')
+      .setPosition(fuera > 0 ? GAME_WIDTH - 40 : 40, y + 18)
+      .setVisible(true);
+  }
+
+  /**
+   * Puerta del taller: cartel de SALIDA siempre visible (apagado mientras no se puede salir) y,
+   * cuando ya se puede, la puerta se ilumina con la luz de la gema y una flecha que rebota.
+   */
+  private crearPuerta(): void {
+    if (this.w.level.id !== 'taller' || this.puertaFx) return;
+    const it = this.interactable('puerta');
+    const prop = this.prop('puerta') as unknown as Phaser.GameObjects.Sprite | null;
+    const x = prop?.x ?? it?.x ?? 1210;
+    const pie = prop?.y ?? (it ? it.y - 14 : 208);
+    const alto = prop ? prop.displayHeight : 80;
+    const ancho = prop ? prop.displayWidth : 40;
+    // Encima de la puerta (depth pie + 0.5) con mezcla aditiva: la puerta "se enciende".
+    const glow = this.scene.add.graphics().setDepth(pie + 0.5).setBlendMode(Phaser.BlendModes.ADD);
+    glow.fillStyle(0xffd27a, 0.3).fillRect(x - ancho / 2 - 8, pie - alto - 8, ancho + 16, alto + 8);
+    glow.fillStyle(0xffe9a8, 0.35).fillRect(x - ancho / 2 + 3, pie - alto + 3, ancho - 6, alto - 3);
+    glow.lineStyle(2, 0xffe9a8, 0.9).strokeRect(x - ancho / 2 - 1, pie - alto - 1, ancho + 2, alto + 1);
+    glow.fillStyle(0xffd27a, 0.35).fillEllipse(x, pie + 6, ancho + 56, 18);
+    glow.fillStyle(0xffd27a, 0.16).fillTriangle(x - ancho / 2, pie, x + ancho / 2, pie, x - 36, pie + 50);
+    const fondo = this.scene.add.graphics();
+    const texto = this.scene.add
+      .text(0, 0, 'SALIDA', { fontFamily: FUENTE, fontSize: `${tamFuente(TAM.chico)}px`, color: '#ffe9a8', fontStyle: 'bold' })
+      .setOrigin(0.5);
+    const w = texto.width + 10;
+    fondo.fillStyle(0x1a120c, 0.95).fillRect(-w / 2, -8, w, 16);
+    fondo.lineStyle(1, 0xf2c14e, 1).strokeRect(-w / 2 + 0.5, -7.5, w - 1, 15);
+    const flecha = this.scene.add.graphics();
+    flecha.fillStyle(0xf2c14e, 1).fillTriangle(-6, 12, 6, 12, 0, 20);
+    // Por encima del aviso de E de la puerta (que flota justo sobre el marco).
+    const cartel = this.scene.add.container(x, pie - alto - 40, [fondo, texto, flecha]).setDepth(pie + 1);
+    this.scene.tweens.add({ targets: flecha, y: 4, duration: 450, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+    this.scene.tweens.add({ targets: glow, alpha: { from: 0.65, to: 1 }, duration: 900, yoyo: true, repeat: -1 });
+    this.puertaFx = { glow, cartel };
+    this.actualizarPuerta();
+  }
+
+  private actualizarPuerta(): void {
+    const fx = this.puertaFx;
+    if (!fx) return;
+    const abierta = flag('calma');
+    fx.glow.setVisible(abierta);
+    fx.cartel.setAlpha(abierta ? 1 : 0.55);
+    const t = fx.cartel.list[1] as Phaser.GameObjects.Text | undefined;
+    t?.setColor(abierta ? '#ffe9a8' : '#b8ac98');
   }
 
   /* ============================== interactuables ============================== */
@@ -377,6 +543,7 @@ class Director {
 
   private async entrarTaller(): Promise<void> {
     this.crearBlanco();
+    this.crearPuerta();
     if (GameState.hasLaser) this.ocultarProp('pistola');
     if (!flag('intro')) {
       this.lock(true);
@@ -385,6 +552,7 @@ class Director {
       if (!this.vivo) return;
       setFlag('intro');
       this.lock(false);
+      this.actualizarTextoObjetivo();
       this.toast('WASD: moverte (W/S hacia el fondo y el frente) · E: interactuar', 6000);
     } else if (GameState.hasLaser && !flag('tutorial')) {
       void this.tutorial();
@@ -435,6 +603,8 @@ class Director {
     for (const p of pasos) {
       if (flag(p.flag)) continue;
       this.toast(p.texto, 8000);
+      this.pasoTutorial = `Práctica: ${p.texto}`;
+      this.actualizarTextoObjetivo();
       const ok = await p.esperar();
       if (!this.vivo) return;
       setFlag(p.flag);
@@ -447,6 +617,8 @@ class Director {
     }
     setFlag('tutorial');
     this.tutorialEnCurso = false;
+    this.pasoTutorial = null;
+    this.actualizarTextoObjetivo();
     this.ocupado = true;
     await this.dialogo('taller_tutorial_fin');
     this.ocupado = false;
@@ -472,7 +644,7 @@ class Director {
     await this.dialogo('taller_gema');
     if (!this.vivo) return;
     this.lock(false);
-    this.toast('Sigue el rastro de luz de la gema. Sal por la puerta (E)', 6000);
+    this.toast('Sal del taller por la puerta iluminada de la derecha (E). La gema te marca el camino', 7000);
   }
 
   /** Blanco de práctica dibujado (no es un enemigo: el Director detecta los disparos). */
@@ -545,8 +717,8 @@ class Director {
     this.scene.tweens.add({ targets: b, angle: { from: mode === 'red' ? -8 : -4, to: 0 }, duration: 260, ease: 'Back.easeOut' });
     const txt = this.scene.add
       .text(BLANCO.x, BLANCO.y - 56, mode === 'green' ? '¡Aturdido!' : '¡Impacto!', {
-        fontFamily: 'monospace',
-        fontSize: '9px',
+        fontFamily: FUENTE,
+        fontSize: '11px',
         color: mode === 'green' ? '#7dff9a' : '#ff6b5a',
         fontStyle: 'bold',
       })
@@ -857,7 +1029,7 @@ class Director {
     if (req && !flag(req)) {
       if (this.scene.time.now - this.avisoSalida > 2500) {
         this.avisoSalida = this.scene.time.now;
-        this.toast(str(d, 'aviso') ?? 'Todavía no.', 3500);
+        this.toast(this.motivoSalida(d), 4000);
       }
       return;
     }

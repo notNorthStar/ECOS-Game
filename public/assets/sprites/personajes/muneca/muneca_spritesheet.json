@@ -1,0 +1,962 @@
+{
+ "personaje": "muneca",
+ "tipo": "humanoide",
+ "frameWidth": 58,
+ "frameHeight": 59,
+ "pivot": {
+  "x": 29,
+  "y": 57
+ },
+ "frames": [
+  {
+   "name": "muneca_1_reposo_1",
+   "vista": "lado_der",
+   "x": 0,
+   "y": 0,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_reposo_2",
+   "vista": "reposo_2",
+   "x": 58,
+   "y": 0,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_caminar_1",
+   "vista": "caminar_1",
+   "x": 116,
+   "y": 0,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_caminar_2",
+   "vista": "caminar_2",
+   "x": 174,
+   "y": 0,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_caminar_3",
+   "vista": "caminar_3",
+   "x": 232,
+   "y": 0,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_caminar_4",
+   "vista": "caminar_4",
+   "x": 290,
+   "y": 0,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_correr_1",
+   "vista": "correr_1",
+   "x": 0,
+   "y": 59,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_correr_2",
+   "vista": "correr_2",
+   "x": 58,
+   "y": 59,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_correr_3",
+   "vista": "correr_3",
+   "x": 116,
+   "y": 59,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_correr_4",
+   "vista": "correr_4",
+   "x": 174,
+   "y": 59,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_preparar",
+   "vista": "preparar",
+   "x": 232,
+   "y": 59,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_atacar",
+   "vista": "atacar",
+   "x": 290,
+   "y": 59,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_guardia",
+   "vista": "guardia",
+   "x": 0,
+   "y": 118,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_conjuro",
+   "vista": "conjuro",
+   "x": 58,
+   "y": 118,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_lanzar_1",
+   "vista": "lanzar_1",
+   "x": 116,
+   "y": 118,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_lanzar_2",
+   "vista": "lanzar_2",
+   "x": 174,
+   "y": 118,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_salto",
+   "vista": "salto",
+   "x": 232,
+   "y": 118,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_caida",
+   "vista": "caida",
+   "x": 290,
+   "y": 118,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_agacharse",
+   "vista": "agacharse",
+   "x": 0,
+   "y": 177,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_esquivar",
+   "vista": "esquivar",
+   "x": 58,
+   "y": 177,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_golpe_bajo",
+   "vista": "golpe_bajo",
+   "x": 116,
+   "y": 177,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_dano",
+   "vista": "dano",
+   "x": 174,
+   "y": 177,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_derrota",
+   "vista": "derrota",
+   "x": 232,
+   "y": 177,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_1_caido",
+   "vista": "caido",
+   "x": 290,
+   "y": 177,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_reposo_1",
+   "vista": "reposo_1",
+   "x": 0,
+   "y": 236,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_reposo_2",
+   "vista": "reposo_2",
+   "x": 58,
+   "y": 236,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_caminar_1",
+   "vista": "caminar_1",
+   "x": 116,
+   "y": 236,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_caminar_2",
+   "vista": "caminar_2",
+   "x": 174,
+   "y": 236,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_caminar_3",
+   "vista": "caminar_3",
+   "x": 232,
+   "y": 236,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_caminar_4",
+   "vista": "caminar_4",
+   "x": 290,
+   "y": 236,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_correr_1",
+   "vista": "correr_1",
+   "x": 0,
+   "y": 295,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_correr_2",
+   "vista": "correr_2",
+   "x": 58,
+   "y": 295,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_correr_3",
+   "vista": "correr_3",
+   "x": 116,
+   "y": 295,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_correr_4",
+   "vista": "correr_4",
+   "x": 174,
+   "y": 295,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_preparar",
+   "vista": "preparar",
+   "x": 232,
+   "y": 295,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_atacar",
+   "vista": "atacar",
+   "x": 290,
+   "y": 295,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_guardia",
+   "vista": "guardia",
+   "x": 0,
+   "y": 354,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_conjuro",
+   "vista": "conjuro",
+   "x": 58,
+   "y": 354,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_lanzar_1",
+   "vista": "lanzar_1",
+   "x": 116,
+   "y": 354,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_lanzar_2",
+   "vista": "lanzar_2",
+   "x": 174,
+   "y": 354,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_salto",
+   "vista": "salto",
+   "x": 232,
+   "y": 354,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_caida",
+   "vista": "caida",
+   "x": 290,
+   "y": 354,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_agacharse",
+   "vista": "agacharse",
+   "x": 0,
+   "y": 413,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_esquivar",
+   "vista": "esquivar",
+   "x": 58,
+   "y": 413,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_golpe_bajo",
+   "vista": "golpe_bajo",
+   "x": 116,
+   "y": 413,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_dano",
+   "vista": "dano",
+   "x": 174,
+   "y": 413,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_derrota",
+   "vista": "derrota",
+   "x": 232,
+   "y": 413,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_2_caido",
+   "vista": "caido",
+   "x": 290,
+   "y": 413,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_reposo_1",
+   "vista": "reposo_1",
+   "x": 0,
+   "y": 472,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_reposo_2",
+   "vista": "reposo_2",
+   "x": 58,
+   "y": 472,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_caminar_1",
+   "vista": "caminar_1",
+   "x": 116,
+   "y": 472,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_caminar_2",
+   "vista": "caminar_2",
+   "x": 174,
+   "y": 472,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_caminar_3",
+   "vista": "caminar_3",
+   "x": 232,
+   "y": 472,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_caminar_4",
+   "vista": "caminar_4",
+   "x": 290,
+   "y": 472,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_correr_1",
+   "vista": "correr_1",
+   "x": 0,
+   "y": 531,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_correr_2",
+   "vista": "correr_2",
+   "x": 58,
+   "y": 531,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_correr_3",
+   "vista": "correr_3",
+   "x": 116,
+   "y": 531,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_correr_4",
+   "vista": "correr_4",
+   "x": 174,
+   "y": 531,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_preparar",
+   "vista": "preparar",
+   "x": 232,
+   "y": 531,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_atacar",
+   "vista": "atacar",
+   "x": 290,
+   "y": 531,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_guardia",
+   "vista": "guardia",
+   "x": 0,
+   "y": 590,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_conjuro",
+   "vista": "conjuro",
+   "x": 58,
+   "y": 590,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_lanzar_1",
+   "vista": "lanzar_1",
+   "x": 116,
+   "y": 590,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_lanzar_2",
+   "vista": "lanzar_2",
+   "x": 174,
+   "y": 590,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_salto",
+   "vista": "salto",
+   "x": 232,
+   "y": 590,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_caida",
+   "vista": "caida",
+   "x": 290,
+   "y": 590,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_agacharse",
+   "vista": "agacharse",
+   "x": 0,
+   "y": 649,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_esquivar",
+   "vista": "esquivar",
+   "x": 58,
+   "y": 649,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_golpe_bajo",
+   "vista": "golpe_bajo",
+   "x": 116,
+   "y": 649,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_dano",
+   "vista": "dano",
+   "x": 174,
+   "y": 649,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_derrota",
+   "vista": "derrota",
+   "x": 232,
+   "y": 649,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_3_caido",
+   "vista": "caido",
+   "x": 290,
+   "y": 649,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_reposo_1",
+   "vista": "reposo_1",
+   "x": 0,
+   "y": 708,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_reposo_2",
+   "vista": "reposo_2",
+   "x": 58,
+   "y": 708,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_caminar_1",
+   "vista": "caminar_1",
+   "x": 116,
+   "y": 708,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_caminar_2",
+   "vista": "caminar_2",
+   "x": 174,
+   "y": 708,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_caminar_3",
+   "vista": "caminar_3",
+   "x": 232,
+   "y": 708,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_caminar_4",
+   "vista": "caminar_4",
+   "x": 290,
+   "y": 708,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_correr_1",
+   "vista": "correr_1",
+   "x": 0,
+   "y": 767,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_correr_2",
+   "vista": "correr_2",
+   "x": 58,
+   "y": 767,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_correr_3",
+   "vista": "correr_3",
+   "x": 116,
+   "y": 767,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_correr_4",
+   "vista": "correr_4",
+   "x": 174,
+   "y": 767,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_preparar",
+   "vista": "preparar",
+   "x": 232,
+   "y": 767,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_atacar",
+   "vista": "atacar",
+   "x": 290,
+   "y": 767,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_guardia",
+   "vista": "guardia",
+   "x": 0,
+   "y": 826,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_conjuro",
+   "vista": "conjuro",
+   "x": 58,
+   "y": 826,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_lanzar_1",
+   "vista": "lanzar_1",
+   "x": 116,
+   "y": 826,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_lanzar_2",
+   "vista": "lanzar_2",
+   "x": 174,
+   "y": 826,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_salto",
+   "vista": "salto",
+   "x": 232,
+   "y": 826,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_caida",
+   "vista": "caida",
+   "x": 290,
+   "y": 826,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_agacharse",
+   "vista": "agacharse",
+   "x": 0,
+   "y": 885,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_esquivar",
+   "vista": "esquivar",
+   "x": 58,
+   "y": 885,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_golpe_bajo",
+   "vista": "golpe_bajo",
+   "x": 116,
+   "y": 885,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_dano",
+   "vista": "dano",
+   "x": 174,
+   "y": 885,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_derrota",
+   "vista": "derrota",
+   "x": 232,
+   "y": 885,
+   "w": 58,
+   "h": 59
+  },
+  {
+   "name": "muneca_4_caido",
+   "vista": "caido",
+   "x": 290,
+   "y": 885,
+   "w": 58,
+   "h": 59
+  }
+ ],
+ "escala": 1,
+ "animaciones": {
+  "reposo": {
+   "frames": [
+    0,
+    1
+   ],
+   "fps": 2.5,
+   "loop": true
+  },
+  "caminar": {
+   "frames": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "fps": 8,
+   "loop": true
+  },
+  "correr": {
+   "frames": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "fps": 11,
+   "loop": true
+  },
+  "golpe": {
+   "frames": [
+    10
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "ataque": {
+   "frames": [
+    10,
+    11
+   ],
+   "fps": 9,
+   "loop": false
+  },
+  "disparar": {
+   "frames": [
+    11
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "conjuro": {
+   "frames": [
+    13,
+    14
+   ],
+   "fps": 4,
+   "loop": true
+  },
+  "invocar": {
+   "frames": [
+    12,
+    13
+   ],
+   "fps": 3,
+   "loop": true
+  },
+  "lanzar": {
+   "frames": [
+    14,
+    15
+   ],
+   "fps": 9,
+   "loop": false
+  },
+  "salto": {
+   "frames": [
+    16
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "subida": {
+   "frames": [
+    16
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "caida": {
+   "frames": [
+    17
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "aterrizar": {
+   "frames": [
+    18
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "esquivar": {
+   "frames": [
+    19
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "interactuar": {
+   "frames": [
+    18
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "dano": {
+   "frames": [
+    21
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "aturdido": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "agotado": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "purificar": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "morir": {
+   "frames": [
+    21,
+    23
+   ],
+   "fps": 5,
+   "loop": false
+  }
+ },
+ "cuadrosPorVariante": 24,
+ "generadoPor": "tools/codex-sheets.py",
+ "fuente": {
+  "muneca-poseida-1": {
+   "escala_fuente": 0.2241,
+   "alto_de_pie_fuente": 241.0
+  },
+  "muneca-poseida-2": {
+   "escala_fuente": 0.2288,
+   "alto_de_pie_fuente": 236.0
+  },
+  "muneca-poseida-3": {
+   "escala_fuente": 0.2293,
+   "alto_de_pie_fuente": 235.5
+  },
+  "muneca-poseida-4": {
+   "escala_fuente": 0.2255,
+   "alto_de_pie_fuente": 239.5
+  }
+ },
+ "alto": 54,
+ "variants": [
+  "1",
+  "2",
+  "3",
+  "4"
+ ]
+}

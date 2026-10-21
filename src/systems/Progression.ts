@@ -5,6 +5,7 @@ import { ORBS } from '../config/combat';
 import { isCdmx } from '../config/game';
 import progression from '../data/progression.json';
 import { EcoOrb } from '../entities/EcoOrb';
+import { getMastery, getSpellDef } from './Mastery';
 
 /**
  * Ecos y mejoras (GDD §5.1). Dueño: combate.
@@ -26,6 +27,12 @@ export interface UpgradeDef {
    * o si ya se visitó (flag CDMX_VISITADA, persiste para los niveles 7+).
    */
   unlockFrom?: 'cdmx';
+  /** Texto del efecto por nivel a comprar (descs[nivelActual]); si falta, se usa `desc`. */
+  descs?: string[];
+  /** Solo 'proteccion': vida que cura PROTECCION según el nivel de la mejora (índice = nivel, 0..maxLevel). */
+  heal?: number[];
+  /** Mejora bloqueada hasta aprender este conjuro (id de spells.json). */
+  requiresSpell?: string;
 }
 
 /** Flag que se pone al cargar cualquier sección de la CDMX (installProgression). */
@@ -33,6 +40,7 @@ export const CDMX_VISITADA = 'cdmx:visitada';
 
 /** true si la mejora sigue bloqueada (locked y sin cumplir unlockFrom). */
 function isLocked(def: UpgradeDef): boolean {
+  if (def.requiresSpell && !GameState.learnedSpells.includes(def.requiresSpell)) return true;
   if (!def.locked) return false;
   if (def.unlockFrom === 'cdmx') return !(isCdmx(GameState.section) || GameState.flags[CDMX_VISITADA]);
   return true;
@@ -41,6 +49,17 @@ function isLocked(def: UpgradeDef): boolean {
 export const UPGRADES: UpgradeDef[] = progression.upgrades as UpgradeDef[];
 export const ECOS_TABLE = progression.ecos;
 export const ECOS_BONUS = progression.bonus;
+
+/**
+ * Vida que cura PROTECCION al lanzarla: la base de spells.json (effect.heal, 1) en el nivel 0 de la mejora
+ * 'proteccion' del Altar, y progression.json → upgrades.proteccion.heal ([1, 2, 3]) según su nivel.
+ */
+export function getProteccionHeal(): number {
+  const level = GameState.upgrades.proteccion ?? 0;
+  const def = UPGRADES.find((u) => u.id === 'proteccion');
+  const base = getSpellDef('PROTECCION')?.effect.heal ?? 1;
+  return def?.heal?.[level] ?? base + level;
+}
 
 /** Suma Ecos al instante (también lo usan los orbes al llegar). */
 export function addEcos(n: number): void {
@@ -74,7 +93,7 @@ export function upgradeRows(): UpgradeRow[] {
       locked,
       cost,
       affordable: cost !== null && GameState.ecos >= cost,
-      next: locked ? (def.lockText ?? 'Bloqueado') : maxed ? 'Nivel máximo' : def.desc,
+      next: locked ? (def.lockText ?? 'Bloqueado') : maxed ? 'Nivel máximo' : (def.descs?.[level] ?? def.desc),
     };
   });
 }
@@ -90,6 +109,11 @@ export function buyUpgrade(id: string): boolean {
     GameState.hp = Math.min(GameState.maxHp, GameState.hp + 1);
   }
   if (id === 'doble_salto') GameState.flags.dobleSalto = true;
+  // La maestría de PROTECCION es el nivel de su mejora (Mastery.getMastery la sincroniza; aquí además se avisa).
+  if (id === 'proteccion') {
+    getMastery('PROTECCION');
+    bus.emit('hud:toast', { text: `Protección: maestría ${row.level + 1}/3`, ms: 2600 });
+  }
   bus.emit('ecos:changed', { total: GameState.ecos });
   bus.emit('upgrade:bought', { id, level: row.level + 1 });
   sfx('mejora');

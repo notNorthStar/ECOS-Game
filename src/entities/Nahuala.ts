@@ -400,6 +400,9 @@ export class Nahuala extends EnemyBase {
 
     this.updateTraps(dt);
     if (this.st !== 'dormant' && this.st !== 'calmed') this.pushHud();
+    // Humo negro que se arrastra del rebozo (más denso al lanzarse con el zarpazo).
+    const hunting = this.st !== 'dormant' && this.st !== 'calmed' && this.st !== 'exhausted';
+    this.trailFx(dt, hunting, this.st === 'claw' ? 'dark' : 'smoke', this.st === 'claw' ? 40 : 3, this.st === 'claw' ? 0.5 : 0.15, 10);
     this.render(dt);
     this.placeFx();
   }
@@ -419,6 +422,8 @@ export class Nahuala extends EnemyBase {
   }
 
   private telegraph(color: number): void {
+    // Aviso visible: brillo en el pecho y anillo en el suelo (EnemyBase.warnFx).
+    this.warnFx(color);
     if (this.flashT > 0) return;
     const blink = Math.floor(this.stT * 14) % 2 === 0;
     this.sprite.setTintMode(Phaser.TintModes.ADD).setTint(blink ? color : 0x000000);

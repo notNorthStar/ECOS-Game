@@ -1,0 +1,368 @@
+{
+ "personaje": "chaneque",
+ "tipo": "criatura",
+ "frameWidth": 72,
+ "frameHeight": 61,
+ "pivot": {
+  "x": 36,
+  "y": 59
+ },
+ "frames": [
+  {
+   "name": "chaneque_reposo_1",
+   "vista": "der",
+   "x": 0,
+   "y": 0,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_reposo_2",
+   "vista": "reposo_2",
+   "x": 72,
+   "y": 0,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_caminar_1",
+   "vista": "caminar_1",
+   "x": 144,
+   "y": 0,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_caminar_2",
+   "vista": "caminar_2",
+   "x": 216,
+   "y": 0,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_caminar_3",
+   "vista": "caminar_3",
+   "x": 288,
+   "y": 0,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_caminar_4",
+   "vista": "caminar_4",
+   "x": 360,
+   "y": 0,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_correr_1",
+   "vista": "correr_1",
+   "x": 0,
+   "y": 61,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_correr_2",
+   "vista": "correr_2",
+   "x": 72,
+   "y": 61,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_correr_3",
+   "vista": "correr_3",
+   "x": 144,
+   "y": 61,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_correr_4",
+   "vista": "correr_4",
+   "x": 216,
+   "y": 61,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_preparar",
+   "vista": "preparar",
+   "x": 288,
+   "y": 61,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_atacar",
+   "vista": "atacar",
+   "x": 360,
+   "y": 61,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_guardia",
+   "vista": "guardia",
+   "x": 0,
+   "y": 122,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_conjuro",
+   "vista": "conjuro",
+   "x": 72,
+   "y": 122,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_lanzar_1",
+   "vista": "lanzar_1",
+   "x": 144,
+   "y": 122,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_lanzar_2",
+   "vista": "lanzar_2",
+   "x": 216,
+   "y": 122,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_salto",
+   "vista": "salto",
+   "x": 288,
+   "y": 122,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_caida",
+   "vista": "caida",
+   "x": 360,
+   "y": 122,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_agacharse",
+   "vista": "agacharse",
+   "x": 0,
+   "y": 183,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_esquivar",
+   "vista": "esquivar",
+   "x": 72,
+   "y": 183,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_golpe_bajo",
+   "vista": "golpe_bajo",
+   "x": 144,
+   "y": 183,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_dano",
+   "vista": "dano",
+   "x": 216,
+   "y": 183,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_derrota",
+   "vista": "derrota",
+   "x": 288,
+   "y": 183,
+   "w": 72,
+   "h": 61
+  },
+  {
+   "name": "chaneque_caido",
+   "vista": "caido",
+   "x": 360,
+   "y": 183,
+   "w": 72,
+   "h": 61
+  }
+ ],
+ "escala": 1,
+ "animaciones": {
+  "reposo": {
+   "frames": [
+    0,
+    1
+   ],
+   "fps": 2.5,
+   "loop": true
+  },
+  "caminar": {
+   "frames": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "fps": 8,
+   "loop": true
+  },
+  "correr": {
+   "frames": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "fps": 11,
+   "loop": true
+  },
+  "golpe": {
+   "frames": [
+    10
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "ataque": {
+   "frames": [
+    10,
+    11
+   ],
+   "fps": 9,
+   "loop": false
+  },
+  "disparar": {
+   "frames": [
+    11
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "conjuro": {
+   "frames": [
+    13,
+    14
+   ],
+   "fps": 4,
+   "loop": true
+  },
+  "invocar": {
+   "frames": [
+    12,
+    13
+   ],
+   "fps": 3,
+   "loop": true
+  },
+  "lanzar": {
+   "frames": [
+    14,
+    15
+   ],
+   "fps": 9,
+   "loop": false
+  },
+  "salto": {
+   "frames": [
+    16
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "subida": {
+   "frames": [
+    16
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "caida": {
+   "frames": [
+    17
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "aterrizar": {
+   "frames": [
+    18
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "esquivar": {
+   "frames": [
+    19
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "interactuar": {
+   "frames": [
+    18
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "dano": {
+   "frames": [
+    21
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "aturdido": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "agotado": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "purificar": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "morir": {
+   "frames": [
+    21,
+    23
+   ],
+   "fps": 5,
+   "loop": false
+  }
+ },
+ "cuadrosPorVariante": 24,
+ "generadoPor": "tools/codex-sheets.py",
+ "fuente": {
+  "chaneque": {
+   "escala_fuente": 0.229,
+   "alto_de_pie_fuente": 244.5
+  }
+ },
+ "alto": 56
+}

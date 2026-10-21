@@ -12,6 +12,9 @@ import { Nahuala } from './Nahuala';
 import { ReyOlvido } from './ReyOlvido';
 import { Tzitzimitl } from './Tzitzimitl';
 import { Itzpapalotl } from './Itzpapalotl';
+import { Momia } from './Momia';
+import { Vampiro } from './Vampiro';
+import { DonErnesto } from './DonErnesto';
 
 /**
  * Fábrica de enemigos (dueño: combate). La usa LevelScene.spawnEnemy(spec):
@@ -54,6 +57,13 @@ export function createEnemy(world: WorldApi, spec: EnemySpec): EnemyApi {
     // (o hatchItzpapalotl(world), exportado en entities/Itzpapalotl.ts).
     case 'itzpapalotl':
       return new Itzpapalotl(world, spec.x, spec.y, spec.group);
+    // Versión extendida (dueño: enemigos). Momias (avenida y Catedral) y los minijefes de Guadalajara.
+    case 'momia':
+      return new Momia(world, spec.x, spec.y, spec.group);
+    case 'vampiro':
+      return new Vampiro(world, spec.x, spec.y, spec.group);
+    case 'don_ernesto':
+      return new DonErnesto(world, spec.x, spec.y, spec.group);
     default: {
       const t: never = spec.type;
       throw new Error(`Tipo de enemigo desconocido: ${String(t)}`);

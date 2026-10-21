@@ -5,6 +5,7 @@ import { GameState } from '../core/GameState';
 import { keys } from '../config/controls';
 import { GAME_HEIGHT, GAME_WIDTH } from '../config/game';
 import { buyUpgrade, upgradeRows, type UpgradeRow } from '../systems/Progression';
+import { conEscala, FUENTE, PAD_ACENTO, tamFuente } from '../ui/fuente';
 
 /**
  * Altar de la Memoria (GDD §5.1). Dueño: combate. Escena 'Altar'.
@@ -19,16 +20,25 @@ interface AltarData {
   y?: number;
 }
 
-const FONT = 'monospace';
+// Estilo (dueño: interfaz): fuente pixel; tamFuente() lleva los tamaños anteriores a uno legible (mín. 11 px).
 const style = (size: number, color = '#f4ead2'): Phaser.Types.GameObjects.Text.TextStyle => ({
-  fontFamily: FONT,
-  fontSize: `${Math.round(size * (GameState.settings.textScale || 1))}px`,
+  fontFamily: FUENTE,
+  fontSize: `${conEscala(tamFuente(size), GameState.settings.textScale || 1)}px`,
   color,
   stroke: '#0a0a12',
-  strokeThickness: 3,
+  strokeThickness: size <= 10 ? 2 : 3,
+  padding: { top: PAD_ACENTO },
 });
 
-const PANEL_W = 420;
+/** Recorta un texto de una línea con "…" para que no pase de `max` px (la fuente pixel es más ancha). */
+function ajustarAncho(t: Phaser.GameObjects.Text, max: number): void {
+  if (t.width <= max) return;
+  const full = t.text;
+  let n = full.length;
+  while (n > 4 && t.width > max) t.setText(`${full.slice(0, --n).trimEnd()}…`);
+}
+
+const PANEL_W = 480; // más ancho que con la monoespaciada: las descripciones caben en una línea
 const ROW_H = 30;
 
 export class AltarScene extends Phaser.Scene {
@@ -205,6 +215,7 @@ export class AltarScene extends Phaser.Scene {
       const prefix = selected ? '› ' : '  ';
       row.name.setText(`${prefix}${r.def.name}`).setColor(r.locked ? '#7a7468' : '#f4ead2');
       row.info.setText(r.locked ? r.next : r.maxed ? 'Nivel máximo' : `Siguiente: ${r.next}`).setColor(r.locked ? '#c88a6a' : '#b8b0a0');
+      ajustarAncho(row.info, PANEL_W - 96); // una línea, sin pisar el costo
       if (r.locked) row.cost.setText(`${r.def.costs[0]}`).setColor('#5a5650');
       else if (r.maxed) row.cost.setText('MÁX').setColor('#f2d48a');
       else row.cost.setText(`${r.cost}`).setColor(r.affordable ? '#bff8ff' : '#ff8a7a');

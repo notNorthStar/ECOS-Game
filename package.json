@@ -18,6 +18,7 @@
     "test:nivel6": "node tools/test-nivel-06.mjs",
     "test:nivel7": "node tools/test-nivel-07.mjs && node tools/test-nivel-07-sistemas.mjs",
     "test:nivel10": "node tools/test-nivel-10.mjs",
+    "test:mecanicas": "node tools/test-mecanicas.mjs",
     "placeholders": "node tools/gen-placeholders.mjs",
     "scenery:nivel2": "node tools/gen-tuxtla-scenery.mjs",
     "scenery:nivel3": "node tools/gen-catemaco-scenery.mjs",

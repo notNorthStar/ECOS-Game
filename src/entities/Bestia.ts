@@ -5,6 +5,7 @@ import { DEPTH_TOLERANCE } from '../config/game';
 import { FX_DEPTH_BIAS, SPELLS_FX } from '../config/combat';
 import enemiesData from '../data/enemies.json';
 import progression from '../data/progression.json';
+import { FUENTE } from '../ui/fuente';
 import {
   EnemyBase, FB, burst, hexColor, hitPlayer, inLuzRadius, inMemoriaRadius, inSolLine, planeDist, powerScale, purifyFx,
   rand, randRange, solDamage, solKnockback, spellParam, inVerdadRadius, inFuegoLine, verdadStun, fuegoDamage, fuegoKnockback, burnFx,
@@ -386,6 +387,8 @@ export class Bestia extends EnemyBase {
   }
 
   private telegraph(color: number): void {
+    // Aviso visible: brillo en el pecho y anillo en el suelo (EnemyBase.warnFx).
+    this.warnFx(color);
     if (this.flashT > 0) return;
     const blink = Math.floor(this.stT * 14) % 2 === 0;
     this.sprite.setTintMode(Phaser.TintModes.ADD).setTint(blink ? color : 0x000000);
@@ -412,7 +415,7 @@ export class Bestia extends EnemyBase {
   private showAlert(on: boolean): void {
     if (on && !this.alert) {
       this.alert = this.scene.add
-        .text(this.x, this.y, '!', { fontFamily: 'monospace', fontSize: '12px', color: '#a0ffe0', stroke: '#0a2020', strokeThickness: 3 })
+        .text(this.x, this.y, '!', { fontFamily: FUENTE, fontSize: '13px', color: '#a0ffe0', stroke: '#0a2020', strokeThickness: 3 })
         .setOrigin(0.5, 1);
       this.scene.tweens.add({ targets: this.alert, scale: { from: 1.6, to: 1 }, duration: 150 });
     } else if (!on && this.alert) {

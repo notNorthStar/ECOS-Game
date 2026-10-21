@@ -13,6 +13,7 @@ import * as LunaMod from './Luna';
 import config from '../data/catemaco.json';
 import { prepareOaxacaEntry } from './Campaign';
 
+import { FUENTE, tamFuente } from '../ui/fuente';
 /**
  * Director del Nivel 3 · Catemaco (dueño: contenido). Maneja las tres secciones del nivel
  * (catemaco → campamento → altar_olmeca) con un switch por world.level.id. Copia el patrón de
@@ -72,7 +73,7 @@ class CatemacoDirector {
   constructor(private world: WorldApi) {
     const scene = world.scene;
     this.counter = scene.add.text(config.hud.x, config.hud.y, '', {
-      fontFamily: 'monospace', fontSize: `${config.hud.fontSize}px`,
+      fontFamily: FUENTE, fontSize: `${tamFuente(config.hud.fontSize)}px`,
       color: '#fff0ce', backgroundColor: '#171521cc', padding: { x: 5, y: 4 },
       lineSpacing: 3,
     }).setScrollFactor(0).setDepth(DEPTH.ui);
@@ -153,7 +154,7 @@ class CatemacoDirector {
     sfx('conjuro_ok');
     const p = at ?? this.world.player;
     const text = this.world.scene.add.text(p.x, p.y - 36, `+${amount} Ecos`, {
-      fontFamily: 'monospace', fontSize: '10px', color: '#f2c14e', stroke: '#0b0a14', strokeThickness: 3,
+      fontFamily: FUENTE, fontSize: '11px', color: '#f2c14e', stroke: '#0b0a14', strokeThickness: 3,
     }).setOrigin(0.5).setDepth(DEPTH.ui - 1);
     this.world.scene.tweens.add({
       targets: text, y: p.y - 70, alpha: 0, duration: 1400, onComplete: () => text.destroy(),
@@ -879,7 +880,7 @@ class CatemacoDirector {
     } else {
       // Placeholder: AGENTS.md §8.0, María es personaje importante (el arte lo entrega el equipo).
       const box = scene.add.rectangle(0, -40, 28, 72, 0x7a3b6e).setStrokeStyle(1, 0xf2c14e);
-      const initial = scene.add.text(0, -40, 'M', { fontFamily: 'monospace', fontSize: '14px', color: '#fff0ce' }).setOrigin(0.5);
+      const initial = scene.add.text(0, -40, 'M', { fontFamily: FUENTE, fontSize: '16px', color: '#fff0ce' }).setOrigin(0.5);
       obj = scene.add.container(x, y, [box, initial]).setDepth(y);
     }
     return obj;

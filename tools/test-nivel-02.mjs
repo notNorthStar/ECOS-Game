@@ -23,6 +23,8 @@ function loadTs(path, dependencies = {}) {
   const module = { exports: {} };
   vm.runInNewContext(`(function(require,module,exports) { ${source}\n})`, {}, { filename: path })(
     (name) => {
+      // La fuente de la interfaz no afecta la lógica: se simula en cualquier módulo.
+      if (name.endsWith('/ui/fuente') && !(name in dependencies)) return { FUENTE: 'monospace', TAM: { chico: 11, normal: 11, medio: 13, grande: 16, cartel: 22 }, PAD_ACENTO: 2, tamFuente: (n) => n, conEscala: (n) => n, estiloTexto: (px) => ({ fontSize: `${px}px` }) };
       assert.ok(name in dependencies, `Dependencia inesperada en ${path}: ${name}`);
       return dependencies[name];
     }, module, module.exports);
@@ -52,6 +54,7 @@ function harness() {
     phaser: { Scenes: { Events: { SHUTDOWN: 'shutdown' } } },
     '../core/bus': { bus, sfx: (name) => bus.emit('sfx', { name }) },
     '../core/GameState': { GameState: state },
+    '../ui/fuente': { FUENTE: 'monospace', TAM: { chico: 11, normal: 11, medio: 13, grande: 16, cartel: 22 }, PAD_ACENTO: 2, tamFuente: (n) => n, conEscala: (n) => n, estiloTexto: (px) => ({ fontFamily: 'monospace', fontSize: px + 'px' }) },
     '../config/game': { DEPTH: { ui: 9000 } },
     '../scenes/DialogueScene': { playDialogue: async (_scene, id) => {
       dialogues.push(id);

@@ -1,5 +1,5 @@
 {
-  "note": "Números del Nivel 10 · Guadalajara (dueño: contenido). Todo lo ajustable del GdlDirector vive aquí. Ecos ~800 SIN canje (después del altar de la avenida ya no hay altares): enemigos comunes de avenida y catedral (~520), recompensas directas (~400) y, aparte, lo que paguen las Tzitzimime y la jefa en enemies.json.",
+  "note": "Números del Nivel 10 · Guadalajara (dueño: contenido). Todo lo ajustable del GdlDirector vive aquí. Ecos ~900 SIN canje (después del altar de la avenida ya no hay altares): enemigos comunes de avenida y catedral (~620, con momias), minijefes Don Ernesto y Vampiro (rewards.minijefe), recompensas directas (~400) y, aparte, lo que paguen las Tzitzimime y la jefa en enemies.json. Versión extendida: tras boss:calmed el jugador camina hasta la madre y la libera con E (final.liberar).",
   "toastMs": 4200,
   "tickMs": 300,
   "hud": { "x": 12, "y": 90, "fontSize": 10 },
@@ -23,7 +23,8 @@
     "encuentros": [
       { "id": "av1", "nombre": "Chaneques y bestias", "grupo": "av1", "x0": 520, "x1": 1260, "aviso": "av1" },
       { "id": "av2", "nombre": "Encapuchados y espíritus", "grupo": "av2", "x0": 1440, "x1": 1980, "aviso": "av2" },
-      { "id": "av3", "nombre": "La guardia del estadio", "grupo": "av3", "x0": 1900, "x1": 2440, "aviso": "av3", "dialogo": "n10_av3_fin" }
+      { "id": "av3", "nombre": "La guardia del estadio", "grupo": "av3", "x0": 1900, "x1": 2280, "aviso": "av3", "dialogo": "n10_av3_fin" },
+      { "id": "av4", "nombre": "Don Ernesto, el guardián", "grupo": "don_ernesto", "x0": 2220, "x1": 2590, "aviso": "av4", "jefe": true, "intro": "n10_ernesto_intro", "dialogo": "n10_ernesto_fin", "respaldoMs": 25000 }
     ]
   },
   "catedral": {
@@ -32,6 +33,10 @@
     "respaldoMs": 60000,
     "pausaTandaMs": 2600,
     "madre": { "x": 1640, "y": 262 },
+    "vampiro": {
+      "grupo": "vampiro", "nombre": "El Vampiro", "intro": "n10_vampiro_intro", "fin": "n10_vampiro_fin",
+      "aviso": "vampiro", "respaldoMs": 25000, "minMs": 1500, "pausaMs": 700
+    },
     "tandas": [
       { "id": "ola1", "nombre": "Primera tanda", "grupo": "ola1", "fin": "n10_ola_1_fin" },
       { "id": "ola2", "nombre": "Segunda tanda", "grupo": "ola2", "fin": "n10_ola_2_fin" },
@@ -66,6 +71,16 @@
         { "id": "f1_b", "grupo": "f1_b", "tzitzimime": 2, "dialogo": "n10_tz_2", "aviso": "tz2" }
       ]
     },
+    "liberar": {
+      "dialogos": ["n10_reencuentro", "n10_reencuentro_2", "n10_reencuentro_3"],
+      "aviso": "liberar",
+      "rompeMaxMs": 2200,
+      "acercaMs": 900,
+      "pasoX": 38,
+      "gestoMs": 1500,
+      "calmarEn": 1,
+      "pausaMs": 600
+    },
     "fase2": {
       "grupoCapullo": "capullo",
       "capulloMs": 1400,
@@ -77,8 +92,11 @@
   },
   "avisos": {
     "av1": "Chaneques y bestias: aturde con el láser verde y purifícalos con un conjuro.",
-    "av2": "Encapuchados rojos y negros, y espíritus: usa Luna (F) para ver a los espíritus.",
-    "av3": "Guardia de élite: esquiva, usa el escudo (U) y FUEGO o SOL. No hay más altares.",
+    "av2": "Encapuchados, espíritus (Luna, F) y momias: DESCANSO purifica a las momias.",
+    "av3": "Guardia de élite y momias: esquiva, usa el escudo (U) y FUEGO o SOL. Sin más altares.",
+    "av4": "Don Ernesto: VERDAD revela sus trampas, FUEGO lo cura. Esquiva las cartas.",
+    "vampiro": "El Vampiro: SOL y LUZ lo hieren. Muévete y no te quedes en su sombra.",
+    "liberar": "Acércate a tu madre: pulsa E para romper sus cadenas.",
     "enc_fin": "Camino despejado. Sigue adelante.",
     "puerta_cerrada": "Aún quedan grupos de la Cofradía en la avenida. Despeja el camino.",
     "tanda_fin": "Tanda superada. Viene otra: prepárate.",
@@ -105,6 +123,7 @@
     "conjuro": 25,
     "tzitzimime": 30,
     "capullo": 40,
+    "minijefe": 60,
     "final": 120
   },
   "epilogo": {

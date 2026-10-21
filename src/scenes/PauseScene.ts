@@ -13,6 +13,8 @@ type Page = 'main' | 'options' | 'controls';
 
 interface Row {
   text: () => string;
+  /** Valor alineado en su propia columna (la fuente pixel es proporcional: no se alinea con espacios). */
+  value?: () => string;
   /** dir = -1 / +1 con ←/→; 0 con Enter o clic. */
   act: (dir: -1 | 0 | 1) => void;
 }
@@ -36,6 +38,7 @@ export class PauseScene extends Phaser.Scene {
   private page: Page = 'main';
   private rows: Row[] = [];
   private labels: Phaser.GameObjects.Text[] = [];
+  private values: Array<Phaser.GameObjects.Text | null> = [];
   private idx = 0;
   private content?: Phaser.GameObjects.Container;
   private busy = false;
@@ -56,6 +59,7 @@ export class PauseScene extends Phaser.Scene {
     this.idx = 0;
     this.content?.destroy();
     this.labels = [];
+    this.values = [];
     const c = this.add.container(0, 0);
     this.content = c;
     if (page === 'main') {
@@ -82,16 +86,16 @@ export class PauseScene extends Phaser.Scene {
         if (key === 'sfxVolume') sfx('ui_mover');
       };
       this.rows = [
-        { text: () => `Música            < ${pct(st.musicVolume)} >`, act: (d) => vol('musicVolume', d) },
-        { text: () => `Efectos           < ${pct(st.sfxVolume)} >`, act: (d) => vol('sfxVolume', d) },
-        { text: () => `Ventanas largas   < ${yesNo(st.longWindows)} >`, act: () => (st.longWindows = !st.longWindows) },
-        { text: () => `Sin ralentización < ${yesNo(st.noExtraSlowmo)} >`, act: () => (st.noExtraSlowmo = !st.noExtraSlowmo) },
-        { text: () => `Reducir efectos   < ${yesNo(st.reduceFx)} >`, act: () => (st.reduceFx = !st.reduceFx) },
-        { text: () => `Cámara            < ${this.busy ? '…' : lsm.cameraReady ? 'Activa' : 'Apagada'} >`, act: () => void this.toggleCamera() },
+        { text: () => 'Música', value: () => `< ${pct(st.musicVolume)} >`, act: (d) => vol('musicVolume', d) },
+        { text: () => 'Efectos', value: () => `< ${pct(st.sfxVolume)} >`, act: (d) => vol('sfxVolume', d) },
+        { text: () => 'Ventanas largas', value: () => `< ${yesNo(st.longWindows)} >`, act: () => (st.longWindows = !st.longWindows) },
+        { text: () => 'Sin ralentización', value: () => `< ${yesNo(st.noExtraSlowmo)} >`, act: () => (st.noExtraSlowmo = !st.noExtraSlowmo) },
+        { text: () => 'Reducir efectos', value: () => `< ${yesNo(st.reduceFx)} >`, act: () => (st.reduceFx = !st.reduceFx) },
+        { text: () => 'Cámara', value: () => `< ${this.busy ? '…' : lsm.cameraReady ? 'Activa' : 'Apagada'} >`, act: () => void this.toggleCamera() },
         { text: () => 'Volver', act: () => this.show('main') },
       ];
       this.buildRows(c, 168, 88, 20, 0);
-      this.hint = txt(this, 320, 238, '', 8, COL.dim, { ox: 0.5, wrap: 340, align: 'center' });
+      this.hint = txt(this, 320, 236, '', 8, COL.dim, { ox: 0.5, wrap: 340, align: 'center' });
       c.add(this.hint);
       c.add(txt(this, 320, 296, '↑↓ elegir · ←→ / Enter cambiar · Esc volver', 8, COL.dim, { ox: 0.5 }));
     } else {
@@ -103,23 +107,29 @@ export class PauseScene extends Phaser.Scene {
       if (GameState.luna.unlocked) rows.splice(rows.length - 3, 0, ['Habilidad Luna', 'F']);
       const step = rows.length > 12 ? 13 : 15;
       rows.forEach(([a, k], i) => {
-        c.add(txt(this, 90, 56 + i * step, a, 10, COL.gold));
-        c.add(txt(this, 250, 56 + i * step, k, 10, COL.ink));
+        c.add(txt(this, 90, 54 + i * step, a, 10, COL.gold));
+        c.add(txt(this, 250, 54 + i * step, k, 10, COL.ink));
       });
-      c.add(
-        txt(
-          this,
-          320,
-          242,
-          'Aviso: pulsar Shift 5 veces seguidas abre "Teclas especiales" de Windows y el juego no lo puede bloquear. Esquiva con C, o desactiva el atajo en Configuración → Accesibilidad → Teclado → Teclas especiales.',
-          8,
-          COL.dim,
-          { ox: 0.5, wrap: 460, align: 'center' },
-        ),
+      // Avisos apilados según su altura real (la fuente pixel ocupa más que la monoespaciada).
+      const aviso = txt(
+        this,
+        320,
+        Math.max(240, 54 + rows.length * step + 4),
+        'Aviso: pulsar Shift 5 veces seguidas abre "Teclas especiales" de Windows y el juego no lo puede bloquear. Esquiva con C, o desactiva el atajo en Configuración → Accesibilidad → Teclado → Teclas especiales.',
+        8,
+        COL.dim,
+        { ox: 0.5, wrap: 484, align: 'center' },
       );
-      c.add(txt(this, 320, 284, 'Mientras deletreas con teclado, todas las letras escriben y el movimiento se suspende.', 8, COL.dim, { ox: 0.5, wrap: 460, align: 'center' }));
+      c.add(aviso);
+      c.add(
+        txt(this, 320, Math.min(298, aviso.y + aviso.height + 3), 'Mientras deletreas con teclado, todas las letras escriben y el movimiento se suspende.', 8, COL.dim, {
+          ox: 0.5,
+          wrap: 484,
+          align: 'center',
+        }),
+      );
       this.rows = [{ text: () => 'Volver', act: () => this.show('main') }];
-      this.buildRows(c, 320, 314, 20, 0.5);
+      this.buildRows(c, 320, 318, 20, 0.5);
     }
     this.refresh();
   }
@@ -140,6 +150,9 @@ export class PauseScene extends Phaser.Scene {
       });
       c.add(t);
       this.labels.push(t);
+      const v = r.value ? txt(this, x + 172, y + i * step, r.value(), 12, COL.ink, { ox: 0 }) : null;
+      if (v) c.add(v);
+      this.values.push(v);
     });
   }
 
@@ -147,6 +160,9 @@ export class PauseScene extends Phaser.Scene {
     this.labels.forEach((t, i) => {
       t.setText((i === this.idx ? '> ' : '  ') + this.rows[i].text());
       t.setColor(i === this.idx ? COL.gold : COL.ink);
+      const v = this.values[i];
+      const val = this.rows[i].value;
+      if (v && val) v.setText(val()).setColor(i === this.idx ? COL.gold : COL.ink);
     });
     if (this.page === 'options' && this.hint) {
       const hints = [

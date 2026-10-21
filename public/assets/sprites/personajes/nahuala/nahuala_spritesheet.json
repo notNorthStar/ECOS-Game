@@ -1,0 +1,368 @@
+{
+ "personaje": "nahuala",
+ "tipo": "humanoide",
+ "frameWidth": 110,
+ "frameHeight": 104,
+ "pivot": {
+  "x": 55,
+  "y": 102
+ },
+ "frames": [
+  {
+   "name": "nahuala_reposo_1",
+   "vista": "lado_der",
+   "x": 0,
+   "y": 0,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_reposo_2",
+   "vista": "reposo_2",
+   "x": 110,
+   "y": 0,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_caminar_1",
+   "vista": "caminar_1",
+   "x": 220,
+   "y": 0,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_caminar_2",
+   "vista": "caminar_2",
+   "x": 330,
+   "y": 0,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_caminar_3",
+   "vista": "caminar_3",
+   "x": 440,
+   "y": 0,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_caminar_4",
+   "vista": "caminar_4",
+   "x": 550,
+   "y": 0,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_correr_1",
+   "vista": "correr_1",
+   "x": 0,
+   "y": 104,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_correr_2",
+   "vista": "correr_2",
+   "x": 110,
+   "y": 104,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_correr_3",
+   "vista": "correr_3",
+   "x": 220,
+   "y": 104,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_correr_4",
+   "vista": "correr_4",
+   "x": 330,
+   "y": 104,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_preparar",
+   "vista": "preparar",
+   "x": 440,
+   "y": 104,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_atacar",
+   "vista": "atacar",
+   "x": 550,
+   "y": 104,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_guardia",
+   "vista": "guardia",
+   "x": 0,
+   "y": 208,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_conjuro",
+   "vista": "conjuro",
+   "x": 110,
+   "y": 208,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_lanzar_1",
+   "vista": "lanzar_1",
+   "x": 220,
+   "y": 208,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_lanzar_2",
+   "vista": "lanzar_2",
+   "x": 330,
+   "y": 208,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_salto",
+   "vista": "salto",
+   "x": 440,
+   "y": 208,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_caida",
+   "vista": "caida",
+   "x": 550,
+   "y": 208,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_agacharse",
+   "vista": "agacharse",
+   "x": 0,
+   "y": 312,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_esquivar",
+   "vista": "esquivar",
+   "x": 110,
+   "y": 312,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_golpe_bajo",
+   "vista": "golpe_bajo",
+   "x": 220,
+   "y": 312,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_dano",
+   "vista": "dano",
+   "x": 330,
+   "y": 312,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_derrota",
+   "vista": "derrota",
+   "x": 440,
+   "y": 312,
+   "w": 110,
+   "h": 104
+  },
+  {
+   "name": "nahuala_caido",
+   "vista": "caido",
+   "x": 550,
+   "y": 312,
+   "w": 110,
+   "h": 104
+  }
+ ],
+ "escala": 1,
+ "animaciones": {
+  "reposo": {
+   "frames": [
+    0,
+    1
+   ],
+   "fps": 2.5,
+   "loop": true
+  },
+  "caminar": {
+   "frames": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "fps": 8,
+   "loop": true
+  },
+  "correr": {
+   "frames": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "fps": 11,
+   "loop": true
+  },
+  "golpe": {
+   "frames": [
+    10
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "ataque": {
+   "frames": [
+    10,
+    11
+   ],
+   "fps": 9,
+   "loop": false
+  },
+  "disparar": {
+   "frames": [
+    11
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "conjuro": {
+   "frames": [
+    13,
+    14
+   ],
+   "fps": 4,
+   "loop": true
+  },
+  "invocar": {
+   "frames": [
+    12,
+    13
+   ],
+   "fps": 3,
+   "loop": true
+  },
+  "lanzar": {
+   "frames": [
+    14,
+    15
+   ],
+   "fps": 9,
+   "loop": false
+  },
+  "salto": {
+   "frames": [
+    16
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "subida": {
+   "frames": [
+    16
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "caida": {
+   "frames": [
+    17
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "aterrizar": {
+   "frames": [
+    18
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "esquivar": {
+   "frames": [
+    19
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "interactuar": {
+   "frames": [
+    18
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "dano": {
+   "frames": [
+    21
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "aturdido": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "agotado": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "purificar": {
+   "frames": [
+    22
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "morir": {
+   "frames": [
+    21,
+    23
+   ],
+   "fps": 5,
+   "loop": false
+  }
+ },
+ "cuadrosPorVariante": 24,
+ "generadoPor": "tools/codex-sheets.py",
+ "fuente": {
+  "nahuala": {
+   "escala_fuente": 0.4082,
+   "alto_de_pie_fuente": 245.0
+  }
+ },
+ "alto": 100
+}

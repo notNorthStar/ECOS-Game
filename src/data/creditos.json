@@ -1,24 +1,96 @@
 {
-  "note": "Créditos de la escena final (EpilogoScene). Formato: titulo, estudio, equipo[{rol,nombre}], secciones[{titulo, lineas[]}], cierre. Los nombres '[nombre]' los llena el equipo. Mantener en sincronía con CREDITOS.md y AI_LOG.md.",
+  "note": "Créditos de la escena final (EpilogoScene). Formato: titulo, estudio, evento, equipo[{nombre, roles[]}], secciones[{titulo, lineas[]}], cierre. En 'lineas' cada elemento es un texto o un objeto {nombre, roles[]} (para el equipo y las IAs). Mantener en sincronía con CREDITOS.md y AI_LOG.md.",
   "titulo": "ECOS",
   "estudio": "Listick Games",
   "evento": "Game Jam ANIEI 2026 · Tema: Cultura, identidad y patrimonio",
   "equipo": [
-    { "rol": "Dirección y diseño de juego", "nombre": "[nombre]" },
-    { "rol": "Programación", "nombre": "[nombre]" },
-    { "rol": "Arte y animación", "nombre": "[nombre]" },
-    { "rol": "Música y sonido", "nombre": "[nombre]" },
-    { "rol": "Historia y guion", "nombre": "[nombre]" },
-    { "rol": "Producción y documentación", "nombre": "[nombre]" }
+    {
+      "nombre": "Luis David Sosa Fernández",
+      "roles": [
+        "Dev Principal",
+        "Dirección Narrativa",
+        "Diseño de Niveles",
+        "Jefe de Proyecto"
+      ]
+    },
+    {
+      "nombre": "Dylan Antonio Hernández Gregorio",
+      "roles": [
+        "Diseño de Arte",
+        "Diseño de Personajes"
+      ]
+    },
+    {
+      "nombre": "Miguel Ángel Marcelo Taracena",
+      "roles": [
+        "Escritor",
+        "Diseño de Personajes",
+        "Diseño de Mecánicas",
+        "Diseño de Niveles",
+        "Support Developer"
+      ]
+    },
+    {
+      "nombre": "Mendoza Herrera Gonzalo",
+      "roles": [
+        "Diseñador de Audio",
+        "Soundtrack",
+        "Tester",
+        "QA"
+      ]
+    },
+    {
+      "nombre": "Jose Manuel Hernández Pacheco",
+      "roles": [
+        "Concept Arts",
+        "Tester"
+      ]
+    }
   ],
   "secciones": [
     {
+      "titulo": "Inteligencias artificiales utilizadas",
+      "lineas": [
+        {
+          "nombre": "Claude Code (Anthropic) · Opus 5.5",
+          "roles": [
+            "Soporte Narrativo",
+            "Desarrollo General",
+            "Guiones",
+            "Diseño de Escenarios",
+            "Diseño de Niveles",
+            "Música y efectos por código",
+            "Pruebas",
+            "Documentación"
+          ]
+        },
+        {
+          "nombre": "Codex (OpenAI)",
+          "roles": [
+            "Diseño Pixel Art",
+            "Dev Support"
+          ]
+        },
+        {
+          "nombre": "Gemini Nano Banana (Google)",
+          "roles": [
+            "Soporte y Generación de Imágenes"
+          ]
+        }
+      ]
+    },
+    {
       "titulo": "Herramientas",
       "lineas": [
-        "Phaser (Phaser Studio) · Licencia MIT",
+        "Phaser 4 (Phaser Studio) · Licencia MIT",
         "TypeScript (Microsoft) · Licencia Apache 2.0",
         "Vite (Evan You y colaboradores) · Licencia MIT",
-        "MediaPipe Tasks Vision, HandLandmarker (Google) · Licencia Apache 2.0"
+        "MediaPipe Tasks Vision, HandLandmarker (Google) · Licencia Apache 2.0",
+        "Web Audio API (estándar W3C del navegador)",
+        "Node.js (OpenJS Foundation) · Licencia MIT",
+        "Python y Pillow (para procesar imágenes) · Licencias PSF y HPND",
+        "Git y GitHub (control de versiones)",
+        "REAPER (Cockos) · Grabación y producción del soundtrack"
       ]
     },
     {
@@ -33,22 +105,23 @@
     {
       "titulo": "Música",
       "lineas": [
+        "Soundtrack original compuesto y producido por el equipo en REAPER.",
         "«La Llorona», melodía tradicional mexicana (dominio público).",
         "Arreglo original de Listick Games, sintetizado por código.",
-        "El resto de las pistas son composiciones originales del equipo, generadas en tiempo real."
+        "Las pistas de Guadalajara y los efectos son composiciones originales generadas en tiempo real."
       ]
     },
     {
       "titulo": "Folclor y patrimonio",
       "lineas": [
-        "Chaneques, nahuales, tzitzimime, Itzpapálotl y la Llorona pertenecen al patrimonio oral y cultural de México.",
+        "Chaneques, nahuales, momias, tzitzimime, Itzpapálotl, el Vampiro, Don Ernesto y la Llorona pertenecen al patrimonio oral y cultural de México.",
         "Los lugares retratan Xalapa, Los Tuxtlas, Catemaco, Oaxaca, la Ciudad de México y Guadalajara."
       ]
     },
     {
-      "titulo": "Uso de inteligencia artificial",
+      "titulo": "Declaración de uso de inteligencia artificial",
       "lineas": [
-        "Se usaron herramientas de IA (Claude Code, de Anthropic, entre otras) como apoyo en programación, textos, datos de niveles y arte provisional.",
+        "Se usaron herramientas de IA como apoyo en programación, textos, datos de niveles, música y efectos por código, pruebas, documentación y arte (incluido el pixel art y la generación de imágenes).",
         "Las decisiones de historia, diseño y dirección fueron del equipo, que revisó y modificó el resultado.",
         "El detalle de cada uso está registrado en AI_LOG.md."
       ]

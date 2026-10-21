@@ -457,6 +457,10 @@ export class ReyOlvido extends EnemyBase {
     this.updateRings(dt);
     if (this.st !== 'pulseWindup') this.pulseGfx.clear();
     if (this.st !== 'dormant') this.pushHud();
+    // Aura violeta de olvido y destellos dorados que se desprenden de la corona mientras está entera.
+    const reigning = (this.st as string) !== 'dormant' && (this.st as string) !== 'calmed';
+    this.setAura(this.rageT > 0 ? 0xff60c0 : hexColor(R.colors.pulse), reigning ? 0.16 : 0.05, { w: 96, h: 124, dy: 0.5, pulse: 0.25 });
+    this.trailFx(dt, reigning && !this.crownBroken, 'light', 3, 1.02, 6);
     this.render(dt);
     this.placeFx();
   }
@@ -479,6 +483,8 @@ export class ReyOlvido extends EnemyBase {
   }
 
   private telegraph(color: number): void {
+    // Aviso visible: brillo en el pecho y anillo en el suelo (EnemyBase.warnFx).
+    this.warnFx(color);
     if (this.flashT > 0) return;
     const blink = Math.floor(this.stT * 14) % 2 === 0;
     this.sprite.setTintMode(Phaser.TintModes.ADD).setTint(blink ? color : 0x000000);

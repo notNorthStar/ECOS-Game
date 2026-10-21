@@ -209,6 +209,8 @@ export class Tzitzimitl extends EnemyBase {
   }
 
   private telegraph(color: number): void {
+    // Aviso visible: brillo en el pecho y anillo en el suelo (EnemyBase.warnFx).
+    this.warnFx(color);
     if (this.flashT > 0) return;
     const blink = Math.floor(this.stT * 14) % 2 === 0;
     this.sprite.setTintMode(Phaser.TintModes.ADD).setTint(blink ? color : 0x000000);
@@ -312,6 +314,10 @@ export class Tzitzimitl extends EnemyBase {
     this.updateRain(dt);
     if (!this.airborne) this.separate(dt, T.separation);
     if (roster.values().next().value === this) refreshSharedBar(this.world);
+    // Aura estelar azul-violeta y polvo de estrellas al embestir o al volar (descenso en picada).
+    const quiet = (this.st as string) === 'dormant' || (this.st as string) === 'falling';
+    this.setAura(hexColor(T.colors.skirtLight), quiet ? 0 : 0.2, { w: 84, h: 112, dy: 0.5, pulse: 0.3 });
+    this.trailFx(dt, !quiet && (this.st === 'charge' || this.airborne), 'stardust', this.st === 'charge' ? 32 : 8, 0.5, 10);
     this.render(dt);
     this.placeFx();
   }

@@ -125,12 +125,15 @@ function harness({ learned = LEARNED, castApi = true, jaguarApi = true, madreApi
     placeMadre: (_world, x, y) => calls.push(['placeMadre', x, y]),
     wakeMadre: () => calls.push(['wakeMadre']),
     freeMadre: () => calls.push(['freeMadre']),
+    madreApproach: async (x) => { calls.push(['madreApproach', x]); },
+    madreGesture: async () => { calls.push(['madreGesture']); },
   } : {};
   const scenery = roofApi ? { openCathedralRoof: (ms) => calls.push(['roof', ms]) } : {};
   const mods = {
     phaser: { Scenes: { Events: { SHUTDOWN: 'shutdown', UPDATE: 'update' } } },
     '../core/bus': { bus, sfx: (name) => bus.emit('sfx', { name }) },
     '../core/GameState': { GameState: state },
+    '../ui/fuente': { FUENTE: 'monospace', TAM: { chico: 11, normal: 11, medio: 13, grande: 16, cartel: 22 }, PAD_ACENTO: 2, tamFuente: (n) => n, conEscala: (n) => n, estiloTexto: (px) => ({ fontFamily: 'monospace', fontSize: px + 'px' }) },
     '../config/game': { DEPTH: { ui: 9000, shadow: -100, foreground: 5000 } },
     '../scenes/DialogueScene': {
       playDialogue: async (_scene, id) => {
@@ -303,14 +306,14 @@ await test('Existen las tres secciones con su id, ancho, música y suelo y = 222
   });
 });
 
-await test('Avenida: 3 encuentros con grupo (chaneques, bestias, encapuchados rojo/negro/élite, espíritus lunaOnly), altar, checkpoint y puerta', () => {
+await test('Avenida: 4 encuentros con grupo (chaneques, bestias, encapuchados rojo/negro/élite, espíritus lunaOnly, momias y el minijefe Don Ernesto), altar, checkpoint y puerta', () => {
   const a = levels.gdl_avenida;
-  assert.equal(config.avenida.encuentros.length, 3);
+  assert.equal(config.avenida.encuentros.length, 4);
   const types = new Set();
   const ranks = new Set();
   for (const enc of config.avenida.encuentros) {
     const specs = a.enemies.filter((e) => e.group === enc.grupo);
-    assert.ok(specs.length >= 5, `${enc.id}: grupo con enemigos`);
+    assert.ok(specs.length >= (enc.jefe ? 1 : 5), `${enc.id}: grupo con enemigos`);
     for (const s of specs) {
       types.add(s.type);
       if (s.rank) ranks.add(s.rank);
@@ -322,8 +325,18 @@ await test('Avenida: 3 encuentros con grupo (chaneques, bestias, encapuchados ro
     assert.ok(t.x > enc.x0 && t.x < enc.x1, `${enc.id}: el trigger cae dentro de la arena`);
   }
   assert.ok(a.enemies.every((e) => e.group), 'todo enemigo de la avenida pertenece a una arena');
-  assert.deepEqual([...types].sort(), ['bestia', 'chaneque', 'encapuchado', 'espiritu']);
+  assert.deepEqual([...types].sort(), ['bestia', 'chaneque', 'don_ernesto', 'encapuchado', 'espiritu', 'momia']);
   assert.deepEqual([...ranks].sort(), ['elite', 'negro', 'rojo']);
+  // Momias en 1–2 encuentros; Don Ernesto es el último encuentro, solo en su grupo, con presentación y cierre.
+  const conMomias = config.avenida.encuentros.filter((enc) => a.enemies.some((e) => e.group === enc.grupo && e.type === 'momia'));
+  assert.ok(conMomias.length >= 1 && conMomias.length <= 2, `momias en 1–2 encuentros (${conMomias.length})`);
+  const jefe = config.avenida.encuentros.at(-1);
+  assert.equal(jefe.id, 'av4');
+  assert.equal(jefe.jefe, true);
+  assert.equal(jefe.grupo, 'don_ernesto');
+  assert.deepEqual(a.enemies.filter((e) => e.group === 'don_ernesto').map((e) => e.type), ['don_ernesto']);
+  assert.ok(dialogue[jefe.intro] && dialogue[jefe.dialogo], 'Don Ernesto tiene presentación y cierre');
+  assert.ok(config.avisos[jefe.aviso] && config.avisos.av2.includes('momias'));
   assert.ok(a.spawns.checkpoint && a.spawns.altar && a.spawns.inicio);
   assert.ok(a.props.some((p) => p.key === 'altar_memoria' && p.anim === 'altar_memoria'));
   const altar = a.interactables.find((it) => it.action === 'altar');
@@ -331,17 +344,28 @@ await test('Avenida: 3 encuentros con grupo (chaneques, bestias, encapuchados ro
   const puerta = trig(a, 'n10_ir_catedral');
   assert.equal(puerta.data.section, 'catedral');
   assert.equal(puerta.data.requires, 'encuentros');
-  assert.ok(puerta.x > Math.max(...config.avenida.encuentros.map((e) => e.x1)), 'la puerta queda después de todas las arenas');
+  const trigX = (enc) => a.triggers.find((tr) => tr.action === 'encuentro' && tr.data.id === enc.id).x;
+  assert.ok(puerta.x > Math.max(...config.avenida.encuentros.map(trigX)), 'la puerta queda después de todos los encuentros');
+  assert.ok(config.avenida.encuentros.slice(0, -1).every((enc) => enc.x1 <= jefe.x1) && puerta.x <= jefe.x1, 'la puerta queda dentro de la arena del minijefe');
+  assert.ok(puerta.x > a.enemies.find((e) => e.type === 'don_ernesto').x - 20, 'Don Ernesto guarda la puerta');
+  assert.equal(a.triggers.some((tr) => tr.id === 'n10_av_puerta_aviso'), false, 'el aviso de la puerta lo da el diálogo final de Don Ernesto');
   assert.ok(trig(a, 'n10_av_nombre').data.title === 'GUADALAJARA');
 });
 
-await test('Catedral: 3 tandas con TODOS los tipos (incluye muñecas, nahuales y los 3 rangos), altar mayor y emboscada', () => {
+await test('Catedral: 3 tandas con TODOS los tipos (muñecas, nahuales, momias y los 3 rangos), minijefe Vampiro, altar mayor y emboscada', () => {
   const c = levels.catedral;
   assert.deepEqual(config.catedral.tandas.map((t) => t.grupo), ['ola1', 'ola2', 'ola3']);
   const types = new Set(c.enemies.map((e) => e.type));
-  assert.deepEqual([...types].sort(), ['bestia', 'chaneque', 'encapuchado', 'espiritu', 'muneca', 'nahual']);
+  assert.deepEqual([...types].sort(), ['bestia', 'chaneque', 'encapuchado', 'espiritu', 'momia', 'muneca', 'nahual', 'vampiro']);
+  assert.ok(c.enemies.filter((e) => e.type === 'momia').length >= 2, 'momias en alguna tanda');
+  assert.ok(c.enemies.filter((e) => e.type === 'momia').every((e) => ['ola2', 'ola3'].includes(e.group)));
+  assert.deepEqual(c.enemies.filter((e) => e.group === 'vampiro').map((e) => e.type), ['vampiro']);
+  const v = config.catedral.vampiro;
+  assert.equal(v.grupo, 'vampiro');
+  assert.ok(dialogue[v.intro] && dialogue[v.fin] && config.avisos[v.aviso]);
+  assert.ok(c.enemies.find((e) => e.type === 'vampiro').x > 1200, 'el Vampiro espera junto al altar');
   assert.deepEqual([...new Set(c.enemies.filter((e) => e.rank).map((e) => e.rank))].sort(), ['elite', 'negro', 'rojo']);
-  assert.ok(c.enemies.every((e) => e.group && config.catedral.tandas.some((t) => t.grupo === e.group)));
+  assert.ok(c.enemies.every((e) => e.group && (e.group === 'vampiro' || config.catedral.tandas.some((t) => t.grupo === e.group))));
   assert.ok(c.enemies.filter((e) => e.type === 'espiritu').every((e) => e.lunaOnly === true));
   assert.ok(c.enemies.every((e) => e.x >= config.catedral.arena.x0 && e.x <= config.catedral.arena.x1));
   const emb = trig(c, 'n10_cat_altar_mayor');
@@ -379,7 +403,7 @@ await test('Suelo transitable (spawns, enemigos, triggers e interactuables), ids
     for (const it of level.interactables) {
       assert.ok(it.y >= 220 && it.y <= 345, `${id}: ${it.id} dentro de la franja`);
       assert.equal(walk.isWalkable(it.x, it.y), true, `${id}: interactuable accesible ${it.id}`);
-      assert.ok(['n10_examinar', 'altar'].includes(it.action), `${id}: action ${it.action}`);
+      assert.ok(['n10_examinar', 'altar', 'n10_liberar'].includes(it.action), `${id}: action ${it.action}`);
     }
     for (const [name, point] of Object.entries(level.spawns)) assert.equal(walk.isWalkable(point.x, point.y, 6), true, `${id}: spawn ${name}`);
     assert.equal(walk.isWalkable(level.spawn.x, level.spawn.y, 6), true, `${id}: spawn principal`);
@@ -415,7 +439,7 @@ await test('Diálogos: los referenciados existen, hablantes n10_, sin huérfanos
   }
   for (const match of directorSource.matchAll(/'(n10_[a-z0-9_]+)'/g)) if (dialogue[match[1]]) ids.add(match[1]);
   for (const match of read('src/data/gdl.json').matchAll(/"(n10_[a-z0-9_]+)"/g)) if (dialogue[match[1]]) ids.add(match[1]);
-  assert.ok(ids.size >= 30, `hay diálogos suficientes (${ids.size})`);
+  assert.ok(ids.size >= 34, `hay diálogos suficientes (${ids.size})`);
   for (const id of ids) {
     assert.ok(Array.isArray(dialogue[id]) && dialogue[id].length > 0, `Diálogo existente: ${id}`);
     for (const line of dialogue[id]) {
@@ -443,6 +467,21 @@ await test('Diálogos: los referenciados existen, hablantes n10_, sin huérfanos
   assert.match(text('n10_recuerdo'), /No hace falta una voz/);
   assert.match(text('n10_libre'), /Las señas no las ata nadie/);
   assert.match(text('n10_reencuentro'), /aquí estoy/);
+  // Final extendido: la conversación con la madre (ella habla en señas; Balam vuelve a gato; sin «mudo»).
+  const conversacion = config.final.liberar.dialogos;
+  assert.deepEqual(conversacion, ['n10_reencuentro', 'n10_reencuentro_2', 'n10_reencuentro_3']);
+  const habla = conversacion.flatMap((id) => dialogue[id]);
+  assert.ok(habla.filter((l) => l.who === 'n10_madre').length >= 4 && habla.filter((l) => l.who === 'n10_tu').length >= 2, 'conversación real');
+  assert.match(conversacion.map(text).join(' '), /señas/);
+  assert.match(text('n10_reencuentro_2'), /Balam/);
+  assert.match(text('n10_reencuentro_3'), /Vámonos a casa/);
+  assert.match(text('n10_final'), /cadenas del altar/);
+  // Minijefes: apostador que pactó con el diablo y hombre alto de traje.
+  assert.match(text('n10_ernesto_intro'), /eternidad/);
+  assert.match(text('n10_ernesto_intro'), /cuido esta puerta/);
+  assert.match(text('n10_ernesto_fin'), /puerta de la Catedral/);
+  assert.match(text('n10_vampiro_intro'), /hombre alto de traje/);
+  assert.match(text('n10_vampiro_intro'), /criatura/);
   for (const [key, lines] of Object.entries(dialogue)) {
     if (key === '_hablantes') continue;
     const all = lines.map((l) => l.text).join(' ');
@@ -469,26 +508,46 @@ await test('Conjuros de la historia: ECOS y MAMA se deletrean con letras permiti
 
 await test('gdl.json: avisos ≤ 90 caracteres, números coherentes y música de cada fase', () => {
   for (const [key, text] of Object.entries(config.avisos)) assert.ok(text.length <= 90, `aviso ${key}: ${text.length} caracteres`);
-  for (const key of ['av1', 'av2', 'av3', 'tz1', 'tz2', 'capullo', 'mama', 'ventana', 'ventana_cierra', 'luna', 'nucleo_1', 'nucleo_2']) assert.ok(config.avisos[key], `aviso ${key}`);
+  for (const key of ['av1', 'av2', 'av3', 'av4', 'vampiro', 'liberar', 'tz1', 'tz2', 'capullo', 'mama', 'ventana', 'ventana_cierra', 'luna', 'nucleo_1', 'nucleo_2']) assert.ok(config.avisos[key], `aviso ${key}`);
   assert.deepEqual(config.eclipse.avenida, { desde: 0, hasta: 0.6 });
   assert.equal(config.eclipse.techo, 1);
   assert.equal(config.eclipse.final, 0);
   const regulares = [levels.gdl_avenida, levels.catedral].flatMap((l) => l.enemies).length;
-  assert.ok(regulares >= 35, `suficientes enemigos comunes (${regulares})`);
-  const directos = config.rewards.encuentro * 3 + config.rewards.tanda * 3 + config.rewards.paso * 4 + config.rewards.conjuro * 2 +
+  assert.ok(regulares >= 40, `suficientes enemigos comunes (${regulares})`);
+  const directos = config.rewards.encuentro * 3 + config.rewards.minijefe * 2 + config.rewards.tanda * 3 + config.rewards.paso * 4 + config.rewards.conjuro * 2 +
     config.rewards.tzitzimime * 3 + config.rewards.capullo + config.rewards.final;
   assert.ok(directos >= 300 && directos <= 700, `recompensas directas razonables (${directos})`);
 });
 
-await test('Créditos: equipo con "[nombre]", herramientas, La Llorona (dominio público), MediaPipe, Phaser y declaración de IA', () => {
+await test('Créditos: equipo real de Listick Games, IAs, herramientas, La Llorona (dominio público) y declaración de IA; sin marcadores "[nombre]"', () => {
   assert.equal(creditos.estudio, 'Listick Games');
-  assert.ok(creditos.equipo.length >= 4 && creditos.equipo.every((m) => m.rol && m.nombre === '[nombre]'));
   const all = JSON.stringify(creditos);
-  for (const re of [/Phaser/, /MediaPipe/, /Llorona/, /dominio público/, /arreglo/i, /inteligencia artificial/i, /AI_LOG\.md/, /Lengua de Señas Mexicana/]) {
-    assert.match(all, re);
-  }
-  for (const s of creditos.secciones) assert.ok(s.titulo && s.lineas.length > 0 && s.lineas.every((l) => l.trim().length > 0));
+  assert.doesNotMatch(all, /\[nombre\]/);
+  const equipo = Object.fromEntries(creditos.equipo.map((m) => [m.nombre, m.roles]));
+  assert.deepEqual(Object.keys(equipo), ['Luis David Sosa Fernández', 'Dylan Antonio Hernández Gregorio', 'Miguel Ángel Marcelo Taracena',
+    'Mendoza Herrera Gonzalo', 'Jose Manuel Hernández Pacheco']);
+  assert.deepEqual(equipo['Luis David Sosa Fernández'], ['Dev Principal', 'Dirección Narrativa', 'Diseño de Niveles', 'Jefe de Proyecto']);
+  assert.deepEqual(equipo['Dylan Antonio Hernández Gregorio'], ['Diseño de Arte', 'Diseño de Personajes']);
+  assert.deepEqual(equipo['Miguel Ángel Marcelo Taracena'], ['Escritor', 'Diseño de Personajes', 'Diseño de Mecánicas', 'Diseño de Niveles', 'Support Developer']);
+  assert.deepEqual(equipo['Mendoza Herrera Gonzalo'], ['Diseñador de Audio', 'Soundtrack', 'Tester', 'QA']);
+  assert.deepEqual(equipo['Jose Manuel Hernández Pacheco'], ['Concept Arts', 'Tester']);
+  const ias = creditos.secciones.find((sec) => /Inteligencias artificiales/.test(sec.titulo));
+  assert.ok(ias, 'sección de IAs');
+  assert.deepEqual(ias.lineas.map((l) => l.nombre), ['Claude Code (Anthropic) · Opus 5.5', 'Codex (OpenAI)', 'Gemini Nano Banana (Google)']);
+  assert.match(ias.lineas[0].roles.join(','), /Soporte Narrativo.*Documentación/);
+  const herramientas = creditos.secciones.find((sec) => sec.titulo === 'Herramientas').lineas.join(' ');
+  for (const re of [/Phaser 4/, /TypeScript/, /Vite/, /MediaPipe Tasks Vision/, /Web Audio API/, /Node\.js/, /Python/, /Pillow/, /Git/, /GitHub/, /REAPER/]) assert.match(herramientas, re);
+  for (const re of [/Llorona/, /dominio público/, /arreglo/i, /inteligencia artificial/i, /AI_LOG\.md/, /Lengua de Señas Mexicana/]) assert.match(all, re);
+  for (const sec of creditos.secciones) assert.ok(sec.titulo && sec.lineas.length > 0);
   assert.ok(creditos.cierre);
+  // CREDITOS.md en sincronía.
+  const md = read('CREDITOS.md');
+  for (const nombre of Object.keys(equipo)) assert.ok(md.includes(nombre), `CREDITOS.md: ${nombre}`);
+  for (const nombre of ['Claude Code', 'Codex', 'Gemini Nano Banana', 'REAPER', 'Pillow']) assert.ok(md.includes(nombre), `CREDITOS.md: ${nombre}`);
+  // La escena de epílogo entiende el formato {nombre, roles[]}.
+  const epilogo = read('src/scenes/EpilogoScene.ts');
+  assert.match(epilogo, /roles/);
+  assert.match(epilogo, /lineasPersona/);
 });
 
 /* ============================== avenida ============================== */
@@ -512,10 +571,10 @@ await test('Avenida: intro, checkpoint, música; el eclipse sube 0 → 0.6 con e
   assert.ok(Math.abs(values.at(-1) - 0.6) < 0.03, 'al final de la avenida el eclipse llega a ~0.6');
 });
 
-await test('Avenida: los 3 encuentros bloquean la arena, spawnean por grupo, pagan una vez y la puerta exige los 3', async () => {
+await test('Avenida: los 4 encuentros bloquean la arena, spawnean por grupo, pagan una vez y la puerta exige los 4 (Don Ernesto incluido)', async () => {
   const h = harness();
   const s = await h.ready('gdl_avenida');
-  assert.match(h.text, /AVENIDA 0\/3/);
+  assert.match(h.text, /AVENIDA 0\/4/);
   await h.trigger('n10_ir_catedral');
   assert.deepEqual(h.gotos(), [], 'la puerta no abre sin despejar');
   assert.ok(h.toasts.includes(config.avisos.puerta_cerrada));
@@ -539,7 +598,9 @@ await test('Avenida: los 3 encuentros bloquean la arena, spawnean por grupo, pag
     assert.equal(h.world.enemies.filter((e) => e.group === enc.grupo && e.alive).length, 0, 'un encuentro hecho no se repite');
   }
   assert.ok(h.dialogues.includes('n10_av3_fin'));
-  assert.match(h.text, /AVENIDA 3\/3/);
+  assert.ok(h.dialogues.includes('n10_ernesto_intro') && h.dialogues.includes('n10_ernesto_fin'));
+  assert.ok(h.dialogues.indexOf('n10_ernesto_intro') < h.dialogues.indexOf('n10_ernesto_fin'));
+  assert.match(h.text, /AVENIDA 4\/4/);
   await h.trigger('n10_ir_catedral');
   assert.deepEqual(h.gotos(), [['goto', 'catedral', undefined]]);
   assert.equal(s.world.player.controlsLocked, false);
@@ -579,6 +640,70 @@ await test('Avenida: muerte a media pelea → el encuentro se reinicia, lo ya he
   assert.ok(h.emitted.some((e) => e.name === 'zone:name' && e.payload.title === 'GUADALAJARA'));
 });
 
+await test('Don Ernesto: presentación ANTES de la arena, minijefe pagado aparte, la puerta no abre hasta liberarlo y no se repite', async () => {
+  const h = harness();
+  const s = await h.ready('gdl_avenida');
+  const done = (id) => { h.state.flags[`n10:enc:${id}`] = true; };
+  done('av1'); done('av2'); done('av3');
+  await h.ticks(s, 1);
+  h.hold('n10_ernesto_intro');
+  await h.trigger('n10_av_enc4');
+  assert.equal(s.world.timeScale, 0, 'la presentación congela el mundo');
+  assert.equal(h.world.arena, null, 'la arena aún no se bloquea durante el diálogo');
+  assert.equal(h.world.enemies.filter((e) => e.group === 'don_ernesto').length, 0);
+  await h.trigger('n10_av_enc4');
+  await h.trigger('n10_ir_catedral');
+  assert.deepEqual(h.gotos(), [], 'no se puede salir mientras Don Ernesto manda');
+  await h.release();
+  assert.deepEqual(h.world.arena, [2220, 2590]);
+  assert.deepEqual(h.world.enemies.filter((e) => e.group === 'don_ernesto').map((e) => e.kind), ['don_ernesto']);
+  assert.ok(h.toasts.includes(config.avisos.av4));
+  assert.match(h.text, /Don Ernesto/);
+  await h.ticks(s, 8);
+  assert.notEqual(h.world.arena, null, 'no termina con el minijefe vivo');
+  await h.trigger('n10_ir_catedral');
+  assert.deepEqual(h.gotos(), [], 'la puerta sigue cerrada');
+  const before = h.rewards.length;
+  h.clear('don_ernesto');
+  await h.ticks(s, 8);
+  assert.equal(h.world.arena, null);
+  assert.equal(h.state.flags['n10:enc:av4'], true);
+  assert.equal(h.rewards.slice(before)[0], config.rewards.minijefe);
+  assert.deepEqual(h.dialogues.slice(-1), ['n10_ernesto_fin']);
+  await h.trigger('n10_ir_catedral');
+  assert.deepEqual(h.gotos(), [['goto', 'catedral', undefined]]);
+  // Reintento: la presentación no se repite.
+  s.shutdown();
+  const h2 = harness();
+  h2.state.flags['n10:dlg:av4_intro'] = true;
+  Object.assign(h2.state.flags, { 'n10:enc:av1': true, 'n10:enc:av2': true, 'n10:enc:av3': true });
+  const s2 = await h2.ready('gdl_avenida');
+  await h2.trigger('n10_av_enc4');
+  assert.equal(h2.dialogues.includes('n10_ernesto_intro'), false);
+  assert.deepEqual(h2.world.arena, [2220, 2590], 'tras morir, Don Ernesto vuelve sin repetir su presentación');
+  assert.equal(s2.world.timeScale, 1);
+});
+
+await test('Don Ernesto: si el enemigo aún no está integrado (el grupo nunca aparece) el respaldo libera la puerta y nada queda bloqueado', async () => {
+  const h = harness();
+  const level = levels.gdl_avenida;
+  const original = level.enemies;
+  level.enemies = original.filter((e) => e.type !== 'don_ernesto');
+  try {
+    const s = await h.ready('gdl_avenida');
+    Object.assign(h.state.flags, { 'n10:enc:av1': true, 'n10:enc:av2': true, 'n10:enc:av3': true });
+    await h.trigger('n10_av_enc4');
+    assert.ok(h.world.arena);
+    await h.ticks(s, Math.ceil(config.avenida.encuentros[3].respaldoMs / config.tickMs) + 3);
+    assert.equal(h.world.arena, null);
+    assert.equal(h.state.flags['n10:enc:av4'], true);
+    assert.equal(s.world.timeScale, 1);
+    assert.equal(s.world.player.controlsLocked, false);
+  } finally {
+    level.enemies = original;
+  }
+});
+
 /* ============================== catedral ============================== */
 
 async function playCatedral(h, s) {
@@ -611,12 +736,15 @@ await test('Catedral: oleada en 3 tandas con todos los tipos; al limpiar aparece
     h.clear();
   }
   assert.ok(guard < 200);
-  assert.deepEqual(groups, ['ola1', 'ola2', 'ola3'], 'tandas en orden');
-  for (const kind of ['chaneque', 'encapuchado:rojo', 'encapuchado:negro', 'encapuchado:elite', 'espiritu', 'bestia', 'muneca', 'nahual']) {
+  assert.deepEqual(groups, ['ola1', 'ola2', 'ola3', 'vampiro'], 'tandas en orden y, al final, el Vampiro');
+  for (const kind of ['chaneque', 'encapuchado:rojo', 'encapuchado:negro', 'encapuchado:elite', 'espiritu', 'bestia', 'muneca', 'nahual', 'momia', 'vampiro']) {
     assert.ok(seen.has(kind), `aparece ${kind}`);
   }
   for (const t of config.catedral.tandas) assert.equal(h.state.flags[`n10:tanda:${t.id}`], true);
   assert.ok(h.dialogues.includes('n10_ola_1_fin') && h.dialogues.includes('n10_ola_2_fin') && h.dialogues.includes('n10_madre_vista'));
+  const orden = ['n10_ola_2_fin', 'n10_vampiro_intro', 'n10_vampiro_fin', 'n10_madre_vista'].map((d) => h.dialogues.indexOf(d));
+  assert.deepEqual([...orden].sort((x, y) => x - y), orden, 'Vampiro: presentación → cierre → la madre aparece');
+  assert.equal(h.state.flags['n10:vampiro_fin'], true);
   assert.equal(h.world.arena, null);
   assert.deepEqual(h.called('placeMadre').at(-1), ['placeMadre', config.catedral.madre.x, config.catedral.madre.y]);
   assert.equal(h.state.checkpoint.x, levels.catedral.spawns.altar_mayor.x);
@@ -624,6 +752,63 @@ await test('Catedral: oleada en 3 tandas con todos los tipos; al limpiar aparece
   assert.equal(h.rewards.length >= 3, true);
   assert.equal(s.world.player.controlsLocked, false);
   assert.equal(s.world.timeScale, 1);
+});
+
+await test('Vampiro: minijefe tras la oleada y antes de la emboscada; arena fija, presentación, premio aparte; la madre y el altar solo después', async () => {
+  const h = harness();
+  h.state.section = 'catedral';
+  const s = await h.ready('catedral');
+  let guard = 0;
+  while (!h.state.flags['n10:tanda:ola3'] && guard++ < 200) { await h.ticks(s, 1); if (!h.state.flags['n10:tanda:ola3']) h.clear(); }
+  assert.ok(guard < 200);
+  await h.ticks(s, 2);
+  assert.equal(h.state.flags['n10:oleada_fin'], undefined, 'la oleada no termina con el Vampiro pendiente');
+  assert.deepEqual(h.called('placeMadre'), [], 'la madre aún no aparece');
+  assert.ok(h.dialogues.includes('n10_vampiro_intro'));
+  assert.deepEqual(h.world.enemies.filter((e) => e.group === 'vampiro' && e.alive).map((e) => e.kind), ['vampiro']);
+  assert.notEqual(h.world.arena, null, 'la arena sigue cerrada');
+  assert.match(h.text, /VAMPIRO/);
+  assert.ok(h.toasts.includes(config.avisos.vampiro));
+  await h.trigger('n10_cat_altar_mayor');
+  assert.equal(h.dialogues.includes('n10_emboscada'), false, 'no hay emboscada con el Vampiro vivo');
+  await h.ticks(s, 10);
+  assert.equal(h.state.flags['n10:vampiro_fin'], undefined);
+  const before = h.rewards.length;
+  h.clear('vampiro');
+  await h.ticks(s, 10);
+  assert.equal(h.state.flags['n10:vampiro_fin'], true);
+  assert.ok(h.rewards.slice(before).includes(config.rewards.minijefe));
+  assert.equal(h.state.flags['n10:oleada_fin'], true);
+  assert.equal(h.world.arena, null);
+  assert.equal(h.called('placeMadre').length, 1);
+  assert.ok(h.dialogues.includes('n10_vampiro_fin'));
+  assert.equal(s.world.timeScale, 1);
+  assert.equal(s.world.player.controlsLocked, false);
+  // Reintento: tras morir contra el Vampiro la oleada no se repite y su presentación tampoco.
+  const h2 = harness();
+  h2.state.section = 'catedral';
+  Object.assign(h2.state.flags, { 'n10:catedral_llegada': true, 'n10:tanda:ola1': true, 'n10:tanda:ola2': true, 'n10:tanda:ola3': true, 'n10:dlg:vampiro_intro': true });
+  const s2 = await h2.ready('catedral');
+  await h2.ticks(s2, 6);
+  assert.deepEqual(h2.world.enemies.filter((e) => e.alive).map((e) => e.group), ['vampiro']);
+  assert.equal(h2.dialogues.includes('n10_vampiro_intro'), false);
+  assert.equal(h2.state.flags['n10:oleada_fin'], undefined);
+});
+
+await test('Vampiro: si el enemigo aún no está integrado, el respaldo no deja la Catedral atascada', async () => {
+  const h = harness();
+  h.state.section = 'catedral';
+  const level = levels.catedral;
+  const original = level.enemies;
+  level.enemies = original.filter((e) => e.type !== 'vampiro');
+  try {
+    const s = await h.ready('catedral');
+    await playCatedral(h, s);
+    assert.equal(h.state.flags['n10:oleada_fin'], true);
+    assert.equal(s.world.timeScale, 1);
+  } finally {
+    level.enemies = original;
+  }
 });
 
 await test('Catedral: muerte en una tanda retoma la primera sin completar; la emboscada abre el techo, roba el Códice y pasa a catedral_eclipse', async () => {
@@ -765,7 +950,7 @@ await test('Fase 1: arena, capullo presente, 3 Tzitzimime escalonadas 1 → 2 co
   assert.equal(s.world.player.controlsLocked, false);
 });
 
-await test('Fase 2: el núcleo dispara el recuerdo → aprende MAMA → madre despierta; MAMA abre la ventana y ECOS golpea; 3 golpes → final → epílogo', async () => {
+await test('Fase 2: el núcleo dispara el recuerdo → aprende MAMA → madre despierta; MAMA abre la ventana y ECOS golpea; 3 golpes → final → caminar a la madre → E → conversación → epílogo', async () => {
   const h = harness();
   h.state.section = 'catedral_eclipse';
   const s = await freeAndFase1(h);
@@ -806,18 +991,106 @@ await test('Fase 2: el núcleo dispara el recuerdo → aprende MAMA → madre de
   h.emit('boss:calmed', {});
   await flush();
   await h.ticks(s, 1);
-  assert.deepEqual(h.dialogues.slice(-2), ['n10_final', 'n10_reencuentro']);
+  // Final extendido, parte 1: la jefa cae, el jugador RECUPERA el control y camina hacia la madre.
+  assert.deepEqual(h.dialogues.slice(-1), ['n10_final']);
   assert.equal(eclipseValues(h).at(-1), 0, 'el sol regresa');
+  assert.equal(h.state.flags['n10:itzpa_cae'], true);
+  assert.equal(h.world.arena, null, 'sin enemigos: la arena se abre');
+  assert.equal(s.world.timeScale, 1, 'el mundo no queda congelado');
+  assert.equal(s.world.player.controlsLocked, false, 'el jugador recupera el control');
+  assert.equal(h.called('freeMadre').length, 0, 'la madre sigue encadenada hasta pulsar E');
+  assert.equal(h.state.flags['n10:completo'], undefined);
+  assert.deepEqual(h.called('epilogo'), []);
+  assert.match(h.text, /Libera a tu madre/);
+  const liberar = levels.catedral_eclipse.interactables.find((it) => it.action === 'n10_liberar');
+  assert.ok(liberar && liberar.prompt === 'Liberar a mamá', 'interactuable "Liberar a mamá (E)"');
+  const objetivo = h.emitted.filter((e) => e.name === 'objective').at(-1).payload;
+  assert.deepEqual([objetivo.x, objetivo.y, objetivo.section], [liberar.x, liberar.y, 'catedral_eclipse'], 'rastro de luz hacia la madre');
+  assert.ok(h.toasts.includes(config.avisos.liberar));
+  assert.equal(h.enabled(liberar), true);
+  assert.equal(h.world.enemies.filter((e) => e.alive && e.kind !== 'itzpapalotl').length, 0, 'sin enemigos (la jefa calmada se retira sola)');
+  await h.ticks(s, 3);
+  assert.equal(h.called('start').length, 0);
+  assert.equal(h.called('hatch').length, 1, 'no se reinicia la pelea');
+  // Parte 2: E rompe las cadenas, suena n10_reencuentro y hablan.
+  assert.equal(await h.act('n10_liberar'), true);
+  assert.deepEqual(h.dialogues.slice(-3), ['n10_reencuentro', 'n10_reencuentro_2', 'n10_reencuentro_3']);
   assert.equal(h.called('freeMadre').length, 1);
-  assert.equal(h.called('calm').length, 1);
+  assert.equal(h.called('madreApproach').length, 1);
+  assert.ok(h.called('madreGesture').length >= 3, 'la madre hace señas durante la conversación');
+  assert.ok(h.emitted.some((e) => e.name === 'music' && e.payload.track === 'n10_reencuentro'));
+  assert.equal(h.called('calm').length, 1, 'Balam vuelve a gato');
   assert.equal(h.state.balamJaguar, false);
+  assert.ok(h.dialogues.indexOf('n10_reencuentro_2') > h.dialogues.indexOf('n10_reencuentro'));
+  assert.equal(h.state.flags['n10:madre_libre'], true);
   assert.equal(h.state.flags['n10:completo'], true);
+  assert.equal(await h.act('n10_liberar'), false, 'no se puede liberar dos veces');
   assert.ok(h.emitted.some((e) => e.name === 'music' && e.payload.track === 'n10_epilogo'));
   assert.deepEqual(h.called('epilogo'), [['epilogo']]);
   assert.deepEqual(h.called('start'), [], 'no vuelve al título');
   assert.equal(h.state.bound, false);
   assert.equal(h.world.arena, null);
+  assert.equal(s.world.timeScale, 1);
+  assert.equal(s.world.player.controlsLocked, false);
 });
+
+async function hastaLiberar(h) {
+  const s = await freeAndFase1(h);
+  h.clear('f1_a'); await h.ticks(s, 8); h.clear('f1_b'); await h.ticks(s, 8);
+  h.emit('itzpa:core', { hits: 0, max: 3 });
+  await flush();
+  h.emit('boss:calmed', {});
+  await flush();
+  await h.ticks(s, 1);
+  return s;
+}
+
+await test('Final extendido: salir a medias no repite la pelea; el objetivo vuelve y la conversación se retoma sin duplicar premios', async () => {
+  const h = harness();
+  h.state.section = 'catedral_eclipse';
+  const s = await hastaLiberar(h);
+  const hatches = h.called('hatch').length;
+  const ecos = h.state.ecos;
+  s.shutdown();
+  const s2 = await h.ready('catedral_eclipse');
+  await h.ticks(s2, 3);
+  assert.equal(h.world.enemies.filter((e) => e.alive && e.group !== 'capullo').length, 0, 'no reaparecen Tzitzimime');
+  assert.equal(h.called('hatch').length, hatches, 'el capullo no vuelve a estallar');
+  assert.match(h.text, /Libera a tu madre/);
+  assert.deepEqual(h.called('placeMadre').length, 2);
+  assert.equal(h.dialogues.filter((d) => d === 'n10_reintento').length, 0);
+  assert.equal(h.state.ecos, ecos);
+  assert.equal(await h.act('n10_liberar'), true);
+  assert.equal(h.state.flags['n10:completo'], true);
+  assert.deepEqual(h.called('epilogo'), [['epilogo']]);
+  // Se salió JUSTO después de romper las cadenas: la conversación se reanuda sola.
+  const h2 = harness();
+  Object.assign(h2.state.flags, { 'n10:libre': true, 'n10:itzpa_cae': true, 'n10:madre_libre': true, 'n10:f1_fin': true, 'n10:recuerdo': true });
+  h2.state.section = 'catedral_eclipse';
+  await h2.ready('catedral_eclipse');
+  assert.deepEqual(h2.dialogues.filter((d) => /^n10_reencuentro/.test(d)), ['n10_reencuentro', 'n10_reencuentro_2', 'n10_reencuentro_3']);
+  assert.equal(h2.state.flags['n10:completo'], true);
+  assert.deepEqual(h2.called('epilogo'), [['epilogo']]);
+});
+
+await test('Final extendido: si la conversación falla a medias (error ajeno) el jugador puede volver a intentarlo con E y nada queda bloqueado', async () => {
+  const h = harness();
+  h.state.section = 'catedral_eclipse';
+  const s = await hastaLiberar(h);
+  const fail = h.world.scene;
+  const real = fail.time.delayedCall;
+  let boom = true;
+  h.world.scene.time.delayedCall = (ms, cb) => { if (boom && ms === config.final.liberar.rompeMaxMs) { boom = false; throw new Error('timer roto'); } return real(ms, cb); };
+  assert.equal(await h.act('n10_liberar'), true);
+  assert.equal(h.state.flags['n10:completo'], undefined, 'no se completó');
+  assert.equal(s.world.timeScale, 1);
+  assert.equal(s.world.player.controlsLocked, false);
+  assert.match(h.text, /Libera a tu madre/, 'vuelve a esperar la liberación');
+  assert.equal(await h.act('n10_liberar'), true);
+  assert.equal(h.state.flags['n10:completo'], true);
+});
+
+
 
 await test('Muerte en la Fase 1: no repite la cadena atada, Balam vuelve a despertar y se retoma en la Tzitzimitl alcanzada', async () => {
   const h = harness();
@@ -884,6 +1157,8 @@ await test('Sin APIs de otros agentes (jaguar, madre, ECOS/MAMA en spells.json, 
   h.emit('boss:calmed', {});
   await flush();
   await h.ticks(s, 1);
+  assert.equal(await h.act('n10_liberar'), true);
+  await h.ticks(s, 1);
   assert.equal(h.state.flags['n10:completo'], true);
   assert.equal(h.state.balamJaguar, false);
   assert.deepEqual(h.called('start'), [['start', 'Title']]);
@@ -906,6 +1181,8 @@ await test('Respaldos: si Itzpapálotl nunca aparece se da por calmada; si el n�
     const s2 = await freeAndFase1(h2);
     h2.clear('f1_a'); await h2.ticks(s2, 8); h2.clear('f1_b'); await h2.ticks(s2, 8);
     await h2.ticks(s2, Math.ceil(config.final.fase2.respaldoMs / config.tickMs) + 3);
+    assert.equal(h2.state.flags['n10:itzpa_cae'], true, 'respaldo: la jefa ausente se da por calmada');
+    assert.equal(await h2.act('n10_liberar'), true, 'y se puede liberar a la madre');
     assert.equal(h2.state.flags['n10:completo'], true, 'respaldo: no se queda atascado');
   } finally {
     levels.catedral_eclipse.enemies = original;

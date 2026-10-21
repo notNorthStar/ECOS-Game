@@ -67,7 +67,9 @@ export type EnemyKind =
   | 'rey_olvido'
   // Nivel 10 (Guadalajara): subjefas del eclipse y la jefa final.
   | 'tzitzimitl'
-  | 'itzpapalotl';
+  | 'itzpapalotl'
+  // Versión extendida (Guadalajara): momias comunes y los minijefes Vampiro y Don Ernesto.
+  | 'momia' | 'vampiro' | 'don_ernesto';
 export type ChanequeVariant = 'patrulla' | 'saltador' | 'travieso';
 /** Rangos de la Cofradía: el MISMO modelo con recolor (GDD §9). En el Nivel 3 solo aparece 'rojo'. */
 export type CofradiaRank = 'rojo' | 'negro' | 'elite';

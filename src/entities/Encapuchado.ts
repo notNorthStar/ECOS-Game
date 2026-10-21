@@ -5,6 +5,7 @@ import { DEPTH_TOLERANCE } from '../config/game';
 import { FX_DEPTH_BIAS, SPELLS_FX } from '../config/combat';
 import enemiesData from '../data/enemies.json';
 import { isShieldActive } from '../systems/Shield';
+import { FUENTE } from '../ui/fuente';
 import {
   EnemyBase, FB, burst, hexColor, hitPlayer, inLuzRadius, inMemoriaRadius, inSolLine, lunaVisible, planeDist, powerScale, rand, randRange,
   smokeFx, solDamage, solKnockback, spellParam, inVerdadRadius, inFuegoLine, verdadStun, fuegoDamage, fuegoKnockback, burnFx,
@@ -255,6 +256,8 @@ export class Encapuchado extends EnemyBase {
       kitId: 'encapuchado',
     });
     this.rank = rank;
+    // Arte de Codex: una variante por rango (rojo / negro / elite).
+    this.kit?.setVariant(rank);
     this.R = R;
     this.group = group;
     this.homeX = x;
@@ -262,7 +265,8 @@ export class Encapuchado extends EnemyBase {
     this.patrolDir = this.uid % 2 ? 1 : -1;
     this.facing = this.patrolDir;
     // Con el kit del equipo (un solo modelo) el rango se distingue con tinte (ranks.<rango>.kitTint).
-    if (this.kit && rank !== 'rojo') this.setBaseTint(hexColor(R.kitTint));
+    // Si el kit ya trae la variante del rango (arte de Codex), no se tiñe encima.
+    if (this.kit && rank !== 'rojo' && !this.kit.kit.variants?.includes(rank)) this.setBaseTint(hexColor(R.kitTint));
     // Élite (Nivel 7): ojos rojos que brillan, con o sin kit (Negro con detalles rojos).
     if (R.eyeGlow > 0) {
       this.eyeGlow = this.scene.add.image(x, y, FB.glow).setTint(hexColor(R.trim)).setBlendMode(Phaser.BlendModes.ADD).setScale(0.32, 0.2).setAlpha(R.eyeGlow);
@@ -372,7 +376,7 @@ export class Encapuchado extends EnemyBase {
     this.icon = null;
     if (!ch) return;
     const color = ch === '!' ? '#ff6050' : '#ffe070';
-    this.icon = this.scene.add.text(this.x, this.y, ch, { fontFamily: 'monospace', fontSize: '13px', color, stroke: '#200808', strokeThickness: 3 }).setOrigin(0.5, 1);
+    this.icon = this.scene.add.text(this.x, this.y, ch, { fontFamily: FUENTE, fontSize: '13px', color, stroke: '#200808', strokeThickness: 3 }).setOrigin(0.5, 1);
     this.scene.tweens.add({ targets: this.icon, scale: { from: 1.7, to: 1 }, duration: 160 });
   }
 
@@ -475,6 +479,8 @@ export class Encapuchado extends EnemyBase {
   }
 
   private telegraph(color: number): void {
+    // Aviso visible: brillo en el pecho y anillo en el suelo (EnemyBase.warnFx).
+    this.warnFx(color);
     if (this.flashT > 0) return;
     const blink = Math.floor(this.stT * 14) % 2 === 0;
     this.sprite.setTintMode(Phaser.TintModes.ADD).setTint(blink ? color : 0x000000);

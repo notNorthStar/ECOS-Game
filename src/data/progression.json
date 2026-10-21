@@ -40,6 +40,17 @@
       "locked": true,
       "unlockFrom": "cdmx",
       "lockText": "Disponible desde la Ciudad de México"
+    },
+    {
+      "id": "proteccion",
+      "name": "Protección",
+      "desc": "PROTECCIÓN cura más vida",
+      "descs": ["PROTECCIÓN cura 2 de vida (en vez de 1)", "PROTECCIÓN cura 3 de vida"],
+      "heal": [1, 2, 3],
+      "maxLevel": 2,
+      "costs": [250, 450],
+      "requiresSpell": "PROTECCION",
+      "lockText": "Aprende PROTECCIÓN primero"
     }
   ]
 }

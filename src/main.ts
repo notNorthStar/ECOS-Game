@@ -15,38 +15,46 @@ import { AltarScene } from './scenes/AltarScene';
 import { DialogueScene } from './scenes/DialogueScene';
 import { EndingScene } from './scenes/EndingScene';
 import { EpilogoScene } from './scenes/EpilogoScene';
+import { CargaScene } from './scenes/CargaScene';
+import { cargarFuente } from './ui/fuente';
 
 // Dueño: integración. Orden de escenas: las superpuestas (Hud, Spell, Dialogue, Altar, Diario, Pause) van después de Level.
 const parent = document.getElementById('game')!;
 
-const game = new Phaser.Game({
-  type: Phaser.WEBGL,
-  parent,
-  width: GAME_WIDTH,
-  height: GAME_HEIGHT,
-  backgroundColor: '#07060d',
-  pixelArt: true,
-  roundPixels: true,
-  scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
-  input: { keyboard: true, mouse: { preventDefaultWheel: true } },
-  disableContextMenu: true,
-  scene: [
-    BootScene,
-    TitleScene,
-    LevelScene,
-    HudScene,
-    SpellScene,
-    DialogueScene,
-    AltarScene,
-    DiarioScene,
-    PauseScene,
-    EndingScene,
-    EpilogoScene,
-  ],
-});
+// La fuente pixel (src/ui/fuente.ts) se carga ANTES de crear el juego: así todos los textos nacen con ella.
+function arrancar(): void {
+  const game = new Phaser.Game({
+    type: Phaser.WEBGL,
+    parent,
+    width: GAME_WIDTH,
+    height: GAME_HEIGHT,
+    backgroundColor: '#07060d',
+    pixelArt: true,
+    roundPixels: true,
+    scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
+    input: { keyboard: true, mouse: { preventDefaultWheel: true } },
+    disableContextMenu: true,
+    scene: [
+      BootScene,
+      TitleScene,
+      LevelScene,
+      HudScene,
+      SpellScene,
+      DialogueScene,
+      AltarScene,
+      DiarioScene,
+      PauseScene,
+      EndingScene,
+      EpilogoScene,
+      CargaScene, // pantalla de carga entre niveles (encima de todo)
+    ],
+  });
 
-installInputGuards(parent);
-installAudio(game);
+  installInputGuards(parent);
+  installAudio(game);
 
-// Acceso desde la consola para depurar.
-Object.assign(window as object, { game, ecos: { GameState, bus } });
+  // Acceso desde la consola para depurar.
+  Object.assign(window as object, { game, ecos: { GameState, bus } });
+}
+
+void cargarFuente().then(arrancar);

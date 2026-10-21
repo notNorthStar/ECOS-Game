@@ -364,6 +364,10 @@ export class Itzpapalotl extends EnemyBase {
     this.updateRiftSpawns(dt);
     this.updateRifts(dt);
     if (this.hatched) this.pushHud();
+    // Aura de obsidiana (violeta; rojiza en furia) y destellos oscuros que caen de las alas al moverse.
+    const awake = this.hatched && (this.st as string) !== 'calmed';
+    this.setAura(this.rageT > 0 ? 0xff60a0 : hexColor(I.colors.obsidianEdge), awake ? (this.st === 'stagger' ? 0.12 : 0.24) : 0, { w: 150, h: 140, dy: 0.6, pulse: 0.3 });
+    this.trailFx(dt, awake && !this.wingsBroken, 'dark', this.st === 'flapGust' ? 30 : 5, 0.65, 34);
     this.render(dt);
     this.placeFx();
   }
@@ -394,6 +398,8 @@ export class Itzpapalotl extends EnemyBase {
   }
 
   private telegraph(color: number): void {
+    // Aviso visible: brillo en el pecho y anillo en el suelo (EnemyBase.warnFx).
+    this.warnFx(color);
     if (this.flashT > 0) return;
     const blink = Math.floor(this.stT * 14) % 2 === 0;
     this.sprite.setTintMode(Phaser.TintModes.ADD).setTint(blink ? color : 0x000000);

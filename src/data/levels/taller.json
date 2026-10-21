@@ -6,27 +6,25 @@
   "ambience": { "fog": 0.12, "dust": true, "tint": "#d9a86a", "darkness": 0.55 },
   "music": "n01_taller",
   "walk": [
-    [[40, 222], [1250, 222], [1250, 345], [40, 345]]
+    [[14, 206], [1266, 206], [1266, 345], [14, 345]]
   ],
-  "obstacles": [
-    { "shape": "rect", "x": 40, "y": 222, "w": 60, "h": 14 }
-  ],
+  "obstacles": [],
   "props": [
-    { "key": "prop_estante", "x": 120, "y": 226, "collide": { "rx": 22, "ry": 6 } },
-    { "key": "prop_estante", "x": 175, "y": 226, "collide": { "rx": 22, "ry": 6 }, "flipX": true },
+    { "key": "prop_estante", "x": 120, "y": 208, "collide": { "rx": 22, "ry": 5 } },
+    { "key": "prop_estante", "x": 175, "y": 208, "collide": { "rx": 22, "ry": 5 }, "flipX": true },
     { "key": "prop_caja", "x": 250, "y": 236, "collide": { "rx": 14, "ry": 5 } },
     { "key": "prop_mesa_taller", "x": 330, "y": 262, "collide": { "rx": 44, "ry": 10 }, "id": "mesa" },
     { "key": "prop_pistola_laser", "x": 410, "y": 300, "id": "pistola", "anim": "prop_pistola_laser" },
-    { "key": "prop_estante", "x": 520, "y": 226, "collide": { "rx": 22, "ry": 6 }, "id": "estante" },
+    { "key": "prop_estante", "x": 520, "y": 208, "collide": { "rx": 22, "ry": 5 }, "id": "estante" },
     { "key": "prop_caja", "x": 600, "y": 240, "collide": { "rx": 14, "ry": 5 } },
     { "key": "prop_caja", "x": 628, "y": 248, "collide": { "rx": 14, "ry": 5 }, "flipX": true },
     { "key": "prop_caja", "x": 700, "y": 352, "foreground": true },
-    { "key": "prop_grabado_calma", "x": 880, "y": 222, "id": "grabado" },
-    { "key": "prop_estante", "x": 1000, "y": 226, "collide": { "rx": 22, "ry": 6 } },
+    { "key": "prop_grabado_calma", "x": 880, "y": 210, "id": "grabado", "collide": { "rx": 16, "ry": 4 } },
+    { "key": "prop_estante", "x": 1000, "y": 208, "collide": { "rx": 22, "ry": 5 } },
     { "key": "prop_caja", "x": 1090, "y": 250, "collide": { "rx": 14, "ry": 5 } },
     { "key": "prop_caja", "x": 1060, "y": 330, "collide": { "rx": 14, "ry": 5 }, "flipX": true },
     { "key": "prop_mesa_taller", "x": 210, "y": 356, "foreground": true, "alpha": 0.9 },
-    { "key": "prop_puerta_taller", "x": 1210, "y": 224, "id": "puerta" }
+    { "key": "prop_puerta_taller", "x": 1210, "y": 208, "id": "puerta" }
   ],
   "spawn": { "x": 140, "y": 290 },
   "spawns": {
@@ -34,13 +32,15 @@
     "puerta": { "x": 1170, "y": 270 }
   },
   "enemies": [],
-  "triggers": [],
+  "triggers": [
+    { "id": "salida_derecha", "x": 1238, "y": 206, "w": 42, "h": 139, "action": "salir", "data": { "section": "calles", "spawn": "inicio", "requiere": "calma" } }
+  ],
   "interactables": [
-    { "id": "pistola", "x": 410, "y": 300, "radius": 30, "prompt": "Recoger", "action": "recoger_laser", "once": true },
+    { "id": "pistola", "x": 410, "y": 300, "radius": 34, "prompt": "Recoger la pistola", "action": "recoger_laser", "once": true, "data": { "destacado": true, "promptDy": 26 } },
     { "id": "mesa", "x": 330, "y": 268, "radius": 40, "prompt": "Examinar", "action": "examinar", "data": { "dialogue": "taller_mesa", "ecos": 10, "promptDy": 56 } },
-    { "id": "estante", "x": 520, "y": 232, "radius": 32, "prompt": "Examinar", "action": "examinar", "data": { "dialogue": "taller_estante", "ecos": 5, "promptDy": 86 } },
-    { "id": "grabado", "x": 880, "y": 232, "radius": 36, "prompt": "Leer", "action": "aprender_calma", "once": true, "data": { "promptDy": 60 } },
-    { "id": "puerta", "x": 1205, "y": 234, "radius": 36, "prompt": "Salir", "action": "salir", "data": { "section": "calles", "spawn": "inicio", "requiere": "calma", "aviso": "Todavía no. La gema te pide quedarte un momento más en el taller.", "promptDy": 88 } }
+    { "id": "estante", "x": 520, "y": 216, "radius": 34, "prompt": "Examinar", "action": "examinar", "data": { "dialogue": "taller_estante", "ecos": 5, "promptDy": 92 } },
+    { "id": "grabado", "x": 880, "y": 218, "radius": 40, "prompt": "Leer el grabado", "action": "aprender_calma", "once": true, "data": { "destacado": true, "promptDy": 62 } },
+    { "id": "puerta", "x": 1210, "y": 222, "radius": 80, "prompt": "Salir del taller", "action": "salir", "data": { "section": "calles", "spawn": "inicio", "requiere": "calma", "destacado": true, "promptDy": 100 } }
   ],
   "cameraBounds": { "x0": 0, "x1": 1280 }
 }

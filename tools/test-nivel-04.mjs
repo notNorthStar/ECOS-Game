@@ -83,6 +83,7 @@ function harness({ spellDefs = true, withMariaApi = true, hasMaria = true } = {}
     phaser: { Scenes: { Events: { SHUTDOWN: 'shutdown', UPDATE: 'update' } } },
     '../core/bus': { bus, sfx: (name) => bus.emit('sfx', { name }) },
     '../core/GameState': { GameState: state },
+    '../ui/fuente': { FUENTE: 'monospace', TAM: { chico: 11, normal: 11, medio: 13, grande: 16, cartel: 22 }, PAD_ACENTO: 2, tamFuente: (n) => n, conEscala: (n) => n, estiloTexto: (px) => ({ fontFamily: 'monospace', fontSize: px + 'px' }) },
     '../config/game': { DEPTH: { ui: 9000, shadow: -100, foreground: 5000 } },
     '../scenes/DialogueScene': {
       playDialogue: async (_scene, id) => {

@@ -7,6 +7,7 @@ import { MARIA as M } from '../config/abilities';
 import { kitAnimatorFor, type KitAnimator } from './CharacterKits';
 import { isLunaActive } from './Luna';
 
+import { FUENTE, tamFuente } from '../ui/fuente';
 // Sin importar entities/EnemyBase a propósito: el HUD importa este módulo (getMariaStatus) y así no se
 // forma un ciclo HudScene → Maria → EnemyBase → Shield → Casting → … → HudScene.
 
@@ -282,15 +283,15 @@ export function installMaria(world: WorldApi): void {
     const scale = GameState.settings.textScale || 1;
     const t = scene.add
       .text(0, 0, text, {
-        fontFamily: 'monospace',
-        fontSize: `${Math.round(8 * scale)}px`,
+        fontFamily: FUENTE,
+        fontSize: `${tamFuente(Math.round(8 * scale))}px`,
         color: '#eef4ff',
         align: 'center',
         wordWrap: { width: M.bubbleWidth * scale },
       })
       .setOrigin(0.5, 1);
     const name = scene.add
-      .text(0, 0, 'MARÍA', { fontFamily: 'monospace', fontSize: `${Math.round(7 * scale)}px`, color: '#bfd8ff' })
+      .text(0, 0, 'MARÍA', { fontFamily: FUENTE, fontSize: `${tamFuente(Math.round(7 * scale))}px`, color: '#bfd8ff' })
       .setOrigin(0.5, 1);
     const w = Math.max(t.width, name.width) + 10;
     const h = t.height + name.height + 6;

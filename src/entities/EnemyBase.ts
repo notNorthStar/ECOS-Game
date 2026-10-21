@@ -7,6 +7,17 @@ import { getSpellDef } from '../systems/Mastery';
 import { kitAnimatorFor, type KitAnimator } from '../systems/CharacterKits';
 import { shieldFilterHit } from '../systems/Shield';
 import { isLunaActive } from '../systems/Luna';
+import { GameState } from '../core/GameState';
+
+/** Opción de accesibilidad "Reducir efectos": menos partículas, sin pulsos ni parpadeos fuertes. */
+export const reduceFx = (): boolean => GameState.settings.reduceFx;
+/** Número de partículas según la opción de reducir efectos (un tercio, mínimo 1). */
+export const fxN = (n: number): number => (reduceFx() ? Math.max(1, Math.round(n / 3)) : n);
+/** Aclara un color oscuro de telegrafiado (los tintes ADD son oscuros) para usarlo en un brillo. */
+export function brighten(c: number, k = 3): number {
+  const ch = (s: number) => Math.min(255, Math.round(((c >> s) & 0xff) * k + 40));
+  return (ch(16) << 16) | (ch(8) << 8) | ch(0);
+}
 
 /* =====================================================================
  * Utilidades compartidas por las entidades de combate (dueño: combate).
@@ -160,7 +171,12 @@ export function oneShotFx(
 
 /* ----------------------------- Partículas ----------------------------- */
 
-type EmitterName = 'sparkGreen' | 'sparkRed' | 'purify' | 'eco' | 'dust' | 'calm' | 'stun' | 'electric' | 'smoke' | 'light' | 'sun' | 'dark';
+type EmitterName =
+  | 'sparkGreen' | 'sparkRed' | 'purify' | 'eco' | 'dust' | 'calm' | 'stun' | 'electric' | 'smoke' | 'light' | 'sun' | 'dark'
+  // Versión extendida: plumas (bruja ave), niebla (vampiro), brasas infernales y chispas de cartas (Don Ernesto),
+  // polvo de vendas (momia) y polvo de estrellas (Tzitzimime, espíritus).
+  | 'feather' | 'mist' | 'ember' | 'cardSpark' | 'bandage' | 'stardust';
+export type { EmitterName };
 const emitters = new WeakMap<Phaser.Scene, Map<EmitterName, Phaser.GameObjects.Particles.ParticleEmitter>>();
 
 function emitterConfig(name: EmitterName): { tex: string; cfg: Phaser.Types.GameObjects.Particles.ParticleEmitterConfig } {
@@ -319,6 +335,90 @@ function emitterConfig(name: EmitterName): { tex: string; cfg: Phaser.Types.Game
           scale: { start: 0.3, end: 0 },
           alpha: { start: 0.8, end: 0 },
           tint: [0xa040ff, 0x6020c0, 0xe0a0ff],
+          blendMode: Phaser.BlendModes.ADD,
+          emitting: false,
+        },
+      };
+    case 'feather':
+      return {
+        tex: FB.px,
+        cfg: {
+          speedX: { min: -40, max: 40 },
+          speedY: { min: -50, max: -10 },
+          gravityY: 70,
+          lifespan: { min: 700, max: 1200 },
+          scaleX: { start: 2.2, end: 1.2 },
+          scaleY: { start: 0.9, end: 0.6 },
+          rotate: { min: 0, max: 360 },
+          alpha: { start: 0.95, end: 0 },
+          tint: [0x2c2420, 0x16120e, 0x3fa890, 0x4a3a30],
+          emitting: false,
+        },
+      };
+    case 'mist':
+      return {
+        tex: FB.glow,
+        cfg: {
+          speedX: { min: -18, max: 18 },
+          speedY: { min: -14, max: 4 },
+          lifespan: { min: 800, max: 1500 },
+          scale: { start: 0.6, end: 1.6 },
+          alpha: { start: 0.4, end: 0 },
+          tint: [0x9a90b0, 0x6a6080, 0xc0b8d8],
+          emitting: false,
+        },
+      };
+    case 'ember':
+      return {
+        tex: FB.glow,
+        cfg: {
+          speedX: { min: -16, max: 16 },
+          speedY: { min: -70, max: -25 },
+          lifespan: { min: 450, max: 900 },
+          scale: { start: 0.22, end: 0 },
+          alpha: { start: 1, end: 0 },
+          tint: [0xff3010, 0xff7020, 0xffc040],
+          blendMode: Phaser.BlendModes.ADD,
+          emitting: false,
+        },
+      };
+    case 'cardSpark':
+      return {
+        tex: FB.star,
+        cfg: {
+          speed: { min: 20, max: 80 },
+          lifespan: { min: 250, max: 500 },
+          scale: { start: 0.8, end: 0 },
+          alpha: { start: 1, end: 0 },
+          tint: [0xffe070, 0xff5040, 0xffffff],
+          blendMode: Phaser.BlendModes.ADD,
+          emitting: false,
+        },
+      };
+    case 'bandage':
+      return {
+        tex: FB.px,
+        cfg: {
+          speedX: { min: -30, max: 30 },
+          speedY: { min: -30, max: -4 },
+          gravityY: 60,
+          lifespan: { min: 500, max: 1000 },
+          scale: { start: 1.4, end: 0.4 },
+          alpha: { start: 0.75, end: 0 },
+          tint: [0xc8b898, 0xa89878, 0xe0d4b8, 0x8a7a62],
+          emitting: false,
+        },
+      };
+    case 'stardust':
+      return {
+        tex: FB.star,
+        cfg: {
+          speedX: { min: -10, max: 10 },
+          speedY: { min: -26, max: -6 },
+          lifespan: { min: 500, max: 900 },
+          scale: { start: 0.6, end: 0 },
+          alpha: { start: 0.9, end: 0 },
+          tint: [0xfff4c0, 0xe8e4f8, 0xb080ff],
           blendMode: Phaser.BlendModes.ADD,
           emitting: false,
         },
@@ -568,6 +668,16 @@ export abstract class EnemyBase implements EnemyApi {
   protected kit: KitAnimator | null = null;
   protected kitTime = 0;
 
+  /* ---- Efectos por personaje (versión extendida). Todo respeta "Reducir efectos". ---- */
+  /** Aura aditiva que sigue a la entidad (detrás del sprite). La crea setAura(). */
+  private fxAura: { img: Phaser.GameObjects.Image; alpha: number; w: number; h: number; dy: number; pulse: number } | null = null;
+  /** Telegrafiado: brillo en el pecho + anillo en el suelo mientras se llama a warn() cada cuadro. */
+  private warnColor = -1;
+  private warnImg: Phaser.GameObjects.Image | null = null;
+  private warnRing: Phaser.GameObjects.Image | null = null;
+  private warnT = 0;
+  private trailAcc = 0;
+
   constructor(world: WorldApi, x: number, y: number, o: { hp: number; radius: number; height: number; ecos: number; feetY: number; frameH: number; fallbackTex: string; textureKey: string; shadowW: number; kitId?: string }) {
     this.world = world;
     this.scene = world.scene;
@@ -690,6 +800,7 @@ export abstract class EnemyBase implements EnemyApi {
     const s = Math.max(0.45, 1 - this.z / 140);
     if (sh instanceof Phaser.GameObjects.Ellipse) sh.setScale(s);
     else sh.setScale((this.shadowW / 32) * s, (this.shadowW / 32) * s);
+    this.renderCharacterFx(dt);
     if (this.stars.length) {
       this.starsT += dt * 4;
       const top = this.y - this.z - this.height - 4;
@@ -699,6 +810,83 @@ export abstract class EnemyBase implements EnemyApi {
         st.setDepth(this.y + (Math.sin(a) > 0 ? FX_DEPTH_BIAS : -FX_DEPTH_BIAS));
       });
     }
+  }
+
+  /**
+   * Aura aditiva (luz propia del personaje). alpha 0 la apaga. w/h en px; dy = fracción de la altura
+   * donde se centra (0 = pies, 1 = cabeza); pulse = amplitud del latido (0..1). Se multiplica por el alpha del sprite.
+   */
+  protected setAura(color: number, alpha: number, o: { w?: number; h?: number; dy?: number; pulse?: number } = {}): void {
+    if (!this.fxAura) {
+      const img = this.scene.add.image(this.x, this.y, FB.glow).setBlendMode(Phaser.BlendModes.ADD).setAlpha(0);
+      this.fxAura = { img, alpha: 0, w: this.radius * 4, h: this.height * 1.2, dy: 0.55, pulse: 0.15 };
+    }
+    const a = this.fxAura;
+    a.img.setTint(color);
+    a.alpha = alpha;
+    if (o.w !== undefined) a.w = o.w;
+    if (o.h !== undefined) a.h = o.h;
+    if (o.dy !== undefined) a.dy = o.dy;
+    if (o.pulse !== undefined) a.pulse = o.pulse;
+  }
+
+  /** Llamar CADA cuadro durante la preparación de un ataque: brillo en el pecho y anillo en el suelo. */
+  protected warnFx(color: number): void {
+    this.warnColor = color;
+  }
+
+  /**
+   * Partículas de rastro (polvo, plumas, niebla…) a `rate` por segundo mientras `on`.
+   * dy = fracción de la altura; spread = dispersión horizontal en px.
+   */
+  protected trailFx(dt: number, on: boolean, name: EmitterName, rate: number, dy = 0.1, spread = 6): void {
+    if (!on || !this.sprite.visible || this.sprite.alpha < 0.05) return;
+    this.trailAcc += dt * rate * (reduceFx() ? 0.35 : 1);
+    while (this.trailAcc >= 1) {
+      this.trailAcc -= 1;
+      burst(this.scene, name, this.x + rand(-spread, spread), this.y - this.z - this.height * dy, this.y + (dy > 0.3 ? FX_DEPTH_BIAS : -0.1), 1);
+    }
+  }
+
+  private renderCharacterFx(dt: number): void {
+    const vis = this.sprite.visible ? this.sprite.alpha : 0;
+    const t = this.scene.time.now / 1000;
+    const a = this.fxAura;
+    if (a) {
+      const pulse = reduceFx() ? 1 : 1 - a.pulse + a.pulse * (0.5 + 0.5 * Math.sin(t * 3 + this.uid));
+      a.img
+        .setPosition(this.x, this.y - this.z - this.bob - this.height * a.dy)
+        .setDisplaySize(a.w, a.h)
+        .setAlpha(a.alpha * vis * pulse)
+        .setDepth(this.y - 0.2);
+    }
+    if (this.warnColor >= 0 && vis > 0) {
+      this.warnT += dt;
+      const c = brighten(this.warnColor);
+      if (!this.warnImg) {
+        this.warnImg = this.scene.add.image(this.x, this.y, FB.glow).setBlendMode(Phaser.BlendModes.ADD);
+        this.warnRing = this.scene.add.image(this.x, this.y, FB.ring).setBlendMode(Phaser.BlendModes.ADD);
+      }
+      const blink = reduceFx() ? 0.6 : 0.45 + 0.4 * Math.abs(Math.sin(this.warnT * 12));
+      const grow = Math.min(1, this.warnT / 0.35);
+      this.warnImg
+        .setVisible(true).setTint(c)
+        .setPosition(this.x, this.y - this.z - this.bob - this.height * 0.55)
+        .setDisplaySize(this.radius * 3.4, this.height * 0.7)
+        .setAlpha(blink * 0.55 * vis)
+        .setDepth(this.y + FX_DEPTH_BIAS * 0.5);
+      this.warnRing!
+        .setVisible(true).setTint(c)
+        .setPosition(this.x, this.y)
+        .setDisplaySize(this.radius * (2 + 2 * grow) + 8, (this.radius * (2 + 2 * grow) + 8) * 0.45)
+        .setAlpha(blink * vis)
+        .setDepth(this.y - FX_DEPTH_BIAS);
+    } else if (this.warnImg) {
+      this.warnT = 0;
+      this.warnImg.setVisible(false);
+      this.warnRing?.setVisible(false);
+    }
+    this.warnColor = -1;
   }
 
   protected setBaseTint(c: number): void {
@@ -722,6 +910,10 @@ export abstract class EnemyBase implements EnemyApi {
     this._alive = false;
     this.setStars(false);
     this.onDestroy();
+    this.fxAura?.img.destroy();
+    this.fxAura = null;
+    this.warnImg?.destroy();
+    this.warnRing?.destroy();
     this.sprite.destroy();
     this.shadow.destroy();
   }

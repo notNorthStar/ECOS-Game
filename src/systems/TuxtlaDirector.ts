@@ -11,6 +11,7 @@ import { addEcos } from './Progression';
 import config from '../data/tuxtla.json';
 import { prepareCatemacoEntry } from './Campaign';
 
+import { FUENTE, tamFuente } from '../ui/fuente';
 const flag = (key: string) => !!GameState.flags[`n02:${key}`];
 const remember = (key: string) => { GameState.flags[`n02:${key}`] = true; };
 
@@ -28,7 +29,7 @@ class TuxtlaDirector {
   constructor(private world: WorldApi) {
     const scene = world.scene;
     this.counter = scene.add.text(config.hud.x, config.hud.y, '', {
-      fontFamily: 'monospace', fontSize: `${config.hud.fontSize}px`,
+      fontFamily: FUENTE, fontSize: `${tamFuente(config.hud.fontSize)}px`,
       color: '#fff0ce', backgroundColor: '#171521cc', padding: { x: 5, y: 4 },
       lineSpacing: 3,
     }).setScrollFactor(0).setDepth(DEPTH.ui);

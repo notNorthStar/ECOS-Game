@@ -37,8 +37,8 @@
     { "who": "narrador", "text": "La gema se enciende al mirarlo. Las letras parecen moverse." }
   ],
   "taller_gema": [
-    { "who": "narrador", "text": "La gema brilla con fuerza y proyecta un hilo de luz que atraviesa la puerta... rumbo al Parque Juárez." },
-    { "who": "tu", "text": "Me está guiando. Aguanta, mamá. Voy para allá." }
+    { "who": "narrador", "text": "La gema brilla con fuerza y proyecta un hilo de luz que cruza el taller y atraviesa la puerta del fondo, a la derecha... rumbo al Parque Juárez." },
+    { "who": "tu", "text": "Me está guiando. Aguanta, mamá. Voy para allá: por la puerta de la derecha." }
   ],
 
   "calles_inicio": [

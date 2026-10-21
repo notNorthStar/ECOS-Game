@@ -13,6 +13,10 @@ export function prepareTuxtlaEntry(): void {
   GameState.checkpoint = null;
   GameState.casting = false;
   GameState.flags.codice = true;
+  // Entrada a un nivel nuevo → pantalla de carga (LevelScene la consume al crear). Todos los
+  // prepare…Entry() pasan por aquí, así que cubre cada cambio de nivel, pero no los reintentos
+  // por muerte ni los cambios de sección dentro de un nivel (esos no llaman a Campaign).
+  GameState.pendingLoadScreen = true;
 }
 
 /**

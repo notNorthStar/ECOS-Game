@@ -67,6 +67,9 @@ export class LevelScene extends Phaser.Scene {
     const level = loadLevel(this.section);
     const start = this.pos ?? (this.spawnKey ? level.spawns?.[this.spawnKey] : undefined) ?? level.spawn;
     keys.endFrame();
+    // Pantalla de carga entre niveles (dueño: interfaz): Campaign la pide al entrar a un nivel nuevo.
+    const conCarga = GameState.pendingLoadScreen;
+    GameState.pendingLoadScreen = false;
 
     this.world = new World(this, level, start, this.spawnKey, (req) => this.restartWith(req));
     const world: WorldApi = this.world;
@@ -98,7 +101,16 @@ export class LevelScene extends Phaser.Scene {
       }
     }
 
+    // Un director que se "auto-prepara" en una entrada directa de prueba no debe dejar la carga pendiente.
+    GameState.pendingLoadScreen = false;
+
     if (!this.scene.isActive('Hud')) this.scene.launch('Hud');
+    if (conCarga) {
+      // El nivel queda en pausa debajo; CargaScene (que también pausa un diálogo de entrada) lo reanuda al cerrarse.
+      this.scene.pause();
+      this.scene.launch('Carga', { section: level.id, nombre: level.name });
+      this.scene.bringToTop('Carga');
+    }
 
     this.cameras.main.fadeIn(CAMERA.fadeMs, 0, 0, 0);
     bus.emit('zone:name', { title: level.name });
